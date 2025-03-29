@@ -4,9 +4,9 @@
 {% block content %}
     <!-- Main Container -->
     <section class="max-w-6xl mx-auto py-20 px-4">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
                         <!-- Login Section (Right Column) -->
-            <div class="bg-gray-100 p-8 rounded-lg shadow-md">
+            <div class="bg-gray-100 p-8 rounded-lg shadow-md md:col-span-1">
                 <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Log In</h2>
                 <form method="POST" action="/signin" class="space-y-6">
                     {% csrf_token %}
@@ -20,11 +20,10 @@
                     </div>
                     <button type="submit" class="w-full bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600 transition duration-300 font-semibold">Log In</button>
                 </form>
-                <p class="mt-4 text-center text-gray-600">Don’t have an account? <a href="/signup" class="text-blue-500 hover:underline">Sign up here</a></p>
                 <p class="text-center text-gray-600 mt-4"><a href="{% url 'password_reset' %}" class="text-blue-500 hover:underline">Forgot Password?</a></p>
             </div>
             <!-- Intro Section (Left Column) -->
-            <div class="text-center md:text-left">
+            <div class="text-center md:text-left md:col-span-2">
                 <h1 class="text-5xl font-extrabold text-gray-800 mb-4">Take Back Control of Your Nissan LEAF</h1>
                 <p class="text-xl text-gray-600 mb-8 max-w-lg mx-auto md:mx-0">The iconic Nissan LEAF deserves more than abandonment. With the manufacturer's support fading, the community steps up. Sign up now to bring your LEAF back to life!</p>
                 <a href="/signup" class="bg-blue-500 text-white px-8 py-4 rounded-md text-lg font-semibold hover:bg-blue-600 transition duration-300 inline-block">Get Started</a>

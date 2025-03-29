@@ -14,7 +14,7 @@ Server for running CARWINGS services for Nissan LEAF.
 
 ## Public instances
 
-- [opencarwings.viaaq.eu](opencarwings.viaaq.eu)
+- [opencarwings.viaaq.eu](https://opencarwings.viaaq.eu)
 
 ## Self-hosting with docker
 

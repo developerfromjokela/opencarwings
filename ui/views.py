@@ -2,9 +2,7 @@ import re
 from random import randint
 
 import django.conf
-import requests
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib import messages
+from django.shortcuts import get_object_or_404
 from django.utils import timezone
 from rest_framework import status
 from rest_framework.authtoken.models import Token
@@ -21,7 +19,6 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.views import PasswordChangeView
-from django.urls import reverse_lazy
 from django.contrib.auth.views import PasswordResetView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
@@ -133,9 +130,6 @@ def car_detail(request, vin):
 
     if request.method == 'POST':
         show_settings = True
-
-
-
         provider_id = request.POST.get('sms-provider', None)
         sms_provider = next((i for i in UI_SMS_PROVIDERS if i['id'] == provider_id), None)
         if sms_provider is None:
@@ -160,6 +154,7 @@ def car_detail(request, vin):
                     car.iccid = form.cleaned_data['sim_id']
                     car.tcu_model = form.cleaned_data['tcu_id']
                     car.tcu_serial = form.cleaned_data['unit_id']
+                    car.nickname = form.cleaned_data['nickname']
                     messages.success(request, 'Successfully saved settings.')
                 else:
                     messages.error(request, 'Please fill the form correctly')
@@ -248,6 +243,8 @@ def signup(request):
     if request.user.is_authenticated:
         return redirect('/')
     if request.method == 'POST':
+        if not django.conf.settings.SIGNUP_ENABLED:
+            messages.error(request, f"Sign-up is not enabled on this instance")
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()

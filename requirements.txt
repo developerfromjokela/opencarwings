@@ -1,0 +1,7 @@
+Django~=5.1.7
+djangorestframework~=3.15.2
+GitPython~=3.1.44
+requests~=2.32.3
+asgiref~=3.8.1
+django-crispy-forms~=2.3
+crispy-tailwind~=1.0.3

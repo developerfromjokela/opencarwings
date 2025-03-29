@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide to Bringing TCU Back Online</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        h2 {
+            color: #555;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
+        }
+        .step {
+            background-color: #fff;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .step-number {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #007BFF;
+        }
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+            margin: 20px 0;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .warning {
+            color: #D9534F;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Guide to Bringing Your TCU Back Online</h1>
+    <p>This detailed guide will walk you through the process of reactivating your vehicle's Telematics Control Unit (TCU). Follow each step carefully to ensure successful setup. This process is commonly used for vehicles like the Nissan Leaf to restore connectivity features.</p>
+
+    <div class="step">
+        <h2><span class="step-number">Step 1:</span> Obtain a SIM Card</h2>
+        <p>You’ll need a SIM card to enable cellular connectivity for the TCU. Here’s how to proceed:</p>
+        <ul>
+            <li><strong>Recommended Provider:</strong> Choose a SIM card from <a href="https://hologram.io/" target="_blank">Hologram</a>. Hologram offers free inbound SMS, which is critical for TCU functionality, as many telematics systems rely on SMS for initial configuration or diagnostics.</li>
+            <li><strong>SIM Type:</strong> Ensure it’s a standard Mini SIM (2FF) or compatible with an adapter, as some TCUs don’t support smaller Micro/Nano SIMs directly.</li>
+            <li><strong>Data Plan:</strong> Select a plan with at least 10-50 MB of monthly data (TCUs typically use minimal data for telemetry).</li>
+            <li><strong>Ordering:</strong> Visit Hologram’s website, sign up, and order a SIM. Activate it via their dashboard after receiving it.</li>
+            <li><strong>Alternative Providers:</strong> If Hologram isn’t available, use a provider with affordable data and SMS support (e.g., AT&T, T-Mobile prepaid SIMs), but you will need a way to send SMS from the internet. 46elks or something similar.</li>
+        </ul>
+        <p><span class="warning">Note:</span> Test the SIM in a phone first to ensure it’s active and receives SMS/data.</p>
+    </div>
+
+    <div class="step">
+        <h2><span class="step-number">Step 2:</span> Access the TCU</h2>
+        <p>The TCU is typically located behind the glovebox in many vehicles (e.g., Nissan Leaf). Follow these steps:</p>
+        <ul>
+            <li><strong>Tools Needed:</strong> Phillips screwdriver, plastic trim removal tool (to avoid scratching), flashlight.</li>
+            <li><strong>Preparation:</strong> Turn off the vehicle and remove the key from the ignition to avoid electrical issues.</li>
+            <li><strong>Glovebox Removal:</strong>
+                <ol>
+                    <li>Open the glovebox and empty its contents.</li>
+                    <li>Locate and remove screws (usually 2-4) along the edges or inside the glovebox.</li>
+                    <li>Gently pull the glovebox forward; it may be held by clips—use the trim tool to pry it loose if needed.</li>
+                    <li>Disconnect any wiring (e.g., glovebox light) by pressing the connector tabs and pulling.</li>
+                </ol>
+            </li>
+            <li><strong>Locate the TCU:</strong> Behind the glovebox, you’ll see a rectangular metal or plastic unit (about the size of a small book) with wiring harnesses and an antenna connection—this is the TCU.</li>
+            <li><strong>Visual Guide:</strong> Watch this YouTube video for a step-by-step demonstration:</li>
+        </ul>
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/YHIWHPpg_rY" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <p><span class="warning">Note:</span> Work carefully to avoid damaging clips or wiring. Take photos of the setup before proceeding for reference.</p>
+    </div>
+
+    <div class="step">
+        <h2><span class="step-number">Step 3:</span> Replace the SIM Card</h2>
+        <p>With the TCU exposed, replace the old SIM card:</p>
+        <ul>
+            <li><strong>Disconnect Power:</strong> Unplug the TCU’s main harness (usually a multi-pin connector) to power it down safely.</li>
+            <li><strong>Open the TCU:</strong> Unscrew or unclip the TCU SIM slot cover.</li>
+            <li><strong>Remove Old SIM:</strong> Locate the SIM slot (a small tray or slide-down slot), and set it aside.</li>
+            <li><strong>Insert New SIM:</strong> Insert the new SIM card and slide slot to lock position.</li>
+            <li><strong>Reassemble:</strong> Close the SIM slot cover, secure screws/clips, and reconnect the harness.</li>
+        </ul>
+        <p><span class="warning">Note:</span> Handle the SIM and TCU gently to avoid bending pins or damaging components.</p>
+    </div>
+
+    <div class="step">
+        <h2><span class="step-number">Step 4:</span> Program the APN</h2>
+        <p>The Access Point Name (APN) must be configured for the TCU to connect to the cellular network. Use an Android app:</p>
+        <ul>
+            <li><strong>Download the App:</strong> Get the TCU Configurator app from GitHub: <a href="https://github.com/developerfromjokela/nissan-leaf-tcu/blob/master/configapp-android/app/release/tcu-configurator-1.0.apk" target="_blank">tcu-configurator-1.0.apk</a>.</li>
+            <li><strong>Install the App:</strong>
+                <ol>
+                    <li>Transfer the .apk file to your Android device (via USB, email, etc.).</li>
+                    <li>Enable “Install from Unknown Sources” in Settings > Security.</li>
+                    <li>Open the file and install the app.</li>
+                </ol>
+            </li>
+            <li><strong>Connect to TCU:</strong> Power on the vehicle. Use the app to connect to the TCU via Bluetooth OBD.</li>
+            <li><strong>Set APN:</strong>
+                <ol>
+                    <li>Open the app and locate the APN settings.</li>
+                    <li>Enter the APN for your SIM provider (e.g., Hologram’s is “hologram”; check your provider’s website for specifics).</li>
+                    <li>Save and apply the settings.</li>
+                </ol>
+            </li>
+        </ul>
+        <p><span class="warning">Note:</span> Ensure your Android device has Bluetooth enabled and the car is in ACC state during configuration.</p>
+    </div>
+
+    <div class="step">
+        <h2><span class="step-number">Step 5:</span> Complete Setup on Website</h2>
+        <p>Finalize the TCU activation via a web portal:</p>
+        <ul>
+            <li><strong>Identify the Service:</strong> Determine the telematics service your vehicle uses (e.g., NissanConnect for Leaf). Check your vehicle manual or service website.</li>
+            <li><strong>Log In/Register:</strong> Visit the service’s website, log in with your vehicle account, or create one using your VIN (Vehicle Identification Number).</li>
+            <li><strong>Activate TCU:</strong>
+                <ol>
+                    <li>Navigate to the telematics or connectivity section.</li>
+                    <li>Enter the new SIM’s details (e.g., phone number, ICCID from the SIM card).</li>
+                    <li>Follow prompts to pair the TCU with your account.</li>
+                </ol>
+            </li>
+            <li><strong>Verify:</strong> Do a data refresh to confirm the TCU is online.</li>
+        </ul>
+    </div>
+
+    <p><strong>Congratulations!</strong> If all steps are completed successfully, your TCU should now be back online, restoring telematics functionality to your vehicle.</p>
+</body>
+</html>

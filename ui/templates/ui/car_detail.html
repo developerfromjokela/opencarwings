@@ -252,6 +252,8 @@
                 <form method="post" class="mt-5">
                     {% csrf_token %}
 
+                    <label class="block text-gray-700">Nickname</label>
+                    <input type="text" value="{{car.nickname}}" maxlength="64" name="nickname" class="w-full p-2 border rounded mt-1" required>
                     <label class="block text-gray-700">Unit ID</label>
                     <input type="text" value="{{car.tcu_serial}}" maxlength="14" name="unit_id" class="w-full p-2 border rounded mt-1" required>
                     <label class="block text-gray-700 mt-1 ">TCU ID</label>

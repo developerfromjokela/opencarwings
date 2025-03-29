@@ -24,7 +24,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apk add netcat-openbsd git
 RUN pip3 install --upgrade pip
-RUN pip3 install django-mysql django-postgresql gunicorn gevent
+RUN pip3 install django-mysql django-postgresql gunicorn gevent psycopg2-binary
 
 
 # Copy code

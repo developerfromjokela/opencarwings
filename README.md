@@ -23,3 +23,6 @@ Server for running CARWINGS services for Nissan LEAF.
 3. Start up with docker-compose
 4. Open port 55230 for TCU
 5. Write your server URL to TCU using OBD
+
+## TCU protocol and misc info
+Please check out repo: [nissan-leaf-tcu](https://github.com/developerfromjokela/nissan-leaf-tcu/)

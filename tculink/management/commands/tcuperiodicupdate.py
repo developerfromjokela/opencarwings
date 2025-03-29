@@ -36,8 +36,12 @@ class Command(BaseCommand):
                     print(f"Car {car.vin}: Ongoing request, skipping")
                     continue
 
+                if car.command_result == 2 and car.command_request_time > period:
+                    print(f"Car {car.vin}: Last command timed out, wait for period")
+                    continue
+
                 # Check if update is actually needed
-                if car.last_connection is None or car.last_connection < period:
+                if car.last_connection is not None and car.last_connection < period:
                     print(f"Car {car.vin}: Requesting update")
                     try:
                         sms_result = send_using_provider(settings.ACTIVATION_SMS_MESSAGE,

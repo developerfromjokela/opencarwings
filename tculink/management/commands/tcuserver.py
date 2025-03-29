@@ -227,7 +227,7 @@ class Command(BaseCommand):
                                 location = await get_location(car)
 
                                 text_content = render_to_string(
-                                    "templates/emails/vehicle_alert.txt",
+                                    "emails/vehicle_alert.txt",
                                     context={
                                         "alert": "Vehicle is unplugged. Please check the situation if necessary.",
                                         "vehicle": car.nickname,
@@ -242,7 +242,7 @@ class Command(BaseCommand):
                                 send_mail(
                                     "Charger unplugged notification - OpenCARWINGS",
                                     text_content,
-                                    settings.DEFAULT_FROM_EMAIL
+                                    settings.DEFAULT_FROM_EMAIL,
                                     [car.owner.email],
                                     fail_silently=True
                                 )
@@ -276,7 +276,7 @@ class Command(BaseCommand):
                                 location = await get_location(car)
 
                                 text_content = render_to_string(
-                                    "templates/emails/vehicle_alert.txt",
+                                    "emails/vehicle_alert.txt",
                                     context={
                                         "alert": "Vehicle has finished charging." if req_body["alertstate"] == 4 else "A/C preconditioning is finished",
                                         "vehicle": car.nickname,
@@ -291,7 +291,7 @@ class Command(BaseCommand):
                                 send_mail(
                                     "Charge finish notification - OpenCARWINGS" if req_body["alertstate"] == 4 else "A/C precondition notification - OpenCARWINGS",
                                     text_content,
-                                    settings.DEFAULT_FROM_EMAIL
+                                    settings.DEFAULT_FROM_EMAIL,
                                     [car.owner.email],
                                     fail_silently=True
                                 )

@@ -12,6 +12,6 @@ class ProviderWebhook(BaseSMSProvider):
         if "url" not in configuration:
             raise Exception("Configuration is incomplete")
 
-        request = requests.post(configuration['url'], json={'message': message},
+        request = requests.post(configuration['url'], json={'message': message}, timeout=10,
                                 headers={"User-Agent": "OpenCarWings/1.0", "Content-Type": "application/json"})
         return request.status_code == 200

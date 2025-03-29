@@ -18,7 +18,7 @@ class Provider46elks(BaseSMSProvider):
         msn = re.sub('\D', '', configuration['msn'])
 
         request = requests.post('https://api.46elks.com/a1/sms',
-                auth=(configuration['apikey_user'], configuration['apikey_password']),
+                auth=(configuration['apikey_user'], configuration['apikey_password']), timeout=10,
                 data={
                     'from': 'CarWings',
                     'to': f'+{msn}',

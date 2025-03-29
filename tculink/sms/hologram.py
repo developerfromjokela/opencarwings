@@ -15,7 +15,7 @@ class ProviderHologram(BaseSMSProvider):
 
 
         request = requests.post('https://dashboard.hologram.io/api/1/sms/incoming',
-                auth=('apikey', configuration['apikey']),
+                auth=('apikey', configuration['apikey']), timeout=10,
                 json={
                     'deviceid': configuration['device_id'],
                     'body': message

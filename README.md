@@ -2,11 +2,19 @@
 
 Server for running CARWINGS services for Nissan LEAF.
 
-## Features
+## Implemented features
 
 - [x] Remote control A/C
 - [x] Remote control charging
 - [x] Notifications
+- [x] Read TCU configuration
+- [ ] Write TCU configuration
+- [ ] CARWINGS in navigation head unit
+- [ ] Trip journey & efficiency info
+
+## Public instances
+
+- [opencarwings.viaaq.eu](opencarwings.viaaq.eu)
 
 ## Self-hosting with docker
 

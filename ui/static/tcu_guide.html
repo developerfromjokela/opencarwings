@@ -116,7 +116,7 @@
     </div>
 
     <div class="step">
-        <h2><span class="step-number">Step 4:</span> Program the APN</h2>
+        <h2><span class="step-number">Step 4:</span> Program the settings</h2>
         <p>The Access Point Name (APN) must be configured for the TCU to connect to the cellular network. Use an Android app:</p>
         <ul>
             <li><strong>Download the App:</strong> Get the TCU Configurator app from GitHub: <a href="https://github.com/developerfromjokela/nissan-leaf-tcu/blob/master/configapp-android/app/release/tcu-configurator-1.0.apk" target="_blank">tcu-configurator-1.0.apk</a>.</li>
@@ -135,8 +135,17 @@
                     <li>Save and apply the settings.</li>
                 </ol>
             </li>
+            <li><strong>Set Server Hostname (optional):</strong>
+                <ol>
+                    <li>If your LEAF is EU-market model, you can skip this section if you don't want to use alternative server.</li>
+                    <li>In case you have US-spec car and want to use public server, you can use hostname for default server: nissan-eu-dcm-biz.viaaq.eu</li>
+                    <li>Enter the Server URL in TCU configurator app.</li>
+                    <li>Save and apply the settings.</li>
+                </ol>
+            </li>
         </ul>
-        <p><span class="warning">Note:</span> Ensure your Android device has Bluetooth enabled and the car is in ACC state during configuration.</p>
+        <p><span class="warning">Note:</span> Ensure your Android device has Bluetooth enabled and the car ignition is turned on to ACC during configuration.</p>
+        <p><span class="warning">Note:</span> If you have trouble reading configuration of TCU, turn off Data integrity check in TCU Configurator app.</p>
     </div>
 
     <div class="step">

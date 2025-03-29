@@ -1,9 +1,14 @@
+import re
+
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.validators import UnicodeUsernameValidator
+from django.core import validators
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
+from django.utils.translation import gettext_lazy as _
 
 ALERT_TYPES = (
     (1, 'Charge stop'),
@@ -47,10 +52,40 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
         Token.objects.create(user=instance)
 
+class CARWINGSUsernameValidator(validators.RegexValidator):
+    regex = r"^[A-Za-z0-9\-_\.]+\Z"
+    message = _(
+        "Enter a valid username. This value may contain only unaccented lowercase a-z "
+        "and uppercase A-Z letters, numbers, and /./-/_ characters."
+    )
+    flags = re.ASCII
+
+class CARWINGSPasswordValidator(validators.RegexValidator):
+    regex = r"^[A-Za-z0-9\-_=+@#?!]+\Z"
+    message = _(
+        "Enter a valid TCU Password. This value may contain only unaccented lowercase a-z "
+        "and uppercase A-Z letters, numbers, and /=/-/_/+/@/#/?/! characters."
+    )
+    flags = re.ASCII
+
 # Username: only AA-ZZ aa-zz 0-9 - _ .
 # password: only AA-ZZ aa-zz 0-9 - _ = + @ # ? !
 class User(AbstractUser):
-    tcu_pass_hash = models.CharField(max_length=12, default=None, blank=True, null=True)
+    username_validator = CARWINGSUsernameValidator()
+    tcu_pass_validator = CARWINGSPasswordValidator()
+    tcu_pass_hash = models.CharField(max_length=16, validators=[tcu_pass_validator])
+    username = models.CharField(
+        _("username"),
+        max_length=16,
+        unique=True,
+        help_text=_(
+            "Required. 16 characters or fewer. Letters, digits and /./-/_ only."
+        ),
+        validators=[username_validator],
+        error_messages={
+            "unique": _("A user with that username already exists."),
+        },
+    )
     email_notifications = models.BooleanField(default=True)
 
 

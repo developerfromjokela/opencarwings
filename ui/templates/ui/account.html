@@ -1,0 +1,80 @@
+{% extends 'ui/base.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+{% block title %} My account {% endblock %}
+
+{% block content %}
+    <div class="max-w-6xl mx-auto py-10 px-4">
+        <div id="messages" class="mb-6">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="{% if message.tags == 'error' %}bg-red-100 border-red-400 text-red-700{% endif %} px-4 py-3 rounded relative {% if message.tags == 'success' %}bg-green-100 border-green-400 text-green-700{% endif %} {% if message.tags == 'info' %}bg-blue-100 border-blue-400 text-blue-700{% endif %}" role="alert">
+                        <strong class="font-bold">
+                            {% if message.tags == 'success' %}Success!{% endif %}
+                            {% if message.tags == 'error' %}Error!{% endif %}
+                            {% if message.tags == 'info' %}Notice:{% endif %}
+                            {% if message.tags == 'warn' %}Warning:{% endif %}
+                        </strong>
+                        <span class="block sm:inline">{{ message }}</span>
+                        <span class="absolute top-0 bottom-0 right-0 px-4 py-3 cursor-pointer" onclick="this.parentElement.style.display='none';">
+                            <svg class="fill-current h-6 w-6" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                <title>Close</title>
+                                <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/>
+                            </svg>
+                        </span>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-lg font-semibold text-gray-800 mb-4">My account</h2>
+            <form method="post">
+                {% csrf_token %}
+                <div class="flex items-center mb-4">
+                    <div class="flex-1">
+                        <label class="block text-gray-700">API-key</label>
+                        <input type="text" disabled value="{{api_key}}" class="w-full p-2 border rounded mt-1" required/>
+                    </div>
+                    <div class="ml-4 mt-6">
+                        <button type="button" onclick="resetApiKey()" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5">
+                            Reset API Key
+                        </button>
+                    </div>
+                </div>
+                {{ form|crispy }}
+
+                <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Save</button>
+                <a href="/account/change-password/" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Change account password</a>
+                <a href="/account/change-carwings-password/" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Change CARWINGS Password</a>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function resetApiKey() {
+            if (confirm('Are you sure you want to reset your API key?')) {
+                // Add your API key reset logic here
+                // For example, you might want to make an AJAX call to a backend endpoint
+                fetch('/account/reset-api-key/', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}',
+                        'Content-Type': 'application/json',
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status) {
+                        location.reload(); // Refresh page to show new API key
+                    } else {
+                        alert('Failed to reset API key');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred while resetting the API key');
+                });
+            }
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,138 @@
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        #map, #overview-map {
+            height: 300px;
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        #overview-map {
+            height: 150px;
+        }
+        .spinner {
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #3498db;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: none;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        /* Scrollable tabs on mobile */
+        .tab-nav {
+            display: flex;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+            scrollbar-width: none; /* Hide scrollbar in Firefox */
+            -ms-overflow-style: none; /* Hide scrollbar in IE/Edge */
+        }
+        .tab-nav::-webkit-scrollbar {
+            display: none; /* Hide scrollbar in Chrome/Safari */
+        }
+        .tab-btn {
+            white-space: nowrap; /* Prevent tab text from wrapping */
+        }
+        /* Adjust button and select sizes for touch */
+        #command-select, #send-command {
+            padding: 0.75rem; /* Larger padding for touch */
+        }
+
+        .connection-status {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-left: 8px;
+        }
+        .green { background-color: #22c55e; } /* Tailwind green-500 */
+        .yellow { background-color: #eab308; } /* Tailwind yellow-500 */
+        .red { background-color: #ef4444; } /* Tailwind red-500 */
+
+        /* Charge Bar Segment Display */
+        .charge-bar-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 1rem;
+        }
+        .charge-bar {
+            display: flex;
+            gap: 2px;
+            width: 80%;
+        }
+        .charge-segment {
+            flex: 1;
+            height: 20px;
+            border: 1px solid #333;
+            border-radius: 2px;
+        }
+        .charge-segment.empty {
+            background-color: #4b5563; /* Tailwind gray-600 */
+        }
+        .charge-segment.filled {
+            background-color: #3b82f6; /* Tailwind blue-500 */
+        }
+        .charge-segment.low {
+            background-color: #ef4444; /* Tailwind red-500 */
+        }
+        .charge-segment.blinking {
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+        .charge-labels {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            margin-top: 0.5rem;
+            font-size: 0.875rem;
+            color: #4b5563; /* Tailwind gray-600 */
+        }
+        .charge-percentage {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1f2937; /* Tailwind gray-800 */
+        }
+
+        /* Status Boxes */
+        .status-box {
+            background-color: #f9fafb; /* Tailwind gray-50 */
+            border: 1px solid #e5e7eb; /* Tailwind gray-200 */
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+        .status-box dt {
+            font-size: 0.875rem;
+            color: #4b5563; /* Tailwind gray-600 */
+        }
+        .status-box dd {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1f2937; /* Tailwind gray-800 */
+        }
+
+        /* Spinning Fan Icon for AC Status */
+        .fan-icon {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            margin-top: 0.5rem;
+        }
+        .fan-icon.spinning {
+            animation: spin 1s linear infinite;
+        }

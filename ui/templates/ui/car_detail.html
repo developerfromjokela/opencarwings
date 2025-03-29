@@ -1,0 +1,645 @@
+{% extends 'ui/base.html'%}
+{% load math_filters %}
+{% block title %} {{car.nickname}} {% endblock %}
+
+{% block content %}
+    <!-- Main Content -->
+    <div class="max-w-6xl mx-auto py-6 px-4 sm:px-6">
+        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6 space-y-4 sm:space-y-0">
+            <div>
+                <a href="/" class="inline-block mt-6 text-blue-500 hover:underline text-sm sm:text-base">Back to car list</a>
+                <h1 class="text-2xl sm:text-3xl font-semibold text-gray-800 align-center content-center flex flex-row items-center">{{ car.nickname }}
+                    {% now "U" as current_time %}
+                    {% if car.last_connection %}
+                        {% with last_connection_time=car.last_connection|date:"U" %}
+                            {% with diff_time=current_time|subtract:last_connection_time %}
+                                <!-- Debugging: Output the values -->
+                                <span style="display: none;" id="debug-diff-time">{{ diff_time }}</span>
+                                <span id="connection-status" class="connection-status
+                                    {% if diff_time <= 3600 or diff_time < 0 %}
+                                        green
+                                    {% elif diff_time >= 1209600 %}
+                                        red
+                                    {% else %}
+                                        yellow
+                                    {% endif %}
+                                "></span>
+                            {% endwith %}
+                        {% endwith %}
+                    {% else %}
+                        <span id="connection-status" class="connection-status red"></span>
+                    {% endif %}
+                </h1>
+            </div>
+            <!-- Command Controls -->
+            <div class="flex flex-col sm:flex-row sm:items-center sm:space-x-3 space-y-3 sm:space-y-0">
+                <div class="flex items-center space-x-3">
+                    <div class="spinner" id="command-spinner"></div>
+                    <select id="command-select" class="w-full sm:w-auto border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        {% for value, label in command_choices %}
+                            <option value="{{ value }}">{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button id="send-command" class="bg-blue-500 text-white rounded-md hover:bg-blue-600 w-full sm:w-auto">Send Command</button>
+            </div>
+        </div>
+
+        <!-- Messages -->
+        <div id="messages" class="mb-6">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="{% if message.tags == 'error' %}bg-red-100 border-red-400 text-red-700{% endif %} px-4 py-3 rounded relative {% if message.tags == 'success' %}bg-green-100 border-green-400 text-green-700{% endif %} {% if message.tags == 'info' %}bg-blue-100 border-blue-400 text-blue-700{% endif %}" role="alert">
+                        <strong class="font-bold">
+                            {% if message.tags == 'success' %}Success!{% endif %}
+                            {% if message.tags == 'error' %}Error!{% endif %}
+                            {% if message.tags == 'info' %}Notice:{% endif %}
+                            {% if message.tags == 'warn' %}Warning:{% endif %}
+                        </strong>
+                        <span class="block sm:inline">{{ message }}</span>
+                        <span class="absolute top-0 bottom-0 right-0 px-4 py-3 cursor-pointer" onclick="this.parentElement.style.display='none';">
+                            <svg class="fill-current h-6 w-6" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                <title>Close</title>
+                                <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/>
+                            </svg>
+                        </span>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="tab-nav border-b border-gray-200">
+            <button class="tab-btn px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none {% if not show_settings %}text-blue-500 border-b-2 border-blue-500{% endif %} text-sm sm:text-base" data-tab="overview">Overview</button>
+            <button class="tab-btn px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="basic-info">Basic Info</button>
+            <button class="tab-btn px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="tcu-config">TCU Configuration</button>
+            <button class="tab-btn px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="ev-status">EV Status</button>
+            <button class="tab-btn px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="location">Location</button>
+            <button class="tab-btn px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="recent-alerts">Recent Alerts</button>
+            <button class="tab-btn px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none {% if show_settings %}text-blue-500 border-b-2 border-blue-500{% endif %} text-sm sm:text-base" data-tab="settings">Settings</button>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="mt-6 bg-white p-4 sm:p-6 rounded-lg shadow-md">
+            <!-- Overview Tab -->
+            <div id="overview" class="tab-content {% if not show_settings %}active{% endif %}">
+                <h2 class="text-lg font-semibold text-gray-800 mb-4">Overview</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                    <!-- Small Map -->
+                    <div id="overview-map" class="status-box flex flex-col items-center" style="padding: 0;">
+                    </div>
+                    <!-- Range with AC On -->
+                    <div class="status-box">
+                        <dt>Range (AC On)</dt>
+                        <dd id="overview-range-acon">{{ car.ev_info.range_acon }} km</dd>
+                    </div>
+                    <!-- Range with AC Off -->
+                    <div class="status-box">
+                        <dt>Range (AC Off)</dt>
+                        <dd id="overview-range-acoff">{{ car.ev_info.range_acoff }} km</dd>
+                    </div>
+                    <!-- State of Charge -->
+                    <div class="status-box">
+                        <dt>State of Charge (Nominal)</dt>
+                        <dd id="overview-soc">{{ car.ev_info.soc }}%</dd>
+                    </div>
+                </div>
+                <!-- Charge Bar and Additional Status -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <!-- Charge Bar -->
+                    <div class="col-span-1 sm:col-span-2">
+                        <div class="charge-bar-container">
+                            <div class="charge-bar" id="charge-bar">
+                                {% for i in "xxxxxxxxxxxx" %}
+                                    <div class="charge-segment {% if forloop.counter0 < car.ev_info.charge_bars %}{% if forloop.counter0 < 2 %}low{% else %}filled{% endif %}{% else %}empty{% endif %}"></div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="charge-labels">
+                            <span>EMPTY</span>
+                            <span>FULL</span>
+                        </div>
+                    </div>
+                    <!-- Charge Cable Status -->
+                    <div class="status-box">
+                        <dt>Charge Cable</dt>
+                        <dd id="overview-plugged-in">{{ car.ev_info.plugged_in|yesno:"Plugged In,Unplugged" }}</dd>
+                    </div>
+                    <!-- Car Status -->
+                    <div class="status-box">
+                        <dt>Car Status</dt>
+                        <dd id="overview-car-status">
+                            {% if car.ev_info.car_running %}
+                                {% if car.ev_info.car_gear == 0 %}
+                                    On (Parked)
+                                {% else %}
+                                    On (Driving)
+                                {% endif %}
+                            {% else %}
+                                Off
+                            {% endif %}
+                        </dd>
+                    </div>
+                    <!-- AC Status -->
+                    <div class="status-box">
+                        <dt>AC Status</dt>
+                        <div class="flex flex-row align-center justify-center items-center gap-4">
+                            <p id="overview-ac-status">{{ car.ev_info.ac_status|yesno:"On,Off" }}</p>
+                        <div id="fan-icon" class="fan-icon {% if car.ev_info.ac_status %}spinning{% endif %}">
+<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M424-80q-51 0-77.5-30.5T320-180q0-26 11.5-50.5T367-271q22-14 35.5-36t18.5-47l-12-6q-6-3-11-7l-92 33q-17 6-33 10t-33 4q-63 0-111.5-55T80-536q0-51 30.5-77.5T179-640q26 0 51 11.5t41 35.5q14 22 36 35.5t47 18.5l6-12q3-6 7-11l-33-92q-6-17-10-33t-4-32q0-64 55-112.5T536-880q51 0 77.5 30.5T640-781q0 26-11.5 51T593-689q-22 14-35.5 36T539-606l12 6q6 3 11 7l92-34q17-6 32.5-9.5T719-640q81 0 121 67t40 149q0 51-32 77.5T777-320q-25 0-48.5-11.5T689-367q-14-22-36-35.5T606-421l-6 12q-3 6-7 11l33 92q6 16 10 30.5t4 30.5q1 65-54 115T424-80Zm56-340q25 0 42.5-17.5T540-480q0-25-17.5-42.5T480-540q-25 0-42.5 17.5T420-480q0 25 17.5 42.5T480-420Zm-46-192q6-2 12.5-3.5T459-618q8-42 30.5-78t59.5-60q5-4 8-10t3-15q0-8-6-13.5t-18-5.5q-38 0-86 16.5T400-719q0 9 2.5 17t4.5 15l27 75ZM240-400q14 0 33-7l75-27q-2-6-3.5-12.5T342-459q-42-8-78-30.5T204-549q-4-5-10.5-8t-14.5-3q-9 0-14 6t-5 18q0 54 20.5 95t59.5 41Zm184 240q47 0 92.5-19t43.5-66q0-8-2.5-15t-4.5-13l-27-75q-6 2-12.5 3.5T501-342q-8 42-30.5 78T411-204q-5 4-8.5 10.5T400-180q1 8 6 14t18 6Zm353-240q9 0 16-5t7-19q0-38-16-86.5T719-560q-9 0-17 2t-15 4l-75 28q2 6 3.5 12.5T618-501q42 8 78 30.5t60 59.5q3 5 9 8t12 3ZM618-501ZM459-618ZM342-459Zm159 117Z"/></svg>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Last Updated -->
+                <div class="mt-4 text-sm text-gray-600">
+                    Last Updated: <span id="overview-last-updated">{{ car.ev_info.last_updated|default:"N/A"|date:"Y-m-d H:i" }}</span>
+                </div>
+            </div>
+
+            <!-- Basic Info -->
+            <div id="basic-info" class="tab-content">
+                <dl class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 text-sm sm:text-base">
+                    <div><dt class="text-gray-700 font-semibold">VIN:</dt><dd class="text-gray-600">{{ car.vin }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">Vehicle Code 1:</dt><dd class="text-gray-600">{{ car.vehicle_code1 }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">Vehicle Code 2:</dt><dd class="text-gray-600">{{ car.vehicle_code2 }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">Vehicle Code 3:</dt><dd class="text-gray-600">{{ car.vehicle_code3 }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">Vehicle Code 4:</dt><dd class="text-gray-600">{{ car.vehicle_code4 }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">TCU ID (Model):</dt><dd class="text-gray-600">{{ car.tcu_model|default:"N/A" }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">Unit ID:</dt><dd class="text-gray-600">{{ car.tcu_serial|default:"N/A" }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">ICCID:</dt><dd class="text-gray-600">{{ car.iccid|default:"N/A" }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">TCU Version:</dt><dd class="text-gray-600">{{ car.tcu_ver|default:"N/A" }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">Last Connection:</dt><dd class="text-gray-600" id="last_connection">{{ car.last_connection|default:"Never"|date:"Y-m-d H:i" }}</dd></div>
+                </dl>
+            </div>
+
+            <!-- TCU Configuration -->
+            <div id="tcu-config" class="tab-content">
+                <dl class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 text-sm sm:text-base">
+                    <div><dt class="text-gray-700 font-semibold">Dial Code:</dt><dd class="text-gray-600">{{ car.tcu_configuration.dial_code|default:"N/A" }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">APN:</dt><dd class="text-gray-600">{{ car.tcu_configuration.apn|default:"N/A" }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">APN User:</dt><dd class="text-gray-600">{{ car.tcu_configuration.apn_user|default:"N/A" }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">APN Password:</dt><dd class="text-gray-600">{{ car.tcu_configuration.apn_password|default:"N/A" }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">DNS1:</dt><dd class="text-gray-600">{{ car.tcu_configuration.dns1|default:"N/A" }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">DNS2:</dt><dd class="text-gray-600">{{ car.tcu_configuration.dns2|default:"N/A" }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">Server URL:</dt><dd class="text-gray-600">{{ car.tcu_configuration.server_url|default:"N/A" }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">Proxy URL:</dt><dd class="text-gray-600">{{ car.tcu_configuration.proxy_url|default:"N/A" }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">Connection Type:</dt><dd class="text-gray-600">{{ car.tcu_configuration.connection_type|default:"N/A" }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">Last Updated:</dt><dd class="text-gray-600">{{ car.tcu_configuration.last_updated|default:"N/A"|date:"Y-m-d H:i" }}</dd></div>
+                </dl>
+            </div>
+
+            <!-- EV Status -->
+            <div id="ev-status" class="tab-content">
+                <dl class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 text-sm sm:text-base">
+                    <div><dt class="text-gray-700 font-semibold">Car started:</dt><dd class="text-gray-600" id="car_running">{{ car.ev_info.car_running|yesno }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">Gear:</dt><dd class="text-gray-600" id="car_gear">{{ car.ev_info.car_gear }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">Charge time (80%):</dt><dd class="text-gray-600" id="limit_chg_time">{{ car.ev_info.limit_chg_time }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">Charge time (100%):</dt><dd class="text-gray-600" id="full_chg_time">{{ car.ev_info.full_chg_time }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">Charge bars:</dt><dd class="text-gray-600" id="charge_bars">{{ car.ev_info.charge_bars }} / 12</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">Capacity bars:</dt><dd class="text-gray-600" id="cap_bars">{{ car.ev_info.cap_bars }} %</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">SoC (Nominal):</dt><dd class="text-gray-600" id="soc">{{ car.ev_info.soc }}%</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">SoH:</dt><dd class="text-gray-600" id="soh">{{ car.ev_info.soh }}%</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">Range (AC On):</dt><dd class="text-gray-600" id="range_acon">{{ car.ev_info.range_acon }} km</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">Range (AC Off):</dt><dd class="text-gray-600" id="range_acoff">{{ car.ev_info.range_acoff }} km</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">Plugged In:</dt><dd class="text-gray-600" id="plugged_in">{{ car.ev_info.plugged_in|yesno }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">Charging:</dt><dd class="text-gray-600" id="charging">{{ car.ev_info.charging|yesno }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">AC Status:</dt><dd class="text-gray-600" id="ac_status">{{ car.ev_info.ac_status|yesno }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">GIDs remaining:</dt><dd class="text-gray-600" id="gids">{{ car.ev_info.gids }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">GIDs remaining (relative):</dt><dd class="text-gray-600" id="gids_relative">{{ car.ev_info.gids_relative }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">Last Updated:</dt><dd class="text-gray-600" id="ev_last_updated">{{ car.ev_info.last_updated|default:"N/A"|date:"Y-m-d H:i" }}</dd></div>
+                </dl>
+            </div>
+
+            <!-- Location -->
+            <div id="location" class="tab-content">
+                <div id="map" class="mb-4"></div>
+                <dl class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 text-sm sm:text-base">
+                    <div><dt class="text-gray-700 font-semibold">Latitude:</dt><dd class="text-gray-600" id="lat">{{ car.location.lat|default:"N/A" }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">Longitude:</dt><dd class="text-gray-600" id="lon">{{ car.location.lon|default:"N/A" }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">At Home:</dt><dd class="text-gray-600" id="home">{{ car.location.home|yesno }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">Last Updated:</dt><dd class="text-gray-600" id="loc_last_updated">{{ car.location.last_updated|default:"N/A"|date:"Y-m-d H:i" }}</dd></div>
+                </dl>
+            </div>
+
+            <!-- Recent Alerts -->
+            <div id="recent-alerts" class="tab-content">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm sm:text-base">
+                        <thead>
+                            <tr class="text-gray-700 border-b">
+                                <th class="py-2">Type</th>
+                                <th class="py-2">Timestamp</th>
+                                <th class="py-2">Additional Data</th>
+                            </tr>
+                        </thead>
+                        <tbody id="alerts-table">
+                            {% for alert in alerts %}
+                                <tr data-id="{{ alert.id }}" class="border-b text-gray-600">
+                                    <td class="py-2">{{ alert.get_type_display }}</td>
+                                    <td class="py-2">{{ alert.timestamp|date:"Y-m-d H:i" }}</td>
+                                    <td class="py-2">{{ alert.additional_data|default:"N/A" }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="settings" class="tab-content {% if show_settings %}active{% endif %}">
+                <h2 class="text-lg font-semibold text-gray-800 mb-4">Settings</h2>
+
+                <form method="post" class="mt-5">
+                    {% csrf_token %}
+
+                    <label class="block text-gray-700">Unit ID</label>
+                    <input type="text" value="{{car.tcu_serial}}" maxlength="14" name="unit_id" class="w-full p-2 border rounded mt-1" required>
+                    <label class="block text-gray-700 mt-1 ">TCU ID</label>
+                    <input type="text" value="{{car.tcu_model}}" maxlength="14" name="tcu_id" class="w-full p-2 border rounded mt-1" required>
+                    <label class="block text-gray-700 mt-1 ">SIM ID</label>
+                    <input type="text" value="{{car.iccid}}"  maxlength="22" name="sim_id" class="w-full p-2 border rounded mt-1" required>
+
+                    <hr class="mt-4 mb-4"/>
+                    <label class="mt-4">SMS provider</label>
+
+                    {% for provider in providers %}
+                    <div class="flex items-center my-2">
+                        <input id="sms-radio-{{provider.id}}"
+                               {% if provider.id == car.sms_config.provider %} checked {% endif %}
+                               type="radio" value="{{provider.id}}" name="sms-provider" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
+                        <label for="sms-radio-{{provider.id}}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{provider.name}}</label>
+                    </div>
+                    {% endfor %}
+
+                    {% for provider in providers %}
+                    <div id="{{provider.id}}-fields" class="mt-4 space-y-4 hidden provider-fields">
+                        {% for field in provider.fields %}
+                        <div>
+                            <label for="field-{{ field.0 }}" class="block mb-2 text-sm font-medium text-gray-900">{{ field.1 }}</label>
+                            <input type="text" id="field-{{ field.0 }}" value="{{ car.sms_config|get_item:field.0 }}" maxlength="128" name="{{provider.id}}-{{ field.0 }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        </div>
+                        {% endfor %}
+                        {% if provider.help %}
+                        <div class="mt-4">
+                            <div class="p-4 text-sm text-blue-800 rounded-lg bg-blue-50" role="alert">
+                                {{provider.help}}
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+
+                    <button class="bg-blue-500 text-white rounded-md hover:bg-blue-600 w-full sm:w-auto p-1 mt-5" type="submit">Save</button>
+                    <button class="bg-red-500 text-white rounded-md hover:bg-red-600 w-full sm:w-auto p-1 mt-5" type="button" onclick="removeCarConfirm()">Remove car</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Initialize maps
+        let map = L.map('map', { zoomControl: true });
+        let overviewMap = L.map('overview-map', { zoomControl: false });
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(overviewMap);
+        let marker = null;
+        let overviewMarker = null;
+        let mapInitialized = false;
+        let overviewMapInitialized = false;
+
+        function updateMap(lat, lon, mapInstance, markerInstance, zoomLevel, isOverview = false) {
+            if (lat && lon) {
+                const latLng = [lat, lon];
+                if (markerInstance) {
+                    markerInstance.setLatLng(latLng);
+                } else {
+                    markerInstance = L.marker(latLng).addTo(mapInstance);
+                    if (isOverview) {
+                        overviewMarker = markerInstance;
+                    } else {
+                        marker = markerInstance;
+                    }
+                }
+                mapInstance.setView(latLng, zoomLevel);
+            } else if (markerInstance) {
+                mapInstance.removeLayer(markerInstance);
+                if (isOverview) {
+                    overviewMarker = null;
+                } else {
+                    marker = null;
+                }
+                mapInstance.setView([0, 0], 2);
+            }
+            return markerInstance;
+        }
+
+        // Tab Switching with Map Fix
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabId = button.getAttribute('data-tab');
+
+                    tabButtons.forEach(btn => {
+                        btn.classList.remove('text-blue-500', 'border-b-2', 'border-blue-500');
+                        btn.classList.add('text-gray-600');
+                    });
+                    tabContents.forEach(content => content.classList.remove('active'));
+
+                    button.classList.add('text-blue-500', 'border-b-2', 'border-blue-500');
+                    document.getElementById(tabId).classList.add('active');
+
+                    if (tabId === 'location' && !mapInitialized) {
+                        marker = updateMap({{ car.location.lat|default:"null" }}, {{ car.location.lon|default:"null" }}, map, marker, 15);
+                        mapInitialized = true;
+                    } else if (tabId === 'location') {
+                        setTimeout(() => {
+                            map.invalidateSize();
+                        }, 300);
+                    }
+
+                    if (tabId === 'overview' && !overviewMapInitialized) {
+                        overviewMarker = updateMap({{ car.location.lat|default:"null" }}, {{ car.location.lon|default:"null" }}, overviewMap, overviewMarker, 15, true);
+                        overviewMapInitialized = true;
+                    } else if (tabId === 'overview') {
+                        setTimeout(() => {
+                            overviewMap.invalidateSize();
+                        }, 300);
+                    }
+                });
+            });
+
+            // Initialize overview map on page load
+            overviewMarker = updateMap({{ car.location.lat|default:"null" }}, {{ car.location.lon|default:"null" }}, overviewMap, overviewMarker, 15, true);
+            overviewMapInitialized = true;
+
+            const radioButtons = document.querySelectorAll('input[name="sms-provider"]');
+            const providerBoxes = document.querySelectorAll('.provider-fields');
+
+            function updateFields() {
+                providerBoxes.forEach(i => i.classList.add('hidden'))
+                const selectedValue = document.querySelector('input[name="sms-provider"]:checked').value;
+                document.getElementById(`${selectedValue}-fields`).classList.remove('hidden')
+            }
+
+            radioButtons.forEach(radio => {
+                radio.addEventListener('change', updateFields);
+            });
+
+            // Initial call to show fields based on default selection
+            updateFields();
+        });
+
+        // Command State Management
+        const commandSelect = document.getElementById('command-select');
+        const sendCommandButton = document.getElementById('send-command');
+        const commandSpinner = document.getElementById('command-spinner');
+
+        function updateCommandState(commandType, requested) {
+            if ((commandType === -1 && requested) || commandType === 3) {
+                commandSpinner.style.display = 'inline-block';
+                sendCommandButton.disabled = true;
+                sendCommandButton.classList.add('opacity-50', 'cursor-not-allowed');
+            } else {
+                commandSpinner.style.display = 'none';
+                sendCommandButton.disabled = false;
+                sendCommandButton.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+        }
+
+        // Function to update the charge bar display
+        function updateChargeBar(chargeBars, soc, isCharging) {
+            const chargeBar = document.getElementById('charge-bar');
+            const segments = chargeBar.children;
+
+            // Update segments
+            for (let i = 0; i < segments.length; i++) {
+                segments[i].className = 'charge-segment';
+                if (i < chargeBars) {
+                    if (i < 2) {
+                        segments[i].classList.add('low'); // Red for the first 2 bars
+                    } else {
+                        segments[i].classList.add('filled'); // Blue for the rest of the filled bars
+                    }
+                    // Make the last active segment blink if charging
+                    if (isCharging && i === chargeBars - 1) {
+                        segments[i].classList.add('blinking');
+                    }
+                } else {
+                    segments[i].classList.add('empty'); // Gray for empty bars
+                }
+            }
+        }
+
+        // Existing JavaScript
+        const vin = "{{ car.vin }}";
+        let lastAlertId = Math.max(...Array.from(document.querySelectorAll('#alerts-table tr'))
+            .map(row => parseInt(row.dataset.id) || 0));
+
+        const convertMinsToHrsMins = (mins) => {
+            let h = Math.floor(mins / 60);
+            let m = mins % 60;
+            h = h < 10 ? '0' + h : h;
+            m = m < 10 ? '0' + m : m;
+            return `${h}:${m}`;
+        };
+
+        function removeCarConfirm() {
+            if (confirm("Do you really want to delete this car?")) {
+                fetch(`/api/car/${vin}/`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status) {
+                    window.location.href = "/"
+                }
+            })
+            .catch(error => {
+                console.error('Error sending command:', error);
+                const messagesDiv = document.getElementById('messages');
+                const alertDiv = document.createElement('div');
+                alertDiv.className = 'text-center text-red-600 mb-2';
+                alertDiv.innerHTML = 'Error sending command';
+                messagesDiv.insertBefore(alertDiv, messagesDiv.firstChild);
+            });
+            }
+        }
+
+        function updateCarData() {
+            fetch(`/api/car/${vin}/`)
+                .then(response => response.json())
+                .then(data => {
+                    // Update Overview Tab
+                    document.getElementById('overview-soc').textContent = `${data.ev_info.soc}%`;
+                    document.getElementById('overview-range-acon').textContent = `${data.ev_info.range_acon} km`;
+                    document.getElementById('overview-range-acoff').textContent = `${data.ev_info.range_acoff} km`;
+                    document.getElementById('overview-plugged-in').textContent = data.ev_info.plugged_in ? 'Plugged In' : 'Unplugged';
+                    // Update Car Status
+                    const carStatus = document.getElementById('overview-car-status');
+                    if (data.ev_info.car_running) {
+                        if (data.ev_info.car_gear === 0) {
+                            carStatus.textContent = 'On (Parked)';
+                        } else {
+                            carStatus.textContent = 'On (Driving)';
+                        }
+                    } else {
+                        carStatus.textContent = 'Off';
+                    }
+                    // Update AC Status
+                    const acStatus = document.getElementById('overview-ac-status');
+                    const fanIcon = document.getElementById('fan-icon');
+                    acStatus.textContent = data.ev_info.ac_status ? 'On' : 'Off';
+                    if (data.ev_info.ac_status) {
+                        fanIcon.classList.add('spinning');
+                    } else {
+                        fanIcon.classList.remove('spinning');
+                    }
+                    document.getElementById('overview-last-updated').textContent = data.ev_info.last_updated ?
+                        new Date(data.ev_info.last_updated).toLocaleString() : 'N/A';
+
+                    // Update Charge Bar
+                    updateChargeBar(data.ev_info.charge_bars, data.ev_info.soc, data.ev_info.charging);
+
+                    // Update Maps
+                    marker = updateMap(data.location.lat, data.location.lon, map, marker, 15);
+                    overviewMarker = updateMap(data.location.lat, data.location.lon, overviewMap, overviewMarker, 15, true);
+
+                    // Update other tabs
+                    document.getElementById('last_connection').textContent = data.last_connection ?
+                        new Date(data.last_connection).toLocaleString() : 'Never';
+                    document.getElementById('range_acon').textContent = `${data.ev_info.range_acon} km`;
+                    document.getElementById('range_acoff').textContent = `${data.ev_info.range_acoff} km`;
+                    document.getElementById('plugged_in').textContent = data.ev_info.plugged_in ? 'Yes' : 'No';
+                    document.getElementById('charging').textContent = data.ev_info.charging ? 'Yes' : 'No';
+                    document.getElementById('gids').textContent = data.ev_info.gids;
+                    document.getElementById('gids_relative').textContent = data.ev_info.gids_relative;
+                    document.getElementById('soh').textContent = data.ev_info.soh+"%";
+                    document.getElementById('full_chg_time').textContent = convertMinsToHrsMins(data.ev_info.full_chg_time);
+                    document.getElementById('limit_chg_time').textContent = convertMinsToHrsMins(data.ev_info.limit_chg_time);
+                    document.getElementById('car_running').textContent = data.ev_info.car_running ? 'Yes' : 'No';
+                    document.getElementById('charge_bars').textContent = data.ev_info.charge_bars + " / 12";
+                    document.getElementById('soc').textContent = data.ev_info.soc+"%";
+                    document.getElementById('cap_bars').textContent = data.ev_info.cap_bars + " / 12";
+                    document.getElementById('car_gear').textContent = data.ev_info.car_gear === 0 ? "Parked" : (data.ev_info.car_gear === 2 ? "Reverse" : "Drive");
+                    document.getElementById('ac_status').textContent = data.ev_info.ac_status ? 'Yes' : 'No';
+                    document.getElementById('ev_last_updated').textContent = data.ev_info.last_updated ?
+                        new Date(data.ev_info.last_updated).toLocaleString() : 'N/A';
+                    document.getElementById('lat').textContent = data.location.lat || 'N/A';
+                    document.getElementById('lon').textContent = data.location.lon || 'N/A';
+                    document.getElementById('home').textContent = data.location.home ? 'Yes' : 'No';
+                    document.getElementById('loc_last_updated').textContent = data.location.last_updated ?
+                        new Date(data.location.last_updated).toLocaleString() : 'N/A';
+
+                    // Update connection status color
+                    const connectionStatus = document.getElementById('connection-status');
+                    if (data.last_connection) {
+                        const lastConnectionTime = new Date(data.last_connection).getTime();
+                        const currentTime = new Date().getTime();
+                        const diffTime = (currentTime - lastConnectionTime) / 1000; // Difference in seconds
+                        connectionStatus.className = 'connection-status';
+                        if (diffTime < 3600) { // Within 1 hour
+                            connectionStatus.classList.add('green');
+                        } else if (diffTime > 1209600) { // Over 2 weeks (14 days)
+                            connectionStatus.classList.add('red');
+                        } else { // Between 1 hour and 2 weeks
+                            connectionStatus.classList.add('yellow');
+                        }
+                    } else {
+                        connectionStatus.className = 'connection-status red';
+                    }
+
+                    updateCommandState(data.command_result, data.command_requested);
+                })
+                .catch(error => console.error('Error fetching car data:', error));
+        }
+
+        function updateAlerts() {
+            fetch(`/api/alerts/${vin}/`)
+                .then(response => response.json())
+                .then(alerts => {
+                    const table = document.getElementById('alerts-table');
+                    const currentIds = new Set(Array.from(table.rows).map(row => parseInt(row.dataset.id)));
+                    const newAlerts = alerts.filter(alert => alert.id > lastAlertId);
+
+                    newAlerts.reverse().forEach(alert => {
+                        if (!currentIds.has(alert.id)) {
+                            const row = document.createElement('tr');
+                            row.dataset.id = alert.id;
+                            row.className = 'border-b text-gray-600';
+                            row.innerHTML = `
+                                <td class="py-2">${alert.type_display}</td>
+                                <td class="py-2">${new Date(alert.timestamp).toLocaleString()}</td>
+                                <td class="py-2">${alert.additional_data || 'N/A'}</td>
+                            `;
+                            table.insertBefore(row, table.firstChild);
+                            if (table.rows.length > 10) {
+                                table.deleteRow(-1);
+                            }
+                        }
+                    });
+
+                    if (newAlerts.length > 0) {
+                        lastAlertId = Math.max(...alerts.map(a => a.id));
+                    }
+                })
+                .catch(error => console.error('Error fetching alerts:', error));
+        }
+
+        sendCommandButton.addEventListener('click', () => {
+            if (sendCommandButton.disabled) return;
+
+            const commandType = commandSelect.value;
+            fetch(`/api/command/${vin}/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({ command_type: commandType })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const messagesDiv = document.getElementById('messages');
+                const alertDiv = document.createElement('div');
+                alertDiv.className = `text-center ${data.error ? 'text-red-600' : 'text-green-600'} mb-2`;
+                alertDiv.innerHTML = data.error || data.message;
+                messagesDiv.insertBefore(alertDiv, messagesDiv.firstChild);
+                setTimeout(() => {messagesDiv.innerHTML = ""}, 6000);
+                if (!data.error) {
+                    updateCarData();
+                }
+            })
+            .catch(error => {
+                console.error('Error sending command:', error);
+                const messagesDiv = document.getElementById('messages');
+                const alertDiv = document.createElement('div');
+                alertDiv.className = 'text-center text-red-600 mb-2';
+                alertDiv.innerHTML = 'Error sending command';
+                messagesDiv.insertBefore(alertDiv, messagesDiv.firstChild);
+            });
+        });
+
+        setInterval(() => {
+            updateCarData();
+            updateAlerts();
+        }, 5000);
+
+        updateCarData();
+        updateAlerts();
+
+    </script>
+{% endblock %}

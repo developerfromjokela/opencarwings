@@ -1,0 +1,15 @@
+Hi!
+
+This is a notification regarding vehicle {{vehicle}}.
+
+{{alert}}
+
+Current vehicle information:
+** Range A/C on: {{range_acon}} km
+** Range A/C off: {{range_acoff}} km
+** SOC: {{soc}}%
+** Plugged in: {{pluggedin}}
+** At home: {{athome}}
+
+Sincerely,
+OpenCARWINGS

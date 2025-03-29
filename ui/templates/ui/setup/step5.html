@@ -1,0 +1,34 @@
+{% extends 'ui/setup/stepbase.html' %}
+{% load static %}
+{% block title %} Add Car {% endblock %}
+
+{% block setup %}
+    <div class="bg-white p-6 rounded-lg shadow-md">
+        <h2 class="text-lg font-semibold text-gray-800 mb-4">All done!</h2>
+        <p>You're done with providing necessary information to establish connection with your LEAF.<br/>Please sign in with your username and CARWINGS password in navigation unit like showed below.<br/>It's normal for navigation unit to say sign in failed, you can safely ignore it.</p>
+
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-5">
+            <div>
+                <img class="h-auto max-w-full rounded-lg" src="{% static 'leafstep1.jpg' %}" alt="">
+            </div>
+            <div>
+                <img class="h-auto max-w-full rounded-lg" src="{% static 'leafstep2.jpg' %}" alt="">
+            </div>
+            <div>
+                <img class="h-auto max-w-full rounded-lg" src="{% static 'leafstep3.jpg' %}" alt="">
+            </div>
+            <div>
+                <img class="h-auto max-w-full rounded-lg" src="{% static 'leafstep4.jpg' %}" alt="">
+            </div>
+        </div>
+
+
+        <form method="post" action="{% url 'setup_5' %}">
+            {% csrf_token %}
+            <div class="mt-12 w-full flex flex-row align-end items-end justify-end gap-4">
+                <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Finish</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

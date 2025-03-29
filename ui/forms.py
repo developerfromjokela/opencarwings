@@ -31,11 +31,11 @@ class ChangeCarwingsPasswordForm(forms.Form):
     new_password = forms.CharField(widget=forms.PasswordInput(), max_length=16)
 
 class AccountForm(forms.Form):
-    email = forms.EmailField(widget=forms.EmailInput(), max_length=16)
+    email = forms.EmailField(widget=forms.EmailInput(), max_length=254)
     notifications = forms.BooleanField(widget=forms.CheckboxInput(), required=False)
 
 class SignUpForm(UserCreationForm):
-    email = forms.EmailField(widget=forms.EmailInput(), max_length=16)
+    email = forms.EmailField(widget=forms.EmailInput(), max_length=254)
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['password1'].label = _('Password')

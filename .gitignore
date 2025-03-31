@@ -1,3 +1,4 @@
 carwings/settings.py
 db.sqlite3
 staticfiles
+logs

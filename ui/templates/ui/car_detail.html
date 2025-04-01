@@ -100,8 +100,13 @@
                     </div>
                     <!-- State of Charge -->
                     <div class="status-box">
+                        {% if car.ev_info.soc_display > 0 %}
+                        <dt>State of Charge</dt>
+                        <dd id="overview-soc">{{ car.ev_info.soc_display }}%</dd>
+                        {% else %}
                         <dt>State of Charge (Nominal)</dt>
                         <dd id="overview-soc">{{ car.ev_info.soc }}%</dd>
+                        {% endif %}
                     </div>
                 </div>
                 <!-- Charge Bar and Additional Status -->
@@ -198,6 +203,7 @@
                     <div><dt class="text-gray-700 font-semibold">Charge time (100%):</dt><dd class="text-gray-600" id="full_chg_time">{{ car.ev_info.full_chg_time }}</dd></div>
                     <div><dt class="text-gray-700 font-semibold">Charge bars:</dt><dd class="text-gray-600" id="charge_bars">{{ car.ev_info.charge_bars }} / 12</dd></div>
                     <div><dt class="text-gray-700 font-semibold">Capacity bars:</dt><dd class="text-gray-600" id="cap_bars">{{ car.ev_info.cap_bars }} %</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">SoC (Display):</dt><dd class="text-gray-600" id="soc_display">{{ car.ev_info.soc_display }}%</dd></div>
                     <div><dt class="text-gray-700 font-semibold">SoC (Nominal):</dt><dd class="text-gray-600" id="soc">{{ car.ev_info.soc }}%</dd></div>
                     <div><dt class="text-gray-700 font-semibold">SoH:</dt><dd class="text-gray-600" id="soh">{{ car.ev_info.soh }}%</dd></div>
                     <div><dt class="text-gray-700 font-semibold">Range (AC On):</dt><dd class="text-gray-600" id="range_acon">{{ car.ev_info.range_acon }} km</dd></div>
@@ -492,7 +498,7 @@
                 .then(response => response.json())
                 .then(data => {
                     // Update Overview Tab
-                    document.getElementById('overview-soc').textContent = `${data.ev_info.soc}%`;
+                    document.getElementById('overview-soc').textContent = data.ev_info.soc_display > 0 ? `${data.ev_info.soc_display}%` : `${data.ev_info.soc}%`;
                     document.getElementById('overview-range-acon').textContent = `${data.ev_info.range_acon} km`;
                     document.getElementById('overview-range-acoff').textContent = `${data.ev_info.range_acoff} km`;
                     document.getElementById('overview-plugged-in').textContent = data.ev_info.plugged_in ? 'Plugged In' : 'Unplugged';
@@ -541,6 +547,7 @@
                     document.getElementById('car_running').textContent = data.ev_info.car_running ? 'Yes' : 'No';
                     document.getElementById('charge_bars').textContent = data.ev_info.charge_bars + " / 12";
                     document.getElementById('soc').textContent = data.ev_info.soc+"%";
+                    document.getElementById('soc_display').textContent = data.ev_info.soc_display+"%";
                     document.getElementById('cap_bars').textContent = data.ev_info.cap_bars + " / 12";
                     document.getElementById('car_gear').textContent = data.ev_info.car_gear === 0 ? "Parked" : (data.ev_info.car_gear === 2 ? "Reverse" : "Drive");
                     document.getElementById('ac_status').textContent = data.ev_info.ac_status ? 'Yes' : 'No';

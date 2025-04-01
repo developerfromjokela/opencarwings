@@ -43,6 +43,7 @@ def set_evinfo(car, ev_info):
     car.ev_info.charging = ev_info.get("charging", False)
     car.ev_info.ac_status = ev_info.get("acstate", False)
     car.ev_info.soc = ev_info.get("soc", 0)
+    car.ev_info.soc_display = ev_info.get("soc_display", 0)
     car.ev_info.soh = ev_info.get("soh", 0)
     car.ev_info.cap_bars = ev_info.get("capacity_bars", 0)
     car.ev_info.charge_bars = ev_info.get("chargebars", 0)

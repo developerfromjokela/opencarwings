@@ -100,7 +100,9 @@ def extract_soc(binary):
     return result
 
 def parse_evinfo(byte_data):
-    evinfo_ver = int(byte_data[0])
+    rangeinfo_len = int(byte_data[0])
+
+    evinfo_len = int(byte_data[8])
 
     # Charge & Pre-AC state
     charge_state = (byte_data[9] >> 6) & 0b11
@@ -110,11 +112,11 @@ def parse_evinfo(byte_data):
     acstate = bool((byte_data[9] >> 1) & 0b1)
 
     chg_time_1 = (
-        (byte_data[10] << 2) | ((byte_data[11] & 0b11000000) >> 6)
+        (byte_data[10] << 3) | ((byte_data[11] & 0b11100000) >> 5)
     )
 
     chg_time_2 = (
-        ((byte_data[11] & 0b00111111) << 4) | ((byte_data[12] & 0b11110000) >> 4)
+        ((byte_data[11] & 0b00011111) << 4) | ((byte_data[12] & 0b11110000) >> 4)
     )
 
     # Drive info
@@ -125,6 +127,7 @@ def parse_evinfo(byte_data):
 
 
     # Battery info
+    soc_display = 0
     chargebars = (
         ((byte_data[18] & 0b00000011) << 2) | ((byte_data[19] & 0b11000000) >> 6)
     )
@@ -139,11 +142,24 @@ def parse_evinfo(byte_data):
         ((byte_data[15] & 0b00111111) << 1) | ((byte_data[16] & 0b10000000) >> 7)
     )
 
+    # AZE0 extra info
+    if evinfo_len > 11:
+        soc_display = (
+                ((byte_data[20] & 0b00011111) << 2) | ((byte_data[21] & 0b11000000) >> 6)
+        )
     byte1 = byte_data[16]  # 01010001 in binary
     byte2 = byte_data[17]  # 00100000 in binary
-    bits_from_byte1 = byte1 & 0x7F
+
+    # Extract bits:
+    # - Byte 1: Ignore first bit (0), take last 7 bits (1010001)
+    bits_from_byte1 = byte1 & 0x7F  # Mask to get last 7 bits: 1010001 (81 decimal)
+    # Shift left by 4 to make room for byte2's bits
     shifted_bits = bits_from_byte1 << 4
+
+    # - Byte 2: Take first 4 bits (0010)
     bits_from_byte2 = (byte2 >> 4) & 0x0F  # Shift right 4, mask to get 0010 (2 decimal)
+
+    # Combine the bits
     param16_17 = shifted_bits | bits_from_byte2  # 10100010010 in binary
 
 
@@ -154,7 +170,8 @@ def parse_evinfo(byte_data):
     alertstate = byte_data[6]
 
     return {
-        "ver": evinfo_ver,
+        "rangeinfo_len": rangeinfo_len,
+        "evinfo_len": evinfo_len,
         "acon": range_acon,
         "acoff": range_acoff,
         "pluggedin":pluggedin,
@@ -163,12 +180,12 @@ def parse_evinfo(byte_data):
         "chargebars": chargebars,
         "chargestate": charge_state,
         "resultstate": resultstate,
-        "resultstate": resultstate,
         "alertstate": alertstate,
         "ignition": ignition,
         "parked": park_gear,
         "direction_forward": drive_forward,
         "soc": soc,
+        "soc_display": soc_display,
         "gids": gids,
         "soh": soh,
         "gids_relative": param16_17,

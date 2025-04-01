@@ -119,6 +119,7 @@ class EVInfo(models.Model):
     eco_mode = models.BooleanField(default=False)
     soh = models.IntegerField(default=0)
     soc = models.IntegerField(default=0)
+    soc_display = models.IntegerField(default=0)
     cap_bars = models.IntegerField(default=0)
     gids = models.IntegerField(default=0)
     gids_relative = models.IntegerField(default=0)

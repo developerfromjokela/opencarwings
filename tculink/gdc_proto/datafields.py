@@ -116,7 +116,7 @@ def parse_evinfo(byte_data):
     )
 
     chg_time_2 = (
-        ((byte_data[11] & 0b00011111) << 4) | ((byte_data[12] & 0b11110000) >> 4)
+        ((byte_data[11] & 0b00011111) << 6) | ((byte_data[12] & 0b11111100) >> 2)
     )
 
     # Drive info

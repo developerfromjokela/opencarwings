@@ -11,6 +11,7 @@ class SettingsForm(forms.Form):
     tcu_id = forms.CharField(label="TCU ID", max_length=14, required=True, strip=True, min_length=5)
     sim_id = forms.CharField(label="SIM ID", max_length=22, required=True, strip=True, min_length=5)
     nickname = forms.CharField(label=_("Nickname"), max_length=64, required=True, strip=True, min_length=2)
+    disable_auth = forms.BooleanField(label="Disable TCU authentication", required=False)
 
 class Step2Form(forms.Form):
     unit_id = forms.CharField(label="Unit ID", max_length=14, required=True, strip=True, min_length=5)

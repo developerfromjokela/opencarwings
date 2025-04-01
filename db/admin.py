@@ -70,7 +70,7 @@ class CarAdmin(admin.ModelAdmin):
         }),
         ('TCU Info', {
             'fields': ('tcu_model', 'tcu_serial', 'iccid', 'tcu_ver',
-                       'tcu_user', 'tcu_pass', 'last_connection')
+                       'tcu_user', 'tcu_pass', 'last_connection', 'disable_auth')
         }),
         ('Related Objects', {
             'fields': ('tcu_configuration', 'location', 'ev_info')

@@ -256,10 +256,16 @@
                     <input type="text" value="{{car.nickname}}" maxlength="64" name="nickname" class="w-full p-2 border rounded mt-1" required>
                     <label class="block text-gray-700">Unit ID</label>
                     <input type="text" value="{{car.tcu_serial}}" maxlength="14" name="unit_id" class="w-full p-2 border rounded mt-1" required>
-                    <label class="block text-gray-700 mt-1 ">TCU ID</label>
+                    <label class="block text-gray-700 mt-2 ">TCU ID</label>
                     <input type="text" value="{{car.tcu_model}}" maxlength="14" name="tcu_id" class="w-full p-2 border rounded mt-1" required>
-                    <label class="block text-gray-700 mt-1 ">SIM ID</label>
+                    <label class="block text-gray-700 mt-2 ">SIM ID</label>
                     <input type="text" value="{{car.iccid}}"  maxlength="22" name="sim_id" class="w-full p-2 border rounded mt-1" required>
+                    <div class="block mt-5">
+                        <input type="checkbox" id="disable_auth" value="checked" {% if car.disable_auth %}checked{% endif %} maxlength="22" name="disable_auth" class="p-2 border rounded mt-1 checkboxinput ">
+                        <label for="disable_auth">Skip authentication from TCU</label>
+                        <span class="block text-sm text-gray-700 mt-1">On AZE0 (2013) and newer LEAFs, username and password inserted to navi are not saved due to an error. In this case, check this box to skip the authentication</span>
+                    </div>
+
 
                     <hr class="mt-4 mb-4"/>
                     <label class="mt-4">SMS provider</label>

@@ -132,8 +132,10 @@ class Command(BaseCommand):
                             await writer.drain()
                             raise CommandError("TCU ICCID Mismatch")
 
+                        # skip auth and set as authenticated if check is disabled
+                        authenticated = car.disable_auth
                         # auth before anything
-                        if parsed_data["message_type"][0] != 5:
+                        if parsed_data["message_type"][0] != 5 and not authenticated:
                             auth_data = parsed_data.get("auth", None)
 
                             if auth_data is None:

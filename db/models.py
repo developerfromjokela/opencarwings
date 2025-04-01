@@ -148,6 +148,7 @@ class Car(models.Model):
     tcu_ver = models.CharField(max_length=32, null=True, default=None, blank=True)
     tcu_user = models.CharField(max_length=16, null=True, default=None, blank=True)
     tcu_pass = models.CharField(max_length=16, null=True, default=None, blank=True)
+    disable_auth = models.BooleanField(default=False)
     last_connection = models.DateTimeField(null=True, default=None, blank=True)
     tcu_configuration = models.OneToOneField(TCUConfiguration, on_delete=models.CASCADE)
     location = models.OneToOneField(LocationInfo, on_delete=models.CASCADE)

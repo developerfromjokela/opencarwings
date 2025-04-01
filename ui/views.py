@@ -155,6 +155,8 @@ def car_detail(request, vin):
                     car.tcu_model = form.cleaned_data['tcu_id']
                     car.tcu_serial = form.cleaned_data['unit_id']
                     car.nickname = form.cleaned_data['nickname']
+                    print(form.cleaned_data['disable_auth'])
+                    car.disable_auth = form.cleaned_data['disable_auth']
                     messages.success(request, _('Successfully saved settings.'))
                 else:
                     messages.error(request, _('Please fill the form correctly'))

@@ -199,8 +199,8 @@
                 <dl class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 text-sm sm:text-base">
                     <div><dt class="text-gray-700 font-semibold">Car started:</dt><dd class="text-gray-600" id="car_running">{{ car.ev_info.car_running|yesno }}</dd></div>
                     <div><dt class="text-gray-700 font-semibold">Gear:</dt><dd class="text-gray-600" id="car_gear">{{ car.ev_info.car_gear }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">Charge time (80%):</dt><dd class="text-gray-600" id="limit_chg_time">{{ car.ev_info.limit_chg_time }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">Charge time (100%):</dt><dd class="text-gray-600" id="full_chg_time">{{ car.ev_info.full_chg_time }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">Charge time (80%):</dt><dd class="text-gray-600" id="limit_chg_time">{% if car.ev_info.limit_chg_time == 2047 or car.ev_info.limit_chg_time < 1 %}--:--{% else %}{{ car.ev_info.limit_chg_time }}{% endif %}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">Charge time (100%):</dt><dd class="text-gray-600" id="full_chg_time">{% if car.ev_info.full_chg_time == 2047 or car.ev_info.full_chg_time < 1 %}--:--{% else %}{{ car.ev_info.full_chg_time }}{% endif %}</dd></div>
                     <div><dt class="text-gray-700 font-semibold">Charge bars:</dt><dd class="text-gray-600" id="charge_bars">{{ car.ev_info.charge_bars }} / 12</dd></div>
                     <div><dt class="text-gray-700 font-semibold">Capacity bars:</dt><dd class="text-gray-600" id="cap_bars">{{ car.ev_info.cap_bars }} %</dd></div>
                     <div><dt class="text-gray-700 font-semibold">SoC (Display):</dt><dd class="text-gray-600" id="soc_display">{{ car.ev_info.soc_display }}%</dd></div>
@@ -542,8 +542,8 @@
                     document.getElementById('gids').textContent = data.ev_info.gids;
                     document.getElementById('gids_relative').textContent = data.ev_info.gids_relative;
                     document.getElementById('soh').textContent = data.ev_info.soh+"%";
-                    document.getElementById('full_chg_time').textContent = convertMinsToHrsMins(data.ev_info.full_chg_time);
-                    document.getElementById('limit_chg_time').textContent = convertMinsToHrsMins(data.ev_info.limit_chg_time);
+                    document.getElementById('full_chg_time').textContent = (data.ev_info.full_chg_time === 2047 || data.ev_info.full_chg_time == 0) ? '--:--' : convertMinsToHrsMins(data.ev_info.full_chg_time);
+                    document.getElementById('limit_chg_time').textContent = (data.ev_info.limit_chg_time === 2047 || data.ev_info.limit_chg_time == 0) ? '--:--' : convertMinsToHrsMins(data.ev_info.limit_chg_time);
                     document.getElementById('car_running').textContent = data.ev_info.car_running ? 'Yes' : 'No';
                     document.getElementById('charge_bars').textContent = data.ev_info.charge_bars + " / 12";
                     document.getElementById('soc').textContent = data.ev_info.soc+"%";

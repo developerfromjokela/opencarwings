@@ -134,7 +134,7 @@ class Command(BaseCommand):
 
                         # skip auth and set as authenticated if check is disabled
                         authenticated = car.disable_auth
-                        logger.info(f"TCU Authentication check status: {tcu_info}")
+                        logger.info(f"TCU Authentication check status: {authenticated}")
                         # auth before anything
                         if parsed_data["message_type"][0] != 5 and not authenticated:
                             auth_data = parsed_data.get("auth", None)

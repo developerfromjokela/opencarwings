@@ -1,0 +1,748 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-04-01 22:12+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: db/models.py:14
+msgid "Charge stop"
+msgstr "Latauksen valmistuminen"
+
+#: db/models.py:15 db/models.py:30
+msgid "Charge start"
+msgstr "Aloita lataus"
+
+#: db/models.py:16
+msgid "Charge cable reminder"
+msgstr "Latauskaapelin kytkentämuistutus"
+
+#: db/models.py:17 db/models.py:31
+msgid "A/C on"
+msgstr "Ilmastointi päälle"
+
+#: db/models.py:18 db/models.py:32
+msgid "A/C off"
+msgstr "Ilmastointi pois päältä"
+
+#: db/models.py:19
+msgid "Configuration read"
+msgstr "TCU-asetusten lataus"
+
+#: db/models.py:20
+msgid "A/C auto off"
+msgstr "Esilämmitys/jähdytys valmis"
+
+#: db/models.py:21
+msgid "Charge error"
+msgstr "Virhe latauskomennossa"
+
+#: db/models.py:22
+msgid "A/C error"
+msgstr "Ilmastointikomennon virhe"
+
+#: db/models.py:23
+msgid "Command timeout"
+msgstr "Komennon aikakatkaisu"
+
+#: db/models.py:24 db/models.py:39 ui/templates/ui/account.html:15
+#: ui/templates/ui/car_detail.html:55
+#: ui/templates/ui/change_carwings_password.html:17
+#: ui/templates/ui/change_password.html:17
+#: ui/templates/ui/reset_password_confirm.html:34
+msgid "Error"
+msgstr "Virhe"
+
+#: db/models.py:28
+msgid "No command"
+msgstr "Ei komentoa"
+
+#: db/models.py:29
+msgid "Refresh data"
+msgstr "Päivitä tiedot"
+
+#: db/models.py:33
+msgid "Read configuration"
+msgstr "Lataa TCU:n asetukset"
+
+#: db/models.py:37
+msgid "Waiting"
+msgstr "Odotetaan.."
+
+#: db/models.py:38 ui/templates/ui/account.html:14
+#: ui/templates/ui/car_detail.html:54
+#: ui/templates/ui/change_carwings_password.html:16
+#: ui/templates/ui/change_password.html:16
+#: ui/templates/ui/reset_password_complete.html:10
+#: ui/templates/ui/reset_password_confirm.html:33
+msgid "Success"
+msgstr "Onnistui"
+
+#: db/models.py:40
+msgid "Timeout"
+msgstr "Aikakatkaisu"
+
+#: db/models.py:41
+msgid "Await response"
+msgstr "Odotetaan vastausta"
+
+#: db/models.py:45
+msgid "Park"
+msgstr "Pysäköity"
+
+#: db/models.py:46 ui/templates/ui/car_detail.html:552
+msgid "Drive"
+msgstr "Ajovaihde"
+
+#: db/models.py:47 ui/templates/ui/car_detail.html:552
+msgid "Reverse"
+msgstr "Peruutusvaihde"
+
+#: db/models.py:58
+msgid ""
+"Enter a valid username. This value may contain only unaccented lowercase a-z "
+"and uppercase A-Z letters, numbers, and /./-/_ characters."
+msgstr ""
+"Syötä oikea käyttäjänimi. Se saa sisältää vain kirjaimia, numeroita sekä ./-/"
+"_ merkkejä."
+
+#: db/models.py:66
+msgid ""
+"Enter a valid TCU Password. This value may contain only unaccented lowercase "
+"a-z and uppercase A-Z letters, numbers, and /=/-/_/+/@/#/?/! characters."
+msgstr ""
+"Syötä oikea TCU-salasana. Se saa sisältää vain kirjaimia, numeroita sekä /"
+"=/-/_/+/@/#/?/! merkkejä."
+
+#: db/models.py:78
+msgid "username"
+msgstr "Käyttäjänimi"
+
+#: db/models.py:82
+msgid "Required. 16 characters or fewer. Letters, digits and /./-/_ only."
+msgstr ""
+"Pakollinen. Enintään 16 merkkiä. Sallittu: kirjaimet, numerot sekä "
+"merkit: ./-/_"
+
+#: db/models.py:86
+msgid "A user with that username already exists."
+msgstr "Käyttäjä antamasi käyttäjänimellä on jo olemassa"
+
+#: tculink/sms/46elks.py:9
+msgid "API Username"
+msgstr "API-käyttäjänimi"
+
+#: tculink/sms/46elks.py:10
+msgid "API Password"
+msgstr "API-salasana"
+
+#: tculink/sms/46elks.py:11
+msgid "TCU Phone Number (international format)"
+msgstr "TCU:n puhelinnumero (sisältäen maakoodin, esim: +358412345678)"
+
+#: tculink/sms/46elks.py:13
+msgid "API credentials are available in your 46elks dashboard."
+msgstr "API-tunnukset löytyvät 46elks:n hallintapaneelista."
+
+#: tculink/sms/hologram.py:8
+msgid "API Key"
+msgstr "API-avain"
+
+#: tculink/sms/hologram.py:9
+msgid "Device ID"
+msgstr "Laite-ID"
+
+#: tculink/sms/hologram.py:11
+msgid "API credentials are available in Hologram dashboard Settings."
+msgstr "API-tunnukset löytyvät Hologram hallintapaneelin 'Asetukset'-sivulta"
+
+#: tculink/sms/manual.py:7
+msgid ""
+"Important: With this option, you will need to manually send the SMS yourself "
+"for this to work. No automated messaging will be set up."
+msgstr ""
+"Tärkeää: Tällä vaihtoehdolla sinun on käsin lähetettävä "
+"aktivointitekstiviesti, jotta auto yhdistää palvelimeen. Viestejä ei "
+"lähetetä automaattisesti."
+
+#: tculink/sms/webhook.py:8
+msgid "Webhook URL"
+msgstr "Webhookin URL-osoite"
+
+#: tculink/sms/webhook.py:10
+msgid "POST-request will be sent to specified webhook URL when necessary."
+msgstr ""
+"POST-pyyntö lähetetään syöttämääsi URL-osoitteeseen, kun halutaan ottaa "
+"yhteyttä autoon."
+
+#: ui/forms.py:13 ui/forms.py:23 ui/templates/ui/car_detail.html:261
+msgid "Nickname"
+msgstr "Lempinimi"
+
+#: ui/forms.py:14
+msgid "Disable TCU authentication"
+msgstr ""
+
+#: ui/forms.py:35 ui/templates/ui/reset_password.html:26
+msgid "Email"
+msgstr "Sähköpostiosoite"
+
+#: ui/forms.py:36
+msgid "Notifications"
+msgstr "Ilmoitukset sähköpostitse"
+
+#: ui/forms.py:42 ui/templates/ui/car_detail.html:187
+#: ui/templates/ui/landing.html:19 ui/templates/ui/signin.html:30
+msgid "Password"
+msgstr "Salasana"
+
+#: ui/forms.py:43
+msgid "Password Confirmation"
+msgstr "Vahvista salasana"
+
+#: ui/forms.py:44
+msgid "TCU Password"
+msgstr "TCU-salasana"
+
+#: ui/forms.py:56
+msgid "Can include only letters, numbers, dashes, dots and underscores"
+msgstr ""
+
+#: ui/forms.py:57
+msgid "This password is used for signing in to your account inside the car"
+msgstr ""
+"Tämä salasana käytetään auton ja palvelimen väliseen tunnistautumiseen."
+
+#: ui/templates/ui/account.html:16 ui/templates/ui/car_detail.html:56
+#: ui/templates/ui/change_carwings_password.html:18
+#: ui/templates/ui/change_password.html:18
+#: ui/templates/ui/reset_password_confirm.html:35
+msgid "Notice"
+msgstr "Tiedoksi"
+
+#: ui/templates/ui/account.html:17 ui/templates/ui/car_detail.html:57
+#: ui/templates/ui/change_carwings_password.html:19
+#: ui/templates/ui/change_password.html:19
+#: ui/templates/ui/reset_password_confirm.html:36
+msgid "Warning"
+msgstr "Huomio"
+
+#: ui/templates/ui/account.html:22 ui/templates/ui/car_detail.html:62
+#: ui/templates/ui/change_carwings_password.html:24
+#: ui/templates/ui/change_password.html:24
+#: ui/templates/ui/reset_password_confirm.html:20
+#: ui/templates/ui/reset_password_confirm.html:41
+msgid "Close"
+msgstr "Sulje"
+
+#: ui/templates/ui/account.html:31
+msgid "My Account"
+msgstr "Tili"
+
+#: ui/templates/ui/account.html:36
+msgid "API-key"
+msgstr "API-avain"
+
+#: ui/templates/ui/account.html:41
+msgid "Reset API-key"
+msgstr "Nollaa API-avain"
+
+#: ui/templates/ui/account.html:47 ui/templates/ui/car_detail.html:306
+msgid "Save"
+msgstr "Tallenna"
+
+#: ui/templates/ui/account.html:48
+msgid "Change Account Password"
+msgstr "Vaihda tilin salasana"
+
+#: ui/templates/ui/account.html:49
+msgid "Change CARWINGS Password"
+msgstr "Vaihda TCU-salasana"
+
+#: ui/templates/ui/account.html:56
+msgid "Are you sure you want to reset your API key?"
+msgstr "Haluatko varmasti nollata API-avaimesi?"
+
+#: ui/templates/ui/account.html:71
+msgid "Failure occurred while resetting the API key"
+msgstr "API-avaimen nollaaminen tuotti virheen."
+
+#: ui/templates/ui/account.html:76
+msgid "An error occurred while resetting the API key"
+msgstr "Tapahtui virhe API-avaimen nollauksessa."
+
+#: ui/templates/ui/base.html:40
+msgid "Sign Out"
+msgstr "Kirjaudu ulos"
+
+#: ui/templates/ui/base.html:42 ui/templates/ui/landing.html:11
+#: ui/templates/ui/landing.html:22 ui/templates/ui/signin.html:3
+#: ui/templates/ui/signin.html:9 ui/templates/ui/signin.html:33
+msgid "Sign In"
+msgstr "Kirjaudu"
+
+#: ui/templates/ui/base.html:57
+msgid "Project"
+msgstr "projekti"
+
+#: ui/templates/ui/car_detail.html:10
+msgid "Back to cars"
+msgstr "Palaa etusivulle"
+
+#: ui/templates/ui/car_detail.html:44
+msgid "Send command"
+msgstr "Lähetä komento"
+
+#: ui/templates/ui/car_detail.html:73 ui/templates/ui/car_detail.html:86
+msgid "Overview"
+msgstr "Yleinen"
+
+#: ui/templates/ui/car_detail.html:74
+msgid "Basic Info"
+msgstr "Tiedot"
+
+#: ui/templates/ui/car_detail.html:75
+msgid "TCU Configuration"
+msgstr "TCU-asetukset"
+
+#: ui/templates/ui/car_detail.html:76
+msgid "EV Status"
+msgstr "EV-tiedot"
+
+#: ui/templates/ui/car_detail.html:77
+msgid "Location"
+msgstr "Sijainti"
+
+#: ui/templates/ui/car_detail.html:78
+msgid "Recent Alerts"
+msgstr "Viimeisimmät ilmoitukset"
+
+#: ui/templates/ui/car_detail.html:79 ui/templates/ui/car_detail.html:256
+msgid "Settings"
+msgstr "Asetukset"
+
+#: ui/templates/ui/car_detail.html:93 ui/templates/ui/car_detail.html:209
+msgid "Range (AC On)"
+msgstr "Ajokantama (ilmastointi)"
+
+#: ui/templates/ui/car_detail.html:98 ui/templates/ui/car_detail.html:210
+msgid "Range (AC Off)"
+msgstr "Ajokantama (ilmastointi pois)"
+
+#: ui/templates/ui/car_detail.html:104 ui/templates/ui/car_detail.html:107
+#: ui/templates/ui/car_detail.html:206 ui/templates/ui/car_detail.html:207
+msgid "State of Charge"
+msgstr "Akun varaustila"
+
+#: ui/templates/ui/car_detail.html:107 ui/templates/ui/car_detail.html:207
+msgid "Nominal"
+msgstr "arvioitu"
+
+#: ui/templates/ui/car_detail.html:124
+msgid "EMPTY"
+msgstr "TYHJÄ"
+
+#: ui/templates/ui/car_detail.html:125
+msgid "FULL"
+msgstr "TÄYNNÄ"
+
+#: ui/templates/ui/car_detail.html:130
+msgid "Charge Cable"
+msgstr "Latauskaapeli"
+
+#: ui/templates/ui/car_detail.html:131
+msgid "Plugged In,Unplugged"
+msgstr "Liitetty,Ei liitetty"
+
+#: ui/templates/ui/car_detail.html:139 ui/templates/ui/car_detail.html:141
+#: ui/templates/ui/car_detail.html:509 ui/templates/ui/car_detail.html:511
+#: ui/templates/ui/car_detail.html:519
+msgid "On"
+msgstr "Päällä"
+
+#: ui/templates/ui/car_detail.html:139 ui/templates/ui/car_detail.html:509
+#: ui/templates/ui/car_detail.html:552
+msgid "Parked"
+msgstr "Pysäköity"
+
+#: ui/templates/ui/car_detail.html:141 ui/templates/ui/car_detail.html:511
+msgid "Driving"
+msgstr "Ajossa"
+
+#: ui/templates/ui/car_detail.html:144 ui/templates/ui/car_detail.html:514
+#: ui/templates/ui/car_detail.html:519
+msgid "Off"
+msgstr "Pois"
+
+#: ui/templates/ui/car_detail.html:150
+msgid "AC Status"
+msgstr "Ilmastoinnin tila"
+
+#: ui/templates/ui/car_detail.html:152
+msgid "On,Off"
+msgstr "Päällä,Pois"
+
+#: ui/templates/ui/car_detail.html:161 ui/templates/ui/car_detail.html:193
+#: ui/templates/ui/car_detail.html:216 ui/templates/ui/car_detail.html:227
+msgid "Last Updated"
+msgstr "Viimeksi päivitetty"
+
+#: ui/templates/ui/car_detail.html:169 ui/templates/ui/car_detail.html:170
+#: ui/templates/ui/car_detail.html:171 ui/templates/ui/car_detail.html:172
+msgid "Vehicle Code"
+msgstr "Auton tunniste"
+
+#: ui/templates/ui/car_detail.html:176
+msgid "Version"
+msgstr "Versio"
+
+#: ui/templates/ui/car_detail.html:177
+msgid "Last Connection"
+msgstr "Viimeksi yhdistetty"
+
+#: ui/templates/ui/car_detail.html:184
+msgid "PPP Dial Code"
+msgstr "PPP numero"
+
+#: ui/templates/ui/car_detail.html:186 ui/templates/ui/landing.html:15
+#: ui/templates/ui/signin.html:26
+msgid "Username"
+msgstr "Käyttäjänimi"
+
+#: ui/templates/ui/car_detail.html:190
+msgid "Server"
+msgstr "Palvelin"
+
+#: ui/templates/ui/car_detail.html:191
+msgid "Proxy"
+msgstr "Välityspalvelin"
+
+#: ui/templates/ui/car_detail.html:192
+msgid "Connection Type"
+msgstr "Yhteyksen tyyppi"
+
+#: ui/templates/ui/car_detail.html:200
+msgid "Car on"
+msgstr "Auto päällä"
+
+#: ui/templates/ui/car_detail.html:200 ui/templates/ui/car_detail.html:211
+#: ui/templates/ui/car_detail.html:212 ui/templates/ui/car_detail.html:213
+msgid "Yes,No"
+msgstr "Kyllä,Ei"
+
+#: ui/templates/ui/car_detail.html:201
+msgid "Gear"
+msgstr "Vaihde"
+
+#: ui/templates/ui/car_detail.html:202 ui/templates/ui/car_detail.html:203
+msgid "Charge time"
+msgstr "Latausaika"
+
+#: ui/templates/ui/car_detail.html:204
+msgid "Charge bars"
+msgstr "Lataustason palkit"
+
+#: ui/templates/ui/car_detail.html:205
+msgid "Capacity bars"
+msgstr "Kapasiteetin palkit"
+
+#: ui/templates/ui/car_detail.html:206
+msgid "Display"
+msgstr "mittaristo"
+
+#: ui/templates/ui/car_detail.html:208
+msgid "State of Health"
+msgstr "Akun kunto"
+
+#: ui/templates/ui/car_detail.html:211
+msgid "Plugged in"
+msgstr "Liitetty laturiin"
+
+#: ui/templates/ui/car_detail.html:212
+msgid "Charging"
+msgstr "Ladataan"
+
+#: ui/templates/ui/car_detail.html:213
+msgid "Preconditioning (A/C)"
+msgstr "Esilämmitys/jäähdytys"
+
+#: ui/templates/ui/car_detail.html:214
+msgid "GIDs remaining"
+msgstr "Jäljellä olevat GID:t"
+
+#: ui/templates/ui/car_detail.html:215
+msgid "GIDs remaining (relative)"
+msgstr "Jäljellä olevat GID:t (relatiivi)"
+
+#: ui/templates/ui/car_detail.html:224
+msgid "Latitude"
+msgstr "Leveysaste"
+
+#: ui/templates/ui/car_detail.html:225
+msgid "Longitude"
+msgstr "Pituusaste"
+
+#: ui/templates/ui/car_detail.html:226
+msgid "At Home"
+msgstr "Kotona"
+
+#: ui/templates/ui/car_detail.html:237
+msgid "Type"
+msgstr "Tyyppi"
+
+#: ui/templates/ui/car_detail.html:238
+msgid "Timestamp"
+msgstr "Päivämäärä"
+
+#: ui/templates/ui/car_detail.html:239
+msgid "Additional Data"
+msgstr "Lisätiedot"
+
+#: ui/templates/ui/car_detail.html:271
+msgid "Skip authentication from TCU"
+msgstr "Ohita tunnistautuminen TCU:lta"
+
+#: ui/templates/ui/car_detail.html:272
+msgid ""
+"On AZE0 (2013) and newer LEAFs, username and password inserted to navi are "
+"not saved due to an error. In this case, check this box to skip the "
+"authentication"
+msgstr ""
+"AZE0 (2013) ja uusimmissa LEAFeissa käyttäjänimi sekä TCU-salasana "
+"eivättallennu autoon virheen takia. Tässä tapauksessa kytke ruutu "
+"aktiiviseksi,niin auto saa yhteyden ja ei tarkista kirjautumistietoja"
+
+#: ui/templates/ui/car_detail.html:277
+msgid "SMS provider"
+msgstr "SMS-palvelu"
+
+#: ui/templates/ui/car_detail.html:307
+msgid "Remove car"
+msgstr "Poista auto"
+
+#: ui/templates/ui/car_detail.html:486 ui/templates/ui/car_detail.html:490
+#: ui/templates/ui/car_detail.html:642 ui/templates/ui/car_detail.html:646
+msgid "Error sending command"
+msgstr "Komennon lähetys epäonnistui"
+
+#: ui/templates/ui/car_detail.html:504
+msgid "Plugged In"
+msgstr "Liitetty"
+
+#: ui/templates/ui/car_detail.html:504
+msgid "Unplugged"
+msgstr "Ei liitettynä"
+
+#: ui/templates/ui/car_detail.html:553 ui/templates/ui/car_detail.html:558
+msgid "Yes"
+msgstr "Kyllä"
+
+#: ui/templates/ui/car_detail.html:553 ui/templates/ui/car_detail.html:558
+msgid "No"
+msgstr "Ei"
+
+#: ui/templates/ui/car_list.html:4 ui/templates/ui/car_list.html:9
+msgid "My cars"
+msgstr "Minun autoni"
+
+#: ui/templates/ui/car_list.html:39
+msgid "Last connected"
+msgstr "Viimeksi yhteydessä"
+
+#: ui/templates/ui/car_list.html:44
+msgid "No cars added."
+msgstr "Ei lisättyjä autoja"
+
+#: ui/templates/ui/change_carwings_password.html:5
+#: ui/templates/ui/change_carwings_password.html:9
+msgid "Change CARWINGS password"
+msgstr "Vaihda TCU-salasana"
+
+#: ui/templates/ui/change_carwings_password.html:10
+msgid ""
+"This password is used for authentication between your cars and this server."
+msgstr ""
+"Tämä salasana käytetään auton ja palvelimen väliseen tunnistautumiseen."
+
+#: ui/templates/ui/change_carwings_password.html:10
+msgid ""
+"Please keep in mind, that connection may be disturbed until you save your "
+"new password in the car."
+msgstr ""
+"Pidäthän mielessä, että yhteys saattaa katketa auton kanssa vaihdon jälkeen, "
+"kunnes uudet tiedot syötetään autoon"
+
+#: ui/templates/ui/change_carwings_password.html:36
+#: ui/templates/ui/change_password.html:36
+msgid "Change Password"
+msgstr "Vaihda salasana"
+
+#: ui/templates/ui/change_password.html:5
+#: ui/templates/ui/change_password.html:10
+#: ui/templates/ui/reset_password_confirm.html:3
+#: ui/templates/ui/reset_password_confirm.html:9
+#: ui/templates/ui/reset_password_confirm.html:61
+msgid "Change password"
+msgstr "Vaihda salasana"
+
+#: ui/templates/ui/landing.html:3
+msgid "CARWINGS reborn"
+msgstr "CARWINGS on tullut takaisin"
+
+#: ui/templates/ui/landing.html:16
+msgid "Enter your username"
+msgstr "Syötä käyttäjänimesi"
+
+#: ui/templates/ui/landing.html:20
+msgid "Enter your password"
+msgstr "Syötä salasanasi"
+
+#: ui/templates/ui/landing.html:24 ui/templates/ui/signin.html:36
+msgid "Forgot password?"
+msgstr "Unohtuiko salasana?"
+
+#: ui/templates/ui/landing.html:28
+msgid "Take Back Control of Your Nissan LEAF"
+msgstr "Ota ohjat takaisin Nissan LEAFiisi"
+
+#: ui/templates/ui/landing.html:29
+msgid ""
+"The iconic Nissan LEAF deserves more than abandonment. With the "
+"manufacturer's support fading, the community steps up. Sign up now to bring "
+"your LEAF back to life!"
+msgstr ""
+"Ikoninen Nissan LEAF ansaitsee parempaa kohtelua. Valmistajantuki alkaa "
+"hiipua, mutta LEAF-yhteisö tekee työnsä. Rekisteröidy nyt ja tuo LEAFisi "
+"takaisin nettiin!"
+
+#: ui/templates/ui/landing.html:30
+msgid "Get Started"
+msgstr "Aloita"
+
+#: ui/templates/ui/reset_password.html:3 ui/templates/ui/reset_password.html:9
+#: ui/templates/ui/reset_password_complete.html:3
+msgid "Reset password"
+msgstr "Nollaa salasana"
+
+#: ui/templates/ui/reset_password.html:27
+msgid "Enter email"
+msgstr "Syötä sähköpostiosoite"
+
+#: ui/templates/ui/reset_password.html:29
+msgid "Reset"
+msgstr "Nolla"
+
+#: ui/templates/ui/reset_password.html:31
+#: ui/templates/ui/reset_password_confirm.html:69
+msgid "Back to sign-in"
+msgstr "Takaisin kirjautumiseen"
+
+#: ui/templates/ui/reset_password_complete.html:12
+msgid ""
+"Your password has been reset. You can now <a href=\"/signin\" "
+"class=\"underline\">sign in here</a>"
+msgstr ""
+"Salasanasi on nollattu. Voit nyt <a href=\"/signin\" "
+"class=\"underline\">kirjautua tästä</a>"
+
+#: ui/templates/ui/reset_password_confirm.html:54
+msgid "New password"
+msgstr "Uusi salasana"
+
+#: ui/templates/ui/reset_password_confirm.html:55
+#: ui/templates/ui/reset_password_confirm.html:59
+msgid "Enter new password"
+msgstr "Syötä uusi salasana"
+
+#: ui/templates/ui/reset_password_confirm.html:58
+msgid "Confirm new password"
+msgstr "Vahvista uusi salasana"
+
+#: ui/templates/ui/reset_password_confirm.html:65
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.\n"
+"                        Please request a new password reset."
+msgstr ""
+"Salasanan nollauslinkki on virheellinne, mahdollisesti sitä on jo "
+"käytettykerran.\n"
+"                        Lähetä uusi nollauspyyntö."
+
+#: ui/templates/ui/signin.html:27
+msgid "Enter username"
+msgstr "Syötä käyttäjänimi"
+
+#: ui/templates/ui/signin.html:31
+msgid "Enter password"
+msgstr "Syötä salasana"
+
+#: ui/templates/ui/signin.html:35 ui/templates/ui/signup.html:3
+#: ui/templates/ui/signup.html:10 ui/templates/ui/signup.html:16
+msgid "Sign Up"
+msgstr "Luo tili"
+
+#: ui/templates/ui/signup.html:18
+msgid "Already have an account?"
+msgstr "Onko sinulla jo tili?"
+
+#: ui/templates/ui/signup.html:18
+msgid "Sign in"
+msgstr "Kirjaudu"
+
+#: ui/views.py:86
+msgid "Account successfully updated!"
+msgstr "Tilitiedot päivitetty!"
+
+#: ui/views.py:89
+msgid "Please fill the form correctry and try again."
+msgstr "Täytä lomake oikein ja yritä uudelleen."
+
+#: ui/views.py:160
+msgid "Successfully saved settings."
+msgstr "Asetukset päivitetty!"
+
+#: ui/views.py:162 ui/views.py:331 ui/views.py:352
+msgid "Please fill the form correctly"
+msgstr "Täytäthän lomakkeen oikein"
+
+#: ui/views.py:165 ui/views.py:387
+msgid "Please fill all necessary fields and try again."
+msgstr "Täytäthän kaikki kentät ja yritä uudelleen."
+
+#: ui/views.py:169
+msgid "Waiting for first connection.."
+msgstr "Odotetaan ensimmäistä yhteyttä.."
+
+#: ui/views.py:222
+msgid "Failed to send SMS message to TCU. Please try again in a moment."
+msgstr ""
+"Tekstiviestiä ei voitu lähettää autoon. Kokeile uudelleen hetken kuluttua."
+
+#: ui/views.py:249
+msgid "Sign-up is not enabled on this instance"
+msgstr "Tällä instanssilla ei sallita tilien luomista."
+
+#: ui/views.py:278
+msgid "Invalid username or password."
+msgstr "Virheellinen käyttäjänimi tai salasana."
+
+#: ui/views.py:318
+msgid "Car is already added. Please remove and try again."
+msgstr "Auto on jo lisätty. Poista auto ja yritä uudelleen."
+
+#: ui/views.py:368
+msgid "Please select a provider for SMS."
+msgstr "Ole hyvä ja valitse SMS-palvelun tarjoaja."

@@ -1,20 +1,21 @@
 {% extends 'ui/base.html'%}
-{% block title %} Sign up {% endblock %}
+{% load i18n %}
+{% block title %} {% translate "Sign Up" %} {% endblock %}
 {% load crispy_forms_filters %}
 
 {% block content %}
     <div class="max-w-6xl mx-auto py-10 px-4 flex align-center justify-center items-center">
 
     <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md mt-20">
-        <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Sign Up</h2>
+        <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">{% translate "Sign Up" %}</h2>
 
         <!-- Form -->
         <form method="POST">
             {% csrf_token %}
             {{form|crispy}}
-            <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600">Sign Up</button>
+            <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600">{% translate "Sign Up" %}</button>
         </form>
-        <p class="text-center text-gray-600 mt-4">Already have an account? <a href="/signin" class="text-blue-500 hover:underline">Login</a></p>
+        <p class="text-center text-gray-600 mt-4">{% translate "Already have an account?" %} <a href="/signin" class="text-blue-500 hover:underline">{% translate "Sign in" %}</a></p>
     </div>
 
     </div>

@@ -1,15 +1,16 @@
 import re
 import requests
 from tculink.sms import BaseSMSProvider
+from django.utils.translation import gettext_lazy as _
 
 
 class Provider46elks(BaseSMSProvider):
     CONFIGURATION_FIELDS = [
-        ('apikey_user', "API Username"),
-        ('apikey_password', "API Password"),
-        ('msn', "TCU Phone Number (international format)"),
+        ('apikey_user', _("API Username")),
+        ('apikey_password', _("API Password")),
+        ('msn', _("TCU Phone Number (international format)")),
     ]
-    HELP_TEXT = "API credentials are available in your 46elks dashboard."
+    HELP_TEXT = _("API credentials are available in your 46elks dashboard.")
 
     def send(self, message, configuration):
         if "msn" not in configuration or "apikey_user" not in configuration or "apikey_password" not in configuration:

@@ -1,11 +1,12 @@
 {% extends 'ui/base.html'%}
 {% load math_filters %}
-{% block title %} My cars {% endblock %}
+{% load i18n %}
+{% block title %} {% translate "My cars" %} {% endblock %}
 
 {% block content %}
     <!-- Car List -->
     <div class="max-w-6xl mx-auto py-10 px-4">
-        <h1 class="text-3xl font-semibold text-gray-800 mb-6">My cars <a href="/setup/step1" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">Add</a></h1>
+        <h1 class="text-3xl font-semibold text-gray-800 mb-6">{% translate "My cars" %} <a href="/setup/step1" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">Add</a></h1>
         <div class="space-y-4">
             {% for car in cars %}
                 <a href="{% url 'car_detail' car.vin %}" class="block bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200">
@@ -35,12 +36,12 @@
                         <span class="text-sm text-gray-600">VIN: {{ car.vin }}</span>
                     </div>
                     {% if car.last_connection %}
-                        <p class="text-sm text-gray-500">Last connected: {{ car.last_connection|date:"Y-m-d H:i" }}</p>
+                        <p class="text-sm text-gray-500">{% translate "Last connected" %}: {{ car.last_connection|date:"Y-m-d H:i" }}</p>
                     {% endif %}
                 </a>
             {% empty %}
                 <div class="bg-white p-4 rounded-lg shadow-md">
-                    <p class="text-gray-600">No cars added.</p>
+                    <p class="text-gray-600">{% translate "No cars added." %}</p>
                 </div>
             {% endfor %}
         </div>

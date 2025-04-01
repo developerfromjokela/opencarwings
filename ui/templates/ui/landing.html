@@ -1,5 +1,6 @@
 {% extends 'ui/base.html' %}
-{% block title %} CARWINGS Reborn {% endblock %}
+{% load i18n %}
+{% block title %} {% translate "CARWINGS reborn" %} {% endblock %}
 
 {% block content %}
     <!-- Main Container -->
@@ -7,26 +8,26 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
                         <!-- Login Section (Right Column) -->
             <div class="bg-gray-100 p-8 rounded-lg shadow-md md:col-span-1">
-                <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Log In</h2>
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">{% translate "Sign In" %}</h2>
                 <form method="POST" action="/signin" class="space-y-6">
                     {% csrf_token %}
                     <div>
-                        <label for="username" class="block text-gray-700 font-medium mb-2">Username</label>
-                        <input type="text" id="username" name="username" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your username" required>
+                        <label for="username" class="block text-gray-700 font-medium mb-2">{% translate "Username" %}</label>
+                        <input type="text" id="username" name="username" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="{% blocktranslate %}Enter your username{% endblocktranslate %}" required>
                     </div>
                     <div>
-                        <label for="password" class="block text-gray-700 font-medium mb-2">Password</label>
-                        <input type="password" id="password" name="password" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your password" required>
+                        <label for="password" class="block text-gray-700 font-medium mb-2">{% translate "Password" %}</label>
+                        <input type="password" id="password" name="password" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="{% blocktranslate %}Enter your password{% endblocktranslate %}" required>
                     </div>
-                    <button type="submit" class="w-full bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600 transition duration-300 font-semibold">Log In</button>
+                    <button type="submit" class="w-full bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600 transition duration-300 font-semibold">{% translate "Sign In" %}</button>
                 </form>
-                <p class="text-center text-gray-600 mt-4"><a href="{% url 'password_reset' %}" class="text-blue-500 hover:underline">Forgot Password?</a></p>
+                <p class="text-center text-gray-600 mt-4"><a href="{% url 'password_reset' %}" class="text-blue-500 hover:underline">{% translate "Forgot password?" %}</a></p>
             </div>
             <!-- Intro Section (Left Column) -->
             <div class="text-center md:text-left md:col-span-2">
-                <h1 class="text-5xl font-extrabold text-gray-800 mb-4">Take Back Control of Your Nissan LEAF</h1>
-                <p class="text-xl text-gray-600 mb-8 max-w-lg mx-auto md:mx-0">The iconic Nissan LEAF deserves more than abandonment. With the manufacturer's support fading, the community steps up. Sign up now to bring your LEAF back to life!</p>
-                <a href="/signup" class="bg-blue-500 text-white px-8 py-4 rounded-md text-lg font-semibold hover:bg-blue-600 transition duration-300 inline-block">Get Started</a>
+                <h1 class="text-5xl font-extrabold text-gray-800 mb-4" style="line-height: 1.2em;">{% translate "Take Back Control of Your Nissan LEAF" %}</h1>
+                <p class="text-xl text-gray-600 mb-8 max-w-lg mx-auto md:mx-0">{% translate "The iconic Nissan LEAF deserves more than abandonment. With the manufacturer's support fading, the community steps up. Sign up now to bring your LEAF back to life!" %}</p>
+                <a href="/signup" class="bg-blue-500 text-white px-8 py-4 rounded-md text-lg font-semibold hover:bg-blue-600 transition duration-300 inline-block">{% translate "Get Started" %}</a>
             </div>
 
 

@@ -11,40 +11,40 @@ from rest_framework.authtoken.models import Token
 from django.utils.translation import gettext_lazy as _
 
 ALERT_TYPES = (
-    (1, 'Charge stop'),
-    (2, 'Charge start'),
-    (3, 'Charge cable reminder'),
-    (4, 'A/C on'),
-    (5, 'A/C off'),
-    (6, 'Configuration read'),
-    (7, 'A/C auto off'),
-    (96, 'Charge error'),
-    (97, 'A/C error'),
-    (98, 'Command timeout'),
-    (99, 'Error')
+    (1, _('Charge stop')),
+    (2, _('Charge start')),
+    (3, _('Charge cable reminder')),
+    (4, _('A/C on')),
+    (5, _('A/C off')),
+    (6, _('Configuration read')),
+    (7, _('A/C auto off')),
+    (96, _('Charge error')),
+    (97, _('A/C error')),
+    (98, _('Command timeout')),
+    (99, _('Error'))
 )
 
 COMMAND_TYPES = (
-    (0, 'No command'),
-    (1, 'Refresh data'),
-    (2, 'Charge start'),
-    (3, 'A/C on'),
-    (4, 'A/C off'),
-    (5, 'Read configuration')
+    (0, _('No command')),
+    (1, _('Refresh data')),
+    (2, _('Charge start')),
+    (3, _('A/C on')),
+    (4, _('A/C off')),
+    (5, _('Read configuration'))
 )
 
 COMMAND_RESULTS = (
-    (-1, 'Waiting'),
-    (0, 'Success'),
-    (1, 'Error'),
-    (2, 'Timeout'),
-    (3, 'Await response')
+    (-1, _('Waiting')),
+    (0, _('Success')),
+    (1, _('Error')),
+    (2, _('Timeout')),
+    (3, _('Await response'))
 )
 
 CAR_GEAR = (
-    (0, "Park"),
-    (1, "Drive"),
-    (2, "Reverse")
+    (0, _("Park")),
+    (1, _("Drive")),
+    (2, _("Reverse"))
 )
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)

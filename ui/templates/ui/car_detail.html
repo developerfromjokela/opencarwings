@@ -1,13 +1,13 @@
 {% extends 'ui/base.html'%}
 {% load math_filters %}
 {% block title %} {{car.nickname}} {% endblock %}
-
+{% load i18n %}
 {% block content %}
     <!-- Main Content -->
     <div class="max-w-6xl mx-auto py-6 px-4 sm:px-6">
         <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6 space-y-4 sm:space-y-0">
             <div>
-                <a href="/" class="inline-block mt-6 text-blue-500 hover:underline text-sm sm:text-base">Back to car list</a>
+                <a href="/" class="inline-block mt-6 text-blue-500 hover:underline text-sm sm:text-base">{% translate "Back to cars" %}</a>
                 <h1 class="text-2xl sm:text-3xl font-semibold text-gray-800 align-center content-center flex flex-row items-center">{{ car.nickname }}
                     {% now "U" as current_time %}
                     {% if car.last_connection %}
@@ -41,7 +41,7 @@
                         {% endfor %}
                     </select>
                 </div>
-                <button id="send-command" class="bg-blue-500 text-white rounded-md hover:bg-blue-600 w-full sm:w-auto">Send Command</button>
+                <button id="send-command" class="bg-blue-500 text-white rounded-md hover:bg-blue-600 w-full sm:w-auto">{% translate "Send command" %}</button>
             </div>
         </div>
 
@@ -51,15 +51,15 @@
                 {% for message in messages %}
                     <div class="{% if message.tags == 'error' %}bg-red-100 border-red-400 text-red-700{% endif %} px-4 py-3 rounded relative {% if message.tags == 'success' %}bg-green-100 border-green-400 text-green-700{% endif %} {% if message.tags == 'info' %}bg-blue-100 border-blue-400 text-blue-700{% endif %}" role="alert">
                         <strong class="font-bold">
-                            {% if message.tags == 'success' %}Success!{% endif %}
-                            {% if message.tags == 'error' %}Error!{% endif %}
-                            {% if message.tags == 'info' %}Notice:{% endif %}
-                            {% if message.tags == 'warn' %}Warning:{% endif %}
+                            {% if message.tags == 'success' %}{% translate "Success" %}!{% endif %}
+                            {% if message.tags == 'error' %}{% translate "Error" %}!{% endif %}
+                            {% if message.tags == 'info' %}{% translate "Notice" %}:{% endif %}
+                            {% if message.tags == 'warn' %}{% translate "Warning" %}:{% endif %}
                         </strong>
                         <span class="block sm:inline">{{ message }}</span>
                         <span class="absolute top-0 bottom-0 right-0 px-4 py-3 cursor-pointer" onclick="this.parentElement.style.display='none';">
                             <svg class="fill-current h-6 w-6" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                <title>Close</title>
+                                <title>{% translate "Close" %}</title>
                                 <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/>
                             </svg>
                         </span>
@@ -70,41 +70,41 @@
 
         <!-- Tab Navigation -->
         <div class="tab-nav border-b border-gray-200">
-            <button class="tab-btn px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none {% if not show_settings %}text-blue-500 border-b-2 border-blue-500{% endif %} text-sm sm:text-base" data-tab="overview">Overview</button>
-            <button class="tab-btn px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="basic-info">Basic Info</button>
-            <button class="tab-btn px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="tcu-config">TCU Configuration</button>
-            <button class="tab-btn px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="ev-status">EV Status</button>
-            <button class="tab-btn px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="location">Location</button>
-            <button class="tab-btn px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="recent-alerts">Recent Alerts</button>
-            <button class="tab-btn px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none {% if show_settings %}text-blue-500 border-b-2 border-blue-500{% endif %} text-sm sm:text-base" data-tab="settings">Settings</button>
+            <button class="tab-btn px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none {% if not show_settings %}text-blue-500 border-b-2 border-blue-500{% endif %} text-sm sm:text-base" data-tab="overview">{% translate "Overview" %}</button>
+            <button class="tab-btn px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="basic-info">{% translate "Basic Info" %}</button>
+            <button class="tab-btn px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="tcu-config">{% translate "TCU Configuration" %}</button>
+            <button class="tab-btn px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="ev-status">{% translate "EV Status" %}</button>
+            <button class="tab-btn px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="location">{% translate "Location" %}</button>
+            <button class="tab-btn px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="recent-alerts">{% translate "Recent Alerts" %}</button>
+            <button class="tab-btn px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none {% if show_settings %}text-blue-500 border-b-2 border-blue-500{% endif %} text-sm sm:text-base" data-tab="settings">{% translate "Settings" %}</button>
         </div>
 
         <!-- Tab Content -->
         <div class="mt-6 bg-white p-4 sm:p-6 rounded-lg shadow-md">
             <!-- Overview Tab -->
             <div id="overview" class="tab-content {% if not show_settings %}active{% endif %}">
-                <h2 class="text-lg font-semibold text-gray-800 mb-4">Overview</h2>
+                <h2 class="text-lg font-semibold text-gray-800 mb-4">{% translate "Overview" %}</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
                     <!-- Small Map -->
                     <div id="overview-map" class="status-box flex flex-col items-center" style="padding: 0;">
                     </div>
                     <!-- Range with AC On -->
                     <div class="status-box">
-                        <dt>Range (AC On)</dt>
+                        <dt>{% translate "Range (AC On)" %}</dt>
                         <dd id="overview-range-acon">{{ car.ev_info.range_acon }} km</dd>
                     </div>
                     <!-- Range with AC Off -->
                     <div class="status-box">
-                        <dt>Range (AC Off)</dt>
+                        <dt>{% translate "Range (AC Off)" %}</dt>
                         <dd id="overview-range-acoff">{{ car.ev_info.range_acoff }} km</dd>
                     </div>
                     <!-- State of Charge -->
                     <div class="status-box">
                         {% if car.ev_info.soc_display > 0 %}
-                        <dt>State of Charge</dt>
+                        <dt>{% translate "State of Charge" %}</dt>
                         <dd id="overview-soc">{{ car.ev_info.soc_display }}%</dd>
                         {% else %}
-                        <dt>State of Charge (Nominal)</dt>
+                        <dt>{% translate "State of Charge" %} ({% translate "Nominal" %})</dt>
                         <dd id="overview-soc">{{ car.ev_info.soc }}%</dd>
                         {% endif %}
                     </div>
@@ -121,14 +121,14 @@
                             </div>
                         </div>
                         <div class="charge-labels">
-                            <span>EMPTY</span>
-                            <span>FULL</span>
+                            <span>{% translate "EMPTY" %}</span>
+                            <span>{% translate "FULL" %}</span>
                         </div>
                     </div>
                     <!-- Charge Cable Status -->
                     <div class="status-box">
-                        <dt>Charge Cable</dt>
-                        <dd id="overview-plugged-in">{{ car.ev_info.plugged_in|yesno:"Plugged In,Unplugged" }}</dd>
+                        <dt>{% translate "Charge Cable" %}</dt>
+                        <dd id="overview-plugged-in">{{ car.ev_info.plugged_in|yesno:_("Plugged In,Unplugged") }}</dd>
                     </div>
                     <!-- Car Status -->
                     <div class="status-box">
@@ -136,20 +136,20 @@
                         <dd id="overview-car-status">
                             {% if car.ev_info.car_running %}
                                 {% if car.ev_info.car_gear == 0 %}
-                                    On (Parked)
+                                    {% translate "On" %} ({% translate "Parked" %})
                                 {% else %}
-                                    On (Driving)
+                                    {% translate "On" %} ({% translate "Driving" %})
                                 {% endif %}
                             {% else %}
-                                Off
+                                {% translate "Off" %}
                             {% endif %}
                         </dd>
                     </div>
                     <!-- AC Status -->
                     <div class="status-box">
-                        <dt>AC Status</dt>
+                        <dt>{% translate "AC Status" %}</dt>
                         <div class="flex flex-row align-center justify-center items-center gap-4">
-                            <p id="overview-ac-status">{{ car.ev_info.ac_status|yesno:"On,Off" }}</p>
+                            <p id="overview-ac-status">{{ car.ev_info.ac_status|yesno:_("On,Off") }}</p>
                         <div id="fan-icon" class="fan-icon {% if car.ev_info.ac_status %}spinning{% endif %}">
 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M424-80q-51 0-77.5-30.5T320-180q0-26 11.5-50.5T367-271q22-14 35.5-36t18.5-47l-12-6q-6-3-11-7l-92 33q-17 6-33 10t-33 4q-63 0-111.5-55T80-536q0-51 30.5-77.5T179-640q26 0 51 11.5t41 35.5q14 22 36 35.5t47 18.5l6-12q3-6 7-11l-33-92q-6-17-10-33t-4-32q0-64 55-112.5T536-880q51 0 77.5 30.5T640-781q0 26-11.5 51T593-689q-22 14-35.5 36T539-606l12 6q6 3 11 7l92-34q17-6 32.5-9.5T719-640q81 0 121 67t40 149q0 51-32 77.5T777-320q-25 0-48.5-11.5T689-367q-14-22-36-35.5T606-421l-6 12q-3 6-7 11l33 92q6 16 10 30.5t4 30.5q1 65-54 115T424-80Zm56-340q25 0 42.5-17.5T540-480q0-25-17.5-42.5T480-540q-25 0-42.5 17.5T420-480q0 25 17.5 42.5T480-420Zm-46-192q6-2 12.5-3.5T459-618q8-42 30.5-78t59.5-60q5-4 8-10t3-15q0-8-6-13.5t-18-5.5q-38 0-86 16.5T400-719q0 9 2.5 17t4.5 15l27 75ZM240-400q14 0 33-7l75-27q-2-6-3.5-12.5T342-459q-42-8-78-30.5T204-549q-4-5-10.5-8t-14.5-3q-9 0-14 6t-5 18q0 54 20.5 95t59.5 41Zm184 240q47 0 92.5-19t43.5-66q0-8-2.5-15t-4.5-13l-27-75q-6 2-12.5 3.5T501-342q-8 42-30.5 78T411-204q-5 4-8.5 10.5T400-180q1 8 6 14t18 6Zm353-240q9 0 16-5t7-19q0-38-16-86.5T719-560q-9 0-17 2t-15 4l-75 28q2 6 3.5 12.5T618-501q42 8 78 30.5t60 59.5q3 5 9 8t12 3ZM618-501ZM459-618ZM342-459Zm159 117Z"/></svg>
                         </div>
@@ -158,7 +158,7 @@
                 </div>
                 <!-- Last Updated -->
                 <div class="mt-4 text-sm text-gray-600">
-                    Last Updated: <span id="overview-last-updated">{{ car.ev_info.last_updated|default:"N/A"|date:"Y-m-d H:i" }}</span>
+                    {% translate "Last Updated" %}: <span id="overview-last-updated">{{ car.ev_info.last_updated|default:"N/A"|date:"Y-m-d H:i" }}</span>
                 </div>
             </div>
 
@@ -166,54 +166,54 @@
             <div id="basic-info" class="tab-content">
                 <dl class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 text-sm sm:text-base">
                     <div><dt class="text-gray-700 font-semibold">VIN:</dt><dd class="text-gray-600">{{ car.vin }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">Vehicle Code 1:</dt><dd class="text-gray-600">{{ car.vehicle_code1 }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">Vehicle Code 2:</dt><dd class="text-gray-600">{{ car.vehicle_code2 }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">Vehicle Code 3:</dt><dd class="text-gray-600">{{ car.vehicle_code3 }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">Vehicle Code 4:</dt><dd class="text-gray-600">{{ car.vehicle_code4 }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">TCU ID (Model):</dt><dd class="text-gray-600">{{ car.tcu_model|default:"N/A" }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">Unit ID:</dt><dd class="text-gray-600">{{ car.tcu_serial|default:"N/A" }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">ICCID:</dt><dd class="text-gray-600">{{ car.iccid|default:"N/A" }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">TCU Version:</dt><dd class="text-gray-600">{{ car.tcu_ver|default:"N/A" }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">Last Connection:</dt><dd class="text-gray-600" id="last_connection">{{ car.last_connection|default:"Never"|date:"Y-m-d H:i" }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "Vehicle Code" %} 1:</dt><dd class="text-gray-600">{{ car.vehicle_code1 }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "Vehicle Code" %} 2:</dt><dd class="text-gray-600">{{ car.vehicle_code2 }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "Vehicle Code" %} 3:</dt><dd class="text-gray-600">{{ car.vehicle_code3 }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "Vehicle Code" %} 4:</dt><dd class="text-gray-600">{{ car.vehicle_code4 }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">TCU ID:</dt><dd class="text-gray-600">{{ car.tcu_model|default:"N/A" }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">Navi ID:</dt><dd class="text-gray-600">{{ car.tcu_serial|default:"N/A" }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">SIM ID:</dt><dd class="text-gray-600">{{ car.iccid|default:"N/A" }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">TCU {% translate "Version" %}:</dt><dd class="text-gray-600">{{ car.tcu_ver|default:"N/A" }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "Last Connection" %}:</dt><dd class="text-gray-600" id="last_connection">{{ car.last_connection|default:"Never"|date:"Y-m-d H:i" }}</dd></div>
                 </dl>
             </div>
 
             <!-- TCU Configuration -->
             <div id="tcu-config" class="tab-content">
                 <dl class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 text-sm sm:text-base">
-                    <div><dt class="text-gray-700 font-semibold">Dial Code:</dt><dd class="text-gray-600">{{ car.tcu_configuration.dial_code|default:"N/A" }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "PPP Dial Code" %}:</dt><dd class="text-gray-600">{{ car.tcu_configuration.dial_code|default:"N/A" }}</dd></div>
                     <div><dt class="text-gray-700 font-semibold">APN:</dt><dd class="text-gray-600">{{ car.tcu_configuration.apn|default:"N/A" }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">APN User:</dt><dd class="text-gray-600">{{ car.tcu_configuration.apn_user|default:"N/A" }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">APN Password:</dt><dd class="text-gray-600">{{ car.tcu_configuration.apn_password|default:"N/A" }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">PPP {% translate "Username" %}:</dt><dd class="text-gray-600">{{ car.tcu_configuration.apn_user|default:"N/A" }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">PPP {% translate "Password" %}:</dt><dd class="text-gray-600">{{ car.tcu_configuration.apn_password|default:"N/A" }}</dd></div>
                     <div><dt class="text-gray-700 font-semibold">DNS1:</dt><dd class="text-gray-600">{{ car.tcu_configuration.dns1|default:"N/A" }}</dd></div>
                     <div><dt class="text-gray-700 font-semibold">DNS2:</dt><dd class="text-gray-600">{{ car.tcu_configuration.dns2|default:"N/A" }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">Server URL:</dt><dd class="text-gray-600">{{ car.tcu_configuration.server_url|default:"N/A" }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">Proxy URL:</dt><dd class="text-gray-600">{{ car.tcu_configuration.proxy_url|default:"N/A" }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">Connection Type:</dt><dd class="text-gray-600">{{ car.tcu_configuration.connection_type|default:"N/A" }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">Last Updated:</dt><dd class="text-gray-600">{{ car.tcu_configuration.last_updated|default:"N/A"|date:"Y-m-d H:i" }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "Server" %} URL:</dt><dd class="text-gray-600">{{ car.tcu_configuration.server_url|default:"N/A" }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "Proxy" %} URL:</dt><dd class="text-gray-600">{{ car.tcu_configuration.proxy_url|default:"N/A" }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "Connection Type" %}:</dt><dd class="text-gray-600">{{ car.tcu_configuration.connection_type|default:"N/A" }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "Last Updated" %}:</dt><dd class="text-gray-600">{{ car.tcu_configuration.last_updated|default:"N/A"|date:"Y-m-d H:i" }}</dd></div>
                 </dl>
             </div>
 
             <!-- EV Status -->
             <div id="ev-status" class="tab-content">
                 <dl class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 text-sm sm:text-base">
-                    <div><dt class="text-gray-700 font-semibold">Car started:</dt><dd class="text-gray-600" id="car_running">{{ car.ev_info.car_running|yesno }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">Gear:</dt><dd class="text-gray-600" id="car_gear">{{ car.ev_info.car_gear }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">Charge time (80%):</dt><dd class="text-gray-600" id="limit_chg_time">{% if car.ev_info.limit_chg_time == 2047 or car.ev_info.limit_chg_time < 1 %}--:--{% else %}{{ car.ev_info.limit_chg_time }}{% endif %}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">Charge time (100%):</dt><dd class="text-gray-600" id="full_chg_time">{% if car.ev_info.full_chg_time == 2047 or car.ev_info.full_chg_time < 1 %}--:--{% else %}{{ car.ev_info.full_chg_time }}{% endif %}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">Charge bars:</dt><dd class="text-gray-600" id="charge_bars">{{ car.ev_info.charge_bars }} / 12</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">Capacity bars:</dt><dd class="text-gray-600" id="cap_bars">{{ car.ev_info.cap_bars }} %</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">SoC (Display):</dt><dd class="text-gray-600" id="soc_display">{{ car.ev_info.soc_display }}%</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">SoC (Nominal):</dt><dd class="text-gray-600" id="soc">{{ car.ev_info.soc }}%</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">SoH:</dt><dd class="text-gray-600" id="soh">{{ car.ev_info.soh }}%</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">Range (AC On):</dt><dd class="text-gray-600" id="range_acon">{{ car.ev_info.range_acon }} km</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">Range (AC Off):</dt><dd class="text-gray-600" id="range_acoff">{{ car.ev_info.range_acoff }} km</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">Plugged In:</dt><dd class="text-gray-600" id="plugged_in">{{ car.ev_info.plugged_in|yesno }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">Charging:</dt><dd class="text-gray-600" id="charging">{{ car.ev_info.charging|yesno }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">AC Status:</dt><dd class="text-gray-600" id="ac_status">{{ car.ev_info.ac_status|yesno }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">GIDs remaining:</dt><dd class="text-gray-600" id="gids">{{ car.ev_info.gids }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">GIDs remaining (relative):</dt><dd class="text-gray-600" id="gids_relative">{{ car.ev_info.gids_relative }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">Last Updated:</dt><dd class="text-gray-600" id="ev_last_updated">{{ car.ev_info.last_updated|default:"N/A"|date:"Y-m-d H:i" }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "Car on" %}:</dt><dd class="text-gray-600" id="car_running">{{ car.ev_info.car_running|yesno:_("Yes,No") }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "Gear" %}:</dt><dd class="text-gray-600" id="car_gear">{{ car.ev_info.car_gear }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "Charge time" %} (80%):</dt><dd class="text-gray-600" id="limit_chg_time">{% if car.ev_info.limit_chg_time == 2047 or car.ev_info.limit_chg_time < 1 %}--:--{% else %}{{ car.ev_info.limit_chg_time }}{% endif %}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "Charge time" %} (100%):</dt><dd class="text-gray-600" id="full_chg_time">{% if car.ev_info.full_chg_time == 2047 or car.ev_info.full_chg_time < 1 %}--:--{% else %}{{ car.ev_info.full_chg_time }}{% endif %}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "Charge bars" %}:</dt><dd class="text-gray-600" id="charge_bars">{{ car.ev_info.charge_bars }} / 12</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "Capacity bars" %}:</dt><dd class="text-gray-600" id="cap_bars">{{ car.ev_info.cap_bars }} %</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "State of Charge" %} ({% translate "Display" %}):</dt><dd class="text-gray-600" id="soc_display">{{ car.ev_info.soc_display }}%</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "State of Charge" %} ({% translate "Nominal" %}):</dt><dd class="text-gray-600" id="soc">{{ car.ev_info.soc }}%</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "State of Health" %}:</dt><dd class="text-gray-600" id="soh">{{ car.ev_info.soh }}%</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "Range (AC On)" %}:</dt><dd class="text-gray-600" id="range_acon">{{ car.ev_info.range_acon }} km</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "Range (AC Off)" %}:</dt><dd class="text-gray-600" id="range_acoff">{{ car.ev_info.range_acoff }} km</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "Plugged in" %}:</dt><dd class="text-gray-600" id="plugged_in">{{ car.ev_info.plugged_in|yesno:_("Yes,No") }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "Charging" %}:</dt><dd class="text-gray-600" id="charging">{{ car.ev_info.charging|yesno:_("Yes,No") }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "Preconditioning (A/C)" %}:</dt><dd class="text-gray-600" id="ac_status">{{ car.ev_info.ac_status|yesno:_("Yes,No") }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "GIDs remaining" %}:</dt><dd class="text-gray-600" id="gids">{{ car.ev_info.gids }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "GIDs remaining (relative)" %}:</dt><dd class="text-gray-600" id="gids_relative">{{ car.ev_info.gids_relative }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "Last Updated" %}:</dt><dd class="text-gray-600" id="ev_last_updated">{{ car.ev_info.last_updated|default:"N/A"|date:"Y-m-d H:i" }}</dd></div>
                 </dl>
             </div>
 
@@ -221,10 +221,10 @@
             <div id="location" class="tab-content">
                 <div id="map" class="mb-4"></div>
                 <dl class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 text-sm sm:text-base">
-                    <div><dt class="text-gray-700 font-semibold">Latitude:</dt><dd class="text-gray-600" id="lat">{{ car.location.lat|default:"N/A" }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">Longitude:</dt><dd class="text-gray-600" id="lon">{{ car.location.lon|default:"N/A" }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">At Home:</dt><dd class="text-gray-600" id="home">{{ car.location.home|yesno }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">Last Updated:</dt><dd class="text-gray-600" id="loc_last_updated">{{ car.location.last_updated|default:"N/A"|date:"Y-m-d H:i" }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "Latitude" %}:</dt><dd class="text-gray-600" id="lat">{{ car.location.lat|default:"N/A" }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "Longitude" %}:</dt><dd class="text-gray-600" id="lon">{{ car.location.lon|default:"N/A" }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "At Home" %}:</dt><dd class="text-gray-600" id="home">{{ car.location.home|yesno }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "Last Updated" %}:</dt><dd class="text-gray-600" id="loc_last_updated">{{ car.location.last_updated|default:"N/A"|date:"Y-m-d H:i" }}</dd></div>
                 </dl>
             </div>
 
@@ -234,9 +234,9 @@
                     <table class="w-full text-left text-sm sm:text-base">
                         <thead>
                             <tr class="text-gray-700 border-b">
-                                <th class="py-2">Type</th>
-                                <th class="py-2">Timestamp</th>
-                                <th class="py-2">Additional Data</th>
+                                <th class="py-2">{% translate "Type" %}</th>
+                                <th class="py-2">{% translate "Timestamp" %}</th>
+                                <th class="py-2">{% translate "Additional Data" %}</th>
                             </tr>
                         </thead>
                         <tbody id="alerts-table">
@@ -253,14 +253,14 @@
             </div>
 
             <div id="settings" class="tab-content {% if show_settings %}active{% endif %}">
-                <h2 class="text-lg font-semibold text-gray-800 mb-4">Settings</h2>
+                <h2 class="text-lg font-semibold text-gray-800 mb-4">{% translate "Settings" %}</h2>
 
                 <form method="post" class="mt-5">
                     {% csrf_token %}
 
-                    <label class="block text-gray-700">Nickname</label>
+                    <label class="block text-gray-700">{% translate "Nickname" %}</label>
                     <input type="text" value="{{car.nickname}}" maxlength="64" name="nickname" class="w-full p-2 border rounded mt-1" required>
-                    <label class="block text-gray-700">Unit ID</label>
+                    <label class="block text-gray-700">Navi ID</label>
                     <input type="text" value="{{car.tcu_serial}}" maxlength="14" name="unit_id" class="w-full p-2 border rounded mt-1" required>
                     <label class="block text-gray-700 mt-2 ">TCU ID</label>
                     <input type="text" value="{{car.tcu_model}}" maxlength="14" name="tcu_id" class="w-full p-2 border rounded mt-1" required>
@@ -268,13 +268,13 @@
                     <input type="text" value="{{car.iccid}}"  maxlength="22" name="sim_id" class="w-full p-2 border rounded mt-1" required>
                     <div class="block mt-5">
                         <input type="checkbox" id="disable_auth" value="checked" {% if car.disable_auth %}checked{% endif %} maxlength="22" name="disable_auth" class="p-2 border rounded mt-1 checkboxinput ">
-                        <label for="disable_auth">Skip authentication from TCU</label>
-                        <span class="block text-sm text-gray-700 mt-1">On AZE0 (2013) and newer LEAFs, username and password inserted to navi are not saved due to an error. In this case, check this box to skip the authentication</span>
+                        <label for="disable_auth">{% translate "Skip authentication from TCU" %}</label>
+                        <span class="block text-sm text-gray-700 mt-1">{% translate "On AZE0 (2013) and newer LEAFs, username and password inserted to navi are not saved due to an error. In this case, check this box to skip the authentication" %}</span>
                     </div>
 
 
                     <hr class="mt-4 mb-4"/>
-                    <label class="mt-4">SMS provider</label>
+                    <label class="mt-4">{% translate "SMS provider" %}</label>
 
                     {% for provider in providers %}
                     <div class="flex items-center my-2">
@@ -303,8 +303,8 @@
                     </div>
                     {% endfor %}
 
-                    <button class="bg-blue-500 text-white rounded-md hover:bg-blue-600 w-full sm:w-auto p-1 mt-5" type="submit">Save</button>
-                    <button class="bg-red-500 text-white rounded-md hover:bg-red-600 w-full sm:w-auto p-1 mt-5" type="button" onclick="removeCarConfirm()">Remove car</button>
+                    <button class="bg-blue-500 text-white rounded-md hover:bg-blue-600 w-full sm:w-auto p-1 mt-5" type="submit">{% translate "Save" %}</button>
+                    <button class="bg-red-500 text-white rounded-md hover:bg-red-600 w-full sm:w-auto p-1 mt-5" type="button" onclick="removeCarConfirm()">{% translate "Remove car" %}</button>
 
                 </form>
             </div>
@@ -483,11 +483,11 @@
                 }
             })
             .catch(error => {
-                console.error('Error sending command:', error);
+                console.error('{% translate "Error sending command" %}:', error);
                 const messagesDiv = document.getElementById('messages');
                 const alertDiv = document.createElement('div');
                 alertDiv.className = 'text-center text-red-600 mb-2';
-                alertDiv.innerHTML = 'Error sending command';
+                alertDiv.innerHTML = '{% translate "Error sending command" %}';
                 messagesDiv.insertBefore(alertDiv, messagesDiv.firstChild);
             });
             }
@@ -501,22 +501,22 @@
                     document.getElementById('overview-soc').textContent = data.ev_info.soc_display > 0 ? `${data.ev_info.soc_display}%` : `${data.ev_info.soc}%`;
                     document.getElementById('overview-range-acon').textContent = `${data.ev_info.range_acon} km`;
                     document.getElementById('overview-range-acoff').textContent = `${data.ev_info.range_acoff} km`;
-                    document.getElementById('overview-plugged-in').textContent = data.ev_info.plugged_in ? 'Plugged In' : 'Unplugged';
+                    document.getElementById('overview-plugged-in').textContent = data.ev_info.plugged_in ? '{% translate "Plugged In" %}' : '{% translate "Unplugged" %}';
                     // Update Car Status
                     const carStatus = document.getElementById('overview-car-status');
                     if (data.ev_info.car_running) {
                         if (data.ev_info.car_gear === 0) {
-                            carStatus.textContent = 'On (Parked)';
+                            carStatus.textContent = '{% translate "On" %} ({% translate "Parked" %})';
                         } else {
-                            carStatus.textContent = 'On (Driving)';
+                            carStatus.textContent = '{% translate "On" %} ({% translate "Driving" %})';
                         }
                     } else {
-                        carStatus.textContent = 'Off';
+                        carStatus.textContent = '{% translate "Off" %}';
                     }
                     // Update AC Status
                     const acStatus = document.getElementById('overview-ac-status');
                     const fanIcon = document.getElementById('fan-icon');
-                    acStatus.textContent = data.ev_info.ac_status ? 'On' : 'Off';
+                    acStatus.textContent = data.ev_info.ac_status ? '{% translate "On" %}' : '{% translate "Off" %}';
                     if (data.ev_info.ac_status) {
                         fanIcon.classList.add('spinning');
                     } else {
@@ -534,7 +534,7 @@
 
                     // Update other tabs
                     document.getElementById('last_connection').textContent = data.last_connection ?
-                        new Date(data.last_connection).toLocaleString() : 'Never';
+                        new Date(data.last_connection).toLocaleString() : 'N/A';
                     document.getElementById('range_acon').textContent = `${data.ev_info.range_acon} km`;
                     document.getElementById('range_acoff').textContent = `${data.ev_info.range_acoff} km`;
                     document.getElementById('plugged_in').textContent = data.ev_info.plugged_in ? 'Yes' : 'No';
@@ -549,13 +549,13 @@
                     document.getElementById('soc').textContent = data.ev_info.soc+"%";
                     document.getElementById('soc_display').textContent = data.ev_info.soc_display+"%";
                     document.getElementById('cap_bars').textContent = data.ev_info.cap_bars + " / 12";
-                    document.getElementById('car_gear').textContent = data.ev_info.car_gear === 0 ? "Parked" : (data.ev_info.car_gear === 2 ? "Reverse" : "Drive");
-                    document.getElementById('ac_status').textContent = data.ev_info.ac_status ? 'Yes' : 'No';
+                    document.getElementById('car_gear').textContent = data.ev_info.car_gear === 0 ? '{% translate "Parked" %}' : (data.ev_info.car_gear === 2 ? '{% translate "Reverse" %}' : '{% translate "Drive" %}');
+                    document.getElementById('ac_status').textContent = data.ev_info.ac_status ? '{% translate "Yes" %}' : '{% translate "No" %}';
                     document.getElementById('ev_last_updated').textContent = data.ev_info.last_updated ?
                         new Date(data.ev_info.last_updated).toLocaleString() : 'N/A';
                     document.getElementById('lat').textContent = data.location.lat || 'N/A';
                     document.getElementById('lon').textContent = data.location.lon || 'N/A';
-                    document.getElementById('home').textContent = data.location.home ? 'Yes' : 'No';
+                    document.getElementById('home').textContent = data.location.home ? '{% translate "Yes" %}' : '{% translate "No" %}';
                     document.getElementById('loc_last_updated').textContent = data.location.last_updated ?
                         new Date(data.location.last_updated).toLocaleString() : 'N/A';
 
@@ -639,11 +639,11 @@
                 }
             })
             .catch(error => {
-                console.error('Error sending command:', error);
+                console.error('{% translate "Error sending command" %}:', error);
                 const messagesDiv = document.getElementById('messages');
                 const alertDiv = document.createElement('div');
                 alertDiv.className = 'text-center text-red-600 mb-2';
-                alertDiv.innerHTML = 'Error sending command';
+                alertDiv.innerHTML = '{% translate "Error sending command" %}';
                 messagesDiv.insertBefore(alertDiv, messagesDiv.firstChild);
             });
         });

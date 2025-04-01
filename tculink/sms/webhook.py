@@ -1,12 +1,13 @@
 import requests
 from tculink.sms import BaseSMSProvider
+from django.utils.translation import gettext_lazy as _
 
 
 class ProviderWebhook(BaseSMSProvider):
     CONFIGURATION_FIELDS = [
-        ('url', "Webhook URL"),
+        ('url', _("Webhook URL")),
     ]
-    HELP_TEXT = "POST-request will be sent to specified webhook URL when necessary."
+    HELP_TEXT = _("POST-request will be sent to specified webhook URL when necessary.")
 
     def send(self, message, configuration):
         if "url" not in configuration:

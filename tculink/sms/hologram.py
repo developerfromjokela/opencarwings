@@ -1,13 +1,14 @@
 import requests
 from tculink.sms import BaseSMSProvider
+from django.utils.translation import gettext_lazy as _
 
 
 class ProviderHologram(BaseSMSProvider):
     CONFIGURATION_FIELDS = [
-        ('apikey', "API Key"),
-        ('device_id', "Device ID"),
+        ('apikey', _("API Key")),
+        ('device_id', _("Device ID")),
     ]
-    HELP_TEXT = "API credentials are available in Hologram dashboard Settings."
+    HELP_TEXT = _("API credentials are available in Hologram dashboard Settings.")
 
     def send(self, message, configuration):
         if "apikey" not in configuration or "device_id" not in configuration:

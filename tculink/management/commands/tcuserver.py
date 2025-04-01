@@ -236,7 +236,8 @@ class Command(BaseCommand):
                                 new_alert.command_id = car.command_id
                                 await sync_to_async(new_alert.save)()
 
-                                if car.owner.email_notifications:
+                                car_owner = await get_car_owner_info(car)
+                                if car_owner.email_notifications:
                                     ev_info = await get_evinfo(car)
                                     location = await get_location(car)
 
@@ -257,7 +258,7 @@ class Command(BaseCommand):
                                         "Charger unplugged notification - OpenCARWINGS",
                                         text_content,
                                         settings.DEFAULT_FROM_EMAIL,
-                                        [car.owner.email],
+                                        [car_owner.email],
                                         fail_silently=True
                                     )
 
@@ -285,7 +286,8 @@ class Command(BaseCommand):
                                 new_alert.command_id = car.command_id
                                 await sync_to_async(new_alert.save)()
 
-                                if car.owner.email_notifications:
+                                car_owner = await get_car_owner_info(car)
+                                if car_owner.email_notifications:
                                     ev_info = await get_evinfo(car)
                                     location = await get_location(car)
 
@@ -306,7 +308,7 @@ class Command(BaseCommand):
                                         "Charge finish notification - OpenCARWINGS" if req_body["alertstate"] == 4 else "A/C precondition notification - OpenCARWINGS",
                                         text_content,
                                         settings.DEFAULT_FROM_EMAIL,
-                                        [car.owner.email],
+                                        [car_owner.email],
                                         fail_silently=True
                                     )
 

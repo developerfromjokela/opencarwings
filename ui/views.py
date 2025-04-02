@@ -25,11 +25,11 @@ from django.utils.translation import gettext_lazy as _
 
 
 SETUP_STEPS = [
-    {"index": 1, "name": "TCU setup"},
-    {"index": 2, "name": "TCU identifiers"},
-    {"index": 3, "name": "Basic information"},
-    {"index": 4, "name": "SMS configuration"},
-    {"index": 5, "name": "Car added"},
+    {"index": 1, "name": _("TCU setup")},
+    {"index": 2, "name": _("TCU identifiers")},
+    {"index": 3, "name": _("Basic information")},
+    {"index": 4, "name": _("SMS configuration")},
+    {"index": 5, "name": _("Car added")},
 ]
 
 def get_class( kls ):

@@ -1,17 +1,20 @@
 {% extends 'ui/setup/stepbase.html' %}
 {% load static %}
-{% block title %} Add Car {% endblock %}
+{% load i18n %}
+{% block title %} {% translate "Add new car" %} {% endblock %}
 
 {% block setup %}
+{% load i18n %}
+
     <div class="bg-white p-6 rounded-lg shadow-md">
-        <h2 class="text-lg font-semibold text-gray-800 mb-4">Telematics Unit in your car</h2>
-        <p>In order to establish communication with your LEAF, TCU (Telematic Control Unit) unit's SIM card needs to be replaced and its settings programmed. Have you done that?</p>
+        <h2 class="text-lg font-semibold text-gray-800 mb-4">{% translate "Telematics Unit in your car" %}</h2>
+        <p>{% blocktranslate %}In order to establish communication with your LEAF, TCU (Telematic Control Unit) unit's SIM card needs to be replaced and its settings programmed. Have you done that?{% endblocktranslate %}</p>
         <img src="{% static 'tcu.png' %}" class="pt-4 w-200"/>
         <form method="post" action="{% url 'setup_1' %}">
             {% csrf_token %}
             <div class="mt-12 w-full flex flex-row align-end items-end justify-end gap-4">
-                <a href="{% static 'tcu_guide.html' %}" target="_blank" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100">No, how can I do that?</a>
-                <button type="submit" href="/setup/step2" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Yes, continue</button>
+                <a href="{% static 'tcu_guide.html' %}" target="_blank" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100">{% translate "No, how can I do that?" %}</a>
+                <button type="submit" href="/setup/step2" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">{% translate "Yes, continue" %}</button>
             </div>
         </form>
     </div>

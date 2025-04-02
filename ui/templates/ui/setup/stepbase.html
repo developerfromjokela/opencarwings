@@ -1,10 +1,11 @@
 {% extends 'ui/base.html' %}
 {% load static %}
-{% block title %} Add Car {% endblock %}
+{% load i18n %}
+{% block title %} {% translate "Add new car" %} {% endblock %}
 
 {% block content %}
 <div class="max-w-4xl mx-auto py-10 px-4">
-    <h1 class="text-3xl font-semibold text-gray-800 mb-6">Add a New Car</h1>
+    <h1 class="text-3xl font-semibold text-gray-800 mb-6">{% translate "Add new car" %}</h1>
 
     <!-- Step Indicator -->
     <div class="flex items-center justify-between mb-6 relative">

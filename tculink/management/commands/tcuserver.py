@@ -91,6 +91,36 @@ def get_evinfo(car):
 def get_location(car):
     return car.location
 
+
+async def send_vehicle_alert_email(car, alert_message, subject):
+    car_owner = await get_car_owner_info(car)
+    if not car_owner.email_notifications:
+        return
+
+    ev_info = await get_evinfo(car)
+    location = await get_location(car)
+
+    text_content = render_to_string(
+        "emails/vehicle_alert.txt",
+        context={
+            "alert": alert_message,
+            "vehicle": car.nickname,
+            "range_acon": ev_info.range_acon,
+            "range_acoff": ev_info.range_acoff,
+            "soc": ev_info.soc,
+            "pluggedin": "yes" if ev_info.plugged_in else "no",
+            "athome": "yes" if location.home else "no"
+        },
+    )
+
+    send_mail(
+        f"{subject} - OpenCARWINGS",
+        text_content,
+        settings.DEFAULT_FROM_EMAIL,
+        [car_owner.email],
+        fail_silently=True
+    )
+
 class Command(BaseCommand):
     help = "Start TCU socket server"
 
@@ -236,82 +266,50 @@ class Command(BaseCommand):
                                 new_alert.car = car
                                 new_alert.command_id = car.command_id
                                 await sync_to_async(new_alert.save)()
-
-                                car_owner = await get_car_owner_info(car)
-                                if car_owner.email_notifications:
-                                    ev_info = await get_evinfo(car)
-                                    location = await get_location(car)
-
-                                    text_content = render_to_string(
-                                        "emails/vehicle_alert.txt",
-                                        context={
-                                            "alert": "Vehicle is unplugged. Please check the situation if necessary.",
-                                            "vehicle": car.nickname,
-                                            "range_acon": ev_info.range_acon,
-                                            "range_acoff": ev_info.range_acoff,
-                                            "soc": ev_info.soc,
-                                            "pluggedin": "yes" if ev_info.plugged_in else "no",
-                                            "athome": "yes" if location.home else "no"
-                                        },
-                                    )
-
-                                    send_mail(
-                                        "Charger unplugged notification - OpenCARWINGS",
-                                        text_content,
-                                        settings.DEFAULT_FROM_EMAIL,
-                                        [car_owner.email],
-                                        fail_silently=True
-                                    )
+                                await send_vehicle_alert_email(
+                                    car,
+                                    "Vehicle is unplugged. Please check the situation if necessary.",
+                                    "Charger unplugged notification"
+                                )
 
                             if body_type == "ac_result":
                                 new_alert = AlertHistory()
+                                send_alert = False
                                 if req_body["resultstate"] == 0x40:
                                     new_alert.type = 4
                                 elif req_body["resultstate"] == 0x20:
                                     new_alert.type = 5
                                 elif req_body["resultstate"] == 192:
                                     new_alert.type = 7
+                                    send_alert = True
                                 else:
                                     new_alert.type = 97
                                 new_alert.car = car
                                 new_alert.command_id = car.command_id
                                 await sync_to_async(new_alert.save)()
 
+                                if send_alert:
+                                    await send_vehicle_alert_email(
+                                        car,
+                                        "A/C preconditioning is finished",
+                                        "A/C precondition notification"
+                                    )
+
                             if body_type == "remote_stop":
                                 new_alert = AlertHistory()
+                                alert_message = "A/C preconditioning is finished"
+                                subject = "A/C precondition notification"
+
                                 if req_body["alertstate"] == 4:
                                     new_alert.type = 1
+                                    alert_message = "Vehicle has finished charging."
+                                    subject = "Charge finish notification"
                                 else:
                                     new_alert.type = 7
                                 new_alert.car = car
                                 new_alert.command_id = car.command_id
                                 await sync_to_async(new_alert.save)()
-
-                                car_owner = await get_car_owner_info(car)
-                                if car_owner.email_notifications:
-                                    ev_info = await get_evinfo(car)
-                                    location = await get_location(car)
-
-                                    text_content = render_to_string(
-                                        "emails/vehicle_alert.txt",
-                                        context={
-                                            "alert": "Vehicle has finished charging." if req_body["alertstate"] == 4 else "A/C preconditioning is finished",
-                                            "vehicle": car.nickname,
-                                            "range_acon": ev_info.range_acon,
-                                            "range_acoff": ev_info.range_acoff,
-                                            "soc": ev_info.soc,
-                                            "pluggedin": "yes" if ev_info.plugged_in else "no",
-                                            "athome": "yes" if location.home else "no"
-                                        },
-                                    )
-
-                                    send_mail(
-                                        "Charge finish notification - OpenCARWINGS" if req_body["alertstate"] == 4 else "A/C precondition notification - OpenCARWINGS",
-                                        text_content,
-                                        settings.DEFAULT_FROM_EMAIL,
-                                        [car_owner.email],
-                                        fail_silently=True
-                                    )
+                                await send_vehicle_alert_email(car, alert_message, subject)
 
                             if body_type == "charge_result":
                                 new_alert = AlertHistory()

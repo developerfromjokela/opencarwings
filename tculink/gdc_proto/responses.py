@@ -37,6 +37,12 @@ def create_packet_type_1() -> bytes:
 def create_config_read():
     return bytes.fromhex("040000082E000000")
 
+def auth_common_dest():
+    return bytes.fromhex("0200000827000080")
+
+def conf_common_dest():
+    return bytes.fromhex("0400000827000000")
+
 def create_packet_type_3(body_type: int, auth_info: bytes = b'', body_data: bytes = b'') -> bytes:
     """Create a type 3 packet with additional data"""
     packet_type = 3  # Packet type 3

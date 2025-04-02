@@ -11,7 +11,7 @@ from django.utils import timezone
 from db.models import Car, AlertHistory
 from tculink.gdc_proto.parser import parse_gdc_packet
 from tculink.gdc_proto.responses import create_charge_status_response, create_charge_request_response, \
-    create_ac_setting_response, create_ac_stop_response, create_config_read
+    create_ac_setting_response, create_ac_stop_response, create_config_read, auth_common_dest
 from asgiref.sync import sync_to_async
 
 # Configure logging
@@ -134,6 +134,7 @@ class Command(BaseCommand):
             while True:
                 data = await reader.read(1024)  # Read up to 1024 bytes
                 if not data:
+                    logger.info("Connection closed")
                     break
 
                 try:
@@ -235,6 +236,10 @@ class Command(BaseCommand):
                                 car.command_requested = False
                                 car.command_result = 3
                                 writer.write(create_config_read())
+                            elif car.command_type == 6:
+                                car.command_requested = False
+                                car.command_result = 3
+                                writer.write(auth_common_dest())
                             else:
                                 logger.info(f"Unknown command: {car.command_type}")
                                 writer.write(create_charge_status_response(False))
@@ -244,8 +249,7 @@ class Command(BaseCommand):
                         else:
                             logger.info("No command or another in progress, send success false")
                             writer.write(create_charge_status_response(False))
-
-                    if parsed_data["message_type"][0] == 3:
+                    elif parsed_data["message_type"][0] == 3:
                         logger.info(f"Auth Data: {parsed_data['auth']}")
                         dtnow = timezone.now().strftime("%Y-%m-%dT%H:%M:%S")
                         with open(f"datalog-msgtype3-{car.command_id}-{dtnow}.bin", "wb") as file:
@@ -317,8 +321,9 @@ class Command(BaseCommand):
                                 new_alert.car = car
                                 new_alert.command_id = car.command_id
                                 await sync_to_async(new_alert.save)()
-
-                    if parsed_data["message_type"][0] == 5 and authenticated:
+                    elif parsed_data["message_type"][0] == 5:
+                        if not authenticated:
+                            break
                         with open(f"datalog-msgtype5-{car.command_id}.bin", "wb") as file:
                             file.write(data)
                         car.command_result = 0
@@ -332,6 +337,8 @@ class Command(BaseCommand):
                         car_config = parsed_data["body"]
                         logger.info(f"Car Config: {car_config}")
                         await set_tcuconfig(car, car_config)
+                    else:
+                        raise Exception("Invalid message type")
 
                     await sync_to_async(car.save)()
                     await writer.drain()

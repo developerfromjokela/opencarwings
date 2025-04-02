@@ -46,6 +46,7 @@ urlpatterns = [
     path('account/change-carwings-password/', views.change_carwings_password, name='change_carwings_password'),
     path('car/<str:vin>/', views.car_detail, name='car_detail'),
     path('api/car/<str:vin>/', views.car_api, name='car_api'),
+    path('api/car/', views.cars_api, name='car_api_list'),
     path('api/alerts/<str:vin>/', views.alerts_api, name='alerts_api'),
     path('api/command/<str:vin>/', views.command_api, name='command_api'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

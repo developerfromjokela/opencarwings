@@ -192,6 +192,15 @@ def car_api(request, vin):
     serializer = CarSerializer(car)
     return Response(serializer.data)
 
+@api_view(['GET'])
+def cars_api(request):
+    if not request.user.is_authenticated:
+        return Response(status=status.HTTP_401_UNAUTHORIZED)
+    car = Car.objects.filter(owner=request.user)
+
+    serializer = CarSerializer(car, many=True)
+    return Response(serializer.data)
+
 
 @api_view(['GET'])
 def alerts_api(request, vin):

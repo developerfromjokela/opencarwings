@@ -145,7 +145,7 @@ def parse_evinfo(byte_data):
     # AZE0 extra info
     if evinfo_len > 11:
         soc_display = (
-                ((byte_data[20] & 0b00011111) << 2) | ((byte_data[21] & 0b11000000) >> 6)
+                ((byte_data[20] & 0b00000111) << 4) | ((byte_data[21] & 0b11110000) >> 4)
         )
     byte1 = byte_data[16]  # 01010001 in binary
     byte2 = byte_data[17]  # 00100000 in binary

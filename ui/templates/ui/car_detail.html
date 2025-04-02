@@ -2,6 +2,7 @@
 {% load math_filters %}
 {% block title %} {{car.nickname}} {% endblock %}
 {% load i18n %}
+{% load l10n %}
 {% block content %}
     <!-- Main Content -->
     <div class="max-w-6xl mx-auto py-6 px-4 sm:px-6">
@@ -373,7 +374,7 @@
                     document.getElementById(tabId).classList.add('active');
 
                     if (tabId === 'location' && !mapInitialized) {
-                        marker = updateMap({{ car.location.lat|default:"null" }}, {{ car.location.lon|default:"null" }}, map, marker, 15);
+                        marker = updateMap({{ car.location.lat|default:"null"|unlocalize }}, {{ car.location.lon|default:"null"|unlocalize }}, map, marker, 15);
                         mapInitialized = true;
                     } else if (tabId === 'location') {
                         setTimeout(() => {
@@ -382,7 +383,7 @@
                     }
 
                     if (tabId === 'overview' && !overviewMapInitialized) {
-                        overviewMarker = updateMap({{ car.location.lat|default:"null" }}, {{ car.location.lon|default:"null" }}, overviewMap, overviewMarker, 15, true);
+                        overviewMarker = updateMap({{ car.location.lat|default:"null"|unlocalize }}, {{ car.location.lon|default:"null"|unlocalize }}, overviewMap, overviewMarker, 15, true);
                         overviewMapInitialized = true;
                     } else if (tabId === 'overview') {
                         setTimeout(() => {
@@ -393,7 +394,7 @@
             });
 
             // Initialize overview map on page load
-            overviewMarker = updateMap({{ car.location.lat|default:"null" }}, {{ car.location.lon|default:"null" }}, overviewMap, overviewMarker, 15, true);
+            overviewMarker = updateMap({{ car.location.lat|default:"null"|unlocalize }}, {{ car.location.lon|default:"null"|unlocalize }}, overviewMap, overviewMarker, 15, true);
             overviewMapInitialized = true;
 
             const radioButtons = document.querySelectorAll('input[name="sms-provider"]');

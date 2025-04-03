@@ -99,7 +99,7 @@ def extract_soc(binary):
     result = masked << 1
     return result
 
-def parse_evinfo(byte_data):
+def parse_evinfo(byte_data, aze0=False):
     rangeinfo_len = int(byte_data[0])
 
     evinfo_len = int(byte_data[8])
@@ -141,26 +141,29 @@ def parse_evinfo(byte_data):
     soh = (
         ((byte_data[15] & 0b00111111) << 1) | ((byte_data[16] & 0b10000000) >> 7)
     )
+    param21 = 0
 
-    # AZE0 extra info
-    if evinfo_len > 11:
-        soc_display = (
-                ((byte_data[20] & 0b00000111) << 4) | ((byte_data[21] & 0b11110000) >> 4)
-        )
     byte1 = byte_data[16]  # 01010001 in binary
     byte2 = byte_data[17]  # 00100000 in binary
 
-    # Extract bits:
-    # - Byte 1: Ignore first bit (0), take last 7 bits (1010001)
-    bits_from_byte1 = byte1 & 0x7F  # Mask to get last 7 bits: 1010001 (81 decimal)
-    # Shift left by 4 to make room for byte2's bits
-    shifted_bits = bits_from_byte1 << 4
+    if aze0:
+        soc_display = (
+                ((byte1 & 0b00000001) << 6) | ((byte2 & 0b11111100) >> 2)
+        )
+        param16_17 = (
+            (byte_data[20] << 4) | ((byte_data[21] & 0b11110000) >> 4)
+        )
+        param21 = (byte_data[21] & 0b00001111)
+    else:
+        bits_from_byte1 = byte1 & 0x7F  # Mask to get last 7 bits: 1010001 (81 decimal)
+        # Shift left by 4 to make room for byte2's bits
+        shifted_bits = bits_from_byte1 << 4
 
-    # - Byte 2: Take first 4 bits (0010)
-    bits_from_byte2 = (byte2 >> 4) & 0x0F  # Shift right 4, mask to get 0010 (2 decimal)
+        # - Byte 2: Take first 4 bits (0010)
+        bits_from_byte2 = (byte2 >> 4) & 0x0F  # Shift right 4, mask to get 0010 (2 decimal)
 
-    # Combine the bits
-    param16_17 = shifted_bits | bits_from_byte2  # 10100010010 in binary
+        # Combine the bits
+        param16_17 = shifted_bits | bits_from_byte2  # 10100010010 in binary
 
 
     range_acon = byte_data[2]
@@ -189,6 +192,7 @@ def parse_evinfo(byte_data):
         "gids": gids,
         "soh": soh,
         "gids_relative": param16_17,
+        "param21": param21,
         "capacity_bars": capacity_bars,
         "full_chg": chg_time_1,
         "limit_chg": chg_time_2,

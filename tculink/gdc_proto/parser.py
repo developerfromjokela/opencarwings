@@ -41,7 +41,8 @@ def parse_gdc_packet(byte_data):
 
         if packet_type[0] == 3:
             config_body = byte_data[153:]
-            body_data = parse_evinfo(config_body)
+            # AZE0 sends 0x92 as second byte, ZE0 sends 0x02, others unknown
+            body_data = parse_evinfo(config_body, aze0=(byte_data[1] != 0x02))
     else:
         config_body = byte_data[102:]
         body_data = parse_config_data(config_body)

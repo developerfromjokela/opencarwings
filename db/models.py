@@ -148,6 +148,7 @@ class EVInfo(models.Model):
     max_gids_relative = models.IntegerField(default=0)
     full_chg_time = models.IntegerField(default=0)
     limit_chg_time = models.IntegerField(default=0)
+    param21 = models.IntegerField(default=0)
     last_updated = models.DateTimeField(null=True, default=None, blank=True)
 
 class AlertHistory(models.Model):

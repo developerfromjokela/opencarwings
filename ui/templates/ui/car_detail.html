@@ -214,6 +214,7 @@
                     <div><dt class="text-gray-700 font-semibold">{% translate "Preconditioning (A/C)" %}:</dt><dd class="text-gray-600" id="ac_status">{{ car.ev_info.ac_status|yesno:_("Yes,No") }}</dd></div>
                     <div><dt class="text-gray-700 font-semibold">{% translate "GIDs remaining" %}:</dt><dd class="text-gray-600" id="gids">{{ car.ev_info.gids }}</dd></div>
                     <div><dt class="text-gray-700 font-semibold">{% translate "GIDs remaining (relative)" %}:</dt><dd class="text-gray-600" id="gids_relative">{{ car.ev_info.gids_relative }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">Param21:</dt><dd class="text-gray-600" id="param21">{{ car.ev_info.param21 }}</dd></div>
                     <div><dt class="text-gray-700 font-semibold">{% translate "Last Updated" %}:</dt><dd class="text-gray-600" id="ev_last_updated">{{ car.ev_info.last_updated|default:"N/A"|date:"Y-m-d H:i" }}</dd></div>
                 </dl>
             </div>
@@ -559,6 +560,7 @@
                     document.getElementById('charging').textContent = data.ev_info.charging ? 'Yes' : 'No';
                     document.getElementById('gids').textContent = data.ev_info.gids;
                     document.getElementById('gids_relative').textContent = data.ev_info.gids_relative;
+                    document.getElementById('param21').textContent = data.ev_info.param21;
                     document.getElementById('soh').textContent = data.ev_info.soh+"%";
                     document.getElementById('full_chg_time').textContent = (data.ev_info.full_chg_time === 2047 || data.ev_info.full_chg_time == 0) ? '--:--' : convertMinsToHrsMins(data.ev_info.full_chg_time);
                     document.getElementById('limit_chg_time').textContent = (data.ev_info.limit_chg_time === 2047 || data.ev_info.limit_chg_time == 0) ? '--:--' : convertMinsToHrsMins(data.ev_info.limit_chg_time);

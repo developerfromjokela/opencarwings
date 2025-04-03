@@ -53,6 +53,7 @@ def set_evinfo(car, ev_info):
     car.ev_info.max_gids_relative = 0
     car.ev_info.full_chg_time = ev_info.get("full_chg", 0)
     car.ev_info.limit_chg_time = ev_info.get("limit_chg", 0)
+    car.ev_info.param21 = ev_info.get("param21", 0)
     car.ev_info.car_running = ev_info.get("ignition", False)
     if ev_info.get("parked", False):
         car.ev_info.car_gear = 0

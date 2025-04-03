@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-02 09:43+0000\n"
+"POT-Creation-Date: 2025-04-03 15:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -107,15 +107,51 @@ msgstr "Odotetaan vastausta"
 msgid "Park"
 msgstr "Pysäköity"
 
-#: db/models.py:46 ui/templates/ui/car_detail.html:553
+#: db/models.py:46 ui/templates/ui/car_detail.html:570
 msgid "Drive"
 msgstr "Ajovaihde"
 
-#: db/models.py:47 ui/templates/ui/car_detail.html:553
+#: db/models.py:47 ui/templates/ui/car_detail.html:570
 msgid "Reverse"
 msgstr "Peruutusvaihde"
 
-#: db/models.py:58
+#: db/models.py:51 db/models.py:61
+msgid "Never"
+msgstr "ei koskaan"
+
+#: db/models.py:52 db/models.py:64
+msgid "Every 30 minutes"
+msgstr "30 min välein"
+
+#: db/models.py:53 db/models.py:65
+msgid "Every 45 minutes"
+msgstr "45 min välein"
+
+#: db/models.py:54 db/models.py:66
+msgid "Every hour"
+msgstr "tunnin välein"
+
+#: db/models.py:55 db/models.py:67
+msgid "Every three hours"
+msgstr "kolmen tunnin välein"
+
+#: db/models.py:56 db/models.py:68
+msgid "Every 12 hours"
+msgstr "12 tunnin välein"
+
+#: db/models.py:57 db/models.py:69
+msgid "Every day"
+msgstr "päivittäin"
+
+#: db/models.py:62
+msgid "Every 5 minutes"
+msgstr "5 min välein"
+
+#: db/models.py:63
+msgid "Every 15 minutes"
+msgstr "15 min välein"
+
+#: db/models.py:80
 msgid ""
 "Enter a valid username. This value may contain only unaccented lowercase a-z "
 "and uppercase A-Z letters, numbers, and /./-/_ characters."
@@ -123,7 +159,7 @@ msgstr ""
 "Syötä oikea käyttäjänimi. Se saa sisältää vain kirjaimia, numeroita sekä ./-/"
 "_ merkkejä."
 
-#: db/models.py:66
+#: db/models.py:88
 msgid ""
 "Enter a valid TCU Password. This value may contain only unaccented lowercase "
 "a-z and uppercase A-Z letters, numbers, and /=/-/_/+/@/#/?/! characters."
@@ -131,17 +167,17 @@ msgstr ""
 "Syötä oikea TCU-salasana. Se saa sisältää vain kirjaimia, numeroita sekä /"
 "=/-/_/+/@/#/?/! merkkejä."
 
-#: db/models.py:78
+#: db/models.py:100
 msgid "username"
 msgstr "Käyttäjänimi"
 
-#: db/models.py:82
+#: db/models.py:104
 msgid "Required. 16 characters or fewer. Letters, digits and /./-/_ only."
 msgstr ""
 "Pakollinen. Enintään 16 merkkiä. Sallittu: kirjaimet, numerot sekä "
 "merkit: ./-/_"
 
-#: db/models.py:86
+#: db/models.py:108
 msgid "A user with that username already exists."
 msgstr "Käyttäjä antamasi käyttäjänimellä on jo olemassa"
 
@@ -174,6 +210,7 @@ msgid "API credentials are available in Hologram dashboard Settings."
 msgstr "API-tunnukset löytyvät Hologram hallintapaneelin 'Asetukset'-sivulta"
 
 #: tculink/sms/manual.py:10
+#, python-brace-format
 msgid ""
 "Important: With this option, you will need to manually send the SMS yourself "
 "for this to work. No automated messaging will be set up. SMS message to send "
@@ -182,7 +219,8 @@ msgstr ""
 "Tärkeää: Tällä vaihtoehdolla sinun on käsin lähetettävä "
 "aktivointitekstiviesti, jotta auto yhdistää palvelimeen. Viestejä ei "
 "lähetetä automaattisesti. Lähetä tämä tekstiviesti kokonaisuudessaan "
-"autollesi mahdollisimman pian sen jälkeen, kun olet lähettänyt komennon sivustolta: {sms}"
+"autollesi mahdollisimman pian sen jälkeen, kun olet lähettänyt komennon "
+"sivustolta: {sms}"
 
 #: tculink/sms/webhook.py:8
 msgid "Webhook URL"
@@ -194,40 +232,40 @@ msgstr ""
 "POST-pyyntö lähetetään syöttämääsi URL-osoitteeseen, kun halutaan ottaa "
 "yhteyttä autoon."
 
-#: ui/forms.py:13 ui/forms.py:23 ui/templates/ui/car_detail.html:262
+#: ui/forms.py:15 ui/forms.py:25 ui/templates/ui/car_detail.html:262
 msgid "Nickname"
 msgstr "Lempinimi"
 
-#: ui/forms.py:14
+#: ui/forms.py:16
 msgid "Disable TCU authentication"
 msgstr "Kytke pois TCU:n tunnistautuminen"
 
-#: ui/forms.py:35 ui/templates/ui/reset_password.html:26
+#: ui/forms.py:37 ui/templates/ui/reset_password.html:26
 msgid "Email"
 msgstr "Sähköpostiosoite"
 
-#: ui/forms.py:36
+#: ui/forms.py:38
 msgid "Notifications"
 msgstr "Ilmoitukset sähköpostitse"
 
-#: ui/forms.py:42 ui/templates/ui/car_detail.html:188
+#: ui/forms.py:44 ui/templates/ui/car_detail.html:188
 #: ui/templates/ui/landing.html:19 ui/templates/ui/signin.html:30
 msgid "Password"
 msgstr "Salasana"
 
-#: ui/forms.py:43
+#: ui/forms.py:45
 msgid "Password Confirmation"
 msgstr "Vahvista salasana"
 
-#: ui/forms.py:44
+#: ui/forms.py:46
 msgid "TCU Password"
 msgstr "TCU-salasana"
 
-#: ui/forms.py:56
+#: ui/forms.py:58
 msgid "Can include only letters, numbers, dashes, dots and underscores"
 msgstr "Voi sisälää vain kirjaimia, numeroita, viivoja, pisteitä ja alaviivoja"
 
-#: ui/forms.py:57
+#: ui/forms.py:59
 msgid "This password is used for signing in to your account inside the car"
 msgstr ""
 "Tämä salasana käytetään auton ja palvelimen väliseen tunnistautumiseen."
@@ -272,7 +310,7 @@ msgstr "API-avain"
 msgid "Reset API-key"
 msgstr "Nollaa API-avain"
 
-#: ui/templates/ui/account.html:47 ui/templates/ui/car_detail.html:307
+#: ui/templates/ui/account.html:47 ui/templates/ui/car_detail.html:324
 #: ui/templates/ui/setup/step2.html:50 ui/templates/ui/setup/step3.html:36
 #: ui/templates/ui/setup/step4.html:60
 msgid "Save"
@@ -382,22 +420,22 @@ msgid "Plugged In,Unplugged"
 msgstr "Liitetty,Ei liitetty"
 
 #: ui/templates/ui/car_detail.html:140 ui/templates/ui/car_detail.html:142
-#: ui/templates/ui/car_detail.html:510 ui/templates/ui/car_detail.html:512
-#: ui/templates/ui/car_detail.html:520
+#: ui/templates/ui/car_detail.html:527 ui/templates/ui/car_detail.html:529
+#: ui/templates/ui/car_detail.html:537
 msgid "On"
 msgstr "Päällä"
 
-#: ui/templates/ui/car_detail.html:140 ui/templates/ui/car_detail.html:510
-#: ui/templates/ui/car_detail.html:553
+#: ui/templates/ui/car_detail.html:140 ui/templates/ui/car_detail.html:527
+#: ui/templates/ui/car_detail.html:570
 msgid "Parked"
 msgstr "Pysäköity"
 
-#: ui/templates/ui/car_detail.html:142 ui/templates/ui/car_detail.html:512
+#: ui/templates/ui/car_detail.html:142 ui/templates/ui/car_detail.html:529
 msgid "Driving"
 msgstr "Ajossa"
 
-#: ui/templates/ui/car_detail.html:145 ui/templates/ui/car_detail.html:515
-#: ui/templates/ui/car_detail.html:520
+#: ui/templates/ui/car_detail.html:145 ui/templates/ui/car_detail.html:532
+#: ui/templates/ui/car_detail.html:537
 msgid "Off"
 msgstr "Pois"
 
@@ -539,32 +577,41 @@ msgstr ""
 "eivättallennu autoon virheen takia. Tässä tapauksessa kytke ruutu "
 "aktiiviseksi,niin auto saa yhteyden ja ei tarkista kirjautumistietoja"
 
-#: ui/templates/ui/car_detail.html:278 ui/templates/ui/setup/step4.html:29
+#: ui/templates/ui/car_detail.html:277
+msgid "Periodic data refresh interval"
+msgstr "Aikaväli tietojen automaattiselle päivitykselle"
+
+#: ui/templates/ui/car_detail.html:286
+msgid "Periodic data refresh interval (while driving or charging)"
+msgstr ""
+"Aikaväli tietojen automaattiselle päivitykselle (latauksen tai ajon aikana)"
+
+#: ui/templates/ui/car_detail.html:295 ui/templates/ui/setup/step4.html:29
 msgid "SMS provider"
 msgstr "SMS-palvelu"
 
-#: ui/templates/ui/car_detail.html:308
+#: ui/templates/ui/car_detail.html:325
 msgid "Remove car"
 msgstr "Poista auto"
 
-#: ui/templates/ui/car_detail.html:487 ui/templates/ui/car_detail.html:491
-#: ui/templates/ui/car_detail.html:643 ui/templates/ui/car_detail.html:647
+#: ui/templates/ui/car_detail.html:504 ui/templates/ui/car_detail.html:508
+#: ui/templates/ui/car_detail.html:660 ui/templates/ui/car_detail.html:664
 msgid "Error sending command"
 msgstr "Komennon lähetys epäonnistui"
 
-#: ui/templates/ui/car_detail.html:505
+#: ui/templates/ui/car_detail.html:522
 msgid "Plugged In"
 msgstr "Liitetty"
 
-#: ui/templates/ui/car_detail.html:505
+#: ui/templates/ui/car_detail.html:522
 msgid "Unplugged"
 msgstr "Ei liitettynä"
 
-#: ui/templates/ui/car_detail.html:554 ui/templates/ui/car_detail.html:559
+#: ui/templates/ui/car_detail.html:571 ui/templates/ui/car_detail.html:576
 msgid "Yes"
 msgstr "Kyllä"
 
-#: ui/templates/ui/car_detail.html:554 ui/templates/ui/car_detail.html:559
+#: ui/templates/ui/car_detail.html:571 ui/templates/ui/car_detail.html:576
 msgid "No"
 msgstr "Ei"
 
@@ -848,67 +895,67 @@ msgstr "Onko sinulla jo tili?"
 msgid "Sign in"
 msgstr "Kirjaudu"
 
-#: ui/views.py:28
+#: ui/views.py:29
 msgid "TCU setup"
 msgstr "TCU:n valmistelu"
 
-#: ui/views.py:29
+#: ui/views.py:30
 msgid "TCU identifiers"
 msgstr "TCU-tiedot"
 
-#: ui/views.py:30
+#: ui/views.py:31
 msgid "Basic information"
 msgstr "Perustiedot"
 
-#: ui/views.py:31
+#: ui/views.py:32
 msgid "SMS configuration"
 msgstr "SMS-asetukset"
 
-#: ui/views.py:32
+#: ui/views.py:33
 msgid "Car added"
 msgstr "Kaikki valmista!"
 
-#: ui/views.py:86
+#: ui/views.py:87
 msgid "Account successfully updated!"
 msgstr "Tilitiedot päivitetty!"
 
-#: ui/views.py:89
+#: ui/views.py:90
 msgid "Please fill the form correctry and try again."
 msgstr "Täytä lomake oikein ja yritä uudelleen."
 
-#: ui/views.py:160
+#: ui/views.py:163
 msgid "Successfully saved settings."
 msgstr "Asetukset päivitetty!"
 
-#: ui/views.py:162 ui/views.py:331 ui/views.py:352
+#: ui/views.py:165 ui/views.py:345 ui/views.py:366
 msgid "Please fill the form correctly"
 msgstr "Täytäthän lomakkeen oikein"
 
-#: ui/views.py:165 ui/views.py:387
+#: ui/views.py:168 ui/views.py:401
 msgid "Please fill all necessary fields and try again."
 msgstr "Täytäthän kaikki kentät ja yritä uudelleen."
 
-#: ui/views.py:169
+#: ui/views.py:172
 msgid "Waiting for first connection.."
 msgstr "Odotetaan ensimmäistä yhteyttä.."
 
-#: ui/views.py:222
+#: ui/views.py:236
 msgid "Failed to send SMS message to TCU. Please try again in a moment."
 msgstr ""
 "Tekstiviestiä ei voitu lähettää autoon. Kokeile uudelleen hetken kuluttua."
 
-#: ui/views.py:249
+#: ui/views.py:263
 msgid "Sign-up is not enabled on this instance"
 msgstr "Tällä instanssilla ei sallita tilien luomista."
 
-#: ui/views.py:278
+#: ui/views.py:292
 msgid "Invalid username or password."
 msgstr "Virheellinen käyttäjänimi tai salasana."
 
-#: ui/views.py:318
+#: ui/views.py:332
 msgid "Car is already added. Please remove and try again."
 msgstr "Auto on jo lisätty. Poista auto ja yritä uudelleen."
 
-#: ui/views.py:368
+#: ui/views.py:382
 msgid "Please select a provider for SMS."
 msgstr "Ole hyvä ja valitse SMS-palvelun tarjoaja."

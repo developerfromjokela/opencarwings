@@ -10,6 +10,8 @@ class SettingsForm(forms.Form):
     unit_id = forms.CharField(label="Unit ID", max_length=14, required=True, strip=True, min_length=5)
     tcu_id = forms.CharField(label="TCU ID", max_length=14, required=True, strip=True, min_length=5)
     sim_id = forms.CharField(label="SIM ID", max_length=22, required=True, strip=True, min_length=5)
+    periodic_refresh = forms.IntegerField(label="Periodic Refresh", required=True, min_value=0, max_value=2880)
+    periodic_refresh_running = forms.IntegerField(label="Periodic Refresh", required=True, min_value=0, max_value=2880)
     nickname = forms.CharField(label=_("Nickname"), max_length=64, required=True, strip=True, min_length=2)
     disable_auth = forms.BooleanField(label=_("Disable TCU authentication"), required=False)
 

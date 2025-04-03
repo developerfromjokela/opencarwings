@@ -44,8 +44,12 @@
             white-space: nowrap; /* Prevent tab text from wrapping */
         }
         /* Adjust button and select sizes for touch */
-        #command-select, #send-command {
+        #command-select, #send-command, .periodic-select {
             padding: 0.75rem; /* Larger padding for touch */
+        }
+
+        .periodic-select {
+            padding: 0.50rem; /* Larger padding for touch */
         }
 
         .connection-status {

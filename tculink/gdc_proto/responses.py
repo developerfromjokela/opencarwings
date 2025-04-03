@@ -38,7 +38,7 @@ def create_config_read():
     return bytes.fromhex("040000082E000000")
 
 def auth_common_dest():
-    return bytes.fromhex("0200000827000080")
+    return bytes.fromhex("0200000827020090")
 
 def conf_common_dest():
     return bytes.fromhex("0400000827000000")

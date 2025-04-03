@@ -8,7 +8,8 @@ from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from db.models import Car, COMMAND_TYPES, AlertHistory, EVInfo, LocationInfo, TCUConfiguration
+from db.models import Car, COMMAND_TYPES, AlertHistory, EVInfo, LocationInfo, TCUConfiguration, PERIODIC_REFRESH, \
+    PERIODIC_REFRESH_ACTIVE
 from tculink.sms import send_using_provider
 from tculink.utils.password_hash import check_password_validity, password_hash
 from .forms import Step2Form, Step3Form, SettingsForm, ChangeCarwingsPasswordForm, AccountForm, SignUpForm
@@ -155,6 +156,8 @@ def car_detail(request, vin):
                     car.tcu_model = form.cleaned_data['tcu_id']
                     car.tcu_serial = form.cleaned_data['unit_id']
                     car.nickname = form.cleaned_data['nickname']
+                    car.periodic_refresh = form.cleaned_data['periodic_refresh']
+                    car.periodic_refresh_running = form.cleaned_data['periodic_refresh_running']
                     print(form.cleaned_data['disable_auth'])
                     car.disable_auth = form.cleaned_data['disable_auth']
                     messages.success(request, _('Successfully saved settings.'))
@@ -174,7 +177,9 @@ def car_detail(request, vin):
         'alerts': alerts,
         'command_choices': FILTERED_COMMANDTYPES,
         "providers": UI_SMS_PROVIDERS,
-        "show_settings": show_settings
+        "show_settings": show_settings,
+        "periodic_refresh_choices": PERIODIC_REFRESH,
+        "periodic_refresh_running_choices": PERIODIC_REFRESH_ACTIVE
     }
     return render(request, 'ui/car_detail.html', context)
 

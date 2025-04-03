@@ -273,6 +273,23 @@
                         <span class="block text-sm text-gray-700 mt-1">{% translate "On AZE0 (2013) and newer LEAFs, username and password inserted to navi are not saved due to an error. In this case, check this box to skip the authentication" %}</span>
                     </div>
 
+                    <div class="block mt-5">
+                        <label class="block text-gray-700 mt-2 ">{% translate "Periodic data refresh interval" %}</label>
+                        <select name="periodic_refresh" class="w-full periodic-select sm:w-auto border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            {% for value, label in periodic_refresh_choices %}
+                                <option value="{{ value }}" {% if car.periodic_refresh == value %}selected{% endif %}>{{ label }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="block mt-5">
+                        <label class="block text-gray-700 mt-2 ">{% translate "Periodic data refresh interval (while driving or charging)" %}</label>
+                        <select name="periodic_refresh_running" class="w-full periodic-select sm:w-auto border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            {% for value, label in periodic_refresh_running_choices %}
+                                <option value="{{ value }}" {% if car.periodic_refresh_running == value %}selected{% endif %}>{{ label }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
 
                     <hr class="mt-4 mb-4"/>
                     <label class="mt-4">{% translate "SMS provider" %}</label>

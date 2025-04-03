@@ -47,6 +47,28 @@ CAR_GEAR = (
     (2, _("Reverse"))
 )
 
+PERIODIC_REFRESH = (
+    (0, _("Never")),
+    (30, _("Every 30 minutes")),
+    (45, _("Every 45 minutes")),
+    (60, _("Every hour")),
+    (180, _("Every three hours")),
+    (720, _("Every 12 hours")),
+    (1440, _("Every day"))
+)
+
+PERIODIC_REFRESH_ACTIVE = (
+    (0, _("Never")),
+    (5, _("Every 5 minutes")),
+    (15, _("Every 15 minutes")),
+    (30, _("Every 30 minutes")),
+    (45, _("Every 45 minutes")),
+    (60, _("Every hour")),
+    (180, _("Every three hours")),
+    (720, _("Every 12 hours")),
+    (1440, _("Every day"))
+)
+
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
@@ -154,6 +176,8 @@ class Car(models.Model):
     tcu_configuration = models.OneToOneField(TCUConfiguration, on_delete=models.CASCADE)
     location = models.OneToOneField(LocationInfo, on_delete=models.CASCADE)
     ev_info = models.OneToOneField(EVInfo, on_delete=models.CASCADE)
+    periodic_refresh = models.IntegerField(default=0, choices=PERIODIC_REFRESH)
+    periodic_refresh_running = models.IntegerField(default=0, choices=PERIODIC_REFRESH_ACTIVE)
     # Command handle
     command_id = models.IntegerField(default=-1)
     command_result = models.IntegerField(default=-1, choices=COMMAND_RESULTS)

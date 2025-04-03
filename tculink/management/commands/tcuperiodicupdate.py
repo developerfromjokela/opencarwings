@@ -17,9 +17,6 @@ class Command(BaseCommand):
         print("Starting data refresh process")
         # Get current time
         now = timezone.now()
-        # Calculate thresholds
-        threshold_5 = now - datetime.timedelta(minutes=15)
-        threshold_30 = now - datetime.timedelta(hours=3)
 
         # Find cars that need checking
         timed_out_cars = Car.objects.all()
@@ -27,9 +24,12 @@ class Command(BaseCommand):
         for car in timed_out_cars:
             try:
                 # Set appropriate threshold based on charging status
-                period = threshold_30
-                if car.ev_info.charging or car.ev_info.car_running:
-                    period = threshold_5
+                if (car.ev_info.charging or car.ev_info.car_running) and car.periodic_refresh_running != 0:
+                    period = now - datetime.timedelta(minutes=car.periodic_refresh_running)
+                else:
+                    if car.periodic_refresh == 0:
+                        continue
+                    period = now - datetime.timedelta(minutes=car.periodic_refresh)
 
                 # Skip if there's an ongoing request
                 if car.command_requested or car.command_result == -1:
@@ -66,6 +66,3 @@ class Command(BaseCommand):
                         f"Error processing car VIN: {car.vin}: {str(e)}"
                     )
                 )
-
-        # Wait before next check
-        time.sleep(10)

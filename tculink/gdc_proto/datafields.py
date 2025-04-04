@@ -301,6 +301,12 @@ def parse_gps_info(byte_data):
     latitude = lat_deg + (lat_min / 60.0) + (lat_sec_float / 3600.0)
     longitude = lon_deg + (lon_min / 60.0) + (lon_sec_float / 3600.0)
 
+    # Apply coordinates based on latitude and longitude modes
+    if latitude_mode == "S":
+        latitude = -latitude
+    if longitude_mode == "W":
+        longitude = -longitude
+
     return {
         "valid_position": position_status,
         "latitude": latitude,

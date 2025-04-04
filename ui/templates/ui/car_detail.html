@@ -129,11 +129,15 @@
                     <!-- Charge Cable Status -->
                     <div class="status-box">
                         <dt>{% translate "Charge Cable" %}</dt>
+                        {% if car.ev_info.quick_charging %}
+                        <dd id="overview-plugged-in">CHAdeMO</dd>
+                        {% else %}
                         <dd id="overview-plugged-in">{{ car.ev_info.plugged_in|yesno:_("Plugged In,Unplugged") }}</dd>
+                        {% endif %}
                     </div>
                     <!-- Car Status -->
                     <div class="status-box">
-                        <dt>Car Status</dt>
+                        <dt>{% translate "Car status" %}</dt>
                         <dd id="overview-car-status">
                             {% if car.ev_info.car_running %}
                                 {% if car.ev_info.car_gear == 0 %}
@@ -211,6 +215,7 @@
                     <div><dt class="text-gray-700 font-semibold">{% translate "Range (AC Off)" %}:</dt><dd class="text-gray-600" id="range_acoff">{{ car.ev_info.range_acoff }} km</dd></div>
                     <div><dt class="text-gray-700 font-semibold">{% translate "Plugged in" %}:</dt><dd class="text-gray-600" id="plugged_in">{{ car.ev_info.plugged_in|yesno:_("Yes,No") }}</dd></div>
                     <div><dt class="text-gray-700 font-semibold">{% translate "Charging" %}:</dt><dd class="text-gray-600" id="charging">{{ car.ev_info.charging|yesno:_("Yes,No") }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "Quick-charging" %}:</dt><dd class="text-gray-600" id="quick_charging">{{ car.ev_info.quick_charging|yesno:_("Yes,No") }}</dd></div>
                     <div><dt class="text-gray-700 font-semibold">{% translate "Preconditioning (A/C)" %}:</dt><dd class="text-gray-600" id="ac_status">{{ car.ev_info.ac_status|yesno:_("Yes,No") }}</dd></div>
                     <div><dt class="text-gray-700 font-semibold">{% translate "GIDs remaining" %}:</dt><dd class="text-gray-600" id="gids">{{ car.ev_info.gids }}</dd></div>
                     <div><dt class="text-gray-700 font-semibold">{% translate "GIDs remaining (relative)" %}:</dt><dd class="text-gray-600" id="gids_relative">{{ car.ev_info.gids_relative }}</dd></div>
@@ -225,7 +230,7 @@
                 <dl class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 text-sm sm:text-base">
                     <div><dt class="text-gray-700 font-semibold">{% translate "Latitude" %}:</dt><dd class="text-gray-600" id="lat">{{ car.location.lat|default:"N/A" }}</dd></div>
                     <div><dt class="text-gray-700 font-semibold">{% translate "Longitude" %}:</dt><dd class="text-gray-600" id="lon">{{ car.location.lon|default:"N/A" }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "At Home" %}:</dt><dd class="text-gray-600" id="home">{{ car.location.home|yesno }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "At Home" %}:</dt><dd class="text-gray-600" id="home">{{ car.location.home|yesno:_("Yes,No") }}</dd></div>
                     <div><dt class="text-gray-700 font-semibold">{% translate "Last Updated" %}:</dt><dd class="text-gray-600" id="loc_last_updated">{{ car.location.last_updated|default:"N/A"|date:"Y-m-d H:i" }}</dd></div>
                 </dl>
             </div>
@@ -450,7 +455,7 @@
         }
 
         // Function to update the charge bar display
-        function updateChargeBar(chargeBars, soc, isCharging) {
+        function updateChargeBar(chargeBars, soc, isCharging, isQuickCharging) {
             const chargeBar = document.getElementById('charge-bar');
             const segments = chargeBar.children;
 
@@ -465,7 +470,7 @@
                     }
                     // Make the last active segment blink if charging
                     if (isCharging && i === chargeBars - 1) {
-                        segments[i].classList.add('blinking');
+                        segments[i].classList.add(isQuickCharging ? 'qc-blinking' : 'blinking');
                     }
                 } else {
                     segments[i].classList.add('empty'); // Gray for empty bars
@@ -520,7 +525,7 @@
                     document.getElementById('overview-soc').textContent = data.ev_info.soc_display > 0 ? `${data.ev_info.soc_display}%` : `${data.ev_info.soc}%`;
                     document.getElementById('overview-range-acon').textContent = `${data.ev_info.range_acon} km`;
                     document.getElementById('overview-range-acoff').textContent = `${data.ev_info.range_acoff} km`;
-                    document.getElementById('overview-plugged-in').textContent = data.ev_info.plugged_in ? '{% translate "Plugged In" %}' : '{% translate "Unplugged" %}';
+                    document.getElementById('overview-plugged-in').textContent = data.ev_info.quick_charging ? 'CHAdeMO' : (data.ev_info.plugged_in ? '{% translate "Plugged In" %}' : '{% translate "Unplugged" %}');
                     // Update Car Status
                     const carStatus = document.getElementById('overview-car-status');
                     if (data.ev_info.car_running) {
@@ -545,7 +550,7 @@
                         new Date(data.ev_info.last_updated).toLocaleString() : 'N/A';
 
                     // Update Charge Bar
-                    updateChargeBar(data.ev_info.charge_bars, data.ev_info.soc, data.ev_info.charging);
+                    updateChargeBar(data.ev_info.charge_bars, data.ev_info.soc, data.ev_info.charging, data.ev_info.quick_charging);
 
                     // Update Maps
                     marker = updateMap(data.location.lat, data.location.lon, map, marker, 15);
@@ -556,15 +561,16 @@
                         new Date(data.last_connection).toLocaleString() : 'N/A';
                     document.getElementById('range_acon').textContent = `${data.ev_info.range_acon} km`;
                     document.getElementById('range_acoff').textContent = `${data.ev_info.range_acoff} km`;
-                    document.getElementById('plugged_in').textContent = data.ev_info.plugged_in ? 'Yes' : 'No';
-                    document.getElementById('charging').textContent = data.ev_info.charging ? 'Yes' : 'No';
+                    document.getElementById('plugged_in').textContent = data.ev_info.plugged_in ? '{% translate "Yes" %}' : '{% translate "No" %}';
+                    document.getElementById('charging').textContent = data.ev_info.charging ? '{% translate "Yes" %}' : '{% translate "No" %}';
+                    document.getElementById('quick_charging').textContent = data.ev_info.quick_charging ? '{% translate "Yes" %}' : '{% translate "No" %}';
                     document.getElementById('gids').textContent = data.ev_info.gids;
                     document.getElementById('gids_relative').textContent = data.ev_info.gids_relative;
                     document.getElementById('param21').textContent = data.ev_info.param21;
                     document.getElementById('soh').textContent = data.ev_info.soh+"%";
                     document.getElementById('full_chg_time').textContent = (data.ev_info.full_chg_time === 2047 || data.ev_info.full_chg_time == 0) ? '--:--' : convertMinsToHrsMins(data.ev_info.full_chg_time);
                     document.getElementById('limit_chg_time').textContent = (data.ev_info.limit_chg_time === 2047 || data.ev_info.limit_chg_time == 0) ? '--:--' : convertMinsToHrsMins(data.ev_info.limit_chg_time);
-                    document.getElementById('car_running').textContent = data.ev_info.car_running ? 'Yes' : 'No';
+                    document.getElementById('car_running').textContent = data.ev_info.car_running ? '{% translate "Yes" %}' : '{% translate "No" %}';
                     document.getElementById('charge_bars').textContent = data.ev_info.charge_bars + " / 12";
                     document.getElementById('soc').textContent = data.ev_info.soc+"%";
                     document.getElementById('soc_display').textContent = data.ev_info.soc_display+"%";

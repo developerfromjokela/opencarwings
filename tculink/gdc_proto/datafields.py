@@ -110,6 +110,7 @@ def parse_evinfo(byte_data, aze0=False):
     pluggedin = (byte_data[9] & 1) == 1
     charging = charge_state == 1
     acstate = bool((byte_data[9] >> 1) & 0b1)
+    quick_charging = bool((byte_data[9] & 0b10000000) >> 7)
 
     chg_time_1 = (
         (byte_data[10] << 3) | ((byte_data[11] & 0b11100000) >> 5)
@@ -179,6 +180,7 @@ def parse_evinfo(byte_data, aze0=False):
         "acoff": range_acoff,
         "pluggedin":pluggedin,
         "charging": charging,
+        "quick_charging": quick_charging,
         "acstate": acstate,
         "chargebars": chargebars,
         "chargestate": charge_state,

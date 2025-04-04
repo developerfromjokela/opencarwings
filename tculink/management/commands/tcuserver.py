@@ -40,7 +40,8 @@ def set_evinfo(car, ev_info):
     car.ev_info.range_acon = ev_info.get("acon", None)
     car.ev_info.range_acoff = ev_info.get("acoff", None)
     car.ev_info.plugged_in = ev_info.get("pluggedin", False)
-    car.ev_info.charging = ev_info.get("charging", False)
+    car.ev_info.quick_charging = ev_info.get("quick_charging", False)
+    car.ev_info.charging = True if car.ev_info.quick_charging else ev_info.get("charging", False)
     car.ev_info.ac_status = ev_info.get("acstate", False)
     car.ev_info.soc = ev_info.get("soc", 0)
     car.ev_info.soc_display = ev_info.get("soc_display", 0)
@@ -309,6 +310,10 @@ class Command(BaseCommand):
                                     new_alert.type = 1
                                     alert_message = "Vehicle has finished charging."
                                     subject = "Charge finish notification"
+                                elif req_body["alertstate"] == 8:
+                                    new_alert.type = 8
+                                    alert_message = "Vehicle has finished quick-charging."
+                                    subject = "Quick-charge finish notification"
                                 else:
                                     new_alert.type = 7
                                 new_alert.car = car

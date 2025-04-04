@@ -2,7 +2,6 @@ import re
 
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
-from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.core import validators
 from django.db import models
 from django.db.models.signals import post_save
@@ -18,6 +17,7 @@ ALERT_TYPES = (
     (5, _('A/C off')),
     (6, _('Configuration read')),
     (7, _('A/C auto off')),
+    (8, _("Quick charge stop")),
     (96, _('Charge error')),
     (97, _('A/C error')),
     (98, _('Command timeout')),
@@ -134,6 +134,7 @@ class EVInfo(models.Model):
     range_acoff = models.IntegerField(default=0, null=True, blank=True)
     plugged_in = models.BooleanField(default=False)
     charging = models.BooleanField(default=False)
+    quick_charging = models.BooleanField(default=False)
     ac_status = models.BooleanField(default=False)
     charge_bars = models.IntegerField(default=0)
     car_running = models.BooleanField(default=False)

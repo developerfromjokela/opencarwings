@@ -19,11 +19,29 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 from django.contrib.auth import views as auth_views
+from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
+from rest_framework import permissions
+from rest_framework.authentication import TokenAuthentication, SessionAuthentication
 
 import ui.views as views
 
+
+schema_view = get_schema_view(
+   openapi.Info(
+      title="OpenCARWINGS API",
+      default_version='v1',
+      description="API to get information about cars. API Token is accessible from your account settings",
+   ),
+   public=True,
+   permission_classes=[permissions.AllowAny],
+    authentication_classes=[TokenAuthentication,SessionAuthentication],
+)
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('apidocs/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('', views.car_list, name='car_list'),
     path('setup/step1', views.setup_step1, name='setup_1'),
     path('setup/step2', views.setup_step2, name='setup_2'),

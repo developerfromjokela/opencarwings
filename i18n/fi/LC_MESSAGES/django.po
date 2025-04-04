@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-03 15:31+0000\n"
+"POT-Creation-Date: 2025-04-04 12:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -107,11 +107,11 @@ msgstr "Odotetaan vastausta"
 msgid "Park"
 msgstr "Pysäköity"
 
-#: db/models.py:46 ui/templates/ui/car_detail.html:570
+#: db/models.py:46 ui/templates/ui/car_detail.html:572
 msgid "Drive"
 msgstr "Ajovaihde"
 
-#: db/models.py:47 ui/templates/ui/car_detail.html:570
+#: db/models.py:47 ui/templates/ui/car_detail.html:572
 msgid "Reverse"
 msgstr "Peruutusvaihde"
 
@@ -232,7 +232,7 @@ msgstr ""
 "POST-pyyntö lähetetään syöttämääsi URL-osoitteeseen, kun halutaan ottaa "
 "yhteyttä autoon."
 
-#: ui/forms.py:15 ui/forms.py:25 ui/templates/ui/car_detail.html:262
+#: ui/forms.py:15 ui/forms.py:25 ui/templates/ui/car_detail.html:263
 msgid "Nickname"
 msgstr "Lempinimi"
 
@@ -306,33 +306,37 @@ msgstr "Tili"
 msgid "API-key"
 msgstr "API-avain"
 
-#: ui/templates/ui/account.html:41
+#: ui/templates/ui/account.html:38
+msgid "API documentation"
+msgstr "API-dokumentaatio"
+
+#: ui/templates/ui/account.html:42
 msgid "Reset API-key"
 msgstr "Nollaa API-avain"
 
-#: ui/templates/ui/account.html:47 ui/templates/ui/car_detail.html:324
+#: ui/templates/ui/account.html:48 ui/templates/ui/car_detail.html:325
 #: ui/templates/ui/setup/step2.html:50 ui/templates/ui/setup/step3.html:36
 #: ui/templates/ui/setup/step4.html:60
 msgid "Save"
 msgstr "Tallenna"
 
-#: ui/templates/ui/account.html:48
+#: ui/templates/ui/account.html:49
 msgid "Change Account Password"
 msgstr "Vaihda tilin salasana"
 
-#: ui/templates/ui/account.html:49
+#: ui/templates/ui/account.html:50
 msgid "Change CARWINGS Password"
 msgstr "Vaihda TCU-salasana"
 
-#: ui/templates/ui/account.html:56
+#: ui/templates/ui/account.html:57
 msgid "Are you sure you want to reset your API key?"
 msgstr "Haluatko varmasti nollata API-avaimesi?"
 
-#: ui/templates/ui/account.html:71
+#: ui/templates/ui/account.html:72
 msgid "Failure occurred while resetting the API key"
 msgstr "API-avaimen nollaaminen tuotti virheen."
 
-#: ui/templates/ui/account.html:76
+#: ui/templates/ui/account.html:77
 msgid "An error occurred while resetting the API key"
 msgstr "Tapahtui virhe API-avaimen nollauksessa."
 
@@ -382,7 +386,7 @@ msgstr "Sijainti"
 msgid "Recent Alerts"
 msgstr "Viimeisimmät ilmoitukset"
 
-#: ui/templates/ui/car_detail.html:80 ui/templates/ui/car_detail.html:257
+#: ui/templates/ui/car_detail.html:80 ui/templates/ui/car_detail.html:258
 msgid "Settings"
 msgstr "Asetukset"
 
@@ -420,22 +424,22 @@ msgid "Plugged In,Unplugged"
 msgstr "Liitetty,Ei liitetty"
 
 #: ui/templates/ui/car_detail.html:140 ui/templates/ui/car_detail.html:142
-#: ui/templates/ui/car_detail.html:527 ui/templates/ui/car_detail.html:529
-#: ui/templates/ui/car_detail.html:537
+#: ui/templates/ui/car_detail.html:528 ui/templates/ui/car_detail.html:530
+#: ui/templates/ui/car_detail.html:538
 msgid "On"
 msgstr "Päällä"
 
-#: ui/templates/ui/car_detail.html:140 ui/templates/ui/car_detail.html:527
-#: ui/templates/ui/car_detail.html:570
+#: ui/templates/ui/car_detail.html:140 ui/templates/ui/car_detail.html:528
+#: ui/templates/ui/car_detail.html:572
 msgid "Parked"
 msgstr "Pysäköity"
 
-#: ui/templates/ui/car_detail.html:142 ui/templates/ui/car_detail.html:529
+#: ui/templates/ui/car_detail.html:142 ui/templates/ui/car_detail.html:530
 msgid "Driving"
 msgstr "Ajossa"
 
-#: ui/templates/ui/car_detail.html:145 ui/templates/ui/car_detail.html:532
-#: ui/templates/ui/car_detail.html:537
+#: ui/templates/ui/car_detail.html:145 ui/templates/ui/car_detail.html:533
+#: ui/templates/ui/car_detail.html:538
 msgid "Off"
 msgstr "Pois"
 
@@ -448,7 +452,7 @@ msgid "On,Off"
 msgstr "Päällä,Pois"
 
 #: ui/templates/ui/car_detail.html:162 ui/templates/ui/car_detail.html:194
-#: ui/templates/ui/car_detail.html:217 ui/templates/ui/car_detail.html:228
+#: ui/templates/ui/car_detail.html:218 ui/templates/ui/car_detail.html:229
 msgid "Last Updated"
 msgstr "Viimeksi päivitetty"
 
@@ -539,35 +543,35 @@ msgstr "Jäljellä olevat GID:t"
 msgid "GIDs remaining (relative)"
 msgstr "Jäljellä olevat GID:t (relatiivi)"
 
-#: ui/templates/ui/car_detail.html:225
+#: ui/templates/ui/car_detail.html:226
 msgid "Latitude"
 msgstr "Leveysaste"
 
-#: ui/templates/ui/car_detail.html:226
+#: ui/templates/ui/car_detail.html:227
 msgid "Longitude"
 msgstr "Pituusaste"
 
-#: ui/templates/ui/car_detail.html:227
+#: ui/templates/ui/car_detail.html:228
 msgid "At Home"
 msgstr "Kotona"
 
-#: ui/templates/ui/car_detail.html:238
+#: ui/templates/ui/car_detail.html:239
 msgid "Type"
 msgstr "Tyyppi"
 
-#: ui/templates/ui/car_detail.html:239
+#: ui/templates/ui/car_detail.html:240
 msgid "Timestamp"
 msgstr "Päivämäärä"
 
-#: ui/templates/ui/car_detail.html:240
+#: ui/templates/ui/car_detail.html:241
 msgid "Additional Data"
 msgstr "Lisätiedot"
 
-#: ui/templates/ui/car_detail.html:272
+#: ui/templates/ui/car_detail.html:273
 msgid "Skip authentication from TCU"
 msgstr "Ohita tunnistautuminen TCU:lta"
 
-#: ui/templates/ui/car_detail.html:273
+#: ui/templates/ui/car_detail.html:274
 msgid ""
 "On AZE0 (2013) and newer LEAFs, username and password inserted to navi are "
 "not saved due to an error. In this case, check this box to skip the "
@@ -577,41 +581,41 @@ msgstr ""
 "eivättallennu autoon virheen takia. Tässä tapauksessa kytke ruutu "
 "aktiiviseksi,niin auto saa yhteyden ja ei tarkista kirjautumistietoja"
 
-#: ui/templates/ui/car_detail.html:277
+#: ui/templates/ui/car_detail.html:278
 msgid "Periodic data refresh interval"
 msgstr "Aikaväli tietojen automaattiselle päivitykselle"
 
-#: ui/templates/ui/car_detail.html:286
+#: ui/templates/ui/car_detail.html:287
 msgid "Periodic data refresh interval (while driving or charging)"
 msgstr ""
 "Aikaväli tietojen automaattiselle päivitykselle (latauksen tai ajon aikana)"
 
-#: ui/templates/ui/car_detail.html:295 ui/templates/ui/setup/step4.html:29
+#: ui/templates/ui/car_detail.html:296 ui/templates/ui/setup/step4.html:29
 msgid "SMS provider"
 msgstr "SMS-palvelu"
 
-#: ui/templates/ui/car_detail.html:325
+#: ui/templates/ui/car_detail.html:326
 msgid "Remove car"
 msgstr "Poista auto"
 
-#: ui/templates/ui/car_detail.html:504 ui/templates/ui/car_detail.html:508
-#: ui/templates/ui/car_detail.html:660 ui/templates/ui/car_detail.html:664
+#: ui/templates/ui/car_detail.html:505 ui/templates/ui/car_detail.html:509
+#: ui/templates/ui/car_detail.html:662 ui/templates/ui/car_detail.html:666
 msgid "Error sending command"
 msgstr "Komennon lähetys epäonnistui"
 
-#: ui/templates/ui/car_detail.html:522
+#: ui/templates/ui/car_detail.html:523
 msgid "Plugged In"
 msgstr "Liitetty"
 
-#: ui/templates/ui/car_detail.html:522
+#: ui/templates/ui/car_detail.html:523
 msgid "Unplugged"
 msgstr "Ei liitettynä"
 
-#: ui/templates/ui/car_detail.html:571 ui/templates/ui/car_detail.html:576
+#: ui/templates/ui/car_detail.html:573 ui/templates/ui/car_detail.html:578
 msgid "Yes"
 msgstr "Kyllä"
 
-#: ui/templates/ui/car_detail.html:571 ui/templates/ui/car_detail.html:576
+#: ui/templates/ui/car_detail.html:573 ui/templates/ui/car_detail.html:578
 msgid "No"
 msgstr "Ei"
 
@@ -895,67 +899,67 @@ msgstr "Onko sinulla jo tili?"
 msgid "Sign in"
 msgstr "Kirjaudu"
 
-#: ui/views.py:29
+#: ui/views.py:33
 msgid "TCU setup"
 msgstr "TCU:n valmistelu"
 
-#: ui/views.py:30
+#: ui/views.py:34
 msgid "TCU identifiers"
 msgstr "TCU-tiedot"
 
-#: ui/views.py:31
+#: ui/views.py:35
 msgid "Basic information"
 msgstr "Perustiedot"
 
-#: ui/views.py:32
+#: ui/views.py:36
 msgid "SMS configuration"
 msgstr "SMS-asetukset"
 
-#: ui/views.py:33
+#: ui/views.py:37
 msgid "Car added"
 msgstr "Kaikki valmista!"
 
-#: ui/views.py:87
+#: ui/views.py:91
 msgid "Account successfully updated!"
 msgstr "Tilitiedot päivitetty!"
 
-#: ui/views.py:90
+#: ui/views.py:94
 msgid "Please fill the form correctry and try again."
 msgstr "Täytä lomake oikein ja yritä uudelleen."
 
-#: ui/views.py:163
+#: ui/views.py:176
 msgid "Successfully saved settings."
 msgstr "Asetukset päivitetty!"
 
-#: ui/views.py:165 ui/views.py:345 ui/views.py:366
+#: ui/views.py:178 ui/views.py:409 ui/views.py:430
 msgid "Please fill the form correctly"
 msgstr "Täytäthän lomakkeen oikein"
 
-#: ui/views.py:168 ui/views.py:401
+#: ui/views.py:181 ui/views.py:465
 msgid "Please fill all necessary fields and try again."
 msgstr "Täytäthän kaikki kentät ja yritä uudelleen."
 
-#: ui/views.py:172
+#: ui/views.py:185
 msgid "Waiting for first connection.."
 msgstr "Odotetaan ensimmäistä yhteyttä.."
 
-#: ui/views.py:236
+#: ui/views.py:300
 msgid "Failed to send SMS message to TCU. Please try again in a moment."
 msgstr ""
 "Tekstiviestiä ei voitu lähettää autoon. Kokeile uudelleen hetken kuluttua."
 
-#: ui/views.py:263
+#: ui/views.py:327
 msgid "Sign-up is not enabled on this instance"
 msgstr "Tällä instanssilla ei sallita tilien luomista."
 
-#: ui/views.py:292
+#: ui/views.py:356
 msgid "Invalid username or password."
 msgstr "Virheellinen käyttäjänimi tai salasana."
 
-#: ui/views.py:332
+#: ui/views.py:396
 msgid "Car is already added. Please remove and try again."
 msgstr "Auto on jo lisätty. Poista auto ja yritä uudelleen."
 
-#: ui/views.py:382
+#: ui/views.py:446
 msgid "Please select a provider for SMS."
 msgstr "Ole hyvä ja valitse SMS-palvelun tarjoaja."

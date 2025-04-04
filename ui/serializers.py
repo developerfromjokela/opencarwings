@@ -38,3 +38,21 @@ class CarSerializer(serializers.ModelSerializer):
     class Meta:
         model = Car
         fields = '__all__'
+
+class CarSerializerList(serializers.ModelSerializer):
+    ev_info = EVInfoSerializer()
+    location = LocationInfoSerializer()
+    class Meta:
+        model = Car
+        fields = ('vin', 'last_connection', 'nickname', 'ev_info', 'location')
+
+class CommandResponseSerializer(serializers.Serializer):
+    message = serializers.CharField()
+    car = CarSerializer()
+
+class CommandErrorSerializer(serializers.Serializer):
+    error = serializers.CharField()
+
+class StatusSerializer(serializers.Serializer):
+    status = serializers.BooleanField(required=True)
+    cause = serializers.CharField(required=False)

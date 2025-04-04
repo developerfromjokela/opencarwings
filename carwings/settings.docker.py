@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework.authtoken',
+    'drf_yasg',
     'crispy_forms',
     'crispy_tailwind',
     'db',
@@ -144,6 +145,17 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOCALE_PATHS = (BASE_DIR / 'i18n',)
+
+SWAGGER_SETTINGS = {
+   'SECURITY_DEFINITIONS': {
+      'API Key': {
+          'description': 'Authorization header should be like this: "Token xxxxxx", where xxxxxx = your API token',
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+      }
+   }
+}
 
 # Minutes
 LEAF_COMMAND_TIMEOUT = 5

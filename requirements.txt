@@ -5,3 +5,4 @@ requests~=2.32.3
 asgiref~=3.8.1
 django-crispy-forms~=2.3
 crispy-tailwind~=1.0.3
+drf-yasg~=1.21.10

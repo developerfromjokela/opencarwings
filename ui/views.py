@@ -4,6 +4,8 @@ from random import randint
 import django.conf
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
+from drf_yasg import openapi
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view
@@ -13,7 +15,8 @@ from db.models import Car, COMMAND_TYPES, AlertHistory, EVInfo, LocationInfo, TC
 from tculink.sms import send_using_provider
 from tculink.utils.password_hash import check_password_validity, password_hash
 from .forms import Step2Form, Step3Form, SettingsForm, ChangeCarwingsPasswordForm, AccountForm, SignUpForm
-from .serializers import CarSerializer, AlertHistorySerializer
+from .serializers import CarSerializer, AlertHistorySerializer, CarSerializerList, CommandResponseSerializer, \
+    CommandErrorSerializer, StatusSerializer
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -90,10 +93,19 @@ def account(request):
             messages.error(request, _("Please fill the form correctry and try again."))
     return render(request, 'ui/account.html', {'user': request.user, 'form': account_form, 'api_key': api_key.key})
 
-@api_view(('POST',))
+@swagger_auto_schema(
+    operation_description="Reset API-key. ONLY accessible from web portal!",
+    method="post",
+    responses={
+        status.HTTP_200_OK: "Reset successfully!",
+    },
+)
+@api_view(['POST'])
 def reset_apikey(request):
     if not request.user.is_authenticated:
         return redirect('login')
+    if isinstance(request.auth, Token):
+        return Response({'status': False, 'cause': 'Cannot reset API token with another API token!'}, status=401)
     api_key, _ = Token.objects.get_or_create(user=request.user)
     api_key.delete()
     return Response({"status": True}, status=status.HTTP_200_OK)
@@ -184,6 +196,24 @@ def car_detail(request, vin):
     return render(request, 'ui/car_detail.html', context)
 
 
+@swagger_auto_schema(
+    operation_description="Retrieve car details",
+    method='get',
+    responses={
+        200: CarSerializer(),
+        404: 'Not found',
+        401: 'Not authorized',
+    }
+)
+@swagger_auto_schema(
+    operation_description="Remove a car",
+    method='delete',
+    responses={
+        200: StatusSerializer(),
+        404: 'Not found',
+        401: 'Not authorized',
+    }
+)
 @api_view(['GET', 'DELETE'])
 def car_api(request, vin):
     if not request.user.is_authenticated:
@@ -197,16 +227,32 @@ def car_api(request, vin):
     serializer = CarSerializer(car)
     return Response(serializer.data)
 
+@swagger_auto_schema(
+    operation_description="Retrieve a list of cars",
+    method='get',
+    responses={
+        200: CarSerializerList(many=True),
+        401: 'Not authorized',
+    }
+)
 @api_view(['GET'])
 def cars_api(request):
     if not request.user.is_authenticated:
         return Response(status=status.HTTP_401_UNAUTHORIZED)
     car = Car.objects.filter(owner=request.user)
 
-    serializer = CarSerializer(car, many=True)
+    serializer = CarSerializerList(car, many=True)
     return Response(serializer.data)
 
-
+@swagger_auto_schema(
+    operation_description="Retrieve a list of alerts for a vehicle",
+    method='get',
+    responses={
+        200: AlertHistorySerializer(many=True),
+        401: 'Not authorized',
+        404: 'Car not found',
+    }
+)
 @api_view(['GET'])
 def alerts_api(request, vin):
     if not request.user.is_authenticated:
@@ -217,6 +263,23 @@ def alerts_api(request, vin):
     return Response(serializer.data)
 
 
+@swagger_auto_schema(
+    operation_description="Send a command to your vehicle",
+    request_body=openapi.Schema(
+        type=openapi.TYPE_OBJECT,
+        properties={
+            'command_type': openapi.Schema(type=openapi.TYPE_NUMBER, title="Command type", enum=COMMAND_TYPES),
+        },
+        required=['vin', 'command_type']
+    ),
+    method='post',
+    responses={
+        200: CommandResponseSerializer(),
+        401: 'Not authorized',
+        404: 'Car not found',
+        400: CommandErrorSerializer(),
+    }
+)
 @api_view(['POST'])
 def command_api(request, vin):
     if not request.user.is_authenticated:

@@ -146,7 +146,13 @@
                                     {% translate "On" %} ({% translate "Driving" %})
                                 {% endif %}
                             {% else %}
-                                {% translate "Off" %}
+                                {% if car.ev_info.charge_finish %}
+                                    {% translate "Charging finished" %}
+                                {% elif car.ev_info.charging %}
+                                    {% translate "Charging" %}
+                                {% else %}
+                                    {% translate "Off" %}
+                                {% endif %}
                             {% endif %}
                         </dd>
                     </div>
@@ -535,7 +541,13 @@
                             carStatus.textContent = '{% translate "On" %} ({% translate "Driving" %})';
                         }
                     } else {
-                        carStatus.textContent = '{% translate "Off" %}';
+                        if (data.ev_info.charge_finish) {
+                            carStatus.textContent = '{% translate "Charging finished" %}';
+                        } else if (data.ev_info.charging) {
+                            carStatus.textContent = '{% translate "Charging" %}';
+                        } else {
+                            carStatus.textContent = '{% translate "Off" %}';
+                        }
                     }
                     // Update AC Status
                     const acStatus = document.getElementById('overview-ac-status');

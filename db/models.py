@@ -134,6 +134,7 @@ class EVInfo(models.Model):
     range_acoff = models.IntegerField(default=0, null=True, blank=True)
     plugged_in = models.BooleanField(default=False)
     charging = models.BooleanField(default=False)
+    charge_finish = models.BooleanField(default=False)
     quick_charging = models.BooleanField(default=False)
     ac_status = models.BooleanField(default=False)
     charge_bars = models.IntegerField(default=0)

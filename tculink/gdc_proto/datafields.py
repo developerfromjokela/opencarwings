@@ -112,6 +112,14 @@ def parse_evinfo(byte_data, aze0=False):
     acstate = bool((byte_data[9] >> 1) & 0b1)
     quick_charging = bool((byte_data[9] & 0b10000000) >> 7)
 
+    charge_finished = False
+
+    if charging and quick_charging:
+        # When data indicates both QC and AC charge, it means charge finished.
+        charge_finished = True
+        charging = False
+        quick_charging = False
+
     chg_time_1 = (
         (byte_data[10] << 3) | ((byte_data[11] & 0b11100000) >> 5)
     )
@@ -181,6 +189,7 @@ def parse_evinfo(byte_data, aze0=False):
         "pluggedin":pluggedin,
         "charging": charging,
         "quick_charging": quick_charging,
+        "charging_finish": charge_finished,
         "acstate": acstate,
         "chargebars": chargebars,
         "chargestate": charge_state,

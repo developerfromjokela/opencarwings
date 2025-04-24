@@ -142,7 +142,7 @@ class EVInfo(models.Model):
     car_gear = models.IntegerField(default=0, choices=CAR_GEAR)
     eco_mode = models.BooleanField(default=False)
     soh = models.IntegerField(default=0)
-    soc = models.IntegerField(default=0)
+    soc = models.FloatField(default=0)
     soc_display = models.IntegerField(default=0)
     cap_bars = models.IntegerField(default=0)
     gids = models.IntegerField(default=0)

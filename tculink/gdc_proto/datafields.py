@@ -157,8 +157,9 @@ def parse_evinfo(byte_data, aze0=False):
 
     if aze0:
         soc_display = (
-                ((byte1 & 0b00000001) << 6) | ((byte2 & 0b11111100) >> 2)
+                ((byte1 & 0b01111111) << 3) | ((byte2 & 0b11100000) >> 5)
         )
+        soc_display = soc_display/10
         param16_17 = (
             (byte_data[20] << 4) | ((byte_data[21] & 0b11110000) >> 4)
         )

@@ -155,3 +155,25 @@
         .fan-icon.spinning {
             animation: spin 1s linear infinite;
         }
+
+        #charge-time-tbl{
+      border-collapse: collapse; /* Merges borders between cells */
+      border: none; /* Removes the outer border of the table */
+    }
+    #charge-time-tbl, td {
+      border: 1px solid black; /* Adds borders to cells */
+      padding: 5px; /* Optional: adds spacing inside cells for better appearance */
+    }
+    /* Remove outer borders by targeting the first and last rows/columns */
+    #charge-time-tbl, tr:first-child td {
+      border-top: none; /* Removes top border of the first row */
+    }
+    #charge-time-tbl, tr:last-child td {
+      border-bottom: none; /* Removes bottom border of the last row */
+    }
+    #charge-time-tbl, td:first-child {
+      border-left: none; /* Removes left border of the first column */
+    }
+    #charge-time-tbl, td:last-child {
+      border-right: none; /* Removes right border of the last column */
+    }

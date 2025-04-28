@@ -39,7 +39,7 @@ def get_car_owner_info(car):
 @sync_to_async
 def set_evinfo(car, ev_info, tcu_info):
     if car.ev_info.max_gids == 0:
-        if tcu_info['vehicle_code1'] == 0xAF or tcu_info['vehicle_code2'] == 0xAD:
+        if tcu_info['vehicle_descriptor'] == 0x02 or tcu_info['vehicle_descriptor'] == 0x92:
             car.ev_info.max_gids = GIDS_NEW_24kWh
 
     car.ev_info.range_acon = ev_info.get("acon", None)

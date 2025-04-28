@@ -9,6 +9,7 @@ from django.core.management.base import BaseCommand, CommandError
 from django.template.loader import render_to_string
 from django.utils import timezone
 from db.models import Car, AlertHistory
+from tculink.gdc_proto import GIDS_NEW_24kWh
 from tculink.gdc_proto.parser import parse_gdc_packet
 from tculink.gdc_proto.responses import create_charge_status_response, create_charge_request_response, \
     create_ac_setting_response, create_ac_stop_response, create_config_read, auth_common_dest
@@ -36,7 +37,11 @@ def get_car_owner_info(car):
     return car.owner
 
 @sync_to_async
-def set_evinfo(car, ev_info):
+def set_evinfo(car, ev_info, tcu_info):
+    if car.ev_info.max_gids == 0:
+        if tcu_info['vehicle_code1'] == 0xAF or tcu_info['vehicle_code2'] == 0xAD:
+            car.ev_info.max_gids = GIDS_NEW_24kWh
+
     car.ev_info.range_acon = ev_info.get("acon", None)
     car.ev_info.range_acoff = ev_info.get("acoff", None)
     car.ev_info.plugged_in = ev_info.get("pluggedin", False)
@@ -51,14 +56,20 @@ def set_evinfo(car, ev_info):
 
     car.ev_info.ac_status = ev_info.get("acstate", False)
     car.ev_info.soc = ev_info.get("soc", 0)
-    car.ev_info.soc_display = ev_info.get("soc_display", 0)
     car.ev_info.soh = ev_info.get("soh", 0)
     car.ev_info.cap_bars = ev_info.get("capacity_bars", 0)
     car.ev_info.charge_bars = ev_info.get("chargebars", 0)
     car.ev_info.eco_mode = False
     car.ev_info.gids = ev_info.get("gids", 0)
-    car.ev_info.gids_relative = ev_info.get("gids_relative", 0)
-    car.ev_info.max_gids_relative = 0
+    car.ev_info.counter = ev_info.get("counter", 0)
+    car.ev_info.soc_display = 0
+
+    # Calc "display" SOC
+    if car.ev_info.max_gids > 0 and car.ev_info.soh > 0 and (tcu_info['vehicle_descriptor'] != 0x02 or car.ev_info.force_soc_display):
+        car.ev_info.soc_display = (
+            ev_info.get("gids", 0) / (car.ev_info.max_gids * (car.ev_info.soh/100))
+        ) * 100.0
+
     car.ev_info.full_chg_time = ev_info.get("full_chg", 0)
     car.ev_info.limit_chg_time = ev_info.get("limit_chg", 0)
     car.ev_info.param21 = ev_info.get("param21", 0)
@@ -201,14 +212,10 @@ class Command(BaseCommand):
 
                         car.last_connection = timezone.now()
 
-                        if car.vehicle_code1 != tcu_info["vehicle_code1"]:
-                            car.vehicle_code1 = tcu_info["vehicle_code1"]
-                        if car.vehicle_code2 != tcu_info["vehicle_code2"]:
-                            car.vehicle_code2 = tcu_info["vehicle_code2"]
-                        if car.vehicle_code3 != tcu_info["vehicle_code3"]:
-                            car.vehicle_code3 = tcu_info["vehicle_code3"]
-                        if car.vehicle_code4 != tcu_info["vehicle_code4"]:
-                            car.vehicle_code4 = tcu_info["vehicle_code4"]
+                        car.vehicle_code1 = tcu_info["vehicle_descriptor"]
+                        car.vehicle_code2 = tcu_info["vehicle_code1"]
+                        car.vehicle_code3 = tcu_info["vehicle_code2"]
+                        car.vehicle_code4 = tcu_info["vehicle_code3"]
                         car.tcu_ver = tcu_info["sw_version"]
                     except Car.DoesNotExist:
                         writer.write(create_charge_status_response(False))
@@ -271,7 +278,7 @@ class Command(BaseCommand):
                         if parsed_data["body"] is not None:
                             req_body = parsed_data["body"]
                             if body_type != "config_read":
-                                await set_evinfo(car, req_body)
+                                await set_evinfo(car, req_body, tcu_info)
 
                             if body_type == "cp_remind":
                                 new_alert = AlertHistory()

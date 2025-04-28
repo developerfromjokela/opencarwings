@@ -170,8 +170,11 @@ def car_detail(request, vin):
                     car.nickname = form.cleaned_data['nickname']
                     car.periodic_refresh = form.cleaned_data['periodic_refresh']
                     car.periodic_refresh_running = form.cleaned_data['periodic_refresh_running']
-                    print(form.cleaned_data['disable_auth'])
                     car.disable_auth = form.cleaned_data['disable_auth']
+                    if form.cleaned_data['max_gids'] != car.ev_info.max_gids or form.cleaned_data['force_soc_display'] != car.ev_info.force_soc_display:
+                        car.ev_info.max_gids = form.cleaned_data['max_gids']
+                        car.ev_info.force_soc_display = form.cleaned_data['force_soc_display']
+                        car.ev_info.save()
                     messages.success(request, _('Successfully saved settings.'))
                 else:
                     messages.error(request, _('Please fill the form correctly'))

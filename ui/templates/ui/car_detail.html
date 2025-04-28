@@ -103,10 +103,10 @@
                     <div class="status-box">
                         {% if car.ev_info.soc_display > 0 %}
                         <dt>{% translate "State of Charge" %}</dt>
-                        <dd id="overview-soc">{{ car.ev_info.soc_display }}%</dd>
+                        <dd id="overview-soc">{{ car.ev_info.soc_display|floatformat:1 }}%</dd>
                         {% else %}
                         <dt>{% translate "State of Charge" %} ({% translate "Nominal" %})</dt>
-                        <dd id="overview-soc">{{ car.ev_info.soc }}%</dd>
+                        <dd id="overview-soc">{{ car.ev_info.soc|floatformat:1 }}%</dd>
                         {% endif %}
                     </div>
                 </div>
@@ -214,8 +214,8 @@
                     <div><dt class="text-gray-700 font-semibold">{% translate "Charge time" %} (240V/L2):</dt><dd class="text-gray-600" id="full_chg_time">{% if car.ev_info.full_chg_time == 2047 or car.ev_info.full_chg_time < 1 %}--:--{% else %}{{ car.ev_info.full_chg_time }}{% endif %}</dd></div>
                     <div><dt class="text-gray-700 font-semibold">{% translate "Charge bars" %}:</dt><dd class="text-gray-600" id="charge_bars">{{ car.ev_info.charge_bars }} / 12</dd></div>
                     <div><dt class="text-gray-700 font-semibold">{% translate "Capacity bars" %}:</dt><dd class="text-gray-600" id="cap_bars">{{ car.ev_info.cap_bars }} %</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "State of Charge" %} ({% translate "Display" %}):</dt><dd class="text-gray-600" id="soc_display">{{ car.ev_info.soc_display }}%</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "State of Charge" %} ({% translate "Nominal" %}):</dt><dd class="text-gray-600" id="soc">{{ car.ev_info.soc }}%</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "State of Charge" %} ({% translate "Display" %}):</dt><dd class="text-gray-600" id="soc_display">{{ car.ev_info.soc_display|floatformat:3 }}%</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "State of Charge" %} ({% translate "Nominal" %}):</dt><dd class="text-gray-600" id="soc">{{ car.ev_info.soc|floatformat:3 }}%</dd></div>
                     <div><dt class="text-gray-700 font-semibold">{% translate "State of Health" %}:</dt><dd class="text-gray-600" id="soh">{{ car.ev_info.soh }}%</dd></div>
                     <div><dt class="text-gray-700 font-semibold">{% translate "Range (AC On)" %}:</dt><dd class="text-gray-600" id="range_acon">{{ car.ev_info.range_acon }} km</dd></div>
                     <div><dt class="text-gray-700 font-semibold">{% translate "Range (AC Off)" %}:</dt><dd class="text-gray-600" id="range_acoff">{{ car.ev_info.range_acoff }} km</dd></div>
@@ -224,7 +224,7 @@
                     <div><dt class="text-gray-700 font-semibold">{% translate "Quick-charging" %}:</dt><dd class="text-gray-600" id="quick_charging">{{ car.ev_info.quick_charging|yesno:_("Yes,No") }}</dd></div>
                     <div><dt class="text-gray-700 font-semibold">{% translate "Preconditioning (A/C)" %}:</dt><dd class="text-gray-600" id="ac_status">{{ car.ev_info.ac_status|yesno:_("Yes,No") }}</dd></div>
                     <div><dt class="text-gray-700 font-semibold">{% translate "GIDs remaining" %}:</dt><dd class="text-gray-600" id="gids">{{ car.ev_info.gids }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "GIDs remaining (relative)" %}:</dt><dd class="text-gray-600" id="gids_relative">{{ car.ev_info.gids_relative }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "Counter" %}:</dt><dd class="text-gray-600" id="counter">{{ car.ev_info.counter }}</dd></div>
                     <div><dt class="text-gray-700 font-semibold">Param21:</dt><dd class="text-gray-600" id="param21">{{ car.ev_info.param21 }}</dd></div>
                     <div><dt class="text-gray-700 font-semibold">{% translate "Last Updated" %}:</dt><dd class="text-gray-600" id="ev_last_updated">{{ car.ev_info.last_updated|default:"N/A"|date:"Y-m-d H:i" }}</dd></div>
                 </dl>
@@ -284,6 +284,22 @@
                         <label for="disable_auth">{% translate "Skip authentication from TCU" %}</label>
                         <span class="block text-sm text-gray-700 mt-1">{% translate "On AZE0 (2013) and newer LEAFs, username and password inserted to navi are not saved due to an error. In this case, check this box to skip the authentication" %}</span>
                     </div>
+
+                    <hr class="my-3"/>
+
+                    <div class="block" >
+                        <label class="block text-gray-700 mt-2 ">{% translate "Maximum GIDs value" %}</label>
+                        <input type="text" value="{{car.ev_info.max_gids}}" name="max_gids" class="w-full p-2 border rounded mt-1" required>
+                        <span class="block text-sm text-gray-700 mt-1">{% translate "OpenCARWINGS will try to auto-detect your battery size and fill this field. For cars with swapped/replaced battery, please enter maximum amount of GIDS when battery is new (SoH 100%)." %}</span>
+                    </div>
+
+                    <div class="block mt-5{% if car.vehicle_code1 != 2 %} hidden{% endif %}">
+                        <input type="checkbox" id="force_soc_display" value="checked" {% if car.ev_info.force_soc_display %}checked{% endif %} maxlength="22" name="force_soc_display" class="p-2 border rounded mt-1 checkboxinput">
+                        <label for="force_soc_display">{% translate "Show calculated battery percentage" %}</label>
+                        <span class="block text-sm text-gray-700 mt-1">{% translate "On AZE0 (>2013) generation cars, it is possible to see available battery capacity in percentage. For ZE0, such feature was never implemented. By enabling this option, 'display' percentage value will be calculated, it may be inaccurate." %}</span>
+                    </div>
+
+                    <hr class="my-3"/>
 
                     <div class="block mt-5">
                         <label class="block text-gray-700 mt-2 ">{% translate "Periodic data refresh interval" %}</label>
@@ -528,7 +544,7 @@
                 .then(response => response.json())
                 .then(data => {
                     // Update Overview Tab
-                    document.getElementById('overview-soc').textContent = data.ev_info.soc_display > 0 ? `${data.ev_info.soc_display}%` : `${data.ev_info.soc}%`;
+                    document.getElementById('overview-soc').textContent = data.ev_info.soc_display > 0 ? `${data.ev_info.soc_display.toFixed(1)}%` : `${data.ev_info.soc.toFixed(1)}%`;
                     document.getElementById('overview-range-acon').textContent = `${data.ev_info.range_acon} km`;
                     document.getElementById('overview-range-acoff').textContent = `${data.ev_info.range_acoff} km`;
                     document.getElementById('overview-plugged-in').textContent = data.ev_info.quick_charging ? 'CHAdeMO' : (data.ev_info.plugged_in ? '{% translate "Plugged In" %}' : '{% translate "Unplugged" %}');
@@ -577,15 +593,15 @@
                     document.getElementById('charging').textContent = data.ev_info.charging ? '{% translate "Yes" %}' : '{% translate "No" %}';
                     document.getElementById('quick_charging').textContent = data.ev_info.quick_charging ? '{% translate "Yes" %}' : '{% translate "No" %}';
                     document.getElementById('gids').textContent = data.ev_info.gids;
-                    document.getElementById('gids_relative').textContent = data.ev_info.gids_relative;
+                    document.getElementById('counter').textContent = data.ev_info.counter;
                     document.getElementById('param21').textContent = data.ev_info.param21;
                     document.getElementById('soh').textContent = data.ev_info.soh+"%";
                     document.getElementById('full_chg_time').textContent = (data.ev_info.full_chg_time === 2047 || data.ev_info.full_chg_time == 0) ? '--:--' : convertMinsToHrsMins(data.ev_info.full_chg_time);
                     document.getElementById('limit_chg_time').textContent = (data.ev_info.limit_chg_time === 2047 || data.ev_info.limit_chg_time == 0) ? '--:--' : convertMinsToHrsMins(data.ev_info.limit_chg_time);
                     document.getElementById('car_running').textContent = data.ev_info.car_running ? '{% translate "Yes" %}' : '{% translate "No" %}';
                     document.getElementById('charge_bars').textContent = data.ev_info.charge_bars + " / 12";
-                    document.getElementById('soc').textContent = data.ev_info.soc+"%";
-                    document.getElementById('soc_display').textContent = data.ev_info.soc_display+"%";
+                    document.getElementById('soc').textContent = data.ev_info.soc.toFixed(2)+"%";
+                    document.getElementById('soc_display').textContent = data.ev_info.soc_display.toFixed(2)+"%";
                     document.getElementById('cap_bars').textContent = data.ev_info.cap_bars + " / 12";
                     document.getElementById('car_gear').textContent = data.ev_info.car_gear === 0 ? '{% translate "Parked" %}' : (data.ev_info.car_gear === 2 ? '{% translate "Reverse" %}' : '{% translate "Drive" %}');
                     document.getElementById('ac_status').textContent = data.ev_info.ac_status ? '{% translate "Yes" %}' : '{% translate "No" %}';

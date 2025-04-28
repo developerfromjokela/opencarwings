@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-12 13:57+0000\n"
+"POT-Creation-Date: 2025-04-28 09:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -111,11 +111,11 @@ msgstr "Odotetaan vastausta"
 msgid "Park"
 msgstr "Pysäköity"
 
-#: db/models.py:46 ui/templates/ui/car_detail.html:590
+#: db/models.py:46 ui/templates/ui/car_detail.html:606
 msgid "Drive"
 msgstr "Ajovaihde"
 
-#: db/models.py:47 ui/templates/ui/car_detail.html:590
+#: db/models.py:47 ui/templates/ui/car_detail.html:606
 msgid "Reverse"
 msgstr "Peruutusvaihde"
 
@@ -318,7 +318,7 @@ msgstr "API-dokumentaatio"
 msgid "Reset API-key"
 msgstr "Nollaa API-avain"
 
-#: ui/templates/ui/account.html:48 ui/templates/ui/car_detail.html:336
+#: ui/templates/ui/account.html:48 ui/templates/ui/car_detail.html:352
 #: ui/templates/ui/setup/step2.html:50 ui/templates/ui/setup/step3.html:36
 #: ui/templates/ui/setup/step4.html:60
 msgid "Save"
@@ -432,31 +432,31 @@ msgid "Car status"
 msgstr "Auton tila"
 
 #: ui/templates/ui/car_detail.html:144 ui/templates/ui/car_detail.html:146
-#: ui/templates/ui/car_detail.html:539 ui/templates/ui/car_detail.html:541
-#: ui/templates/ui/car_detail.html:555
+#: ui/templates/ui/car_detail.html:555 ui/templates/ui/car_detail.html:557
+#: ui/templates/ui/car_detail.html:571
 msgid "On"
 msgstr "Päällä"
 
-#: ui/templates/ui/car_detail.html:144 ui/templates/ui/car_detail.html:539
-#: ui/templates/ui/car_detail.html:590
+#: ui/templates/ui/car_detail.html:144 ui/templates/ui/car_detail.html:555
+#: ui/templates/ui/car_detail.html:606
 msgid "Parked"
 msgstr "Pysäköity"
 
-#: ui/templates/ui/car_detail.html:146 ui/templates/ui/car_detail.html:541
+#: ui/templates/ui/car_detail.html:146 ui/templates/ui/car_detail.html:557
 msgid "Driving"
 msgstr "Ajossa"
 
-#: ui/templates/ui/car_detail.html:150 ui/templates/ui/car_detail.html:545
+#: ui/templates/ui/car_detail.html:150 ui/templates/ui/car_detail.html:561
 msgid "Charging finished"
 msgstr "Lataus valmis"
 
 #: ui/templates/ui/car_detail.html:152 ui/templates/ui/car_detail.html:223
-#: ui/templates/ui/car_detail.html:547
+#: ui/templates/ui/car_detail.html:563
 msgid "Charging"
 msgstr "Ladataan"
 
-#: ui/templates/ui/car_detail.html:154 ui/templates/ui/car_detail.html:549
-#: ui/templates/ui/car_detail.html:555
+#: ui/templates/ui/car_detail.html:154 ui/templates/ui/car_detail.html:565
+#: ui/templates/ui/car_detail.html:571
 msgid "Off"
 msgstr "Pois päältä"
 
@@ -599,45 +599,73 @@ msgstr ""
 "eivättallennu autoon virheen takia. Tässä tapauksessa kytke ruutu "
 "aktiiviseksi,niin auto saa yhteyden ja ei tarkista kirjautumistietoja"
 
-#: ui/templates/ui/car_detail.html:289
+#: ui/templates/ui/car_detail.html:291
+msgid "Maximum GIDs value"
+msgstr "Suurin GIDien määrä"
+
+#: ui/templates/ui/car_detail.html:293
+#, python-format
+msgid ""
+"OpenCARWINGS will try to auto-detect your battery size and fill this field. "
+"For cars with swapped/replaced battery, please enter maximum amount of GIDS "
+"when battery is new (SoH 100%%)."
+msgstr "OpenCARWINGS pyrkii tunnistamaan auton akkukapasiteetin ja täyttää itse tämän arvon. Jos autosi akku on vaihdettu suurempaan kapasiteettiin, ole hyvä ja kirjoita akkupakettisi suurin GID:ien arvo kun akku on uusi (SoH 100%%)"
+
+#: ui/templates/ui/car_detail.html:298
+msgid "Show calculated battery percentage"
+msgstr "Näytä laskettu akun varausprosentti"
+
+#: ui/templates/ui/car_detail.html:299
+msgid ""
+"On AZE0 (>2013) generation cars, it is possible to see available battery "
+"capacity in percentage. For ZE0, such feature was never implemented. By "
+"enabling this option, 'display' percentage value will be calculated, it may "
+"be inaccurate."
+msgstr ""
+"AZE0 (>2013) sukupolven autoissa on mahdollista nähdä kojelaudassa akun varausprosentin."
+" ZE0-sukupolven autoissa tätä toimintoa ei löydy. Kytkemällä "
+"tämän toiminnon päälle, näet samanlaisen 'käyttäjälle' näytettävän varausprosentin, mutta arvo "
+"voi olla väärä."
+
+#: ui/templates/ui/car_detail.html:305
 msgid "Periodic data refresh interval"
 msgstr "Aikaväli tietojen automaattiselle päivitykselle"
 
-#: ui/templates/ui/car_detail.html:298
+#: ui/templates/ui/car_detail.html:314
 msgid "Periodic data refresh interval (while driving or charging)"
 msgstr ""
 "Aikaväli tietojen automaattiselle päivitykselle (latauksen tai ajon aikana)"
 
-#: ui/templates/ui/car_detail.html:307 ui/templates/ui/setup/step4.html:29
+#: ui/templates/ui/car_detail.html:323 ui/templates/ui/setup/step4.html:29
 msgid "SMS provider"
 msgstr "SMS-palvelu"
 
-#: ui/templates/ui/car_detail.html:337
+#: ui/templates/ui/car_detail.html:353
 msgid "Remove car"
 msgstr "Poista auto"
 
-#: ui/templates/ui/car_detail.html:516 ui/templates/ui/car_detail.html:520
-#: ui/templates/ui/car_detail.html:680 ui/templates/ui/car_detail.html:684
+#: ui/templates/ui/car_detail.html:532 ui/templates/ui/car_detail.html:536
+#: ui/templates/ui/car_detail.html:696 ui/templates/ui/car_detail.html:700
 msgid "Error sending command"
 msgstr "Komennon lähetys epäonnistui"
 
-#: ui/templates/ui/car_detail.html:534
+#: ui/templates/ui/car_detail.html:550
 msgid "Plugged In"
 msgstr "Liitetty"
 
-#: ui/templates/ui/car_detail.html:534
+#: ui/templates/ui/car_detail.html:550
 msgid "Unplugged"
 msgstr "Ei liitettynä"
 
-#: ui/templates/ui/car_detail.html:576 ui/templates/ui/car_detail.html:577
-#: ui/templates/ui/car_detail.html:578 ui/templates/ui/car_detail.html:585
-#: ui/templates/ui/car_detail.html:591 ui/templates/ui/car_detail.html:596
+#: ui/templates/ui/car_detail.html:592 ui/templates/ui/car_detail.html:593
+#: ui/templates/ui/car_detail.html:594 ui/templates/ui/car_detail.html:601
+#: ui/templates/ui/car_detail.html:607 ui/templates/ui/car_detail.html:612
 msgid "Yes"
 msgstr "Kyllä"
 
-#: ui/templates/ui/car_detail.html:576 ui/templates/ui/car_detail.html:577
-#: ui/templates/ui/car_detail.html:578 ui/templates/ui/car_detail.html:585
-#: ui/templates/ui/car_detail.html:591 ui/templates/ui/car_detail.html:596
+#: ui/templates/ui/car_detail.html:592 ui/templates/ui/car_detail.html:593
+#: ui/templates/ui/car_detail.html:594 ui/templates/ui/car_detail.html:601
+#: ui/templates/ui/car_detail.html:607 ui/templates/ui/car_detail.html:612
 msgid "No"
 msgstr "Ei"
 

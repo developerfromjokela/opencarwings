@@ -24,7 +24,7 @@ def parse_gdc_packet(byte_data):
 
     body_type = get_body_type(byte_data[100])
     # Vehicle info
-    tcu_info_data = byte_data[4:100]
+    tcu_info_data = byte_data[:100]
     parsed_tcu_data = parse_tcu_info(tcu_info_data)
 
     if body_type != "config_read":
@@ -54,5 +54,5 @@ def parse_gdc_packet(byte_data):
         "auth": parsed_auth_data,
         "message_type": packet_type,
         "body_type": body_type,
-        "body": body_data
+        "body": body_data,
     }

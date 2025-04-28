@@ -39,19 +39,22 @@ def check_packet_size_match(packet):
     return size_byte == len(packet)
 
 def parse_tcu_info(packet):
-    if len(packet) < 96:
+    if len(packet) < 100:
         return None
+
+    veh_ids = packet[4:]
     return {
-        "vehicle_code1": packet[0],
-        "vehicle_code2": packet[1],
-        "vehicle_code3": packet[2],
-        "vehicle_code4": packet[3],
-        "vin": packet[5:22].decode('ascii').rstrip('\x00'),
-        "tcu_id": packet[23:35].decode('ascii').rstrip('\x00'),
-        "msn": packet[36:51].decode('ascii').rstrip('\x00'),
-        "unit_id": packet[52:64].decode('ascii').rstrip('\x00'),
-        "iccid": packet[65:84].decode('ascii').rstrip('\x00'),
-        "sw_version": packet[86:95].decode('ascii').rstrip('\x00')
+        "vehicle_descriptor": packet[1],
+        "vehicle_code1": veh_ids[0],
+        "vehicle_code2": veh_ids[1],
+        "vehicle_code3": veh_ids[2],
+        "vehicle_code4": veh_ids[3],
+        "vin": veh_ids[5:22].decode('ascii').rstrip('\x00'),
+        "tcu_id": veh_ids[23:35].decode('ascii').rstrip('\x00'),
+        "msn": veh_ids[36:51].decode('ascii').rstrip('\x00'),
+        "unit_id": veh_ids[52:64].decode('ascii').rstrip('\x00'),
+        "iccid": veh_ids[65:84].decode('ascii').rstrip('\x00'),
+        "sw_version": veh_ids[86:95].decode('ascii').rstrip('\x00')
     }
 
 def parse_auth_info(packet):
@@ -104,17 +107,17 @@ def parse_evinfo(byte_data, aze0=False):
 
     evinfo_len = int(byte_data[8])
 
-    # Charge & Pre-AC state
+    # AC & DC charge state
     charge_state = (byte_data[9] >> 6) & 0b11
 
     pluggedin = (byte_data[9] & 1) == 1
     charging = charge_state == 1
     acstate = bool((byte_data[9] >> 1) & 0b1)
-    quick_charging = bool((byte_data[9] & 0b10000000) >> 7)
+    quick_charging = charge_state == 2
 
     charge_finished = False
 
-    if charging and quick_charging:
+    if charge_state == 3:
         # When data indicates both QC and AC charge, it means charge finished.
         charge_finished = True
         charging = False
@@ -127,6 +130,8 @@ def parse_evinfo(byte_data, aze0=False):
     chg_time_2 = (
         ((byte_data[11] & 0b00011111) << 6) | ((byte_data[12] & 0b11111100) >> 2)
     )
+
+    chg_time_3 = 0xFFF
 
     # Drive info
     # GEAR info, True = D, False = R or N?
@@ -141,39 +146,32 @@ def parse_evinfo(byte_data, aze0=False):
         ((byte_data[18] & 0b00000011) << 2) | ((byte_data[19] & 0b11000000) >> 6)
     )
     capacity_bars = (byte_data[19] & 0b00011110) >> 1
+    byte1 = byte_data[16]  # 01010001 in binary
+    byte2 = byte_data[17]  # 00100000 in binary
+
     soc = (
-        ((byte_data[14] & 0b00111111) << 1) | ((byte_data[15] & 0b10000000) >> 7)
+            ((byte1 & 0b01111111) << 4) | ((byte2 & 0b11110000) >> 4)
     )
+    soc = soc / 20
     gids = (
         ((byte_data[14] & 0b00111111) << 2) | ((byte_data[15] & 0b11000000) >> 6)
     )
     soh = (
         ((byte_data[15] & 0b00111111) << 1) | ((byte_data[16] & 0b10000000) >> 7)
     )
+
     param21 = 0
 
-    byte1 = byte_data[16]  # 01010001 in binary
-    byte2 = byte_data[17]  # 00100000 in binary
+    counter = (
+        ((byte_data[12] & 0b00000011) << 8) | (byte_data[13])
+    )
 
     if aze0:
-        soc_display = (
-                ((byte1 & 0b01111111) << 3) | ((byte2 & 0b11100000) >> 5)
-        )
-        soc_display = soc_display/10
-        param16_17 = (
+        chg_time_3 = (
             (byte_data[20] << 4) | ((byte_data[21] & 0b11110000) >> 4)
         )
+
         param21 = (byte_data[21] & 0b00001111)
-    else:
-        bits_from_byte1 = byte1 & 0x7F  # Mask to get last 7 bits: 1010001 (81 decimal)
-        # Shift left by 4 to make room for byte2's bits
-        shifted_bits = bits_from_byte1 << 4
-
-        # - Byte 2: Take first 4 bits (0010)
-        bits_from_byte2 = (byte2 >> 4) & 0x0F  # Shift right 4, mask to get 0010 (2 decimal)
-
-        # Combine the bits
-        param16_17 = shifted_bits | bits_from_byte2  # 10100010010 in binary
 
 
     range_acon = byte_data[2]
@@ -203,11 +201,12 @@ def parse_evinfo(byte_data, aze0=False):
         "soc_display": soc_display,
         "gids": gids,
         "soh": soh,
-        "gids_relative": param16_17,
+        "counter": counter,
         "param21": param21,
         "capacity_bars": capacity_bars,
         "full_chg": chg_time_1,
         "limit_chg": chg_time_2,
+        "6kw_chg": chg_time_3
     }
 
 def parse_config_data(byte_data):

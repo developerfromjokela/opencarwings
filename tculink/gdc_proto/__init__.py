@@ -1,0 +1,6 @@
+
+# Constants
+
+WH_PER_GID_GEN1 = 80
+GIDS_NEW_24kWh = 281
+GIDS_NEW_30kWh = 356

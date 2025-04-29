@@ -10,6 +10,9 @@ https://docs.djangoproject.com/en/5.1/howto/deployment/asgi/
 import os
 
 import django
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework_simplejwt.exceptions import InvalidToken, AuthenticationFailed
+
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'carwings.settings')
 django.setup()
 
@@ -27,15 +30,25 @@ from django.utils import translation
 
 @database_sync_to_async
 def get_user(headers):
+    from django.contrib.auth.models import AnonymousUser
     from rest_framework.authtoken.models import Token
     try:
         token_name, token_key = headers[b'authorization'].decode().split()
         if token_name == 'Token':
             token = Token.objects.get(key=token_key)
             return token.user
+        if token_name == 'Bearer':
+            jwt_auth = JWTAuthentication()
+            validated_token = jwt_auth.get_validated_token(token_key)
+            user = jwt_auth.get_user(validated_token)
+            return user
     except Token.DoesNotExist:
-        from django.contrib.auth.models import AnonymousUser
-        return AnonymousUser()
+        pass
+    except InvalidToken:
+        pass
+    except AuthenticationFailed:
+        pass
+    return AnonymousUser()
 
 
 class TokenAuthMiddleware:
@@ -76,7 +89,8 @@ class TokenAuthMiddlewareInstance:
                 translation.activate(activated_lang)
 
         if b'authorization' in headers:
-            self.scope['user'] = await get_user(headers)
+            new_user = await get_user(headers)
+            self.scope['user'] = new_user
         return await self.inner(self.scope, receive, send)
 
 TokenAuthMiddlewareStack = lambda inner: TokenAuthMiddleware(AuthMiddlewareStack(inner))

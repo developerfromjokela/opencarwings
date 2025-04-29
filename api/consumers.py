@@ -9,7 +9,6 @@ from django.utils.module_loading import import_string
 
 class NotificationConsumer(AsyncWebsocketConsumer):
     async def connect(self):
-        print(self.scope['lang'])
 
         if not self.scope['user'].is_authenticated or self.scope['user'].is_anonymous:
             await self.close()

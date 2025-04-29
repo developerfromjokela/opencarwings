@@ -30,12 +30,13 @@ import api.views as api_views
 import ui.views as views
 from api.views import CustomTokenObtainPairView
 
-schema_view = get_schema_view(
-    openapi.Info(
+api_info = openapi.Info(
         title="OpenCARWINGS API",
         default_version='v1',
         description="API to get information about cars. API Token is accessible from your account settings",
-    ),
+    )
+
+schema_view = get_schema_view(
     public=True,
     permission_classes=[permissions.AllowAny],
     authentication_classes=[TokenAuthentication,SessionAuthentication, ],

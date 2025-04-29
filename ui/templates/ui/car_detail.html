@@ -370,6 +370,10 @@
     <!-- Scripts -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
+
+        // Car info
+        const carId = {{ car.id }};
+
         // Initialize maps
         let map = L.map('map', { zoomControl: true });
         let overviewMap = L.map('overview-map', { zoomControl: false });
@@ -383,6 +387,10 @@
         let overviewMarker = null;
         let mapInitialized = false;
         let overviewMapInitialized = false;
+
+        // Websocket client instance
+        const webSockClient = new WebSocketClient("/ws/notif/", ws_connect, ws_msg, ws_err, ws_close, ws_reconnect)
+        webSockClient.maxReconnectAttempts = 0;
 
         function updateMap(lat, lon, mapInstance, markerInstance, zoomLevel, isOverview = false) {
             if (lat && lon) {
@@ -576,105 +584,109 @@
             fetch(`/api/car/${vin}/`)
                 .then(response => response.json())
                 .then(data => {
-                    // Update Overview Tab
-                    document.getElementById('overview-soc').textContent = data.ev_info.soc_display > 0 ? `${data.ev_info.soc_display.toFixed(1)}%` : `${data.ev_info.soc.toFixed(1)}%`;
-                    document.getElementById('overview-range-acon').textContent = `${data.ev_info.range_acon} km`;
-                    document.getElementById('overview-range-acoff').textContent = `${data.ev_info.range_acoff} km`;
-                    document.getElementById('overview-plugged-in').textContent = data.ev_info.quick_charging ? 'CHAdeMO' : (data.ev_info.plugged_in ? '{% translate "Plugged In" %}' : '{% translate "Unplugged" %}');
-                    // Update Car Status
-                    const carStatus = document.getElementById('overview-car-status');
-                    if (data.ev_info.car_running) {
-                        if (data.ev_info.car_gear === 0) {
-                            carStatus.textContent = '{% translate "On" %} ({% translate "Parked" %})';
-                        } else {
-                            carStatus.textContent = '{% translate "On" %} ({% translate "Driving" %})';
-                        }
-                    } else {
-                        if (data.ev_info.charge_finish) {
-                            carStatus.textContent = '{% translate "Charging finished" %}';
-                        } else if (data.ev_info.charging) {
-                            carStatus.textContent = '{% translate "Charging" %}';
-                        } else {
-                            carStatus.textContent = '{% translate "Off" %}';
-                        }
-                    }
-                    // Update AC Status
-                    const acStatus = document.getElementById('overview-ac-status');
-                    const fanIcon = document.getElementById('fan-icon');
-                    acStatus.textContent = data.ev_info.ac_status ? '{% translate "On" %}' : '{% translate "Off" %}';
-                    if (data.ev_info.ac_status) {
-                        fanIcon.classList.add('spinning');
-                    } else {
-                        fanIcon.classList.remove('spinning');
-                    }
-                    document.getElementById('overview-last-updated').textContent = data.ev_info.last_updated ?
-                        new Date(data.ev_info.last_updated).toLocaleString() : 'N/A';
-
-                    // Update Charge Bar
-                    updateChargeBar(data.ev_info.charge_bars, data.ev_info.soc, data.ev_info.charging, data.ev_info.quick_charging);
-
-                    updateChargingTimeTbl([
-                        {power: '2kW/120V', time: data.ev_info.limit_chg_time},
-                        {power: '3kW/240V', time: data.ev_info.full_chg_time},
-                        {power: '6.6kW', time: data.ev_info.obc_6kw},
-                    ])
-
-                    // Update Maps
-                    marker = updateMap(data.location.lat, data.location.lon, map, marker, 15);
-                    overviewMarker = updateMap(data.location.lat, data.location.lon, overviewMap, overviewMarker, 15, true);
-
-                    // Update other tabs
-                    document.getElementById('last_connection').textContent = data.last_connection ?
-                        new Date(data.last_connection).toLocaleString() : 'N/A';
-                    document.getElementById('range_acon').textContent = `${data.ev_info.range_acon} km`;
-                    document.getElementById('range_acoff').textContent = `${data.ev_info.range_acoff} km`;
-                    document.getElementById('plugged_in').textContent = data.ev_info.plugged_in ? '{% translate "Yes" %}' : '{% translate "No" %}';
-                    document.getElementById('charging').textContent = data.ev_info.charging ? '{% translate "Yes" %}' : '{% translate "No" %}';
-                    document.getElementById('quick_charging').textContent = data.ev_info.quick_charging ? '{% translate "Yes" %}' : '{% translate "No" %}';
-                    document.getElementById('gids').textContent = data.ev_info.gids;
-                    document.getElementById('counter').textContent = data.ev_info.counter;
-                    document.getElementById('param21').textContent = data.ev_info.param21;
-                    document.getElementById('soh').textContent = data.ev_info.soh+"%";
-                    document.getElementById('remaining_kwh').textContent = (data.ev_info.wh_content/1000).toFixed(2)+" kWh";
-                    document.getElementById('full_chg_time').textContent = (data.ev_info.full_chg_time === 2047 || data.ev_info.full_chg_time == 0) ? '--:--' : convertMinsToHrsMins(data.ev_info.full_chg_time);
-                    document.getElementById('6kw_time').textContent = (data.ev_info.obc_6kw === 4095 || data.ev_info.obc_6kw === 2047 || data.ev_info.obc_6kw == 0) ? '--:--' : convertMinsToHrsMins(data.ev_info.obc_6kw);
-                    document.getElementById('limit_chg_time').textContent = (data.ev_info.limit_chg_time === 2047 || data.ev_info.limit_chg_time == 0) ? '--:--' : convertMinsToHrsMins(data.ev_info.limit_chg_time);
-                    document.getElementById('car_running').textContent = data.ev_info.car_running ? '{% translate "Yes" %}' : '{% translate "No" %}';
-                    document.getElementById('charge_bars').textContent = data.ev_info.charge_bars + " / 12";
-                    document.getElementById('soc').textContent = data.ev_info.soc.toFixed(2)+"%";
-                    document.getElementById('soc_display').textContent = data.ev_info.soc_display.toFixed(2)+"%";
-                    document.getElementById('cap_bars').textContent = data.ev_info.cap_bars + " / 12";
-                    document.getElementById('car_gear').textContent = data.ev_info.car_gear === 0 ? '{% translate "Parked" %}' : (data.ev_info.car_gear === 2 ? '{% translate "Reverse" %}' : '{% translate "Drive" %}');
-                    document.getElementById('ac_status').textContent = data.ev_info.ac_status ? '{% translate "Yes" %}' : '{% translate "No" %}';
-                    document.getElementById('ev_last_updated').textContent = data.ev_info.last_updated ?
-                        new Date(data.ev_info.last_updated).toLocaleString() : 'N/A';
-                    document.getElementById('lat').textContent = data.location.lat || 'N/A';
-                    document.getElementById('lon').textContent = data.location.lon || 'N/A';
-                    document.getElementById('home').textContent = data.location.home ? '{% translate "Yes" %}' : '{% translate "No" %}';
-                    document.getElementById('loc_last_updated').textContent = data.location.last_updated ?
-                        new Date(data.location.last_updated).toLocaleString() : 'N/A';
-
-                    // Update connection status color
-                    const connectionStatus = document.getElementById('connection-status');
-                    if (data.last_connection) {
-                        const lastConnectionTime = new Date(data.last_connection).getTime();
-                        const currentTime = new Date().getTime();
-                        const diffTime = (currentTime - lastConnectionTime) / 1000; // Difference in seconds
-                        connectionStatus.className = 'connection-status';
-                        if (diffTime < 3600) { // Within 1 hour
-                            connectionStatus.classList.add('green');
-                        } else if (diffTime > 1209600) { // Over 2 weeks (14 days)
-                            connectionStatus.classList.add('red');
-                        } else { // Between 1 hour and 2 weeks
-                            connectionStatus.classList.add('yellow');
-                        }
-                    } else {
-                        connectionStatus.className = 'connection-status red';
-                    }
-
-                    updateCommandState(data.command_result, data.command_requested);
+                    updateCarUIElements(data)
                 })
                 .catch(error => console.error('Error fetching car data:', error));
+        }
+
+        function updateCarUIElements(data) {
+            // Update Overview Tab
+            document.getElementById('overview-soc').textContent = data.ev_info.soc_display > 0 ? `${data.ev_info.soc_display.toFixed(1)}%` : `${data.ev_info.soc.toFixed(1)}%`;
+            document.getElementById('overview-range-acon').textContent = `${data.ev_info.range_acon} km`;
+            document.getElementById('overview-range-acoff').textContent = `${data.ev_info.range_acoff} km`;
+            document.getElementById('overview-plugged-in').textContent = data.ev_info.quick_charging ? 'CHAdeMO' : (data.ev_info.plugged_in ? '{% translate "Plugged In" %}' : '{% translate "Unplugged" %}');
+            // Update Car Status
+            const carStatus = document.getElementById('overview-car-status');
+            if (data.ev_info.car_running) {
+                if (data.ev_info.car_gear === 0) {
+                    carStatus.textContent = '{% translate "On" %} ({% translate "Parked" %})';
+                } else {
+                    carStatus.textContent = '{% translate "On" %} ({% translate "Driving" %})';
+                }
+            } else {
+                if (data.ev_info.charge_finish) {
+                    carStatus.textContent = '{% translate "Charging finished" %}';
+                } else if (data.ev_info.charging) {
+                    carStatus.textContent = '{% translate "Charging" %}';
+                } else {
+                    carStatus.textContent = '{% translate "Off" %}';
+                }
+            }
+            // Update AC Status
+            const acStatus = document.getElementById('overview-ac-status');
+            const fanIcon = document.getElementById('fan-icon');
+            acStatus.textContent = data.ev_info.ac_status ? '{% translate "On" %}' : '{% translate "Off" %}';
+            if (data.ev_info.ac_status) {
+                fanIcon.classList.add('spinning');
+            } else {
+                fanIcon.classList.remove('spinning');
+            }
+            document.getElementById('overview-last-updated').textContent = data.ev_info.last_updated ?
+                new Date(data.ev_info.last_updated).toLocaleString() : 'N/A';
+
+            // Update Charge Bar
+            updateChargeBar(data.ev_info.charge_bars, data.ev_info.soc, data.ev_info.charging, data.ev_info.quick_charging);
+
+            updateChargingTimeTbl([
+                {power: '2kW/120V', time: data.ev_info.limit_chg_time},
+                {power: '3kW/240V', time: data.ev_info.full_chg_time},
+                {power: '6.6kW', time: data.ev_info.obc_6kw},
+            ])
+
+            // Update Maps
+            marker = updateMap(data.location.lat, data.location.lon, map, marker, 15);
+            overviewMarker = updateMap(data.location.lat, data.location.lon, overviewMap, overviewMarker, 15, true);
+
+            // Update other tabs
+            document.getElementById('last_connection').textContent = data.last_connection ?
+                new Date(data.last_connection).toLocaleString() : 'N/A';
+            document.getElementById('range_acon').textContent = `${data.ev_info.range_acon} km`;
+            document.getElementById('range_acoff').textContent = `${data.ev_info.range_acoff} km`;
+            document.getElementById('plugged_in').textContent = data.ev_info.plugged_in ? '{% translate "Yes" %}' : '{% translate "No" %}';
+            document.getElementById('charging').textContent = data.ev_info.charging ? '{% translate "Yes" %}' : '{% translate "No" %}';
+            document.getElementById('quick_charging').textContent = data.ev_info.quick_charging ? '{% translate "Yes" %}' : '{% translate "No" %}';
+            document.getElementById('gids').textContent = data.ev_info.gids;
+            document.getElementById('counter').textContent = data.ev_info.counter;
+            document.getElementById('param21').textContent = data.ev_info.param21;
+            document.getElementById('soh').textContent = data.ev_info.soh+"%";
+            document.getElementById('remaining_kwh').textContent = (data.ev_info.wh_content/1000).toFixed(2)+" kWh";
+            document.getElementById('full_chg_time').textContent = (data.ev_info.full_chg_time === 2047 || data.ev_info.full_chg_time == 0) ? '--:--' : convertMinsToHrsMins(data.ev_info.full_chg_time);
+            document.getElementById('6kw_time').textContent = (data.ev_info.obc_6kw === 4095 || data.ev_info.obc_6kw === 2047 || data.ev_info.obc_6kw == 0) ? '--:--' : convertMinsToHrsMins(data.ev_info.obc_6kw);
+            document.getElementById('limit_chg_time').textContent = (data.ev_info.limit_chg_time === 2047 || data.ev_info.limit_chg_time == 0) ? '--:--' : convertMinsToHrsMins(data.ev_info.limit_chg_time);
+            document.getElementById('car_running').textContent = data.ev_info.car_running ? '{% translate "Yes" %}' : '{% translate "No" %}';
+            document.getElementById('charge_bars').textContent = data.ev_info.charge_bars + " / 12";
+            document.getElementById('soc').textContent = data.ev_info.soc.toFixed(2)+"%";
+            document.getElementById('soc_display').textContent = data.ev_info.soc_display.toFixed(2)+"%";
+            document.getElementById('cap_bars').textContent = data.ev_info.cap_bars + " / 12";
+            document.getElementById('car_gear').textContent = data.ev_info.car_gear === 0 ? '{% translate "Parked" %}' : (data.ev_info.car_gear === 2 ? '{% translate "Reverse" %}' : '{% translate "Drive" %}');
+            document.getElementById('ac_status').textContent = data.ev_info.ac_status ? '{% translate "Yes" %}' : '{% translate "No" %}';
+            document.getElementById('ev_last_updated').textContent = data.ev_info.last_updated ?
+                new Date(data.ev_info.last_updated).toLocaleString() : 'N/A';
+            document.getElementById('lat').textContent = data.location.lat || 'N/A';
+            document.getElementById('lon').textContent = data.location.lon || 'N/A';
+            document.getElementById('home').textContent = data.location.home ? '{% translate "Yes" %}' : '{% translate "No" %}';
+            document.getElementById('loc_last_updated').textContent = data.location.last_updated ?
+                new Date(data.location.last_updated).toLocaleString() : 'N/A';
+
+            // Update connection status color
+            const connectionStatus = document.getElementById('connection-status');
+            if (data.last_connection) {
+                const lastConnectionTime = new Date(data.last_connection).getTime();
+                const currentTime = new Date().getTime();
+                const diffTime = (currentTime - lastConnectionTime) / 1000; // Difference in seconds
+                connectionStatus.className = 'connection-status';
+                if (diffTime < 3600) { // Within 1 hour
+                    connectionStatus.classList.add('green');
+                } else if (diffTime > 1209600) { // Over 2 weeks (14 days)
+                    connectionStatus.classList.add('red');
+                } else { // Between 1 hour and 2 weeks
+                    connectionStatus.classList.add('yellow');
+                }
+            } else {
+                connectionStatus.className = 'connection-status red';
+            }
+
+            updateCommandState(data.command_result, data.command_requested);
         }
 
         function updateAlerts() {
@@ -723,15 +735,7 @@
             })
             .then(response => response.json())
             .then(data => {
-                const messagesDiv = document.getElementById('messages');
-                const alertDiv = document.createElement('div');
-                alertDiv.className = `text-center ${data.error ? 'text-red-600' : 'text-green-600'} mb-2`;
-                alertDiv.innerHTML = data.error || data.message;
-                messagesDiv.insertBefore(alertDiv, messagesDiv.firstChild);
-                setTimeout(() => {messagesDiv.innerHTML = ""}, 6000);
-                if (!data.error) {
-                    updateCarData();
-                }
+                console.log(data);
             })
             .catch(error => {
                 console.error('{% translate "Error sending command" %}:', error);
@@ -743,10 +747,63 @@
             });
         });
 
-        setInterval(() => {
-            updateCarData();
-            updateAlerts();
-        }, 5000);
+        let firstTimeConnect = true;
+
+        function ws_connect() {
+            if (firstTimeConnect) {
+                firstTimeConnect = false;
+                return
+            }
+            let reconnect_notif = document.getElementById('reconnecting');
+            if (reconnect_notif) {
+                reconnect_notif.classList.add('translate-x-full', 'opacity-0');
+                reconnect_notif.classList.remove('translate-x-0', 'opacity-100');
+                setTimeout(() => {
+                    reconnect_notif.remove();
+                }, 300);
+            }
+            showNotification({message: "{% translate "Connection established!" %}", type: "success"});
+        }
+
+        function ws_reconnect() {
+            if (!document.getElementById('reconnecting'))
+                showNotification({message: "{% translate "Reconnecting..." %}", type: "info", persist_id: "reconnecting"});
+        }
+
+        function ws_msg(ws_event) {
+            const data = JSON.parse(ws_event.data);
+            switch (data.type) {
+                case 'location':
+                case 'tcu_configuration':
+                case 'car':
+                case 'ev_info':
+                    if (data.data.id === carId)
+                        updateCarUIElements(data.data);
+                    break;
+                case 'alert':
+                    const alert = data.data;
+                    const table = document.getElementById('alerts-table');
+                    const row = document.createElement('tr');
+                    row.dataset.id = alert.id;
+                    row.className = 'border-b text-gray-600';
+                    row.innerHTML = `
+                        <td class="py-2">${alert.type_display}</td>
+                        <td class="py-2">${new Date(alert.timestamp).toLocaleString()}</td>
+                        <td class="py-2">${alert.additional_data || 'N/A'}</td>
+                    `;
+                    table.insertBefore(row, table.firstChild);
+                    showNotification({title: `${alert.car.nickname}: ${alert.type_display}`, message: alert.additional_data, type: "notification"});
+                    break;
+            }
+        }
+
+        function ws_close() {
+            // unused
+        }
+
+        function ws_err(ws_event) {
+            // unused
+        }
 
         updateCarData();
         updateAlerts();

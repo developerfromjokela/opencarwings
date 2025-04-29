@@ -6,3 +6,6 @@ asgiref~=3.8.1
 django-crispy-forms~=2.3
 crispy-tailwind~=1.0.3
 drf-yasg~=1.21.10
+channels~=4.2.2
+channels_redis~=4.2.1
+djangorestframework-simplejwt~=5.5.0

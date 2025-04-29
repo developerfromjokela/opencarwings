@@ -17,26 +17,34 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
 from django.contrib.auth import views as auth_views
+from django.urls import path
 from drf_yasg import openapi
+from drf_yasg.utils import swagger_auto_schema
 from drf_yasg.views import get_schema_view
 from rest_framework import permissions
 from rest_framework.authentication import TokenAuthentication, SessionAuthentication
+from rest_framework_simplejwt.views import TokenRefreshView
 
+import api.views as api_views
 import ui.views as views
-
+from api.views import CustomTokenObtainPairView
 
 schema_view = get_schema_view(
-   openapi.Info(
-      title="OpenCARWINGS API",
-      default_version='v1',
-      description="API to get information about cars. API Token is accessible from your account settings",
-   ),
-   public=True,
-   permission_classes=[permissions.AllowAny],
-    authentication_classes=[TokenAuthentication,SessionAuthentication],
+    openapi.Info(
+        title="OpenCARWINGS API",
+        default_version='v1',
+        description="API to get information about cars. API Token is accessible from your account settings",
+    ),
+    public=True,
+    permission_classes=[permissions.AllowAny],
+    authentication_classes=[TokenAuthentication,SessionAuthentication, ],
 )
+
+decorated_token_view = \
+    swagger_auto_schema(method='post',
+                        tags=['token'])(
+        TokenRefreshView.as_view())
 
 
 urlpatterns = [
@@ -63,8 +71,11 @@ urlpatterns = [
     path('account/reset-api-key/', views.reset_apikey, name='reset_apikey'),
     path('account/change-carwings-password/', views.change_carwings_password, name='change_carwings_password'),
     path('car/<str:vin>/', views.car_detail, name='car_detail'),
-    path('api/car/<str:vin>/', views.car_api, name='car_api'),
-    path('api/car/', views.cars_api, name='car_api_list'),
-    path('api/alerts/<str:vin>/', views.alerts_api, name='alerts_api'),
-    path('api/command/<str:vin>/', views.command_api, name='command_api'),
+    path('api/car/<str:vin>/', api_views.CarAPIView.as_view(), name='car_api'),
+    path('api/car/', api_views.cars_api, name='car_api_list'),
+    path('api/alerts/<str:vin>/', api_views.alerts_api, name='alerts_api'),
+    path('api/command/<str:vin>/', api_views.command_api, name='command_api'),
+    path('api/token/obtain/', CustomTokenObtainPairView.as_view(), name='token_refresh'),
+    path('api/token/refresh/', decorated_token_view, name='token_refresh'),
+    path('api/token/signout/', api_views.sign_out, name='token_refresh'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

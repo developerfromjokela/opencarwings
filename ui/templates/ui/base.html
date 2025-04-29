@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/common.js' %}"></script>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -45,8 +46,11 @@
         </div>
     </nav>
 
-    {% block content %}{% endblock %}
+    <div id="notificationContainer" class="fixed pt-4 top-4 right-4 md:top-auto space-y-4 z-50 md:max-w-sm">
+    </div>
 
+    {% block content %}{% endblock %}
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
     </main>

@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -39,10 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework.authtoken',
     'drf_yasg',
+    'channels',
     'crispy_forms',
     'crispy_tailwind',
-    'db',
+    'db.DbAppConfig',
     'tculink',
+    'api',
     'ui',
 ]
 
@@ -112,7 +114,11 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
-    ]
+        'rest_framework_simplejwt.authentication.JWTAuthentication'
+    ],
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    )
 }
 
 
@@ -143,14 +149,23 @@ LOCALE_PATHS = (BASE_DIR / 'i18n',)
 
 SWAGGER_SETTINGS = {
    'SECURITY_DEFINITIONS': {
-      'API Key': {
+      'Personal API Key': {
           'description': 'Authorization header should be like this: "Token xxxxxx", where xxxxxx = your API token',
             'type': 'apiKey',
             'name': 'Authorization',
             'in': 'header'
+      },
+      'Bearer': {
+          'description': 'JWT Token obtained via /api/token/obtain. '
+                         'Authorization header should look like this: "Bearer xxxxxx", '
+                         'where where xxxxxx = JWT access token',
+          'type': 'apiKey',
+          'name': 'Authorization',
+          'in': 'header'
       }
    }
 }
+
 
 # Minutes
 LEAF_COMMAND_TIMEOUT = 5
@@ -173,3 +188,24 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = ""
 EMAIL_HOST_PASSWORD = ""
+
+ASGI_APPLICATION = "carwings.asgi.application"
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [(os.environ["REDIS_HOST"], os.environ["REDIS_PORT"])],
+        },
+    },
+}
+
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=31),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=365),
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'UPDATE_LAST_LOGIN': True,
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}

@@ -1,10 +1,7 @@
 import re
-from random import randint
 
 import django.conf
 from django.shortcuts import get_object_or_404
-from django.utils import timezone
-from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
 from rest_framework.authtoken.models import Token
@@ -12,11 +9,8 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from db.models import Car, COMMAND_TYPES, AlertHistory, EVInfo, LocationInfo, TCUConfiguration, PERIODIC_REFRESH, \
     PERIODIC_REFRESH_ACTIVE
-from tculink.sms import send_using_provider
 from tculink.utils.password_hash import check_password_validity, password_hash
 from .forms import Step2Form, Step3Form, SettingsForm, ChangeCarwingsPasswordForm, AccountForm, SignUpForm
-from .serializers import CarSerializer, AlertHistorySerializer, CarSerializerList, CommandResponseSerializer, \
-    CommandErrorSerializer, StatusSerializer
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -197,124 +191,6 @@ def car_detail(request, vin):
         "periodic_refresh_running_choices": PERIODIC_REFRESH_ACTIVE
     }
     return render(request, 'ui/car_detail.html', context)
-
-
-@swagger_auto_schema(
-    operation_description="Retrieve car details",
-    method='get',
-    responses={
-        200: CarSerializer(),
-        404: 'Not found',
-        401: 'Not authorized',
-    }
-)
-@swagger_auto_schema(
-    operation_description="Remove a car",
-    method='delete',
-    responses={
-        200: StatusSerializer(),
-        404: 'Not found',
-        401: 'Not authorized',
-    }
-)
-@api_view(['GET', 'DELETE'])
-def car_api(request, vin):
-    if not request.user.is_authenticated:
-        return Response(status=status.HTTP_401_UNAUTHORIZED)
-    car = get_object_or_404(Car, vin=vin, owner=request.user)
-
-    if request.method == 'DELETE':
-        car.delete()
-        return Response({'status': True}, status=status.HTTP_200_OK)
-
-    serializer = CarSerializer(car)
-    return Response(serializer.data)
-
-@swagger_auto_schema(
-    operation_description="Retrieve a list of cars",
-    method='get',
-    responses={
-        200: CarSerializerList(many=True),
-        401: 'Not authorized',
-    }
-)
-@api_view(['GET'])
-def cars_api(request):
-    if not request.user.is_authenticated:
-        return Response(status=status.HTTP_401_UNAUTHORIZED)
-    car = Car.objects.filter(owner=request.user)
-
-    serializer = CarSerializerList(car, many=True)
-    return Response(serializer.data)
-
-@swagger_auto_schema(
-    operation_description="Retrieve a list of alerts for a vehicle",
-    method='get',
-    responses={
-        200: AlertHistorySerializer(many=True),
-        401: 'Not authorized',
-        404: 'Car not found',
-    }
-)
-@api_view(['GET'])
-def alerts_api(request, vin):
-    if not request.user.is_authenticated:
-        return Response(status=status.HTTP_401_UNAUTHORIZED)
-    car = get_object_or_404(Car, vin=vin, owner=request.user)
-    alerts = AlertHistory.objects.filter(car=car).order_by('-timestamp')
-    serializer = AlertHistorySerializer(alerts, many=True)
-    return Response(serializer.data)
-
-
-@swagger_auto_schema(
-    operation_description="Send a command to your vehicle",
-    request_body=openapi.Schema(
-        type=openapi.TYPE_OBJECT,
-        properties={
-            'command_type': openapi.Schema(type=openapi.TYPE_NUMBER, title="Command type", enum=COMMAND_TYPES),
-        },
-        required=['vin', 'command_type']
-    ),
-    method='post',
-    responses={
-        200: CommandResponseSerializer(),
-        401: 'Not authorized',
-        404: 'Car not found',
-        400: CommandErrorSerializer(),
-    }
-)
-@api_view(['POST'])
-def command_api(request, vin):
-    if not request.user.is_authenticated:
-        return Response(status=status.HTTP_401_UNAUTHORIZED)
-    car = get_object_or_404(Car, vin=vin, owner=request.user)
-    command_type = request.data.get('command_type')
-
-    try:
-        command_type = int(command_type)
-        if command_type in dict(COMMAND_TYPES):
-            try:
-                sms_result = send_using_provider(django.conf.settings.ACTIVATION_SMS_MESSAGE, car.sms_config)
-                if not sms_result:
-                    raise Exception("Could not send SMS message")
-            except Exception as e:
-                print(e)
-                return Response({'error': _('Failed to send SMS message to TCU. Please try again in a moment.')}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-            car.command_type = command_type
-            car.command_id = randint(10000, 99999)
-            car.command_requested = True
-            car.command_result = -1
-            car.command_request_time = timezone.now()
-            car.save()
-            return Response({
-                'message': f"Command '{dict(COMMAND_TYPES)[command_type]}' requested successfully",
-                'car': CarSerializer(car).data
-            }, status=status.HTTP_200_OK)
-        else:
-            return Response({'error': 'Invalid command type'}, status=status.HTTP_400_BAD_REQUEST)
-    except (ValueError, TypeError):
-        return Response({'error': 'Command type must be an integer'}, status=status.HTTP_400_BAD_REQUEST)
-
 
 # Landing Page View
 def index(request):

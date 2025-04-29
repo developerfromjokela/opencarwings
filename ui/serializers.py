@@ -56,3 +56,11 @@ class CommandErrorSerializer(serializers.Serializer):
 class StatusSerializer(serializers.Serializer):
     status = serializers.BooleanField(required=True)
     cause = serializers.CharField(required=False)
+
+class AlertHistoryFullSerializer(serializers.ModelSerializer):
+    type_display = serializers.CharField(source='get_type_display')
+    car = CarSerializer()
+
+    class Meta:
+        model = AlertHistory
+        fields = ['id', 'type', 'type_display', 'timestamp', 'command_id', 'additional_data', 'car']

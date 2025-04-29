@@ -1,3 +1,4 @@
 */1 * * * * python /app/manage.py tcuperiodicupdate
 */1 * * * * python /app/manage.py tcutimeout
+*/1 * * * * python /app/manage.py flushexpiredtokens
 

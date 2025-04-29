@@ -15,7 +15,9 @@ def broadcast_car_update(sender, instance, created, **kwargs):
         {
             'type': 'object_update',
             'object_type': 'car',
-            'data': CarSerializer(instance).data
+            'serializer': CarSerializer.__module__+'.'+CarSerializer.__name__,
+            'object': Car.__module__+'.'+Car.__name__,
+            'data': instance.pk
         }
     )
 
@@ -32,7 +34,9 @@ def broadcast_car_evinfo_update(sender, instance, created, **kwargs):
             {
                 'type': 'object_update',
                 'object_type': 'ev_info',
-                'data': CarSerializer(car).data
+                'serializer': CarSerializer.__module__ + '.' + CarSerializer.__name__,
+                'object': Car.__module__ + '.' + Car.__name__,
+                'data': car.pk
             }
         )
     except Car.DoesNotExist:
@@ -51,7 +55,9 @@ def broadcast_car_evinfo_update(sender, instance, created, **kwargs):
             {
                 'type': 'object_update',
                 'object_type': 'tcu_configuration',
-                'data': CarSerializer(car).data
+                'serializer': CarSerializer.__module__ + '.' + CarSerializer.__name__,
+                'object': Car.__module__ + '.' + Car.__name__,
+                'data': car.pk
             }
         )
     except Car.DoesNotExist:
@@ -71,7 +77,9 @@ def broadcast_car_evinfo_update(sender, instance, created, **kwargs):
             {
                 'type': 'object_update',
                 'object_type': 'location',
-                'data': CarSerializer(car).data
+                'serializer': CarSerializer.__module__ + '.' + CarSerializer.__name__,
+                'object': Car.__module__ + '.' + Car.__name__,
+                'data': car.pk
             }
         )
     except Car.DoesNotExist:
@@ -87,6 +95,8 @@ def broadcast_new_alert(sender, instance, created, **kwargs):
         {
             'type': 'object_update',
             'object_type': 'alert',
-            'data': AlertHistoryFullSerializer(instance).data
+            'serializer': AlertHistoryFullSerializer.__module__ + '.' + AlertHistoryFullSerializer.__name__,
+            'object': AlertHistory.__module__ + '.' + AlertHistory.__name__,
+            'data': instance.pk
         }
     )

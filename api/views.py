@@ -19,7 +19,7 @@ from tculink.sms import send_using_provider
 from django.utils import timezone
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
-from rest_framework import status, authentication
+from rest_framework import status, authentication, permissions
 from rest_framework.decorators import api_view
 from rest_framework.generics import get_object_or_404, RetrieveAPIView, UpdateAPIView, DestroyAPIView
 from rest_framework.response import Response
@@ -27,6 +27,16 @@ from rest_framework.response import Response
 from db.models import Car, AlertHistory, COMMAND_TYPES, User
 from ui.serializers import CarSerializer, CarSerializerList, AlertHistorySerializer, \
     CommandResponseSerializer, CommandErrorSerializer
+
+
+class IsCarOwner(permissions.BasePermission):
+    # for view permission
+    def has_permission(self, request, view):
+        return request.user and request.user.is_authenticated
+
+    # for object level permissions
+    def has_object_permission(self, request, view, car_obj):
+        return car_obj.owner.id == request.user.id
 
 
 
@@ -49,9 +59,10 @@ from ui.serializers import CarSerializer, CarSerializerList, AlertHistorySeriali
     responses={status.HTTP_204_NO_CONTENT: "Success"}
 ))
 class CarAPIView(RetrieveAPIView, UpdateAPIView, DestroyAPIView):
-    authentication_classes = [IsAuthenticated]
-    queryset = User.objects.all()
-    serializer_class = lookup_field = 'vin'
+    permission_classes = [IsAuthenticated, IsCarOwner]
+    queryset = Car.objects.all()
+    serializer_class = CarSerializer
+    lookup_field = 'vin'
 
 
 

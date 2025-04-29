@@ -27,7 +27,10 @@ function showNotification({ message, title = '', type = 'success', persist_id=un
         case 'notification':
             typeStyles = 'bg-purple-100 text-purple-800';
             iconPath = '<path fill-rule="evenodd" d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zm0 16a2 2 0 002-2H8a2 2 0 002 2z" clip-rule="evenodd" />';
-            content = `<div class="flex flex-col"><span class="font-bold">${title}</span><span>${message}</span></div>`;
+            content = `<div class="flex flex-col"><span class="font-bold">${title}</span>`;
+            if (message)
+                content += '<span>${message}</span>';
+            content += '</div>';
             break;
         default:
             typeStyles = 'bg-gray-100 text-gray-800';

@@ -10,8 +10,6 @@ https://docs.djangoproject.com/en/5.1/howto/deployment/asgi/
 import os
 
 import django
-from rest_framework_simplejwt.authentication import JWTAuthentication
-from rest_framework_simplejwt.exceptions import InvalidToken, AuthenticationFailed
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'carwings.settings')
 django.setup()
@@ -27,6 +25,8 @@ from django.utils.translation.trans_real import parse_accept_lang_header, langua
     get_supported_language_variant
 from django.utils import translation
 
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework_simplejwt.exceptions import InvalidToken, AuthenticationFailed
 
 @database_sync_to_async
 def get_user(headers):

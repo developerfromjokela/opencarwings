@@ -163,7 +163,8 @@ SWAGGER_SETTINGS = {
           'name': 'Authorization',
           'in': 'header'
       }
-   }
+   },
+    'DEFAULT_INFO': 'carwings.urls.api_info',
 }
 
 

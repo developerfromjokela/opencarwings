@@ -40,7 +40,6 @@ class NotificationConsumer(AsyncWebsocketConsumer):
         return serializer_instance.data
 
     async def object_update(self, message):
-        print(self.scope['lang'])
         if self.scope.get('lang', None) is not None:
             translation.activate(self.scope['lang'])
 

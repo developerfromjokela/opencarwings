@@ -68,6 +68,7 @@ async def send_email_for_user(car, car_owner, ev_info, location, alert_message, 
     )
 
 
+
 """
 Send Push notification messages via Apple APNS and other possible channels
 """
@@ -93,7 +94,6 @@ async def send_push_notification_for_user(car, car_owner, message, subject, apns
                     time_to_live=3,  # optional
                     push_type=PushType.ALERT,  # optional
                 )
-                loop = asyncio.get_event_loop()
-                print(loop.run_until_complete(apns_client.send_notification(request)))
+                asyncio.get_event_loop().create_task(apns_client.send_notification(request))
             except Exception as e:
                 print("Failed to send APNS notification:", e)

@@ -297,6 +297,15 @@
 
                     <hr class="my-3"/>
 
+                    <div class="block mt-5">
+                        <label class="block text-gray-700 mt-2 ">{% translate "Car color" %}</label>
+                        <select name="color" class="w-full periodic-select sm:w-auto border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            {% for value, label in car_color_choices %}
+                                <option value="{{ value }}" {% if car.color == value %}selected{% endif %}>{{ label }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
                     <div class="block" >
                         <label class="block text-gray-700 mt-2 ">{% translate "Maximum GIDs value" %}</label>
                         <input type="text" value="{{car.ev_info.max_gids}}" name="max_gids" class="w-full p-2 border rounded mt-1" required>

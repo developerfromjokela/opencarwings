@@ -3,10 +3,10 @@ import traceback
 from datetime import datetime
 import logging
 import os
+
+from aioapns import APNs
 from django.conf import settings
-from django.core.mail import send_mail
 from django.core.management.base import BaseCommand, CommandError
-from django.template.loader import render_to_string
 from django.utils import timezone
 from db.models import Car, AlertHistory
 from tculink.gdc_proto import GIDS_NEW_24kWh, WH_PER_GID_GEN1
@@ -14,6 +14,8 @@ from tculink.gdc_proto.parser import parse_gdc_packet
 from tculink.gdc_proto.responses import create_charge_status_response, create_charge_request_response, \
     create_ac_setting_response, create_ac_stop_response, create_config_read, auth_common_dest
 from asgiref.sync import sync_to_async
+
+from tculink.utils.notifications import send_vehicle_alert_notification
 
 # Configure logging
 log_dir = 'logs'
@@ -27,6 +29,24 @@ logging.basicConfig(
     ]
 )
 logger = logging.getLogger(__name__)
+
+apns_cert_client = None
+apns_key_client = None
+if settings.APNS_CERT:
+    apns_cert_client = APNs(
+        client_cert=settings.APNS_KEY,
+        use_sandbox=False,
+    )
+if settings.APNS_KEY:
+    with open(settings.APNS_KEY, 'r') as key_file:
+        key = key_file.read()
+        apns_key_client = APNs(
+            key=key,
+            key_id=settings.APNS_KEY_ID,
+            team_id=settings.APNS_TEAM_ID,
+            topic=settings.APNS_BUNDLE_ID,  # Bundle ID
+            use_sandbox=settings.APNS_USE_SANDBOX,
+        )
 
 @sync_to_async
 def get_car(vin_id):
@@ -112,36 +132,6 @@ def get_evinfo(car):
 @sync_to_async
 def get_location(car):
     return car.location
-
-
-async def send_vehicle_alert_email(car, alert_message, subject):
-    car_owner = await get_car_owner_info(car)
-    if not car_owner.email_notifications:
-        return
-
-    ev_info = await get_evinfo(car)
-    location = await get_location(car)
-
-    text_content = render_to_string(
-        "emails/vehicle_alert.txt",
-        context={
-            "alert": alert_message,
-            "vehicle": car.nickname,
-            "range_acon": ev_info.range_acon,
-            "range_acoff": ev_info.range_acoff,
-            "soc": ev_info.soc,
-            "pluggedin": "yes" if ev_info.plugged_in else "no",
-            "athome": "yes" if location.home else "no"
-        },
-    )
-
-    send_mail(
-        f"{subject} - OpenCARWINGS",
-        text_content,
-        settings.DEFAULT_FROM_EMAIL,
-        [car_owner.email],
-        fail_silently=True
-    )
 
 class Command(BaseCommand):
     help = "Start TCU socket server"
@@ -288,34 +278,46 @@ class Command(BaseCommand):
                                 new_alert.car = car
                                 new_alert.command_id = car.command_id
                                 await sync_to_async(new_alert.save)()
-                                await send_vehicle_alert_email(
+                                await send_vehicle_alert_notification(
                                     car,
                                     "Vehicle is unplugged. Please check the situation if necessary.",
-                                    "Charger unplugged notification"
+                                    "Charger unplugged notification",
+                                    apns_key_client if apns_key_client is not None else apns_key_client,
                                 )
 
                             if body_type == "ac_result":
                                 new_alert = AlertHistory()
-                                send_alert = False
+                                alert_type = 97
                                 if req_body["resultstate"] == 0x40:
-                                    new_alert.type = 4
+                                    alert_type = 4
                                 elif req_body["resultstate"] == 0x20:
-                                    new_alert.type = 5
+                                    alert_type = 5
                                 elif req_body["resultstate"] == 192:
-                                    new_alert.type = 7
-                                    send_alert = True
-                                else:
-                                    new_alert.type = 97
+                                    alert_type = 7
+                                new_alert.type = alert_type
                                 new_alert.car = car
                                 new_alert.command_id = car.command_id
                                 await sync_to_async(new_alert.save)()
 
-                                if send_alert:
-                                    await send_vehicle_alert_email(
-                                        car,
-                                        "A/C preconditioning is finished",
-                                        "A/C precondition notification"
-                                    )
+                                alert_msg = ("The A/C preconditioning command could not be executed. One of the "
+                                             "reasons behind such error could be: a) low state of charge b) command already executed c) TCU error.")
+                                alert_subject = "A/C preconditioning error"
+                                if alert_type == 4:
+                                    alert_subject = "A/C preconditioning started"
+                                    alert_msg = "A/C preconditioning has been successfully switched on"
+                                if alert_type == 5:
+                                    alert_subject = "A/C precondition stopped"
+                                    alert_msg = "A/C preconditioning has been successfully switched off"
+                                if alert_type == 7:
+                                    alert_msg = ("The A/C preconditioning is finished and switched off"
+                                                 " after running certain amount of time.")
+                                    alert_subject = "A/C precondition finished"
+                                await send_vehicle_alert_notification(
+                                    car,
+                                    alert_msg,
+                                    alert_subject,
+                                    apns_key_client if apns_key_client is not None else apns_key_client,
+                                )
 
                             if body_type == "remote_stop":
                                 new_alert = AlertHistory()
@@ -335,7 +337,9 @@ class Command(BaseCommand):
                                 new_alert.car = car
                                 new_alert.command_id = car.command_id
                                 await sync_to_async(new_alert.save)()
-                                await send_vehicle_alert_email(car, alert_message, subject)
+                                await send_vehicle_alert_notification(car, alert_message, subject,
+                                    apns_key_client if apns_key_client is not None else apns_key_client
+                                )
 
                             if body_type == "charge_result":
                                 new_alert = AlertHistory()
@@ -343,6 +347,13 @@ class Command(BaseCommand):
                                 new_alert.car = car
                                 new_alert.command_id = car.command_id
                                 await sync_to_async(new_alert.save)()
+                                await send_vehicle_alert_notification(
+                                    car,
+                                    ("Charging command has been sent successfully. If vehicle did not start charging, "
+                                     "please check that the charging cable is connected and power is available."),
+                                    "Charge start command executed",
+                                    apns_key_client if apns_key_client is not None else apns_key_client,
+                                )
                     elif parsed_data["message_type"][0] == 5:
                         if not authenticated:
                             break

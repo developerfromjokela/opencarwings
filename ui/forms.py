@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.utils.translation import gettext_lazy as _
 
-from db.models import User
+from db.models import User, CAR_COLOR
 from tculink.utils.password_hash import password_hash
 
 
@@ -10,6 +10,7 @@ class SettingsForm(forms.Form):
     unit_id = forms.CharField(label="Unit ID", max_length=14, required=True, strip=True, min_length=5)
     tcu_id = forms.CharField(label="TCU ID", max_length=14, required=True, strip=True, min_length=5)
     sim_id = forms.CharField(label="SIM ID", max_length=22, required=True, strip=True, min_length=5)
+    color = forms.ChoiceField(label="Car Color", choices=CAR_COLOR)
     max_gids = forms.IntegerField(label="Maximum GIDs value", required=True, min_value=0, max_value=2000)
     periodic_refresh = forms.IntegerField(label="Periodic Refresh", required=True, min_value=0, max_value=2880)
     periodic_refresh_running = forms.IntegerField(label="Periodic Refresh", required=True, min_value=0, max_value=2880)

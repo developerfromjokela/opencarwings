@@ -8,7 +8,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from db.models import Car, COMMAND_TYPES, AlertHistory, EVInfo, LocationInfo, TCUConfiguration, PERIODIC_REFRESH, \
-    PERIODIC_REFRESH_ACTIVE
+    PERIODIC_REFRESH_ACTIVE, CAR_COLOR
 from tculink.utils.password_hash import check_password_validity, password_hash
 from .forms import Step2Form, Step3Form, SettingsForm, ChangeCarwingsPasswordForm, AccountForm, SignUpForm
 from django.shortcuts import render, redirect
@@ -162,6 +162,7 @@ def car_detail(request, vin):
                     car.tcu_model = form.cleaned_data['tcu_id']
                     car.tcu_serial = form.cleaned_data['unit_id']
                     car.nickname = form.cleaned_data['nickname']
+                    car.color = form.cleaned_data['color']
                     car.periodic_refresh = form.cleaned_data['periodic_refresh']
                     car.periodic_refresh_running = form.cleaned_data['periodic_refresh_running']
                     car.disable_auth = form.cleaned_data['disable_auth']
@@ -188,7 +189,8 @@ def car_detail(request, vin):
         "providers": UI_SMS_PROVIDERS,
         "show_settings": show_settings,
         "periodic_refresh_choices": PERIODIC_REFRESH,
-        "periodic_refresh_running_choices": PERIODIC_REFRESH_ACTIVE
+        "periodic_refresh_running_choices": PERIODIC_REFRESH_ACTIVE,
+        "car_color_choices": CAR_COLOR
     }
     return render(request, 'ui/car_detail.html', context)
 

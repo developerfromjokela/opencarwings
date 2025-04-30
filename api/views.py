@@ -5,21 +5,19 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.utils.decorators import method_decorator
 from django.utils.module_loading import import_string
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.views import APIView
-from rest_framework_simplejwt.authentication import JWTAuthentication
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.exceptions import TokenError
 from rest_framework_simplejwt.settings import api_settings
 from rest_framework_simplejwt.token_blacklist.models import OutstandingToken, BlacklistedToken
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.views import TokenObtainPairView
 from django.utils.translation import gettext_lazy as _
 from api.models import TokenMetadata
-from api.serializers import JWTTokenObtainPairSerializer
+from api.serializers import JWTTokenObtainPairSerializer, TokenMetadataUpdateSerializer, TokenMetadataSerializer
 from tculink.sms import send_using_provider
 from django.utils import timezone
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
-from rest_framework import status, authentication, permissions
+from rest_framework import status, permissions
 from rest_framework.decorators import api_view
 from rest_framework.generics import get_object_or_404, RetrieveAPIView, UpdateAPIView, DestroyAPIView
 from rest_framework.response import Response
@@ -65,6 +63,59 @@ class CarAPIView(RetrieveAPIView, UpdateAPIView, DestroyAPIView):
     lookup_field = 'vin'
 
 
+@swagger_auto_schema(
+    operation_description="Update token metadata",
+    tags=['token'],
+    method='post',
+    request_body=TokenMetadataUpdateSerializer(),
+    responses={
+        200: TokenMetadataSerializer(),
+        401: 'Not authorized',
+        400: CommandErrorSerializer(),
+    }
+)
+@api_view(['POST'])
+def update_token_metadata(request):
+    try:
+        serializer = TokenMetadataUpdateSerializer(data=request.data)
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        refresh_token_str = serializer.validated_data.get("refresh")
+        if not refresh_token_str:
+            return Response({"error": "Refresh token is required"}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Create RefreshToken instance to extract jti
+        refresh_token = RefreshToken(refresh_token_str)
+        try:
+            refresh_token.verify()
+        except TokenError:
+            return Response({"error": "Invalid refresh token"}, status=status.HTTP_400_BAD_REQUEST)
+
+        jti = refresh_token['jti']
+
+        # Verify the token belongs to the authenticated user by checking TokenMetadata
+        try:
+            metadata = TokenMetadata.objects.get(token=jti, user=request.user)
+        except ObjectDoesNotExist:
+            return Response({"error": "Token metadata not found or does not belong to user"}, status=status.HTTP_404_NOT_FOUND)
+
+        device_type = serializer.validated_data.get('device_type', '') or request.headers.get('X-Device-Type', '')
+        device_os = serializer.validated_data.get('device_os', '') or request.headers.get('X-Device-OS', '')
+        app_version = serializer.validated_data.get('app_version', '') or request.headers.get('X-App-Version', '')
+        push_notification_key = serializer.validated_data.get('push_notification_key', '')
+
+        metadata.device_type = device_type
+        metadata.device_os = device_os
+        metadata.app_version = app_version
+        metadata.push_notification_key = push_notification_key
+        metadata.save()
+
+        return Response(TokenMetadataSerializer(metadata).data, status=status.HTTP_200_OK)
+    except ObjectDoesNotExist:
+        return Response({"error": "Token not found"}, status=status.HTTP_404_NOT_FOUND)
+    except Exception as e:
+        return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
 
 @swagger_auto_schema(
@@ -96,15 +147,16 @@ def sign_out(request):
             return Response({"error": "Token metadata not found or does not belong to user"}, status=status.HTTP_404_NOT_FOUND)
 
         # Blacklist the token
-        outstanding_token = OutstandingToken.objects.get(jti=jti)
-        BlacklistedToken.objects.create(token=outstanding_token)
+        try:
+            outstanding_token = OutstandingToken.objects.get(jti=jti)
+            BlacklistedToken.objects.create(token=outstanding_token)
+        except ObjectDoesNotExist:
+            pass
 
         # Delete the associated TokenMetadata
         metadata.delete()
 
         return Response({"status": "Successfully signed out and token revoked"}, status=status.HTTP_200_OK)
-    except ObjectDoesNotExist:
-        return Response({"error": "Token not found"}, status=status.HTTP_404_NOT_FOUND)
     except Exception as e:
         return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 

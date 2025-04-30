@@ -2,3 +2,5 @@ carwings/settings.py
 db.sqlite3
 staticfiles
 logs
+*.p8
+*.cert

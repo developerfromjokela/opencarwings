@@ -78,5 +78,6 @@ urlpatterns = [
     path('api/command/<str:vin>/', api_views.command_api, name='command_api'),
     path('api/token/obtain/', CustomTokenObtainPairView.as_view(), name='token_refresh'),
     path('api/token/refresh/', decorated_token_view, name='token_refresh'),
+    path('api/token/update/', api_views.update_token_metadata, name='token_update'),
     path('api/token/signout/', api_views.sign_out, name='token_refresh'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

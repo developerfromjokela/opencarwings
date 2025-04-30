@@ -69,6 +69,17 @@ PERIODIC_REFRESH_ACTIVE = (
     (1440, _("Every day"))
 )
 
+CAR_COLOR = (
+    ("leaf_coulisred", "LEAF Coulis Red"),
+    ("leaf_deepblue", "LEAF Deep Blue"),
+    ("leaf_forgedbronze", "LEAF Forged Bronze"),
+    ("leaf_gunmetallic", "LEAF Gun Metallic"),
+    ("leaf_pearlwhite", "LEAF Pearl White"),
+    ("leaf_planetblue", "LEAF Planet Blue"),
+    ("leaf_superblack", "LEAF Super Black"),
+    ("env200_white", "e-NV200 White"),
+)
+
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
@@ -167,6 +178,7 @@ class Car(models.Model):
     vin = models.CharField(max_length=18, unique=True)
     nickname = models.CharField(max_length=64, default="LEAF")
     sms_config = models.JSONField()
+    color = models.CharField(choices=CAR_COLOR, default=CAR_COLOR[0], max_length=32)
     vehicle_code1 = models.IntegerField(default=0)
     vehicle_code2 = models.IntegerField(default=0)
     vehicle_code3 = models.IntegerField(default=0)

@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist',
     'rest_framework.authtoken',
     'drf_yasg',
     'channels',
@@ -210,3 +212,11 @@ SIMPLE_JWT = {
     'UPDATE_LAST_LOGIN': True,
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
+
+# Path to .cert file (APNS_CERT) or .p8 file (APNS_KEY)
+APNS_CERT = None
+APNS_KEY = None
+APNS_KEY_ID = ""
+APNS_TEAM_ID = ""
+APNS_BUNDLE_ID = ""
+APNS_USE_SANDBOX = False

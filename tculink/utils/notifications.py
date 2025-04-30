@@ -107,7 +107,8 @@ async def send_push_notification_for_user(car, car_owner, message, subject):
                                 "title": subject,
                                 "subtitle": car.nickname,
                                 "body": message,
-                            }
+                            },
+                            "sound": "default"
                         }
                     },
                     notification_id=str(uuid4()),  # optional

@@ -22,8 +22,16 @@ def get_car_owner_info(car):
     return car.owner
 
 @sync_to_async
-def get_token_metadata(user):
-    return TokenMetadata.objects.filter(user=user)
+def get_push_tokens(user):
+    tokens = TokenMetadata.objects.filter(user=user)
+    apns_tokens = []
+    for token in tokens:
+        if (token.device_type == 'apple' and len(token.push_notification_key) > 20
+                and token.push_notification_key not in apns_tokens):
+            apns_tokens.append(token.push_notification_key)
+    return {
+        "apns": apns_tokens
+    }
 
 async def send_vehicle_alert_notification(car, alert_message, subject, apns_client):
     car_owner = await get_car_owner_info(car)
@@ -63,16 +71,11 @@ async def send_email_for_user(car, car_owner, ev_info, location, alert_message, 
 Send Push notification messages via Apple APNS and other possible channels
 """
 async def send_push_notification_for_user(car, car_owner, message, subject, apns_client):
-    tokens = await get_token_metadata(car_owner)
+    tokens = await get_push_tokens(car_owner)
 
     if apns_client is not None:
-        apns_tokens = []
-        for token in tokens:
-            if (token.device_type == 'apple' and len(token.push_notification_key) > 20
-                    and token.push_notification_key not in apns_tokens):
-                apns_tokens.append(token.push_notification_key)
 
-        for apns_token in apns_tokens:
+        for apns_token in tokens["apns"]:
             try:
                 request = NotificationRequest(
                     device_token=apns_token,

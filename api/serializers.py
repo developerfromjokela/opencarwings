@@ -13,7 +13,7 @@ class JWTTokenObtainPairSerializer(TokenObtainPairSerializer):
 
 
 class TokenMetadataUpdateSerializer(serializers.Serializer):
-    refresh = serializers.CharField(required=False, allow_blank=True, max_length=500)
+    refresh = serializers.CharField(required=True, max_length=500)
     device_type = serializers.CharField(required=False, allow_blank=True, max_length=100)
     device_os = serializers.CharField(required=False, allow_blank=True, max_length=50)
     app_version = serializers.CharField(required=False, allow_blank=True, max_length=50)

@@ -30,23 +30,6 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-apns_cert_client = None
-apns_key_client = None
-if settings.APNS_CERT:
-    apns_cert_client = APNs(
-        client_cert=settings.APNS_KEY,
-        use_sandbox=False,
-    )
-if settings.APNS_KEY:
-    with open(settings.APNS_KEY, 'r') as key_file:
-        key = key_file.read()
-        apns_key_client = APNs(
-            key=key,
-            key_id=settings.APNS_KEY_ID,
-            team_id=settings.APNS_TEAM_ID,
-            topic=settings.APNS_BUNDLE_ID,  # Bundle ID
-            use_sandbox=settings.APNS_USE_SANDBOX,
-        )
 
 @sync_to_async
 def get_car(vin_id):
@@ -281,8 +264,7 @@ class Command(BaseCommand):
                                 await send_vehicle_alert_notification(
                                     car,
                                     "Vehicle is unplugged. Please check the situation if necessary.",
-                                    "Charger unplugged notification",
-                                    apns_key_client if apns_key_client is not None else apns_key_client,
+                                    "Charger unplugged notification"
                                 )
 
                             if body_type == "ac_result":
@@ -315,8 +297,7 @@ class Command(BaseCommand):
                                 await send_vehicle_alert_notification(
                                     car,
                                     alert_msg,
-                                    alert_subject,
-                                    apns_key_client if apns_key_client is not None else apns_key_client,
+                                    alert_subject
                                 )
 
                             if body_type == "remote_stop":
@@ -337,9 +318,7 @@ class Command(BaseCommand):
                                 new_alert.car = car
                                 new_alert.command_id = car.command_id
                                 await sync_to_async(new_alert.save)()
-                                await send_vehicle_alert_notification(car, alert_message, subject,
-                                    apns_key_client if apns_key_client is not None else apns_key_client
-                                )
+                                await send_vehicle_alert_notification(car, alert_message, subject)
 
                             if body_type == "charge_result":
                                 new_alert = AlertHistory()
@@ -351,9 +330,7 @@ class Command(BaseCommand):
                                     car,
                                     ("Charging command has been sent successfully. If vehicle did not start charging, "
                                      "please check that the charging cable is connected and power is available."),
-                                    "Charge start command executed",
-                                    apns_key_client if apns_key_client is not None else apns_key_client,
-                                )
+                                    "Charge start command executed")
                     elif parsed_data["message_type"][0] == 5:
                         if not authenticated:
                             break

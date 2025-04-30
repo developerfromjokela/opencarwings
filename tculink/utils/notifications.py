@@ -1,7 +1,7 @@
 import asyncio
 from uuid import uuid4
 
-from aioapns import NotificationRequest, PushType
+from aioapns import NotificationRequest, PushType, APNs
 from asgiref.sync import sync_to_async
 from django.conf import settings
 from django.core.mail import send_mail
@@ -9,6 +9,11 @@ from django.template.loader import render_to_string
 
 from api.models import TokenMetadata
 
+APNS_KEY_CONTENT = None
+
+if settings.APNS_KEY:
+    with open(settings.APNS_KEY, 'r') as key_file:
+        APNS_KEY_CONTENT = key_file.read()
 
 @sync_to_async
 def get_evinfo(car):
@@ -34,13 +39,13 @@ def get_push_tokens(user):
         "apns": apns_tokens
     }
 
-async def send_vehicle_alert_notification(car, alert_message, subject, apns_client):
+async def send_vehicle_alert_notification(car, alert_message, subject):
     car_owner = await get_car_owner_info(car)
     ev_info = await get_evinfo(car)
     location = await get_location(car)
 
     await send_email_for_user(car, car_owner, ev_info, location, alert_message, subject)
-    await send_push_notification_for_user(car, car_owner, alert_message, subject, apns_client)
+    await send_push_notification_for_user(car, car_owner, alert_message, subject)
 
 async def send_email_for_user(car, car_owner, ev_info, location, alert_message, subject):
     if not car_owner.email_notifications:
@@ -72,8 +77,23 @@ async def send_email_for_user(car, car_owner, ev_info, location, alert_message, 
 """
 Send Push notification messages via Apple APNS and other possible channels
 """
-async def send_push_notification_for_user(car, car_owner, message, subject, apns_client):
+async def send_push_notification_for_user(car, car_owner, message, subject):
     tokens = await get_push_tokens(car_owner)
+    apns_client = None
+
+    if settings.APNS_CERT:
+        apns_client = APNs(
+            client_cert=settings.APNS_KEY,
+            use_sandbox=False,
+        )
+    if APNS_KEY_CONTENT:
+        apns_client = APNs(
+            key=APNS_KEY_CONTENT,
+            key_id=settings.APNS_KEY_ID,
+            team_id=settings.APNS_TEAM_ID,
+            topic=settings.APNS_BUNDLE_ID,  # Bundle ID
+            use_sandbox=settings.APNS_USE_SANDBOX,
+        )
 
     if apns_client is not None:
 

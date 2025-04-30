@@ -70,13 +70,13 @@ PERIODIC_REFRESH_ACTIVE = (
 )
 
 CAR_COLOR = (
-    ("leaf_coulisred", "LEAF Coulis Red"),
-    ("leaf_deepblue", "LEAF Deep Blue"),
-    ("leaf_forgedbronze", "LEAF Forged Bronze"),
-    ("leaf_gunmetallic", "LEAF Gun Metallic"),
-    ("leaf_pearlwhite", "LEAF Pearl White"),
-    ("leaf_planetblue", "LEAF Planet Blue"),
-    ("leaf_superblack", "LEAF Super Black"),
+    ("l_coulisred", "LEAF Coulis Red"),
+    ("l_deepblue", "LEAF Deep Blue"),
+    ("l_forgedbronze", "LEAF Forged Bronze"),
+    ("l_gunmetallic", "LEAF Gun Metallic"),
+    ("l_pearlwhite", "LEAF Pearl White"),
+    ("l_planetblue", "LEAF Planet Blue"),
+    ("l_superblack", "LEAF Super Black"),
     ("env200_white", "e-NV200 White"),
 )
 
@@ -178,7 +178,7 @@ class Car(models.Model):
     vin = models.CharField(max_length=18, unique=True)
     nickname = models.CharField(max_length=64, default="LEAF")
     sms_config = models.JSONField()
-    color = models.CharField(choices=CAR_COLOR, default=CAR_COLOR[0], max_length=32)
+    color = models.CharField(choices=CAR_COLOR, default=CAR_COLOR[0], max_length=20)
     vehicle_code1 = models.IntegerField(default=0)
     vehicle_code2 = models.IntegerField(default=0)
     vehicle_code3 = models.IntegerField(default=0)

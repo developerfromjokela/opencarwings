@@ -1,3 +1,4 @@
+import asyncio
 from uuid import uuid4
 
 from aioapns import NotificationRequest, PushType
@@ -92,6 +93,7 @@ async def send_push_notification_for_user(car, car_owner, message, subject, apns
                     time_to_live=3,  # optional
                     push_type=PushType.ALERT,  # optional
                 )
-                await apns_client.send_notification(request)
+                loop = asyncio.get_event_loop()
+                loop.run_until_complete(apns_client.send_notification(request))
             except Exception as e:
                 print("Failed to send APNS notification:", e)

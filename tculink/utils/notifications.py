@@ -104,8 +104,8 @@ async def send_push_notification_for_user(car, car_owner, message, subject):
                     message={
                         "aps": {
                             "alert": {
-                                "title": f"{car.nickname}: {subject}",
-                                "subtitle": subject,
+                                "title": subject,
+                                "subtitle": car.nickname,
                                 "body": message,
                             }
                         }

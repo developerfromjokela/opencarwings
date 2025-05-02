@@ -6,6 +6,7 @@ from asgiref.sync import sync_to_async
 from django.conf import settings
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
+from pyfcm import FCMNotification
 
 from api.models import TokenMetadata
 
@@ -31,12 +32,17 @@ def get_car_owner_info(car):
 def get_push_tokens(user):
     tokens = TokenMetadata.objects.filter(user=user)
     apns_tokens = []
+    fcm_tokens = []
     for token in tokens:
         if (token.device_type == 'apple' and len(token.push_notification_key) > 20
                 and token.push_notification_key not in apns_tokens):
             apns_tokens.append(token.push_notification_key)
+        if (token.device_type == 'fcm' and len(token.push_notification_key) > 20
+                and token.push_notification_key not in fcm_tokens):
+            fcm_tokens.append(token.push_notification_key)
     return {
-        "apns": apns_tokens
+        "apns": apns_tokens,
+        "fcm": fcm_tokens
     }
 
 async def send_vehicle_alert_notification(car, alert_message, subject):
@@ -80,6 +86,10 @@ Send Push notification messages via Apple APNS and other possible channels
 async def send_push_notification_for_user(car, car_owner, message, subject):
     tokens = await get_push_tokens(car_owner)
     apns_client = None
+    fcm_client = None
+
+    if settings.FCM_SERVICE_FILE:
+        fcm_client = FCMNotification(service_account_file=settings.FCM_SERVICE_FILE, project_id=settings.FCM_PROJECT_ID)
 
     if settings.APNS_CERT:
         apns_client = APNs(
@@ -96,7 +106,6 @@ async def send_push_notification_for_user(car, car_owner, message, subject):
         )
 
     if apns_client is not None:
-
         for apns_token in tokens["apns"]:
             try:
                 request = NotificationRequest(
@@ -118,3 +127,13 @@ async def send_push_notification_for_user(car, car_owner, message, subject):
                 asyncio.get_running_loop().create_task(apns_client.send_notification(request))
             except Exception as e:
                 print("Failed to send APNS notification:", e)
+
+    if fcm_client is not None:
+        for fcm_token in tokens["fcm"]:
+            try:
+                result = fcm_client.notify(fcm_token=fcm_token, notification_title= f"{car.nickname}: {subject}",
+                                    notification_body=message)
+                print(result)
+            except Exception as e:
+                print("Failed to send FCM notification:", e)
+

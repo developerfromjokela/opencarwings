@@ -194,7 +194,7 @@ def alerts_api(request, vin):
     if not request.user.is_authenticated:
         return Response(status=status.HTTP_401_UNAUTHORIZED)
     car = get_object_or_404(Car, vin=vin, owner=request.user)
-    alerts = AlertHistory.objects.filter(car=car).order_by('-timestamp')
+    alerts = AlertHistory.objects.filter(car=car).order_by('-timestamp')[:25]
     serializer = AlertHistorySerializer(alerts, many=True)
     return Response(serializer.data)
 

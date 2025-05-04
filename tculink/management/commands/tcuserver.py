@@ -1,4 +1,5 @@
 import asyncio
+import decimal
 import traceback
 from datetime import datetime
 import logging
@@ -45,8 +46,10 @@ def set_evinfo(car, ev_info, tcu_info):
         if tcu_info['vehicle_descriptor'] == 0x02 or tcu_info['vehicle_descriptor'] == 0x92:
             car.ev_info.max_gids = GIDS_NEW_24kWh
 
-    car.ev_info.range_acon = ev_info.get("acon", None)
-    car.ev_info.range_acoff = ev_info.get("acoff", None)
+    car.ev_info.range_acon = int(decimal.Decimal(
+        (ev_info.get("acon", 0)*((ev_info.get("gids", 0)*WH_PER_GID_GEN1)/10000))).__round__(0))
+    car.ev_info.range_acoff = int(decimal.Decimal(
+        (ev_info.get("acoff", 0)*((ev_info.get("gids", 0)*WH_PER_GID_GEN1)/10000))).__round__(0))
     car.ev_info.plugged_in = ev_info.get("pluggedin", False)
     car.ev_info.charge_finish = ev_info.get("charging_finish", False)
     car.ev_info.quick_charging = ev_info.get("quick_charging", False)

@@ -39,10 +39,10 @@
                             {% endif %}
                         </h5>
                         <span class="text-sm text-gray-600">VIN: {{ car.vin }}</span>
-                    </div>
-                    {% if car.last_connection %}
+                        {% if car.last_connection %}
                         <p class="text-sm text-gray-500">{% translate "Last connected" %}: {{ car.last_connection|date:"Y-m-d H:i" }} (UTC)</p>
-                    {% endif %}
+                        {% endif %}
+                    </div>
                 </a>
             {% empty %}
                 <div class="bg-white p-4 rounded-lg shadow-md">

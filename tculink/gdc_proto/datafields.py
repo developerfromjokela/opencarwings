@@ -154,7 +154,7 @@ def parse_evinfo(byte_data, aze0=False):
     )
     soc = soc / 20
     gids = (
-        ((byte_data[14] & 0b00111111) << 2) | ((byte_data[15] & 0b11000000) >> 6)
+        ((byte_data[14] & 0b11111111) << 2) | ((byte_data[15] & 0b11000000) >> 6)
     )
     soh = (
         ((byte_data[15] & 0b00111111) << 1) | ((byte_data[16] & 0b10000000) >> 7)

@@ -171,7 +171,7 @@ def parse_evinfo(byte_data, aze0=False):
             (byte_data[20] << 3) | ((byte_data[21] & 0b11100000) >> 5)
         )
 
-        param21 = (byte_data[21] & 0b00001111)
+        param21 = (byte_data[21] & 0b00011111)
 
 
     range_acon = byte_data[2]

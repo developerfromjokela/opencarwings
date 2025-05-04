@@ -1,5 +1,6 @@
 {% extends 'ui/base.html'%}
 {% load math_filters %}
+{% load static %}
 {% block title %} {{car.nickname}} {% endblock %}
 {% load i18n %}
 {% load l10n %}
@@ -9,7 +10,11 @@
         <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6 space-y-4 sm:space-y-0">
             <div>
                 <a href="/" class="inline-block mt-6 text-blue-500 hover:underline text-sm sm:text-base">{% translate "Back to cars" %}</a>
-                <h1 class="text-2xl sm:text-3xl font-semibold text-gray-800 align-center content-center flex flex-row items-center">{{ car.nickname }}
+                <h1 class="text-2xl sm:text-3xl font-semibold text-gray-800 align-center content-center flex flex-row items-center">
+                    {% with 'car/'|add:car.color|add:'.png' as car_static %}
+                      <img src="{% static car_static %}" style="padding-right: 15px; max-height: 60px; object-fit: cover"/>
+                    {% endwith %}
+                    {{ car.nickname }}
                     {% now "U" as current_time %}
                     {% if car.last_connection %}
                         {% with last_connection_time=car.last_connection|date:"U" %}

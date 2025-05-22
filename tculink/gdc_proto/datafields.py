@@ -49,20 +49,20 @@ def parse_tcu_info(packet):
         "vehicle_code2": veh_ids[1],
         "vehicle_code3": veh_ids[2],
         "vehicle_code4": veh_ids[3],
-        "vin": veh_ids[5:22].decode('ascii').rstrip('\x00'),
-        "tcu_id": veh_ids[23:35].decode('ascii').rstrip('\x00'),
-        "msn": veh_ids[36:51].decode('ascii').rstrip('\x00'),
-        "unit_id": veh_ids[52:64].decode('ascii').rstrip('\x00'),
-        "iccid": veh_ids[65:84].decode('ascii').rstrip('\x00'),
-        "sw_version": veh_ids[86:95].decode('ascii').rstrip('\x00')
+        "vin": veh_ids[5:22].decode('ascii').rstrip('\x00').strip(),
+        "tcu_id": veh_ids[23:35].decode('ascii').rstrip('\x00').strip(),
+        "msn": veh_ids[36:51].decode('ascii').rstrip('\x00').strip(),
+        "unit_id": veh_ids[52:64].decode('ascii').rstrip('\x00').strip(),
+        "iccid": veh_ids[65:84].decode('ascii').rstrip('\x00').strip(),
+        "sw_version": veh_ids[86:95].decode('ascii').rstrip('\x00').strip()
     }
 
 def parse_auth_info(packet):
     if len(packet) < 34:
         return None
     return {
-        "user": packet[1:16].decode('ascii').rstrip('\x00'),
-        "pass": packet[18:33].decode('ascii').rstrip('\x00'),
+        "user": packet[1:16].decode('ascii').rstrip('\x00').strip(),
+        "pass": packet[18:33].decode('ascii').rstrip('\x00').strip(),
     }
 
 def parse_environment_info(packet):

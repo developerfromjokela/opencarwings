@@ -581,11 +581,13 @@
             .then(data => {
                 if (data.status) {
                     window.location.href = "/"
+                } else if (data.error) {
+                    throw new Error(data.error);
                 }
             })
             .catch(error => {
                 console.error('{% translate "Error sending command" %}:', error);
-                showNotification({title: '{% translate "Error sending command" %}', message: error.error, type: 'error'});
+                showNotification({title: '{% translate "Error sending command" %}', message: error.error ?? error, type: 'error'});
             });
             }
         }
@@ -745,11 +747,13 @@
             })
             .then(response => response.json())
             .then(data => {
-                console.log(data);
+                if (data.error) {
+                    throw new Error(data.error);
+                }
             })
             .catch(error => {
                 console.error('{% translate "Error sending command" %}:', error);
-                showNotification({title: '{% translate "Error sending command" %}', message: error.error, type: 'error'})
+                showNotification({title: '{% translate "Error sending command" %}', message: error.error ?? error, type: 'error'})
             });
         });
 

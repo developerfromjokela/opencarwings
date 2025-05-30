@@ -84,7 +84,7 @@ def account(request):
             messages.success(request, _("Account successfully updated!"))
             return redirect('account')
         else:
-            messages.error(request, _("Please fill the form correctry and try again."))
+            messages.error(request, _("Please fill the form correctly and try again."))
     return render(request, 'ui/account.html', {'user': request.user, 'form': account_form, 'api_key': api_key.key})
 
 @swagger_auto_schema(

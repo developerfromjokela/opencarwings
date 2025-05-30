@@ -104,8 +104,10 @@ def update_token_metadata(request):
         device_os = serializer.validated_data.get('device_os', '') or request.headers.get('X-Device-OS', '')
         app_version = serializer.validated_data.get('app_version', '') or request.headers.get('X-App-Version', '')
         push_notification_key = serializer.validated_data.get('push_notification_key', '')
+        lang = django.utils.translation.get_language()
 
         metadata.device_type = device_type
+        metadata.lang = lang
         metadata.device_os = device_os
         metadata.app_version = app_version
         metadata.push_notification_key = push_notification_key
@@ -278,11 +280,13 @@ class CustomTokenObtainPairView(TokenObtainPairView):
             push_notification_key = request.data.get('push_notification_key', '')
             ip_address = request.META.get('REMOTE_ADDR')
             user_agent = request.META.get('HTTP_USER_AGENT', '')
+            lang = django.utils.translation.get_language()
 
             # Save token metadata
             TokenMetadata.objects.create(
                 user=user,
                 token=jti,
+                lang=lang,
                 device_type=device_type,
                 device_os=device_os,
                 app_version=app_version,

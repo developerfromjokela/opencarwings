@@ -1,22 +1,21 @@
 import asyncio
 import decimal
-import traceback
-from datetime import datetime
 import logging
 import os
+import traceback
 
-from aioapns import APNs
-from django.conf import settings
+from asgiref.sync import sync_to_async
 from django.core.management.base import BaseCommand, CommandError
 from django.utils import timezone
+
 from db.models import Car, AlertHistory
 from tculink.gdc_proto import GIDS_NEW_24kWh, WH_PER_GID_GEN1
 from tculink.gdc_proto.parser import parse_gdc_packet
 from tculink.gdc_proto.responses import create_charge_status_response, create_charge_request_response, \
     create_ac_setting_response, create_ac_stop_response, create_config_read, auth_common_dest
-from asgiref.sync import sync_to_async
-
 from tculink.utils.notifications import send_vehicle_alert_notification
+from django.utils.translation import gettext_lazy as _
+
 
 # Configure logging
 log_dir = 'logs'
@@ -266,8 +265,8 @@ class Command(BaseCommand):
                                 await sync_to_async(new_alert.save)()
                                 await send_vehicle_alert_notification(
                                     car,
-                                    "Vehicle is unplugged. Please check the situation if necessary.",
-                                    "Charger unplugged notification"
+                                    _("Vehicle is unplugged. Please check the situation if necessary."),
+                                    _("Charger unplugged notification")
                                 )
 
                             if body_type == "ac_result":
@@ -284,19 +283,19 @@ class Command(BaseCommand):
                                 new_alert.command_id = car.command_id
                                 await sync_to_async(new_alert.save)()
 
-                                alert_msg = ("The A/C preconditioning command could not be executed. One of the "
+                                alert_msg = _("The A/C preconditioning command could not be executed. One of the "
                                              "reasons behind such error could be: a) low state of charge b) command already executed c) TCU error.")
-                                alert_subject = "A/C preconditioning error"
+                                alert_subject = _("A/C preconditioning error")
                                 if alert_type == 4:
-                                    alert_subject = "A/C preconditioning started"
-                                    alert_msg = "A/C preconditioning has been successfully switched on"
+                                    alert_subject = _("A/C preconditioning started")
+                                    alert_msg = _("A/C preconditioning has been successfully switched on")
                                 if alert_type == 5:
-                                    alert_subject = "A/C precondition stopped"
-                                    alert_msg = "A/C preconditioning has been successfully switched off"
+                                    alert_subject = _("A/C precondition stopped")
+                                    alert_msg = _("A/C preconditioning has been successfully switched off")
                                 if alert_type == 7:
-                                    alert_msg = ("The A/C preconditioning is finished and switched off"
+                                    alert_msg = _("The A/C preconditioning is finished and switched off"
                                                  " after running certain amount of time.")
-                                    alert_subject = "A/C precondition finished"
+                                    alert_subject = _("A/C precondition finished")
                                 await send_vehicle_alert_notification(
                                     car,
                                     alert_msg,
@@ -305,17 +304,17 @@ class Command(BaseCommand):
 
                             if body_type == "remote_stop":
                                 new_alert = AlertHistory()
-                                alert_message = "A/C preconditioning is finished"
-                                subject = "A/C precondition notification"
+                                alert_message = _("A/C preconditioning is finished")
+                                subject = _("A/C precondition notification")
 
-                                if req_body["alertstate"] == 4:
+                                if req_body["alertstate"] == 4 or req_body["alertstate"] == 0x44:
                                     new_alert.type = 1
-                                    alert_message = "Vehicle has finished charging."
-                                    subject = "Charge finish notification"
+                                    alert_message = _("Vehicle has finished charging.")
+                                    subject = _("Charge finish notification")
                                 elif req_body["alertstate"] == 8:
                                     new_alert.type = 8
-                                    alert_message = "Vehicle has finished quick-charging."
-                                    subject = "Quick-charge finish notification"
+                                    alert_message = _("Vehicle has finished quick-charging.")
+                                    subject = _("Quick-charge finish notification")
                                 else:
                                     new_alert.type = 7
                                 new_alert.car = car
@@ -331,9 +330,9 @@ class Command(BaseCommand):
                                 await sync_to_async(new_alert.save)()
                                 await send_vehicle_alert_notification(
                                     car,
-                                    ("Charging command has been sent successfully. If vehicle did not start charging, "
+                                    _("Charging command has been sent successfully. If vehicle did not start charging, "
                                      "please check that the charging cable is connected and power is available."),
-                                    "Charge start command executed")
+                                    _("Charge start command executed"))
                     elif parsed_data["message_type"][0] == 5:
                         if not authenticated:
                             break

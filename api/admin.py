@@ -6,5 +6,5 @@ from api.models import TokenMetadata
 
 @admin.register(TokenMetadata)
 class TCUConfigurationAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'token', 'device_type')
-    list_filter = ('id', 'user', 'token', 'device_type')
+    list_display = ('id', 'user', 'token', 'device_type', 'lang')
+    list_filter = ('id', 'user', 'token', 'device_type', 'lang')

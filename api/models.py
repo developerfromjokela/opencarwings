@@ -8,6 +8,7 @@ from django.db import models
 class TokenMetadata(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='token_metadata')
+    lang = models.CharField(max_length=10, default='en')
     token = models.CharField(max_length=500, unique=True)  # Store refresh token
     device_type = models.CharField(max_length=100, blank=True)  # e.g., iOS, Android, Web
     device_os = models.CharField(max_length=100, blank=True)  # e.g., iOS 16.2

@@ -585,11 +585,7 @@
             })
             .catch(error => {
                 console.error('{% translate "Error sending command" %}:', error);
-                const messagesDiv = document.getElementById('messages');
-                const alertDiv = document.createElement('div');
-                alertDiv.className = 'text-center text-red-600 mb-2';
-                alertDiv.innerHTML = '{% translate "Error sending command" %}';
-                messagesDiv.insertBefore(alertDiv, messagesDiv.firstChild);
+                showNotification({title: '{% translate "Error sending command" %}', message: error.error, type: 'error'});
             });
             }
         }
@@ -753,11 +749,7 @@
             })
             .catch(error => {
                 console.error('{% translate "Error sending command" %}:', error);
-                const messagesDiv = document.getElementById('messages');
-                const alertDiv = document.createElement('div');
-                alertDiv.className = 'text-center text-red-600 mb-2';
-                alertDiv.innerHTML = '{% translate "Error sending command" %}';
-                messagesDiv.insertBefore(alertDiv, messagesDiv.firstChild);
+                showNotification({title: '{% translate "Error sending command" %}', message: error.error, type: 'error'})
             });
         });
 

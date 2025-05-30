@@ -43,7 +43,7 @@ def broadcast_car_evinfo_update(sender, instance, created, **kwargs):
         pass
 
 @receiver(post_save, sender=TCUConfiguration)
-def broadcast_car_evinfo_update(sender, instance, created, **kwargs):
+def broadcast_car_tcuconf_update(sender, instance, created, **kwargs):
     if created:
         return
 
@@ -65,7 +65,7 @@ def broadcast_car_evinfo_update(sender, instance, created, **kwargs):
 
 
 @receiver(post_save, sender=LocationInfo)
-def broadcast_car_evinfo_update(sender, instance, created, **kwargs):
+def broadcast_car_locinfo_update(sender, instance, created, **kwargs):
     if created:
         return
 

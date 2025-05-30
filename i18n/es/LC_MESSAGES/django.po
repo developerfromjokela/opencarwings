@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-04 22:42+0000\n"
+"POT-Creation-Date: 2025-05-30 11:50+0000\n"
 "PO-Revision-Date: 2025-05-05 00:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Spanish <es@li.org>\n"
@@ -18,9 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: api/views.py:236
+#: api/views.py:238
 msgid "Failed to send SMS message to TCU. Please try again in a moment."
-msgstr "No se pudo enviar el mensaje SMS al TCU. Por favor, intenta de nuevo en un momento."
+msgstr ""
+"No se pudo enviar el mensaje SMS al TCU. Por favor, intenta de nuevo en un "
+"momento."
 
 #: db/models.py:13
 msgid "Charge stop"
@@ -115,11 +117,11 @@ msgstr "Esperando respuesta"
 msgid "Park"
 msgstr "Estacionar"
 
-#: db/models.py:46 ui/templates/ui/car_detail.html:675
+#: db/models.py:46 ui/templates/ui/car_detail.html:671
 msgid "Drive"
 msgstr "Conducir"
 
-#: db/models.py:47 ui/templates/ui/car_detail.html:675
+#: db/models.py:47 ui/templates/ui/car_detail.html:671
 msgid "Reverse"
 msgstr "Marcha atrás"
 
@@ -173,7 +175,8 @@ msgid ""
 "a-z and uppercase A-Z letters, numbers, and /=/-/_/+/@/#/?/! characters."
 msgstr ""
 "Ingresa una contraseña TCU válida. Este valor solo puede contener letras "
-"minúsculas y mayúsculas a-z sin acentos, números y los caracteres /=/-/_/+/@/#/?/!."
+"minúsculas y mayúsculas a-z sin acentos, números y los caracteres /=/-/_/+/@/"
+"#/?/!."
 
 #: db/models.py:111
 msgid "username"
@@ -186,6 +189,91 @@ msgstr "Requerido. 16 caracteres o menos. Solo letras, dígitos y /./-/_."
 #: db/models.py:119
 msgid "A user with that username already exists."
 msgstr "Ya existe un usuario con ese nombre de usuario."
+
+#: tculink/management/commands/tcuserver.py:268
+msgid "Vehicle is unplugged. Please check the situation if necessary."
+msgstr "El vehículo está desconectado. Por favor, verifica la situación si es necesario."
+
+#: tculink/management/commands/tcuserver.py:269
+msgid "Charger unplugged notification"
+msgstr "Recordatorio de enchufar el cargador"
+
+#: tculink/management/commands/tcuserver.py:286
+msgid ""
+"The A/C preconditioning command could not be executed. One of the reasons "
+"behind such error could be: a) low state of charge b) command already "
+"executed c) TCU error."
+msgstr ""
+"El comando de preacondicionamiento de A/C no pudo ejecutarse. Una de las razones "
+"de este error podría ser: a) bajo estado de carga b) comando ya ejecutado c) error de TCU."
+
+#: tculink/management/commands/tcuserver.py:288
+msgid "A/C preconditioning error"
+msgstr "Error de preacondicionamiento de A/C"
+
+#: tculink/management/commands/tcuserver.py:290
+msgid "A/C preconditioning started"
+msgstr "Preacondicionamiento de A/C iniciado"
+
+#: tculink/management/commands/tcuserver.py:291
+msgid "A/C preconditioning has been successfully switched on"
+msgstr "El preacondicionamiento de A/C se ha activado correctamente"
+
+#: tculink/management/commands/tcuserver.py:293
+msgid "A/C precondition stopped"
+msgstr "Preacondicionamiento de A/C detenido"
+
+#: tculink/management/commands/tcuserver.py:294
+msgid "A/C preconditioning has been successfully switched off"
+msgstr "El preacondicionamiento de A/C se ha desactivado correctamente"
+
+#: tculink/management/commands/tcuserver.py:296
+msgid ""
+"The A/C preconditioning is finished and switched off after running certain "
+"amount of time."
+msgstr ""
+"El preacondicionamiento de A/C ha finalizado y se ha desactivado después de funcionar durante un cierto tiempo."
+
+#: tculink/management/commands/tcuserver.py:298
+msgid "A/C precondition finished"
+msgstr "Preacondicionamiento de A/C finalizado"
+
+#: tculink/management/commands/tcuserver.py:307
+msgid "A/C preconditioning is finished"
+msgstr "El preacondicionamiento de A/C ha finalizado"
+
+#: tculink/management/commands/tcuserver.py:308
+msgid "A/C precondition notification"
+msgstr "Notificación de preacondicionamiento de A/C"
+
+#: tculink/management/commands/tcuserver.py:312
+msgid "Vehicle has finished charging."
+msgstr "El vehículo ha terminado de cargarse."
+
+#: tculink/management/commands/tcuserver.py:313
+msgid "Charge finish notification"
+msgstr "Notificación de finalización de carga"
+
+#: tculink/management/commands/tcuserver.py:316
+msgid "Vehicle has finished quick-charging."
+msgstr "El vehículo ha terminado de cargarse rápidamente."
+
+#: tculink/management/commands/tcuserver.py:317
+msgid "Quick-charge finish notification"
+msgstr "Notificación de finalización de carga rápida"
+
+#: tculink/management/commands/tcuserver.py:333
+msgid ""
+"Charging command has been sent successfully. If vehicle did not start "
+"charging, please check that the charging cable is connected and power is "
+"available."
+msgstr ""
+"El comando de carga se ha enviado correctamente. Si el vehículo no comenzó a cargar, "
+"por favor verifica que el cable de carga esté conectado y que haya energía disponible."
+
+#: tculink/management/commands/tcuserver.py:335
+msgid "Charge start command executed"
+msgstr "Comando de inicio de carga ejecutado"
 
 #: tculink/sms/46elks.py:9
 msgid "API Username"
@@ -213,7 +301,9 @@ msgstr "ID del dispositivo"
 
 #: tculink/sms/hologram.py:11
 msgid "API credentials are available in Hologram dashboard Settings."
-msgstr "Las credenciales de la API están disponibles en la configuración del panel de Hologram."
+msgstr ""
+"Las credenciales de la API están disponibles en la configuración del panel "
+"de Hologram."
 
 #: tculink/sms/manual.py:10
 #, python-brace-format
@@ -222,8 +312,9 @@ msgid ""
 "for this to work. No automated messaging will be set up. SMS message to send "
 "after you've issued a command on the website: {sms}"
 msgstr ""
-"Importante: Con esta opción, deberás enviar el SMS manualmente para que funcione. "
-"No se configurará mensajería automática. Mensaje SMS a enviar después de emitir un comando en el sitio web: {sms}"
+"Importante: Con esta opción, deberás enviar el SMS manualmente para que "
+"funcione. No se configurará mensajería automática. Mensaje SMS a enviar "
+"después de emitir un comando en el sitio web: {sms}"
 
 #: tculink/sms/webhook.py:8
 msgid "Webhook URL"
@@ -231,7 +322,9 @@ msgstr "URL del webhook"
 
 #: tculink/sms/webhook.py:10
 msgid "POST-request will be sent to specified webhook URL when necessary."
-msgstr "Se enviará una solicitud POST a la URL del webhook especificada cuando sea necesario."
+msgstr ""
+"Se enviará una solicitud POST a la URL del webhook especificada cuando sea "
+"necesario."
 
 #: ui/forms.py:17 ui/forms.py:28 ui/templates/ui/car_detail.html:289
 msgid "Nickname"
@@ -272,7 +365,8 @@ msgstr "Solo puede incluir letras, números, guiones, puntos y guiones bajos"
 
 #: ui/forms.py:62
 msgid "This password is used for signing in to your account inside the car"
-msgstr "Esta contraseña se usa para iniciar sesión en tu cuenta dentro del coche"
+msgstr ""
+"Esta contraseña se usa para iniciar sesión en tu cuenta dentro del coche"
 
 #: ui/templates/ui/account.html:16 ui/templates/ui/car_detail.html:62
 #: ui/templates/ui/change_carwings_password.html:18
@@ -437,31 +531,31 @@ msgid "Car status"
 msgstr "Estado del coche"
 
 #: ui/templates/ui/car_detail.html:157 ui/templates/ui/car_detail.html:159
-#: ui/templates/ui/car_detail.html:616 ui/templates/ui/car_detail.html:618
-#: ui/templates/ui/car_detail.html:632
+#: ui/templates/ui/car_detail.html:612 ui/templates/ui/car_detail.html:614
+#: ui/templates/ui/car_detail.html:628
 msgid "On"
 msgstr "Encendido"
 
-#: ui/templates/ui/car_detail.html:157 ui/templates/ui/car_detail.html:616
-#: ui/templates/ui/car_detail.html:675
+#: ui/templates/ui/car_detail.html:157 ui/templates/ui/car_detail.html:612
+#: ui/templates/ui/car_detail.html:671
 msgid "Parked"
 msgstr "Estacionado"
 
-#: ui/templates/ui/car_detail.html:159 ui/templates/ui/car_detail.html:618
+#: ui/templates/ui/car_detail.html:159 ui/templates/ui/car_detail.html:614
 msgid "Driving"
 msgstr "Conduciendo"
 
-#: ui/templates/ui/car_detail.html:163 ui/templates/ui/car_detail.html:622
+#: ui/templates/ui/car_detail.html:163 ui/templates/ui/car_detail.html:618
 msgid "Charging finished"
 msgstr "Carga finalizada"
 
 #: ui/templates/ui/car_detail.html:165 ui/templates/ui/car_detail.html:238
-#: ui/templates/ui/car_detail.html:624
+#: ui/templates/ui/car_detail.html:620
 msgid "Charging"
 msgstr "Cargando"
 
-#: ui/templates/ui/car_detail.html:167 ui/templates/ui/car_detail.html:626
-#: ui/templates/ui/car_detail.html:632
+#: ui/templates/ui/car_detail.html:167 ui/templates/ui/car_detail.html:622
+#: ui/templates/ui/car_detail.html:628
 msgid "Off"
 msgstr "Apagado"
 
@@ -601,8 +695,8 @@ msgid ""
 "authentication"
 msgstr ""
 "En los LEAF AZE0 (2013) y posteriores, el nombre de usuario y la contraseña "
-"insertados en el sistema de navegación no se guardan debido a un error. En este caso, "
-"marca esta casilla para omitir la autenticación"
+"insertados en el sistema de navegación no se guardan debido a un error. En "
+"este caso, marca esta casilla para omitir la autenticación"
 
 #: ui/templates/ui/car_detail.html:306
 msgid "Car color"
@@ -619,8 +713,9 @@ msgid ""
 "For cars with swapped/replaced battery, please enter maximum amount of GIDS "
 "when battery is new (SoH 100%%)."
 msgstr ""
-"OpenCARWINGS intentará detectar automáticamente el tamaño de tu batería y completar este campo. "
-"Para coches con batería cambiada/reemplazada, ingresa la cantidad máxima de GIDs cuando la batería es nueva (SoH 100%%)."
+"OpenCARWINGS intentará detectar automáticamente el tamaño de tu batería y "
+"completar este campo. Para coches con batería cambiada/reemplazada, ingresa "
+"la cantidad máxima de GIDs cuando la batería es nueva (SoH 100%%)."
 
 #: ui/templates/ui/car_detail.html:323
 msgid ""
@@ -629,8 +724,10 @@ msgid ""
 "enabling this option, 'display' percentage value will be calculated, it may "
 "be inaccurate."
 msgstr ""
-"En los coches de generación AZE0 (>2013), es posible ver la capacidad disponible de la batería en porcentaje. "
-"Para ZE0, esta función nunca se implementó. Al habilitar esta opción, se calculará el valor porcentual de 'pantalla', que puede no ser preciso."
+"En los coches de generación AZE0 (>2013), es posible ver la capacidad "
+"disponible de la batería en porcentaje. Para ZE0, esta función nunca se "
+"implementó. Al habilitar esta opción, se calculará el valor porcentual de "
+"'pantalla', que puede no ser preciso."
 
 #: ui/templates/ui/car_detail.html:329
 msgid "Periodic data refresh interval"
@@ -638,7 +735,8 @@ msgstr "Intervalo de actualización periódica de datos"
 
 #: ui/templates/ui/car_detail.html:338
 msgid "Periodic data refresh interval (while driving or charging)"
-msgstr "Intervalo de actualización periódica de datos (mientras conduces o cargas)"
+msgstr ""
+"Intervalo de actualización periódica de datos (mientras conduces o cargas)"
 
 #: ui/templates/ui/car_detail.html:347 ui/templates/ui/setup/step4.html:29
 msgid "SMS provider"
@@ -648,36 +746,36 @@ msgstr "Proveedor de SMS"
 msgid "Remove car"
 msgstr "Eliminar coche"
 
-#: ui/templates/ui/car_detail.html:587 ui/templates/ui/car_detail.html:591
-#: ui/templates/ui/car_detail.html:755 ui/templates/ui/car_detail.html:759
+#: ui/templates/ui/car_detail.html:587 ui/templates/ui/car_detail.html:588
+#: ui/templates/ui/car_detail.html:751 ui/templates/ui/car_detail.html:752
 msgid "Error sending command"
 msgstr "Error al enviar el comando"
 
-#: ui/templates/ui/car_detail.html:611
+#: ui/templates/ui/car_detail.html:607
 msgid "Plugged In"
 msgstr "Conectado"
 
-#: ui/templates/ui/car_detail.html:611
+#: ui/templates/ui/car_detail.html:607
 msgid "Unplugged"
 msgstr "Desconectado"
 
-#: ui/templates/ui/car_detail.html:659 ui/templates/ui/car_detail.html:660
-#: ui/templates/ui/car_detail.html:661 ui/templates/ui/car_detail.html:670
-#: ui/templates/ui/car_detail.html:676 ui/templates/ui/car_detail.html:681
+#: ui/templates/ui/car_detail.html:655 ui/templates/ui/car_detail.html:656
+#: ui/templates/ui/car_detail.html:657 ui/templates/ui/car_detail.html:666
+#: ui/templates/ui/car_detail.html:672 ui/templates/ui/car_detail.html:677
 msgid "Yes"
 msgstr "Sí"
 
-#: ui/templates/ui/car_detail.html:659 ui/templates/ui/car_detail.html:660
-#: ui/templates/ui/car_detail.html:661 ui/templates/ui/car_detail.html:670
-#: ui/templates/ui/car_detail.html:676 ui/templates/ui/car_detail.html:681
+#: ui/templates/ui/car_detail.html:655 ui/templates/ui/car_detail.html:656
+#: ui/templates/ui/car_detail.html:657 ui/templates/ui/car_detail.html:666
+#: ui/templates/ui/car_detail.html:672 ui/templates/ui/car_detail.html:677
 msgid "No"
 msgstr "No"
 
-#: ui/templates/ui/car_detail.html:779
+#: ui/templates/ui/car_detail.html:771
 msgid "Connection established!"
 msgstr "¡Conexión establecida!"
 
-#: ui/templates/ui/car_detail.html:784
+#: ui/templates/ui/car_detail.html:776
 msgid "Reconnecting..."
 msgstr "Reconectando..."
 
@@ -706,7 +804,8 @@ msgstr "Cambiar contraseña de CARWINGS"
 msgid ""
 "This password is used for authentication between your cars and this server."
 msgstr ""
-"Esta contraseña se usa para la autenticación entre tus coches y este servidor."
+"Esta contraseña se usa para la autenticación entre tus coches y este "
+"servidor."
 
 #: ui/templates/ui/change_carwings_password.html:10
 msgid ""
@@ -755,8 +854,9 @@ msgid ""
 "manufacturer's support fading, the community steps up. Sign up now to bring "
 "your LEAF back to life!"
 msgstr ""
-"El icónico Nissan LEAF merece más que el abandono. Con el soporte del fabricante desvaneciéndose, "
-"la comunidad da un paso adelante. ¡Regístrate ahora para devolverle la vida a tu LEAF!"
+"El icónico Nissan LEAF merece más que el abandono. Con el soporte del "
+"fabricante desvaneciéndose, la comunidad da un paso adelante. ¡Regístrate "
+"ahora para devolverle la vida a tu LEAF!"
 
 #: ui/templates/ui/landing.html:30
 msgid "Get Started"
@@ -807,8 +907,10 @@ msgid ""
 "used.\n"
 "                        Please request a new password reset."
 msgstr ""
-"El enlace de restablecimiento de contraseña no es válido, posiblemente porque ya ha sido usado.\n"
-"                        Por favor, solicita un nuevo restablecimiento de contraseña."
+"El enlace de restablecimiento de contraseña no es válido, posiblemente "
+"porque ya ha sido usado.\n"
+"                        Por favor, solicita un nuevo restablecimiento de "
+"contraseña."
 
 #: ui/templates/ui/setup/step1.html:4 ui/templates/ui/setup/step2.html:4
 #: ui/templates/ui/setup/step3.html:4 ui/templates/ui/setup/step4.html:4
@@ -827,7 +929,9 @@ msgid ""
 "Unit) unit's SIM card needs to be replaced and its settings programmed. Have "
 "you done that?"
 msgstr ""
-"Para establecer comunicación con tu LEAF, es necesario reemplazar la tarjeta SIM de la unidad TCU (Unidad de Control Telemático) y programar sus configuraciones. ¿Lo has hecho?"
+"Para establecer comunicación con tu LEAF, es necesario reemplazar la tarjeta "
+"SIM de la unidad TCU (Unidad de Control Telemático) y programar sus "
+"configuraciones. ¿Lo has hecho?"
 
 #: ui/templates/ui/setup/step1.html:16
 msgid "No, how can I do that?"
@@ -847,7 +951,9 @@ msgid ""
 "car. Start your car and follow steps to get identifiers from navigation "
 "system:"
 msgstr ""
-"Es hora de subir a tu LEAF y encontrar los identificadores únicos de tu coche. Enciende tu coche y sigue los pasos para obtener los identificadores desde el sistema de navegación:"
+"Es hora de subir a tu LEAF y encontrar los identificadores únicos de tu "
+"coche. Enciende tu coche y sigue los pasos para obtener los identificadores "
+"desde el sistema de navegación:"
 
 #: ui/templates/ui/setup/step2.html:33
 msgid "1. Press the hard button labeled Menu"
@@ -861,21 +967,24 @@ msgstr "2. Presiona el botón suave “CARWINGS” en la pantalla central."
 msgid ""
 "3. Press the “CARWINGS Settings” soft button on the center display screen."
 msgstr ""
-"3. Presiona el botón suave “Configuraciones de CARWINGS” en la pantalla central."
+"3. Presiona el botón suave “Configuraciones de CARWINGS” en la pantalla "
+"central."
 
 #: ui/templates/ui/setup/step2.html:36
 msgid ""
 "4. Scroll down if necessary and press “Unit ID information” soft button on "
 "the center display screen."
 msgstr ""
-"4. Desplázate hacia abajo si es necesario y presiona el botón suave “Información de ID de unidad” en la pantalla central."
+"4. Desplázate hacia abajo si es necesario y presiona el botón suave "
+"“Información de ID de unidad” en la pantalla central."
 
 #: ui/templates/ui/setup/step2.html:37
 msgid ""
 "5. Write down identifiers Unit ID, TCU ID, SIM ID and VIN. Then enter them "
 "to the form below"
 msgstr ""
-"5. Anota los identificadores ID de unidad, ID de TCU, ID de SIM y VIN. Luego, ingrésalos en el formulario a continuación"
+"5. Anota los identificadores ID de unidad, ID de TCU, ID de SIM y VIN. "
+"Luego, ingrésalos en el formulario a continuación"
 
 #: ui/templates/ui/setup/step3.html:29
 msgid "Back to basics"
@@ -891,7 +1000,9 @@ msgid ""
 "server. To deliver the SMS, you have several options regarding which service "
 "will be used for this task."
 msgstr ""
-"El TCU de LEAF espera recibir un comando SMS para establecer la conexión con el servidor. Para enviar el SMS, tienes varias opciones sobre qué servicio se usará para esta tarea."
+"El TCU de LEAF espera recibir un comando SMS para establecer la conexión con "
+"el servidor. Para enviar el SMS, tienes varias opciones sobre qué servicio "
+"se usará para esta tarea."
 
 #: ui/templates/ui/setup/step4.html:30
 msgid "We recommend using"
@@ -906,7 +1017,8 @@ msgid ""
 "in your TCU, because it offers free SMS messages to the device. Other "
 "services may require cost per SMS."
 msgstr ""
-"en tu TCU, porque ofrece mensajes SMS gratuitos al dispositivo. Otros servicios pueden requerir un costo por SMS."
+"en tu TCU, porque ofrece mensajes SMS gratuitos al dispositivo. Otros "
+"servicios pueden requerir un costo por SMS."
 
 #: ui/templates/ui/setup/step5.html:8
 msgid "All done!"
@@ -917,14 +1029,16 @@ msgid ""
 "You're done with providing necessary information to establish connection "
 "with your LEAF."
 msgstr ""
-"Has terminado de proporcionar la información necesaria para establecer la conexión con tu LEAF."
+"Has terminado de proporcionar la información necesaria para establecer la "
+"conexión con tu LEAF."
 
 #: ui/templates/ui/setup/step5.html:9
 msgid ""
 "You may sign in with your username and CARWINGS password in navigation unit "
 "like showed below."
 msgstr ""
-"Puedes iniciar sesión con tu nombre de usuario y contraseña de CARWINGS en la unidad de navegación como se muestra a continuación."
+"Puedes iniciar sesión con tu nombre de usuario y contraseña de CARWINGS en "
+"la unidad de navegación como se muestra a continuación."
 
 #: ui/templates/ui/setup/step5.html:31
 msgid "Finish"

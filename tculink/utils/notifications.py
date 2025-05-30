@@ -6,6 +6,7 @@ from asgiref.sync import sync_to_async
 from django.conf import settings
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
+from django.utils import translation
 from pyfcm import FCMNotification
 
 from api.models import TokenMetadata
@@ -36,14 +37,18 @@ def get_push_tokens(user):
     for token in tokens:
         if (token.device_type == 'apple' and len(token.push_notification_key) > 20
                 and token.push_notification_key not in apns_tokens):
-            apns_tokens.append(token.push_notification_key)
+            apns_tokens.append([token.push_notification_key, token.lang])
         if (token.device_type == 'fcm' and len(token.push_notification_key) > 20
                 and token.push_notification_key not in fcm_tokens):
-            fcm_tokens.append(token.push_notification_key)
+            fcm_tokens.append([token.push_notification_key, token.lang])
     return {
         "apns": apns_tokens,
         "fcm": fcm_tokens
     }
+
+def translate_msg(lang, msg):
+    with translation.override(lang):
+        return translation.gettext(msg)
 
 async def send_vehicle_alert_notification(car, alert_message, subject):
     car_owner = await get_car_owner_info(car)
@@ -109,13 +114,13 @@ async def send_push_notification_for_user(car, car_owner, message, subject):
         for apns_token in tokens["apns"]:
             try:
                 request = NotificationRequest(
-                    device_token=apns_token,
+                    device_token=apns_token[0],
                     message={
                         "aps": {
                             "alert": {
-                                "title": subject,
+                                "title": translate_msg(apns_token[1], subject),
                                 "subtitle": car.nickname,
-                                "body": message,
+                                "body": translate_msg(apns_token[1], message),
                             },
                             "sound": "default"
                         }
@@ -131,8 +136,8 @@ async def send_push_notification_for_user(car, car_owner, message, subject):
     if fcm_client is not None:
         for fcm_token in tokens["fcm"]:
             try:
-                result = fcm_client.notify(fcm_token=fcm_token, notification_title= f"{car.nickname}: {subject}",
-                                    notification_body=message)
+                result = fcm_client.notify(fcm_token=fcm_token[0], notification_title= f"{car.nickname}: {translate_msg(fcm_token[1], subject)}",
+                                    notification_body=translate_msg(fcm_token[1], message))
                 print(result)
             except Exception as e:
                 print("Failed to send FCM notification:", e)

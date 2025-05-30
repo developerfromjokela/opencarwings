@@ -582,7 +582,7 @@
                 if (data.status) {
                     window.location.href = "/"
                 } else if (data.error) {
-                    throw new Error(data.error);
+                    showNotification({title: '{% translate "Error sending command" %}', message: data.error ?? data, type: 'error'});
                 }
             })
             .catch(error => {
@@ -748,7 +748,7 @@
             .then(response => response.json())
             .then(data => {
                 if (data.error) {
-                    throw new Error(data.error);
+                    showNotification({title: '{% translate "Error sending command" %}', message: data.error ?? data, type: 'error'})
                 }
             })
             .catch(error => {

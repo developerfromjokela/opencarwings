@@ -18,7 +18,6 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.views import PasswordResetView
 from django.contrib.messages.views import SuccessMessageMixin
-from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 
 
@@ -53,7 +52,7 @@ for provider_id, provider in django.conf.settings.SMS_PROVIDERS.items():
 
 class ChangePasswordView(PasswordChangeView):
     form_class = PasswordChangeForm
-    success_url = reverse_lazy('settings')
+    success_url = '/account'
     template_name = 'ui/change_password.html'
 
 
@@ -65,7 +64,7 @@ class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
                       "if an account exists with the email you entered. You should receive them shortly." \
                       " If you don't receive an email, " \
                       "please make sure you've entered the address you registered with, and check your spam folder."
-    success_url = reverse_lazy('signin')
+    success_url = '/signin'
 
 
 def account(request):

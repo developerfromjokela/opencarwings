@@ -39,11 +39,11 @@
         <form method="post" class="mt-5">
             {% csrf_token %}
             <label class="block text-gray-700">Unit ID</label>
-            <input type="text" placeholder="xxxx-xxxxxxxx" maxlength="14" name="unit_id" class="w-full p-2 border rounded mt-1" required>
+            <input type="text" placeholder="xxxx-xxxxxxxx" maxlength="32" name="unit_id" class="w-full p-2 border rounded mt-1" required>
             <label class="block text-gray-700 mt-1 ">TCU ID</label>
-            <input type="text" placeholder="xxxx-xxxxxxxx" maxlength="14" name="tcu_id" class="w-full p-2 border rounded mt-1" required>
+            <input type="text" placeholder="xxxx-xxxxxxxx" maxlength="32" name="tcu_id" class="w-full p-2 border rounded mt-1" required>
             <label class="block text-gray-700 mt-1 ">SIM ID</label>
-            <input type="text" placeholder="xxxxxxxxxxxxxxxxxxxxxx"  maxlength="22" name="sim_id" class="w-full p-2 border rounded mt-1" required>
+            <input type="text" placeholder="xxxxxxxxxxxxxxxxxxxxxx"  maxlength="32" name="sim_id" class="w-full p-2 border rounded mt-1" required>
             <label class="block text-gray-700 mt-1">VIN</label>
             <input type="text" placeholder="xxxxxxxxxxxxxxxxx" maxlength="17" name="vin" class="w-full p-2 border rounded mt-1" required>
             <div class="mt-12 w-full flex flex-row align-end items-end justify-end gap-4">

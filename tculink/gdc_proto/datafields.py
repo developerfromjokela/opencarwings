@@ -53,7 +53,7 @@ def parse_tcu_info(packet):
         "tcu_id": veh_ids[23:35].decode('ascii').rstrip('\x00').strip(),
         "msn": veh_ids[36:51].decode('ascii').rstrip('\x00').strip(),
         "unit_id": veh_ids[52:64].decode('ascii').rstrip('\x00').strip(),
-        "iccid": veh_ids[65:84].decode('ascii').rstrip('\x00').strip(),
+        "iccid": veh_ids[65:85].decode('ascii').rstrip('\x00').strip(),
         "sw_version": veh_ids[86:95].decode('ascii').rstrip('\x00').strip()
     }
 

@@ -1,5 +1,5 @@
 # OpenCARWINGS
-![GitHub Sponsor](https://img.shields.io/github/sponsors/developerfromjokela?label=Sponsor&logo=GitHub)
+[![](https://img.shields.io/github/sponsors/developerfromjokela?label=Sponsor&logo=GitHub)](https://github.com/sponsors/developerfromjokela)
 
 Server for running CARWINGS services for Nissan LEAF.
 

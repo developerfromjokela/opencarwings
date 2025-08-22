@@ -1076,7 +1076,7 @@ msgstr "Kirjaudu"
 
 #: ui/templates/ui/vflash_editor.html:9
 msgid "VFlash Connection Profile Editor"
-msgstr "VFlash Yhteysprofiilien muokkaustyöjalu"
+msgstr "VFlash Yhteysprofiilien muokkaustyökalu"
 
 #: ui/templates/ui/vflash_editor.html:10
 msgid "Choose or drag&drop vflash dump to get started"

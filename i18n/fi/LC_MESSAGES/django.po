@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-30 12:11+0000\n"
+"POT-Creation-Date: 2025-08-22 10:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -116,11 +116,11 @@ msgstr "Odotetaan vastausta"
 msgid "Park"
 msgstr "Pysäköity"
 
-#: db/models.py:46 ui/templates/ui/car_detail.html:671
+#: db/models.py:46 ui/templates/ui/car_detail.html:673
 msgid "Drive"
 msgstr "Ajovaihde"
 
-#: db/models.py:47 ui/templates/ui/car_detail.html:671
+#: db/models.py:47 ui/templates/ui/car_detail.html:673
 msgid "Reverse"
 msgstr "Peruutusvaihde"
 
@@ -457,6 +457,14 @@ msgstr "Kirjaudu"
 msgid "Project"
 msgstr "projekti"
 
+#: ui/templates/ui/base.html:63
+msgid "Tools"
+msgstr "Työkalut"
+
+#: ui/templates/ui/base.html:64 ui/templates/ui/vflash_editor.html:5
+msgid "VFlash Editor"
+msgstr "VFlash-muokkaustyökalu"
+
 #: ui/templates/ui/car_detail.html:12
 msgid "Back to cars"
 msgstr "Palaa etusivulle"
@@ -536,31 +544,31 @@ msgid "Car status"
 msgstr "Auton tila"
 
 #: ui/templates/ui/car_detail.html:157 ui/templates/ui/car_detail.html:159
-#: ui/templates/ui/car_detail.html:612 ui/templates/ui/car_detail.html:614
-#: ui/templates/ui/car_detail.html:628
+#: ui/templates/ui/car_detail.html:614 ui/templates/ui/car_detail.html:616
+#: ui/templates/ui/car_detail.html:630
 msgid "On"
 msgstr "Päällä"
 
-#: ui/templates/ui/car_detail.html:157 ui/templates/ui/car_detail.html:612
-#: ui/templates/ui/car_detail.html:671
+#: ui/templates/ui/car_detail.html:157 ui/templates/ui/car_detail.html:614
+#: ui/templates/ui/car_detail.html:673
 msgid "Parked"
 msgstr "Pysäköity"
 
-#: ui/templates/ui/car_detail.html:159 ui/templates/ui/car_detail.html:614
+#: ui/templates/ui/car_detail.html:159 ui/templates/ui/car_detail.html:616
 msgid "Driving"
 msgstr "Ajossa"
 
-#: ui/templates/ui/car_detail.html:163 ui/templates/ui/car_detail.html:618
+#: ui/templates/ui/car_detail.html:163 ui/templates/ui/car_detail.html:620
 msgid "Charging finished"
 msgstr "Lataus valmis"
 
 #: ui/templates/ui/car_detail.html:165 ui/templates/ui/car_detail.html:238
-#: ui/templates/ui/car_detail.html:620
+#: ui/templates/ui/car_detail.html:622
 msgid "Charging"
 msgstr "Ladataan"
 
-#: ui/templates/ui/car_detail.html:167 ui/templates/ui/car_detail.html:622
-#: ui/templates/ui/car_detail.html:628
+#: ui/templates/ui/car_detail.html:167 ui/templates/ui/car_detail.html:624
+#: ui/templates/ui/car_detail.html:630
 msgid "Off"
 msgstr "Pois päältä"
 
@@ -752,36 +760,37 @@ msgstr "SMS-palvelu"
 msgid "Remove car"
 msgstr "Poista auto"
 
-#: ui/templates/ui/car_detail.html:587 ui/templates/ui/car_detail.html:588
-#: ui/templates/ui/car_detail.html:751 ui/templates/ui/car_detail.html:752
+#: ui/templates/ui/car_detail.html:585 ui/templates/ui/car_detail.html:589
+#: ui/templates/ui/car_detail.html:590 ui/templates/ui/car_detail.html:751
+#: ui/templates/ui/car_detail.html:755 ui/templates/ui/car_detail.html:756
 msgid "Error sending command"
 msgstr "Komennon lähetys epäonnistui"
 
-#: ui/templates/ui/car_detail.html:607
+#: ui/templates/ui/car_detail.html:609
 msgid "Plugged In"
 msgstr "Liitetty"
 
-#: ui/templates/ui/car_detail.html:607
+#: ui/templates/ui/car_detail.html:609
 msgid "Unplugged"
 msgstr "Ei liitettynä"
 
-#: ui/templates/ui/car_detail.html:655 ui/templates/ui/car_detail.html:656
-#: ui/templates/ui/car_detail.html:657 ui/templates/ui/car_detail.html:666
-#: ui/templates/ui/car_detail.html:672 ui/templates/ui/car_detail.html:677
+#: ui/templates/ui/car_detail.html:657 ui/templates/ui/car_detail.html:658
+#: ui/templates/ui/car_detail.html:659 ui/templates/ui/car_detail.html:668
+#: ui/templates/ui/car_detail.html:674 ui/templates/ui/car_detail.html:679
 msgid "Yes"
 msgstr "Kyllä"
 
-#: ui/templates/ui/car_detail.html:655 ui/templates/ui/car_detail.html:656
-#: ui/templates/ui/car_detail.html:657 ui/templates/ui/car_detail.html:666
-#: ui/templates/ui/car_detail.html:672 ui/templates/ui/car_detail.html:677
+#: ui/templates/ui/car_detail.html:657 ui/templates/ui/car_detail.html:658
+#: ui/templates/ui/car_detail.html:659 ui/templates/ui/car_detail.html:668
+#: ui/templates/ui/car_detail.html:674 ui/templates/ui/car_detail.html:679
 msgid "No"
 msgstr "Ei"
 
-#: ui/templates/ui/car_detail.html:771
+#: ui/templates/ui/car_detail.html:775
 msgid "Connection established!"
 msgstr "Yhdistetty!"
 
-#: ui/templates/ui/car_detail.html:776
+#: ui/templates/ui/car_detail.html:780
 msgid "Reconnecting..."
 msgstr "Yhdistetään uudelleen..."
 
@@ -1065,65 +1074,84 @@ msgstr "Onko sinulla jo tili?"
 msgid "Sign in"
 msgstr "Kirjaudu"
 
-#: ui/views.py:26
+#: ui/templates/ui/vflash_editor.html:9
+msgid "VFlash Connection Profile Editor"
+msgstr "VFlash Yhteysprofiilien muokkaustyöjalu"
+
+#: ui/templates/ui/vflash_editor.html:10
+msgid "Choose or drag&drop vflash dump to get started"
+msgstr "Valitse tai raahaa VFlash-otos"
+
+#: ui/templates/ui/vflash_editor.html:28
+msgid "Add New Connection Profile"
+msgstr "Lisää uusi yhteysprofiili"
+
+#: ui/templates/ui/vflash_editor.html:30
+msgid "Export VFlash"
+msgstr "Tallenna VFlash"
+
+#: ui/views.py:25
 msgid "TCU setup"
 msgstr "TCU:n valmistelu"
 
-#: ui/views.py:27
+#: ui/views.py:26
 msgid "TCU identifiers"
 msgstr "TCU-tiedot"
 
-#: ui/views.py:28
+#: ui/views.py:27
 msgid "Basic information"
 msgstr "Perustiedot"
 
-#: ui/views.py:29
+#: ui/views.py:28
 msgid "SMS configuration"
 msgstr "SMS-asetukset"
 
-#: ui/views.py:30
+#: ui/views.py:29
 msgid "Car added"
 msgstr "Kaikki valmista!"
 
-#: ui/views.py:84
+#: ui/views.py:83
 msgid "Account successfully updated!"
 msgstr "Tilitiedot päivitetty!"
 
-#: ui/views.py:87
+#: ui/views.py:86
 msgid "Please fill the form correctly and try again."
 msgstr "Täytä lomake oikein ja yritä uudelleen."
 
-#: ui/views.py:173
+#: ui/views.py:174
 msgid "Successfully saved settings."
 msgstr "Asetukset päivitetty!"
 
-#: ui/views.py:175 ui/views.py:289 ui/views.py:310
+#: ui/views.py:176 ui/views.py:290 ui/views.py:311
 msgid "Please fill the form correctly"
 msgstr "Täytäthän lomakkeen oikein"
 
-#: ui/views.py:178 ui/views.py:345
+#: ui/views.py:179 ui/views.py:346
 msgid "Please fill all necessary fields and try again."
 msgstr "Täytäthän kaikki kentät ja yritä uudelleen."
 
-#: ui/views.py:182
+#: ui/views.py:183
 msgid "Waiting for first connection.."
 msgstr "Odotetaan ensimmäistä yhteyttä.."
 
-#: ui/views.py:207
+#: ui/views.py:208
 msgid "Sign-up is not enabled on this instance"
 msgstr "Tällä instanssilla ei sallita tilien luomista."
 
-#: ui/views.py:236
+#: ui/views.py:237
 msgid "Invalid username or password."
 msgstr "Virheellinen käyttäjänimi tai salasana."
 
-#: ui/views.py:276
+#: ui/views.py:277
 msgid "Car is already added. Please remove and try again."
 msgstr "Auto on jo lisätty. Poista auto ja yritä uudelleen."
 
-#: ui/views.py:326
+#: ui/views.py:327
 msgid "Please select a provider for SMS."
 msgstr "Ole hyvä ja valitse SMS-palvelun tarjoaja."
+
+#~ msgid "VFlash editor"
+#~ msgstr "VFlash-muokkaustyökalu"
 
 #~ msgid "GIDs remaining (relative)"
 #~ msgstr "Jäljellä olevat GID:t (relatiivi)"

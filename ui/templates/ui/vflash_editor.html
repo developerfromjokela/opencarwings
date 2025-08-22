@@ -1,0 +1,685 @@
+{% extends 'ui/base.html'%}
+{% load math_filters %}
+{% load i18n %}
+{% load static %}
+{% block title %} {% translate "VFlash Editor" %} {% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto py-10 px-4">
+      <h1 class="text-3xl font-semibold text-gray-800 mb-6">{%translate "VFlash Connection Profile Editor" %}</h1>
+      <span>{%translate "Choose or drag&drop vflash dump to get started" %} (vflash_xxxxxxxx_xxxxxxxx.bin)</span>
+      <input type="file" id="fileInput" accept=".bin" class="mb-4 w-full p-2 border rounded">
+      <div id="errorMessage" class="mt-2 text-red-500 hidden"></div>
+      <div class="mb-4">
+          <label class="block text-sm font-medium text-gray-700">Profile version number</label>
+          <input type="text" class="mt-1 block w-full p-2 border rounded disabled bg-gray-200" id="profile_vernum" disabled/>
+          <label class="block text-sm font-medium text-gray-700">Profile code</label>
+          <input type="text" class="mt-1 block w-full p-2 border rounded disabled bg-gray-200" id="profile_code" disabled/>
+          <hr/>
+          <label class="block text-sm font-medium text-gray-700">oprtr_single_tel</label>
+          <input type="text" class="mt-1 block w-full p-2 border rounded" maxlength="36" id="oprtr_single_tel" />
+          <label class="block text-sm font-medium text-gray-700">oprtr_single_tel_dtmf</label>
+          <input type="text" class="mt-1 block w-full p-2 border rounded" maxlength="36" id="oprtr_single_tel_dtmf" />
+          <label class="block text-sm font-medium text-gray-700">oprtr_multi_tel</label>
+          <input type="text" class="mt-1 block w-full p-2 border rounded" maxlength="36" id="oprtr_multi_tel" />
+          <label class="block text-sm font-medium text-gray-700">crd_datum_type</label>
+          <input type="text" class="mt-1 block w-full p-2 border rounded" maxlength="36" id="crd_datum_type" placeholder="wgs84 or tokyo"/>
+      </div>
+      <button id="addRowButton" class="mb-4 w-full bg-green-500 text-white py-2 rounded hover:bg-green-600 disabled:bg-gray-400" disabled>{% translate "Add New Connection Profile" %}</button>
+      <div id="profileContainer" class="space-y-6"></div>
+      <button id="exportButton" class="mt-4 w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 disabled:bg-gray-400" disabled>{% translate "Export VFlash" %}</button>
+</div>
+
+<script>
+    // Data structure definition for one connection profile
+    const fields = [
+        { offset: 0x098, size: 0x10, name: 'num', type: 'ascii', required: true },
+        { offset: 0x0a8, size: 0x34, name: 'name', type: 'string', required: true },
+        { offset: 0x0dc, size: 0x04, name: 'if_16', type: 'boolean', required: true },
+        { offset: 0x0e0, size: 0x04, name: 'if_18', type: 'boolean', required: true },
+        { offset: 0x0e4, size: 0x04, name: 'if_18usb', type: 'boolean', required: true },
+        { offset: 0x0e8, size: 0x04, name: 'if_usb', type: 'boolean', required: true },
+        { offset: 0x0ec, size: 0x04, name: 'if_bt', type: 'boolean', required: true },
+        { offset: 0x0f0, size: 0x0c, name: 'mult_func', type: 'mult_func' },
+        { offset: 0x0fc, size: 0x10, name: 'detec_code', type: 'string' },
+        { offset: 0x110, size: 0x08, name: 'logic [cws]', type: 'string' },
+        { offset: 0x118, size: 0x24, name: 'tel [cws]', type: 'string' },
+        { offset: 0x13c, size: 0x34, name: 'apn [cws]', type: 'string' },
+        { offset: 0x170, size: 0x24, name: 'usr [cws]', type: 'string' },
+        { offset: 0x194, size: 0x24, name: 'psswrd [cws]', type: 'string' },
+        { offset: 0x1b8, size: 0x10, name: 'dns1 [cws]', type: 'string' },
+        { offset: 0x1c8, size: 0x10, name: 'dns2 [cws]', type: 'string' },
+        { offset: 0x1d8, size: 0x84, name: 'url [cws]', type: 'string' },
+        { offset: 0x25c, size: 0x84, name: 'prxy_add [cws]', type: 'string' },
+        { offset: 0x2e0, size: 0x08, name: 'prxy_port [cws]', type: 'string' },
+        { offset: 0x2e8, size: 0x04, name: 'pdp [cws]', type: 'string' },
+        { offset: 0x2f0, size: 0x08, name: 'logic [ins]', type: 'string' },
+        { offset: 0x2f8, size: 0x24, name: 'tel [ins]', type: 'string' },
+        { offset: 0x31c, size: 0x34, name: 'apn [ins]', type: 'string' },
+        { offset: 0x350, size: 0x24, name: 'usr [ins]', type: 'string' },
+        { offset: 0x374, size: 0x24, name: 'psswrd [ins]', type: 'string' },
+        { offset: 0x398, size: 0x10, name: 'dns1 [ins]', type: 'string' },
+        { offset: 0x3a8, size: 0x10, name: 'dns2 [ins]', type: 'string' },
+        { offset: 0x3b8, size: 0x84, name: 'url [ins]', type: 'string' },
+        { offset: 0x43c, size: 0x84, name: 'prxy_add [ins]', type: 'string' },
+        { offset: 0x4c0, size: 0x08, name: 'prxy_port [ins]', type: 'string' },
+        { offset: 0x4c8, size: 0x04, name: 'pdp [ins]', type: 'string' }
+    ];
+
+    const vFlashConnBlocks = {
+        18: {"block": 10, "size": 16400, "start": 803440, "end": 819840},
+        14: {"block": 9, "size": 16360, "start": 1297328, "end": 1313688}
+    }
+
+    const MAX_ROWS = 0xf; // Maximum 15 profiles
+    const ROW_STRIDE = 0x438; // Stride between profiles
+    const ROW_START = 0x098; // Start of first profile
+    const ROW_END = 0x4cc; // End of last field in a profile
+    const ROW_SIZE = ROW_END - ROW_START; // Size of one profile's data
+    const TOTAL_FILE_SIZE = 0x3fe0; // Fixed output file size (16,320 bytes)
+    const HEADER_SIZE = 0x98; // Size of header to preserve
+
+    const fileInput = document.getElementById('fileInput');
+    const profileContainer = document.getElementById('profileContainer');
+    const exportButton = document.getElementById('exportButton');
+    const addRowButton = document.getElementById('addRowButton');
+    const errorMessage = document.getElementById('errorMessage');
+
+    // profile constants
+
+    const profile_vercode = document.getElementById('profile_vernum');
+    const profile_code = document.getElementById('profile_code');
+    const oprtr_single_tel = document.getElementById('oprtr_single_tel');
+    const oprtr_single_tel_dtmf = document.getElementById('oprtr_single_tel_dtmf');
+    const oprtr_multi_tel = document.getElementById('oprtr_multi_tel');
+    const coords = document.getElementById('crd_datum_type');
+
+    let binaryData = null;
+    let vflashBinaryData = null;
+    let validRows = [];
+    let vFlashVersion = null;
+
+    function bytesToStringTrimmed(data, size) {
+        const nullIndex = data.indexOf(0);
+        return new TextDecoder().decode(data.slice(0, nullIndex >= 0 ? nullIndex : size)).trim();
+    }
+
+    function toHexString(byteArray) {
+        return Array.from(byteArray, function(byte) {
+            return ('0' + (byte & 0xFF).toString(16)).slice(-2);
+        }).join('')
+    }
+
+    const crcTable = new Uint32Array([
+        0x00000000, 0x77073096,  0xEE0E612C, 0x990951BA,   0x076DC419, 0x706AF48F,  0xE963A535, 0x9E6495A3,
+        0x0EDB8832, 0x79DCB8A4,  0xE0D5E91E, 0x97D2D988,   0x09B64C2B, 0x7EB17CBD,  0xE7B82D07, 0x90BF1D91,
+        0x1DB71064, 0x6AB020F2,  0xF3B97148, 0x84BE41DE,   0x1ADAD47D, 0x6DDDE4EB,  0xF4D4B551, 0x83D385C7,
+        0x136C9856, 0x646BA8C0,  0xFD62F97A, 0x8A65C9EC,   0x14015C4F, 0x63066CD9,  0xFA0F3D63, 0x8D080DF5,
+        0x3B6E20C8, 0x4C69105E,  0xD56041E4, 0xA2677172,   0x3C03E4D1, 0x4B04D447,  0xD20D85FD, 0xA50AB56B,
+        0x35B5A8FA, 0x42B2986C,  0xDBBBC9D6, 0xACBCF940,   0x32D86CE3, 0x45DF5C75,  0xDCD60DCF, 0xABD13D59,
+        0x26D930AC, 0x51DE003A,  0xC8D75180, 0xBFD06116,   0x21B4F4B5, 0x56B3C423,  0xCFBA9599, 0xB8BDA50F,
+        0x2802B89E, 0x5F058808,  0xC60CD9B2, 0xB10BE924,   0x2F6F7C87, 0x58684C11,  0xC1611DAB, 0xB6662D3D,
+        0x76DC4190, 0x01DB7106,  0x98D220BC, 0xEFD5102A,   0x71B18589, 0x06B6B51F,  0x9FBFE4A5, 0xE8B8D433,
+        0x7807C9A2, 0x0F00F934,  0x9609A88E, 0xE10E9818,   0x7F6A0DBB, 0x086D3D2D,  0x91646C97, 0xE6635C01,
+        0x6B6B51F4, 0x1C6C6162,  0x856530D8, 0xF262004E,   0x6C0695ED, 0x1B01A57B,  0x8208F4C1, 0xF50FC457,
+        0x65B0D9C6, 0x12B7E950,  0x8BBEB8EA, 0xFCB9887C,   0x62DD1DDF, 0x15DA2D49,  0x8CD37CF3, 0xFBD44C65,
+        0x4DB26158, 0x3AB551CE,  0xA3BC0074, 0xD4BB30E2,   0x4ADFA541, 0x3DD895D7,  0xA4D1C46D, 0xD3D6F4FB,
+        0x4369E96A, 0x346ED9FC,  0xAD678846, 0xDA60B8D0,   0x44042D73, 0x33031DE5,  0xAA0A4C5F, 0xDD0D7CC9,
+        0x5005713C, 0x270241AA,  0xBE0B1010, 0xC90C2086,   0x5768B525, 0x206F85B3,  0xB966D409, 0xCE61E49F,
+        0x5EDEF90E, 0x29D9C998,  0xB0D09822, 0xC7D7A8B4,   0x59B33D17, 0x2EB40D81,  0xB7BD5C3B, 0xC0BA6CAD,
+        0xEDB88320, 0x9ABFB3B6,  0x03B6E20C, 0x74B1D29A,   0xEAD54739, 0x9DD277AF,  0x04DB2615, 0x73DC1683,
+        0xE3630B12, 0x94643B84,  0x0D6D6A3E, 0x7A6A5AA8,   0xE40ECF0B, 0x9309FF9D,  0x0A00AE27, 0x7D079EB1,
+        0xF00F9344, 0x8708A3D2,  0x1E01F268, 0x6906C2FE,   0xF762575D, 0x806567CB,  0x196C3671, 0x6E6B06E7,
+        0xFED41B76, 0x89D32BE0,  0x10DA7A5A, 0x67DD4ACC,   0xF9B9DF6F, 0x8EBEEFF9,  0x17B7BE43, 0x60B08ED5,
+        0xD6D6A3E8, 0xA1D1937E,  0x38D8C2C4, 0x4FDFF252,   0xD1BB67F1, 0xA6BC5767,  0x3FB506DD, 0x48B2364B,
+        0xD80D2BDA, 0xAF0A1B4C,  0x36034AF6, 0x41047A60,   0xDF60EFC3, 0xA867DF55,  0x316E8EEF, 0x4669BE79,
+        0xCB61B38C, 0xBC66831A,  0x256FD2A0, 0x5268E236,   0xCC0C7795, 0xBB0B4703,  0x220216B9, 0x5505262F,
+        0xC5BA3BBE, 0xB2BD0B28,  0x2BB45A92, 0x5CB36A04,   0xC2D7FFA7, 0xB5D0CF31,  0x2CD99E8B, 0x5BDEAE1D,
+        0x9B64C2B0, 0xEC63F226,  0x756AA39C, 0x026D930A,   0x9C0906A9, 0xEB0E363F,  0x72076785, 0x05005713,
+        0x95BF4A82, 0xE2B87A14,  0x7BB12BAE, 0x0CB61B38,   0x92D28E9B, 0xE5D5BE0D,  0x7CDCEFB7, 0x0BDBDF21,
+        0x86D3D2D4, 0xF1D4E242,  0x68DDB3F8, 0x1FDA836E,   0x81BE16CD, 0xF6B9265B,  0x6FB077E1, 0x18B74777,
+        0x88085AE6, 0xFF0F6A70,  0x66063BCA, 0x11010B5C,   0x8F659EFF, 0xF862AE69,  0x616BFFD3, 0x166CCF45,
+        0xA00AE278, 0xD70DD2EE,  0x4E048354, 0x3903B3C2,   0xA7672661, 0xD06016F7,  0x4969474D, 0x3E6E77DB,
+        0xAED16A4A, 0xD9D65ADC,  0x40DF0B66, 0x37D83BF0,   0xA9BCAE53, 0xDEBB9EC5,  0x47B2CF7F, 0x30B5FFE9,
+        0xBDBDF21C, 0xCABAC28A,  0x53B39330, 0x24B4A3A6,   0xBAD03605, 0xCDD70693,  0x54DE5729, 0x23D967BF,
+        0xB3667A2E, 0xC4614AB8,  0x5D681B02, 0x2A6F2B94,   0xB40BBE37, 0xC30C8EA1,  0x5A05DF1B, 0x2D02EF8D
+    ]);
+
+    function crc32(buffer) {
+        // Calculate CRC-32 using provided table
+        let crc = 0xFFFFFFFF;
+        const bytes = new Uint8Array(buffer);
+        for (let byte of bytes) {
+            crc = (crc >>> 8) ^ crcTable[(crc ^ byte) & 0xFF];
+        }
+        return (crc ^ 0xFFFFFFFF) >>> 0; // Unsigned 32-bit
+    }
+
+    function calculateChecksum(buffer) {
+        // Calculate CRC-32 checksum
+        const checksum = crc32(buffer);
+
+        // Convert to 4-byte little-endian buffer
+        const checksumBuffer = new ArrayBuffer(4);
+        const view = new DataView(checksumBuffer);
+        view.setUint32(0, checksum, true); // true for little-endian
+
+        // Convert to hex string
+        const hex = Array.from(new Uint8Array(checksumBuffer))
+            .map(b => b.toString(16).padStart(2, '0'))
+            .join('');
+
+        return { buffer: checksumBuffer, hex: hex };
+    }
+
+    function compareChecksums(inputBuffer, checksumBuffer) {
+        const result = calculateChecksum(inputBuffer);
+        console.log("Calculated checksum:", result.hex);
+        console.log("Provided checksum:", Array.from(new Uint8Array(checksumBuffer))
+            .map(b => b.toString(16).padStart(2, '0'))
+            .join(''));
+
+        // Compare buffers
+        const isEqual = Array.from(new Uint8Array(result.buffer))
+            .every((byte, i) => byte === new Uint8Array(checksumBuffer)[i]);
+        console.log("Checksums match:", isEqual);
+
+        return isEqual;
+    }
+
+    // Validate required fields for a profile
+    function validateProfile(inputs, rowIndex) {
+        const requiredFields = fields.filter(f => f.required);
+        for (const field of requiredFields) {
+            const input = inputs.find(i => parseInt(i.dataset.row) === rowIndex && i.dataset.type === field.type && i.dataset.offset == (validRows[rowIndex].offset + (field.offset - ROW_START)));
+            if (!input) return `Missing input for ${field.name} in Connection Profile ${validRows[rowIndex].num}`;
+            const value = input.value.trim();
+            if (field.name === 'num' || field.name === 'name') {
+                if (!value) return `${field.name} is required in Connection Profile ${validRows[rowIndex].num}`;
+            } else if (field.type === 'boolean') {
+                if (!['on', 'off'].includes(value)) return `${field.name} must be 'on' or 'off' in Connection Profile ${validRows[rowIndex].num}`;
+            }
+        }
+        return null;
+    }
+
+    // Update export button state
+    function updateExportButtonState() {
+        const inputs = profileContainer.querySelectorAll('input, select');
+        let allValid = validRows.length > 0 && binaryData;
+        for (let i = 0; i < validRows.length; i++) {
+            const error = validateProfile(Array.from(inputs), i);
+            if (error) {
+                allValid = false;
+                break;
+            }
+        }
+        exportButton.disabled = !allValid;
+        if (!allValid && validRows.length > 0) {
+            errorMessage.textContent = 'Please fill all required fields (num, name, if_*) correctly.';
+            errorMessage.classList.remove('hidden');
+        } else {
+            errorMessage.classList.add('hidden');
+        }
+        addRowButton.disabled = validRows.length >= MAX_ROWS || !binaryData;
+    }
+
+    // Read binary file
+    fileInput.addEventListener('change', async (event) => {
+        const file = event.target.files[0];
+        if (!file) {
+            console.error('No file selected');
+            errorMessage.textContent = 'No file selected';
+            errorMessage.classList.remove('hidden');
+            exportButton.disabled = true;
+            addRowButton.disabled = true;
+            return;
+        }
+
+        try {
+            vflashBinaryData = await file.arrayBuffer();
+
+            // Read block 0 and make sure it is valid
+            const vflashBlock0 = new Uint8Array(vflashBinaryData, 0, 772);
+            const vflashBlock0Checksum = new Uint8Array(vflashBinaryData, 772, 4);
+
+            vFlashVersion = vflashBlock0[768];
+            console.log(vFlashVersion);
+
+            if (vFlashVersion !== 18 && vFlashVersion !== 14) {
+                console.error(`VFlash version is not compatible! (${vFlashVersion})`);
+                errorMessage.textContent = `VFlash version is not compatible! (${vFlashVersion})`;
+                errorMessage.classList.remove('hidden');
+                exportButton.disabled = true;
+                addRowButton.disabled = true;
+                return
+            }
+
+            console.log(vflashBlock0, vflashBlock0Checksum);
+
+            if (!compareChecksums(vflashBlock0, vflashBlock0Checksum)) {
+                console.error('VFlash checksum is invalid!');
+                errorMessage.textContent = 'VFlash checksum is invalid!';
+                errorMessage.classList.remove('hidden');
+                exportButton.disabled = true;
+                addRowButton.disabled = true;
+                return;
+            }
+
+
+
+            binaryData = new ArrayBuffer(vFlashConnBlocks[vFlashVersion].size);
+            new Uint8Array(binaryData).set(new Uint8Array(vflashBinaryData, vFlashConnBlocks[vFlashVersion].start, vFlashConnBlocks[vFlashVersion].size));
+
+            if (!binaryData || binaryData.byteLength === 0) {
+                console.error('Failed to read file or file is empty');
+                errorMessage.textContent = 'Failed to read file or file is empty';
+                errorMessage.classList.remove('hidden');
+                exportButton.disabled = true;
+                addRowButton.disabled = true;
+                return;
+            }
+
+            // Ensure binaryData is at least 0x3fe0 bytes
+            if (binaryData.byteLength < TOTAL_FILE_SIZE) {
+                const newBuffer = new ArrayBuffer(TOTAL_FILE_SIZE);
+                new Uint8Array(newBuffer).fill(0);
+                new Uint8Array(newBuffer).set(new Uint8Array(binaryData), 0);
+                binaryData = newBuffer;
+            }
+
+            const view = new DataView(binaryData);
+            profileContainer.innerHTML = '';
+            validRows = [];
+
+            // profile constants
+
+            const profileHeader = new Uint8Array(binaryData, 0, 0x98)
+            console.log(profileHeader);
+            profile_vercode.value = '0x'+toHexString([profileHeader[0]]);
+            profile_code.value = '0x'+toHexString([profileHeader[6],profileHeader[7]]);
+            oprtr_single_tel.value = bytesToStringTrimmed(new Uint8Array(binaryData, 8, 0x24), 0x24);
+            oprtr_single_tel_dtmf.value = bytesToStringTrimmed(new Uint8Array(binaryData, 0x2C, 0x24), 0x24);
+            oprtr_multi_tel.value = bytesToStringTrimmed(new Uint8Array(binaryData, 0x50, 0x24), 0x24);
+            coords.value = bytesToStringTrimmed(new Uint8Array(binaryData, 0x74, 0x24), 0x24);
+
+            // Find valid rows based on non-empty num field, up to MAX_ROWS
+            let row = 0;
+            while (row < MAX_ROWS && row * ROW_STRIDE + ROW_START + ROW_SIZE <= binaryData.byteLength) {
+                const rowOffset = ROW_START + row * ROW_STRIDE;
+                const numBytes = new Uint8Array(binaryData, rowOffset, 0x10);
+                const numValue = new TextDecoder().decode(numBytes).trim();
+                if (numValue && numBytes.some(b => b !== 0)) {
+                    validRows.push({ offset: rowOffset, num: numValue });
+                    const profileDiv = document.createElement('div');
+                    profileDiv.className = 'border-t pt-4';
+                    profileDiv.dataset.rowIndex = validRows.length - 1;
+                    profileDiv.innerHTML = `
+              <div class="flex justify-between items-center mb-2">
+                <h2 class="text-lg font-semibold">Connection Profile ${numValue}</h2>
+                ${parseInt(numValue) > 1 ? `<button class="deleteButton bg-red-500 text-white py-1 px-2 rounded hover:bg-red-600" data-row="${validRows.length - 1}">Delete</button>` : ''}
+              </div>
+            `;
+                    const fieldsContainer = document.createElement('div');
+                    fieldsContainer.className = 'space-y-4';
+
+                    fields.forEach(field => {
+                        const fieldOffset = rowOffset + (field.offset - ROW_START);
+                        let value;
+                        if (field.type === 'string' || field.type === 'ascii' || field.type === 'boolean') {
+                            const bytes = new Uint8Array(binaryData, fieldOffset, field.size);
+                            value = bytesToStringTrimmed(bytes, field.size);
+                            if (field.type === 'boolean') {
+                                value = ['on', 'off'].includes(value) ? value : 'off';
+                            }
+                        } else if (field.type === 'mult_func') {
+                            const bytes = new Uint8Array(binaryData, fieldOffset, field.size);
+                            const str = bytesToStringTrimmed(bytes, field.size);
+                            value = ['on_multi', 'on_single', 'off'].includes(str) ? str : 'off';
+                        }
+
+                        const div = document.createElement('div');
+                        div.innerHTML = `
+                <label class="block text-sm font-medium text-gray-700">${field.name}${field.required ? ' *' : ''}</label>
+              `;
+                        if (field.type === 'boolean') {
+                            div.innerHTML += `
+                  <select
+                    data-row="${validRows.length - 1}"
+                    data-offset="${fieldOffset}"
+                    data-size="${field.size}"
+                    data-type="${field.type}"
+                    class="mt-1 block w-full p-2 border rounded"
+                  >
+                    <option value="off" ${value === 'off' ? 'selected' : ''}>off</option>
+                    <option value="on" ${value === 'on' ? 'selected' : ''}>on</option>
+                  </select>
+                `;
+                        } else if (field.type === 'mult_func') {
+                            div.innerHTML += `
+                  <select
+                    data-row="${validRows.length - 1}"
+                    data-offset="${fieldOffset}"
+                    data-size="${field.size}"
+                    data-type="${field.type}"
+                    class="mt-1 block w-full p-2 border rounded"
+                  >
+                    <option value="off" ${value === 'off' ? 'selected' : ''}>off</option>
+                    <option value="on_single" ${value === 'on_single' ? 'selected' : ''}>on_single</option>
+                    <option value="on_multi" ${value === 'on_multi' ? 'selected' : ''}>on_multi</option>
+                  </select>
+                `;
+                        } else {
+                            div.innerHTML += `
+                  <input
+                    type="text"
+                    data-row="${validRows.length - 1}"
+                    data-offset="${fieldOffset}"
+                    data-size="${field.size}"
+                    data-type="${field.type}"
+                    value="${value || ''}"
+                    class="mt-1 block w-full p-2 border rounded ${field.required ? 'required' : ''}"
+                  >
+                `;
+                        }
+                        fieldsContainer.appendChild(div);
+                    });
+
+                    profileDiv.appendChild(fieldsContainer);
+                    profileContainer.appendChild(profileDiv);
+                }
+                row++;
+            }
+
+            // Add input event listeners to validate in real-time
+            const inputs = profileContainer.querySelectorAll('input, select');
+            inputs.forEach(input => {
+                input.addEventListener('input', updateExportButtonState);
+            });
+
+            // Add delete button event listeners
+            const deleteButtons = profileContainer.querySelectorAll('.deleteButton');
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const rowIndex = parseInt(button.dataset.row);
+                    const row = validRows[rowIndex];
+                    if (!row || parseInt(row.num) <= 1) return;
+
+                    // Zero out the profile in binaryData (after header)
+                    const targetBytes = new Uint8Array(binaryData, row.offset, ROW_SIZE);
+                    targetBytes.fill(0);
+
+                    // Remove from validRows and UI
+                    validRows.splice(rowIndex, 1);
+                    const profileDiv = profileContainer.querySelector(`div[data-row-index="${rowIndex}"]`);
+                    if (profileDiv) profileDiv.remove();
+
+                    // Update row indices in remaining inputs
+                    const remainingInputs = profileContainer.querySelectorAll('input, select');
+                    remainingInputs.forEach(input => {
+                        const inputRow = parseInt(input.dataset.row);
+                        if (inputRow > rowIndex) {
+                            input.dataset.row = inputRow - 1;
+                        }
+                    });
+                    const remainingDivs = profileContainer.querySelectorAll('div[data-row-index]');
+                    remainingDivs.forEach(div => {
+                        const divRow = parseInt(div.dataset.rowIndex);
+                        if (divRow > rowIndex) {
+                            div.dataset.rowIndex = divRow - 1;
+                            const deleteButton = div.querySelector('.deleteButton');
+                            if (deleteButton) deleteButton.dataset.row = divRow - 1;
+                        }
+                    });
+
+                    updateExportButtonState();
+                });
+            });
+
+            updateExportButtonState();
+        } catch (error) {
+            console.error('Error reading file:', error);
+            errorMessage.textContent = 'Error reading file: ' + error.message;
+            errorMessage.classList.remove('hidden');
+            exportButton.disabled = true;
+            addRowButton.disabled = true;
+        }
+    });
+
+    // Add new connection profile
+    addRowButton.addEventListener('click', () => {
+        if (!binaryData || validRows.length >= MAX_ROWS) {
+            console.error('Cannot add new profile: no binary data or max rows reached');
+            errorMessage.textContent = 'Cannot add new profile: max profiles reached or no file loaded';
+            errorMessage.classList.remove('hidden');
+            return;
+        }
+
+        // Find the highest row number
+        const maxNum = validRows.length > 0 ? Math.max(...validRows.map(r => parseInt(r.num) || 0)) : 0;
+        const newNum = (maxNum + 1).toString();
+        const newRowOffset = ROW_START + validRows.length * ROW_STRIDE;
+
+        // Create new row data
+        const newRowData = new Uint8Array(ROW_SIZE).fill(0);
+        const newNumBytes = new TextEncoder().encode(newNum);
+        newRowData.set(newNumBytes, 0); // Set num field
+        const defaultNameBytes = new TextEncoder().encode('Default Profile');
+        newRowData.set(defaultNameBytes, 0x0a8 - ROW_START); // Set default name
+        const defaultOffBytes = new TextEncoder().encode('off');
+        fields.filter(f => f.type === 'boolean' && f.required).forEach(field => {
+            newRowData.set(defaultOffBytes, field.offset - ROW_START); // Set if_* to 'off'
+        });
+
+        // Add to validRows
+        validRows.push({ offset: newRowOffset, num: newNum });
+
+        // Update binary data size if necessary
+        const minSize = TOTAL_FILE_SIZE;
+        if (minSize > binaryData.byteLength) {
+            const newBuffer = new ArrayBuffer(minSize);
+            new Uint8Array(newBuffer).fill(0);
+            new Uint8Array(newBuffer).set(new Uint8Array(binaryData), 0);
+            binaryData = newBuffer;
+        }
+
+        // Update binaryData with new row (after header)
+        new Uint8Array(binaryData).set(newRowData, newRowOffset);
+
+        // Add new profile to UI
+        const profileDiv = document.createElement('div');
+        profileDiv.className = 'border-t pt-4';
+        profileDiv.dataset.rowIndex = validRows.length - 1;
+        profileDiv.innerHTML = `
+        <div class="flex justify-between items-center mb-2">
+          <h2 class="text-lg font-semibold">Connection Profile ${newNum}</h2>
+          ${parseInt(newNum) > 1 ? `<button class="deleteButton bg-red-500 text-white py-1 px-2 rounded hover:bg-red-600" data-row="${validRows.length - 1}">Delete</button>` : ''}
+        </div>
+      `;
+        const fieldsContainer = document.createElement('div');
+        fieldsContainer.className = 'space-y-4';
+
+        fields.forEach(field => {
+            const fieldOffset = newRowOffset + (field.offset - ROW_START);
+            const value = field.name === 'num' ? newNum : field.name === 'name' ? 'Default Profile' : (field.type === 'boolean' || field.type === 'mult_func' ? 'off' : '');
+            const div = document.createElement('div');
+            div.innerHTML = `
+          <label class="block text-sm font-medium text-gray-700">${field.name}${field.required ? ' *' : ''}</label>
+        `;
+            if (field.type === 'boolean') {
+                div.innerHTML += `
+            <select
+              data-row="${validRows.length - 1}"
+              data-offset="${fieldOffset}"
+              data-size="${field.size}"
+              data-type="${field.type}"
+              class="mt-1 block w-full p-2 border rounded"
+            >
+              <option value="off" selected>off</option>
+              <option value="on">on</option>
+            </select>
+          `;
+            } else if (field.type === 'mult_func') {
+                div.innerHTML += `
+            <select
+              data-row="${validRows.length - 1}"
+              data-offset="${fieldOffset}"
+              data-size="${field.size}"
+              data-type="${field.type}"
+              class="mt-1 block w-full p-2 border rounded"
+            >
+              <option value="off" selected>off</option>
+              <option value="on_single">on_single</option>
+              <option value="on_multi">on_multi</option>
+            </select>
+          `;
+            } else {
+                div.innerHTML += `
+            <input
+              type="text"
+              data-row="${validRows.length - 1}"
+              data-offset="${fieldOffset}"
+              data-size="${field.size}"
+              data-type="${field.type}"
+              value="${value}"
+              class="mt-1 block w-full p-2 border rounded ${field.required ? 'required' : ''}"
+            >
+          `;
+            }
+            fieldsContainer.appendChild(div);
+        });
+
+        profileDiv.appendChild(fieldsContainer);
+        profileContainer.appendChild(profileDiv);
+
+        // Add input event listeners to new inputs
+        const newInputs = profileDiv.querySelectorAll('input, select');
+        newInputs.forEach(input => {
+            input.addEventListener('input', updateExportButtonState);
+        });
+
+        // Add delete button event listener
+        const deleteButton = profileDiv.querySelector('.deleteButton');
+        if (deleteButton) {
+            deleteButton.addEventListener('click', () => {
+                const rowIndex = parseInt(deleteButton.dataset.row);
+                const row = validRows[rowIndex];
+                if (!row || parseInt(row.num) <= 1) return;
+
+                // Zero out the profile in binaryData (after header)
+                const targetBytes = new Uint8Array(binaryData, row.offset, ROW_SIZE);
+                targetBytes.fill(0);
+
+                // Remove from validRows and UI
+                validRows.splice(rowIndex, 1);
+                profileDiv.remove();
+
+                // Update row indices in remaining inputs
+                const remainingInputs = profileContainer.querySelectorAll('input, select');
+                remainingInputs.forEach(input => {
+                    const inputRow = parseInt(input.dataset.row);
+                    if (inputRow > rowIndex) {
+                        input.dataset.row = inputRow - 1;
+                    }
+                });
+                const remainingDivs = profileContainer.querySelectorAll('div[data-row-index]');
+                remainingDivs.forEach(div => {
+                    const divRow = parseInt(div.dataset.rowIndex);
+                    if (divRow > rowIndex) {
+                        div.dataset.rowIndex = divRow - 1;
+                        const deleteButton = div.querySelector('.deleteButton');
+                        if (deleteButton) deleteButton.dataset.row = divRow - 1;
+                    }
+                });
+
+                updateExportButtonState();
+            });
+        }
+
+        updateExportButtonState();
+    });
+
+    // Export to binary
+    exportButton.addEventListener('click', () => {
+        if (!binaryData || validRows.length === 0) {
+            console.error('No binary data or valid profiles to export');
+            errorMessage.textContent = 'No valid profiles to export';
+            errorMessage.classList.remove('hidden');
+            return;
+        }
+
+        // Validate all required fields
+        const inputs = profileContainer.querySelectorAll('input, select');
+        for (let i = 0; i < validRows.length; i++) {
+            const error = validateProfile(Array.from(inputs), i);
+            if (error) {
+                console.error(error);
+                errorMessage.textContent = error;
+                errorMessage.classList.remove('hidden');
+                return;
+            }
+        }
+
+        try {
+            // Create a fixed-size buffer of 0x3fe0 bytes
+            const newBuffer = new ArrayBuffer(TOTAL_FILE_SIZE);
+            new Uint8Array(newBuffer).fill(0); // Initialize with zeros
+
+            // Preserve the first 0x98 bytes from original binaryData
+            if (binaryData) {
+                new Uint8Array(newBuffer).set(new Uint8Array(binaryData).slice(0, HEADER_SIZE), 0);
+                [[oprtr_single_tel, 0x8], [oprtr_single_tel_dtmf, 0x2C], [oprtr_multi_tel, 0x50], [coords, 0x74]].forEach(i => {
+                    const encoder = new TextEncoder();
+                    const bytes = encoder.encode(i[0].value);
+                    const targetBytes = new Uint8Array(newBuffer, i[1], 0x24);
+                    targetBytes.fill(0); // Clear the field
+                    targetBytes.set(bytes.slice(0, 0x24 - 1));
+                })
+                // Copy remaining data (profile regions) from binaryData
+                new Uint8Array(newBuffer).set(new Uint8Array(binaryData).slice(HEADER_SIZE, Math.min(binaryData.byteLength, TOTAL_FILE_SIZE)), HEADER_SIZE);
+            }
+
+            // Update fields for valid rows only
+            inputs.forEach(input => {
+                const offset = parseInt(input.dataset.offset);
+                const size = parseInt(input.dataset.size);
+                const type = input.dataset.type;
+                const value = input.value || ''; // Treat empty inputs as empty string
+
+                if (type === 'string' || type === 'ascii' || type === 'boolean' || type === 'mult_func') {
+                    const encoder = new TextEncoder();
+                    const bytes = encoder.encode(value);
+                    const targetBytes = new Uint8Array(newBuffer, offset, size);
+                    targetBytes.fill(0); // Clear the field
+                    targetBytes.set(bytes.slice(0, size - 1)); // Leave room for null terminator
+                }
+            });
+
+            // Patch vFlash
+
+            new Uint8Array(vflashBinaryData).set(new Uint8Array(newBuffer), vFlashConnBlocks[vFlashVersion].start);
+            let freshData = new ArrayBuffer(vFlashConnBlocks[vFlashVersion].size-4);
+            new Uint8Array(freshData).set(new Uint8Array(vflashBinaryData, vFlashConnBlocks[vFlashVersion].start, vFlashConnBlocks[vFlashVersion].size-4));
+            console.log(freshData);
+            let newChecksum = calculateChecksum(freshData);
+            console.log("New checksum: " + newChecksum.hex);
+            new Uint8Array(vflashBinaryData).set(new Uint8Array(newChecksum.buffer), vFlashConnBlocks[vFlashVersion].start+vFlashConnBlocks[vFlashVersion].size-4);
+
+            // Download the file
+            const blob = new Blob([vflashBinaryData], { type: 'application/octet-stream' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = fileInput.files[0].name;
+            a.click();
+            URL.revokeObjectURL(url);
+            errorMessage.classList.add('hidden');
+        } catch (error) {
+            console.error('Error exporting file:', error);
+            errorMessage.textContent = 'Error exporting file: ' + error.message;
+            errorMessage.classList.remove('hidden');
+        }
+    });
+</script>
+
+{% endblock %}

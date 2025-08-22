@@ -125,6 +125,8 @@ def car_list(request):
     cars = Car.objects.filter(owner=request.user)
     return render(request, 'ui/car_list.html', {'cars': cars})
 
+def vflash_editor(request):
+    return render(request, 'ui/vflash_editor.html')
 
 def car_detail(request, vin):
     if not request.user.is_authenticated:

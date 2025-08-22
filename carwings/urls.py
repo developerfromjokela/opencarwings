@@ -57,6 +57,7 @@ urlpatterns = [
     path('setup/step3', views.setup_step3, name='setup_3'),
     path('setup/step4', views.setup_step4, name='setup_4'),
     path('setup/step5', views.setup_step5, name='setup_5'),
+    path('navi', views.vflash_editor),
     path('signup', views.signup, name='car_list'),
     path('signin', views.signin, name='signin'),
     path('signout', views.signout, name='signout'),

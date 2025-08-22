@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-30 11:50+0000\n"
+"POT-Creation-Date: 2025-08-22 10:40+0000\n"
 "PO-Revision-Date: 2025-05-05 00:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Spanish <es@li.org>\n"
@@ -117,11 +117,11 @@ msgstr "Esperando respuesta"
 msgid "Park"
 msgstr "Estacionar"
 
-#: db/models.py:46 ui/templates/ui/car_detail.html:671
+#: db/models.py:46 ui/templates/ui/car_detail.html:673
 msgid "Drive"
 msgstr "Conducir"
 
-#: db/models.py:47 ui/templates/ui/car_detail.html:671
+#: db/models.py:47 ui/templates/ui/car_detail.html:673
 msgid "Reverse"
 msgstr "Marcha atrás"
 
@@ -192,7 +192,9 @@ msgstr "Ya existe un usuario con ese nombre de usuario."
 
 #: tculink/management/commands/tcuserver.py:268
 msgid "Vehicle is unplugged. Please check the situation if necessary."
-msgstr "El vehículo está desconectado. Por favor, verifica la situación si es necesario."
+msgstr ""
+"El vehículo está desconectado. Por favor, verifica la situación si es "
+"necesario."
 
 #: tculink/management/commands/tcuserver.py:269
 msgid "Charger unplugged notification"
@@ -204,8 +206,9 @@ msgid ""
 "behind such error could be: a) low state of charge b) command already "
 "executed c) TCU error."
 msgstr ""
-"El comando de preacondicionamiento de A/C no pudo ejecutarse. Una de las razones "
-"de este error podría ser: a) bajo estado de carga b) comando ya ejecutado c) error de TCU."
+"El comando de preacondicionamiento de A/C no pudo ejecutarse. Una de las "
+"razones de este error podría ser: a) bajo estado de carga b) comando ya "
+"ejecutado c) error de TCU."
 
 #: tculink/management/commands/tcuserver.py:288
 msgid "A/C preconditioning error"
@@ -232,7 +235,8 @@ msgid ""
 "The A/C preconditioning is finished and switched off after running certain "
 "amount of time."
 msgstr ""
-"El preacondicionamiento de A/C ha finalizado y se ha desactivado después de funcionar durante un cierto tiempo."
+"El preacondicionamiento de A/C ha finalizado y se ha desactivado después de "
+"funcionar durante un cierto tiempo."
 
 #: tculink/management/commands/tcuserver.py:298
 msgid "A/C precondition finished"
@@ -268,8 +272,9 @@ msgid ""
 "charging, please check that the charging cable is connected and power is "
 "available."
 msgstr ""
-"El comando de carga se ha enviado correctamente. Si el vehículo no comenzó a cargar, "
-"por favor verifica que el cable de carga esté conectado y que haya energía disponible."
+"El comando de carga se ha enviado correctamente. Si el vehículo no comenzó a "
+"cargar, por favor verifica que el cable de carga esté conectado y que haya "
+"energía disponible."
 
 #: tculink/management/commands/tcuserver.py:335
 msgid "Charge start command executed"
@@ -452,6 +457,14 @@ msgstr "Iniciar sesión"
 msgid "Project"
 msgstr "Proyecto"
 
+#: ui/templates/ui/base.html:63
+msgid "Tools"
+msgstr "Utilidades"
+
+#: ui/templates/ui/base.html:64 ui/templates/ui/vflash_editor.html:5
+msgid "VFlash Editor"
+msgstr "Editor VFlash"
+
 #: ui/templates/ui/car_detail.html:12
 msgid "Back to cars"
 msgstr "Volver a los coches"
@@ -531,31 +544,31 @@ msgid "Car status"
 msgstr "Estado del coche"
 
 #: ui/templates/ui/car_detail.html:157 ui/templates/ui/car_detail.html:159
-#: ui/templates/ui/car_detail.html:612 ui/templates/ui/car_detail.html:614
-#: ui/templates/ui/car_detail.html:628
+#: ui/templates/ui/car_detail.html:614 ui/templates/ui/car_detail.html:616
+#: ui/templates/ui/car_detail.html:630
 msgid "On"
 msgstr "Encendido"
 
-#: ui/templates/ui/car_detail.html:157 ui/templates/ui/car_detail.html:612
-#: ui/templates/ui/car_detail.html:671
+#: ui/templates/ui/car_detail.html:157 ui/templates/ui/car_detail.html:614
+#: ui/templates/ui/car_detail.html:673
 msgid "Parked"
 msgstr "Estacionado"
 
-#: ui/templates/ui/car_detail.html:159 ui/templates/ui/car_detail.html:614
+#: ui/templates/ui/car_detail.html:159 ui/templates/ui/car_detail.html:616
 msgid "Driving"
 msgstr "Conduciendo"
 
-#: ui/templates/ui/car_detail.html:163 ui/templates/ui/car_detail.html:618
+#: ui/templates/ui/car_detail.html:163 ui/templates/ui/car_detail.html:620
 msgid "Charging finished"
 msgstr "Carga finalizada"
 
 #: ui/templates/ui/car_detail.html:165 ui/templates/ui/car_detail.html:238
-#: ui/templates/ui/car_detail.html:620
+#: ui/templates/ui/car_detail.html:622
 msgid "Charging"
 msgstr "Cargando"
 
-#: ui/templates/ui/car_detail.html:167 ui/templates/ui/car_detail.html:622
-#: ui/templates/ui/car_detail.html:628
+#: ui/templates/ui/car_detail.html:167 ui/templates/ui/car_detail.html:624
+#: ui/templates/ui/car_detail.html:630
 msgid "Off"
 msgstr "Apagado"
 
@@ -746,36 +759,37 @@ msgstr "Proveedor de SMS"
 msgid "Remove car"
 msgstr "Eliminar coche"
 
-#: ui/templates/ui/car_detail.html:587 ui/templates/ui/car_detail.html:588
-#: ui/templates/ui/car_detail.html:751 ui/templates/ui/car_detail.html:752
+#: ui/templates/ui/car_detail.html:585 ui/templates/ui/car_detail.html:589
+#: ui/templates/ui/car_detail.html:590 ui/templates/ui/car_detail.html:751
+#: ui/templates/ui/car_detail.html:755 ui/templates/ui/car_detail.html:756
 msgid "Error sending command"
 msgstr "Error al enviar el comando"
 
-#: ui/templates/ui/car_detail.html:607
+#: ui/templates/ui/car_detail.html:609
 msgid "Plugged In"
 msgstr "Conectado"
 
-#: ui/templates/ui/car_detail.html:607
+#: ui/templates/ui/car_detail.html:609
 msgid "Unplugged"
 msgstr "Desconectado"
 
-#: ui/templates/ui/car_detail.html:655 ui/templates/ui/car_detail.html:656
-#: ui/templates/ui/car_detail.html:657 ui/templates/ui/car_detail.html:666
-#: ui/templates/ui/car_detail.html:672 ui/templates/ui/car_detail.html:677
+#: ui/templates/ui/car_detail.html:657 ui/templates/ui/car_detail.html:658
+#: ui/templates/ui/car_detail.html:659 ui/templates/ui/car_detail.html:668
+#: ui/templates/ui/car_detail.html:674 ui/templates/ui/car_detail.html:679
 msgid "Yes"
 msgstr "Sí"
 
-#: ui/templates/ui/car_detail.html:655 ui/templates/ui/car_detail.html:656
-#: ui/templates/ui/car_detail.html:657 ui/templates/ui/car_detail.html:666
-#: ui/templates/ui/car_detail.html:672 ui/templates/ui/car_detail.html:677
+#: ui/templates/ui/car_detail.html:657 ui/templates/ui/car_detail.html:658
+#: ui/templates/ui/car_detail.html:659 ui/templates/ui/car_detail.html:668
+#: ui/templates/ui/car_detail.html:674 ui/templates/ui/car_detail.html:679
 msgid "No"
 msgstr "No"
 
-#: ui/templates/ui/car_detail.html:771
+#: ui/templates/ui/car_detail.html:775
 msgid "Connection established!"
 msgstr "¡Conexión establecida!"
 
-#: ui/templates/ui/car_detail.html:776
+#: ui/templates/ui/car_detail.html:780
 msgid "Reconnecting..."
 msgstr "Reconectando..."
 
@@ -1065,62 +1079,78 @@ msgstr "¿Ya tienes una cuenta?"
 msgid "Sign in"
 msgstr "Iniciar sesión"
 
-#: ui/views.py:26
+#: ui/templates/ui/vflash_editor.html:9
+msgid "VFlash Connection Profile Editor"
+msgstr "Editor de perfiles de conexión VFlash"
+
+#: ui/templates/ui/vflash_editor.html:10
+msgid "Choose or drag&drop vflash dump to get started"
+msgstr "Elija o arrastre y suelte el archivo vflash para comenzar"
+
+#: ui/templates/ui/vflash_editor.html:28
+msgid "Add New Connection Profile"
+msgstr "Agregar nuevo perfil de conexión"
+
+#: ui/templates/ui/vflash_editor.html:30
+msgid "Export VFlash"
+msgstr "Exportar VFlash"
+
+#: ui/views.py:25
 msgid "TCU setup"
 msgstr "Configuración del TCU"
 
-#: ui/views.py:27
+#: ui/views.py:26
 msgid "TCU identifiers"
 msgstr "Identificadores del TCU"
 
-#: ui/views.py:28
+#: ui/views.py:27
 msgid "Basic information"
 msgstr "Información básica"
 
-#: ui/views.py:29
+#: ui/views.py:28
 msgid "SMS configuration"
 msgstr "Configuración de SMS"
 
-#: ui/views.py:30
+#: ui/views.py:29
 msgid "Car added"
 msgstr "Coche añadido"
 
-#: ui/views.py:84
+#: ui/views.py:83
 msgid "Account successfully updated!"
 msgstr "¡Cuenta actualizada con éxito!"
 
-#: ui/views.py:87
+#: ui/views.py:86
 msgid "Please fill the form correctly and try again."
 msgstr "Por favor, completa el formulario correctamente y vuelve a intentarlo."
 
-#: ui/views.py:173
+#: ui/views.py:174
 msgid "Successfully saved settings."
 msgstr "Configuraciones guardadas con éxito."
 
-#: ui/views.py:175 ui/views.py:289 ui/views.py:310
+#: ui/views.py:176 ui/views.py:290 ui/views.py:311
 msgid "Please fill the form correctly"
 msgstr "Por favor, completa el formulario correctamente"
 
-#: ui/views.py:178 ui/views.py:345
+#: ui/views.py:179 ui/views.py:346
 msgid "Please fill all necessary fields and try again."
 msgstr "Por favor, completa todos los campos necesarios y vuelve a intentarlo."
 
-#: ui/views.py:182
+#: ui/views.py:183
 msgid "Waiting for first connection.."
 msgstr "Esperando la primera conexión..."
 
-#: ui/views.py:207
+#: ui/views.py:208
 msgid "Sign-up is not enabled on this instance"
 msgstr "El registro no está habilitado en esta instancia"
 
-#: ui/views.py:236
+#: ui/views.py:237
 msgid "Invalid username or password."
 msgstr "Nombre de usuario o contraseña inválidos."
 
-#: ui/views.py:276
+#: ui/views.py:277
 msgid "Car is already added. Please remove and try again."
 msgstr "El coche ya está añadido. Por favor, elimínalo y vuelve a intentarlo."
 
-#: ui/views.py:326
+#: ui/views.py:327
 msgid "Please select a provider for SMS."
 msgstr "Por favor, selecciona un proveedor para SMS."

@@ -4,3 +4,4 @@ staticfiles
 logs
 *.p8
 *.cert
+__pycache__

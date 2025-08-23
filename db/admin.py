@@ -6,7 +6,7 @@ from .models import (
     LocationInfo,
     EVInfo,
     AlertHistory,
-    Car, User
+    Car, User, SendToCarLocation
 )
 
 
@@ -22,6 +22,12 @@ class LocationInfoAdmin(admin.ModelAdmin):
     list_display = ('id', 'lat', 'lon', 'home', 'last_updated')
     list_filter = ('home', 'last_updated')
     search_fields = ('lat', 'lon')
+
+@admin.register(SendToCarLocation)
+class SendToCarLocationAdmin(admin.ModelAdmin):
+    list_display = ('id', 'lat', 'lon', 'name')
+    list_filter = ('name',)
+    search_fields = ('lat', 'lon', 'name')
 
 
 @admin.register(EVInfo)

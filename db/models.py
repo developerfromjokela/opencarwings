@@ -140,6 +140,11 @@ class LocationInfo(models.Model):
     home = models.BooleanField(default=False)
     last_updated = models.DateTimeField(null=True, default=None, blank=True)
 
+class SendToCarLocation(models.Model):
+    lat = models.DecimalField(max_digits=20, decimal_places=10)
+    lon = models.DecimalField(max_digits=20, decimal_places=10)
+    name = models.CharField(max_length=32)
+
 class EVInfo(models.Model):
     range_acon = models.IntegerField(default=0, null=True, blank=True)
     range_acoff = models.IntegerField(default=0, null=True, blank=True)
@@ -204,3 +209,5 @@ class Car(models.Model):
     command_type = models.IntegerField(choices=COMMAND_TYPES, default=0)
     command_request_time = models.DateTimeField(null=True, default=None, blank=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    # CarWings navi
+    send_to_car_location = models.OneToOneField(SendToCarLocation, on_delete=models.CASCADE, null=True, blank=True)

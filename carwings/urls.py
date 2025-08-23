@@ -27,6 +27,7 @@ from rest_framework.authentication import TokenAuthentication, SessionAuthentica
 from rest_framework_simplejwt.views import TokenRefreshView
 
 import api.views as api_views
+import tculink.views as tculink_views
 import ui.views as views
 from api.views import CustomTokenObtainPairView
 
@@ -58,6 +59,7 @@ urlpatterns = [
     path('setup/step4', views.setup_step4, name='setup_4'),
     path('setup/step5', views.setup_step5, name='setup_5'),
     path('navi', views.vflash_editor),
+    path('WARCondelivbas/it-m_gw10/', tculink_views.carwings_http_gateway),
     path('signup', views.signup, name='car_list'),
     path('signin', views.signin, name='signin'),
     path('signout', views.signout, name='signout'),

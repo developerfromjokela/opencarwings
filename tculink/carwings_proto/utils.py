@@ -13,7 +13,7 @@ def get_cws_authenticated_car(xml_data):
 
         # find car
         try:
-            car = Car(vin=car_vin)
+            car = Car.objects.get(vin=car_vin)
 
             # confirm TCU ID
             if dcm_id != car.tcu_serial:

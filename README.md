@@ -13,7 +13,7 @@ Server for running CARWINGS services for Nissan LEAF.
 - [x] Notifications
 - [x] Read TCU configuration
 - [ ] Write TCU configuration
-- [ ] CARWINGS in navigation head unit
+- [x] CARWINGS in navigation head unit
 - [ ] Trip journey & efficiency info
 
 ## Public instances

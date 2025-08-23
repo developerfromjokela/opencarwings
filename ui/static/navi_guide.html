@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide to Bringing Navigation Back Online</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+    h2 {
+      color: #555;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 5px;
+    }
+    .step {
+      background-color: #fff;
+      padding: 20px;
+      margin: 10px 0;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .step-number {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #007BFF;
+    }
+    a {
+      color: #007BFF;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      height: 0;
+      overflow: hidden;
+      max-width: 100%;
+      background: #000;
+      margin: 20px 0;
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .warning {
+      color: #D9534F;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+<h1>Guide to Bringing Your Navigator Back Online</h1>
+<p>This detailed guide will walk you through the process of changing your navigator's APN settings. Follow each step carefully to ensure successful setup.</p>
+<div class="step">
+  <h2><span class="step-number">Step 1:</span> Download Leaf SD Tools and install it on an SD card</h2>
+  <p>You’ll need Leaf SD Tools toolkit in order to export navigator's settings. Here’s how to proceed:</p>
+  <ul>
+    <li><strong>0:</strong>Get yourself an SD card with capacity 8GB or higher. Micro SD with adapter also works.</li>
+    <li><strong>1:</strong> Download latest Leaf SD Tools .img file from <a href="https://github.com/developerfromjokela/leafsdtools/releases/latest">GitHub (LeafSDTools-xxx.img.tar.gz)</a></li>
+    <li><strong>2:</strong> Download <a href="https://etcher.balena.io/">balenaEtcher</a> or similar tool to write the image to the SD card.</li>
+    <li><strong>3:</strong> Write the disk image to the SD card.</li>
+    <img style="width: 100%; max-width: 800px" src="img1.jpeg">
+  </ul>
+</div>
+
+<div class="step">
+  <h2><span class="step-number">Step 2:</span> Run LeafSDTools and export settings to the SD</h2>
+  <p>Now that you have LeafSDTools on your SD, follow these steps to extract settings file:</p>
+  <ul>
+    <li>1. Start your car. With the navigator fully booted, enter the map view by pressing button <b>MAP</b></li>
+    <li>2. Press the power button to turn off audio. The button is on the bottom left.</li>
+    <li>3. Press three times "MAP" button, then press media on/off button two times and finally press "MAP" button once again. If successful, you will see this screen:</li>
+  </ul>
+  <img style="width: 100%; max-width: 800px;" src="img2.jpeg"/>
+  <ul>
+    <li>Open Confirmation/Adjustment menu and scroll to Software Update menu</li>
+    <img style="width: 100%; max-width: 800px;" src="img3.jpeg" />
+    <li>Start the update process. Head unit should reboot.</li>
+    <img style="width: 100%; max-width: 800px;" src="img4.jpeg" />
+    <li>Once prompted a YES/NO dialog, turn off the car, remove SD from MAP Slot (B) and insert your own SD card with LeafSDTools.</li>
+    <img style="width: 100%; max-width: 800px;" src="img5.jpg" />
+  </ul>
+    <hr/>
+    <ul>
+        <li>4. With your LeafSDTools SD card inserted into MAP slot B, turn on the car. In few seconds you will be presented this screen shown above. Press SRAM menu.</li>
+        <img style="width: 100%; max-width: 800px;" src="img6.jpg" />
+        <li>5. Press Dump to SD and wait until it finishes. </li>
+        <img style="width: 100%; max-width: 800px;" src="img7.jpg" />
+        <img style="width: 100%; max-width: 800px;" src="img8.jpg" />
+      <li>6. After successful dump to SD, exit the menu and turn off the car. Remove SD card from navigation unit. It's time to edit the file on your computer.</li>
+    </ul>
+</div>
+
+<div class="step">
+  <h2><span class="step-number">Step 3:</span> Edit navigation unit settings </h2>
+  <p>With the SD card plugged in to your computer, you should have a file named like this:</p>
+  <img style="width: 100%; max-width: 800px;" src="img9.jpg"/>
+  If you don't have this file, exporting failed for some reason.
+  If the file is present, let's modify APN settings inside it.
+  <ul>
+    <li><strong>1.</strong> Copy file vflash_xxxxxxxx_xxxxxxxx.bin from SD card somewhere else, for example into Desktop folder or Documents.</li>
+    <li><strong>2.</strong> Navigate to <a target="_blank" href="https://opencarwings.viaaq.eu/navi">https://opencarwings.viaaq.eu/navi</a> in your browser</li>
+    <li><strong>3.</strong> Select the file named vflash_xxxxxxxx_xxxxxxxx.bin from your SD card. You should see information be filled into fields and Connection Profile 1 appear. If not, please contact the developer</li>
+    <img style="width: 100%; max-width: 800px;" src="img10.jpg" />
+    <li><strong>4.</strong> Start by naming your connection profile with your operator name.</li>
+    <img style="width: 100%; max-width: 800px;" src="img11.jpg" />
+    <li><strong>5.</strong> Next, you will need to modify APN name: apn [cws]. Depending on your SIM provider, you may also need to modify APN user and password, usr [cws] and psswrd [cws]. </li>
+    <img style="width: 100%; max-width: 800px;" src="img12.jpg" />
+    <img style="width: 100%; max-width: 800px;" src="img13.jpg" />
+    <img style="width: 100%; max-width: 800px;" src="img14.jpg" />
+    <li><strong>6.</strong> Last but not least, server URL needs to be modified. Field "url [cws]". Standard URL should be "http://biz.nissan-gev.com/WARCondelivbas/it-m_gw10/". Modify it to be "http://biz.viaaq.eu/WARCondelivbas/it-m_gw10/"</li>
+    ORIGINAL: <br/><img style="width: 100%; max-width: 800px;" src="img15.jpg" /><br>
+    MODIFIED: <br/><img style="width: 100%; max-width: 800px;" src="img16.jpg" />
+    <li><strong>7.</strong> After all settings are modified, scroll to bottom and click export. New settings file will be downloaded.</li>
+    <img style="width: 100%; max-width: 800px;" src="img17.jpg" />
+    <li><strong>8.</strong> Copy downloaded file on to the SD card (if asked to overwrite file, press yes)</li>
+  </ul>
+  <p><span class="warning">NOTE: </span> Make sure when you copy new settings file to SD card, it has exactly same file name as original!</p>
+
+</div>
+
+<div class="step">
+  <h2><span class="step-number">Step 4:</span> Write new settings to the navigation unit</h2>
+  <p>With modified settings file on the SD card, get back to the car and insert the card into slot B. Start the car.</p>
+  <ul>
+    <li><strong>1.</strong> When LeafSDTools boots up, select SRAM option.</li>
+    <img style="width: 100%; max-width: 800px;" src="img6.jpg" />
+    <li><strong>2.</strong> Press RESTORE VFlash and wait until it is restored.</li>
+    <img style="width: 100%; max-width: 800px;" src="img18.jpg" />
+    <img style="width: 100%; max-width: 800px;" src="img19.jpg" />
+    <li><strong>3.</strong> Once restoring process is complete, press EXIT to return to the main menu. At this point, turn off the car.</li>
+    <img style="width: 100%; max-width: 800px;" src="img25.jpg" />
+    <li><strong>4.</strong> Tilt the screen and remove LeafSDTools SD card from Slot B. Put back navigation unit's SD card back into Slot B. Turn on the car, you will be greeted by this message. Press Yes to exit software update menu.</li>
+    <img style="width: 100%; max-width: 800px;" src="img20.jpg" />
+    <li><strong>5.</strong>Once navigation unit has booted back to its OS, open up settings and see if new connection settings have been set successfully. To view the connection profile, press physical MENU button on the right side, and then select SETTINGS on the screen. Inside settings, select "Phone, CARWINGS". Select Data Transfer Setup. Your connection profile should be shown if settings have been applied successfully.</li>
+    <img style="width: 100%; max-width: 800px;" src="img21.jpeg" />
+    <img style="width: 100%; max-width: 800px;" src="img22.jpeg" />
+    <img style="width: 100%; max-width: 800px;" src="img23.jpeg" />
+    <img style="width: 100%; max-width: 800px;" src="img24.jpeg" />
+  </ul>
+</div>
+
+<div class="step">
+  <h2><span class="step-number">Step 5:</span> Authenticate inside CARWINGS menu</h2>
+  <p>Final step is to authenticate with your username and TCU Password you created in OpenCARWINGS service.</p>
+  <ul>
+    <li><strong>1.</strong> Press Zero Emission button and then select CARWINGS.</li>
+    <img style="width: 100%; max-width: 800px;" src="leafstep1.jpg" />
+    <li><strong>2.</strong> Press Sign In or Security Settings</li>
+    <img style="width: 100%; max-width: 800px;" src="leafstep2.jpg" />
+    <li><strong>3.</strong> Type your username and TCU password</li>
+    <img style="width: 100%; max-width: 800px;" src="leafstep3.jpg" />
+    <li><strong>3.</strong> Press send security settings or send ID and password. When message "Security settings activated" appears, it means login was successful and CARWINGS services are ready to be used.</li>
+    <img style="width: 100%; max-width: 800px;" src="leafstep4.jpg" />
+  </ul>
+</div>
+
+<p><strong>Congratulations!</strong> If all steps are completed successfully, your navigation unit should now be back online, restoring many functions like send location to car, telemetry data and more.</p>
+</body>
+</html></title>
+</head>
+<body>
+
+</body>
+</html>

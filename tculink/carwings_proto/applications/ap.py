@@ -64,7 +64,7 @@ def handle_ap(xml_data, _):
 
         auth_result_data =  bytearray(bytes.fromhex("000000000000000000010f01"))
         if auth_result is False:
-            auth_result_data[11] = 0
+            auth_result_data[11] = 2
 
 
         srv_inf = ET.SubElement(carwings_xml_root, "srv_inf")

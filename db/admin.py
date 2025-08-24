@@ -79,7 +79,7 @@ class CarAdmin(admin.ModelAdmin):
                        'tcu_user', 'tcu_pass', 'last_connection', 'disable_auth')
         }),
         ('Related Objects', {
-            'fields': ('tcu_configuration', 'location', 'ev_info')
+            'fields': ('tcu_configuration', 'location', 'ev_info', 'send_to_car_location')
         }),
         ('Command Info', {
             'fields': ('command_id', 'command_result', 'command_requested',

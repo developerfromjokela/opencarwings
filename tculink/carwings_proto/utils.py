@@ -16,7 +16,7 @@ def get_cws_authenticated_car(xml_data):
             car = Car.objects.get(vin=car_vin)
 
             # confirm TCU ID
-            if dcm_id != car.tcu_serial:
+            if dcm_id != car.tcu_model:
                 return None
 
             # confirm SIM ID

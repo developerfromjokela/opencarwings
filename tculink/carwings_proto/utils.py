@@ -2,14 +2,14 @@ from db.models import Car
 
 
 def get_cws_authenticated_car(xml_data):
-    if 'authentication' in xml_data['service_info']:
+    if 'authentication' in xml_data:
 
-        car_vin = xml_data['service_info']['authentication']['vin']
-        dcm_id = xml_data['service_info']['authentication']['dcm_id']
-        sim_id = xml_data['service_info']['authentication']['sim_id']
+        car_vin = xml_data['authentication']['vin']
+        dcm_id = xml_data['authentication']['dcm_id']
+        sim_id = xml_data['authentication']['sim_id']
 
-        username = xml_data['service_info']['authentication']['user_id']
-        password = xml_data['service_info']['authentication']['password']
+        username = xml_data['authentication']['user_id']
+        password = xml_data['authentication']['password']
 
         # find car
         try:

@@ -56,7 +56,7 @@ def handle_ap(xml_data, _):
         files = []
 
         carwings_xml_root = ET.Element("carwings", version="2.2")
-        aut_inf = ET.SubElement(carwings_xml_root, "aut_inf", {"sts": "ok"})
+        aut_inf = ET.SubElement(carwings_xml_root, "aut_inf", {"sts": "ok" if auth_result else "ng"})
         if reason_title is not None and reason_desc is not None:
             ET.SubElement(aut_inf, "txt").text = reason_title
             ET.SubElement(aut_inf, "read_txt").text = reason_desc

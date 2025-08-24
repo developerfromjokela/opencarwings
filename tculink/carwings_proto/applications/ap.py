@@ -27,7 +27,7 @@ def handle_ap(xml_data, _):
                 reason_desc = 'The car has not been registered with Open Carwings. Visit Open Carwings website to register your vehicle.'
 
             # confirm TCU ID
-            if auth_result and dcm_id != car.tcu_serial:
+            if auth_result and dcm_id != car.tcu_model:
                 auth_result = False
                 reason_title = 'TCU ID mismatch'
                 reason_desc = ('The TCU ID is incorrect. Please correct your TCU ID by visiting '

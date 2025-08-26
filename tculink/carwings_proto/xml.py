@@ -100,14 +100,15 @@ def parse_carwings_xml(xml_string: str) -> dict:
         app = srv_inf.find('app')
         if app is not None:
             result['service_info']['application'] = {
-                'name': app.get('name')
+                'name': app.get('name'),
+                'send_data': []
             }
-            send_data = app.find('send_data')
-            if send_data is not None:
-                result['service_info']['application']['send_data'] = {
-                    'id_type': send_data.get('id_type'),
-                    'id': send_data.get('id')
-                }
+            send_data = app.findall('send_data')
+            for send_data_item in send_data:
+                result['service_info']['application']['send_data'].append({
+                    'id_type': send_data_item.get('id_type'),
+                    'id': send_data_item.get('id')
+                })
 
     # Parse operation info
     op_inf = root.find('op_inf')

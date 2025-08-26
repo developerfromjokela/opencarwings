@@ -296,7 +296,9 @@ channels = [
 
 def handle_dj(xml_data, files):
     if 'send_data' in xml_data['service_info']['application']:
-        send_data = xml_data['service_info']['application']['send_data']
+        if len(xml_data['service_info']['application']['send_data']) == 0:
+            return None
+        send_data = xml_data['service_info']['application']['send_data'][0]
         id_type = send_data['id_type']
         id_value = send_data['id']
         file_content = bytearray()

@@ -127,5 +127,5 @@ def handle_pi(xml_data, files):
         xml_str = carwings_create_xmlfile_content(carwings_xml_root)
         outgoing_files.insert(0, ("response.xml", xml_str.encode("utf-8"),))
 
-        return compress_carwings(construct_carwings_filepacket(files))
+        return compress_carwings(construct_carwings_filepacket(outgoing_files))
     return None

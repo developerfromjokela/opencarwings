@@ -230,3 +230,5 @@ APNS_USE_SANDBOX = False
 
 FCM_SERVICE_FILE = ""
 FCM_PROJECT_ID = ""
+# Leave empty to disable, the server will try to scrape all location info available, but may fail sometimes
+GOOGLE_API_KEY = ""

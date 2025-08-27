@@ -118,7 +118,7 @@ def reset_apikey(request):
 )
 @api_view(['POST'])
 def resolve_maps_link(request):
-    if not request.user.is_authenticated:
+    if not request.user.is_authenticated and not django.conf.settings.DEBUG:
         return Response(status=status.HTTP_401_UNAUTHORIZED)
     url_input = MapLinkResolverInputSerializer(data=request.data)
     if not url_input.is_valid():
@@ -183,20 +183,39 @@ def resolve_maps_link(request):
 
                     parsed_data = flatten(root)
 
+                    print(parsed_data)
+
                     lat = None
                     lon = None
 
                     for item in parsed_data:
+                        if isinstance(item, str):
+                            code_split = item.split(':')
+                            if len(code_split) == 2 and code_split[1].startswith('0x') and len(django.conf.settings.GOOGLE_API_KEY) > 0:
+                                cid_info = requests.get(f"https://maps.googleapis.com/maps/api/place/details/json?cid={int(code_split[1], 16)}&key={django.conf.settings.GOOGLE_API_KEY}")
+                                try:
+                                    json_info = cid_info.json()
+                                    if "result" in json_info:
+                                        lat = json_info['result']['geometry']['location']['lat']
+                                        lon = json_info['result']['geometry']['location']['lng']
+                                        name = json_info['result']['name']
+                                        address = json_info['result']['formatted_address']
+                                        break
+                                except Exception as e:
+                                    print(e)
+                                    continue
                         if isinstance(item, list) and len(item) > 2:
                             for block in item:
                                 if isinstance(block, list) and len(block) == 2:
                                     if (-90 < block[0] < 90) and (-180 < block[1] < 180):
                                         lat = block[0]
                                         lon = block[1]
+                                        break
                         if isinstance(item, list) and len(item) == 2:
                             if (-90 < item[0] < 90) and (-180 < item[1] < 180):
                                 lat = item[0]
                                 lon = item[1]
+                                break
 
 
                     if lat is not None and lon is not None:
@@ -213,6 +232,26 @@ def resolve_maps_link(request):
             try:
                 gmaps_url = urlparse(url)
                 gmaps_query = parse_qs(gmaps_url.query)
+                if "ftid" in gmaps_query and len(django.conf.settings.GOOGLE_API_KEY) > 0:
+                    code_split = gmaps_query['ftid'][0].split(':')
+                    if len(code_split) == 2 and code_split[1].startswith('0x'):
+                        cid_info = requests.get(
+                            f"https://maps.googleapis.com/maps/api/place/details/json?cid={int(code_split[1], 16)}&key={django.conf.settings.GOOGLE_API_KEY}")
+                        try:
+                            json_info = cid_info.json()
+                            if "result" in json_info:
+                                lat = json_info['result']['geometry']['location']['lat']
+                                lon = json_info['result']['geometry']['location']['lng']
+                                name = json_info['result']['name']
+                                address = json_info['result']['formatted_address']
+                                return {
+                                    "lat": lat,
+                                    "lon": lon,
+                                    "name": name,
+                                    "address": address.strip()
+                                }
+                        except Exception as e:
+                            print(e)
                 if "q" in gmaps_query:
                     s = requests.Session()
 

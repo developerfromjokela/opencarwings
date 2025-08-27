@@ -180,6 +180,7 @@ SMS_PROVIDERS = {
     'hologram': ('Hologram SIM (recommended)', 'tculink.sms.hologram.ProviderHologram'),
     '46elks': ('46elks', 'tculink.sms.46elks.Provider46elks'),
     'webhook': ('Webhook', 'tculink.sms.webhook.ProviderWebhook'),
+    'ondevice': ('SMS from your device', 'tculink.sms.ondevice.ProviderOnDevice'),
     'manual': ('Manual', 'tculink.sms.manual.ProviderManual'),
 }
 

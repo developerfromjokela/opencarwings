@@ -34,7 +34,7 @@
             {% for provider in providers %}
                 <div class="flex items-center mb-4">
                     <input id="sms-radio-{{provider.id}}" type="radio" value="{{provider.id}}" name="sms-provider" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
-                    <label for="sms-radio-{{provider.id}}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{provider.name}}</label>
+                    <label for="sms-radio-{{provider.id}}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{% translate provider.name %}</label>
                 </div>
             {% endfor %}
 

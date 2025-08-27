@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-27 15:16+0000\n"
+"POT-Creation-Date: 2025-08-27 16:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -116,11 +116,11 @@ msgstr "Odotetaan vastausta"
 msgid "Park"
 msgstr "Pysäköity"
 
-#: db/models.py:46 ui/templates/ui/car_detail.html:707
+#: db/models.py:46 ui/templates/ui/car_detail.html:719
 msgid "Drive"
 msgstr "Ajovaihde"
 
-#: db/models.py:47 ui/templates/ui/car_detail.html:707
+#: db/models.py:47 ui/templates/ui/car_detail.html:719
 msgid "Reverse"
 msgstr "Peruutusvaihde"
 
@@ -288,7 +288,7 @@ msgstr "API-käyttäjänimi"
 msgid "API Password"
 msgstr "API-salasana"
 
-#: tculink/sms/46elks.py:11
+#: tculink/sms/46elks.py:11 tculink/sms/ondevice.py:9
 msgid "TCU Phone Number (international format)"
 msgstr "TCU:n puhelinnumero (sisältäen maakoodin, esim: +358412345678)"
 
@@ -320,6 +320,14 @@ msgstr ""
 "lähetetä automaattisesti. Lähetä tämä tekstiviesti kokonaisuudessaan "
 "autollesi mahdollisimman pian sen jälkeen, kun olet lähettänyt komennon "
 "sivustolta: {sms}"
+
+#: tculink/sms/ondevice.py:12
+msgid ""
+"With this option, the website will redirect you to send the SMS on your "
+"phone. Or with the mobile app, it will send it automatically if possible. "
+"This method won't work via API or automations, only from the website or "
+"mobile app!"
+msgstr "Tämän vaihtoehdon avulla verkkosivusto ohjaa sinut lähettämään tekstiviestin puhelimellasi. Tai mobiilisovelluksella se lähettää viestin automaattisesti, jos mahdollista. Tämä menetelmä ei toimi API:n tai automaatioiden kautta, vaan ainoastaan verkkosivuston tai mobiilisovelluksen kautta!"
 
 #: tculink/sms/webhook.py:8
 msgid "Webhook URL"
@@ -544,31 +552,31 @@ msgid "Car status"
 msgstr "Auton tila"
 
 #: ui/templates/ui/car_detail.html:157 ui/templates/ui/car_detail.html:159
-#: ui/templates/ui/car_detail.html:648 ui/templates/ui/car_detail.html:650
-#: ui/templates/ui/car_detail.html:664
+#: ui/templates/ui/car_detail.html:660 ui/templates/ui/car_detail.html:662
+#: ui/templates/ui/car_detail.html:676
 msgid "On"
 msgstr "Päällä"
 
-#: ui/templates/ui/car_detail.html:157 ui/templates/ui/car_detail.html:648
-#: ui/templates/ui/car_detail.html:707
+#: ui/templates/ui/car_detail.html:157 ui/templates/ui/car_detail.html:660
+#: ui/templates/ui/car_detail.html:719
 msgid "Parked"
 msgstr "Pysäköity"
 
-#: ui/templates/ui/car_detail.html:159 ui/templates/ui/car_detail.html:650
+#: ui/templates/ui/car_detail.html:159 ui/templates/ui/car_detail.html:662
 msgid "Driving"
 msgstr "Ajossa"
 
-#: ui/templates/ui/car_detail.html:163 ui/templates/ui/car_detail.html:654
+#: ui/templates/ui/car_detail.html:163 ui/templates/ui/car_detail.html:666
 msgid "Charging finished"
 msgstr "Lataus valmis"
 
 #: ui/templates/ui/car_detail.html:165 ui/templates/ui/car_detail.html:238
-#: ui/templates/ui/car_detail.html:656
+#: ui/templates/ui/car_detail.html:668
 msgid "Charging"
 msgstr "Ladataan"
 
-#: ui/templates/ui/car_detail.html:167 ui/templates/ui/car_detail.html:658
-#: ui/templates/ui/car_detail.html:664
+#: ui/templates/ui/car_detail.html:167 ui/templates/ui/car_detail.html:670
+#: ui/templates/ui/car_detail.html:676
 msgid "Off"
 msgstr "Pois päältä"
 
@@ -681,11 +689,11 @@ msgstr "Lähetä määränpää autoon"
 msgid "Search for locations or enter google/apple maps link"
 msgstr "Hae kohteita tai syötä Google/Apple maps-linkki"
 
-#: ui/templates/ui/car_detail.html:257 ui/templates/ui/car_detail.html:737
+#: ui/templates/ui/car_detail.html:257 ui/templates/ui/car_detail.html:749
 msgid "Last shared location"
 msgstr "Viimeksi jaettu kohde"
 
-#: ui/templates/ui/car_detail.html:259 ui/templates/ui/car_detail.html:739
+#: ui/templates/ui/car_detail.html:259 ui/templates/ui/car_detail.html:751
 msgid "No past shared location"
 msgstr "Ei aikaisemmin jaettuja kohteita"
 
@@ -772,62 +780,66 @@ msgstr "SMS-palvelu"
 msgid "Remove car"
 msgstr "Poista auto"
 
-#: ui/templates/ui/car_detail.html:619 ui/templates/ui/car_detail.html:623
-#: ui/templates/ui/car_detail.html:624 ui/templates/ui/car_detail.html:792
-#: ui/templates/ui/car_detail.html:796 ui/templates/ui/car_detail.html:797
+#: ui/templates/ui/car_detail.html:400
+msgid "SMS from your device"
+msgstr "SMS-viestin lähetys laitteestasi"
+
+#: ui/templates/ui/car_detail.html:626 ui/templates/ui/car_detail.html:630
+#: ui/templates/ui/car_detail.html:631 ui/templates/ui/car_detail.html:804
+#: ui/templates/ui/car_detail.html:812 ui/templates/ui/car_detail.html:813
 msgid "Error sending command"
 msgstr "Komennon lähetys epäonnistui"
 
-#: ui/templates/ui/car_detail.html:643
+#: ui/templates/ui/car_detail.html:655
 msgid "Plugged In"
 msgstr "Liitetty"
 
-#: ui/templates/ui/car_detail.html:643
+#: ui/templates/ui/car_detail.html:655
 msgid "Unplugged"
 msgstr "Ei liitettynä"
 
-#: ui/templates/ui/car_detail.html:691 ui/templates/ui/car_detail.html:692
-#: ui/templates/ui/car_detail.html:693 ui/templates/ui/car_detail.html:702
-#: ui/templates/ui/car_detail.html:708 ui/templates/ui/car_detail.html:713
+#: ui/templates/ui/car_detail.html:703 ui/templates/ui/car_detail.html:704
+#: ui/templates/ui/car_detail.html:705 ui/templates/ui/car_detail.html:714
+#: ui/templates/ui/car_detail.html:720 ui/templates/ui/car_detail.html:725
 msgid "Yes"
 msgstr "Kyllä"
 
-#: ui/templates/ui/car_detail.html:691 ui/templates/ui/car_detail.html:692
-#: ui/templates/ui/car_detail.html:693 ui/templates/ui/car_detail.html:702
-#: ui/templates/ui/car_detail.html:708 ui/templates/ui/car_detail.html:713
+#: ui/templates/ui/car_detail.html:703 ui/templates/ui/car_detail.html:704
+#: ui/templates/ui/car_detail.html:705 ui/templates/ui/car_detail.html:714
+#: ui/templates/ui/car_detail.html:720 ui/templates/ui/car_detail.html:725
 msgid "No"
 msgstr "Ei"
 
-#: ui/templates/ui/car_detail.html:819 ui/templates/ui/car_detail.html:827
-#: ui/templates/ui/car_detail.html:828
+#: ui/templates/ui/car_detail.html:835 ui/templates/ui/car_detail.html:843
+#: ui/templates/ui/car_detail.html:844
 msgid "Error sending location to car"
 msgstr "Sijainnin lähetys autoon epäonnistui"
 
-#: ui/templates/ui/car_detail.html:821
+#: ui/templates/ui/car_detail.html:837
 msgid "Location sent!"
 msgstr "Määränpää lähetetty!"
 
-#: ui/templates/ui/car_detail.html:877 ui/templates/ui/car_detail.html:940
+#: ui/templates/ui/car_detail.html:893 ui/templates/ui/car_detail.html:956
 msgid "No address"
 msgstr "Ei osoitetta"
 
-#: ui/templates/ui/car_detail.html:887
+#: ui/templates/ui/car_detail.html:903
 msgid "Could not get location from map link"
 msgstr "Ei saatu sijaintia linkistä"
 
-#: ui/templates/ui/car_detail.html:893 ui/templates/ui/car_detail.html:965
+#: ui/templates/ui/car_detail.html:909 ui/templates/ui/car_detail.html:981
 msgid "Error searching locations"
 msgstr "Kohteiden haku epäonnistui"
 
-#: ui/templates/ui/car_detail.html:959
+#: ui/templates/ui/car_detail.html:975
 msgid "Search did not find any locations"
 msgstr "Haku ei tuottanut tulosta"
 
-#: ui/templates/ui/car_detail.html:984
+#: ui/templates/ui/car_detail.html:1000
 msgid "Connection established!"
 msgstr "Yhdistetty!"
 
-#: ui/templates/ui/car_detail.html:989
+#: ui/templates/ui/car_detail.html:1005
 msgid "Reconnecting..."
 msgstr "Yhdistetään uudelleen..."
 
@@ -1159,11 +1171,11 @@ msgstr "Täytä lomake oikein ja yritä uudelleen."
 msgid "Successfully saved settings."
 msgstr "Asetukset päivitetty!"
 
-#: ui/views.py:422 ui/views.py:536 ui/views.py:557
+#: ui/views.py:422 ui/views.py:537 ui/views.py:558
 msgid "Please fill the form correctly"
 msgstr "Täytäthän lomakkeen oikein"
 
-#: ui/views.py:425 ui/views.py:592
+#: ui/views.py:425 ui/views.py:593
 msgid "Please fill all necessary fields and try again."
 msgstr "Täytäthän kaikki kentät ja yritä uudelleen."
 
@@ -1171,19 +1183,19 @@ msgstr "Täytäthän kaikki kentät ja yritä uudelleen."
 msgid "Waiting for first connection.."
 msgstr "Odotetaan ensimmäistä yhteyttä.."
 
-#: ui/views.py:454
+#: ui/views.py:455
 msgid "Sign-up is not enabled on this instance"
 msgstr "Tällä instanssilla ei sallita tilien luomista."
 
-#: ui/views.py:483
+#: ui/views.py:484
 msgid "Invalid username or password."
 msgstr "Virheellinen käyttäjänimi tai salasana."
 
-#: ui/views.py:523
+#: ui/views.py:524
 msgid "Car is already added. Please remove and try again."
 msgstr "Auto on jo lisätty. Poista auto ja yritä uudelleen."
 
-#: ui/views.py:573
+#: ui/views.py:574
 msgid "Please select a provider for SMS."
 msgstr "Ole hyvä ja valitse SMS-palvelun tarjoaja."
 

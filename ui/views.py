@@ -183,8 +183,6 @@ def resolve_maps_link(request):
 
                     parsed_data = flatten(root)
 
-                    print(parsed_data)
-
                     lat = None
                     lon = None
 

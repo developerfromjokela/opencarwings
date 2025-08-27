@@ -83,4 +83,5 @@ urlpatterns = [
     path('api/token/refresh/', decorated_token_view, name='token_refresh'),
     path('api/token/update/', api_views.update_token_metadata, name='token_update'),
     path('api/token/signout/', api_views.sign_out, name='token_refresh'),
+    path('api/maplink/resolve', views.resolve_maps_link, name='resolve_maps_link'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

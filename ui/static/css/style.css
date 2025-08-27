@@ -177,3 +177,15 @@
     #charge-time-tbl, td:last-child {
       border-right: none; /* Removes right border of the last column */
     }
+
+    .btn-s-disabled {}
+
+    .btn-s-disabled:disabled {
+        background-color: gray !important;
+        cursor: not-allowed;
+    }
+
+    .btn-s-disabled:disabled:hover {
+        background-color: gray !important;
+        cursor: not-allowed;
+    }

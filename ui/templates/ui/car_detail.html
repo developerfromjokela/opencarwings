@@ -248,11 +248,22 @@
             <!-- Location -->
             <div id="location" class="tab-content">
                 <div id="map" class="mb-4"></div>
+                <h2 class="text-lg font-semibold text-gray-800 mt-4 flex items-center">{% translate "Send location to car" %}<div class="spinner ml-2" id="send-to-car-spinner"></div></h2>
+                <form id="send-to-car-search-form">
+                    <input type="search" required minlength="2" placeholder="{% translate "Search for locations or enter google/apple maps link" %}" id="send-to-car-search" class="w-full p-2 border rounded mt-1">
+                </form>
+                <div id="send-to-car-results" class="mt-2">
+                    {% if car.send_to_car_location %}
+                        {% translate "Last shared location" %}: {{ car.send_to_car_location.name }}
+                    {% else %}
+                        {% translate "No past shared location" %}
+                    {% endif %}
+                </div>
+                <button class="btn-s-disabled text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 me-2 mb-2 mt-5 " id="send-to-car-submit" disabled="disabled">{% translate "Send" %}</button>
+                <hr class="mt-2 mb-2"/>
                 <dl class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 text-sm sm:text-base">
-                    <div><dt class="text-gray-700 font-semibold">{% translate "Latitude" %}:</dt><dd class="text-gray-600" id="lat">{{ car.location.lat|default:"N/A" }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "Longitude" %}:</dt><dd class="text-gray-600" id="lon">{{ car.location.lon|default:"N/A" }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "At Home" %}:</dt><dd class="text-gray-600" id="home">{{ car.location.home|yesno:_("Yes,No") }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "Last Updated" %}:</dt><dd class="text-gray-600" id="loc_last_updated">{{ car.location.last_updated|default:"N/A"|date:"Y-m-d H:i" }}</dd></div>
+                    <div><dt class="text-gray-700">{% translate "At Home" %}:</dt><dd class="text-gray-600" id="home">{{ car.location.home|yesno:_("Yes,No") }}</dd></div>
+                    <div><dt class="text-gray-700">{% translate "Last Updated" %}:</dt><dd class="text-gray-600" id="loc_last_updated">{{ car.location.last_updated|default:"N/A"|date:"Y-m-d H:i" }}</dd></div>
                 </dl>
             </div>
 
@@ -373,8 +384,8 @@
                     </div>
                     {% endfor %}
 
-                    <button class="bg-blue-500 text-white rounded-md hover:bg-blue-600 w-full sm:w-auto p-1 mt-5" type="submit">{% translate "Save" %}</button>
-                    <button class="bg-red-500 text-white rounded-md hover:bg-red-600 w-full sm:w-auto p-1 mt-5" type="button" onclick="removeCarConfirm()">{% translate "Remove car" %}</button>
+                    <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 me-2 mb-2 mt-5" type="submit">{% translate "Save" %}</button>
+                    <button class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 me-2 mb-2 mt-5" type="button" onclick="removeCarConfirm()">{% translate "Remove car" %}</button>
 
                 </form>
             </div>
@@ -383,7 +394,16 @@
 
     <!-- Scripts -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    {{ car.sms_config|json_script:"currentSmsConfig" }}
     <script>
+
+        let currentSmsConfig = {};
+
+        try {
+            currentSmsConfig = JSON.parse(document.getElementById('currentSmsConfig').textContent);
+        } catch (e) {}
+
+        const mapUrlRegex = /(([a-z0-9$\-_.+!*'(),;:&=]|%[0-9a-f]{2})+@)?(((25[0-5]|2[0-4][0-9]|[0-1][0-9][0-9]|[1-9][0-9]|[0-9])(\.(25[0-5]|2[0-4][0-9]|[0-1][0-9][0-9]|[1-9][0-9]|[0-9])){3})|([a-z0-9\-\u00C0-\u017F]+\.)+([a-zA-Z]{2,}))(\/(([a-zA-Z0-9$\-_.+!*'(),;:@&=]|%[0-9a-fA-F]{2})*(\/([a-zA-Z0-9$\-_.+!*'(),;:@&=]|%[0-9a-fA-F]{2})*)*)?(\?([a-zA-Z0-9$\-_.+!*'(),;:@&=\/?]|%[0-9a-fA-F]{2})*)?(\#([a-zA-Z0-9$\-_.+!*'(),;:@&=\/?]|%[0-9a-fA-F]{2})*)?)?$/;
 
         // Car info
         const carId = {{ car.id }};
@@ -405,6 +425,16 @@
         // Websocket client instance
         const webSockClient = new WebSocketClient("/ws/notif/", ws_connect, ws_msg, ws_err, ws_close, ws_reconnect)
         webSockClient.maxReconnectAttempts = 0;
+
+        function escapeHtml(unsafe) {
+              return unsafe
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
 
         function updateMap(lat, lon, mapInstance, markerInstance, zoomLevel, isOverview = false) {
             if (lat && lon) {
@@ -491,6 +521,12 @@
             updateFields();
         });
 
+        // Send to car
+        const sendToCarButton = document.getElementById('send-to-car-submit');
+        const sendToCarSpinner = document.getElementById('send-to-car-spinner');
+        const sendToCarSearch = document.getElementById('send-to-car-search');
+        const sendToCarResults = document.getElementById('send-to-car-results');
+
         // Command State Management
         const commandSelect = document.getElementById('command-select');
         const sendCommandButton = document.getElementById('send-command');
@@ -506,6 +542,11 @@
                 sendCommandButton.disabled = false;
                 sendCommandButton.classList.remove('opacity-50', 'cursor-not-allowed');
             }
+        }
+
+        function updateSendToCarState(enabled, searching) {
+            sendToCarButton.disabled = enabled ? "" : "disabled";
+            sendToCarSpinner.style.display = searching ? "inline-block" : "none";
         }
 
         // Function to update the charge bar display
@@ -602,6 +643,11 @@
         }
 
         function updateCarUIElements(data) {
+
+            if (data.sms_config) {
+                currentSmsConfig = data.sms_config;
+            }
+
             // Update Overview Tab
             document.getElementById('overview-soc').textContent = data.ev_info.soc_display > 0 ? `${data.ev_info.soc_display.toFixed(1)}%` : `${data.ev_info.soc.toFixed(1)}%`;
             document.getElementById('overview-range-acon').textContent = `${data.ev_info.range_acon} km`;
@@ -674,8 +720,8 @@
             document.getElementById('ac_status').textContent = data.ev_info.ac_status ? '{% translate "Yes" %}' : '{% translate "No" %}';
             document.getElementById('ev_last_updated').textContent = data.ev_info.last_updated ?
                 new Date(data.ev_info.last_updated).toLocaleString() : 'N/A';
-            document.getElementById('lat').textContent = data.location.lat || 'N/A';
-            document.getElementById('lon').textContent = data.location.lon || 'N/A';
+            /*document.getElementById('lat').textContent = data.location.lat || 'N/A';
+            document.getElementById('lon').textContent = data.location.lon || 'N/A';*/
             document.getElementById('home').textContent = data.location.home ? '{% translate "Yes" %}' : '{% translate "No" %}';
             document.getElementById('loc_last_updated').textContent = data.location.last_updated ?
                 new Date(data.location.last_updated).toLocaleString() : 'N/A';
@@ -696,6 +742,13 @@
                 }
             } else {
                 connectionStatus.className = 'connection-status red';
+            }
+
+            sendToCarResults.innerHTML = '';
+            if (data.send_to_car_location) {
+                sendToCarResults.innerText  = `{% translate "Last shared location" %}: ${data.send_to_car_location.name}`;
+            } else {
+                sendToCarResults.innerText = '{% translate "No past shared location" %}'
             }
 
             updateCommandState(data.command_result, data.command_requested);
@@ -749,6 +802,10 @@
             .then(data => {
                 if (data.error) {
                     showNotification({title: '{% translate "Error sending command" %}', message: data.error ?? data, type: 'error'})
+                } else {
+                    if (currentSmsConfig && currentSmsConfig.provider === 'ondevice') {
+                        window.location.href = `sms:${currentSmsConfig.phone}?body={{ sms_message }}`;
+                    }
                 }
             })
             .catch(error => {
@@ -756,6 +813,174 @@
                 showNotification({title: '{% translate "Error sending command" %}', message: error.error ?? error, type: 'error'})
             });
         });
+
+
+        sendToCarButton.addEventListener('click', () => {
+            updateSendToCarState(false, true);
+
+            const sendToCarOption = JSON.parse(sendToCarResults.querySelector('input[name="send-to-car-option"]:checked').value);
+
+            fetch(`/api/car/${vin}/`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({ send_to_car_location: sendToCarOption })
+            })
+            .then(response => response.json())
+            .then(data => {
+                updateSendToCarState(false, false);
+                if (data.error) {
+                    showNotification({title: '{% translate "Error sending location to car" %}', message: data.error ?? data, type: 'error'})
+                } else {
+                    showNotification({message: "{% translate "Location sent!" %}", type: "success"});
+                    updateCarUIElements(data);
+                }
+            })
+            .catch(error => {
+                updateSendToCarState(false, false);
+                console.error('{% translate "Error sending location to car" %}:', error);
+                showNotification({title: '{% translate "Error sending location to car" %}', message: error.error ?? error, type: 'error'})
+            });
+        })
+
+        document.getElementById('send-to-car-search-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            updateSendToCarState(false, true);
+            map.invalidateSize();
+            sendToCarResults.innerHTML = '';
+
+            const searchFieldValue = sendToCarSearch.value.trim();
+            let linkMatchResult = mapUrlRegex.exec(searchFieldValue);
+            if (linkMatchResult && linkMatchResult.length > 0) {
+                fetch('/api/maplink/resolve', {
+                    method: 'POST',
+                    headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    body: JSON.stringify({url: linkMatchResult[0]})
+                }).then(response => response.json())
+                .then(data => {
+                    updateSendToCarState(false, false);
+                    if (data.location) {
+                        const location = data.location;
+
+                        // Create list element
+                        const ul = document.createElement('ul');
+                        ul.className = 'space-y-2';
+                        const li = document.createElement('li');
+                        li.className = 'bg-gray-100 p-4 py-2 rounded-lg hover:bg-gray-200 transition flex items-start';
+
+                        if (location.name === location.address) {
+                            location.name = undefined;
+                        }
+
+                        const jsonValue = JSON.stringify({lat: location.lat, lon: location.lon, name: (location.name || location.address).substring(0, 32)});
+
+                        li.innerHTML = `
+                          <div class="flex items-center space-x-3">
+                            <input type="radio" class="h-4 w-4 text-blue-600 rounded" name="send-to-car-option" checked />
+                            <div class="flex flex-col">
+                              <h3 class="text-sm font-semibold text-gray-800 stc-locname"></h3>
+                              <p class="text-sm text-gray-600 stc-locaddr" style="display: ${location.name ? "block" : "none"}"></p>
+                            </div>
+                          </div>
+                        `;
+
+                        li.querySelector('.stc-locname').innerText = location.name || location.address;
+                        li.querySelector('.stc-locaddr').innerText = location.address || '{% translate "No address" %}';
+
+                        li.querySelector('input[type="radio"]').value = jsonValue;
+                        ul.appendChild(li);
+                        sendToCarResults.appendChild(ul);
+
+                        marker = updateMap(location.lat, location.lon, map, marker, 16)
+                        updateSendToCarState(true, false);
+
+                    } else {
+                        sendToCarResults.innerText = '{% translate "Could not get location from map link" %}'
+                    }
+                })
+                .catch(error => {
+                    updateSendToCarState(false, false);
+                    console.error(error);
+                    sendToCarResults.innerText = '{% translate "Error searching locations" %}: '+error.error ?? error;
+                });
+                return
+            }
+
+            fetch('https://nominatim.openstreetmap.org/search?'+new URLSearchParams({q: searchFieldValue, format: 'json', addressdetails: 1, limit: 5}).toString())
+                .then(response => response.json())
+                .then(data => {
+                    updateSendToCarState(false, false);
+                    if (data.length > 0) {
+                          // Create list element
+                          const ul = document.createElement('ul');
+                          ul.className = 'space-y-2';
+
+                          data.forEach(location => {
+                            const li = document.createElement('li');
+                            li.className = 'bg-gray-100 p-4 py-2 rounded-lg hover:bg-gray-200 transition flex items-start';
+
+                            // Extract address components
+                            const address = location.address || {};
+                            const addressParts = [
+                                (address.road ? [address.road,
+                                address.house_number].join(" ") : ''),
+                              address.neighbourhood,
+                              address.suburb,
+                              address.town,
+                              address.postcode,
+                              address.country
+                            ].filter(part => part).join(', ');
+
+                            if (location.name === address.road) {
+                                location.name = undefined;
+                            }
+
+                            const jsonValue = JSON.stringify({lat: location.lat, lon: location.lon, name: (location.name || address.road).substring(0, 32)});
+
+                            li.innerHTML = `
+                              <div class="flex items-center space-x-3">
+                                <input type="radio" class="h-4 w-4 text-blue-600 rounded" name="send-to-car-option" />
+                                <div class="flex flex-col">
+                                  <h3 class="text-sm font-semibold text-gray-800 stc-locname"></h3>
+                                  <p class="text-sm text-gray-600 stc-locaddr" style="display: ${location.name ? "block" : "none"}"></p>
+                                </div>
+                              </div>
+                            `;
+
+                            li.querySelector('.stc-locname').innerText = location.name || addressParts;
+                            li.querySelector('.stc-locaddr').innerText = addressParts || '{% translate "No address" %}';
+
+                            li.querySelector('input[type="radio"]').value = jsonValue;
+
+
+
+                            li.addEventListener('click', (event) => {
+                                const checkbox = li.querySelector('div > input[type="radio"]');
+                                if (event.target !== checkbox) {
+                                    checkbox.checked = !checkbox.checked;
+                                }
+                                updateSendToCarState(true, false)
+                                marker = updateMap(location.lat, location.lon, map, marker, 16)
+                            });
+                            ul.appendChild(li);
+                          });
+
+                          sendToCarResults.appendChild(ul);
+                    } else {
+                        sendToCarResults.innerText = '{% translate "Search did not find any locations" %}'
+                    }
+                })
+                .catch(error => {
+                    updateSendToCarState(false, false);
+                    console.error(error);
+                    sendToCarResults.innerText = '{% translate "Error searching locations" %}: '+error.error ?? error;
+                });
+        })
 
         let firstTimeConnect = true;
 

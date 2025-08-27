@@ -3,7 +3,7 @@ from channels.layers import get_channel_layer
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from db.models import Car, AlertHistory, EVInfo, TCUConfiguration, LocationInfo
+from db.models import Car, AlertHistory, EVInfo, TCUConfiguration, LocationInfo, SendToCarLocation
 from ui.serializers import CarSerializer, AlertHistoryFullSerializer
 
 
@@ -77,6 +77,27 @@ def broadcast_car_locinfo_update(sender, instance, created, **kwargs):
             {
                 'type': 'object_update',
                 'object_type': 'location',
+                'serializer': CarSerializer.__module__ + '.' + CarSerializer.__name__,
+                'object': Car.__module__ + '.' + Car.__name__,
+                'data': car.pk
+            }
+        )
+    except Car.DoesNotExist:
+        pass
+
+@receiver(post_save, sender=SendToCarLocation)
+def broadcast_car_send_to_car_update(sender, instance, created, **kwargs):
+    if created:
+        return
+
+    channel_layer = get_channel_layer()
+    try:
+        car = Car.objects.get(send_to_car_location_id=instance.id)
+        async_to_sync(channel_layer.group_send)(
+            f'notif_{car.owner.id}_user',
+            {
+                'type': 'object_update',
+                'object_type': 'send_to_car',
                 'serializer': CarSerializer.__module__ + '.' + CarSerializer.__name__,
                 'object': Car.__module__ + '.' + Car.__name__,
                 'data': car.pk

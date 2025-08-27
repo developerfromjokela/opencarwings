@@ -24,7 +24,7 @@ from rest_framework.response import Response
 
 from db.models import Car, AlertHistory, COMMAND_TYPES, User
 from ui.serializers import CarSerializer, CarSerializerList, AlertHistorySerializer, \
-    CommandResponseSerializer, CommandErrorSerializer
+    CommandResponseSerializer, CommandErrorSerializer, CarUpdatingSerializer
 
 
 class IsCarOwner(permissions.BasePermission):
@@ -44,13 +44,13 @@ class IsCarOwner(permissions.BasePermission):
 ))
 @method_decorator(name='put', decorator=swagger_auto_schema(
     tags=['cars'],
-    request_body=CarSerializer(),
+    request_body=CarUpdatingSerializer(),
     responses={status.HTTP_200_OK: CarSerializer()}
 ))
 @method_decorator(name='patch', decorator=swagger_auto_schema(
     tags=['cars'],
-    request_body=CarSerializer(),
-    responses={status.HTTP_204_NO_CONTENT: "Success"}
+    request_body=CarUpdatingSerializer(),
+    responses={status.HTTP_200_OK: CarSerializer()}
 ))
 @method_decorator(name='delete', decorator=swagger_auto_schema(
     tags=['cars'],
@@ -61,6 +61,14 @@ class CarAPIView(RetrieveAPIView, UpdateAPIView, DestroyAPIView):
     queryset = Car.objects.all()
     serializer_class = CarSerializer
     lookup_field = 'vin'
+
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        serializer = CarUpdatingSerializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+        return Response(CarSerializer(instance).data)
 
 
 @swagger_auto_schema(

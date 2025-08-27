@@ -183,7 +183,7 @@ class Car(models.Model):
     vin = models.CharField(max_length=18, unique=True)
     nickname = models.CharField(max_length=64, default="LEAF")
     sms_config = models.JSONField()
-    color = models.TextField(choices=CAR_COLOR, default=CAR_COLOR[0])
+    color = models.TextField(choices=CAR_COLOR, default="l_planetblue")
     vehicle_code1 = models.IntegerField(default=0)
     vehicle_code2 = models.IntegerField(default=0)
     vehicle_code3 = models.IntegerField(default=0)

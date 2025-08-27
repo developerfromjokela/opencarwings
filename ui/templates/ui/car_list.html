@@ -7,7 +7,7 @@
 {% block content %}
     <!-- Car List -->
     <div class="max-w-6xl mx-auto py-10 px-4">
-        <h1 class="text-3xl font-semibold text-gray-800 mb-6">{% translate "My cars" %} <a href="/setup/step1" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">{% translate "Add" %}</a></h1>
+        <h1 class="text-3xl font-semibold text-gray-800 mb-6 flex items-center">{% translate "My cars" %} <a href="/setup/step1" class="ml-2 px-2 py-1 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">{% translate "Add" %}</a></h1>
         <div class="space-y-4">
             {% for car in cars %}
                 <a href="{% url 'car_detail' car.vin %}" class="flex bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200">

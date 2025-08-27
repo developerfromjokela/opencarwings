@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-22 10:40+0000\n"
+"POT-Creation-Date: 2025-08-27 15:16+0000\n"
 "PO-Revision-Date: 2025-05-05 00:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Spanish <es@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: api/views.py:238
+#: api/views.py:246
 msgid "Failed to send SMS message to TCU. Please try again in a moment."
 msgstr ""
 "No se pudo enviar el mensaje SMS al TCU. Por favor, intenta de nuevo en un "
@@ -117,11 +117,11 @@ msgstr "Esperando respuesta"
 msgid "Park"
 msgstr "Estacionar"
 
-#: db/models.py:46 ui/templates/ui/car_detail.html:673
+#: db/models.py:46 ui/templates/ui/car_detail.html:707
 msgid "Drive"
 msgstr "Conducir"
 
-#: db/models.py:47 ui/templates/ui/car_detail.html:673
+#: db/models.py:47 ui/templates/ui/car_detail.html:707
 msgid "Reverse"
 msgstr "Marcha atrás"
 
@@ -331,7 +331,7 @@ msgstr ""
 "Se enviará una solicitud POST a la URL del webhook especificada cuando sea "
 "necesario."
 
-#: ui/forms.py:17 ui/forms.py:28 ui/templates/ui/car_detail.html:289
+#: ui/forms.py:17 ui/forms.py:28 ui/templates/ui/car_detail.html:300
 msgid "Nickname"
 msgstr "Apodo"
 
@@ -339,7 +339,7 @@ msgstr "Apodo"
 msgid "Disable TCU authentication"
 msgstr "Desactivar autenticación del TCU"
 
-#: ui/forms.py:19 ui/templates/ui/car_detail.html:322
+#: ui/forms.py:19 ui/templates/ui/car_detail.html:333
 msgid "Show calculated battery percentage"
 msgstr "Mostrar porcentaje de batería calculado"
 
@@ -417,7 +417,7 @@ msgstr "Documentación de la API"
 msgid "Reset API-key"
 msgstr "Restablecer clave de API"
 
-#: ui/templates/ui/account.html:48 ui/templates/ui/car_detail.html:376
+#: ui/templates/ui/account.html:48 ui/templates/ui/car_detail.html:387
 #: ui/templates/ui/setup/step2.html:50 ui/templates/ui/setup/step3.html:36
 #: ui/templates/ui/setup/step4.html:60
 msgid "Save"
@@ -497,7 +497,7 @@ msgstr "Ubicación"
 msgid "Recent Alerts"
 msgstr "Alertas recientes"
 
-#: ui/templates/ui/car_detail.html:85 ui/templates/ui/car_detail.html:284
+#: ui/templates/ui/car_detail.html:85 ui/templates/ui/car_detail.html:295
 msgid "Settings"
 msgstr "Configuraciones"
 
@@ -544,31 +544,31 @@ msgid "Car status"
 msgstr "Estado del coche"
 
 #: ui/templates/ui/car_detail.html:157 ui/templates/ui/car_detail.html:159
-#: ui/templates/ui/car_detail.html:614 ui/templates/ui/car_detail.html:616
-#: ui/templates/ui/car_detail.html:630
+#: ui/templates/ui/car_detail.html:648 ui/templates/ui/car_detail.html:650
+#: ui/templates/ui/car_detail.html:664
 msgid "On"
 msgstr "Encendido"
 
-#: ui/templates/ui/car_detail.html:157 ui/templates/ui/car_detail.html:614
-#: ui/templates/ui/car_detail.html:673
+#: ui/templates/ui/car_detail.html:157 ui/templates/ui/car_detail.html:648
+#: ui/templates/ui/car_detail.html:707
 msgid "Parked"
 msgstr "Estacionado"
 
-#: ui/templates/ui/car_detail.html:159 ui/templates/ui/car_detail.html:616
+#: ui/templates/ui/car_detail.html:159 ui/templates/ui/car_detail.html:650
 msgid "Driving"
 msgstr "Conduciendo"
 
-#: ui/templates/ui/car_detail.html:163 ui/templates/ui/car_detail.html:620
+#: ui/templates/ui/car_detail.html:163 ui/templates/ui/car_detail.html:654
 msgid "Charging finished"
 msgstr "Carga finalizada"
 
 #: ui/templates/ui/car_detail.html:165 ui/templates/ui/car_detail.html:238
-#: ui/templates/ui/car_detail.html:622
+#: ui/templates/ui/car_detail.html:656
 msgid "Charging"
 msgstr "Cargando"
 
-#: ui/templates/ui/car_detail.html:167 ui/templates/ui/car_detail.html:624
-#: ui/templates/ui/car_detail.html:630
+#: ui/templates/ui/car_detail.html:167 ui/templates/ui/car_detail.html:658
+#: ui/templates/ui/car_detail.html:664
 msgid "Off"
 msgstr "Apagado"
 
@@ -581,7 +581,7 @@ msgid "On,Off"
 msgstr "Encendido,Apagado"
 
 #: ui/templates/ui/car_detail.html:185 ui/templates/ui/car_detail.html:217
-#: ui/templates/ui/car_detail.html:244 ui/templates/ui/car_detail.html:255
+#: ui/templates/ui/car_detail.html:244 ui/templates/ui/car_detail.html:266
 msgid "Last Updated"
 msgstr "Última actualización"
 
@@ -625,7 +625,7 @@ msgstr "Coche encendido"
 
 #: ui/templates/ui/car_detail.html:224 ui/templates/ui/car_detail.html:237
 #: ui/templates/ui/car_detail.html:238 ui/templates/ui/car_detail.html:239
-#: ui/templates/ui/car_detail.html:240 ui/templates/ui/car_detail.html:254
+#: ui/templates/ui/car_detail.html:240 ui/templates/ui/car_detail.html:265
 msgid "Yes,No"
 msgstr "Sí,No"
 
@@ -673,35 +673,47 @@ msgstr "GIDs restantes"
 msgid "Counter"
 msgstr "Contador"
 
-#: ui/templates/ui/car_detail.html:252
-msgid "Latitude"
-msgstr "Latitud"
+#: ui/templates/ui/car_detail.html:251
+msgid "Send location to car"
+msgstr "Enviar punto del mapa al coche"
 
 #: ui/templates/ui/car_detail.html:253
-msgid "Longitude"
-msgstr "Longitud"
+msgid "Search for locations or enter google/apple maps link"
+msgstr "Buscar ubicaciones o ingresar enlace de Google/Apple Maps"
 
-#: ui/templates/ui/car_detail.html:254
+#: ui/templates/ui/car_detail.html:257 ui/templates/ui/car_detail.html:737
+msgid "Last shared location"
+msgstr "Último punto del mapa compartido"
+
+#: ui/templates/ui/car_detail.html:259 ui/templates/ui/car_detail.html:739
+msgid "No past shared location"
+msgstr "No hay puntos del mapa compartidos anteriormente"
+
+#: ui/templates/ui/car_detail.html:262
+msgid "Send"
+msgstr "Enviar"
+
+#: ui/templates/ui/car_detail.html:265
 msgid "At Home"
 msgstr "En casa"
 
-#: ui/templates/ui/car_detail.html:265
+#: ui/templates/ui/car_detail.html:276
 msgid "Type"
 msgstr "Tipo"
 
-#: ui/templates/ui/car_detail.html:266
+#: ui/templates/ui/car_detail.html:277
 msgid "Timestamp"
 msgstr "Marca de tiempo"
 
-#: ui/templates/ui/car_detail.html:267
+#: ui/templates/ui/car_detail.html:278
 msgid "Additional Data"
 msgstr "Datos adicionales"
 
-#: ui/templates/ui/car_detail.html:299
+#: ui/templates/ui/car_detail.html:310
 msgid "Skip authentication from TCU"
 msgstr "Omitir autenticación desde el TCU"
 
-#: ui/templates/ui/car_detail.html:300
+#: ui/templates/ui/car_detail.html:311
 msgid ""
 "On AZE0 (2013) and newer LEAFs, username and password inserted to navi are "
 "not saved due to an error. In this case, check this box to skip the "
@@ -711,15 +723,15 @@ msgstr ""
 "insertados en el sistema de navegación no se guardan debido a un error. En "
 "este caso, marca esta casilla para omitir la autenticación"
 
-#: ui/templates/ui/car_detail.html:306
+#: ui/templates/ui/car_detail.html:317
 msgid "Car color"
 msgstr "Color del coche"
 
-#: ui/templates/ui/car_detail.html:315
+#: ui/templates/ui/car_detail.html:326
 msgid "Maximum GIDs value"
 msgstr "Valor máximo de GIDs"
 
-#: ui/templates/ui/car_detail.html:317
+#: ui/templates/ui/car_detail.html:328
 #, python-format
 msgid ""
 "OpenCARWINGS will try to auto-detect your battery size and fill this field. "
@@ -730,7 +742,7 @@ msgstr ""
 "completar este campo. Para coches con batería cambiada/reemplazada, ingresa "
 "la cantidad máxima de GIDs cuando la batería es nueva (SoH 100%%)."
 
-#: ui/templates/ui/car_detail.html:323
+#: ui/templates/ui/car_detail.html:334
 msgid ""
 "On AZE0 (>2013) generation cars, it is possible to see available battery "
 "capacity in percentage. For ZE0, such feature was never implemented. By "
@@ -742,54 +754,79 @@ msgstr ""
 "implementó. Al habilitar esta opción, se calculará el valor porcentual de "
 "'pantalla', que puede no ser preciso."
 
-#: ui/templates/ui/car_detail.html:329
+#: ui/templates/ui/car_detail.html:340
 msgid "Periodic data refresh interval"
 msgstr "Intervalo de actualización periódica de datos"
 
-#: ui/templates/ui/car_detail.html:338
+#: ui/templates/ui/car_detail.html:349
 msgid "Periodic data refresh interval (while driving or charging)"
 msgstr ""
 "Intervalo de actualización periódica de datos (mientras conduces o cargas)"
 
-#: ui/templates/ui/car_detail.html:347 ui/templates/ui/setup/step4.html:29
+#: ui/templates/ui/car_detail.html:358 ui/templates/ui/setup/step4.html:29
 msgid "SMS provider"
 msgstr "Proveedor de SMS"
 
-#: ui/templates/ui/car_detail.html:377
+#: ui/templates/ui/car_detail.html:388
 msgid "Remove car"
 msgstr "Eliminar coche"
 
-#: ui/templates/ui/car_detail.html:585 ui/templates/ui/car_detail.html:589
-#: ui/templates/ui/car_detail.html:590 ui/templates/ui/car_detail.html:751
-#: ui/templates/ui/car_detail.html:755 ui/templates/ui/car_detail.html:756
+#: ui/templates/ui/car_detail.html:619 ui/templates/ui/car_detail.html:623
+#: ui/templates/ui/car_detail.html:624 ui/templates/ui/car_detail.html:792
+#: ui/templates/ui/car_detail.html:796 ui/templates/ui/car_detail.html:797
 msgid "Error sending command"
 msgstr "Error al enviar el comando"
 
-#: ui/templates/ui/car_detail.html:609
+#: ui/templates/ui/car_detail.html:643
 msgid "Plugged In"
 msgstr "Conectado"
 
-#: ui/templates/ui/car_detail.html:609
+#: ui/templates/ui/car_detail.html:643
 msgid "Unplugged"
 msgstr "Desconectado"
 
-#: ui/templates/ui/car_detail.html:657 ui/templates/ui/car_detail.html:658
-#: ui/templates/ui/car_detail.html:659 ui/templates/ui/car_detail.html:668
-#: ui/templates/ui/car_detail.html:674 ui/templates/ui/car_detail.html:679
+#: ui/templates/ui/car_detail.html:691 ui/templates/ui/car_detail.html:692
+#: ui/templates/ui/car_detail.html:693 ui/templates/ui/car_detail.html:702
+#: ui/templates/ui/car_detail.html:708 ui/templates/ui/car_detail.html:713
 msgid "Yes"
 msgstr "Sí"
 
-#: ui/templates/ui/car_detail.html:657 ui/templates/ui/car_detail.html:658
-#: ui/templates/ui/car_detail.html:659 ui/templates/ui/car_detail.html:668
-#: ui/templates/ui/car_detail.html:674 ui/templates/ui/car_detail.html:679
+#: ui/templates/ui/car_detail.html:691 ui/templates/ui/car_detail.html:692
+#: ui/templates/ui/car_detail.html:693 ui/templates/ui/car_detail.html:702
+#: ui/templates/ui/car_detail.html:708 ui/templates/ui/car_detail.html:713
 msgid "No"
 msgstr "No"
 
-#: ui/templates/ui/car_detail.html:775
+#: ui/templates/ui/car_detail.html:819 ui/templates/ui/car_detail.html:827
+#: ui/templates/ui/car_detail.html:828
+msgid "Error sending location to car"
+msgstr "Error al enviar la ubicación al coche"
+
+#: ui/templates/ui/car_detail.html:821
+msgid "Location sent!"
+msgstr "¡Punto del mapa enviado!"
+
+#: ui/templates/ui/car_detail.html:877 ui/templates/ui/car_detail.html:940
+msgid "No address"
+msgstr "Sin dirección"
+
+#: ui/templates/ui/car_detail.html:887
+msgid "Could not get location from map link"
+msgstr "No se pudo obtener la ubicación desde el enlace"
+
+#: ui/templates/ui/car_detail.html:893 ui/templates/ui/car_detail.html:965
+msgid "Error searching locations"
+msgstr "Error al buscar ubicaciones"
+
+#: ui/templates/ui/car_detail.html:959
+msgid "Search did not find any locations"
+msgstr "La búsqueda no encontró ninguna ubicación"
+
+#: ui/templates/ui/car_detail.html:984
 msgid "Connection established!"
 msgstr "¡Conexión establecida!"
 
-#: ui/templates/ui/car_detail.html:780
+#: ui/templates/ui/car_detail.html:989
 msgid "Reconnecting..."
 msgstr "Reconectando..."
 
@@ -1095,62 +1132,68 @@ msgstr "Agregar nuevo perfil de conexión"
 msgid "Export VFlash"
 msgstr "Exportar VFlash"
 
-#: ui/views.py:25
+#: ui/views.py:29
 msgid "TCU setup"
 msgstr "Configuración del TCU"
 
-#: ui/views.py:26
+#: ui/views.py:30
 msgid "TCU identifiers"
 msgstr "Identificadores del TCU"
 
-#: ui/views.py:27
+#: ui/views.py:31
 msgid "Basic information"
 msgstr "Información básica"
 
-#: ui/views.py:28
+#: ui/views.py:32
 msgid "SMS configuration"
 msgstr "Configuración de SMS"
 
-#: ui/views.py:29
+#: ui/views.py:33
 msgid "Car added"
 msgstr "Coche añadido"
 
-#: ui/views.py:83
+#: ui/views.py:87
 msgid "Account successfully updated!"
 msgstr "¡Cuenta actualizada con éxito!"
 
-#: ui/views.py:86
+#: ui/views.py:90
 msgid "Please fill the form correctly and try again."
 msgstr "Por favor, completa el formulario correctamente y vuelve a intentarlo."
 
-#: ui/views.py:174
+#: ui/views.py:420
 msgid "Successfully saved settings."
 msgstr "Configuraciones guardadas con éxito."
 
-#: ui/views.py:176 ui/views.py:290 ui/views.py:311
+#: ui/views.py:422 ui/views.py:536 ui/views.py:557
 msgid "Please fill the form correctly"
 msgstr "Por favor, completa el formulario correctamente"
 
-#: ui/views.py:179 ui/views.py:346
+#: ui/views.py:425 ui/views.py:592
 msgid "Please fill all necessary fields and try again."
 msgstr "Por favor, completa todos los campos necesarios y vuelve a intentarlo."
 
-#: ui/views.py:183
+#: ui/views.py:429
 msgid "Waiting for first connection.."
 msgstr "Esperando la primera conexión..."
 
-#: ui/views.py:208
+#: ui/views.py:454
 msgid "Sign-up is not enabled on this instance"
 msgstr "El registro no está habilitado en esta instancia"
 
-#: ui/views.py:237
+#: ui/views.py:483
 msgid "Invalid username or password."
 msgstr "Nombre de usuario o contraseña inválidos."
 
-#: ui/views.py:277
+#: ui/views.py:523
 msgid "Car is already added. Please remove and try again."
 msgstr "El coche ya está añadido. Por favor, elimínalo y vuelve a intentarlo."
 
-#: ui/views.py:327
+#: ui/views.py:573
 msgid "Please select a provider for SMS."
 msgstr "Por favor, selecciona un proveedor para SMS."
+
+#~ msgid "Latitude"
+#~ msgstr "Latitud"
+
+#~ msgid "Longitude"
+#~ msgstr "Longitud"

@@ -5,6 +5,7 @@ from tculink.carwings_proto.dataobjects import construct_chnmst_payload, constru
     construct_send_to_car_channel
 from tculink.carwings_proto.utils import get_cws_authenticated_car
 from tculink.carwings_proto.xml import carwings_create_xmlfile_content
+from unidecode import unidecode
 
 # Demo folders and items
 folders = [
@@ -383,9 +384,14 @@ def handle_dj(xml_data, files):
                     car = get_cws_authenticated_car(xml_data)
                     if car is not None:
                         if car.send_to_car_location is not None:
+                            formatted_name = unidecode(car.send_to_car_location.name)
+                            if formatted_name is None:
+                                formatted_name = "Send to car destination"
+                            if len(formatted_name) > 32:
+                                formatted_name = formatted_name[:32]
                             car_destinations.append(
                                 {
-                                    "name": car.send_to_car_location.name,
+                                    "name": formatted_name,
                                     "name2": "jkl",
                                     "name3": "abc",
                                     "lat": car.send_to_car_location.lat,

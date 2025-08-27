@@ -87,12 +87,7 @@ class CarAdmin(admin.ModelAdmin):
         }),
     )
 
-# If you prefer a simpler registration without customizations, you could just use:
-# admin.site.register(TCUConfiguration)
-# admin.site.register(LocationInfo)
-# admin.site.register(EVInfo)
-# admin.site.register(AlertHistory)
-# admin.site.register(Car)
+
 @admin.register(User)
 class CustomUserAdmin(UserAdmin):
     fieldsets = UserAdmin.fieldsets+ (

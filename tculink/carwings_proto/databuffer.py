@@ -187,6 +187,6 @@ def get_carwings_bininfo(binary_data):
         start_pos = 2
         end_pos = binary_data.find(end_marker, start_pos)
         if end_pos == -1:
-            return result
+            return result[start_pos:len(binary_data)-1]
         result.extend(binary_data[start_pos:end_pos])
     return result

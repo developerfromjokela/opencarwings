@@ -190,5 +190,5 @@ def get_carwings_bininfo(binary_data):
             return result
         result.extend(binary_data[start_pos:end_pos])
     if pload_type == 0x01:
-        return result[2:]
+        return binary_data[2:]
     return result

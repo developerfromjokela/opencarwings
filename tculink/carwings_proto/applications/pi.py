@@ -4,6 +4,7 @@ from datetime import datetime
 import random
 
 from tculink.carwings_proto.databuffer import construct_carwings_filepacket, compress_carwings, probe_xor_data
+from tculink.carwings_proto.utils import calculate_prb_data_checksum
 from tculink.carwings_proto.xml import carwings_create_xmlfile_content
 
 
@@ -63,6 +64,7 @@ def handle_pi(xml_data, files):
 
                 probe_data = probe_data["content"]
 
+
                 if probe_data[0] == 0x05 and probe_data[1] == 0x81:
                     if len(probe_data) < 10:
                         print("Probe File too small", filename)
@@ -71,29 +73,41 @@ def handle_pi(xml_data, files):
                         xor_key = probe_data[6]
                         file_number = int.from_bytes([probe_data[7], probe_data[8]], byteorder="big")
                         coordinate_system = probe_data[9]
+                        checksum_byte = probe_data[-1]
 
                         print("Probe file metadata:")
                         print("  DataLength: ", data_length)
                         print("  FileNumber: ", file_number)
                         print("  XORKey: ", hex(xor_key))
+                        print("  Checksum: ", hex(checksum_byte))
                         print("  CoordinateSystem: ", hex(coordinate_system))
 
-                        decrypted_data = bytearray(probe_data[:10])
-                        decrypted_data += probe_xor_data(probe_data[10:], xor_key)
+                        checksum = calculate_prb_data_checksum(probe_data[2:], len(probe_data) - 2)
+                        if checksum != checksum_byte:
+                            print("Probe file checksum error!")
+                            file_path = os.path.join(log_dir, f"CHKSUMERR-{hex(checksum_byte)}-{hex(checksum)}-{filename}")
+                            if os.path.exists(file_path):
+                                file_path = os.path.join(log_dir,
+                                                         f"dupl-{random.randrange(111111, 999999, 6)}-CHKSUMERR-{hex(checksum_byte)}-{hex(checksum)}-{filename}")
+                            with open(file_path, 'wb') as f:
+                                f.write(probe_data)
+                        else:
+                            decrypted_data = bytearray(probe_data[:10])
+                            decrypted_data += probe_xor_data(probe_data[10:], xor_key)
 
-                        file_path = os.path.join(log_dir,filename)
+                            file_path = os.path.join(log_dir,filename)
 
-                        if os.path.exists(file_path):
-                            file_path = os.path.join(log_dir, f"dupl-{random.randrange(111111, 999999, 6)}-{filename}")
+                            if os.path.exists(file_path):
+                                file_path = os.path.join(log_dir, f"dupl-{random.randrange(111111, 999999, 6)}-{filename}")
 
-                        with open(file_path, 'wb') as f:
-                            f.write(decrypted_data)
+                            with open(file_path, 'wb') as f:
+                                f.write(decrypted_data)
 
-                        confirmation_content = bytearray.fromhex('00 00 00 00 00 00 00 00 00 05 14')
-                        confirmation_content += file_number.to_bytes(2, byteorder="big")
+                            confirmation_content = bytearray.fromhex('00 00 00 00 00 00 00 00 00 05 14')
+                            confirmation_content += file_number.to_bytes(2, byteorder="big")
 
-                        outgoing_files.append((f"PICONFIRM{file_number}.003", confirmation_content))
-                        filenames.append(f"PICONFIRM{file_number}.003")
+                            outgoing_files.append((f"PICONFIRM{file_number}.003", confirmation_content))
+                            filenames.append(f"PICONFIRM{file_number}.003")
                 else:
                     print("Invalid Probe file signature! Got: "+hex(probe_data[0])+hex(probe_data[1]))
                     file_path = os.path.join(log_dir, f"UNKNOWN-{filename}")

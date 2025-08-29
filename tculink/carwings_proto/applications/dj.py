@@ -1,3 +1,6 @@
+import os
+from datetime import datetime
+
 from tculink.carwings_proto.databuffer import get_carwings_bininfo, construct_carwings_filepacket, compress_carwings
 import xml.etree.ElementTree as ET
 
@@ -315,6 +318,11 @@ def handle_dj(xml_data, files):
         dj_payload = get_carwings_bininfo(file_content)
         if dj_payload is None:
             print("DJ Payload is not valid!")
+            log_dir = os.path.join("logs", "dj", xml_data['authentication']['navi_id'],
+                                   datetime.now().strftime('%Y%m%d%H%M%S.%s'))
+            os.makedirs(log_dir, exist_ok=True)
+            with open(os.path.join(log_dir, f"INVALID-{id_value}"), 'wb') as f:
+                f.write(file_content)
             return None
 
         action = dj_payload[1]
@@ -330,7 +338,7 @@ def handle_dj(xml_data, files):
 
         if action == 0x01:
             print("Save to Favorite list func!")
-        if action == 0x00:
+        elif action == 0x00:
             print("Request func!")
             handler_id = (dj_payload[2] << 8) | (dj_payload[3])
             print("Handler ID", handler_id)
@@ -411,10 +419,17 @@ def handle_dj(xml_data, files):
                     # Send empty response for now until data format is figured out
                     resp_file = construct_send_to_car_channel([], channel_id=0x000A)
                 else:
+                    log_dir = os.path.join("logs", "dj", xml_data['authentication']['navi_id'],
+                                           datetime.now().strftime('%Y%m%d%H%M%S.%s'))
+                    os.makedirs(log_dir, exist_ok=True)
                     # Give generic empty list response for now
                     resp_file = bytearray.fromhex('00 00 00 00 00 00 00 00 00 01 02 01 FF FF 07 00'.replace(' ', ''))
                     resp_file[12] = dj_payload[4]
                     resp_file[13] = dj_payload[5]
+
+                    with open(os.path.join(log_dir, f"UNKNOWNCHID-{id_value}"), 'wb') as f:
+                        f.write(file_content)
+
 
                 ET.SubElement(app_elm, "send_data", {"id_type": "file", "id": "CHANDAT.001"})
 
@@ -424,6 +439,18 @@ def handle_dj(xml_data, files):
                 xml_str = carwings_create_xmlfile_content(carwings_xml_root)
                 files.append(("response.xml", xml_str.encode("utf-8"),))
                 files.append(("CHANDAT.001", resp_file))
+            else:
+                log_dir = os.path.join("logs", "dj", xml_data['authentication']['navi_id'],
+                                       datetime.now().strftime('%Y%m%d%H%M%S.%s'))
+                os.makedirs(log_dir, exist_ok=True)
+                with open(os.path.join(log_dir, f"UNKNOWNID-{id_value}"), 'wb') as f:
+                    f.write(file_content)
+        else:
+            log_dir = os.path.join("logs", "dj", xml_data['authentication']['navi_id'],
+                                   datetime.now().strftime('%Y%m%d%H%M%S.%s'))
+            os.makedirs(log_dir, exist_ok=True)
+            with open(os.path.join(log_dir, f"UNKNOWNACT-{id_value}"), 'wb') as f:
+                f.write(file_content)
 
         return compress_carwings(construct_carwings_filepacket(files))
     return None

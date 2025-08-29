@@ -325,6 +325,15 @@ def handle_dj(xml_data, files):
                 f.write(file_content)
             return None
 
+        if len(dj_payload) < 2:
+            print("DJ Payload is invalid!")
+            log_dir = os.path.join("logs", "dj", xml_data['authentication']['navi_id'],
+                                   datetime.now().strftime('%Y%m%d%H%M%S.%s'))
+            os.makedirs(log_dir, exist_ok=True)
+            with open(os.path.join(log_dir, f"UNKNOWNDJPAYL-{id_value}"), 'wb') as f:
+                f.write(file_content)
+            return None
+
         action = dj_payload[1]
 
         files = []

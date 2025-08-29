@@ -50,3 +50,19 @@ def calculate_prb_data_checksum(data, length):
     if length == 1 and len(data) > 0:  # Process the final byte if length == 1
         sum = (sum + data[length - 1]) % 256
     return sum
+
+
+def parse_std_location(lat_int, lon_int):
+    """
+    Parse 32-bit latitude and longitude into GPS coordinates.
+    """
+
+    def to_decimal_degrees(coord_int):
+        # Convert to decimal degrees: divide by 512 and then by 3600
+        return (coord_int / 512.0) / 3600.0
+
+    # Parse latitude and longitude
+    lat_decimal = to_decimal_degrees(lat_int)
+    lon_decimal = to_decimal_degrees(lon_int)
+
+    return lat_decimal, lon_decimal

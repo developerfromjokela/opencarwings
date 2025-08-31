@@ -69,10 +69,12 @@
                     <dt><i class="mic material-symbols-outlined">eco</i> {% translate "Regenerated" %}</dt>
                     <dd id="overview-range-acon">{{ trip.regen|div:100000.0|floatformat:1 }} kWh</dd>
                 </div>
+                {% if trip.motor_consumption|addition:trip.aircon_consumption|addition:trip.auxiliary_consumption != 0 and trip.distance != 0 %}
                 <div class="status-box">
                     <dt><i class="mic material-symbols-outlined">flash_on</i> {% translate "Average consumption" %}</dt>
                     <dd id="overview-range-acon">{{ trip.motor_consumption|addition:trip.aircon_consumption|addition:trip.auxiliary_consumption|div:10.0|div:trip.distance|floatformat:1 }} Wh/km</dd>
                 </div>
+                {% endif %}
         </div>
 
         <!-- Messages -->

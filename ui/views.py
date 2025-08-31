@@ -76,7 +76,7 @@ class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
 
 def account(request):
     if not request.user.is_authenticated:
-        return redirect('login')
+        return redirect('signin')
     account_form = AccountForm()
     account_form.initial['email'] = request.user.email
     account_form.initial['notifications'] = request.user.email_notifications
@@ -103,7 +103,7 @@ def account(request):
 @api_view(['POST'])
 def reset_apikey(request):
     if not request.user.is_authenticated:
-        return redirect('login')
+        return redirect('signin')
     if isinstance(request.auth, Token):
         return Response({'status': False, 'cause': 'Cannot reset API token with another API token!'}, status=401)
     api_key, _ = Token.objects.get_or_create(user=request.user)
@@ -391,7 +391,7 @@ def resolve_maps_link(request):
 
 def change_carwings_password(request):
     if not request.user.is_authenticated:
-        return redirect('login')
+        return redirect('signin')
     if request.method == 'POST':
         form = ChangeCarwingsPasswordForm(request.POST)
         if form.is_valid():
@@ -416,7 +416,7 @@ def vflash_editor(request):
 
 def car_detail(request, vin):
     if not request.user.is_authenticated:
-        return redirect('login')
+        return redirect('signin')
     car = get_object_or_404(Car, vin=vin, owner=request.user)
     FILTERED_COMMANDTYPES = COMMAND_TYPES[1:]
 
@@ -671,7 +671,7 @@ def setup_step5(request):
 
 def probeviewer_home(request, vin):
     if not request.user.is_authenticated:
-        return redirect('login')
+        return redirect('signin')
     car = get_object_or_404(Car, vin=vin, owner=request.user)
 
     try:
@@ -749,7 +749,7 @@ def probeviewer_home(request, vin):
 
 def probeviewer_trip(request, vin, trip):
     if not request.user.is_authenticated:
-        return redirect('login')
+        return redirect('signin')
     car = get_object_or_404(Car, vin=vin, owner=request.user)
 
     trip = get_object_or_404(CRMTripRecord, car=car, pk=trip)

@@ -112,12 +112,15 @@ def handle_pi(xml_data, files):
                                     logger.info("CRM File!")
                                     car_ref = get_cws_authenticated_car(xml_data)
                                     if car_ref is not None:
+                                        logger.info("Starting CRM file parse")
                                         try:
                                             crm_data = parse_crmfile(decrypted_data)
                                             update_crm_to_db(car_ref, crm_data)
                                         except Exception as e:
                                             logger.error("CRMFILE ERR")
                                             logger.exception(e)
+                                    else:
+                                        logger.warning("Car ref not available, skip!")
                                 elif data[0] == 0x05:
                                     logger.info("DOT file!")
                                     # TODO dotfile handling, implement when format known

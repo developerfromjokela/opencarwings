@@ -6,25 +6,8 @@
 {% block setup %}
     <div class="bg-white p-6 rounded-lg shadow-md">
         <h2 class="text-lg font-semibold text-gray-800 mb-4">{% translate "All done!" %}</h2>
-        <p>{% blocktranslate %}You're done with providing necessary information to establish connection with your LEAF.{% endblocktranslate %}<br/>{% blocktranslate %}You may sign in with your username and CARWINGS password in navigation unit like showed below.{% endblocktranslate %}</p>
-
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-5">
-            <div>
-                <img class="h-auto max-w-full rounded-lg" src="{% static 'leafstep1.jpg' %}" alt="">
-            </div>
-            <div>
-                <img class="h-auto max-w-full rounded-lg" src="{% static 'leafstep2.jpg' %}" alt="">
-            </div>
-            <div>
-                <img class="h-auto max-w-full rounded-lg" src="{% static 'leafstep3.jpg' %}" alt="">
-            </div>
-            <div>
-                <img class="h-auto max-w-full rounded-lg" src="{% static 'leafstep4.jpg' %}" alt="">
-            </div>
-        </div>
-
-
+        <p>{% blocktranslate %}You're done with providing necessary information to establish connection with your LEAF.{% endblocktranslate %}<br/>{% blocktranslate %}You can now use TCU services.{% endblocktranslate %}</p>
+        <p>{% blocktranslate %}{% endblocktranslate %}</p>
         <form method="post" action="{% url 'setup_5' %}">
             {% csrf_token %}
             <div class="mt-12 w-full flex flex-row align-end items-end justify-end gap-4">

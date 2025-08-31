@@ -1,72 +1,69 @@
-# Spanish translation for the PACKAGE package.
+# Estonian translation for PACKAGE
 # Copyright (C) 2025 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+# Translator: Grok <grok@x.ai>, 2025
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-31 00:13+0000\n"
-"PO-Revision-Date: 2025-05-05 00:00+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Spanish <es@li.org>\n"
-"Language: es\n"
+"PO-Revision-Date: 2025-08-31 02:50+0300\n"
+"Last-Translator: Grok <grok@x.ai>\n"
+"Language-Team: Estonian <et@li.org>\n"
+"Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: api/views.py:246
 msgid "Failed to send SMS message to TCU. Please try again in a moment."
 msgstr ""
-"No se pudo enviar el mensaje SMS al TCU. Por favor, intenta de nuevo en un "
-"momento."
+"SMS-sõnumi saatmine TCU-le ebaõnnestus. Palun proovi mõne aja pärast uuesti."
 
 #: db/models.py:13
 msgid "Charge stop"
-msgstr "Parada de carga"
+msgstr "Laadimise lõpetamine"
 
 #: db/models.py:14 db/models.py:30
 msgid "Charge start"
-msgstr "Inicio de carga"
+msgstr "Laadimise alustamine"
 
 #: db/models.py:15
 msgid "Charge cable reminder"
-msgstr "Recordatorio de cable de carga"
+msgstr "Laadimiskaabli meeldetuletus"
 
 #: db/models.py:16 db/models.py:31
 msgid "A/C on"
-msgstr "Aire acondicionado encendido"
+msgstr "Kliimaseade sisse"
 
 #: db/models.py:17 db/models.py:32
 msgid "A/C off"
-msgstr "Aire acondicionado apagado"
+msgstr "Kliimaseade välja"
 
 #: db/models.py:18
 msgid "Configuration read"
-msgstr "Configuración leída"
+msgstr "Konfiguratsiooni lugemine"
 
 #: db/models.py:19
 msgid "A/C auto off"
-msgstr "Aire acondicionado apagado automáticamente"
+msgstr "Kliimaseadme automaatne väljalülitamine"
 
 #: db/models.py:20
 msgid "Quick charge stop"
-msgstr "Parada de carga rápida"
+msgstr "Kiirlaadimise lõpetamine"
 
 #: db/models.py:21
 msgid "Charge error"
-msgstr "Error de carga"
+msgstr "Laadimisviga"
 
 #: db/models.py:22
 msgid "A/C error"
-msgstr "Error del aire acondicionado"
+msgstr "Kliimaseadme viga"
 
 #: db/models.py:23
 msgid "Command timeout"
-msgstr "Tiempo de espera del comando"
+msgstr "Käsu aegumine"
 
 #: db/models.py:24 db/models.py:39 ui/templates/ui/account.html:15
 #: ui/templates/ui/car_detail.html:61
@@ -78,23 +75,23 @@ msgstr "Tiempo de espera del comando"
 #: ui/templates/ui/setup/step2.html:13 ui/templates/ui/setup/step3.html:13
 #: ui/templates/ui/setup/step4.html:13
 msgid "Error"
-msgstr "Error"
+msgstr "Viga"
 
 #: db/models.py:28
 msgid "No command"
-msgstr "Sin comando"
+msgstr "Käsku pole"
 
 #: db/models.py:29
 msgid "Refresh data"
-msgstr "Actualizar datos"
+msgstr "Andmete värskendamine"
 
 #: db/models.py:33
 msgid "Read configuration"
-msgstr "Leer configuración"
+msgstr "Konfiguratsiooni lugemine"
 
 #: db/models.py:37
 msgid "Waiting"
-msgstr "Esperando"
+msgstr "Ootel"
 
 #: db/models.py:38 ui/templates/ui/account.html:14
 #: ui/templates/ui/car_detail.html:60
@@ -107,110 +104,108 @@ msgstr "Esperando"
 #: ui/templates/ui/setup/step2.html:12 ui/templates/ui/setup/step3.html:12
 #: ui/templates/ui/setup/step4.html:12
 msgid "Success"
-msgstr "Éxito"
+msgstr "Õnnestus"
 
 #: db/models.py:40
 msgid "Timeout"
-msgstr "Tiempo de espera"
+msgstr "Aegumine"
 
 #: db/models.py:41
 msgid "Await response"
-msgstr "Esperando respuesta"
+msgstr "Oota vastust"
 
 #: db/models.py:45
 msgid "Park"
-msgstr "Estacionar"
+msgstr "Parkimine"
 
 #: db/models.py:46 ui/templates/ui/car_detail.html:720
 msgid "Drive"
-msgstr "Conducir"
+msgstr "Sõitmine"
 
 #: db/models.py:47 ui/templates/ui/car_detail.html:720
 msgid "Reverse"
-msgstr "Marcha atrás"
+msgstr "Tagurdamine"
 
 #: db/models.py:51 db/models.py:61
 msgid "Never"
-msgstr "Nunca"
+msgstr "Mitte kunagi"
 
 #: db/models.py:52 db/models.py:64
 msgid "Every 30 minutes"
-msgstr "Cada 30 minutos"
+msgstr "Iga 30 minuti järel"
 
 #: db/models.py:53 db/models.py:65
 msgid "Every 45 minutes"
-msgstr "Cada 45 minutos"
+msgstr "Iga 45 minuti järel"
 
 #: db/models.py:54 db/models.py:66
 msgid "Every hour"
-msgstr "Cada hora"
+msgstr "Iga tund"
 
 #: db/models.py:55 db/models.py:67
 msgid "Every three hours"
-msgstr "Cada tres horas"
+msgstr "Iga kolme tunni järel"
 
 #: db/models.py:56 db/models.py:68
 msgid "Every 12 hours"
-msgstr "Cada 12 horas"
+msgstr "Iga 12 tunni järel"
 
 #: db/models.py:57 db/models.py:69
 msgid "Every day"
-msgstr "Cada día"
+msgstr "Iga päev"
 
 #: db/models.py:62
 msgid "Every 5 minutes"
-msgstr "Cada 5 minutos"
+msgstr "Iga 5 minuti järel"
 
 #: db/models.py:63
 msgid "Every 15 minutes"
-msgstr "Cada 15 minutos"
+msgstr "Iga 15 minuti järel"
 
 #: db/models.py:84
 msgid "Slow charge"
-msgstr "Estado de carga"
+msgstr "Aeglane laadimine"
 
 #: db/models.py:85
 msgid "Quick charge"
-msgstr "Parada de carga rápida"
+msgstr "Kiirlaadimine"
 
 #: db/models.py:96
 msgid ""
 "Enter a valid username. This value may contain only unaccented lowercase a-z "
 "and uppercase A-Z letters, numbers, and /./-/_ characters."
 msgstr ""
-"Ingresa un nombre de usuario válido. Este valor solo puede contener letras "
-"minúsculas y mayúsculas a-z sin acentos, números y los caracteres /./-/_."
+"Sisesta kehtiv kasutajanimi. See väärtus võib sisaldada ainult aktsendita "
+"väiketähti a-z, suurtähti A-Z, numbreid ning märke /./-/_."
 
 #: db/models.py:104
 msgid ""
 "Enter a valid TCU Password. This value may contain only unaccented lowercase "
 "a-z and uppercase A-Z letters, numbers, and /=/-/_/+/@/#/?/! characters."
 msgstr ""
-"Ingresa una contraseña TCU válida. Este valor solo puede contener letras "
-"minúsculas y mayúsculas a-z sin acentos, números y los caracteres /=/-/_/+/@/"
-"#/?/!."
+"Sisesta kehtiv TCU parool. See väärtus võib sisaldada ainult aktsendita "
+"väiketähti a-z, suurtähti A-Z, numbreid ning märke /=/-/_/+/@/#/?/!."
 
 #: db/models.py:116
 msgid "username"
-msgstr "nombre de usuario"
+msgstr "kasutajanimi"
 
 #: db/models.py:120
 msgid "Required. 16 characters or fewer. Letters, digits and /./-/_ only."
-msgstr "Requerido. 16 caracteres o menos. Solo letras, dígitos y /./-/_."
+msgstr "Nõutav. Maksimaalselt 16 tähemärki. Ainult tähed, numbrid ja /./-/_."
 
 #: db/models.py:124
 msgid "A user with that username already exists."
-msgstr "Ya existe un usuario con ese nombre de usuario."
+msgstr "Sellise kasutajanimega kasutaja on juba olemas."
 
 #: tculink/management/commands/tcuserver.py:268
 msgid "Vehicle is unplugged. Please check the situation if necessary."
 msgstr ""
-"El vehículo está desconectado. Por favor, verifica la situación si es "
-"necesario."
+"Sõiduk on lahti ühendatud. Palun kontrolli olukorda, kui see on vajalik."
 
 #: tculink/management/commands/tcuserver.py:269
 msgid "Charger unplugged notification"
-msgstr "Recordatorio de enchufar el cargador"
+msgstr "Laadija lahtiühendamise teavitus"
 
 #: tculink/management/commands/tcuserver.py:286
 msgid ""
@@ -218,65 +213,64 @@ msgid ""
 "behind such error could be: a) low state of charge b) command already "
 "executed c) TCU error."
 msgstr ""
-"El comando de preacondicionamiento de A/C no pudo ejecutarse. Una de las "
-"razones de este error podría ser: a) bajo estado de carga b) comando ya "
-"ejecutado c) error de TCU."
+"Kliimaseadme eelkonditsioneerimise käsku ei õnnestunud täita. Võimalikud "
+"põhjused: a) madal aku laetuse tase b) käsk juba täidetud c) TCU viga."
 
 #: tculink/management/commands/tcuserver.py:288
 msgid "A/C preconditioning error"
-msgstr "Error de preacondicionamiento de A/C"
+msgstr "Kliimaseadme eelkonditsioneerimise viga"
 
 #: tculink/management/commands/tcuserver.py:290
 msgid "A/C preconditioning started"
-msgstr "Preacondicionamiento de A/C iniciado"
+msgstr "Kliimaseadme eelkonditsioneerimine alustatud"
 
 #: tculink/management/commands/tcuserver.py:291
 msgid "A/C preconditioning has been successfully switched on"
-msgstr "El preacondicionamiento de A/C se ha activado correctamente"
+msgstr "Kliimaseadme eelkonditsioneerimine on edukalt sisse lülitatud"
 
 #: tculink/management/commands/tcuserver.py:293
 msgid "A/C precondition stopped"
-msgstr "Preacondicionamiento de A/C detenido"
+msgstr "Kliimaseadme eelkonditsioneerimine peatatud"
 
 #: tculink/management/commands/tcuserver.py:294
 msgid "A/C preconditioning has been successfully switched off"
-msgstr "El preacondicionamiento de A/C se ha desactivado correctamente"
+msgstr "Kliimaseadme eelkonditsioneerimine on edukalt välja lülitatud"
 
 #: tculink/management/commands/tcuserver.py:296
 msgid ""
 "The A/C preconditioning is finished and switched off after running certain "
 "amount of time."
 msgstr ""
-"El preacondicionamiento de A/C ha finalizado y se ha desactivado después de "
-"funcionar durante un cierto tiempo."
+"Kliimaseadme eelkonditsioneerimine on lõppenud ja välja lülitatud pärast "
+"teatud aja möödumist."
 
 #: tculink/management/commands/tcuserver.py:298
 msgid "A/C precondition finished"
-msgstr "Preacondicionamiento de A/C finalizado"
+msgstr "Kliimaseadme eelkonditsioneerimine lõpetatud"
 
 #: tculink/management/commands/tcuserver.py:307
 msgid "A/C preconditioning is finished"
-msgstr "El preacondicionamiento de A/C ha finalizado"
+msgstr "Kliimaseadme eelkonditsioneerimine on lõpetatud"
 
 #: tculink/management/commands/tcuserver.py:308
 msgid "A/C precondition notification"
-msgstr "Notificación de preacondicionamiento de A/C"
+msgstr "Kliimaseadme eelkonditsioneerimise teavitus"
 
 #: tculink/management/commands/tcuserver.py:312
 msgid "Vehicle has finished charging."
-msgstr "El vehículo ha terminado de cargarse."
+msgstr "Sõiduk on laadimise lõpetanud."
 
 #: tculink/management/commands/tcuserver.py:313
 msgid "Charge finish notification"
-msgstr "Notificación de finalización de carga"
+msgstr "Laadimise lõpetamise teavitus"
 
 #: tculink/management/commands/tcuserver.py:316
 msgid "Vehicle has finished quick-charging."
-msgstr "El vehículo ha terminado de cargarse rápidamente."
+msgstr "Sõiduk on kiirlaadimise lõpetanud."
 
 #: tculink/management/commands/tcuserver.py:317
 msgid "Quick-charge finish notification"
-msgstr "Notificación de finalización de carga rápida"
+msgstr "Kiirlaadimise lõpetamise teavitus"
 
 #: tculink/management/commands/tcuserver.py:333
 msgid ""
@@ -284,43 +278,40 @@ msgid ""
 "charging, please check that the charging cable is connected and power is "
 "available."
 msgstr ""
-"El comando de carga se ha enviado correctamente. Si el vehículo no comenzó a "
-"cargar, por favor verifica que el cable de carga esté conectado y que haya "
-"energía disponible."
+"Laadimiskäsk on edukalt saadetud. Kui sõiduk ei alustanud laadimist, "
+"kontrolli, kas laadimiskaabel on ühendatud ja toide on saadaval."
 
 #: tculink/management/commands/tcuserver.py:335
 msgid "Charge start command executed"
-msgstr "Comando de inicio de carga ejecutado"
+msgstr "Laadimise alustamise käsk täidetud"
 
 #: tculink/sms/46elks.py:9
 msgid "API Username"
-msgstr "Nombre de usuario de la API"
+msgstr "API kasutajanimi"
 
 #: tculink/sms/46elks.py:10
 msgid "API Password"
-msgstr "Contraseña de la API"
+msgstr "API parool"
 
 #: tculink/sms/46elks.py:11 tculink/sms/ondevice.py:9
 msgid "TCU Phone Number (international format)"
-msgstr "Número de teléfono del TCU (formato internacional, +34xxxxxxxx)"
+msgstr "TCU telefoninumber (rahvusvaheline formaat)"
 
 #: tculink/sms/46elks.py:13
 msgid "API credentials are available in your 46elks dashboard."
-msgstr "Las credenciales de la API están disponibles en tu panel de 46elks."
+msgstr "API mandaadid on saadaval sinu 46elksi juhtpaneelil."
 
 #: tculink/sms/hologram.py:8
 msgid "API Key"
-msgstr "Clave de la API"
+msgstr "API võti"
 
 #: tculink/sms/hologram.py:9
 msgid "Device ID"
-msgstr "ID del dispositivo"
+msgstr "Seadme ID"
 
 #: tculink/sms/hologram.py:11
 msgid "API credentials are available in Hologram dashboard Settings."
-msgstr ""
-"Las credenciales de la API están disponibles en la configuración del panel "
-"de Hologram."
+msgstr "API mandaadid on saadaval Hologrami juhtpaneeli seadetes."
 
 #: tculink/sms/manual.py:10
 #, python-brace-format
@@ -329,9 +320,9 @@ msgid ""
 "for this to work. No automated messaging will be set up. SMS message to send "
 "after you've issued a command on the website: {sms}"
 msgstr ""
-"Importante: Con esta opción, deberás enviar el SMS manualmente para que "
-"funcione. No se configurará mensajería automática. Mensaje SMS a enviar "
-"después de emitir un comando en el sitio web: {sms}"
+"Tähtis: Selle valiku korral pead SMS-i ise käsitsi saatma, et see toimiks. "
+"Automaatset sõnumite saatmist ei seadistata. SMS-sõnum, mida saata pärast "
+"käsu andmist veebisaidil: {sms}"
 
 #: tculink/sms/ondevice.py:12
 msgid ""
@@ -340,62 +331,60 @@ msgid ""
 "This method won't work via API or automations, only from the website or "
 "mobile app!"
 msgstr ""
-"Con esta opción, el sitio web te redirigirá para enviar el SMS desde tu "
-"teléfono. O con la aplicación móvil, lo enviará automáticamente si es "
-"posible. ¡Este método no funcionará a través de la API o automatizaciones, "
-"solo desde el sitio web o la aplicación móvil!"
+"Selle valiku korral suunab veebisait sind SMS-i saatmiseks sinu telefonile. "
+"Mobiilirakendusega saadetakse see automaatselt, kui see on võimalik. See "
+"meetod ei toimi API ega automaatikaga, ainult veebisaidi või "
+"mobiilirakenduse kaudu!"
 
 #: tculink/sms/webhook.py:8
 msgid "Webhook URL"
-msgstr "URL del webhook"
+msgstr "Veebihaagi URL"
 
 #: tculink/sms/webhook.py:10
 msgid "POST-request will be sent to specified webhook URL when necessary."
-msgstr ""
-"Se enviará una solicitud POST a la URL del webhook especificada cuando sea "
-"necesario."
+msgstr "POST-päring saadetakse vajadusel määratud veebihaagi URL-ile."
 
 #: ui/forms.py:17 ui/forms.py:28 ui/templates/ui/car_detail.html:301
 msgid "Nickname"
-msgstr "Apodo"
+msgstr "Hüüdnimi"
 
 #: ui/forms.py:18
 msgid "Disable TCU authentication"
-msgstr "Desactivar autenticación del TCU"
+msgstr "Keela TCU autentimine"
 
 #: ui/forms.py:19 ui/templates/ui/car_detail.html:334
 msgid "Show calculated battery percentage"
-msgstr "Mostrar porcentaje de batería calculado"
+msgstr "Näita arvutatud aku protsenti"
 
 #: ui/forms.py:40 ui/templates/ui/reset_password.html:26
 msgid "Email"
-msgstr "Correo electrónico"
+msgstr "E-post"
 
 #: ui/forms.py:41
 msgid "Notifications"
-msgstr "Notificaciones"
+msgstr "Teavitused"
 
 #: ui/forms.py:47 ui/templates/ui/car_detail.html:212
 #: ui/templates/ui/landing.html:19 ui/templates/ui/signin.html:30
 msgid "Password"
-msgstr "Contraseña"
+msgstr "Parool"
 
 #: ui/forms.py:48
 msgid "Password Confirmation"
-msgstr "Confirmación de contraseña"
+msgstr "Parooli kinnitamine"
 
 #: ui/forms.py:49
 msgid "TCU Password"
-msgstr "Contraseña del TCU"
+msgstr "TCU parool"
 
 #: ui/forms.py:61
 msgid "Can include only letters, numbers, dashes, dots and underscores"
-msgstr "Solo puede incluir letras, números, guiones, puntos y guiones bajos"
+msgstr ""
+"Võib sisaldada ainult tähti, numbreid, sidekriipse, punkte ja alakriipse"
 
 #: ui/forms.py:62
 msgid "This password is used for signing in to your account inside the car"
-msgstr ""
-"Esta contraseña se usa para iniciar sesión en tu cuenta dentro del coche"
+msgstr "See parool on vajalik sinu konto sisselogimiseks autos"
 
 #: ui/templates/ui/account.html:16 ui/templates/ui/car_detail.html:62
 #: ui/templates/ui/change_carwings_password.html:18
@@ -406,7 +395,7 @@ msgstr ""
 #: ui/templates/ui/setup/step2.html:14 ui/templates/ui/setup/step3.html:14
 #: ui/templates/ui/setup/step4.html:14
 msgid "Notice"
-msgstr "Aviso"
+msgstr "Teade"
 
 #: ui/templates/ui/account.html:17 ui/templates/ui/car_detail.html:63
 #: ui/templates/ui/change_carwings_password.html:19
@@ -417,7 +406,7 @@ msgstr "Aviso"
 #: ui/templates/ui/setup/step2.html:15 ui/templates/ui/setup/step3.html:15
 #: ui/templates/ui/setup/step4.html:15
 msgid "Warning"
-msgstr "Advertencia"
+msgstr "Hoiatus"
 
 #: ui/templates/ui/account.html:22 ui/templates/ui/car_detail.html:68
 #: ui/templates/ui/change_carwings_password.html:24
@@ -429,332 +418,332 @@ msgstr "Advertencia"
 #: ui/templates/ui/setup/step2.html:20 ui/templates/ui/setup/step3.html:20
 #: ui/templates/ui/setup/step4.html:20
 msgid "Close"
-msgstr "Cerrar"
+msgstr "Sulge"
 
 #: ui/templates/ui/account.html:31
 msgid "My Account"
-msgstr "Mi cuenta"
+msgstr "Minu konto"
 
 #: ui/templates/ui/account.html:36
 msgid "API-key"
-msgstr "Clave de API"
+msgstr "API-võti"
 
 #: ui/templates/ui/account.html:38
 msgid "API documentation"
-msgstr "Documentación de la API"
+msgstr "API dokumentatsioon"
 
 #: ui/templates/ui/account.html:42
 msgid "Reset API-key"
-msgstr "Restablecer clave de API"
+msgstr "Lähtesta API-võti"
 
 #: ui/templates/ui/account.html:48 ui/templates/ui/car_detail.html:388
 #: ui/templates/ui/setup/step2.html:50 ui/templates/ui/setup/step3.html:36
 #: ui/templates/ui/setup/step4.html:60
 msgid "Save"
-msgstr "Guardar"
+msgstr "Salvesta"
 
 #: ui/templates/ui/account.html:49
 msgid "Change Account Password"
-msgstr "Cambiar contraseña de la cuenta"
+msgstr "Muuda konto parooli"
 
 #: ui/templates/ui/account.html:50
 msgid "Change CARWINGS Password"
-msgstr "Cambiar contraseña de CARWINGS"
+msgstr "Muuda CARWINGS parooli"
 
 #: ui/templates/ui/account.html:57
 msgid "Are you sure you want to reset your API key?"
-msgstr "¿Estás seguro de que deseas restablecer tu clave de API?"
+msgstr "Kas oled kindel, et soovid oma API-võtme lähtestada?"
 
 #: ui/templates/ui/account.html:72
 msgid "Failure occurred while resetting the API key"
-msgstr "Ocurrió un fallo al restablecer la clave de API"
+msgstr "API-võtme lähtestamisel ilmnes viga"
 
 #: ui/templates/ui/account.html:77
 msgid "An error occurred while resetting the API key"
-msgstr "Ocurrió un error al restablecer la clave de API"
+msgstr "API-võtme lähtestamisel ilmnes viga"
 
 #: ui/templates/ui/base.html:42
 msgid "Sign Out"
-msgstr "Cerrar sesión"
+msgstr "Logi välja"
 
 #: ui/templates/ui/base.html:44 ui/templates/ui/landing.html:11
 #: ui/templates/ui/landing.html:22 ui/templates/ui/signin.html:3
 #: ui/templates/ui/signin.html:9 ui/templates/ui/signin.html:33
 msgid "Sign In"
-msgstr "Iniciar sesión"
+msgstr "Logi sisse"
 
 #: ui/templates/ui/base.html:62
 msgid "Project"
-msgstr "Proyecto"
+msgstr "Projekt"
 
 #: ui/templates/ui/base.html:64
 msgid "Tools"
-msgstr "Utilidades"
+msgstr "Tööriistad"
 
 #: ui/templates/ui/base.html:65 ui/templates/ui/vflash_editor.html:5
 msgid "VFlash Editor"
-msgstr "Editor VFlash"
+msgstr "VFlash redaktor"
 
 #: ui/templates/ui/car_detail.html:12
 msgid "Back to cars"
-msgstr "Volver a los coches"
+msgstr "Tagasi autode juurde"
 
 #: ui/templates/ui/car_detail.html:50
 msgid "Send command"
-msgstr "Enviar comando"
+msgstr "Saada käsk"
 
 #: ui/templates/ui/car_detail.html:79 ui/templates/ui/car_detail.html:93
 msgid "Overview"
-msgstr "Resumen"
+msgstr "Ülevaade"
 
 #: ui/templates/ui/car_detail.html:80
 msgid "Basic Info"
-msgstr "Información básica"
+msgstr "Põhiinfo"
 
 #: ui/templates/ui/car_detail.html:81
 msgid "Vehicle journal"
-msgstr "Código del vehículo"
+msgstr "Sõiduki logi"
 
 #: ui/templates/ui/car_detail.html:81
 msgid "New!"
-msgstr "¡Nuevo!"
+msgstr "Uus!"
 
 #: ui/templates/ui/car_detail.html:82
 msgid "TCU Configuration"
-msgstr "Configuración del TCU"
+msgstr "TCU konfiguratsioon"
 
 #: ui/templates/ui/car_detail.html:83
 msgid "EV Status"
-msgstr "Estado del vehículo eléctrico"
+msgstr "EV staatus"
 
 #: ui/templates/ui/car_detail.html:84
 msgid "Location"
-msgstr "Ubicación"
+msgstr "Asukoht"
 
 #: ui/templates/ui/car_detail.html:85
 msgid "Recent Alerts"
-msgstr "Alertas recientes"
+msgstr "Viimased hoiatused"
 
 #: ui/templates/ui/car_detail.html:86 ui/templates/ui/car_detail.html:296
 msgid "Settings"
-msgstr "Configuraciones"
+msgstr "Seaded"
 
 #: ui/templates/ui/car_detail.html:100 ui/templates/ui/car_detail.html:236
 msgid "Range (AC On)"
-msgstr "Autonomía (A/C encendido)"
+msgstr "Sõiduulatus (kliimaseade sisse lülitatud)"
 
 #: ui/templates/ui/car_detail.html:105 ui/templates/ui/car_detail.html:237
 msgid "Range (AC Off)"
-msgstr "Autonomía (A/C apagado)"
+msgstr "Sõiduulatus (kliimaseade välja lülitatud)"
 
 #: ui/templates/ui/car_detail.html:111 ui/templates/ui/car_detail.html:114
 #: ui/templates/ui/car_detail.html:232 ui/templates/ui/car_detail.html:233
 msgid "State of Charge"
-msgstr "Estado de carga"
+msgstr "Aku laetuse tase"
 
 #: ui/templates/ui/car_detail.html:114 ui/templates/ui/car_detail.html:233
 msgid "Nominal"
-msgstr "Nominal"
+msgstr "Nominaalne"
 
 #: ui/templates/ui/car_detail.html:131
 msgid "EMPTY"
-msgstr "VACÍO"
+msgstr "TÜHI"
 
 #: ui/templates/ui/car_detail.html:132
 msgid "FULL"
-msgstr "LLENO"
+msgstr "TÄIS"
 
 #: ui/templates/ui/car_detail.html:137 ui/templates/ui/car_detail.html:227
 #: ui/templates/ui/car_detail.html:228 ui/templates/ui/car_detail.html:229
 msgid "Charge time"
-msgstr "Tiempo de carga"
+msgstr "Laadimisaeg"
 
 #: ui/templates/ui/car_detail.html:145
 msgid "Charge Cable"
-msgstr "Cable de carga"
+msgstr "Laadimiskaabel"
 
 #: ui/templates/ui/car_detail.html:149
 msgid "Plugged In,Unplugged"
-msgstr "Conectado,Desconectado"
+msgstr "Ühendatud, Lahti ühendatud"
 
 #: ui/templates/ui/car_detail.html:154
 msgid "Car status"
-msgstr "Estado del coche"
+msgstr "Auto staatus"
 
 #: ui/templates/ui/car_detail.html:158 ui/templates/ui/car_detail.html:160
 #: ui/templates/ui/car_detail.html:661 ui/templates/ui/car_detail.html:663
 #: ui/templates/ui/car_detail.html:677
 msgid "On"
-msgstr "Encendido"
+msgstr "Sees"
 
 #: ui/templates/ui/car_detail.html:158 ui/templates/ui/car_detail.html:661
 #: ui/templates/ui/car_detail.html:720
 msgid "Parked"
-msgstr "Estacionado"
+msgstr "Parkitud"
 
 #: ui/templates/ui/car_detail.html:160 ui/templates/ui/car_detail.html:663
 msgid "Driving"
-msgstr "Conduciendo"
+msgstr "Sõitmine"
 
 #: ui/templates/ui/car_detail.html:164 ui/templates/ui/car_detail.html:667
 #: ui/templates/ui/probeviewer/main.html:261
 #: ui/templates/ui/probeviewer/main.html:331
 msgid "Charging finished"
-msgstr "Carga finalizada"
+msgstr "Laadimine lõpetatud"
 
 #: ui/templates/ui/car_detail.html:166 ui/templates/ui/car_detail.html:239
 #: ui/templates/ui/car_detail.html:669
 msgid "Charging"
-msgstr "Cargando"
+msgstr "Laadimine"
 
 #: ui/templates/ui/car_detail.html:168 ui/templates/ui/car_detail.html:671
 #: ui/templates/ui/car_detail.html:677
 msgid "Off"
-msgstr "Apagado"
+msgstr "Väljas"
 
 #: ui/templates/ui/car_detail.html:175
 msgid "AC Status"
-msgstr "Estado del aire acondicionado"
+msgstr "Kliimaseadme staatus"
 
 #: ui/templates/ui/car_detail.html:177
 msgid "On,Off"
-msgstr "Encendido,Apagado"
+msgstr "Sees, Väljas"
 
 #: ui/templates/ui/car_detail.html:186 ui/templates/ui/car_detail.html:218
 #: ui/templates/ui/car_detail.html:245 ui/templates/ui/car_detail.html:267
 #: ui/templates/ui/probeviewer/main.html:89
 #: ui/templates/ui/probeviewer/main.html:113
 msgid "Last Updated"
-msgstr "Última actualización"
+msgstr "Viimati uuendatud"
 
 #: ui/templates/ui/car_detail.html:194 ui/templates/ui/car_detail.html:195
 #: ui/templates/ui/car_detail.html:196 ui/templates/ui/car_detail.html:197
 msgid "Vehicle Code"
-msgstr "Código del vehículo"
+msgstr "Sõiduki kood"
 
 #: ui/templates/ui/car_detail.html:201
 msgid "Version"
-msgstr "Versión"
+msgstr "Versioon"
 
 #: ui/templates/ui/car_detail.html:202
 msgid "Last Connection"
-msgstr "Última conexión"
+msgstr "Viimane ühendus"
 
 #: ui/templates/ui/car_detail.html:209
 msgid "PPP Dial Code"
-msgstr "Código de marcación PPP"
+msgstr "PPP sissehelistamiskood"
 
 #: ui/templates/ui/car_detail.html:211 ui/templates/ui/landing.html:15
 #: ui/templates/ui/signin.html:26
 msgid "Username"
-msgstr "Nombre de usuario"
+msgstr "Kasutajanimi"
 
 #: ui/templates/ui/car_detail.html:215
 msgid "Server"
-msgstr "Servidor"
+msgstr "Server"
 
 #: ui/templates/ui/car_detail.html:216
 msgid "Proxy"
-msgstr "Proxy"
+msgstr "Puhverserver"
 
 #: ui/templates/ui/car_detail.html:217
 msgid "Connection Type"
-msgstr "Tipo de conexión"
+msgstr "Ühenduse tüüp"
 
 #: ui/templates/ui/car_detail.html:225
 msgid "Car on"
-msgstr "Coche encendido"
+msgstr "Auto sees"
 
 #: ui/templates/ui/car_detail.html:225 ui/templates/ui/car_detail.html:238
 #: ui/templates/ui/car_detail.html:239 ui/templates/ui/car_detail.html:240
 #: ui/templates/ui/car_detail.html:241 ui/templates/ui/car_detail.html:266
 msgid "Yes,No"
-msgstr "Sí,No"
+msgstr "Jah, Ei"
 
 #: ui/templates/ui/car_detail.html:226
 msgid "Gear"
-msgstr "Marcha"
+msgstr "Käik"
 
 #: ui/templates/ui/car_detail.html:230
 msgid "Charge bars"
-msgstr "Barras de carga"
+msgstr "Laadimisribad"
 
 #: ui/templates/ui/car_detail.html:231
 #: ui/templates/ui/probeviewer/trip.html:179
 msgid "Capacity bars"
-msgstr "Barras de capacidad"
+msgstr "Mahutavusribad"
 
 #: ui/templates/ui/car_detail.html:232
 msgid "Display"
-msgstr "Pantalla"
+msgstr "Ekraan"
 
 #: ui/templates/ui/car_detail.html:234
 msgid "State of Health"
-msgstr "Estado de salud"
+msgstr "Aku seisund"
 
 #: ui/templates/ui/car_detail.html:235
 msgid "Remaining kWh"
-msgstr "kWh restantes"
+msgstr "Järelejäänud kWh"
 
 #: ui/templates/ui/car_detail.html:238
 msgid "Plugged in"
-msgstr "Conectado"
+msgstr "Ühendatud"
 
 #: ui/templates/ui/car_detail.html:240
 msgid "Quick-charging"
-msgstr "Carga rápida"
+msgstr "Kiirlaadimine"
 
 #: ui/templates/ui/car_detail.html:241
 msgid "Preconditioning (A/C)"
-msgstr "Preacondicionamiento (A/C)"
+msgstr "Eelkonditsioneerimine (kliimaseade)"
 
 #: ui/templates/ui/car_detail.html:242
 msgid "GIDs remaining"
-msgstr "GIDs restantes"
+msgstr "Järelejäänud GID-id"
 
 #: ui/templates/ui/car_detail.html:243
 msgid "Counter"
-msgstr "Contador"
+msgstr "Loendur"
 
 #: ui/templates/ui/car_detail.html:252
 msgid "Send location to car"
-msgstr "Enviar punto del mapa al coche"
+msgstr "Saada asukoht autole"
 
 #: ui/templates/ui/car_detail.html:254
 msgid "Search for locations or enter google/apple maps link"
-msgstr "Buscar ubicaciones o ingresar enlace de Google/Apple Maps"
+msgstr "Otsi asukohti või sisesta Google/Apple Mapsi link"
 
 #: ui/templates/ui/car_detail.html:258 ui/templates/ui/car_detail.html:750
 msgid "Last shared location"
-msgstr "Último punto del mapa compartido"
+msgstr "Viimati jagatud asukoht"
 
 #: ui/templates/ui/car_detail.html:260 ui/templates/ui/car_detail.html:752
 msgid "No past shared location"
-msgstr "No hay puntos del mapa compartidos anteriormente"
+msgstr "Varasemat jagatud asukohta pole"
 
 #: ui/templates/ui/car_detail.html:263
 msgid "Send"
-msgstr "Enviar"
+msgstr "Saada"
 
 #: ui/templates/ui/car_detail.html:266
 msgid "At Home"
-msgstr "En casa"
+msgstr "Kodus"
 
 #: ui/templates/ui/car_detail.html:277
 msgid "Type"
-msgstr "Tipo"
+msgstr "Tüüp"
 
 #: ui/templates/ui/car_detail.html:278
 msgid "Timestamp"
-msgstr "Marca de tiempo"
+msgstr "Ajatempel"
 
 #: ui/templates/ui/car_detail.html:279
 msgid "Additional Data"
-msgstr "Datos adicionales"
+msgstr "Lisandmed"
 
 #: ui/templates/ui/car_detail.html:311
 msgid "Skip authentication from TCU"
-msgstr "Omitir autenticación desde el TCU"
+msgstr "Jäta TCU autentimine vahele"
 
 #: ui/templates/ui/car_detail.html:312
 msgid ""
@@ -762,17 +751,17 @@ msgid ""
 "not saved due to an error. In this case, check this box to skip the "
 "authentication"
 msgstr ""
-"En los LEAF AZE0 (2013) y posteriores, el nombre de usuario y la contraseña "
-"insertados en el sistema de navegación no se guardan debido a un error. En "
-"este caso, marca esta casilla para omitir la autenticación"
+"AZE0 (2013) ja uuematel LEAFidel ei salvestata navisüsteemi sisestatud "
+"kasutajanime ja parooli vea tõttu. Sellisel juhul märgi see kast, et "
+"autentimine vahele jätta."
 
 #: ui/templates/ui/car_detail.html:318
 msgid "Car color"
-msgstr "Color del coche"
+msgstr "Auto värv"
 
 #: ui/templates/ui/car_detail.html:327
 msgid "Maximum GIDs value"
-msgstr "Valor máximo de GIDs"
+msgstr "Maksimaalne GID-ide väärtus"
 
 #: ui/templates/ui/car_detail.html:329
 #, python-format
@@ -781,9 +770,9 @@ msgid ""
 "For cars with swapped/replaced battery, please enter maximum amount of GIDS "
 "when battery is new (SoH 100%%)."
 msgstr ""
-"OpenCARWINGS intentará detectar automáticamente el tamaño de tu batería y "
-"completar este campo. Para coches con batería cambiada/reemplazada, ingresa "
-"la cantidad máxima de GIDs cuando la batería es nueva (SoH 100%%)."
+"OpenCARWINGS püüab automaatselt tuvastada sinu aku suuruse ja täita selle "
+"välja. Vahetatud/asendatud akuga autode puhul sisesta maksimaalne GID-ide "
+"arv, kui aku on uus (SoH 100%%)."
 
 #: ui/templates/ui/car_detail.html:335
 msgid ""
@@ -792,131 +781,130 @@ msgid ""
 "enabling this option, 'display' percentage value will be calculated, it may "
 "be inaccurate."
 msgstr ""
-"En los coches de generación AZE0 (>2013), es posible ver la capacidad "
-"disponible de la batería en porcentaje. Para ZE0, esta función nunca se "
-"implementó. Al habilitar esta opción, se calculará el valor porcentual de "
-"'pantalla', que puede no ser preciso."
+"AZE0 (>2013) põlvkonna autodel on võimalik näha aku mahutavust protsentides. "
+"ZE0 puhul seda funktsiooni kunagi ei rakendatud. Selle valiku lubamisel "
+"arvutatakse kuvatav protsendiväärtus, mis võib olla ebatäpne."
 
 #: ui/templates/ui/car_detail.html:341
 msgid "Periodic data refresh interval"
-msgstr "Intervalo de actualización periódica de datos"
+msgstr "Perioodiliste andmete värskendamise intervall"
 
 #: ui/templates/ui/car_detail.html:350
 msgid "Periodic data refresh interval (while driving or charging)"
 msgstr ""
-"Intervalo de actualización periódica de datos (mientras conduces o cargas)"
+"Perioodiliste andmete värskendamise intervall (sõitmise või laadimise ajal)"
 
 #: ui/templates/ui/car_detail.html:359 ui/templates/ui/setup/step4.html:29
 msgid "SMS provider"
-msgstr "Proveedor de SMS"
+msgstr "SMS-teenuse pakkuja"
 
 #: ui/templates/ui/car_detail.html:389
 msgid "Remove car"
-msgstr "Eliminar coche"
+msgstr "Eemalda auto"
 
 #: ui/templates/ui/car_detail.html:401
 msgid "SMS from your device"
-msgstr "Enviar SMS desde tu dispositivo"
+msgstr "SMS sinu seadmest"
 
 #: ui/templates/ui/car_detail.html:627 ui/templates/ui/car_detail.html:631
 #: ui/templates/ui/car_detail.html:632 ui/templates/ui/car_detail.html:805
 #: ui/templates/ui/car_detail.html:813 ui/templates/ui/car_detail.html:814
 msgid "Error sending command"
-msgstr "Error al enviar el comando"
+msgstr "Käsu saatmisel ilmnes viga"
 
 #: ui/templates/ui/car_detail.html:656
 msgid "Plugged In"
-msgstr "Conectado"
+msgstr "Ühendatud"
 
 #: ui/templates/ui/car_detail.html:656
 msgid "Unplugged"
-msgstr "Desconectado"
+msgstr "Lahti ühendatud"
 
 #: ui/templates/ui/car_detail.html:704 ui/templates/ui/car_detail.html:705
 #: ui/templates/ui/car_detail.html:706 ui/templates/ui/car_detail.html:715
 #: ui/templates/ui/car_detail.html:721 ui/templates/ui/car_detail.html:726
 msgid "Yes"
-msgstr "Sí"
+msgstr "Jah"
 
 #: ui/templates/ui/car_detail.html:704 ui/templates/ui/car_detail.html:705
 #: ui/templates/ui/car_detail.html:706 ui/templates/ui/car_detail.html:715
 #: ui/templates/ui/car_detail.html:721 ui/templates/ui/car_detail.html:726
 msgid "No"
-msgstr "No"
+msgstr "Ei"
 
 #: ui/templates/ui/car_detail.html:836 ui/templates/ui/car_detail.html:844
 #: ui/templates/ui/car_detail.html:845
 msgid "Error sending location to car"
-msgstr "Error al enviar la ubicación al coche"
+msgstr "Asukoha saatmisel autole ilmnes viga"
 
 #: ui/templates/ui/car_detail.html:838
 msgid "Location sent!"
-msgstr "¡Punto del mapa enviado!"
+msgstr "Asukoht saadetud!"
 
 #: ui/templates/ui/car_detail.html:894 ui/templates/ui/car_detail.html:957
 msgid "No address"
-msgstr "Sin dirección"
+msgstr "Aadressi pole"
 
 #: ui/templates/ui/car_detail.html:904
 msgid "Could not get location from map link"
-msgstr "No se pudo obtener la ubicación desde el enlace"
+msgstr "Asukohta ei õnnestunud kaardilingilt saada"
 
 #: ui/templates/ui/car_detail.html:910 ui/templates/ui/car_detail.html:982
 msgid "Error searching locations"
-msgstr "Error al buscar ubicaciones"
+msgstr "Asukohtade otsimisel ilmnes viga"
 
 #: ui/templates/ui/car_detail.html:976
 msgid "Search did not find any locations"
-msgstr "La búsqueda no encontró ninguna ubicación"
+msgstr "Otsing ei leidnud ühtegi asukohta"
 
 #: ui/templates/ui/car_detail.html:1001
 msgid "Connection established!"
-msgstr "¡Conexión establecida!"
+msgstr "Ühendus loodud!"
 
 #: ui/templates/ui/car_detail.html:1006
 msgid "Reconnecting..."
-msgstr "Reconectando..."
+msgstr "Ühenduse taastamine..."
 
 #: ui/templates/ui/car_list.html:5 ui/templates/ui/car_list.html:10
 msgid "My cars"
-msgstr "Mis coches"
+msgstr "Minu autod"
 
 #: ui/templates/ui/car_list.html:10
 msgid "Add"
-msgstr "Añadir"
+msgstr "Lisa"
 
 #: ui/templates/ui/car_list.html:43
 msgid "Last connected"
-msgstr "Última conexión"
+msgstr "Viimati ühendatud"
 
 #: ui/templates/ui/car_list.html:49
 msgid "No cars added."
-msgstr "No hay coches añadidos."
+msgstr "Ühtegi autot pole lisatud."
 
 #: ui/templates/ui/change_carwings_password.html:5
 #: ui/templates/ui/change_carwings_password.html:9
 msgid "Change CARWINGS password"
-msgstr "Cambiar contraseña de CARWINGS"
+msgstr "Muuda CARWINGS parooli"
 
 #: ui/templates/ui/change_carwings_password.html:10
 msgid ""
 "This password is used for authentication between your cars and this server."
 msgstr ""
-"Esta contraseña se usa para la autenticación entre tus coches y este "
-"servidor."
+"See parool on vaj gifts sinu autode ja selle serveri vaheliseks "
+"autentimiseks."
 
 #: ui/templates/ui/change_carwings_password.html:10
 msgid ""
 "Please keep in mind, that connection may be disturbed until you save your "
 "new password in the car."
 msgstr ""
-"Ten en cuenta que la conexión puede verse interrumpida hasta que guardes tu "
-"nueva contraseña en el coche."
+"Pea meeles, et ühendus võib olla häiritud, kuni oled uue parooli autos "
+"salvestanud."
 
 #: ui/templates/ui/change_carwings_password.html:36
 #: ui/templates/ui/change_password.html:36
 msgid "Change Password"
-msgstr "Cambiar contraseña"
+msgstr "Muuda parooli"
 
 #: ui/templates/ui/change_password.html:5
 #: ui/templates/ui/change_password.html:10
@@ -924,27 +912,27 @@ msgstr "Cambiar contraseña"
 #: ui/templates/ui/reset_password_confirm.html:9
 #: ui/templates/ui/reset_password_confirm.html:61
 msgid "Change password"
-msgstr "Cambiar contraseña"
+msgstr "Muuda parooli"
 
 #: ui/templates/ui/landing.html:3
 msgid "CARWINGS reborn"
-msgstr "CARWINGS renacido"
+msgstr "CARWINGS taassünd"
 
 #: ui/templates/ui/landing.html:16
 msgid "Enter your username"
-msgstr "Ingresa tu nombre de usuario"
+msgstr "Sisesta oma kasutajanimi"
 
 #: ui/templates/ui/landing.html:20
 msgid "Enter your password"
-msgstr "Ingresa tu contraseña"
+msgstr "Sisesta oma parool"
 
 #: ui/templates/ui/landing.html:24 ui/templates/ui/signin.html:36
 msgid "Forgot password?"
-msgstr "¿Olvidaste la contraseña?"
+msgstr "Unustasid parooli?"
 
 #: ui/templates/ui/landing.html:28
 msgid "Take Back Control of Your Nissan LEAF"
-msgstr "Recupera el control de tu Nissan LEAF"
+msgstr "Võta oma Nissan LEAFi juhtimine tagasi"
 
 #: ui/templates/ui/landing.html:29
 msgid ""
@@ -952,87 +940,87 @@ msgid ""
 "manufacturer's support fading, the community steps up. Sign up now to bring "
 "your LEAF back to life!"
 msgstr ""
-"El icónico Nissan LEAF merece más que el abandono. Con el soporte del "
-"fabricante desvaneciéndose, la comunidad da un paso adelante. ¡Regístrate "
-"ahora para devolverle la vida a tu LEAF!"
+"Ikooniline Nissan LEAF väärib enamat kui hülgamine. Kuna tootja tugi "
+"väheneb, astub kogukond esile. Registreeru nüüd, et tuua oma LEAF tagasi "
+"ellu!"
 
 #: ui/templates/ui/landing.html:30
 msgid "Get Started"
-msgstr "Comenzar"
+msgstr "Alusta"
 
 #: ui/templates/ui/probeviewer/main.html:8
 #: ui/templates/ui/probeviewer/main.html:33
 #: ui/templates/ui/probeviewer/trip.html:8
 #: ui/templates/ui/probeviewer/trip.html:17
 msgid "Vehicle data viewer"
-msgstr "Visor de datos del vehículo"
+msgstr "Sõiduki andmete vaatur"
 
 #: ui/templates/ui/probeviewer/main.html:27
 #: ui/templates/ui/probeviewer/trip.html:14
 msgid "Back"
-msgstr "Atrás"
+msgstr "Tagasi"
 
 #: ui/templates/ui/probeviewer/main.html:66
 msgid "Latest"
-msgstr "Más reciente"
+msgstr "Viimased"
 
 #: ui/templates/ui/probeviewer/main.html:67
 msgid "Lifetime statistics"
-msgstr "Estadísticas de por vida"
+msgstr "Eluaegne statistika"
 
 #: ui/templates/ui/probeviewer/main.html:68
 #: ui/templates/ui/probeviewer/main.html:198
 msgid "Trips"
-msgstr "Viajes"
+msgstr "Sõidud"
 
 #: ui/templates/ui/probeviewer/main.html:69
 msgid "Monthly statistics"
-msgstr "Estadísticas mensuales"
+msgstr "Kuu statistika"
 
 #: ui/templates/ui/probeviewer/main.html:70
 msgid "Charging history"
-msgstr "Historial de carga"
+msgstr "Laadimise ajalugu"
 
 #: ui/templates/ui/probeviewer/main.html:71
 msgid "Charges"
-msgstr "Cargas"
+msgstr "Laadimised"
 
 #: ui/templates/ui/probeviewer/main.html:72
 msgid "Excessive idling history"
-msgstr "Historial de ralentí excesivo"
+msgstr "Liigne tühikäigu ajalugu"
 
 #: ui/templates/ui/probeviewer/main.html:73
 msgid "Excessive A/C history"
-msgstr "Historial de uso excesivo de aire acondicionado"
+msgstr "Liigne kliimaseadme kasutamise ajalugu"
 
 #: ui/templates/ui/probeviewer/main.html:74
 msgid "ABS history"
-msgstr "Historial de ABS"
+msgstr "ABS ajalugu"
 
 #: ui/templates/ui/probeviewer/main.html:75
 msgid "DTC history"
-msgstr "Historial de códigos DTC"
+msgstr "DTC ajalugu"
 
 #: ui/templates/ui/probeviewer/main.html:76
 msgid "MSN history"
-msgstr "Historial de MSN"
+msgstr "MSN ajalugu"
 
 #: ui/templates/ui/probeviewer/main.html:84
 msgid "Odometer"
-msgstr "Odómetro"
+msgstr "Odomeeter"
 
 #: ui/templates/ui/probeviewer/main.html:85
 msgid "Phone contacts in memory"
-msgstr "Contactos telefónicos en memoria"
+msgstr "Telefonikontaktid mälus"
 
 #: ui/templates/ui/probeviewer/main.html:86
 msgid "Locations saved in address book"
-msgstr "Ubicaciones guardadas en la libreta de direcciones"
+msgstr "Aadressiraamatusse salvestatud asukohad"
 
 #: ui/templates/ui/probeviewer/main.html:93
 #: ui/templates/ui/probeviewer/main.html:117
 msgid "No vehicle data available"
-msgstr "No hay datos del vehículo disponibles"
+msgstr "Sõiduki andmed pole saadaval"
 
 #: ui/templates/ui/probeviewer/main.html:94
 #: ui/templates/ui/probeviewer/main.html:118
@@ -1040,8 +1028,8 @@ msgid ""
 "In order to receive vehicle data, CARWINGS navigation unit must have correct "
 "connection settings."
 msgstr ""
-"Para recibir datos del vehículo, la unidad de navegación CARWINGS debe tener "
-"configuraciones de conexión correctas."
+"Sõiduki andmete saamiseks peab CARWINGS naviseadmel olema õiged ühenduse "
+"seaded."
 
 #: ui/templates/ui/probeviewer/main.html:95
 #: ui/templates/ui/probeviewer/main.html:119
@@ -1056,49 +1044,47 @@ msgstr ""
 #: ui/templates/ui/probeviewer/main.html:715
 #: ui/templates/ui/probeviewer/main.html:783
 msgid "Learn more"
-msgstr "Saber más"
+msgstr "Lisateave"
 
 #: ui/templates/ui/probeviewer/main.html:103
 #: ui/templates/ui/probeviewer/trip.html:119
 msgid "A/C usage"
-msgstr "Uso del aire acondicionado"
+msgstr "Kliimaseadme kasutus"
 
 #: ui/templates/ui/probeviewer/main.html:104
 msgid "Headlights usage"
-msgstr "Uso de faros"
+msgstr "Esitulede kasutus"
 
 #: ui/templates/ui/probeviewer/main.html:105
 #: ui/templates/ui/probeviewer/main.html:197
 #: ui/templates/ui/probeviewer/trip.html:30
 msgid "Average speed"
-msgstr "Velocidad promedio"
+msgstr "Keskmine kiirus"
 
 #: ui/templates/ui/probeviewer/main.html:106
 msgid "Energy regeneration"
-msgstr "Regeneración de energía"
+msgstr "Energia taastamine"
 
 #: ui/templates/ui/probeviewer/main.html:107
 #: ui/templates/ui/probeviewer/main.html:110
 msgid "Energy consumption"
-msgstr "Consumo de energía"
+msgstr "Energiatarbimine"
 
 #: ui/templates/ui/probeviewer/main.html:108
 msgid "Runtime"
-msgstr "Tiempo de funcionamiento"
+msgstr "Tööaeg"
 
 #: ui/templates/ui/probeviewer/main.html:109
 msgid "Lifetime data mileage"
-msgstr "Kilometraje de datos de por vida"
+msgstr "Eluaegne andmete läbisõit"
 
 #: ui/templates/ui/probeviewer/main.html:175
 msgid "No trip data available"
-msgstr "No hay datos de viaje disponibles"
+msgstr "Sõiduandmed pole saadaval"
 
 #: ui/templates/ui/probeviewer/main.html:176
 msgid "Trip information comes available on next startup after the trip."
-msgstr ""
-"La información del viaje estará disponible en el próximo arranque después "
-"del viaje."
+msgstr "Sõiduinfo muutub kättesaadavaks järgmisel käivitamisel pärast sõitu."
 
 #: ui/templates/ui/probeviewer/main.html:176
 #: ui/templates/ui/probeviewer/main.html:242
@@ -1114,139 +1100,137 @@ msgid ""
 "In order to receive data, CARWINGS navigation unit must have correct "
 "connection settings."
 msgstr ""
-"Para recibir datos, la unidad de navegación CARWINGS debe tener "
-"configuraciones de conexión correctas."
+"Andmete saamiseks peab CARWINGS naviseadmel olema õiged ühenduse seaded."
 
 #: ui/templates/ui/probeviewer/main.html:195
 msgid "Driving distance"
-msgstr "Distancia recorrida"
+msgstr "Sõidukaugus"
 
 #: ui/templates/ui/probeviewer/main.html:196
 msgid "Driving time"
-msgstr "Tiempo de conducción"
+msgstr "Sõiduaeg"
 
 #: ui/templates/ui/probeviewer/main.html:199
 #: ui/templates/ui/probeviewer/trip.html:134
 msgid "Regenerated energy"
-msgstr "Energía regenerada"
+msgstr "Taastatud energia"
 
 #: ui/templates/ui/probeviewer/main.html:200
 msgid "Consumed energy"
-msgstr "Energía consumida"
+msgstr "Tarbitud energia"
 
 #: ui/templates/ui/probeviewer/main.html:202
 #: ui/templates/ui/probeviewer/trip.html:125
 msgid "Average acceleration"
-msgstr "Aceleración promedio"
+msgstr "Keskmine kiirendus"
 
 #: ui/templates/ui/probeviewer/main.html:241
 msgid "No monthly analytics available"
-msgstr "No hay análisis mensuales disponibles"
+msgstr "Kuu analüütika pole saadaval"
 
 #: ui/templates/ui/probeviewer/main.html:242
 msgid "Monthly analytics information comes available at the end of the month."
-msgstr ""
-"La información de análisis mensuales estará disponible al final del mes."
+msgstr "Kuu analüütika info muutub kättesaadavaks kuu lõpus."
 
 #: ui/templates/ui/probeviewer/main.html:264
 msgid "State at start"
-msgstr "Estado al inicio"
+msgstr "Seisund alguses"
 
 #: ui/templates/ui/probeviewer/main.html:265
 msgid "State at end"
-msgstr "Estado al final"
+msgstr "Seisund lõpus"
 
 #: ui/templates/ui/probeviewer/main.html:266
 #: ui/templates/ui/probeviewer/main.html:335
 msgid "Charging type"
-msgstr "Tipo de carga"
+msgstr "Laadimise tüüp"
 
 #: ui/templates/ui/probeviewer/main.html:267
 msgid "Charged energy"
-msgstr "Energía cargada"
+msgstr "Laaditud energia"
 
 #: ui/templates/ui/probeviewer/main.html:268
 msgid "Cell temp. (start)"
-msgstr "Temperatura de celda (inicio)"
+msgstr "Raku temp. (algus)"
 
 #: ui/templates/ui/probeviewer/main.html:268
 #: ui/templates/ui/probeviewer/main.html:269
 #: ui/templates/ui/probeviewer/main.html:270
 msgid "avg/max/min"
-msgstr "promedio/máximo/mínimo"
+msgstr "keskmine/max/min"
 
 #: ui/templates/ui/probeviewer/main.html:269
 msgid "Cell temp. (end)"
-msgstr "Temperatura de celda (final)"
+msgstr "Raku temp. (lõpp)"
 
 #: ui/templates/ui/probeviewer/main.html:270
 msgid "Cell volt. (start)"
-msgstr "Voltaje de celda (inicio)"
+msgstr "Raku pinge (algus)"
 
 #: ui/templates/ui/probeviewer/main.html:271
 msgid "Charges while ign. off"
-msgstr "Cargas con encendido apagado"
+msgstr "Laadimised süüte väljalülitamisel"
 
 #: ui/templates/ui/probeviewer/main.html:311
 msgid "No charging history available"
-msgstr "No hay historial de carga disponible"
+msgstr "Laadimise ajalugu pole saadaval"
 
 #: ui/templates/ui/probeviewer/main.html:312
 msgid ""
 "Charging history may become available on next startup after the charging."
 msgstr ""
-"El historial de carga puede estar disponible en el próximo arranque después "
-"de la carga."
+"Laadimise ajalugu võib muutuda kättesaadavaks järgmisel käivitamisel pärast "
+"laadimist."
 
 #: ui/templates/ui/probeviewer/main.html:334
 msgid "Charge count"
-msgstr "Conteo de cargas"
+msgstr "Laadimiste arv"
 
 #: ui/templates/ui/probeviewer/main.html:336
 msgid "Charge position"
-msgstr "Posición de carga"
+msgstr "Laadimise asukoht"
 
 #: ui/templates/ui/probeviewer/main.html:376
 msgid "No charge data available"
-msgstr "No hay datos de carga disponibles"
+msgstr "Laadimisandmed pole saadaval"
 
 #: ui/templates/ui/probeviewer/main.html:377
 msgid "Charging data may become available on next startup after the charging."
 msgstr ""
-"Los datos de carga pueden estar disponibles en el próximo arranque después "
-"de la carga."
+"Laadimisandmed võivad muutuda kättesaadavaks järgmisel käivitamisel pärast "
+"laadimist."
 
 #: ui/templates/ui/probeviewer/main.html:396
 msgid "Operation time"
-msgstr "Tiempo de operación"
+msgstr "Tööaeg"
 
 #: ui/templates/ui/probeviewer/main.html:397
 msgid "Vehicle speed at start"
-msgstr "Velocidad del vehículo al inicio"
+msgstr "Sõiduki kiirus alguses"
 
 #: ui/templates/ui/probeviewer/main.html:398
 msgid "Vehicle speed at end"
-msgstr "Velocidad del vehículo al final"
+msgstr "Sõiduki kiirus lõpus"
 
 #: ui/templates/ui/probeviewer/main.html:399
 msgid "Road type"
-msgstr "Tipo de carretera"
+msgstr "Tee tüüp"
 
 #: ui/templates/ui/probeviewer/main.html:400
 msgid "Direction"
-msgstr "Dirección"
+msgstr "Suund"
 
 #: ui/templates/ui/probeviewer/main.html:440
 msgid "No ABS data available"
-msgstr "No hay datos de ABS disponibles"
+msgstr "ABS andmed pole saadaval"
 
 #: ui/templates/ui/probeviewer/main.html:441
 msgid ""
 "ABS data may become available on next startup if your vehicle configuration "
 "allows it."
 msgstr ""
-"Los datos de ABS pueden estar disponibles en el próximo arranque si la "
-"configuración del vehículo lo permite."
+"ABS andmed võivad muutuda kättesaadavaks järgmisel käivitamisel, kui sinu "
+"sõiduki konfiguratsioon seda võimaldab."
 
 #: ui/templates/ui/probeviewer/main.html:454
 #: ui/templates/ui/probeviewer/main.html:522
@@ -1254,19 +1238,19 @@ msgstr ""
 #: ui/templates/ui/probeviewer/main.html:658
 #: ui/templates/ui/probeviewer/main.html:726
 msgid "Date and time"
-msgstr "Fecha y hora"
+msgstr "Kuupäev ja kellaaeg"
 
 #: ui/templates/ui/probeviewer/main.html:457
 #: ui/templates/ui/probeviewer/main.html:593
 #: ui/templates/ui/probeviewer/trip.html:38
 msgid "Duration"
-msgstr "Duración"
+msgstr "Kestus"
 
 #: ui/templates/ui/probeviewer/main.html:509
 #: ui/templates/ui/probeviewer/main.html:577
 #: ui/templates/ui/probeviewer/main.html:645
 msgid "No idling data available"
-msgstr "No hay datos de ralentí disponibles"
+msgstr "Tühikäigu andmed pole saadaval"
 
 #: ui/templates/ui/probeviewer/main.html:510
 #: ui/templates/ui/probeviewer/main.html:578
@@ -1275,297 +1259,301 @@ msgid ""
 "Idling data may become available on next startup if your vehicle "
 "configuration allows it."
 msgstr ""
-"Los datos de ralentí pueden estar disponibles en el próximo arranque si la "
-"configuración del vehículo lo permite."
+"Tühikäigu andmed võivad muutuda kättesaadavaks järgmisel käivitamisel, kui "
+"sinu sõiduki konfiguratsioon seda võimaldab."
 
 #: ui/templates/ui/probeviewer/main.html:525
 msgid "Consumption"
-msgstr "Consumo"
+msgstr "Tarbimine"
 
 #: ui/templates/ui/probeviewer/main.html:661
 #: ui/templates/ui/probeviewer/main.html:729
 msgid "Data"
-msgstr "Datos"
+msgstr "Andmed"
 
 #: ui/templates/ui/probeviewer/main.html:713
 msgid "No DTC data available"
-msgstr "No hay datos de DTC disponibles"
+msgstr "DTC andmed pole saadaval"
 
 #: ui/templates/ui/probeviewer/main.html:714
 msgid ""
 "DTC data may become available on next startup if your vehicle has active DTC "
 "truble code."
 msgstr ""
-"Los datos de DTC pueden estar disponibles en el próximo arranque si el "
-"vehículo tiene un código de problema DTC activo."
+"DTC andmed võivad muutuda kättesaadavaks järgmisel käivitamisel, kui sinu "
+"sõidukil on aktiivne DTC veakood."
 
 #: ui/templates/ui/probeviewer/main.html:781
 msgid "No MSN data available"
-msgstr "No hay datos de MSN disponibles"
+msgstr "MSN andmed pole saadaval"
 
 #: ui/templates/ui/probeviewer/main.html:782
 msgid "MSN data may become available on next startup."
-msgstr "Los datos de MSN pueden estar disponibles en el próximo arranque."
+msgstr "MSN andmed võivad muutuda kättesaadavaks järgmisel käivitamisel."
 
 #: ui/templates/ui/probeviewer/trip.html:17
 msgid "Trip"
-msgstr "Viaje"
+msgstr "Sõit"
 
 #: ui/templates/ui/probeviewer/trip.html:26
 msgid "Distance"
-msgstr "Distancia"
+msgstr "Kaugus"
 
 #: ui/templates/ui/probeviewer/trip.html:34
 msgid "Energy consumed"
-msgstr "Energía consumida"
+msgstr "Tarbitud energia"
 
 #: ui/templates/ui/probeviewer/trip.html:64
 msgid "Eco-trees"
-msgstr "Árboles ecológicos"
+msgstr "Ökopuud"
 
 #: ui/templates/ui/probeviewer/trip.html:69
 msgid "Regenerated"
-msgstr "Regenerado"
+msgstr "Taastatud"
 
 #: ui/templates/ui/probeviewer/trip.html:73
 msgid "Average consumption"
-msgstr "Average consumption"
+msgstr "Keskmine tarbimine"
 
 #: ui/templates/ui/probeviewer/trip.html:103
 msgid "Info"
-msgstr "Información"
+msgstr "Info"
 
 #: ui/templates/ui/probeviewer/trip.html:104
 msgid "Energy"
-msgstr "Energía"
+msgstr "Energia"
 
 #: ui/templates/ui/probeviewer/trip.html:105
 msgid "HV Battery"
-msgstr "Batería de alto voltaje"
+msgstr "Kõrgepinge aku"
 
 #: ui/templates/ui/probeviewer/trip.html:112
 msgid "Trip end date"
-msgstr "Fecha de finalización del viaje"
+msgstr "Sõidu lõppkuupäev"
 
 #: ui/templates/ui/probeviewer/trip.html:113
 msgid "Outside temperature at start"
-msgstr "Temperatura exterior al inicio"
+msgstr "Välistemperatuur alguses"
 
 #: ui/templates/ui/probeviewer/trip.html:114
 msgid "Outside temperature at finish"
-msgstr "Temperatura exterior al final"
+msgstr "Välistemperatuur lõpus"
 
 #: ui/templates/ui/probeviewer/trip.html:115
 msgid "Max speed"
-msgstr "Velocidad máxima"
+msgstr "Maksimaalne kiirus"
 
 #: ui/templates/ui/probeviewer/trip.html:116
 msgid "Cabin preconditioning before trip"
-msgstr "Preacondicionamiento de la cabina antes del viaje"
+msgstr "Salongi eelkonditsioneerimine enne sõitu"
 
 #: ui/templates/ui/probeviewer/trip.html:117
 msgid "Highway driving time"
-msgstr "Tiempo de conducción en autopista"
+msgstr "Maanteel sõitmise aeg"
 
 #: ui/templates/ui/probeviewer/trip.html:118
 msgid "Optimal highway driving time"
-msgstr "Tiempo óptimo de conducción en autopista"
+msgstr "Optimaalne maanteel sõitmise aeg"
 
 #: ui/templates/ui/probeviewer/trip.html:120
 msgid "Idling time"
-msgstr "Tiempo de ralentí"
+msgstr "Tühikäigu aeg"
 
 #: ui/templates/ui/probeviewer/trip.html:121
 msgid "Headlights usage time"
-msgstr "Tiempo de uso de faros"
+msgstr "Esitulede kasutamise aeg"
 
 #: ui/templates/ui/probeviewer/trip.html:122
 msgid "Sudden accelerations"
-msgstr "Aceleraciones repentinas"
+msgstr "Järsud kiirendused"
 
 #: ui/templates/ui/probeviewer/trip.html:123
 msgid "Sudden decelerations"
-msgstr "Desaceleraciones repentinas"
+msgstr "Järsud aeglustused"
 
 #: ui/templates/ui/probeviewer/trip.html:124
 msgid "Odometer at start"
-msgstr "Odómetro al inicio"
+msgstr "Odomeeter alguses"
 
 #: ui/templates/ui/probeviewer/trip.html:130
 msgid "A/C consumption"
-msgstr "Consumo de aire acondicionado"
+msgstr "Kliimaseadme tarbimine"
 
 #: ui/templates/ui/probeviewer/trip.html:131
 msgid "Auxiliary consumption"
-msgstr "Consumo auxiliar"
+msgstr "Abiseadmete tarbimine"
 
 #: ui/templates/ui/probeviewer/trip.html:132
 msgid "Motor consumption"
-msgstr "Consumo del motor"
+msgstr "Mootori tarbimine"
 
 #: ui/templates/ui/probeviewer/trip.html:133
 msgid "Idle consumption"
-msgstr "Consumo en ralentí"
+msgstr "Tühikäigu tarbimine"
 
 #: ui/templates/ui/probeviewer/trip.html:135
 msgid "Sudden acceleration consumption"
-msgstr "Consumo por aceleración repentina"
+msgstr "Järsku kiirenduse tarbimine"
 
 #: ui/templates/ui/probeviewer/trip.html:136
 msgid "Sudden acceleration time"
-msgstr "Tiempo de aceleración repentina"
+msgstr "Järsku kiirenduse aeg"
 
 #: ui/templates/ui/probeviewer/trip.html:137
 msgid "Non-eco deceleration consumption"
-msgstr "Consumo por desaceleración no ecológica"
+msgstr "Mitte-ökonoomse aeglustuse tarbimine"
 
 #: ui/templates/ui/probeviewer/trip.html:138
 msgid "Non-eco deceleration time"
-msgstr "Tiempo de desaceleración no ecológica"
+msgstr "Mitte-ökonoomse aeglustuse aeg"
 
 #: ui/templates/ui/probeviewer/trip.html:139
 msgid "Sudden start consumption"
-msgstr "Consumo por arranque repentino"
+msgstr "Järsku käivitamise tarbimine"
 
 #: ui/templates/ui/probeviewer/trip.html:140
 msgid "Sudden start time"
-msgstr "Tiempo de arranque repentino"
+msgstr "Järsku käivitamise aeg"
 
 #: ui/templates/ui/probeviewer/trip.html:146
 msgid "Trip start"
-msgstr "Inicio del viaje"
+msgstr "Sõidu algus"
 
 #: ui/templates/ui/probeviewer/trip.html:148
 #: ui/templates/ui/probeviewer/trip.html:165
 msgid "Battery pack temperature"
-msgstr "Temperatura del paquete de baterías"
+msgstr "Aku temperatuuri"
 
 #: ui/templates/ui/probeviewer/trip.html:150
 #: ui/templates/ui/probeviewer/trip.html:151
 #: ui/templates/ui/probeviewer/trip.html:167
 #: ui/templates/ui/probeviewer/trip.html:168
 msgid "Energy content"
-msgstr "Contenido de energía"
+msgstr "Energiasisaldus"
 
 #: ui/templates/ui/probeviewer/trip.html:152
 #: ui/templates/ui/probeviewer/trip.html:169
 msgid "Average cell temperature"
-msgstr "Temperatura promedio de celda"
+msgstr "Keskmine raku temperatuur"
 
 #: ui/templates/ui/probeviewer/trip.html:153
 #: ui/templates/ui/probeviewer/trip.html:170
 msgid "Max cell temperature"
-msgstr "Temperatura máxima de celda"
+msgstr "Maksimaalne raku temperatuur"
 
 #: ui/templates/ui/probeviewer/trip.html:154
 #: ui/templates/ui/probeviewer/trip.html:171
 msgid "Min cell temperature"
-msgstr "Temperatura mínima de celda"
+msgstr "Minimaalne raku temperatuur"
 
 #: ui/templates/ui/probeviewer/trip.html:155
 #: ui/templates/ui/probeviewer/trip.html:172
 msgid "Average cell voltage"
-msgstr "Voltaje promedio de celda"
+msgstr "Keskmine raku pinge"
 
 #: ui/templates/ui/probeviewer/trip.html:156
 #: ui/templates/ui/probeviewer/trip.html:173
 msgid "Max cell voltage"
-msgstr "Voltaje máximo de celda"
+msgstr "Maksimaalne raku pinge"
 
 #: ui/templates/ui/probeviewer/trip.html:157
 #: ui/templates/ui/probeviewer/trip.html:174
 msgid "Min cell voltage"
-msgstr "Voltaje mínimo de celda"
+msgstr "Minimaalne raku pinge"
 
 #: ui/templates/ui/probeviewer/trip.html:158
 msgid "AC charges (total?)"
-msgstr "Cargas de CA (¿total?)"
+msgstr "Vahelduvvoolu laadimised (kokku?)"
 
 #: ui/templates/ui/probeviewer/trip.html:159
 msgid "QC charges (total?)"
-msgstr "Cargas rápidas (¿total?)"
+msgstr "Kiirlaadimised (kokku?)"
 
 #: ui/templates/ui/probeviewer/trip.html:163
 msgid "Trip end"
-msgstr "Fin del viaje"
+msgstr "Sõidu lõpp"
 
 #: ui/templates/ui/probeviewer/trip.html:175
 msgid "Accumulated current"
-msgstr "Corriente acumulada"
+msgstr "Kogunenud vool"
 
 #: ui/templates/ui/probeviewer/trip.html:176
 #: ui/templates/ui/probeviewer/trip.html:180
 msgid "SOH"
-msgstr "Estado de salud (SOH)"
+msgstr "Aku seisund"
 
 #: ui/templates/ui/probeviewer/trip.html:177
 msgid "Pack resistance"
-msgstr "Resistencia del paquete"
+msgstr "Aku takistus"
 
 #: ui/templates/ui/probeviewer/trip.html:181
 msgid "New battery degradation analysis program"
-msgstr "Nuevo programa de análisis de degradación de batería"
+msgstr "Uus aku degradeerumise analüüsi programm"
 
 #: ui/templates/ui/reset_password.html:3 ui/templates/ui/reset_password.html:9
 #: ui/templates/ui/reset_password_complete.html:3
 msgid "Reset password"
-msgstr "Restablecer contraseña"
+msgstr "Lähtesta parool"
 
 #: ui/templates/ui/reset_password.html:27
 msgid "Enter email"
-msgstr "Ingresa el correo electrónico"
+msgstr "Sisesta e-post"
 
 #: ui/templates/ui/reset_password.html:29
 msgid "Reset"
-msgstr "Restablecer"
+msgstr "Lähtesta"
 
 #: ui/templates/ui/reset_password.html:31
 #: ui/templates/ui/reset_password_confirm.html:69
 msgid "Back to sign-in"
-msgstr "Volver a iniciar sesión"
+msgstr "Tagasi sisselogimisse"
 
 #: ui/templates/ui/reset_password_complete.html:12
 msgid ""
 "Your password has been reset. You can now <a href=\"/signin\" "
 "class=\"underline\">sign in here</a>"
 msgstr ""
-"Tu contraseña ha sido restablecida. Ahora puedes <a href=\"/signin\" "
-"class=\"underline\">iniciar sesión aquí</a>"
+"Sinu parool on lähtestatud. Nüüd saad <a href=\"/signin\" "
+"class=\"underline\">siin sisse logida</a>"
 
 #: ui/templates/ui/reset_password_confirm.html:54
 msgid "New password"
-msgstr "Nueva contraseña"
+msgstr "Uus parool"
 
 #: ui/templates/ui/reset_password_confirm.html:55
 #: ui/templates/ui/reset_password_confirm.html:59
 msgid "Enter new password"
-msgstr "Ingresa la nueva contraseña"
+msgstr "Sisesta uus parool"
 
 #: ui/templates/ui/reset_password_confirm.html:58
 msgid "Confirm new password"
-msgstr "Confirma la nueva contraseña"
+msgstr "Kinnita uus parool"
 
 #: ui/templates/ui/reset_password_confirm.html:65
+#, fuzzy
+#| msgid ""
+#| "The password reset link was invalid, possibly because it has already been "
+#| "used.\n"
+#| "                        Please درخواست a new password reset."
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used.\n"
 "                        Please request a new password reset."
 msgstr ""
-"El enlace de restablecimiento de contraseña no es válido, posiblemente "
-"porque ya ha sido usado.\n"
-"                        Por favor, solicita un nuevo restablecimiento de "
-"contraseña."
+"Parooli lähtestamise link oli kehtetu, tõenäoliselt seetõttu, et seda on "
+"juba kasutatud.\n"
+"                        Palun taotle uus parooli lähtestamine."
 
 #: ui/templates/ui/setup/step1.html:4 ui/templates/ui/setup/step2.html:4
 #: ui/templates/ui/setup/step3.html:4 ui/templates/ui/setup/step4.html:4
 #: ui/templates/ui/setup/step5.html:4 ui/templates/ui/setup/stepbase.html:4
 #: ui/templates/ui/setup/stepbase.html:8
 msgid "Add new car"
-msgstr "Añadir nuevo coche"
+msgstr "Lisa uus auto"
 
 #: ui/templates/ui/setup/step1.html:10
 msgid "Telematics Unit in your car"
-msgstr "Unidad telemática en tu coche"
+msgstr "Telematikaüksus sinu autos"
 
 #: ui/templates/ui/setup/step1.html:11
 msgid ""
@@ -1573,21 +1561,20 @@ msgid ""
 "Unit) unit's SIM card needs to be replaced and its settings programmed. Have "
 "you done that?"
 msgstr ""
-"Para establecer comunicación con tu LEAF, es necesario reemplazar la tarjeta "
-"SIM de la unidad TCU (Unidad de Control Telemático) y programar sus "
-"configuraciones. ¿Lo has hecho?"
+"LEAF-iga suhtlemise loomiseks tuleb TCU (Telematika juhtseadme) SIM-kaart "
+"vahetada ja selle seaded programmeerida. Kas oled seda teinud?"
 
 #: ui/templates/ui/setup/step1.html:16
 msgid "No, how can I do that?"
-msgstr "No, ¿cómo puedo hacerlo?"
+msgstr "Ei, kuidas ma seda teha saan?"
 
 #: ui/templates/ui/setup/step1.html:17
 msgid "Yes, continue"
-msgstr "Sí, continuar"
+msgstr "Jah, jätka"
 
 #: ui/templates/ui/setup/step2.html:29
 msgid "Let's gather information about your TCU Unit"
-msgstr "Recolectemos información sobre tu unidad TCU"
+msgstr "Kogume teavet sinu TCU-üksuse kohta"
 
 #: ui/templates/ui/setup/step2.html:30
 msgid ""
@@ -1595,48 +1582,45 @@ msgid ""
 "car. Start your car and follow steps to get identifiers from navigation "
 "system:"
 msgstr ""
-"Es hora de subir a tu LEAF y encontrar los identificadores únicos de tu "
-"coche. Enciende tu coche y sigue los pasos para obtener los identificadores "
-"desde el sistema de navegación:"
+"On aeg hüpata oma LEAFi ja leida sinu autole ainulaadsed identifikaatorid. "
+"Käivita auto ja järgi samme, et saada identifikaatorid navisüsteemist:"
 
 #: ui/templates/ui/setup/step2.html:33
 msgid "1. Press the hard button labeled Menu"
-msgstr "1. Presiona el botón físico etiquetado como Menú"
+msgstr "1. Vajuta kõva nuppu, millel on märge 'Menu'"
 
 #: ui/templates/ui/setup/step2.html:34
 msgid "2. Press the “CARWINGS” soft button on the center display screen."
-msgstr "2. Presiona el botón suave “CARWINGS” en la pantalla central."
+msgstr "2. Vajuta keskekraanil asuvat 'CARWINGS' pehmet nuppu."
 
 #: ui/templates/ui/setup/step2.html:35
 msgid ""
 "3. Press the “CARWINGS Settings” soft button on the center display screen."
-msgstr ""
-"3. Presiona el botón suave “Configuraciones de CARWINGS” en la pantalla "
-"central."
+msgstr "3. Vajuta keskekraanil asuvat 'CARWINGS Settings' pehmet nuppu."
 
 #: ui/templates/ui/setup/step2.html:36
 msgid ""
 "4. Scroll down if necessary and press “Unit ID information” soft button on "
 "the center display screen."
 msgstr ""
-"4. Desplázate hacia abajo si es necesario y presiona el botón suave "
-"“Información de ID de unidad” en la pantalla central."
+"4. Kerige alla, kui vaja, ja vajuta keskekraanil asuvat 'Unit ID "
+"information' pehmet nuppu."
 
 #: ui/templates/ui/setup/step2.html:37
 msgid ""
 "5. Write down identifiers Unit ID, TCU ID, SIM ID and VIN. Then enter them "
 "to the form below"
 msgstr ""
-"5. Anota los identificadores ID de unidad, ID de TCU, ID de SIM y VIN. "
-"Luego, ingrésalos en el formulario a continuación"
+"5. Kirjuta üles identifikaatorid Unit ID, TCU ID, SIM ID ja VIN. Seejärel "
+"sisesta need allolevasse vormi."
 
 #: ui/templates/ui/setup/step3.html:29
 msgid "Back to basics"
-msgstr "Volver a lo básico"
+msgstr "Tagasi põhitõdede juurde"
 
 #: ui/templates/ui/setup/step3.html:32
 msgid "Nickname for your vehicle"
-msgstr "Apodo para tu vehículo"
+msgstr "Hüüdnimi sinu sõidukile"
 
 #: ui/templates/ui/setup/step4.html:30
 msgid ""
@@ -1644,152 +1628,140 @@ msgid ""
 "server. To deliver the SMS, you have several options regarding which service "
 "will be used for this task."
 msgstr ""
-"El TCU de LEAF espera recibir un comando SMS para establecer la conexión con "
-"el servidor. Para enviar el SMS, tienes varias opciones sobre qué servicio "
-"se usará para esta tarea."
+"LEAF TCU ootab SMS-käsu saamist, et luua ühendus serveriga. SMS-i "
+"edastamiseks on sul mitu võimalust, millist teenust selleks kasutada."
 
 #: ui/templates/ui/setup/step4.html:30
 msgid "We recommend using"
-msgstr "Recomendamos usar"
+msgstr "Soovitame kasutada"
 
 #: ui/templates/ui/setup/step4.html:30
 msgid "Hologram IoT SIM Card"
-msgstr "Tarjeta SIM de Hologram IoT"
+msgstr "Hologram IoT SIM-kaart"
 
 #: ui/templates/ui/setup/step4.html:30
 msgid ""
 "in your TCU, because it offers free SMS messages to the device. Other "
 "services may require cost per SMS."
 msgstr ""
-"en tu TCU, porque ofrece mensajes SMS gratuitos al dispositivo. Otros "
-"servicios pueden requerir un costo por SMS."
+"oma TCU-s, kuna see pakub seadmele tasuta SMS-sõnumeid. Teised teenused "
+"võivad nõuda SMS-i eest tasu."
 
 #: ui/templates/ui/setup/step5.html:8
 msgid "All done!"
-msgstr "¡Todo listo!"
+msgstr "Kõik valmis!"
 
 #: ui/templates/ui/setup/step5.html:9
 msgid ""
 "You're done with providing necessary information to establish connection "
 "with your LEAF."
-msgstr ""
-"Has terminado de proporcionar la información necesaria para establecer la "
-"conexión con tu LEAF."
+msgstr "Oled lõpetanud vajaliku teabe esitamise, et luua ühendus oma LEAF-iga."
 
 #: ui/templates/ui/setup/step5.html:9
 msgid ""
 "You may sign in with your username and CARWINGS password in navigation unit "
 "like showed below."
 msgstr ""
-"Puedes iniciar sesión con tu nombre de usuario y contraseña de CARWINGS en "
-"la unidad de navegación como se muestra a continuación."
+"Võid naviseadmes sisse logida oma kasutajanime ja CARWINGS parooliga, nagu "
+"allpool näidatud."
 
 #: ui/templates/ui/setup/step5.html:31
 msgid "Finish"
-msgstr "Finalizar"
+msgstr "Lõpeta"
 
 #: ui/templates/ui/signin.html:27
 msgid "Enter username"
-msgstr "Ingresa el nombre de usuario"
+msgstr "Sisesta kasutajanimi"
 
 #: ui/templates/ui/signin.html:31
 msgid "Enter password"
-msgstr "Ingresa la contraseña"
+msgstr "Sisesta parool"
 
 #: ui/templates/ui/signin.html:35 ui/templates/ui/signup.html:3
 #: ui/templates/ui/signup.html:10 ui/templates/ui/signup.html:16
 msgid "Sign Up"
-msgstr "Registrarse"
+msgstr "Registreeru"
 
 #: ui/templates/ui/signup.html:18
 msgid "Already have an account?"
-msgstr "¿Ya tienes una cuenta?"
+msgstr "Kas sul on juba konto?"
 
 #: ui/templates/ui/signup.html:18
 msgid "Sign in"
-msgstr "Iniciar sesión"
+msgstr "Logi sisse"
 
 #: ui/templates/ui/vflash_editor.html:9
 msgid "VFlash Connection Profile Editor"
-msgstr "Editor de perfiles de conexión VFlash"
+msgstr "VFlash ühendusprofiili redaktor"
 
 #: ui/templates/ui/vflash_editor.html:10
 msgid "Choose or drag&drop vflash dump to get started"
-msgstr "Elija o arrastre y suelte el archivo vflash para comenzar"
+msgstr "Vali või lohista VFlash dump alustamiseks"
 
 #: ui/templates/ui/vflash_editor.html:28
 msgid "Add New Connection Profile"
-msgstr "Agregar nuevo perfil de conexión"
+msgstr "Lisa uus ühendusprofiil"
 
 #: ui/templates/ui/vflash_editor.html:30
 msgid "Export VFlash"
-msgstr "Exportar VFlash"
+msgstr "Ekspordi VFlash"
 
 #: ui/views.py:32
 msgid "TCU setup"
-msgstr "Configuración del TCU"
+msgstr "TCU seadistamine"
 
 #: ui/views.py:33
 msgid "TCU identifiers"
-msgstr "Identificadores del TCU"
+msgstr "TCU identifikaatorid"
 
 #: ui/views.py:34
 msgid "Basic information"
-msgstr "Información básica"
+msgstr "Põhiinfo"
 
 #: ui/views.py:35
 msgid "SMS configuration"
-msgstr "Configuración de SMS"
+msgstr "SMS konfiguratsioon"
 
 #: ui/views.py:36
 msgid "Car added"
-msgstr "Coche añadido"
+msgstr "Auto lisatud"
 
 #: ui/views.py:90
 msgid "Account successfully updated!"
-msgstr "¡Cuenta actualizada con éxito!"
+msgstr "Konto edukalt uuendatud!"
 
 #: ui/views.py:93
 msgid "Please fill the form correctly and try again."
-msgstr "Por favor, completa el formulario correctamente y vuelve a intentarlo."
+msgstr "Palun täida vorm korrektselt ja proovi uuesti."
 
 #: ui/views.py:460
 msgid "Successfully saved settings."
-msgstr "Configuraciones guardadas con éxito."
+msgstr "Seaded edukalt salvestatud."
 
 #: ui/views.py:462 ui/views.py:577 ui/views.py:598
 msgid "Please fill the form correctly"
-msgstr "Por favor, completa el formulario correctamente"
+msgstr "Palun täida vorm korrektselt"
 
 #: ui/views.py:465 ui/views.py:633
 msgid "Please fill all necessary fields and try again."
-msgstr "Por favor, completa todos los campos necesarios y vuelve a intentarlo."
+msgstr "Palun täida kõik vajalikud väljad ja proovi uuesti."
 
 #: ui/views.py:469
 msgid "Waiting for first connection.."
-msgstr "Esperando la primera conexión..."
+msgstr "Ootan esimest ühendust..."
 
 #: ui/views.py:495
 msgid "Sign-up is not enabled on this instance"
-msgstr "El registro no está habilitado en esta instancia"
+msgstr "Registreerumine pole selles eksemplaris lubatud"
 
 #: ui/views.py:524
 msgid "Invalid username or password."
-msgstr "Nombre de usuario o contraseña inválidos."
+msgstr "Vale kasutajanimi või parool."
 
 #: ui/views.py:564
 msgid "Car is already added. Please remove and try again."
-msgstr "El coche ya está añadido. Por favor, elimínalo y vuelve a intentarlo."
+msgstr "Auto on juba lisatud. Palun eemalda ja proovi uuesti."
 
 #: ui/views.py:614
 msgid "Please select a provider for SMS."
-msgstr "Por favor, selecciona un proveedor para SMS."
-
-#~ msgid "International Phone number of TCU (+xxxxxxxxxxxx)"
-#~ msgstr "Número de teléfono internacional de TCU (+xxxxxxxxxxxx)"
-
-#~ msgid "Latitude"
-#~ msgstr "Latitud"
-
-#~ msgid "Longitude"
-#~ msgstr "Longitud"
+msgstr "Palun vali SMS-teenuse pakkuja."

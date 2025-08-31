@@ -1,0 +1,846 @@
+{% extends 'ui/base.html'%}
+{% load math_filters %}
+{% load static %}
+{% load humanize %}
+{% load i18n %}
+{% load l10n %}
+{% load mathfilters %}
+{% block title %} {% translate "Vehicle data viewer" %} - {{car.nickname}} {% endblock %}
+{% block content %}
+    <script>
+    let maps = [];
+    function initChargeMap(mapId, lat, lon) {
+        let latlon = [lat,lon];
+        let chargemap = L.map(mapId, { zoomControl: false });
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: ''
+        }).addTo(chargemap);
+        L.marker(latlon).addTo(chargemap)
+        chargemap.invalidateSize();
+        chargemap.setView(latlon, 10);
+        maps.push(chargemap);
+    }
+    </script>
+        <div class="max-w-6xl mx-auto py-6 px-4 sm:px-6">
+        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6 space-y-4 sm:space-y-0">
+            <div>
+                <a href="/car/{{ car.vin }}" class="inline-block mt-6 text-blue-500 hover:underline text-sm sm:text-base">{% translate "Back" %}</a>
+                <div class="flex flex-row items-center">
+                    {% with 'car/'|add:car.color|add:'.png' as car_static %}
+                          <img src="{% static car_static %}" style="padding-right: 15px; max-height: 60px; object-fit: cover"/>
+                        {% endwith %}
+                    <h1 class="text-2xl sm:text-3xl font-semibold text-gray-800 align-center content-center">
+                        <span class="text-sm">{% translate 'Vehicle data viewer' %} (BETA)<br/></span>
+                        {{ car.nickname }}
+                    </h1>
+                </div>
+            </div>
+        </div>
+
+        <!-- Messages -->
+        <div id="messages" class="mb-6">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="{% if message.tags == 'error' %}bg-red-100 border-red-400 text-red-700{% endif %} px-4 py-3 rounded relative {% if message.tags == 'success' %}bg-green-100 border-green-400 text-green-700{% endif %} {% if message.tags == 'info' %}bg-blue-100 border-blue-400 text-blue-700{% endif %}" role="alert">
+                        <strong class="font-bold">
+                            {% if message.tags == 'success' %}{% translate "Success" %}!{% endif %}
+                            {% if message.tags == 'error' %}{% translate "Error" %}!{% endif %}
+                            {% if message.tags == 'info' %}{% translate "Notice" %}:{% endif %}
+                            {% if message.tags == 'warn' %}{% translate "Warning" %}:{% endif %}
+                        </strong>
+                        <span class="block sm:inline">{{ message }}</span>
+                        <span class="absolute top-0 bottom-0 right-0 px-4 py-3 cursor-pointer" onclick="this.parentElement.style.display='none';">
+                            <svg class="fill-current h-6 w-6" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                <title>{% translate "Close" %}</title>
+                                <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/>
+                            </svg>
+                        </span>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+
+        <!-- Tab Navigation -->
+        <div class="tab-nav border-b border-gray-200">
+            <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none {% if not trips_act and not months_act and not chargehist_act and not charge_act and not abs_act and not idl_act and not aircon_act and not dtc_act and not msn_act %}text-blue-500 border-b-2 border-blue-500{% else %}text-gray-600{% endif %} text-sm sm:text-base" data-tab="latest">{% translate "Latest" %}</button>
+            <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none text-sm sm:text-base text-gray-600" data-tab="lifetime">{% translate "Lifetime statistics" %}</button>
+            <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none {% if trips_act %}text-blue-500 border-b-2 border-blue-500{% else %}text-gray-600{% endif %} text-sm sm:text-base" data-tab="trips">{% translate "Trips" %}</button>
+            <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none {% if months_act %}text-blue-500 border-b-2 border-blue-500{% else %}text-gray-600{% endif %} text-sm sm:text-base" data-tab="monthly">{% translate "Monthly statistics" %}</button>
+            <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none {% if chargehist_act %}text-blue-500 border-b-2 border-blue-500{% else %}text-gray-600{% endif %} text-sm sm:text-base" data-tab="chargehist">{% translate "Charging history" %}</button>
+            <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none {% if charge_act %}text-blue-500 border-b-2 border-blue-500{% else %}text-gray-600{% endif %} text-sm sm:text-base" data-tab="charge">{% translate "Charges" %}</button>
+            <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none {% if idl_act %}text-blue-500 border-b-2 border-blue-500{% else %}text-gray-600{% endif %} text-sm sm:text-base" data-tab="idling">{% translate "Excessive idling history" %}</button>
+            <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none {% if aircon_act %}text-blue-500 border-b-2 border-blue-500{% else %}text-gray-600{% endif %}text-sm sm:text-base" data-tab="aircon">{% translate "Excessive A/C history" %}</button>
+            <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none {% if abs_act %}text-blue-500 border-b-2 border-blue-500{% else %}text-gray-600{% endif %} text-sm sm:text-base" data-tab="abs">{% translate "ABS history" %}</button>
+            <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none {% if dtc_act %}text-blue-500 border-b-2 border-blue-500{% else %}text-gray-600{% endif %} text-sm sm:text-base" data-tab="dtc">{% translate "DTC history" %}</button>
+            <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none {% if msn_act %}text-blue-500 border-b-2 border-blue-500{% else %}text-gray-600{% endif %} text-sm sm:text-base" data-tab="msn">{% translate "MSN history" %}</button>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="mt-6 bg-white p-4 sm:p-6 rounded-lg shadow-md">
+            <div id="latest" class="tab-content {% if not trips_act and not months_act and not chargehist_act and not charge_act and not abs_act and not idl_act and not aircon_act and not dtc_act and not msn_act %}active{% endif %}">
+                {% if latest %}
+                <dl class="grid grid-cols-1 gap-3 text-sm sm:text-base">
+                    <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">parking_meter</i> {% translate "Odometer" %}</dt><dd class="text-gray-600 font-semibold">{{ latest.odometer|intcomma }} km</dd></div>
+                    <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">account_box</i> {% translate "Phone contacts in memory" %}</dt><dd class="text-gray-600 font-semibold">{{ latest.phone_contacts }}</dd></div>
+                    <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">file_map</i> {% translate "Locations saved in address book" %}</dt><dd class="text-gray-600 font-semibold">{{ latest.navi_points_saved }}</dd></div>
+                </dl>
+                <div class="mt-4 text-sm text-gray-600">
+                    {% translate "Last Updated" %}: <span id="overview-last-updated">{{ latest.last_updated|default:"N/A" }}</span>
+                </div>
+                {% else %}
+                <div class="flex flex-col text-center items-center justify-center">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">{% translate "No vehicle data available" %}</h3>
+                    <p class="max-w-md">{% translate "In order to receive vehicle data, CARWINGS navigation unit must have correct connection settings." %}</p>
+                    <a href="/static/navi_guide.html" class="text-blue-600 hover:underline" target="_blank">{% translate "Learn more" %}</a>
+                </div>
+                {% endif %}
+            </div>
+
+            <div id="lifetime" class="tab-content">
+                {% if lifetime %}
+                    <dl class="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-3 text-sm sm:text-base">
+                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">mode_fan</i> {% translate "A/C usage" %}</dt><dd class="text-gray-600 font-semibold">{{ lifetime.aircon_usage|div:60|floatformat:1 }} h</dd></div>
+                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">light_mode</i> {% translate "Headlights usage" %}</dt><dd class="text-gray-600 font-semibold">{{ lifetime.headlight_on_time|div:60|floatformat:1 }} h</dd></div>
+                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">speed</i> {% translate "Average speed" %}</dt><dd class="text-gray-600 font-semibold">{{ lifetime.average_speed|floatformat:1 }} km/h</dd></div>
+                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">energy_savings_leaf</i> {% translate "Energy regeneration" %}</dt><dd class="text-gray-600 font-semibold">{{ lifetime.regen|div:1000|floatformat:2 }} kWh</dd></div>
+                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">bolt</i> {% translate "Energy consumption" %}</dt><dd class="text-gray-600 font-semibold">{{ lifetime.consumption|div:1000|floatformat:2 }} kWh</dd></div>
+                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">acute</i> {% translate "Runtime" %}</dt><dd class="text-gray-600 font-semibold">{{ lifetime.running_time|div:60|floatformat:1 }} h</dd></div>
+                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">arrow_range</i> {% translate "Lifetime data mileage" %}</dt><dd class="text-gray-600 font-semibold">{{ lifetime.mileage|floatformat:2 }} km</dd></div>
+                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">electric_car</i> {% translate "Energy consumption" %}</dt><dd class="text-gray-600 font-semibold">{{ lifetime.consumption|div:lifetime.mileage|floatformat:2 }} Wh/km</dd></div>
+                    </dl>
+                    <div class="mt-4 text-sm text-gray-600">
+                        {% translate "Last Updated" %}: <span id="overview-last-updated">{{ lifetime.last_updated|default:"N/A" }}</span>
+                    </div>
+                {% else %}
+                <div class="flex flex-col text-center items-center justify-center">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">{% translate "No vehicle data available" %}</h3>
+                    <p class="max-w-md">{% translate "In order to receive vehicle data, CARWINGS navigation unit must have correct connection settings." %}</p>
+                    <a href="/static/navi_guide.html" class="text-blue-600 hover:underline" target="_blank">{% translate "Learn more" %}</a>
+                </div>
+                {% endif %}
+            </div>
+
+            <div id="trips" class="tab-content{% if trips_act %} active{% endif %}">
+                {% if trips %}
+                    <ul class="divide-y divide-gray-200">
+                    {% for trip in trips %}
+                        <li class="py-3 sm:pb-4">
+                            <a href="/car/{{ car.vin }}/probeviewer/trip/{{ trip.pk }}">
+                                <div class="flex-1 min-w-0">
+                                        <p class="text-sm font-medium text-gray-900 truncate">
+                                           {{ trip.start_ts }} ({{ trip.trip_time|div:60|div:60|stringformat:"02d" }}:{{ trip.trip_time|div:60|mod:60|stringformat:"02d" }})
+                                        </p>
+                                        <p class="text-sm text-gray-500 truncate">
+                                           {{ trip.distance|floatformat:2 }} km
+                                        </p>
+                                </div>
+                            </a>
+                        </li>
+                    {% endfor %}
+                    </ul>
+
+                    <nav class="flex items-center justify-center">
+                      <ul class="flex items-center -space-x-px h-8 text-sm">
+                          <li>
+                          <a {% if trips.number|add:'-4' > 1 %} href="?tp={{ trips.number|add:'-5' }}" {% else %}disabled{% endif %} class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700">
+                            <span class="sr-only">Previous</span>
+                            <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+                            </svg>
+                          </a>
+                        </li>
+
+                        {% for i in trips.paginator.page_range %}
+                            <li>
+                            {% if trips.number == i %}
+                                      <a href="?tp={{ i }}" aria-current="page" class="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700">{{ i }}</a>
+                            {% elif i > trips.number|add:'-5' and i < trips.number|add:'5' %}
+                                <a href="?tp={{ i }}" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">{{ i }}</a>
+                            {% endif %}
+                            </li>
+                        {% endfor %}
+
+
+                        <li><a {% if trips.paginator.num_pages > trips.number|add:'4' %}href="?tp={{ trips.number|add:'5' }}" {% else %}disabled{% endif %} class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700">        <span class="sr-only">Next</span>
+                            <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                            </svg></a></li>
+
+                      </ul>
+                    </nav>
+
+                {% else %}
+                <div class="flex flex-col text-center items-center justify-center">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">{% translate "No trip data available" %}</h3>
+                    <p class="max-w-md">{% translate "Trip information comes available on next startup after the trip." %}<br><br/><span class="text-yellow-700"><i class="mic material-symbols-outlined">warning</i> {% translate "In order to receive data, CARWINGS navigation unit must have correct connection settings." %}</span></p>
+                    <a href="/static/navi_guide.html" class="text-blue-600 hover:underline" target="_blank">{% translate "Learn more" %}</a>
+                </div>
+                {% endif %}
+            </div>
+
+            <div id="monthly" class="tab-content{% if months_act %} active{% endif %}">
+                {% if months %}
+                    <ul class="divide-y divide-gray-200">
+                    {% for month in months %}
+                        <li class="py-3 sm:pb-4">
+                            <div class="flex-1 min-w-0">
+                                <p class="text-lg font-medium text-gray-900">
+                                   {{ month.start | date:"F" }} {{ month.start | date:"Y" }}
+                                </p>
+                                <p class="text-sm font-medium text-gray-600">
+                                   {{ month.start|date:"MONTH_DAY_FORMAT" }} - {{ month.end|date:"MONTH_DAY_FORMAT" }}
+                                </p>
+                                <dl class="mt-2 grid grid-cols-2 lg:grid-cols-4 md:grid-cols-3 gap-3 text-sm sm:text-base">
+                                    <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">road</i> {% translate "Driving distance" %}</dt><dd class="text-gray-600 font-semibold">{{ month.distance|floatformat:0 }} km</dd></div>
+                                    <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">schedule</i> {% translate "Driving time" %}</dt><dd class="text-gray-600 font-semibold">{{ month.drive_time|div:60|floatformat:0 }} h</dd></div>
+                                    <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">speed</i> {% translate "Average speed" %}</dt><dd class="text-gray-600 font-semibold">{{ month.average_speed|floatformat:1 }} km/h</dd></div>
+                                    <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">trip</i> {% translate "Trips" %}</dt><dd class="text-gray-600 font-semibold">{{ month.trip_count|floatformat:0 }}</dd></div>
+                                    <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">energy_savings_leaf</i> {% translate "Regenerated energy" %}</dt><dd class="text-gray-600 font-semibold">{{ month.regen_total_wh|div:100000|floatformat:0 }} kWh</dd></div>
+                                    <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">bolt</i> {% translate "Consumed energy" %}</dt><dd class="text-gray-600 font-semibold">{{ month.consumed_total_wh|div:10000|floatformat:0 }} kWh</dd></div>
+                                    <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">bolt</i> {% translate "Average consumption" %}</dt><dd class="text-gray-600 font-semibold">{{ month.consumed_total_wh|div:10|div:month.distance|floatformat:1 }} Wh/km</dd></div>
+                                    <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">car_gear</i> X Range Freq</dt><dd class="text-gray-600 font-semibold">P:{{ month.p_range_freq }}, R:{{ month.r_range_freq }}, N:{{ month.n_range_freq }}, B:{{ month.b_range_freq }}</dd></div>
+                                    <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">location_searching</i> {% translate "Average acceleration" %}</dt><dd class="text-gray-600 font-semibold">{{ month.average_accel|div:100|floatformat:2 }} G</dd></div>
+                                </dl>
+                            </div>
+                        </li>
+                    {% endfor %}
+                    </ul>
+
+                    <nav class="flex items-center justify-center">
+                      <ul class="flex items-center -space-x-px h-8 text-sm">
+                          <li>
+                          <a {% if months.trips|add:'-4' > 1 %} href="?mp={{ months.number|add:'-5' }}" {% else %}disabled{% endif %} class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700">
+                            <span class="sr-only">Previous</span>
+                            <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+                            </svg>
+                          </a>
+                        </li>
+
+                        {% for i in months.paginator.page_range %}
+                            <li>
+                            {% if months.number == i %}
+                                      <a href="?mp={{ i }}" aria-current="page" class="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700">{{ i }}</a>
+                            {% elif i > months.number|add:'-5' and i < months.number|add:'5' %}
+                                <a href="?tp={{ i }}" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">{{ i }}</a>
+                            {% endif %}
+                            </li>
+                        {% endfor %}
+
+
+                        <li><a {% if months.paginator.num_pages > months.number|add:'4' %}href="?mp={{ months.number|add:'5' }}" {% else %}disabled{% endif %} class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700">        <span class="sr-only">Next</span>
+                            <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                            </svg></a></li>
+
+                      </ul>
+                    </nav>
+
+                {% else %}
+                <div class="flex flex-col text-center items-center justify-center">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">{% translate "No monthly analytics available" %}</h3>
+                    <p class="max-w-md">{% translate "Monthly analytics information comes available at the end of the month." %}<br><br/><span class="text-yellow-700"><i class="mic material-symbols-outlined">warning</i> {% translate "In order to receive data, CARWINGS navigation unit must have correct connection settings." %}</span></p>
+                    <a href="/static/navi_guide.html" class="text-blue-600 hover:underline" target="_blank">{% translate "Learn more" %}</a>
+                </div>
+                {% endif %}
+            </div>
+
+            <div id="chargehist" class="tab-content {% if chargehist_act %} active {% endif %}">
+                {% if chargehist %}
+                    <ul class="divide-y divide-gray-200 gap-4 mb-2">
+                    {% for history in chargehist %}
+                        <div class="flex flex-col md:flex-row gap-2">
+                            <div id="chargehist-map-{{ history.pk }}" class="basis-64 mx-2 my-2" style="min-height:150px; max-height: 300px; border-radius: 8px"></div>
+                            <script>document.addEventListener('DOMContentLoaded', ()=>{initChargeMap("chargehist-map-{{ history.pk }}", {{ history.latitude|default:"null"|unlocalize }}, {{ history.longitude|default:"null"|unlocalize }})})</script>
+                            <li class="py-3 sm:pb-4 basis-128 mx-2">
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-lg font-medium text-gray-900">
+                                       {{ history.start_time }}
+                                    </p>
+                                    <p class="text-sm font-medium text-gray-600">
+                                       {% translate "Charging finished" %}: {{ history.end_time }}
+                                    </p>
+                                    <dl class="mt-2 grid grid-cols-2 lg:grid-cols-4 md:grid-cols-3 gap-3 text-sm sm:text-base">
+                                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">battery_android_frame_1</i> {% translate "State at start" %}</dt><dd class="text-gray-600 font-semibold">{{ history.charge_bars_start }}/12, {{ history.gids_start|floatformat:0 }} GID</dd></div>
+                                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">battery_android_frame_full</i> {% translate "State at end" %}</dt><dd class="text-gray-600 font-semibold">{{ history.charge_bars_end }}/12, {{ history.gids_end|floatformat:0 }} GID</dd></div>
+                                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">{% if history.charging_type == 2 %}ev_station{% else %}electrical_services{% endif %}</i> {% translate "Charging type" %}</dt><dd class="text-gray-600 font-semibold">{{ history.get_charging_type_display }}</dd></div>
+                                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">battery_charging_80</i> {% translate "Charged energy" %}</dt><dd class="text-gray-600 font-semibold">{{ history.power_consumption|div:10|floatformat:1 }} kWh</dd></div>
+                                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">device_thermostat</i> {% translate "Cell temp. (start)" %} ({% translate "avg/max/min" %})</dt><dd class="text-gray-600 font-semibold">{{ history.batt_avg_temp_start|floatformat:2 }}/{{ history.batt_max_temp_start|floatformat:2 }}/{{ history.batt_min_temp_start|floatformat:2 }} C</dd></div>
+                                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">device_thermostat</i> {% translate "Cell temp. (end)" %} ({% translate "avg/max/min" %})</dt><dd class="text-gray-600 font-semibold">{{ history.batt_avg_temp_end|floatformat:2 }}/{{ history.batt_max_temp_end|floatformat:2 }}/{{ history.batt_min_temp_end|floatformat:2 }} C</dd></div>
+                                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">power_input</i> {% translate "Cell volt. (start)" %} ({% translate "avg/max/min" %})</dt><dd class="text-gray-600 font-semibold">{{ history.batt_avg_cell_volt_start|div:12|floatformat:2 }}/{{ history.batt_max_cell_volt_start|div:12|floatformat:2 }}/{{ history.batt_min_cell_volt_start|div:11|floatformat:2 }} V</dd></div>
+                                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">bolt</i> {% translate "Charges while ign. off" %}</dt><dd class="text-gray-600 font-semibold">{{ history.charges_while_ignoff|floatformat:0 }}</dd></div>
+                                    </dl>
+                                </div>
+                            </li>
+                        </div>
+                    {% endfor %}
+                    </ul>
+
+                    <nav class="flex items-center justify-center">
+                      <ul class="flex items-center -space-x-px h-8 text-sm">
+                          <li>
+                          <a {% if chargehist.number|add:'-4' > 1 %} href="?chp={{ chargehist.number|add:'-5' }}" {% else %}disabled{% endif %} class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700">
+                            <span class="sr-only">Previous</span>
+                            <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+                            </svg>
+                          </a>
+                        </li>
+
+                        {% for i in chargehist.paginator.page_range %}
+                            <li>
+                            {% if chargehist.number == i %}
+                                      <a href="?chp={{ i }}" aria-current="page" class="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700">{{ i }}</a>
+                            {% elif i > chargehist.number|add:'-5' and i < chargehist.number|add:'5' %}
+                                <a href="?chp={{ i }}" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">{{ i }}</a>
+                            {% endif %}
+                            </li>
+                        {% endfor %}
+
+
+                        <li><a {% if chargehist.paginator.num_pages > chargehist.number|add:'4' %}href="?chp={{ chargehist.number|add:'5' }}" {% else %}disabled{% endif %} class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700">        <span class="sr-only">Next</span>
+                            <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                            </svg></a></li>
+
+                      </ul>
+                    </nav>
+
+                {% else %}
+                <div class="flex flex-col text-center items-center justify-center">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">{% translate "No charging history available" %}</h3>
+                    <p class="max-w-md">{% translate "Charging history may become available on next startup after the charging." %}<br><br/><span class="text-yellow-700"><i class="mic material-symbols-outlined">warning</i> {% translate "In order to receive data, CARWINGS navigation unit must have correct connection settings." %}</span></p>
+                    <a href="/static/navi_guide.html" class="text-blue-600 hover:underline" target="_blank">{% translate "Learn more" %}</a>
+                </div>
+                {% endif %}
+            </div>
+
+            <div id="charge" class="tab-content {% if charge_act %} active {% endif %}">
+                {% if charge %}
+                    <ul class="divide-y divide-gray-200 gap-4 mb-2">
+                    {% for history in charge %}
+                        <div class="flex flex-col md:flex-row gap-2">
+                            <div id="charge-map-{{ history.pk }}" class="basis-64 mx-2 my-2" style="min-height:150px; max-height: 300px; border-radius: 8px"></div>
+                            <script>document.addEventListener('DOMContentLoaded', ()=>{initChargeMap("charge-map-{{ history.pk }}", {{ history.latitude|default:"null"|unlocalize }}, {{ history.longitude|default:"null"|unlocalize }})})</script>
+                            <li class="py-3 sm:pb-4 basis-128 mx-2">
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-lg font-medium text-gray-900">
+                                       {{ history.start_time }}
+                                    </p>
+                                    <p class="text-sm font-medium text-gray-600">
+                                       {% translate "Charging finished" %}: {{ history.end_time }}
+                                    </p>
+                                    <dl class="mt-2 grid grid-cols-2 lg:grid-cols-4 md:grid-cols-3 gap-3 text-sm sm:text-base">
+                                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">history</i> {% translate "Charge count" %}</dt><dd class="text-gray-600 font-semibold">{{ history.charge_count|floatformat:0 }}</dd></div>
+                                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">{% if history.charge_type == 2 %}ev_station{% else %}electrical_services{% endif %}</i> {% translate "Charging type" %}</dt><dd class="text-gray-600 font-semibold">{{ history.get_charge_type_display }}</dd></div>
+                                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">location_on</i> {% translate "Charge position" %}</dt><dd class="text-gray-600 font-semibold">{{ history.charger_position_latitude }},{{ history.charger_position_longitude }}</dd></div>
+                                    </dl>
+                                </div>
+                            </li>
+                        </div>
+                    {% endfor %}
+                    </ul>
+
+                    <nav class="flex items-center justify-center">
+                      <ul class="flex items-center -space-x-px h-8 text-sm">
+                          <li>
+                          <a {% if charge.number|add:'-4' > 1 %} href="?cp={{ charge.number|add:'-5' }}" {% else %}disabled{% endif %} class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700">
+                            <span class="sr-only">Previous</span>
+                            <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+                            </svg>
+                          </a>
+                        </li>
+
+                        {% for i in charge.paginator.page_range %}
+                            <li>
+                            {% if charge.number == i %}
+                                      <a href="?cp={{ i }}" aria-current="page" class="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700">{{ i }}</a>
+                            {% elif i > charge.number|add:'-5' and i < charge.number|add:'5' %}
+                                <a href="?cp={{ i }}" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">{{ i }}</a>
+                            {% endif %}
+                            </li>
+                        {% endfor %}
+
+
+                        <li><a {% if charge.paginator.num_pages > charge.number|add:'4' %}href="?cp={{ charge.number|add:'5' }}" {% else %}disabled{% endif %} class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700">        <span class="sr-only">Next</span>
+                            <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                            </svg></a></li>
+
+                      </ul>
+                    </nav>
+
+                {% else %}
+                <div class="flex flex-col text-center items-center justify-center">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">{% translate "No charge data available" %}</h3>
+                    <p class="max-w-md">{% translate "Charging data may become available on next startup after the charging." %}<br><br/><span class="text-yellow-700"><i class="mic material-symbols-outlined">warning</i> {% translate "In order to receive data, CARWINGS navigation unit must have correct connection settings." %}</span></p>
+                    <a href="/static/navi_guide.html" class="text-blue-600 hover:underline" target="_blank">{% translate "Learn more" %}</a>
+                </div>
+                {% endif %}
+            </div>
+
+            <div id="abs" class="tab-content {% if abs_act %} active {% endif %}">
+                {% if abs %}
+                    <ul class="divide-y divide-gray-200 gap-4 mb-2">
+                    {% for history in abs %}
+                        <div class="flex flex-col md:flex-row gap-2">
+                            <div id="abs-map-{{ history.pk }}" class="basis-64 mx-2 my-2" style="min-height:150px; max-height: 300px; border-radius: 8px"></div>
+                            <script>document.addEventListener('DOMContentLoaded', ()=>{initChargeMap("abs-map-{{ history.pk }}", {{ history.latitude|default:"null"|unlocalize }}, {{ history.longitude|default:"null"|unlocalize }})})</script>
+                            <li class="py-3 sm:pb-4 basis-128 mx-2">
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-lg font-medium text-gray-900">
+                                       {{ history.timestamp }}
+                                    </p>
+                                    <dl class="mt-2 grid grid-cols-2 lg:grid-cols-4 md:grid-cols-3 gap-3 text-sm sm:text-base">
+                                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">timer</i> {% translate "Operation time" %}</dt><dd class="text-gray-600 font-semibold">{{ history.operation_time|floatformat:2 }} sec</dd></div>
+                                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">speed</i> {% translate "Vehicle speed at start" %}</dt><dd class="text-gray-600 font-semibold">{{ history.vehicle_speed_start|floatformat:2 }} km/h</dd></div>
+                                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">speed</i> {% translate "Vehicle speed at end" %}</dt><dd class="text-gray-600 font-semibold">{{ history.vehicle_speed_end|floatformat:2 }} km/h</dd></div>
+                                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">roundabout_left</i> {% translate "Road type" %}</dt><dd class="text-gray-600 font-semibold">{{ history.road_type|floatformat:0 }}</dd></div>
+                                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">near_me</i> {% translate "Direction" %}</dt><dd class="text-gray-600 font-semibold">{{ history.direction|floatformat:1 }}</dd></div>
+                                    </dl>
+                                </div>
+                            </li>
+                        </div>
+                    {% endfor %}
+                    </ul>
+
+                    <nav class="flex items-center justify-center">
+                      <ul class="flex items-center -space-x-px h-8 text-sm">
+                          <li>
+                          <a {% if abs.number|add:'-4' > 1 %} href="?ap={{ abs.number|add:'-5' }}" {% else %}disabled{% endif %} class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700">
+                            <span class="sr-only">Previous</span>
+                            <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+                            </svg>
+                          </a>
+                        </li>
+
+                        {% for i in abs.paginator.page_range %}
+                            <li>
+                            {% if abs.number == i %}
+                                      <a href="?ap={{ i }}" aria-current="page" class="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700">{{ i }}</a>
+                            {% elif i > abs.number|add:'-5' and i < abs.number|add:'5' %}
+                                <a href="?ap={{ i }}" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">{{ i }}</a>
+                            {% endif %}
+                            </li>
+                        {% endfor %}
+
+
+                        <li><a {% if abs.paginator.num_pages > abs.number|add:'4' %}href="?ap={{ abs.number|add:'5' }}" {% else %}disabled{% endif %} class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700">        <span class="sr-only">Next</span>
+                            <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                            </svg></a></li>
+
+                      </ul>
+                    </nav>
+
+                {% else %}
+                <div class="flex flex-col text-center items-center justify-center">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">{% translate "No ABS data available" %}</h3>
+                    <p class="max-w-md">{% translate "ABS data may become available on next startup if your vehicle configuration allows it." %}<br><br/><span class="text-yellow-700"><i class="mic material-symbols-outlined">warning</i> {% translate "In order to receive data, CARWINGS navigation unit must have correct connection settings." %}</span></p>
+                    <a href="/static/navi_guide.html" class="text-blue-600 hover:underline" target="_blank">{% translate "Learn more" %}</a>
+                </div>
+                {% endif %}
+            </div>
+
+            <div id="idling" class="tab-content {% if idl_act %} active {% endif %}">
+                {% if idl %}
+                    <div class="relative overflow-x-auto">
+                        <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3">
+                                        {% translate "Date and time" %}
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        {% translate "Duration" %}
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for history in idl %}
+                                    <tr class="bg-white border-b border-gray-200">
+                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                            {{ history.start }}
+                                        </th>
+                                        <td class="px-6 py-4">
+                                            {{ history.duration|div:60|stringformat:"02d" }}:{{ history.duration|mod:60|stringformat:"02d" }}
+                                        </td>
+                                    </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <nav class="flex items-center justify-center">
+                      <ul class="flex items-center -space-x-px h-8 text-sm">
+                          <li>
+                          <a {% if idl.number|add:'-4' > 1 %} href="?idl={{ idl.number|add:'-5' }}" {% else %}disabled{% endif %} class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700">
+                            <span class="sr-only">Previous</span>
+                            <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+                            </svg>
+                          </a>
+                        </li>
+
+                        {% for i in idl.paginator.page_range %}
+                            <li>
+                            {% if idl.number == i %}
+                                      <a href="?idl={{ i }}" aria-current="page" class="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700">{{ i }}</a>
+                            {% elif i > idl.number|add:'-5' and i < idl.number|add:'5' %}
+                                <a href="?idl={{ i }}" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">{{ i }}</a>
+                            {% endif %}
+                            </li>
+                        {% endfor %}
+
+
+                        <li><a {% if idl.paginator.num_pages > idl.number|add:'4' %}href="?idl={{ idl.number|add:'5' }}" {% else %}disabled{% endif %} class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700">        <span class="sr-only">Next</span>
+                            <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                            </svg></a></li>
+
+                      </ul>
+                    </nav>
+
+                {% else %}
+                <div class="flex flex-col text-center items-center justify-center">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">{% translate "No idling data available" %}</h3>
+                    <p class="max-w-md">{% translate "Idling data may become available on next startup if your vehicle configuration allows it." %}<br><br/><span class="text-yellow-700"><i class="mic material-symbols-outlined">warning</i> {% translate "In order to receive data, CARWINGS navigation unit must have correct connection settings." %}</span></p>
+                    <a href="/static/navi_guide.html" class="text-blue-600 hover:underline" target="_blank">{% translate "Learn more" %}</a>
+                </div>
+                {% endif %}
+            </div>
+            <div id="aircon" class="tab-content {% if aircon_act %} active {% endif %}">
+                {% if aircon %}
+                    <div class="relative overflow-x-auto">
+                        <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3">
+                                        {% translate "Date and time" %}
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        {% translate "Consumption" %}
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for history in aircon %}
+                                    <tr class="bg-white border-b border-gray-200">
+                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                            {{ history.start }}
+                                        </th>
+                                        <td class="px-6 py-4">
+                                            {{ history.consumption|div:1000|floatformat:2 }} kWh
+                                        </td>
+                                    </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <nav class="flex items-center justify-center">
+                      <ul class="flex items-center -space-x-px h-8 text-sm">
+                          <li>
+                          <a {% if aircon.number|add:'-4' > 1 %} href="?ap={{ aircon.number|add:'-5' }}" {% else %}disabled{% endif %} class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700">
+                            <span class="sr-only">Previous</span>
+                            <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+                            </svg>
+                          </a>
+                        </li>
+
+                        {% for i in aircon.paginator.page_range %}
+                            <li>
+                            {% if aircon.number == i %}
+                                      <a href="?aircon={{ i }}" aria-current="page" class="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700">{{ i }}</a>
+                            {% elif i > idl.number|add:'-5' and i < idl.number|add:'5' %}
+                                <a href="?aircon={{ i }}" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">{{ i }}</a>
+                            {% endif %}
+                            </li>
+                        {% endfor %}
+
+
+                        <li><a {% if aircon.paginator.num_pages > aircon.number|add:'4' %}href="?aircon={{ aircon.number|add:'5' }}" {% else %}disabled{% endif %} class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700">        <span class="sr-only">Next</span>
+                            <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                            </svg></a></li>
+
+                      </ul>
+                    </nav>
+
+                {% else %}
+                <div class="flex flex-col text-center items-center justify-center">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">{% translate "No idling data available" %}</h3>
+                    <p class="max-w-md">{% translate "Idling data may become available on next startup if your vehicle configuration allows it." %}<br><br/><span class="text-yellow-700"><i class="mic material-symbols-outlined">warning</i> {% translate "In order to receive data, CARWINGS navigation unit must have correct connection settings." %}</span></p>
+                    <a href="/static/navi_guide.html" class="text-blue-600 hover:underline" target="_blank">{% translate "Learn more" %}</a>
+                </div>
+                {% endif %}
+            </div>
+        <div id="idling" class="tab-content {% if idl_act %} active {% endif %}">
+                {% if idl %}
+                    <div class="relative overflow-x-auto">
+                        <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3">
+                                        {% translate "Date and time" %}
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        {% translate "Duration" %}
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for history in idl %}
+                                    <tr class="bg-white border-b border-gray-200">
+                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                            {{ history.start }}
+                                        </th>
+                                        <td class="px-6 py-4">
+                                            {{ history.duration|div:60|stringformat:"02d" }}:{{ history.duration|mod:60|stringformat:"02d" }}
+                                        </td>
+                                    </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <nav class="flex items-center justify-center">
+                      <ul class="flex items-center -space-x-px h-8 text-sm">
+                          <li>
+                          <a {% if idl.number|add:'-4' > 1 %} href="?idl={{ idl.number|add:'-5' }}" {% else %}disabled{% endif %} class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700">
+                            <span class="sr-only">Previous</span>
+                            <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+                            </svg>
+                          </a>
+                        </li>
+
+                        {% for i in idl.paginator.page_range %}
+                            <li>
+                            {% if idl.number == i %}
+                                      <a href="?idl={{ i }}" aria-current="page" class="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700">{{ i }}</a>
+                            {% elif i > idl.number|add:'-5' and i < idl.number|add:'5' %}
+                                <a href="?idl={{ i }}" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">{{ i }}</a>
+                            {% endif %}
+                            </li>
+                        {% endfor %}
+
+
+                        <li><a {% if idl.paginator.num_pages > idl.number|add:'4' %}href="?idl={{ idl.number|add:'5' }}" {% else %}disabled{% endif %} class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700">        <span class="sr-only">Next</span>
+                            <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                            </svg></a></li>
+
+                      </ul>
+                    </nav>
+
+                {% else %}
+                <div class="flex flex-col text-center items-center justify-center">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">{% translate "No idling data available" %}</h3>
+                    <p class="max-w-md">{% translate "Idling data may become available on next startup if your vehicle configuration allows it." %}<br><br/><span class="text-yellow-700"><i class="mic material-symbols-outlined">warning</i> {% translate "In order to receive data, CARWINGS navigation unit must have correct connection settings." %}</span></p>
+                    <a href="/static/navi_guide.html" class="text-blue-600 hover:underline" target="_blank">{% translate "Learn more" %}</a>
+                </div>
+                {% endif %}
+            </div>
+            <div id="dtc" class="tab-content {% if dtc_act %} active {% endif %}">
+                {% if dtc %}
+                    <div class="relative overflow-x-auto">
+                        <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3">
+                                        {% translate "Date and time" %}
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        {% translate "Data" %}
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for history in dtc %}
+                                    <tr class="bg-white border-b border-gray-200">
+                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                            N/A
+                                        </th>
+                                        <td class="px-6 py-4">
+                                            {{ history.data }}
+                                        </td>
+                                    </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <nav class="flex items-center justify-center">
+                      <ul class="flex items-center -space-x-px h-8 text-sm">
+                          <li>
+                          <a {% if dtc.number|add:'-4' > 1 %} href="?ap={{ dtc.number|add:'-5' }}" {% else %}disabled{% endif %} class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700">
+                            <span class="sr-only">Previous</span>
+                            <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+                            </svg>
+                          </a>
+                        </li>
+
+                        {% for i in dtc.paginator.page_range %}
+                            <li>
+                            {% if dtc.number == i %}
+                                      <a href="?dtc={{ i }}" aria-current="page" class="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700">{{ i }}</a>
+                            {% elif i > dtc.number|add:'-5' and i < dtc.number|add:'5' %}
+                                <a href="?dtc={{ i }}" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">{{ i }}</a>
+                            {% endif %}
+                            </li>
+                        {% endfor %}
+
+
+                        <li><a {% if dtc.paginator.num_pages > dtc.number|add:'4' %}href="?dtc={{ dtc.number|add:'5' }}" {% else %}disabled{% endif %} class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700">        <span class="sr-only">Next</span>
+                            <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                            </svg></a></li>
+
+                      </ul>
+                    </nav>
+
+                {% else %}
+                <div class="flex flex-col text-center items-center justify-center">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">{% translate "No DTC data available" %}</h3>
+                    <p class="max-w-md">{% translate "DTC data may become available on next startup if your vehicle has active DTC truble code." %}<br><br/><span class="text-yellow-700"><i class="mic material-symbols-outlined">warning</i> {% translate "In order to receive data, CARWINGS navigation unit must have correct connection settings." %}</span></p>
+                    <a href="/static/navi_guide.html" class="text-blue-600 hover:underline" target="_blank">{% translate "Learn more" %}</a>
+                </div>
+                {% endif %}
+            </div>
+            <div id="msn" class="tab-content {% if msn_act %} active {% endif %}">
+                {% if msn %}
+                    <div class="relative overflow-x-auto">
+                        <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3">
+                                        {% translate "Date and time" %}
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        {% translate "Data" %}
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for history in msn %}
+                                    <tr class="bg-white border-b border-gray-200">
+                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                            {{ history.timestamp }}
+                                        </th>
+                                        <td class="px-6 py-4">
+                                            {{ history.data }}
+                                        </td>
+                                    </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <nav class="flex items-center justify-center">
+                      <ul class="flex items-center -space-x-px h-8 text-sm">
+                          <li>
+                          <a {% if msn.number|add:'-4' > 1 %} href="?msn={{ msn.number|add:'-5' }}" {% else %}disabled{% endif %} class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700">
+                            <span class="sr-only">Previous</span>
+                            <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+                            </svg>
+                          </a>
+                        </li>
+
+                        {% for i in msn.paginator.page_range %}
+                            <li>
+                            {% if msn.number == i %}
+                                      <a href="?msn={{ i }}" aria-current="page" class="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700">{{ i }}</a>
+                            {% elif i > msn.number|add:'-5' and i < msn.number|add:'5' %}
+                                <a href="?msn={{ i }}" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">{{ i }}</a>
+                            {% endif %}
+                            </li>
+                        {% endfor %}
+
+
+                        <li><a {% if msn.paginator.num_pages > msn.number|add:'4' %}href="?msn={{ msn.number|add:'5' }}" {% else %}disabled{% endif %} class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700">        <span class="sr-only">Next</span>
+                            <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                            </svg></a></li>
+
+                      </ul>
+                    </nav>
+
+                {% else %}
+                <div class="flex flex-col text-center items-center justify-center">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">{% translate "No MSN data available" %}</h3>
+                    <p class="max-w-md">{% translate "MSN data may become available on next startup." %}<br><br/><span class="text-yellow-700"><i class="mic material-symbols-outlined">warning</i> {% translate "In order to receive data, CARWINGS navigation unit must have correct connection settings." %}</span></p>
+                    <a href="/static/navi_guide.html" class="text-blue-600 hover:underline" target="_blank">{% translate "Learn more" %}</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            // Function to activate a specific tab
+            const activateTab = (tabId) => {
+                tabButtons.forEach(btn => {
+                    btn.classList.remove('text-blue-500', 'border-b-2', 'border-blue-500');
+                    btn.classList.add('text-gray-600');
+                });
+                tabContents.forEach(content => content.classList.remove('active'));
+
+                const selectedButton = document.querySelector(`[data-tab="${tabId}"]`);
+                const selectedContent = document.getElementById(tabId);
+
+                if (selectedButton && selectedContent) {
+                    selectedButton.classList.remove('text-gray-600');
+                    selectedButton.classList.add('text-blue-500', 'border-b-2', 'border-blue-500');
+                    selectedContent.classList.add('active');
+                }
+            };
+
+            // Handle tab button clicks
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    setTimeout(() => {
+                        maps.forEach(map => {map.invalidateSize()});
+                    }, 100);
+                    const tabId = button.getAttribute('data-tab');
+                    window.history.replaceState(null, null, window.location.pathname+`#${tabId}`);
+                    activateTab(tabId);
+                });
+            });
+
+            // Check URL hash on page load
+            if (!window.location.search) {
+                const initialTab = window.location.hash.slice(1);
+                if (initialTab) {
+                    activateTab(initialTab);
+                } else {
+                    // Activate first tab by default if no hash
+                    const firstTab = tabButtons[0]?.getAttribute('data-tab');
+                    if (firstTab) {
+                        window.history.replaceState(null, null, `#${firstTab}`);
+                        activateTab(firstTab);
+                    }
+                }
+            }
+
+        });
+    </script>
+{% endblock %}

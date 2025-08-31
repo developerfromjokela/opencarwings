@@ -3,7 +3,8 @@ import xml.etree.ElementTree as ET
 from db.models import Car
 from tculink.carwings_proto.databuffer import compress_carwings, construct_carwings_filepacket
 from tculink.carwings_proto.xml import carwings_create_xmlfile_content
-
+import logging
+logger = logging.getLogger("carwings_apl")
 
 def handle_ap(xml_data, _):
     if 'authentication' in xml_data:
@@ -22,12 +23,14 @@ def handle_ap(xml_data, _):
         try:
             car = Car.objects.get(vin=car_vin)
             if car is None:
+                logger.info("Car not found")
                 auth_result = False
                 reason_title = 'Car not registered with OpenCARWINGS'
                 reason_desc = 'The car has not been registered with Open Carwings. Visit Open Carwings website to register your vehicle.'
 
             # confirm TCU ID
             if auth_result and dcm_id != car.tcu_model:
+                logger.info("TCU_id mismatch")
                 auth_result = False
                 reason_title = 'TCU ID mismatch'
                 reason_desc = ('The TCU ID is incorrect. Please correct your TCU ID by visiting '
@@ -36,6 +39,7 @@ def handle_ap(xml_data, _):
 
             # confirm SIM ID
             if auth_result and car.iccid != sim_id:
+                logger.info("ICCID mismatch")
                 auth_result = False
                 reason_title = 'Sim ID Mismatch'
                 reason_desc = ('The SIM ID is incorrect. Please correct your SIM ID by visiting '
@@ -44,11 +48,13 @@ def handle_ap(xml_data, _):
 
             # confirm user&pass
             if auth_result and car.owner.username != username or car.owner.tcu_pass_hash != password:
+                logger.info("Creds mismatch")
                 auth_result = False
                 reason_title = 'Username or Password is incorrect.'
                 reason_desc = ('The username or password is incorrect. '
                                'Please correct your username or password and try again.')
         except Car.DoesNotExist:
+            logger.info("Car DoesNotExist")
             auth_result = False
             reason_title = 'Car not registered with OpenCARWINGS'
             reason_desc = 'The car has not been registered with Open Carwings. Visit Open Carwings website to register your vehicle.'

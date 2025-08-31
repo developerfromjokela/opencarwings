@@ -1,9 +1,11 @@
+import logging
 import xml.etree.ElementTree as ET
 from xml.dom import minidom
 
 from tculink.carwings_proto.databuffer import construct_carwings_filepacket, compress_carwings
 from tculink.carwings_proto.xml import carwings_create_xmlfile_content
 
+logger = logging.getLogger("carwings_apl")
 
 def handle_gls(xml_data, files):
     if 'send_data' in xml_data['service_info']['application']:
@@ -14,17 +16,16 @@ def handle_gls(xml_data, files):
         id_value = send_data['id']
         file_content = bytearray()
         if id_type == "file":
-            print("Retrieving file", id_value)
+            logger.info("Retrieving file %s", id_value)
             file_content = next((x for x in files if x['name'] == id_value), None)
             if file_content is None:
-                print("File not found", id_value)
+                logger.warning("File not found, %s", id_value)
                 return None
-            print("File content", file_content['content'].hex())
+            logger.debug("File content, %s", file_content['content'].hex())
             file_content = file_content['content']
 
-        print("GLS Command", file_content)
 
-        print("Sending List")
+        logger.info("Sending List")
 
         # Construct the payload
         resp_file = bytes.fromhex('00 00 00 00 00 00 00 00 00 03 01'.replace(' ', ''))

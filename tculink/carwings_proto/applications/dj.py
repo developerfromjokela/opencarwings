@@ -9,6 +9,8 @@ from tculink.carwings_proto.dataobjects import construct_chnmst_payload, constru
 from tculink.carwings_proto.utils import get_cws_authenticated_car
 from tculink.carwings_proto.xml import carwings_create_xmlfile_content
 from unidecode import unidecode
+import logging
+logger = logging.getLogger("carwings_apl")
 
 # Demo folders and items
 folders = [
@@ -310,14 +312,14 @@ def handle_dj(xml_data, files):
             # Retrieving file
             file_content = next((x for x in files if x['name'] == id_value), None)
             if file_content is None:
-                print("File not found", id_value)
+                logger.error("File not found, %s", id_value)
                 return None
             file_content = file_content['content']
 
         # Parsing command from DJ payload
         dj_payload = get_carwings_bininfo(file_content)
         if dj_payload is None:
-            print("DJ Payload is not valid!")
+            logger.error("DJ Payload is not valid!")
             log_dir = os.path.join("logs", "dj", xml_data['authentication']['navi_id'],
                                    datetime.now().strftime('%Y%m%d%H%M%S.%s'))
             os.makedirs(log_dir, exist_ok=True)
@@ -326,7 +328,7 @@ def handle_dj(xml_data, files):
             return None
 
         if len(dj_payload) < 2:
-            print("DJ Payload is invalid!")
+            logger.error("DJ Payload is invalid!")
             log_dir = os.path.join("logs", "dj", xml_data['authentication']['navi_id'],
                                    datetime.now().strftime('%Y%m%d%H%M%S.%s'))
             os.makedirs(log_dir, exist_ok=True)
@@ -346,11 +348,11 @@ def handle_dj(xml_data, files):
         app_elm = ET.SubElement(srv_inf, "app", {"name": "DJ"})
 
         if action == 0x01:
-            print("Save to Favorite list func!")
+            logger.info("Save to Favorite list func!")
         elif action == 0x00:
-            print("Request func!")
+            logger.info("Request func!")
             handler_id = (dj_payload[2] << 8) | (dj_payload[3])
-            print("Handler ID", handler_id)
+            logger.info("Handler ID, %d", handler_id)
             # Request channel list (CHNLIST)
             if handler_id == 0x101:
 
@@ -392,11 +394,11 @@ def handle_dj(xml_data, files):
             # Request Channel Data (CHNDAT)
             elif handler_id == 0x102:
                 if len(dj_payload) < 6:
-                    print("Too short DJ payload for 0x102!")
+                    logger.error("Too short DJ payload for 0x102!")
                     return None
                 chan_id = int.from_bytes([dj_payload[4], dj_payload[5]], byteorder='big')
                 if chan_id == 0x000F:
-                    print("Google SEND TO CAR!")
+                    logger.info("Google SEND TO CAR!")
                     car_destinations = []
                     car = get_cws_authenticated_car(xml_data)
                     if car is not None:
@@ -424,7 +426,7 @@ def handle_dj(xml_data, files):
                     resp_file = construct_send_to_car_channel(car_destinations)
                 # Route planner has multiple channels: 0A, 0B, 0C, 0D, 0E.
                 elif chan_id == 0x000A:
-                    print("Route planner A")
+                    logger.info("Route planner A")
                     # Send empty response for now until data format is figured out
                     resp_file = construct_send_to_car_channel([], channel_id=0x000A)
                 else:

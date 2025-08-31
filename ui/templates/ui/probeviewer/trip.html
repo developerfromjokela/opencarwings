@@ -1,0 +1,225 @@
+{% extends 'ui/base.html'%}
+{% load math_filters %}
+{% load static %}
+{% load humanize %}
+{% load i18n %}
+{% load l10n %}
+{% load mathfilters %}
+{% block title %} {{ trip.start_ts }} - {% translate "Vehicle data viewer" %} - {{car.nickname}} {% endblock %}
+{% block content %}
+
+        <div class="max-w-6xl mx-auto py-6 px-4 sm:px-6">
+        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6 space-y-4 sm:space-y-0">
+            <div>
+                <a href="/car/{{ car.vin }}/probeviewer#trips" class="inline-block mt-6 text-blue-500 hover:underline text-sm sm:text-base">{% translate "Back" %}</a>
+                <div class="flex flex-row items-center">
+                    <h1 class="text-2xl sm:text-3xl font-semibold text-gray-800 align-center content-center">
+                        <span class="text-sm">{% translate "Trip" %} | {% translate 'Vehicle data viewer' %} (BETA)<br/></span>
+                        {{ trip.start_ts }}
+                    </h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                <div class="status-box">
+                    <dt><i class="mic material-symbols-outlined">route</i> {% translate "Distance" %}</dt>
+                    <dd id="overview-range-acon">{{ trip.distance|floatformat:2 }} km</dd>
+                </div>
+                <div class="status-box">
+                    <dt><i class="mic material-symbols-outlined">speed</i> {% translate "Average speed" %}</dt>
+                    <dd id="overview-range-acon">{{ trip.average_speed|floatformat:1 }} km/h</dd>
+                </div>
+                <div class="status-box">
+                    <dt><i class="mic material-symbols-outlined">charger</i> {% translate "Energy consumed" %}</dt>
+                    <dd id="overview-range-acon">{{ trip.motor_consumption|addition:trip.aircon_consumption|addition:trip.auxiliary_consumption|div:10000.0|floatformat:1 }} kWh</dd>
+                </div>
+                <div class="status-box">
+                    <dt><i class="mic material-symbols-outlined">timer</i> {% translate "Duration" %}</dt>
+                    <dd id="overview-range-acon">{{ trip.trip_time|div:60|div:60|stringformat:"02d" }}:{{ trip.trip_time|div:60|mod:60|stringformat:"02d" }}</dd>
+                </div>
+                <div class="status-box text-left">
+                    <div class="flex flex-row items-center justify-center">
+                        {% if trip.eco_tree_count > 0 %}
+                            {% with trees=trip.eco_tree_count %}
+                                {% for i in '12345'|make_list %}
+                                    {% with offset=i|mul:5 %}
+                                        {% if trees > offset|add:1 or trees == offset %}
+                                            <img src="{% static 'tree/l5.png' %}" alt="Tree with 4 segments"/>
+                                        {% elif trees > offset|sub:2 %}
+                                            <img src="{% static 'tree/l4.png' %}" alt="Tree with 3 segments"/>
+                                        {% elif trees > offset|sub:3 %}
+                                             <img src="{% static 'tree/l3.png' %}" alt="Tree with 2 segments"/>
+                                        {% elif trees > offset|sub:4 %}
+                                             <img src="{% static 'tree/l2.png' %}" alt="Tree with 1 segments"/>
+                                        {% elif trees > offset|sub:5 %}
+                                            <img src="{% static 'tree/l1.png' %}" alt="Tree with 1 segments"/>
+                                        {% endif %}
+                                    {% endwith %}
+                                {% endfor %}
+                            {% endwith %}
+                        {% endif %}
+                        <div class="ml-4">
+                            <dd id="overview-range-acon">{{ trip.eco_tree_count|div:5}}</dd>
+                            <dt>{% translate "Eco-trees" %}</dt>
+                        </div>
+                    </div>
+                </div>
+                <div class="status-box">
+                    <dt><i class="mic material-symbols-outlined">eco</i> {% translate "Regenerated" %}</dt>
+                    <dd id="overview-range-acon">{{ trip.regen|div:100000.0|floatformat:1 }} kWh</dd>
+                </div>
+                <div class="status-box">
+                    <dt><i class="mic material-symbols-outlined">flash_on</i> {% translate "Average consumption" %}</dt>
+                    <dd id="overview-range-acon">{{ trip.motor_consumption|addition:trip.aircon_consumption|addition:trip.auxiliary_consumption|div:10.0|div:trip.distance|floatformat:1 }} Wh/km</dd>
+                </div>
+        </div>
+
+        <!-- Messages -->
+        <div id="messages" class="mb-6">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="{% if message.tags == 'error' %}bg-red-100 border-red-400 text-red-700{% endif %} px-4 py-3 rounded relative {% if message.tags == 'success' %}bg-green-100 border-green-400 text-green-700{% endif %} {% if message.tags == 'info' %}bg-blue-100 border-blue-400 text-blue-700{% endif %}" role="alert">
+                        <strong class="font-bold">
+                            {% if message.tags == 'success' %}{% translate "Success" %}!{% endif %}
+                            {% if message.tags == 'error' %}{% translate "Error" %}!{% endif %}
+                            {% if message.tags == 'info' %}{% translate "Notice" %}:{% endif %}
+                            {% if message.tags == 'warn' %}{% translate "Warning" %}:{% endif %}
+                        </strong>
+                        <span class="block sm:inline">{{ message }}</span>
+                        <span class="absolute top-0 bottom-0 right-0 px-4 py-3 cursor-pointer" onclick="this.parentElement.style.display='none';">
+                            <svg class="fill-current h-6 w-6" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                <title>{% translate "Close" %}</title>
+                                <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/>
+                            </svg>
+                        </span>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="tab-nav border-b border-gray-200">
+            <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none text-blue-500 border-b-2 border-blue-500 text-sm sm:text-base" data-tab="info">{% translate "Info" %}</button>
+            <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none text-sm sm:text-base text-gray-600" data-tab="energy">{% translate "Energy" %}</button>
+            <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none text-sm sm:text-base text-gray-600" data-tab="battery">{% translate "HV Battery" %}</button>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="mt-6 bg-white p-4 sm:p-6 rounded-lg shadow-md">
+            <div id="info" class="tab-content active">
+                    <dl class="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-3 text-sm sm:text-base">
+                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">sports_score</i> {% translate "Trip end date" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.end_ts }}</dd></div>
+                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">device_thermostat</i> {% translate "Outside temperature at start" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.outside_temp_start }} C</dd></div>
+                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">device_thermostat</i> {% translate "Outside temperature at finish" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.outside_temp_end }} C</dd></div>
+                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">pace</i> {% translate "Max speed" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.max_speed|floatformat:1 }} km/h</dd></div>
+                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">heat</i> {% translate "Cabin preconditioning before trip" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.used_preheating|yesno }}</dd></div>
+                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">flyover</i> {% translate "Highway driving time" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.highway_driving_time|div:60|div:60|stringformat:"02d" }}:{{ trip.highway_driving_time|div:60|mod:60|stringformat:"02d" }}</dd></div>
+                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">flyover</i> {% translate "Optimal highway driving time" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.highway_optimal_speed_time|div:60|div:60|stringformat:"02d" }}:{{ trip.highway_optimal_speed_time|div:60|mod:60|stringformat:"02d" }}</dd></div>
+                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">mode_fan</i> {% translate "A/C usage" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.aircon_usage|div:60|div:60|stringformat:"02d" }}:{{ trip.aircon_usage|div:60|mod:60|stringformat:"02d" }}</dd></div>
+                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">pause_circle</i> {% translate "Idling time" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.idling_time|div:60|div:60|stringformat:"02d" }}:{{ trip.idling_time|div:60|mod:60|stringformat:"02d" }}</dd></div>
+                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">light_mode</i> {% translate "Headlights usage time" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.headlight_on_time|div:60|div:60|stringformat:"02d" }}:{{ trip.headlight_on_time|div:60|mod:60|stringformat:"02d" }}</dd></div>
+                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">podiatry</i> {% translate "Sudden accelerations" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.sudden_accelerations|floatformat:0 }}</dd></div>
+                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">arrow_cool_down</i> {% translate "Sudden decelerations" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.sudden_decelerations|floatformat:0 }}</dd></div>
+                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">swap_driving_apps_wheel</i> {% translate "Odometer at start" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.start_odometer|intcomma }} km</dd></div>
+                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">location_searching</i> {% translate "Average acceleration" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.average_acceleration|div:100|floatformat:2 }} G</dd></div>
+                    </dl>
+            </div>
+            <div id="energy" class="tab-content">
+                <dl class="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-3 text-sm sm:text-base">
+                    <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">mode_fan</i> {% translate "A/C consumption" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.aircon_consumption|div:10000|floatformat:2 }} kWh</dd></div>
+                    <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">smart_outlet</i> {% translate "Auxiliary consumption" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.auxiliary_consumption|div:10000|floatformat:2 }} kWh</dd></div>
+                    <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">directions_car</i> {% translate "Motor consumption" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.motor_consumption|div:10000|floatformat:2 }} kWh</dd></div>
+                    <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">pause_circle</i> {% translate "Idle consumption" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.idle_consumption|div:10000|floatformat:2 }} kWh</dd></div>
+                    <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">energy_savings_leaf</i> {% translate "Regenerated energy" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.regen|div:100000|floatformat:2 }} kWh</dd></div>
+                    <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">podiatry</i> {% translate "Sudden acceleration consumption" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.sudden_acceleration_consumption|div:10000|floatformat:2 }} kWh</dd></div>
+                    <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">podiatry</i> {% translate "Sudden acceleration time" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.sudden_acceleration_time }}</dd></div>
+                    <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">macro_off</i> {% translate "Non-eco deceleration consumption" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.non_eco_deceleration_consumption|div:100000|floatformat:2 }} kWh</dd></div>
+                    <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">macro_off</i> {% translate "Non-eco deceleration time" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.non_eco_deceleration_time }}</dd></div>
+                    <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">sprint</i> {% translate "Sudden start consumption" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.sudden_start_consumption|div:10000|floatformat:2 }} kWh</dd></div>
+                    <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">sprint</i> {% translate "Sudden start time" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.sudden_start_time|floatformat }}</dd></div>
+                </dl>
+            </div>
+            <div id="battery" class="tab-content">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                    <div class="status-card">
+                        <span class="text-left text-2sm">{% translate "Trip start" %}</span>
+                        <dl class="mt-4 grid grid-cols-1 gap-3 text-sm sm:text-base">
+                            <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">device_thermostat</i> {% translate "Battery pack temperature" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.batt_temp_start }} C</dd></div>
+                            <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">cardiology</i> SOH</dt><dd class="text-gray-600 font-semibold">{{ trip.soh_start }} %</dd></div>
+                            <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">battery_android_6</i> {% translate "Energy content" %} (kWh)</dt><dd class="text-gray-600 font-semibold">{{ trip.wh_energy_start|div:1000|floatformat:2 }}</dd></div>
+                            <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">battery_android_frame_question</i> {% translate "Energy content" %} (GID)</dt><dd class="text-gray-600 font-semibold">{{ trip.bda_energy_content_start|floatformat:0 }}</dd></div>
+                            <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">thermostat</i> {% translate "Average cell temperature" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.bda_avg_temp_start }} C</dd></div>
+                            <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">thermostat_arrow_up</i> {% translate "Max cell temperature" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.bda_max_temp_start }} C</dd></div>
+                            <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">thermostat_arrow_down</i> {% translate "Min cell temperature" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.bda_min_temp_start }} C</dd></div>
+                            <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">power_input</i> {% translate "Average cell voltage" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.bda_avg_cell_volt_start|div:25|floatformat:2 }} V, raw:{{ trip.bda_avg_cell_volt_start }}</dd></div>
+                            <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">power_input</i> {% translate "Max cell voltage" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.bda_max_cell_volt_start|div:25|floatformat:2 }} V, raw:{{ trip.bda_max_cell_volt_start }}</dd></div>
+                            <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">power_input</i> {% translate "Min cell voltage" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.bda_min_cell_volt_start|div:25|floatformat:2 }} V, raw:{{ trip.bda_min_cell_volt_start }}</dd></div>
+                            <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">electrical_services</i> {% translate "AC charges (total?)" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.bda_number_ac_charges }}</dd></div>
+                            <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">ev_station</i> {% translate "QC charges (total?)" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.bda_number_qc_charges }}</dd></div>
+                        </dl>
+                    </div>
+                    <div class="status-card">
+                        <span class="text-2sm">{% translate "Trip end" %}</span>
+                        <dl class="mt-4 grid grid-cols-1 gap-3 text-sm sm:text-base">
+                            <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">device_thermostat</i> {% translate "Battery pack temperature" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.batt_temp_end }} C</dd></div>
+                            <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">cardiology</i> SOH</dt><dd class="text-gray-600 font-semibold">{{ trip.soh_end }} %</dd></div>
+                            <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">battery_android_6</i> {% translate "Energy content" %} (kWh)</dt><dd class="text-gray-600 font-semibold">{{ trip.wh_energy_end|div:1000|floatformat:2 }}</dd></div>
+                            <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">battery_android_frame_question</i> {% translate "Energy content" %} (GID)</dt><dd class="text-gray-600 font-semibold">{{ trip.bda_energy_content_end|floatformat:0 }}</dd></div>
+                            <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">thermostat</i> {% translate "Average cell temperature" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.bda_avg_temp_end }} C</dd></div>
+                            <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">thermostat_arrow_up</i> {% translate "Max cell temperature" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.bda_max_temp_end }} C</dd></div>
+                            <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">thermostat_arrow_down</i> {% translate "Min cell temperature" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.bda_min_temp_end }} C</dd></div>
+                            <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">power_input</i> {% translate "Average cell voltage" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.bda_avg_cell_volt_start|div:25|floatformat:2 }} V, raw:{{ trip.bda_avg_cell_volt_start }}</dd></div>
+                            <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">power_input</i> {% translate "Max cell voltage" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.bda_max_cell_volt_start|div:25|floatformat:2 }} V, raw:{{ trip.bda_max_cell_volt_start }}</dd></div>
+                            <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">power_input</i> {% translate "Min cell voltage" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.bda_min_cell_volt_start|div:25|floatformat:2 }} V, raw:{{ trip.bda_min_cell_volt_start }}</dd></div>
+                            <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">vital_signs</i> {% translate "Accumulated current" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.bda_regen_end|floatformat:2 }}</dd></div>
+                            <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">health_and_safety</i> {% translate "SOH" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.soh_end }} %</dd></div>
+                            <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">special_character</i> {% translate "Pack resistance" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.bda_resistance_end }}</dd></div>
+                            <hr/>
+                            <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">view_week</i> {% translate "Capacity bars" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.bda2_capacity_bars_end }}</dd></div>
+                            <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">health_and_safety</i> {% translate "SOH" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.bda2_soc_end }} %</dd></div>
+                            <span class="text-sm text-gray-400">({% translate "New battery degradation analysis program" %}) (AZE0)</span>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            // Function to activate a specific tab
+            const activateTab = (tabId) => {
+                tabButtons.forEach(btn => {
+                    btn.classList.remove('text-blue-500', 'border-b-2', 'border-blue-500');
+                    btn.classList.add('text-gray-600');
+                });
+                tabContents.forEach(content => content.classList.remove('active'));
+
+                const selectedButton = document.querySelector(`[data-tab="${tabId}"]`);
+                const selectedContent = document.getElementById(tabId);
+
+                if (selectedButton && selectedContent) {
+                    selectedButton.classList.remove('text-gray-600');
+                    selectedButton.classList.add('text-blue-500', 'border-b-2', 'border-blue-500');
+                    selectedContent.classList.add('active');
+                }
+            };
+
+            // Handle tab button clicks
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    activateTab(button.getAttribute('data-tab'));
+                });
+            });
+
+
+        });
+    </script>
+{% endblock %}

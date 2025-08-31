@@ -3,6 +3,9 @@ Utility functions for parsing, de/compress and packing of CARWINGS packets
 """
 import binascii
 import zlib
+import logging
+
+logger = logging.getLogger("carwings")
 
 # Lookup table for probe operations
 PROBE_XOR_LOOKUPTABLE = [
@@ -69,7 +72,7 @@ def parse_carwings_files(data):
     if len(data) < 8:
         raise ValueError("Data too short")
 
-    print("- input data length", len(data))
+    logger.debug("- input data length: %d", len(data))
 
     # header 8 bytes
     header = data[:8]
@@ -78,8 +81,8 @@ def parse_carwings_files(data):
     file_count = int.from_bytes(header[:4], "big")
     body_size = int.from_bytes(header[4:8], "big")
 
-    print("- Files count", file_count)
-    print("- Body size", body_size)
+    logger.info("- Files count: %d", file_count)
+    logger.info("- Body size: %d", body_size)
 
     if len(body) != body_size:
         raise ValueError("Body size mismatch! Expected %d bytes, got %d" % (body_size, len(body)))
@@ -99,10 +102,10 @@ def parse_carwings_files(data):
         offset = next_pos
 
     for num, file in filenames.items():
-        print("--- File", num, file)
+        logger.info("--- File %d, %s", num, file)
         file_content = data[offset:offset + file[1]]
         offset += file[1]
-        print("------- Length content:", len(file_content))
+        logger.info("------- Length content: %d", len(file_content))
         complete_files.append({'name': file[0], 'size': file[1], 'content': file_content})
 
     return complete_files

@@ -1,4 +1,6 @@
 import io
+import logging
+logger = logging.getLogger("carwings")
 
 from django.http import HttpResponse
 from django.shortcuts import redirect
@@ -29,12 +31,16 @@ def carwings_http_gateway(request):
 
     # Parse XML
     if not files[0]['name'].endswith('.xml'):
-        print("No XML file!")
+        logger.warning("No XML file!")
         return HttpResponse(status=400)
 
     parsed_xml = parse_carwings_xml(files[0]['content'].decode('utf-8'))
 
+    logger.info("XML:")
+    logger.info(parsed_xml)
+
     if "service_info" not in parsed_xml:
+        logger.warning("No service info in XML file!")
         return HttpResponse(status=400)
 
 
@@ -63,6 +69,8 @@ def carwings_http_gateway(request):
         gls_resp = handle_gls(parsed_xml, files)
         if gls_resp is not None:
             resp_buffer = gls_resp
+
+    logger.info("Binary response length: %d", len(resp_buffer))
 
     # Return binary response
     return HttpResponse(io.BytesIO(resp_buffer), content_type="application/x-carwings-nz")

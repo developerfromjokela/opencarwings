@@ -4,9 +4,11 @@ from datetime import datetime
 import random
 
 from tculink.carwings_proto.databuffer import construct_carwings_filepacket, compress_carwings, probe_xor_data
-from tculink.carwings_proto.utils import calculate_prb_data_checksum
+from tculink.carwings_proto.probe_crm import parse_crmfile, update_crm_to_db
+from tculink.carwings_proto.utils import calculate_prb_data_checksum, get_cws_authenticated_car
 from tculink.carwings_proto.xml import carwings_create_xmlfile_content
-
+import logging
+logger = logging.getLogger("probe")
 
 def handle_pi(xml_data, files):
     if 'send_data' in xml_data['service_info']['application']:
@@ -27,7 +29,7 @@ def handle_pi(xml_data, files):
                 return None
             file_content = next((x for x in files if x['name'] == id_value), None)
             if file_content is None:
-                print("File not found", id_value)
+                logger.error("File not found: %s", id_value)
                 return None
             file_content = file_content['content']
 
@@ -35,9 +37,9 @@ def handle_pi(xml_data, files):
             command_id = int.from_bytes([file_content[4], file_content[5]], byteorder="big")
 
             if command_id == 0x583:
-                print("0x583 Init!")
-                print("0x583 Version1: ", hex(file_content[6]))
-                print("0x583 Version2: ", hex(file_content[7]))
+                logger.info("0x583 Init!")
+                logger.info("0x583 Version1: %s", hex(file_content[6]))
+                logger.info("0x583 Version2: %s", hex(file_content[7]))
 
                 # Send request to start sending over data
                 # 010f 01, 0x0583
@@ -47,19 +49,19 @@ def handle_pi(xml_data, files):
                 filenames.append("PIRESP1.003")
                 filenames.append("PIRESP2.003")
             elif command_id == 0x581:
-                print("0x581 Incoming Data")
+                logger.info("0x581 Incoming Data")
                 filename_length = int(file_content[6])
                 filename_offset = 7+filename_length
                 filename = file_content[7:filename_offset].decode('utf-8')
                 if len(filename) > 128:
                     filename = filename[:128]
-                print("0x581 Filename LEN: ", filename_length)
-                print("0x581 Filename: ", filename)
+                logger.info("0x581 Filename LEN: %d", filename_length)
+                logger.info("0x581 Filename: %s", filename)
 
-                print("Retrieving file", filename)
+                logger.info("Retrieving file %s", filename)
                 probe_data = next((x for x in files if x['name'] == filename), None)
                 if probe_data is None:
-                    print("Probe File not found", filename)
+                    logger.error("Probe File not found, %s", filename)
                     return None
 
                 probe_data = probe_data["content"]
@@ -67,7 +69,7 @@ def handle_pi(xml_data, files):
 
                 if probe_data[0] == 0x05 and probe_data[1] == 0x81:
                     if len(probe_data) < 10:
-                        print("Probe File too small", filename)
+                        logger.info("Probe File too small, %s", filename)
                     else:
                         data_length = int.from_bytes([probe_data[3], probe_data[4], probe_data[5]], byteorder="big")-8
                         xor_key = probe_data[6]
@@ -75,16 +77,16 @@ def handle_pi(xml_data, files):
                         coordinate_system = probe_data[9]
                         checksum_byte = probe_data[-1]
 
-                        print("Probe file metadata:")
-                        print("  DataLength: ", data_length)
-                        print("  FileNumber: ", file_number)
-                        print("  XORKey: ", hex(xor_key))
-                        print("  Checksum: ", hex(checksum_byte))
-                        print("  CoordinateSystem: ", hex(coordinate_system))
+                        logger.info("Probe file metadata:")
+                        logger.info("  DataLength: %d", data_length)
+                        logger.info("  FileNumber: %d", file_number)
+                        logger.info("  XORKey: %s", hex(xor_key))
+                        logger.info("  Checksum: %s", hex(checksum_byte))
+                        logger.info("  CoordinateSystem: %s", hex(coordinate_system))
 
                         checksum = calculate_prb_data_checksum(probe_data[2:], len(probe_data) - 2)
                         if checksum != checksum_byte:
-                            print("Probe file checksum error!")
+                            logger.info("Probe file checksum error!")
                             file_path = os.path.join(log_dir, f"CHKSUMERR-{hex(checksum_byte)}-{hex(checksum)}-{filename}")
                             if os.path.exists(file_path):
                                 file_path = os.path.join(log_dir,
@@ -103,13 +105,30 @@ def handle_pi(xml_data, files):
                             with open(file_path, 'wb') as f:
                                 f.write(decrypted_data)
 
+                            if len(decrypted_data) > 38:
+                                data = decrypted_data[38:]
+                                if data[0] == 0xE1:
+                                    logger.info("CRM File!")
+                                    car_ref = get_cws_authenticated_car(xml_data)
+                                    if car_ref is not None:
+                                        try:
+                                            crm_data = parse_crmfile(decrypted_data)
+                                            update_crm_to_db(car_ref, crm_data)
+                                        except Exception as e:
+                                            logger.error("CRMFILE ERR")
+                                            logger.exception(e)
+                                elif data[0] == 0x05:
+                                    logger.info("DOT file!")
+                                    # TODO dotfile handling, implement when format known
+
+
                             confirmation_content = bytearray.fromhex('00 00 00 00 00 00 00 00 00 05 14')
                             confirmation_content += file_number.to_bytes(2, byteorder="big")
 
                             outgoing_files.append((f"PICONFIRM{file_number}.003", confirmation_content))
                             filenames.append(f"PICONFIRM{file_number}.003")
                 else:
-                    print("Invalid Probe file signature! Got: "+hex(probe_data[0])+hex(probe_data[1]))
+                    logger.error("Invalid Probe file signature! Got: %s,%s", hex(probe_data[0]), hex(probe_data[1]))
                     file_path = os.path.join(log_dir, f"UNKNOWN-{filename}")
 
                     if os.path.exists(file_path):

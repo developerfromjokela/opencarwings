@@ -80,6 +80,11 @@ CAR_COLOR = (
     ("env200_white", "e-NV200 White"),
 )
 
+CHARGE_TYPES = (
+    (1, _("Slow charge")),
+    (2, _("Quick charge")),
+)
+
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
@@ -211,3 +216,188 @@ class Car(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     # CarWings navi
     send_to_car_location = models.OneToOneField(SendToCarLocation, on_delete=models.CASCADE, null=True, blank=True)
+
+
+# Probe data
+
+## Probe CRM
+class CRMLatest(models.Model):
+    car = models.ForeignKey(Car, on_delete=models.CASCADE)
+    phone_contacts = models.IntegerField(default=0)
+    navi_points_saved = models.IntegerField(default=0)
+    odometer = models.IntegerField(default=0)
+    last_updated = models.DateTimeField(null=True, default=None, blank=True)
+
+class CRMLifetime(models.Model):
+    car = models.ForeignKey(Car, on_delete=models.CASCADE)
+    aircon_usage = models.IntegerField(default=0)
+    headlight_on_time = models.IntegerField(default=0)
+    average_speed = models.FloatField(default=0)
+    regen = models.IntegerField(default=0)
+    consumption = models.IntegerField(default=0)
+    running_time = models.IntegerField(default=0)
+    mileage = models.FloatField(default=0)
+    last_updated = models.DateTimeField(null=True, default=None, blank=True)
+
+class CRMExcessiveAirconRecord(models.Model):
+    car = models.ForeignKey(Car, on_delete=models.CASCADE)
+    start = models.DateTimeField()
+    consumption = models.IntegerField(default=0)
+
+class CRMExcessiveIdlingRecord(models.Model):
+    car = models.ForeignKey(Car, on_delete=models.CASCADE)
+    start = models.DateTimeField()
+    duration = models.IntegerField(default=0)
+
+class CRMMonthlyRecord(models.Model):
+    car = models.ForeignKey(Car, on_delete=models.CASCADE)
+    start = models.DateTimeField()
+    end = models.DateTimeField()
+    distance = models.FloatField(default=0)
+    drive_time = models.IntegerField(default=0)
+    average_speed = models.FloatField(default=0)
+    p_range_freq = models.IntegerField(default=0)
+    r_range_freq = models.IntegerField(default=0)
+    n_range_freq = models.IntegerField(default=0)
+    b_range_freq = models.IntegerField(default=0)
+    trip_count = models.IntegerField(default=0)
+    braking_speeds = models.JSONField(default=list)
+    start_stop_distances = models.JSONField(default=list)
+    regen_total_wh = models.IntegerField(default=0)
+    consumed_total_wh = models.IntegerField(default=0)
+    average_accel = models.FloatField(default=0)
+    switch_usage_parked = models.JSONField(default=list)
+    switch_usage_driving = models.JSONField(default=list)
+
+class CRMMSNRecord(models.Model):
+    car = models.ForeignKey(Car, on_delete=models.CASCADE)
+    timestamp = models.DateTimeField()
+    data = models.JSONField()
+
+class CRMChargeRecord(models.Model):
+    car = models.ForeignKey(Car, on_delete=models.CASCADE)
+    start_time = models.DateTimeField()
+    end_time = models.DateTimeField()
+    latitude = models.DecimalField(default=0, decimal_places=15, max_digits=32)
+    longitude = models.DecimalField(default=0, decimal_places=15, max_digits=32)
+    charge_count = models.IntegerField(default=0)
+    charge_type = models.IntegerField(default=0, choices=CHARGE_TYPES)
+    charger_position_latitude = models.DecimalField(default=0, decimal_places=15, max_digits=32)
+    charger_position_longitude = models.DecimalField(default=0, decimal_places=15, max_digits=32)
+
+class CRMChargeHistoryRecord(models.Model):
+    car = models.ForeignKey(Car, on_delete=models.CASCADE)
+    start_time = models.DateTimeField()
+    end_time = models.DateTimeField()
+    charge_bars_start = models.IntegerField(default=0)
+    charge_bars_end = models.IntegerField(default=0)
+    gids_start = models.IntegerField(default=0)
+    gids_end = models.IntegerField(default=0)
+    power_consumption = models.IntegerField(default=0)
+    charging_type = models.IntegerField(default=0, choices=CHARGE_TYPES)
+    latitude = models.DecimalField(default=0, decimal_places=15, max_digits=32)
+    longitude = models.DecimalField(default=0, decimal_places=15, max_digits=32)
+    #temp st
+    batt_avg_temp_start = models.IntegerField(default=0)
+    batt_max_temp_start = models.IntegerField(default=0)
+    batt_min_temp_start = models.IntegerField(default=0)
+    #temp end
+    batt_avg_temp_end = models.IntegerField(default=0)
+    batt_max_temp_end = models.IntegerField(default=0)
+    batt_min_temp_end = models.IntegerField(default=0)
+    #cellvolt
+    batt_avg_cell_volt_start = models.IntegerField(default=0)
+    batt_max_cell_volt_start = models.IntegerField(default=0)
+    batt_min_cell_volt_start = models.IntegerField(default=0)
+    current_accumulation_start = models.IntegerField(default=0)
+    charges_while_ignoff = models.IntegerField(default=0)
+
+class CRMABSHistoryRecord(models.Model):
+    car = models.ForeignKey(Car, on_delete=models.CASCADE)
+    timestamp = models.DateTimeField()
+    operation_time = models.IntegerField(default=0)
+    vehicle_speed_start = models.IntegerField(default=0)
+    vehicle_speed_end = models.IntegerField(default=0)
+    latitude = models.DecimalField(default=0, decimal_places=15, max_digits=32)
+    longitude = models.DecimalField(default=0, decimal_places=15, max_digits=32)
+    road_type = models.IntegerField(default=0)
+    direction = models.IntegerField(default=0)
+
+class CRMTroubleRecord(models.Model):
+    car = models.ForeignKey(Car, on_delete=models.CASCADE)
+    data = models.JSONField()
+
+class CRMTripRecord(models.Model):
+    car = models.ForeignKey(Car, on_delete=models.CASCADE)
+    start_ts = models.DateTimeField()
+    end_ts = models.DateTimeField()
+    start_latitude = models.DecimalField(default=0, decimal_places=15, max_digits=32)
+    start_longitude = models.DecimalField(default=0, decimal_places=15, max_digits=32)
+    end_latitude = models.DecimalField(default=0, decimal_places=15, max_digits=32)
+    end_longitude = models.DecimalField(default=0, decimal_places=15, max_digits=32)
+    distance = models.FloatField(default=0)
+    sudden_accelerations = models.DecimalField(default=0, decimal_places=15, max_digits=32)
+    sudden_decelerations = models.DecimalField(default=0, decimal_places=15, max_digits=32)
+    highway_optimal_speed_time = models.IntegerField(default=0)
+    aircon_usage = models.IntegerField(default=0)
+    highway_driving_time = models.IntegerField(default=0)
+    idling_time = models.IntegerField(default=0)
+    average_speed = models.FloatField(default=0)
+    outside_temp_start = models.FloatField(default=0)
+    outside_temp_end = models.FloatField(default=0)
+    trip_time = models.IntegerField(default=0)
+    # energy
+    regen = models.IntegerField(default=0)
+    aircon_consumption = models.IntegerField(default=0)
+    auxiliary_consumption = models.IntegerField(default=0)
+    motor_consumption = models.IntegerField(default=0)
+    idle_consumption = models.IntegerField(default=0)
+    eco_tree_count = models.IntegerField(default=0)
+    # accelerator work
+    sudden_start_consumption = models.IntegerField(default=0)
+    sudden_start_time = models.IntegerField(default=0)
+    sudden_acceleration_consumption = models.IntegerField(default=0)
+    sudden_acceleration_time = models.IntegerField(default=0)
+    non_eco_deceleration_consumption = models.IntegerField(default=0)
+    non_eco_deceleration_time = models.IntegerField(default=0)
+    # records
+    sudden_starts_list = models.JSONField(default=list)
+    sudden_accelerations_list = models.JSONField(default=list)
+    non_eco_decelerations_list = models.JSONField(default=list)
+    non_constant_speeds = models.JSONField(default=list)
+    # battery info
+    batt_temp_start = models.FloatField(default=0)
+    batt_temp_end = models.FloatField(default=0)
+    soh_start = models.IntegerField(default=0)
+    soh_end = models.IntegerField(default=0)
+    wh_energy_start = models.FloatField(default=0)
+    wh_energy_end = models.FloatField(default=0)
+    # battery degradation analysis 1
+    bda_energy_content_start = models.FloatField(default=0)
+    bda_energy_content_end = models.FloatField(default=0)
+    bda_avg_temp_start = models.FloatField(default=0)
+    bda_max_temp_start = models.FloatField(default=0)
+    bda_min_temp_start = models.FloatField(default=0)
+    bda_avg_temp_end = models.FloatField(default=0)
+    bda_max_temp_end = models.FloatField(default=0)
+    bda_min_temp_end = models.FloatField(default=0)
+    bda_avg_cell_volt_start = models.FloatField(default=0)
+    bda_max_cell_volt_start = models.FloatField(default=0)
+    bda_min_cell_volt_start = models.FloatField(default=0)
+    bda_regen_end = models.FloatField(default=0)
+    bda_number_qc_charges = models.IntegerField(default=0)
+    bda_number_ac_charges = models.IntegerField(default=0)
+    bda_soc_end = models.IntegerField(default=0)
+    bda_resistance_end = models.IntegerField(default=0)
+    # battery degradation analysis 2
+    bda2_capacity_bars_end = models.IntegerField(default=0)
+    bda2_soc_end = models.IntegerField(default=0)
+    # other
+    headlight_on_time = models.IntegerField(default=0)
+    average_acceleration = models.FloatField(default=0)
+    start_odometer = models.IntegerField(default=0)
+    max_speed = models.FloatField(default=0)
+    used_preheating = models.BooleanField(default=False)
+
+
+## TODO: Probe DOT

@@ -6,7 +6,9 @@ from .models import (
     LocationInfo,
     EVInfo,
     AlertHistory,
-    Car, User, SendToCarLocation
+    Car, User, SendToCarLocation, CRMLatest, CRMLifetime, CRMExcessiveAirconRecord, CRMExcessiveIdlingRecord,
+    CRMMonthlyRecord, CRMMSNRecord, CRMChargeRecord, CRMChargeHistoryRecord, CRMABSHistoryRecord, CRMTroubleRecord,
+    CRMTripRecord
 )
 
 
@@ -101,3 +103,48 @@ class CustomUserAdmin(UserAdmin):
             },
         ),
     )
+
+# PRB
+@admin.register(CRMLatest)
+class CRMLatestAdmin(admin.ModelAdmin):
+    list_display = ('car', 'odometer', 'last_updated')
+
+@admin.register(CRMLifetime)
+class CRMLifetimeAdmin(admin.ModelAdmin):
+    list_display = ('car', 'last_updated')
+
+@admin.register(CRMExcessiveAirconRecord)
+class CRMExcessiveAirconRecordAdmin(admin.ModelAdmin):
+    list_display = ('car', 'start', 'consumption')
+
+@admin.register(CRMExcessiveIdlingRecord)
+class CRMExcessiveIdlingRecordAdmin(admin.ModelAdmin):
+    list_display = ('car', 'start', 'duration')
+
+@admin.register(CRMMonthlyRecord)
+class CRMMonthlyRecordAdmin(admin.ModelAdmin):
+    list_display = ('car', 'start', 'end', 'trip_count')
+
+@admin.register(CRMMSNRecord)
+class CRMMSNRecordAdmin(admin.ModelAdmin):
+    list_display = ('car', 'timestamp')
+
+@admin.register(CRMChargeRecord)
+class CRMChargeRecordAdmin(admin.ModelAdmin):
+    list_display = ('car', 'start_time', 'end_time', 'charge_type')
+
+@admin.register(CRMChargeHistoryRecord)
+class CRMChargeHistoryRecordAdmin(admin.ModelAdmin):
+    list_display = ('car', 'start_time', 'end_time', 'charging_type')
+
+@admin.register(CRMABSHistoryRecord)
+class CRMABSHistoryRecordAdmin(admin.ModelAdmin):
+    list_display = ('car', 'timestamp')
+
+@admin.register(CRMTroubleRecord)
+class CRMTroubleRecordAdmin(admin.ModelAdmin):
+    list_display = ('car',)
+
+@admin.register(CRMTripRecord)
+class CRMTripRecordAdmin(admin.ModelAdmin):
+    list_display = ('car', 'start_ts', 'end_ts', 'distance')

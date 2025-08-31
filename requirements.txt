@@ -12,3 +12,4 @@ djangorestframework-simplejwt~=5.5.0
 aioapns~=4.0
 pyfcm~=2.0.8
 Unidecode==1.4.0
+django-mathfilters==1.0.0

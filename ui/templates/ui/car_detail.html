@@ -76,13 +76,14 @@
 
         <!-- Tab Navigation -->
         <div class="tab-nav border-b border-gray-200">
-            <button class="tab-btn px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none {% if not show_settings %}text-blue-500 border-b-2 border-blue-500{% endif %} text-sm sm:text-base" data-tab="overview">{% translate "Overview" %}</button>
+            <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none {% if not show_settings %}text-blue-500 border-b-2 border-blue-500{% else %}text-gray-600{% endif %} text-sm sm:text-base" data-tab="overview">{% translate "Overview" %}</button>
             <button class="tab-btn px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="basic-info">{% translate "Basic Info" %}</button>
+            <a href="/car/{{ car.vin }}/probeviewer" class="px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none text-sm sm:text-base">{% translate "Vehicle journal" %}<span class="ml-2 bg-blue-500 text-white text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm">{% translate "New!" %}</span></a>
             <button class="tab-btn px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="tcu-config">{% translate "TCU Configuration" %}</button>
             <button class="tab-btn px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="ev-status">{% translate "EV Status" %}</button>
             <button class="tab-btn px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="location">{% translate "Location" %}</button>
             <button class="tab-btn px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="recent-alerts">{% translate "Recent Alerts" %}</button>
-            <button class="tab-btn px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none {% if show_settings %}text-blue-500 border-b-2 border-blue-500{% endif %} text-sm sm:text-base" data-tab="settings">{% translate "Settings" %}</button>
+            <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none {% if show_settings %}text-blue-500 border-b-2 border-blue-500{% else %}text-gray-600{% endif %} text-sm sm:text-base" data-tab="settings">{% translate "Settings" %}</button>
         </div>
 
         <!-- Tab Content -->
@@ -476,7 +477,7 @@
                         btn.classList.add('text-gray-600');
                     });
                     tabContents.forEach(content => content.classList.remove('active'));
-
+                    button.classList.remove('text-gray-600');
                     button.classList.add('text-blue-500', 'border-b-2', 'border-blue-500');
                     document.getElementById(tabId).classList.add('active');
 

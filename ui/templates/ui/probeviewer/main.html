@@ -198,7 +198,14 @@
                                     <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">trip</i> {% translate "Trips" %}</dt><dd class="text-gray-600 font-semibold">{{ month.trip_count|floatformat:0 }}</dd></div>
                                     <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">energy_savings_leaf</i> {% translate "Regenerated energy" %}</dt><dd class="text-gray-600 font-semibold">{{ month.regen_total_wh|div:100000|floatformat:0 }} kWh</dd></div>
                                     <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">bolt</i> {% translate "Consumed energy" %}</dt><dd class="text-gray-600 font-semibold">{{ month.consumed_total_wh|div:10000|floatformat:0 }} kWh</dd></div>
-                                    <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">bolt</i> {% translate "Average consumption" %}</dt><dd class="text-gray-600 font-semibold">{{ month.consumed_total_wh|div:10|div:month.distance|floatformat:1 }} Wh/km</dd></div>
+
+                                    <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">bolt</i>{% translate "Average consumption" %}</dt><dd class="text-gray-600 font-semibold">
+                                        {% if month.regen_total_wh != 0 %}
+                                        {% with regen_wh=month.regen_total_wh|div:100.0 %}
+                                            {{ month.consumed_total_wh|div:10|sub:regen_wh|div:month.distance|floatformat:1 }}
+                                        {% endwith %}
+                                        {% else %}{{ month.consumed_total_wh|div:10|div:month.distance|floatformat:1 }}{% endif %}
+                                        Wh/km</dd></div>
                                     <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">car_gear</i> X Range Freq</dt><dd class="text-gray-600 font-semibold">P:{{ month.p_range_freq }}, R:{{ month.r_range_freq }}, N:{{ month.n_range_freq }}, B:{{ month.b_range_freq }}</dd></div>
                                     <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">location_searching</i> {% translate "Average acceleration" %}</dt><dd class="text-gray-600 font-semibold">{{ month.average_accel|div:100|floatformat:2 }} G</dd></div>
                                 </dl>

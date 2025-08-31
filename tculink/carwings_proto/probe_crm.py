@@ -64,49 +64,49 @@ def parse_crmfile(data):
         if item_type in crm_labelmap:
             meta = crm_labelmap[item_type]
             size = meta["size"]
-            logging.debug("Label: ", item_type, hex(item_type))
-            logging.debug("Datafield type: ", meta["type"])
+            logging.debug("Label: %d,%s", item_type, hex(item_type))
+            logging.debug("Datafield type: %d", meta["type"])
             if meta["type"] == 7:
                 size_field = dotfile_data[pos + 1]
-                logging.debug("Block count", size_field)
+                logging.debug("Block count: %d", size_field)
                 size = 6 * size_field
-                logging.debug("Size: ", hex(size))
+                logging.debug("Size: %s", hex(size))
                 if size == 0:
                     size += 1
                 size = size+2
             elif meta["type"] == 0x10:
                 size_field = dotfile_data[pos + 7]
-                logging.debug("MSN Byte count", size_field)
-                logging.debug("Size: ", hex(size))
+                logging.debug("MSN Byte count: %s", size_field)
+                logging.debug("Size: %s", hex(size))
                 if size == 0:
                     size += 1
                 size = size+8
             elif meta["type"] == 0x11:
                 size_field = dotfile_data[pos + 1]
-                logging.debug("Block count", size_field)
+                logging.debug("Block count: %d", size_field)
                 size = 0x20 * size_field
-                logging.debug("Size: ", hex(size))
+                logging.debug("Size: %s", hex(size))
                 if size == 0:
                     size += 1
                 size = size+2
             elif meta["type"] == 0x12 or meta["type"] == 0x13\
                     or meta["type"] == 0x14 or meta["type"] == 0x15:
                 size_field = dotfile_data[pos + 1]
-                logging.debug("Block count", size_field)
+                logging.debug("Block count: %d", size_field)
                 size = 20 * size_field
-                logging.debug("Size: ", hex(size))
+                logging.debug("Size: %s", hex(size))
                 if size == 0:
                     size += 1
                 size = size+2
             elif meta["type"] == 0x17:
                 size_field = dotfile_data[pos + 1]
-                logging.debug("Block count", size_field)
+                logging.debug("Block count: %d", size_field)
                 size = 25 * size_field
-                logging.debug("Size: ", hex(size))
+                logging.debug("Size: %s", hex(size))
                 if size == 0:
                     size += 1
                 size = size+2
-            logging.debug("DATALEN:",size-1)
+            logging.debug("DATALEN: %d",size-1)
             parsingblocks.append({
                 "type": item_type,
                 "struct": sections[meta["structure"]],
@@ -142,10 +142,10 @@ def parse_crmfile(data):
 
     for crmblock in parsingblocks:
         if currentblock is None:
-            logging.debug("Starting to parse crmblock ", crmblock["struct"])
+            logging.debug("Starting to parse crmblock %s", crmblock["struct"])
             currentblock = crmblock["struct"]
         elif currentblock != crmblock["struct"]:
-            logging.debug("Block change, closing block", currentblock)
+            logging.debug("Block change, closing block: %s", currentblock)
             if isinstance(parse_result[currentblock], dict):
                 parse_result[currentblock] = draft_struct
             else:
@@ -162,7 +162,7 @@ def parse_crmfile(data):
             draft_struct = {}
             currentblock = crmblock["struct"]
 
-        logging.info("Block ", crmblock["type"])
+        logging.info("Block %d", crmblock["type"])
         block_data = crmblock["data"]
 
         # latest
@@ -283,7 +283,7 @@ def parse_crmfile(data):
             switch_usage = []
             count = block_data[0]
             if (len(block_data)-1)/4 != count:
-                logging.warn("WARN! mismatch block size")
+                logging.warning("WARN! mismatch block size")
                 continue
             for i in range(count+1):
                 usage_item = block_data[i*4:(i+1)*4]

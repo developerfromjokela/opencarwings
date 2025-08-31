@@ -107,7 +107,7 @@
                         <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">bolt</i> {% translate "Energy consumption" %}</dt><dd class="text-gray-600 font-semibold">{{ lifetime.consumption|div:1000|floatformat:2 }} kWh</dd></div>
                         <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">acute</i> {% translate "Runtime" %}</dt><dd class="text-gray-600 font-semibold">{{ lifetime.running_time|div:60|floatformat:1 }} h</dd></div>
                         <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">arrow_range</i> {% translate "Lifetime data mileage" %}</dt><dd class="text-gray-600 font-semibold">{{ lifetime.mileage|floatformat:2 }} km</dd></div>
-                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">electric_car</i> {% translate "Energy consumption" %}</dt><dd class="text-gray-600 font-semibold">{{ lifetime.consumption|div:lifetime.mileage|floatformat:2 }} Wh/km</dd></div>
+                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">electric_car</i> {% translate "Energy consumption" %}</dt><dd class="text-gray-600 font-semibold">{{ lifetime.consumption|div:lifetime.mileage|floatformat:1 }} Wh/km</dd></div>
                     </dl>
                     <div class="mt-4 text-sm text-gray-600">
                         {% translate "Last Updated" %}: <span id="overview-last-updated">{{ lifetime.last_updated|default:"N/A" }}</span>

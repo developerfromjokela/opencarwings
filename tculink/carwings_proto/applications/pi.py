@@ -94,8 +94,9 @@ def handle_pi(xml_data, files):
                             with open(file_path, 'wb') as f:
                                 f.write(probe_data)
                         else:
-                            decrypted_data = bytearray(probe_data[:10])
-                            decrypted_data += probe_xor_data(probe_data[10:], xor_key)
+                            decrypted_data_for_log = bytearray(probe_data[:10])
+                            decrypted_data = probe_xor_data(probe_data[10:], xor_key)
+                            decrypted_data_for_log += decrypted_data
 
                             file_path = os.path.join(log_dir,filename)
 
@@ -103,7 +104,7 @@ def handle_pi(xml_data, files):
                                 file_path = os.path.join(log_dir, f"dupl-{random.randrange(111111, 999999, 6)}-{filename}")
 
                             with open(file_path, 'wb') as f:
-                                f.write(decrypted_data)
+                                f.write(decrypted_data_for_log)
 
                             if len(decrypted_data) > 38:
                                 data = decrypted_data[38:]

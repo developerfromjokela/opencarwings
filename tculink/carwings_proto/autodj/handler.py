@@ -78,6 +78,4 @@ def handle_channel_response(xml_data, channel_id, returning_xml):
         ET.SubElement(returning_xml, "send_data", {"id_type": "file", "id": "NOTAUTH.001"})
         return [('NOTAUTH.001', resp_file)]
 
-
-    resp_file = channel['processor'](xml_data, returning_xml, channel_id, car)
-    return [('AUTODJ.001', resp_file)]
+    return channel['processor'](xml_data, returning_xml, channel_id, car)

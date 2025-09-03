@@ -37,7 +37,7 @@ def handle_channel_response(xml_data, channel_id, returning_xml):
     # TODO if customisable channels add here
 
     channel = next((item for item in channels if item["id"] == channel_id), None)
-    if channel is None or 'handler' not in channel:
+    if channel is None or 'processor' not in channel:
         resp_file = build_autodj_payload(
             0,
             channel_id,
@@ -79,5 +79,5 @@ def handle_channel_response(xml_data, channel_id, returning_xml):
         return [('NOTAUTH.001', resp_file)]
 
 
-    resp_file = channel['handler'](xml_data, returning_xml, channel_id, car)
+    resp_file = channel['processor'](xml_data, returning_xml, channel_id, car)
     return [('AUTODJ.001', resp_file)]

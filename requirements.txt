@@ -13,3 +13,5 @@ aioapns~=4.0
 pyfcm~=2.0.8
 Unidecode==1.4.0
 django-mathfilters==1.0.0
+geopy==2.4.1
+pillow==11.3.0

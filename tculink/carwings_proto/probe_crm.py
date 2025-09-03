@@ -753,6 +753,13 @@ def update_crm_to_db(car: Car, crm_pload):
             trip_db.car = car
             trip_db.start_ts = trip.get("start", datetime.datetime(1970, 1, 1))
             trip_db.end_ts = trip.get("stop", datetime.datetime(1970, 1, 1))
+            # fix date
+            if trip_db.start_ts.year < 2010:
+                today = datetime.datetime.today()
+                trip_db.start_ts.replace(year=today.year, month=today.month, day=today.day)
+            if trip_db.end_ts.year < 2010:
+                today = datetime.datetime.today()
+                trip_db.end_ts.replace(year=today.year, month=today.month, day=today.day)
             if "start_location" in trip:
                 trip_db.start_latitude = trip["start_location"].get("lat", 0.0)
                 trip_db.start_longitude = trip["start_location"].get("lon", 0.0)

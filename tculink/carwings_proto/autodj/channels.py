@@ -152,8 +152,8 @@ STANDARD_AUTODJ_CHANNELS = [
         'processor': handle_routeplanner
     },
     {
-        'id': 0x00F,
-        'internal_id': 0x00F,
+        'id': 0x000F,
+        'internal_id': 0x001F,
         'name1': 'Google Send To Car',
         'name2': 'Download Google Send To Car',
         'folder_id': 2,
@@ -167,7 +167,7 @@ STANDARD_AUTODJ_CHANNELS = [
         'processor': handle_send_to_car
     },
     {
-        'id': 0x001A,
+        'id': 0x00EA,
         'internal_id': 0x001A,
         'name1': 'Google Send To Car',
         'name2': 'Download Google Send To Car',

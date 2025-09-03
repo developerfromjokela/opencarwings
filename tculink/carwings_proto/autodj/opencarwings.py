@@ -47,7 +47,7 @@ def get_infochannel(xml_data, returning_xml, channel_id, car):
             "flag4": 1,
             "unknownLongId4": 0x0000,
             # feature flag? 0xa0 = dial, 0x0F = Img
-            "flag5": 0x0F,
+            "flag5": 0x9F,
             "flag6": 0xBB,
             # image button title
             "12byteField1": b'\x00' * 12,
@@ -55,7 +55,7 @@ def get_infochannel(xml_data, returning_xml, channel_id, car):
             "12byteField2": b'\x00' * 12,
             "mapPointFlag": b'\x20',
             # save flag
-            "flag8": 0x00,
+            "flag8": 0x80,
             "imageDataField": releasenotes_img,
         }
     ]
@@ -87,7 +87,7 @@ def get_infochannel(xml_data, returning_xml, channel_id, car):
                 "flag4": 1,
                 "unknownLongId4": 0x0000,
                 # feature flag? 0xa0 = dial, 0x0F = Img
-                "flag5": 0x0F,
+                "flag5": 0x9F,
                 "flag6": 0xBB,
                 # image button title
                 "12byteField1": b'\x00' * 12,
@@ -95,7 +95,7 @@ def get_infochannel(xml_data, returning_xml, channel_id, car):
                 "12byteField2": b'\x00' * 12,
                 "mapPointFlag": b'\x20',
                 # save flag
-                "flag8": 0x00,
+                "flag8": 0x80,
                 "imageDataField": tips_img,
             }
         )

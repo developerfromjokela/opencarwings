@@ -414,7 +414,7 @@ def get_weather_forecast(xml_data, returning_xml, channel_id, _):
                 "mapPointFlag": b'\x20',
                 # save flag
                 "flag8": 0x80,
-                "imageDataField": daily_image_buffer.getvalue(),
+                "imageDataField": weekly_image_buffer.getvalue(),
             }
         ]
 

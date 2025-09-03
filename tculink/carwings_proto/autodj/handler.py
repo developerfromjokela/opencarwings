@@ -8,12 +8,12 @@ from tculink.carwings_proto.utils import get_cws_authenticated_car
 
 def handle_directory_response(xml_data, returning_xml):
     # TODO customisable user folder
-    channels = [x for x in STANDARD_AUTODJ_FOLDERS if (x.get('enabled', False) and not x.get('internal', False))]
+    channels = [x for x in STANDARD_AUTODJ_CHANNELS if (x.get('internal', False) == False)]
     resp_file = construct_chnmst_payload(STANDARD_AUTODJ_FOLDERS, channels)
 
     favt_file = construct_fvtchn_payload([
         {
-            'id': 0x0001,
+            'id': 0xA001,
             'position': 1,
             'channel_id': 0x0000,
             'name1': 'Info from OpenCARWINGS',

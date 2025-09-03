@@ -1,10 +1,13 @@
+import logging
+
 from django.utils.translation import gettext as _, activate, deactivate
 
 from tculink.carwings_proto.autodj import NOT_FOUND_AUTODJ_ITEM, NOT_AUTHORIZED_AUTODJ_ITEM
-from tculink.carwings_proto.autodj.channels import STANDARD_AUTODJ_CHANNELS, get_info_channel_data
+from tculink.carwings_proto.autodj.channels import get_info_channel_data
 from tculink.carwings_proto.dataobjects import construct_chnmst_payload, construct_fvtchn_payload, build_autodj_payload
 from tculink.carwings_proto.utils import get_cws_authenticated_car, carwings_lang_to_code
 
+logger = logging.getLogger("carwings_apl")
 
 def handle_directory_response(xml_data, returning_xml):
 
@@ -59,6 +62,7 @@ def handle_channel_response(xml_data, channel_id, returning_xml, flag):
 
     channel = next((item for item in channels if item["id"] == channel_id), None)
     if channel is None or 'processor' not in channel:
+        logger.warning(f"Channel not found: {channel_id}")
         resp_file = build_autodj_payload(
             0,
             channel_id,

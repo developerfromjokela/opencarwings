@@ -338,14 +338,14 @@ def get_weather_forecast(xml_data, returning_xml, channel_id, _):
         if len(daily_forecast) == 0:
             daily_text += "No forecast data available."
         for daily_item in daily_forecast:
-            daily_text += f"During the {daily_item['period']}, weather condition is {daily_item['condition_txt']}. With temperature of {daily_item['temperature']} degrees celsius, wind speed of {daily_item['wind_speed']} meters per second and {daily_item['rain_chance']} percent chance of rain. \n"
+            daily_text += f"During the {daily_item['period']}, forecasted to {daily_item['condition_txt']}. With temperature of {daily_item['temperature']} degrees celsius, wind speed of {daily_item['wind_speed']} meters per second and {daily_item['rain_chance']} percent chance of rain. \n"
 
         weekly_text = f"Weather Forecast for next seven days, near {location_txt}.\n"
         if len(weekly_forecast) == 0:
             weekly_text += "No forecast data available."
         for weekly_item in weekly_forecast:
             weekday = datetime.fromisoformat(weekly_item['date']).strftime("%A")
-            weekly_text += f"On {weekday}, weather condition is {weekly_item['condition_txt']}. With highest temperature of {weekly_item['temp_max']} degrees celsius, lowest temperature of {weekly_item['temp_min']} degrees celsius, wind speed of {weekly_item['wind_speed']} meters per second and {weekly_item['rain_chance']} percent chance of rain. \n"
+            weekly_text += f"On {weekday}, forecasted to {weekly_item['condition_txt']}. With highest temperature of {weekly_item['temp_max']} degrees celsius, lowest temperature of {weekly_item['temp_min']} degrees celsius\n"
 
         response_chdata = [
             {

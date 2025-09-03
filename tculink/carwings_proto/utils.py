@@ -69,14 +69,10 @@ def parse_std_location(lat_int, lon_int):
 
 
 def xml_dms_to_decimal(dms):
-    try:
-        degrees, minutes, seconds = map(float, dms.split(','))
-        return  degrees + (minutes / 60.0) + (seconds / 3600.0)
-    except ValueError:
-        return None
+    degrees, minutes, seconds = map(float, dms.split(','))
+    return  degrees + (minutes / 60.0) + (seconds / 3600.0)
 
 def xml_coordinate_to_float(crd):
-    if crd.get('datum', None) is not 'wgs84':
-        return None
-
+    if crd.get('datum', '') != 'wgs84':
+        raise Exception('Coordinate must be WGS84')
     return xml_dms_to_decimal(crd['latitude']), xml_dms_to_decimal(crd['longitude'])

@@ -1,3 +1,4 @@
+import logging
 import math
 import os
 from datetime import timedelta, datetime
@@ -11,6 +12,7 @@ import geopy.geocoders
 from django.utils import timezone
 import requests
 from PIL import Image, ImageFont, ImageDraw, ImageOps
+logger = logging.getLogger("carwings_apl")
 
 
 WEATHER_CODES = {
@@ -134,7 +136,12 @@ def get_weather_forecast(xml_data, returning_xml, channel_id, _):
             and xml_data['base_info'].get('vehicle', None) is not None
             and xml_data['base_info']['vehicle'].get('coordinates', None) is not None
             and xml_data['base_info']['vehicle']['coordinates'].get('datum', '') == "wgs84"):
-        car_coordinate = xml_coordinate_to_float(xml_data['base_info']['vehicle']['coordinates'])
+        logger.info(xml_data['base_info']['vehicle']['coordinates'])
+        try:
+            car_coordinate = xml_coordinate_to_float(xml_data['base_info']['vehicle']['coordinates'])
+        except Exception as e:
+            logger.exception(e)
+            car_coordinate = (0.0,0.0)
         city_name = get_city(car_coordinate[0], car_coordinate[1])
         car_timezone = float(xml_data['base_info'].get('navigation_settings', {}).get('time_zone', "+0.00"))
         offset = timedelta(hours=car_timezone)

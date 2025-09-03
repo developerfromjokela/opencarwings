@@ -267,7 +267,7 @@ def get_weather_forecast(xml_data, returning_xml, channel_id, _):
             daily_item = ImageOps.expand(daily_item,border=1,fill='gray')
             daily_image.paste(daily_item, (x_offset, 43), daily_item)
         daily_image_buffer = BytesIO()
-        daily_image.save(daily_image_buffer, format='JPEG', quality=30)
+        daily_image.save(daily_image_buffer, format='JPEG', quality=40)
 
 
 
@@ -330,7 +330,7 @@ def get_weather_forecast(xml_data, returning_xml, channel_id, _):
             daily_item = ImageOps.expand(daily_item,border=1,fill='gray')
             weekly_image.paste(daily_item, (x_offset, 43), daily_item)
         weekly_image_buffer = BytesIO()
-        weekly_image.save(weekly_image_buffer, format='JPEG', quality=30)
+        weekly_image.save(weekly_image_buffer, format='JPEG', quality=40)
 
 
         location_txt = city_name.replace("Weather nearby", "vehicle location")

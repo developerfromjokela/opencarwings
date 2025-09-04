@@ -303,8 +303,6 @@ msgstr ""
 
 #: tculink/carwings_proto/autodj/opencarwings.py:382
 #: tculink/carwings_proto/autodj/opencarwings.py:417
-#, fuzzy
-#| msgid "Average speed"
 msgid "Average"
 msgstr "Normal"
 
@@ -319,8 +317,6 @@ msgid "Very good"
 msgstr "Muy bueno"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:383
-#, fuzzy
-#| msgid "Energy consumed"
 msgid "Check Energy Economy"
 msgstr "Comprobar Ahorro Energético"
 
@@ -339,8 +335,6 @@ msgid "Bad"
 msgstr "Malo"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:425
-#, fuzzy
-#| msgid "Average speed"
 msgid "[Average]\n"
 msgstr "[Promedio]\n"
 
@@ -1623,10 +1617,6 @@ msgid "No DTC data available"
 msgstr "No hay datos de DTC disponibles"
 
 #: ui/templates/ui/probeviewer/main.html:724
-#, fuzzy
-#| msgid ""
-#| "DTC data may become available on next startup if your vehicle has active "
-#| "DTC truble code."
 msgid ""
 "DTC data may become available on next startup if your vehicle has active DTC "
 "trouble code."

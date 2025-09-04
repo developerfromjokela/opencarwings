@@ -7,7 +7,7 @@
     <div class="bg-white p-6 rounded-lg shadow-md">
         <h2 class="text-lg font-semibold text-gray-800 mb-4">{% translate "All done!" %}</h2>
         <p>{% blocktranslate %}You're done with providing necessary information to establish connection with your LEAF.{% endblocktranslate %}<br/>{% blocktranslate %}You can now use TCU services.{% endblocktranslate %}</p>
-        <p>{% blocktranslate %}{% endblocktranslate %}</p>
+        <p>{% blocktranslate %}Did you know? If you also change connection settings on your navigation unit, you will get detailed vehicle statistic informations.{% endblocktranslate %} <a target="_blank" href="/static/navi_guide.html">{% translate "Learn more" %}</a> </p>
         <form method="post" action="{% url 'setup_5' %}">
             {% csrf_token %}
             <div class="mt-12 w-full flex flex-row align-end items-end justify-end gap-4">

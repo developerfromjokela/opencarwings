@@ -478,7 +478,7 @@ def get_energy_information_channel(xml_data, returning_xml, channel_id, car):
             "imageDataField": consumption_slide_img,
         })
 
-    tip_title = _("Electic Car Column")
+    tip_title = _("Electric Car Column")
     tip_slide_img = create_info_slide(tip_title, _("Drive Tip"))
 
     tip_txt = get_random_drive_tip()

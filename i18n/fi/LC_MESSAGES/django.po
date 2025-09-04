@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-31 00:13+0000\n"
+"POT-Creation-Date: 2025-09-04 16:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -68,11 +68,11 @@ msgid "Command timeout"
 msgstr "Komennon aikakatkaisu"
 
 #: db/models.py:24 db/models.py:39 ui/templates/ui/account.html:15
-#: ui/templates/ui/car_detail.html:61
+#: ui/templates/ui/car_detail.html:61 ui/templates/ui/car_list.html:18
 #: ui/templates/ui/change_carwings_password.html:17
 #: ui/templates/ui/change_password.html:17
 #: ui/templates/ui/probeviewer/main.html:47
-#: ui/templates/ui/probeviewer/trip.html:85
+#: ui/templates/ui/probeviewer/trip.html:93
 #: ui/templates/ui/reset_password_confirm.html:34
 #: ui/templates/ui/setup/step2.html:13 ui/templates/ui/setup/step3.html:13
 #: ui/templates/ui/setup/step4.html:13
@@ -96,11 +96,11 @@ msgid "Waiting"
 msgstr "Odotetaan.."
 
 #: db/models.py:38 ui/templates/ui/account.html:14
-#: ui/templates/ui/car_detail.html:60
+#: ui/templates/ui/car_detail.html:60 ui/templates/ui/car_list.html:17
 #: ui/templates/ui/change_carwings_password.html:16
 #: ui/templates/ui/change_password.html:16
 #: ui/templates/ui/probeviewer/main.html:46
-#: ui/templates/ui/probeviewer/trip.html:84
+#: ui/templates/ui/probeviewer/trip.html:92
 #: ui/templates/ui/reset_password_complete.html:10
 #: ui/templates/ui/reset_password_confirm.html:33
 #: ui/templates/ui/setup/step2.html:12 ui/templates/ui/setup/step3.html:12
@@ -201,6 +201,317 @@ msgstr ""
 #: db/models.py:124
 msgid "A user with that username already exists."
 msgstr "Käyttäjä antamasi käyttäjänimellä on jo olemassa"
+
+#: tculink/carwings_proto/autodj/opencarwings.py:342
+msgid ""
+"Use remote climate control or the timer so that the cabin will be at a "
+"comfortable temperature before starting.  This allows the car to save energy "
+"whilst being driven."
+msgstr ""
+"Käytä etäilmastointia tai ajastinta, jotta auton sisätilat ovat mukavan "
+"lämpöiset ennen lähtöä. Tämä auttaa autoa säästämään energiaa ajon aikana."
+
+#: tculink/carwings_proto/autodj/opencarwings.py:343
+msgid ""
+"Keep your car in the garage during winter times to keep the battery pack "
+"warm.  This will increase your range a bit, especially in colder climates."
+msgstr ""
+"Pidä auto talvisin autotallissa pitääksesi akuston lämpimänä. Tämä lisää "
+"toimintamatkaa hieman, erityisesti kylmemmissä ilmastoissa."
+
+#: tculink/carwings_proto/autodj/opencarwings.py:344
+msgid ""
+"Use <phoneme alphabet=\"x-SVOX-sampa_en-GB\" ph=\"'i:-k@@U\">eco</phoneme> "
+"mode or B-mode when possible to increase your regenerative energy."
+msgstr ""
+"Käytä eko-tilaa tai B-ajovaihdetta mahdollisuuksien mukaan lisätäksesi regeneratiivista energiaa."
+
+#: tculink/carwings_proto/autodj/opencarwings.py:345
+msgid ""
+"Check your tire pressure at least once a month to ensure they are at optimal "
+"level.  Low tire pressure decreases rolling effect of the car and more "
+"energy is used on propulsion."
+msgstr ""
+"Tarkista rengaspaineet vähintään kerran kuukaudessa varmistaaksesi, että ne ovat "
+"optimaalisella tasolla. Alhainen rengaspaine heikentää auton rullausta ja "
+"lisää energiankulutusta liikkumiseen."
+
+#: tculink/carwings_proto/autodj/opencarwings.py:346
+msgid ""
+"Plan your routes to include charging stations, especially on longer trips, "
+"to avoid range anxiety and ensure smooth travel."
+msgstr ""
+"Suunnittele reittisi niin, että ne sisältävät latausasemia, erityisesti pitkillä "
+"matkoilla, välttääksesi toimintamatka-ahdistusta ja varmistaaksesi sujuvan matkustamisen."
+
+#: tculink/carwings_proto/autodj/opencarwings.py:347
+msgid ""
+"Avoid rapid acceleration and maintain a steady speed to maximize battery "
+"efficiency, as aggressive driving can significantly reduce your range."
+msgstr ""
+"Vältä nopeaa kiihdytystä ja pidä yllä tasainen nopeus maksimoidaksesi akun "
+"tehokkuuden, sillä aggressiivinen ajotapa voi merkittävästi lyhentää toimintamatkaa."
+
+#: tculink/carwings_proto/autodj/opencarwings.py:348
+msgid ""
+"Use the Nissan Leaf’s navigation system to find the most energy-efficient "
+"routes, which can help conserve battery power on unfamiliar roads."
+msgstr ""
+"Käytä Nissan Leafin navigointijärjestelmää löytääksesi energiatehokkaimmat "
+"reitit, jotka voivat auttaa säästämään akkuvirtaa tuntemattomilla teillä."
+
+#: tculink/carwings_proto/autodj/opencarwings.py:349
+msgid ""
+"In colder times, try to use more of seat heating and steering wheel heating "
+"while keeping your air conditioning on lower settings. Auxiliary heating "
+"elements consume less than car's air conditioning system."
+msgstr ""
+"Kylminä aikoina yritä käyttää enemmän istuinlämmitusta ja ohjauspyörän "
+"lämmitusta samalla kun pidät ilmastoinnin alhaisemmilla asetuksilla. "
+"Lisälämmityselementit kuluttavat vähemmän kuin auton ilmastointijärjestelmä."
+
+#: tculink/carwings_proto/autodj/opencarwings.py:350
+msgid ""
+"Park in shaded areas during hot weather to keep the battery cool, as extreme "
+"heat can reduce battery efficiency and longevity."
+msgstr ""
+"Pysäköi varjoisiin paikkoihin kuumalla säällä pitääksesi akun viileänä, sillä "
+"äärimmäinen kuumuus voi heikentää akun tehokkuutta ja käyttöikää."
+
+#: tculink/carwings_proto/autodj/opencarwings.py:351
+msgid ""
+"Try to charge the battery up to 80 percent for daily usage. Charging to "
+"full, every day, is not recommended for battery longevity."
+msgstr ""
+"Yritä ladata akku 80 prosentin varaukseen päivittäiseen käyttöön. Täyteen "
+"lataaminen joka päivä ei ole suositeltavaa akun käyttöiän kannalta."
+
+#: tculink/carwings_proto/autodj/opencarwings.py:352
+msgid ""
+"With Open Car Wings, you can review your driving efficiency of each trip, "
+"online. With the data, it is easier to determine which areas of driving "
+"needs to be improved to achieve supreme energy efficiency. "
+msgstr ""
+"Open Car Wings -sovelluksella voit tarkastella ajotehokkuuttasi jokaiselta "
+"matkalta verkossa. Datan avulla on helpompi selvittää, mitkä ajotavan osa-alueet "
+"vaativat parantamista parhaan energiatehokkuuden saavuttamiseksi."
+
+#: tculink/carwings_proto/autodj/opencarwings.py:382
+#: tculink/carwings_proto/autodj/opencarwings.py:417
+msgid "Average"
+msgstr "Keskitaso"
+
+#: tculink/carwings_proto/autodj/opencarwings.py:382
+#: tculink/carwings_proto/autodj/opencarwings.py:406
+msgid "Good"
+msgstr "Hyvä"
+
+#: tculink/carwings_proto/autodj/opencarwings.py:382
+#: tculink/carwings_proto/autodj/opencarwings.py:409
+msgid "Very good"
+msgstr "Erittäin hyvä"
+
+#: tculink/carwings_proto/autodj/opencarwings.py:383
+msgid "Check Energy Economy"
+msgstr "Tarkista Energiatalous"
+
+#: tculink/carwings_proto/autodj/opencarwings.py:388
+msgid ""
+"The energy economy trend compared with the average of the last five trips is "
+"shown above."
+msgstr ""
+"Energiatalouden trendi verrattuna keskiarvoon viimeisen viiden matkan ajalta näytetään "
+"yllä."
+
+#: tculink/carwings_proto/autodj/opencarwings.py:393
+msgid "Trend of Energy Economy\n"
+msgstr "Energiatalouden trendi\n"
+
+#: tculink/carwings_proto/autodj/opencarwings.py:420
+msgid "Bad"
+msgstr "Huono"
+
+#: tculink/carwings_proto/autodj/opencarwings.py:425
+msgid "[Average]\n"
+msgstr "[Keskiarvo]\n"
+
+#: tculink/carwings_proto/autodj/opencarwings.py:427
+msgid "[Best]\n"
+msgstr "[Paras]\n"
+
+#: tculink/carwings_proto/autodj/opencarwings.py:429
+msgid "[Worst]\n"
+msgstr "[Huonoin]\n"
+
+#: tculink/carwings_proto/autodj/opencarwings.py:432
+#, python-brace-format
+msgid ""
+"\n"
+"As of the {day_word} of {month}, your energy economy was "
+"{cons_formatted_str} watt hours per kilometer.\n"
+"Based on the last 5 trips, Your energy economy is {economy_status}. "
+msgstr ""
+"\n"
+"{day_word} of {month}, energiatalouslukemasi on "
+"{cons_formatted_str} watti tuntia kilometriä kohden.\n"
+"Viimeisen viiden matkan perusteella, energiataloutesi on {economy_status}. "
+
+#: tculink/carwings_proto/autodj/opencarwings.py:438
+msgid ""
+"There is no trip records available yet. Try checking in again after your "
+"next trip."
+msgstr "Matkatiedot eivät ole vielä saatavilla. Palaa uudelleen tarkistamaan seuraavan matkan jälkeen."
+
+#: tculink/carwings_proto/autodj/opencarwings.py:440
+#, python-brace-format
+msgid ""
+"\n"
+"As of the {day_word} of {month}, your energy economy cannot be calculated "
+"yet, because of missing trip information. Try checking in to this channel "
+"again after your next trip. "
+msgstr ""
+"\n"
+"{day_word} {month}, energiatalouttasi ei voida vielä laskea "
+", koska autosi matkatiedot puuttuvat. Palaa takaisin tälle kanavalle "
+"jälleen seuraavan matkan jälkeen. "
+
+#: tculink/carwings_proto/autodj/opencarwings.py:481
+msgid "Electric Car Column"
+msgstr "Sähköauto kolumni"
+
+#: tculink/carwings_proto/autodj/opencarwings.py:482
+#: tculink/carwings_proto/autodj/opencarwings.py:486
+msgid "Drive Tip"
+msgstr "Ajovinkki"
+
+#: tculink/carwings_proto/autodj/opencarwings.py:535
+#: tculink/carwings_proto/autodj/opencarwings.py:536
+msgid "Energy Information"
+msgstr "Energiatiedot"
+
+#: tculink/carwings_proto/utils.py:81
+msgid "first"
+msgstr "ensimmäinen"
+
+#: tculink/carwings_proto/utils.py:81
+msgid "second"
+msgstr "toinen"
+
+#: tculink/carwings_proto/utils.py:81
+msgid "third"
+msgstr "kolmas"
+
+#: tculink/carwings_proto/utils.py:81
+msgid "fourth"
+msgstr "neljännes"
+
+#: tculink/carwings_proto/utils.py:81
+msgid "fifth"
+msgstr "viides"
+
+#: tculink/carwings_proto/utils.py:82
+msgid "sixth"
+msgstr "kuude"
+
+#: tculink/carwings_proto/utils.py:82
+msgid "seventh"
+msgstr "seitsemäs"
+
+#: tculink/carwings_proto/utils.py:82
+msgid "eighth"
+msgstr "kahdeksas"
+
+#: tculink/carwings_proto/utils.py:82
+msgid "ninth"
+msgstr "yhdeksäs"
+
+#: tculink/carwings_proto/utils.py:82
+msgid "tenth"
+msgstr "kymmenes"
+
+#: tculink/carwings_proto/utils.py:83
+msgid "eleventh"
+msgstr "yhtä toista"
+
+#: tculink/carwings_proto/utils.py:83
+msgid "twelfth"
+msgstr "kahdes toista"
+
+#: tculink/carwings_proto/utils.py:83
+msgid "thirteenth"
+msgstr "kolmatta toista"
+
+#: tculink/carwings_proto/utils.py:83
+msgid "fourteenth"
+msgstr "neljättä toista"
+
+#: tculink/carwings_proto/utils.py:83
+msgid "fifteenth"
+msgstr "viittä toista"
+
+#: tculink/carwings_proto/utils.py:84
+msgid "sixteenth"
+msgstr "kuutta toista"
+
+#: tculink/carwings_proto/utils.py:84
+msgid "seventeenth"
+msgstr "seitsemättä toista"
+
+#: tculink/carwings_proto/utils.py:84
+msgid "eighteenth"
+msgstr "kahdeksatta toista"
+
+#: tculink/carwings_proto/utils.py:84
+msgid "nineteenth"
+msgstr "yhdeksättä toista"
+
+#: tculink/carwings_proto/utils.py:84
+msgid "twentieth"
+msgstr "kahdes kymmenettä"
+
+#: tculink/carwings_proto/utils.py:85
+msgid "twenty-first"
+msgstr "kahdes kymmenes ensimmäistä"
+
+#: tculink/carwings_proto/utils.py:85
+msgid "twenty-second"
+msgstr "kahdes kymmenes kahta"
+
+#: tculink/carwings_proto/utils.py:85
+msgid "twenty-third"
+msgstr "kahdes kymmenes kolmatta"
+
+#: tculink/carwings_proto/utils.py:85
+msgid "twenty-fourth"
+msgstr "kahdes kymmenes neljättä"
+
+#: tculink/carwings_proto/utils.py:85
+msgid "twenty-fifth"
+msgstr "kahdes kymmenes viidettä"
+
+#: tculink/carwings_proto/utils.py:86
+msgid "twenty-sixth"
+msgstr "kahdes kymmenes kuudetta"
+
+#: tculink/carwings_proto/utils.py:86
+msgid "twenty-seventh"
+msgstr "kahdes kymmenes seitsemättä"
+
+#: tculink/carwings_proto/utils.py:86
+msgid "twenty-eighth"
+msgstr "kahdes kymmenes kahdeksatta"
+
+#: tculink/carwings_proto/utils.py:86
+msgid "twenty-ninth"
+msgstr "kahdes kymmenes yhdeksättä"
+
+#: tculink/carwings_proto/utils.py:86
+msgid "thirtieth"
+msgstr "kolmaskymmenes"
+
+#: tculink/carwings_proto/utils.py:87
+msgid "thirty-first"
+msgstr "kolmas kymmenes ensimmäistä"
 
 #: tculink/management/commands/tcuserver.py:268
 msgid "Vehicle is unplugged. Please check the situation if necessary."
@@ -398,10 +709,11 @@ msgstr ""
 "Tämä salasana käytetään auton ja palvelimen väliseen tunnistautumiseen."
 
 #: ui/templates/ui/account.html:16 ui/templates/ui/car_detail.html:62
+#: ui/templates/ui/car_list.html:19
 #: ui/templates/ui/change_carwings_password.html:18
 #: ui/templates/ui/change_password.html:18
 #: ui/templates/ui/probeviewer/main.html:48
-#: ui/templates/ui/probeviewer/trip.html:86
+#: ui/templates/ui/probeviewer/trip.html:94
 #: ui/templates/ui/reset_password_confirm.html:35
 #: ui/templates/ui/setup/step2.html:14 ui/templates/ui/setup/step3.html:14
 #: ui/templates/ui/setup/step4.html:14
@@ -409,10 +721,11 @@ msgid "Notice"
 msgstr "Tiedoksi"
 
 #: ui/templates/ui/account.html:17 ui/templates/ui/car_detail.html:63
+#: ui/templates/ui/car_list.html:20
 #: ui/templates/ui/change_carwings_password.html:19
 #: ui/templates/ui/change_password.html:19
 #: ui/templates/ui/probeviewer/main.html:49
-#: ui/templates/ui/probeviewer/trip.html:87
+#: ui/templates/ui/probeviewer/trip.html:95
 #: ui/templates/ui/reset_password_confirm.html:36
 #: ui/templates/ui/setup/step2.html:15 ui/templates/ui/setup/step3.html:15
 #: ui/templates/ui/setup/step4.html:15
@@ -420,10 +733,11 @@ msgid "Warning"
 msgstr "Huomio"
 
 #: ui/templates/ui/account.html:22 ui/templates/ui/car_detail.html:68
+#: ui/templates/ui/car_list.html:25
 #: ui/templates/ui/change_carwings_password.html:24
 #: ui/templates/ui/change_password.html:24
 #: ui/templates/ui/probeviewer/main.html:54
-#: ui/templates/ui/probeviewer/trip.html:92
+#: ui/templates/ui/probeviewer/trip.html:100
 #: ui/templates/ui/reset_password_confirm.html:20
 #: ui/templates/ui/reset_password_confirm.html:41
 #: ui/templates/ui/setup/step2.html:20 ui/templates/ui/setup/step3.html:20
@@ -597,8 +911,8 @@ msgid "Driving"
 msgstr "Ajossa"
 
 #: ui/templates/ui/car_detail.html:164 ui/templates/ui/car_detail.html:667
-#: ui/templates/ui/probeviewer/main.html:261
-#: ui/templates/ui/probeviewer/main.html:331
+#: ui/templates/ui/probeviewer/main.html:271
+#: ui/templates/ui/probeviewer/main.html:341
 msgid "Charging finished"
 msgstr "Lataus valmis"
 
@@ -623,7 +937,7 @@ msgstr "Päällä,Pois"
 #: ui/templates/ui/car_detail.html:186 ui/templates/ui/car_detail.html:218
 #: ui/templates/ui/car_detail.html:245 ui/templates/ui/car_detail.html:267
 #: ui/templates/ui/probeviewer/main.html:89
-#: ui/templates/ui/probeviewer/main.html:113
+#: ui/templates/ui/probeviewer/main.html:114
 msgid "Last Updated"
 msgstr "Viimeksi päivitetty"
 
@@ -680,7 +994,7 @@ msgid "Charge bars"
 msgstr "Lataustason palkit"
 
 #: ui/templates/ui/car_detail.html:231
-#: ui/templates/ui/probeviewer/trip.html:179
+#: ui/templates/ui/probeviewer/trip.html:187
 msgid "Capacity bars"
 msgstr "Kapasiteetin palkit"
 
@@ -878,19 +1192,19 @@ msgstr "Yhdistetty!"
 msgid "Reconnecting..."
 msgstr "Yhdistetään uudelleen..."
 
-#: ui/templates/ui/car_list.html:5 ui/templates/ui/car_list.html:10
+#: ui/templates/ui/car_list.html:5 ui/templates/ui/car_list.html:33
 msgid "My cars"
 msgstr "Minun autoni"
 
-#: ui/templates/ui/car_list.html:10
+#: ui/templates/ui/car_list.html:33
 msgid "Add"
 msgstr "Lisää"
 
-#: ui/templates/ui/car_list.html:43
+#: ui/templates/ui/car_list.html:66
 msgid "Last connected"
 msgstr "Viimeksi yhteydessä"
 
-#: ui/templates/ui/car_list.html:49
+#: ui/templates/ui/car_list.html:72
 msgid "No cars added."
 msgstr "Ei lisättyjä autoja"
 
@@ -981,7 +1295,7 @@ msgid "Lifetime statistics"
 msgstr "Elinikäiset tilastot"
 
 #: ui/templates/ui/probeviewer/main.html:68
-#: ui/templates/ui/probeviewer/main.html:198
+#: ui/templates/ui/probeviewer/main.html:199
 msgid "Trips"
 msgstr "Matkat"
 
@@ -1030,12 +1344,12 @@ msgid "Locations saved in address book"
 msgstr "Sijainteja tallennettu osoitekirjaan"
 
 #: ui/templates/ui/probeviewer/main.html:93
-#: ui/templates/ui/probeviewer/main.html:117
+#: ui/templates/ui/probeviewer/main.html:118
 msgid "No vehicle data available"
 msgstr "Auton tietoja ei saatavilla"
 
 #: ui/templates/ui/probeviewer/main.html:94
-#: ui/templates/ui/probeviewer/main.html:118
+#: ui/templates/ui/probeviewer/main.html:119
 msgid ""
 "In order to receive vehicle data, CARWINGS navigation unit must have correct "
 "connection settings."
@@ -1044,22 +1358,23 @@ msgstr ""
 "oikeat yhteysasetukset."
 
 #: ui/templates/ui/probeviewer/main.html:95
-#: ui/templates/ui/probeviewer/main.html:119
-#: ui/templates/ui/probeviewer/main.html:177
-#: ui/templates/ui/probeviewer/main.html:243
-#: ui/templates/ui/probeviewer/main.html:313
-#: ui/templates/ui/probeviewer/main.html:378
-#: ui/templates/ui/probeviewer/main.html:442
-#: ui/templates/ui/probeviewer/main.html:511
-#: ui/templates/ui/probeviewer/main.html:579
-#: ui/templates/ui/probeviewer/main.html:647
-#: ui/templates/ui/probeviewer/main.html:715
-#: ui/templates/ui/probeviewer/main.html:783
+#: ui/templates/ui/probeviewer/main.html:120
+#: ui/templates/ui/probeviewer/main.html:178
+#: ui/templates/ui/probeviewer/main.html:253
+#: ui/templates/ui/probeviewer/main.html:323
+#: ui/templates/ui/probeviewer/main.html:388
+#: ui/templates/ui/probeviewer/main.html:452
+#: ui/templates/ui/probeviewer/main.html:521
+#: ui/templates/ui/probeviewer/main.html:589
+#: ui/templates/ui/probeviewer/main.html:657
+#: ui/templates/ui/probeviewer/main.html:725
+#: ui/templates/ui/probeviewer/main.html:793
+#: ui/templates/ui/setup/step5.html:10
 msgid "Learn more"
 msgstr "Lue lisää"
 
 #: ui/templates/ui/probeviewer/main.html:103
-#: ui/templates/ui/probeviewer/trip.html:119
+#: ui/templates/ui/probeviewer/trip.html:127
 msgid "A/C usage"
 msgstr "Ilmastointilaitteen ikä"
 
@@ -1068,7 +1383,7 @@ msgid "Headlights usage"
 msgstr "Ajovalojen ikä"
 
 #: ui/templates/ui/probeviewer/main.html:105
-#: ui/templates/ui/probeviewer/main.html:197
+#: ui/templates/ui/probeviewer/main.html:198
 #: ui/templates/ui/probeviewer/trip.html:30
 msgid "Average speed"
 msgstr "Keskinopeus"
@@ -1078,7 +1393,7 @@ msgid "Energy regeneration"
 msgstr "Regeneroitu energia"
 
 #: ui/templates/ui/probeviewer/main.html:107
-#: ui/templates/ui/probeviewer/main.html:110
+#: ui/templates/ui/probeviewer/main.html:111
 msgid "Energy consumption"
 msgstr "Kulutettu energia"
 
@@ -1090,24 +1405,24 @@ msgstr "Käynnissä yhteensä"
 msgid "Lifetime data mileage"
 msgstr "Elinikäisen tietojen matka"
 
-#: ui/templates/ui/probeviewer/main.html:175
+#: ui/templates/ui/probeviewer/main.html:176
 msgid "No trip data available"
 msgstr "Ei matkatietoja saatavilla"
 
-#: ui/templates/ui/probeviewer/main.html:176
+#: ui/templates/ui/probeviewer/main.html:177
 msgid "Trip information comes available on next startup after the trip."
 msgstr "Matkatiedot päivittyvät yleensä ajetun matkan jälkeisen ajon aikana."
 
-#: ui/templates/ui/probeviewer/main.html:176
-#: ui/templates/ui/probeviewer/main.html:242
-#: ui/templates/ui/probeviewer/main.html:312
-#: ui/templates/ui/probeviewer/main.html:377
-#: ui/templates/ui/probeviewer/main.html:441
-#: ui/templates/ui/probeviewer/main.html:510
-#: ui/templates/ui/probeviewer/main.html:578
-#: ui/templates/ui/probeviewer/main.html:646
-#: ui/templates/ui/probeviewer/main.html:714
-#: ui/templates/ui/probeviewer/main.html:782
+#: ui/templates/ui/probeviewer/main.html:177
+#: ui/templates/ui/probeviewer/main.html:252
+#: ui/templates/ui/probeviewer/main.html:322
+#: ui/templates/ui/probeviewer/main.html:387
+#: ui/templates/ui/probeviewer/main.html:451
+#: ui/templates/ui/probeviewer/main.html:520
+#: ui/templates/ui/probeviewer/main.html:588
+#: ui/templates/ui/probeviewer/main.html:656
+#: ui/templates/ui/probeviewer/main.html:724
+#: ui/templates/ui/probeviewer/main.html:792
 msgid ""
 "In order to receive data, CARWINGS navigation unit must have correct "
 "connection settings."
@@ -1115,127 +1430,132 @@ msgstr ""
 "Jotta voit vastaanottaa tietoja, CARWINGS-navigointiyksikössä on oltava "
 "oikeat yhteysasetukset."
 
-#: ui/templates/ui/probeviewer/main.html:195
+#: ui/templates/ui/probeviewer/main.html:196
 msgid "Driving distance"
 msgstr "Ajettu matka"
 
-#: ui/templates/ui/probeviewer/main.html:196
+#: ui/templates/ui/probeviewer/main.html:197
 msgid "Driving time"
 msgstr "Aika"
 
-#: ui/templates/ui/probeviewer/main.html:199
-#: ui/templates/ui/probeviewer/trip.html:134
+#: ui/templates/ui/probeviewer/main.html:200
+#: ui/templates/ui/probeviewer/trip.html:142
 msgid "Regenerated energy"
 msgstr "Regeneroitu energia"
 
-#: ui/templates/ui/probeviewer/main.html:200
+#: ui/templates/ui/probeviewer/main.html:201
 msgid "Consumed energy"
 msgstr "Käytetty energia"
 
-#: ui/templates/ui/probeviewer/main.html:202
-#: ui/templates/ui/probeviewer/trip.html:125
+#: ui/templates/ui/probeviewer/main.html:204
+#: ui/templates/ui/probeviewer/trip.html:75
+msgid "Average consumption"
+msgstr "Keskikulutus"
+
+#: ui/templates/ui/probeviewer/main.html:212
+#: ui/templates/ui/probeviewer/trip.html:133
 msgid "Average acceleration"
 msgstr "Keskiverto kiihdytysvoima"
 
-#: ui/templates/ui/probeviewer/main.html:241
+#: ui/templates/ui/probeviewer/main.html:251
 msgid "No monthly analytics available"
 msgstr "Kuukausittaisia tilastoja ei saatavilla"
 
-#: ui/templates/ui/probeviewer/main.html:242
+#: ui/templates/ui/probeviewer/main.html:252
 msgid "Monthly analytics information comes available at the end of the month."
 msgstr "Kuukausittaiset tilastot tulevat autosta kuukauden päätteeksi."
 
-#: ui/templates/ui/probeviewer/main.html:264
+#: ui/templates/ui/probeviewer/main.html:274
 msgid "State at start"
 msgstr "Varaus alkaessa"
 
-#: ui/templates/ui/probeviewer/main.html:265
+#: ui/templates/ui/probeviewer/main.html:275
 msgid "State at end"
 msgstr "Varaus päättyessä"
 
-#: ui/templates/ui/probeviewer/main.html:266
-#: ui/templates/ui/probeviewer/main.html:335
+#: ui/templates/ui/probeviewer/main.html:276
+#: ui/templates/ui/probeviewer/main.html:345
 msgid "Charging type"
 msgstr "Latauksen tyyppi"
 
-#: ui/templates/ui/probeviewer/main.html:267
+#: ui/templates/ui/probeviewer/main.html:277
 msgid "Charged energy"
 msgstr "Ladattu energia"
 
-#: ui/templates/ui/probeviewer/main.html:268
+#: ui/templates/ui/probeviewer/main.html:278
 msgid "Cell temp. (start)"
 msgstr "Kennojen lämpöt. (alku)"
 
-#: ui/templates/ui/probeviewer/main.html:268
-#: ui/templates/ui/probeviewer/main.html:269
-#: ui/templates/ui/probeviewer/main.html:270
+#: ui/templates/ui/probeviewer/main.html:278
+#: ui/templates/ui/probeviewer/main.html:279
+#: ui/templates/ui/probeviewer/main.html:280
 msgid "avg/max/min"
 msgstr "kesk/maks/min"
 
-#: ui/templates/ui/probeviewer/main.html:269
+#: ui/templates/ui/probeviewer/main.html:279
 msgid "Cell temp. (end)"
 msgstr "Kennojen lämpöt. (loppu)"
 
-#: ui/templates/ui/probeviewer/main.html:270
+#: ui/templates/ui/probeviewer/main.html:280
 msgid "Cell volt. (start)"
 msgstr "Kennojen jännit. (alku)"
 
-#: ui/templates/ui/probeviewer/main.html:271
+#: ui/templates/ui/probeviewer/main.html:281
 msgid "Charges while ign. off"
 msgstr "Lataukset kun ign. off"
 
-#: ui/templates/ui/probeviewer/main.html:311
+#: ui/templates/ui/probeviewer/main.html:321
 msgid "No charging history available"
 msgstr "Lataushistoria ei saatavilla"
 
-#: ui/templates/ui/probeviewer/main.html:312
+#: ui/templates/ui/probeviewer/main.html:322
 msgid ""
 "Charging history may become available on next startup after the charging."
 msgstr ""
 "Lataushistoria saattaa tulla nähtäville seuraavan käynnistyksen yhteydessä."
 
-#: ui/templates/ui/probeviewer/main.html:334
+#: ui/templates/ui/probeviewer/main.html:344
 msgid "Charge count"
 msgstr "Latausten määrä"
 
-#: ui/templates/ui/probeviewer/main.html:336
+#: ui/templates/ui/probeviewer/main.html:346
 msgid "Charge position"
 msgstr "Latauksen sijainti"
 
-#: ui/templates/ui/probeviewer/main.html:376
+#: ui/templates/ui/probeviewer/main.html:386
 msgid "No charge data available"
 msgstr "Lataustietoja ei saatavilla"
 
-#: ui/templates/ui/probeviewer/main.html:377
+#: ui/templates/ui/probeviewer/main.html:387
 msgid "Charging data may become available on next startup after the charging."
 msgstr ""
 "Lataushistoria saattaa tulla nähtäville seuraavan käynnistyksen yhteydessä."
 
-#: ui/templates/ui/probeviewer/main.html:396
+#: ui/templates/ui/probeviewer/main.html:406
 msgid "Operation time"
 msgstr "Aktiivinen aika"
 
-#: ui/templates/ui/probeviewer/main.html:397
+#: ui/templates/ui/probeviewer/main.html:407
 msgid "Vehicle speed at start"
 msgstr "Ajoneuvon nopeus alussa"
 
-#: ui/templates/ui/probeviewer/main.html:398
+#: ui/templates/ui/probeviewer/main.html:408
 msgid "Vehicle speed at end"
 msgstr "Ajoneuvon nopeus lopussa"
 
-#: ui/templates/ui/probeviewer/main.html:399
+#: ui/templates/ui/probeviewer/main.html:409
 msgid "Road type"
 msgstr "Tietyyppi"
 
-#: ui/templates/ui/probeviewer/main.html:400
+#: ui/templates/ui/probeviewer/main.html:410
 msgid "Direction"
 msgstr "Suunta"
 
-#: ui/templates/ui/probeviewer/main.html:440
+#: ui/templates/ui/probeviewer/main.html:450
 msgid "No ABS data available"
 msgstr "ABS-tietoja ei saatavilla"
 
-#: ui/templates/ui/probeviewer/main.html:441
+#: ui/templates/ui/probeviewer/main.html:451
 msgid ""
 "ABS data may become available on next startup if your vehicle configuration "
 "allows it."
@@ -1243,29 +1563,29 @@ msgstr ""
 "ABS-tiedot voivat tulla näkyviin seuraavan käynnistyksen yhteydessä jos "
 "autosi asetukset sallivat sen."
 
-#: ui/templates/ui/probeviewer/main.html:454
-#: ui/templates/ui/probeviewer/main.html:522
-#: ui/templates/ui/probeviewer/main.html:590
-#: ui/templates/ui/probeviewer/main.html:658
-#: ui/templates/ui/probeviewer/main.html:726
+#: ui/templates/ui/probeviewer/main.html:464
+#: ui/templates/ui/probeviewer/main.html:532
+#: ui/templates/ui/probeviewer/main.html:600
+#: ui/templates/ui/probeviewer/main.html:668
+#: ui/templates/ui/probeviewer/main.html:736
 msgid "Date and time"
 msgstr "Aika ja kellonaika"
 
-#: ui/templates/ui/probeviewer/main.html:457
-#: ui/templates/ui/probeviewer/main.html:593
+#: ui/templates/ui/probeviewer/main.html:467
+#: ui/templates/ui/probeviewer/main.html:603
 #: ui/templates/ui/probeviewer/trip.html:38
 msgid "Duration"
 msgstr "Kesto"
 
-#: ui/templates/ui/probeviewer/main.html:509
-#: ui/templates/ui/probeviewer/main.html:577
-#: ui/templates/ui/probeviewer/main.html:645
+#: ui/templates/ui/probeviewer/main.html:519
+#: ui/templates/ui/probeviewer/main.html:587
+#: ui/templates/ui/probeviewer/main.html:655
 msgid "No idling data available"
 msgstr "Tyhjäkäyntitietoja ei saatavilla"
 
-#: ui/templates/ui/probeviewer/main.html:510
-#: ui/templates/ui/probeviewer/main.html:578
-#: ui/templates/ui/probeviewer/main.html:646
+#: ui/templates/ui/probeviewer/main.html:520
+#: ui/templates/ui/probeviewer/main.html:588
+#: ui/templates/ui/probeviewer/main.html:656
 msgid ""
 "Idling data may become available on next startup if your vehicle "
 "configuration allows it."
@@ -1273,32 +1593,32 @@ msgstr ""
 "Tyhjäkäyntitiedot voivat tulla näkyviin seuraavan käynnistyksen yhteydessä "
 "jos autosi asetukset sallivat sen."
 
-#: ui/templates/ui/probeviewer/main.html:525
+#: ui/templates/ui/probeviewer/main.html:535
 msgid "Consumption"
 msgstr "Kulutus"
 
-#: ui/templates/ui/probeviewer/main.html:661
-#: ui/templates/ui/probeviewer/main.html:729
+#: ui/templates/ui/probeviewer/main.html:671
+#: ui/templates/ui/probeviewer/main.html:739
 msgid "Data"
 msgstr "Tiedot"
 
-#: ui/templates/ui/probeviewer/main.html:713
+#: ui/templates/ui/probeviewer/main.html:723
 msgid "No DTC data available"
 msgstr "Vikakooditietoja ei saatavilla"
 
-#: ui/templates/ui/probeviewer/main.html:714
+#: ui/templates/ui/probeviewer/main.html:724
 msgid ""
 "DTC data may become available on next startup if your vehicle has active DTC "
-"truble code."
+"trouble code."
 msgstr ""
 "Vikakooditiedot tulevat saataville seuraavan käynnistyksen yhteydessä jos "
 "vikakoodeja esiintyy autossa."
 
-#: ui/templates/ui/probeviewer/main.html:781
+#: ui/templates/ui/probeviewer/main.html:791
 msgid "No MSN data available"
 msgstr "MSN-tietoja ei saatavilla"
 
-#: ui/templates/ui/probeviewer/main.html:782
+#: ui/templates/ui/probeviewer/main.html:792
 msgid "MSN data may become available on next startup."
 msgstr "MSN-tiedot voivat tulla näkyviin seuraavan käynnistyksen yhteydessä."
 
@@ -1322,182 +1642,178 @@ msgstr "Eko-puut"
 msgid "Regenerated"
 msgstr "Regeneroitu"
 
-#: ui/templates/ui/probeviewer/trip.html:73
-msgid "Average consumption"
-msgstr "Keskikulutus"
-
-#: ui/templates/ui/probeviewer/trip.html:103
+#: ui/templates/ui/probeviewer/trip.html:111
 msgid "Info"
 msgstr "Tiedot"
 
-#: ui/templates/ui/probeviewer/trip.html:104
+#: ui/templates/ui/probeviewer/trip.html:112
 msgid "Energy"
 msgstr "Energia"
 
-#: ui/templates/ui/probeviewer/trip.html:105
+#: ui/templates/ui/probeviewer/trip.html:113
 msgid "HV Battery"
 msgstr "Ajoakku"
 
-#: ui/templates/ui/probeviewer/trip.html:112
+#: ui/templates/ui/probeviewer/trip.html:120
 msgid "Trip end date"
 msgstr "Matkan päättymisajankohta"
 
-#: ui/templates/ui/probeviewer/trip.html:113
+#: ui/templates/ui/probeviewer/trip.html:121
 msgid "Outside temperature at start"
 msgstr "Ulkolämpötila matkan alkaessa"
 
-#: ui/templates/ui/probeviewer/trip.html:114
+#: ui/templates/ui/probeviewer/trip.html:122
 msgid "Outside temperature at finish"
 msgstr "Ulkolämpötila matkan päättyessä"
 
-#: ui/templates/ui/probeviewer/trip.html:115
+#: ui/templates/ui/probeviewer/trip.html:123
 msgid "Max speed"
 msgstr "Maksiminopeus"
 
-#: ui/templates/ui/probeviewer/trip.html:116
+#: ui/templates/ui/probeviewer/trip.html:124
 msgid "Cabin preconditioning before trip"
 msgstr "Matkustamon esilämmitys ennen matkaa"
 
-#: ui/templates/ui/probeviewer/trip.html:117
+#: ui/templates/ui/probeviewer/trip.html:125
 msgid "Highway driving time"
 msgstr "Ajoaika moottoritiellä"
 
-#: ui/templates/ui/probeviewer/trip.html:118
+#: ui/templates/ui/probeviewer/trip.html:126
 msgid "Optimal highway driving time"
 msgstr "Optiminopeudella ajettu aika moottoritiellä"
 
-#: ui/templates/ui/probeviewer/trip.html:120
+#: ui/templates/ui/probeviewer/trip.html:128
 msgid "Idling time"
 msgstr "Tyhjäkäynnillä ollut aika"
 
-#: ui/templates/ui/probeviewer/trip.html:121
+#: ui/templates/ui/probeviewer/trip.html:129
 msgid "Headlights usage time"
 msgstr "Ajovalojen käyttö"
 
-#: ui/templates/ui/probeviewer/trip.html:122
+#: ui/templates/ui/probeviewer/trip.html:130
 msgid "Sudden accelerations"
 msgstr "Äkilliset kiihdytykset"
 
-#: ui/templates/ui/probeviewer/trip.html:123
+#: ui/templates/ui/probeviewer/trip.html:131
 msgid "Sudden decelerations"
 msgstr "Äkilliset pysähdykset"
 
-#: ui/templates/ui/probeviewer/trip.html:124
+#: ui/templates/ui/probeviewer/trip.html:132
 msgid "Odometer at start"
 msgstr "Matkamittari matkan alussa"
 
-#: ui/templates/ui/probeviewer/trip.html:130
+#: ui/templates/ui/probeviewer/trip.html:138
 msgid "A/C consumption"
 msgstr "Ilmastoinnin kulutus"
 
-#: ui/templates/ui/probeviewer/trip.html:131
+#: ui/templates/ui/probeviewer/trip.html:139
 msgid "Auxiliary consumption"
 msgstr "Apulaitteiden kulutus"
 
-#: ui/templates/ui/probeviewer/trip.html:132
+#: ui/templates/ui/probeviewer/trip.html:140
 msgid "Motor consumption"
 msgstr "Moottorin kulutus"
 
-#: ui/templates/ui/probeviewer/trip.html:133
+#: ui/templates/ui/probeviewer/trip.html:141
 msgid "Idle consumption"
 msgstr "Tyhjäkäynnin kulutus"
 
-#: ui/templates/ui/probeviewer/trip.html:135
+#: ui/templates/ui/probeviewer/trip.html:143
 msgid "Sudden acceleration consumption"
 msgstr "Äkillisten kiihdytyksten kulutus"
 
-#: ui/templates/ui/probeviewer/trip.html:136
+#: ui/templates/ui/probeviewer/trip.html:144
 msgid "Sudden acceleration time"
 msgstr "Äkillisten kiihdytysten aika"
 
-#: ui/templates/ui/probeviewer/trip.html:137
+#: ui/templates/ui/probeviewer/trip.html:145
 msgid "Non-eco deceleration consumption"
 msgstr "Ei-ekologisten kiihdytysten kulutus"
 
-#: ui/templates/ui/probeviewer/trip.html:138
+#: ui/templates/ui/probeviewer/trip.html:146
 msgid "Non-eco deceleration time"
 msgstr "Ei-ekologisten kiihdytysten aika"
 
-#: ui/templates/ui/probeviewer/trip.html:139
+#: ui/templates/ui/probeviewer/trip.html:147
 msgid "Sudden start consumption"
 msgstr "Äkillisten lähtöjen kulutus"
 
-#: ui/templates/ui/probeviewer/trip.html:140
+#: ui/templates/ui/probeviewer/trip.html:148
 msgid "Sudden start time"
 msgstr "Äkillisten lähtöjen aika"
 
-#: ui/templates/ui/probeviewer/trip.html:146
+#: ui/templates/ui/probeviewer/trip.html:154
 msgid "Trip start"
 msgstr "Matkan alku"
 
-#: ui/templates/ui/probeviewer/trip.html:148
-#: ui/templates/ui/probeviewer/trip.html:165
+#: ui/templates/ui/probeviewer/trip.html:156
+#: ui/templates/ui/probeviewer/trip.html:173
 msgid "Battery pack temperature"
 msgstr "Akkupaketin lämpötila"
 
-#: ui/templates/ui/probeviewer/trip.html:150
-#: ui/templates/ui/probeviewer/trip.html:151
-#: ui/templates/ui/probeviewer/trip.html:167
-#: ui/templates/ui/probeviewer/trip.html:168
+#: ui/templates/ui/probeviewer/trip.html:158
+#: ui/templates/ui/probeviewer/trip.html:159
+#: ui/templates/ui/probeviewer/trip.html:175
+#: ui/templates/ui/probeviewer/trip.html:176
 msgid "Energy content"
 msgstr "Akun varaus"
 
-#: ui/templates/ui/probeviewer/trip.html:152
-#: ui/templates/ui/probeviewer/trip.html:169
+#: ui/templates/ui/probeviewer/trip.html:160
+#: ui/templates/ui/probeviewer/trip.html:177
 msgid "Average cell temperature"
 msgstr "Kennojen lämpötilan keskiarvo"
 
-#: ui/templates/ui/probeviewer/trip.html:153
-#: ui/templates/ui/probeviewer/trip.html:170
+#: ui/templates/ui/probeviewer/trip.html:161
+#: ui/templates/ui/probeviewer/trip.html:178
 msgid "Max cell temperature"
 msgstr "Kennojen korkein lämpötila"
 
-#: ui/templates/ui/probeviewer/trip.html:154
-#: ui/templates/ui/probeviewer/trip.html:171
+#: ui/templates/ui/probeviewer/trip.html:162
+#: ui/templates/ui/probeviewer/trip.html:179
 msgid "Min cell temperature"
 msgstr "Kennojen matalin lämpötila"
 
-#: ui/templates/ui/probeviewer/trip.html:155
-#: ui/templates/ui/probeviewer/trip.html:172
+#: ui/templates/ui/probeviewer/trip.html:163
+#: ui/templates/ui/probeviewer/trip.html:180
 msgid "Average cell voltage"
 msgstr "Kennojen jännitteiden keskiarvo"
 
-#: ui/templates/ui/probeviewer/trip.html:156
-#: ui/templates/ui/probeviewer/trip.html:173
+#: ui/templates/ui/probeviewer/trip.html:164
+#: ui/templates/ui/probeviewer/trip.html:181
 msgid "Max cell voltage"
 msgstr "Kennojen korkein jännite"
 
-#: ui/templates/ui/probeviewer/trip.html:157
-#: ui/templates/ui/probeviewer/trip.html:174
+#: ui/templates/ui/probeviewer/trip.html:165
+#: ui/templates/ui/probeviewer/trip.html:182
 msgid "Min cell voltage"
 msgstr "Kennojen matalin jännite"
 
-#: ui/templates/ui/probeviewer/trip.html:158
+#: ui/templates/ui/probeviewer/trip.html:166
 msgid "AC charges (total?)"
 msgstr "AC-lataukset (yht.?)"
 
-#: ui/templates/ui/probeviewer/trip.html:159
+#: ui/templates/ui/probeviewer/trip.html:167
 msgid "QC charges (total?)"
 msgstr "Pikalatauksia (yht.?)"
 
-#: ui/templates/ui/probeviewer/trip.html:163
+#: ui/templates/ui/probeviewer/trip.html:171
 msgid "Trip end"
 msgstr "Matkan päättyminen"
 
-#: ui/templates/ui/probeviewer/trip.html:175
+#: ui/templates/ui/probeviewer/trip.html:183
 msgid "Accumulated current"
 msgstr "Kerätty energia"
 
-#: ui/templates/ui/probeviewer/trip.html:176
-#: ui/templates/ui/probeviewer/trip.html:180
+#: ui/templates/ui/probeviewer/trip.html:184
+#: ui/templates/ui/probeviewer/trip.html:188
 msgid "SOH"
 msgstr "SOH"
 
-#: ui/templates/ui/probeviewer/trip.html:177
+#: ui/templates/ui/probeviewer/trip.html:185
 msgid "Pack resistance"
 msgstr "Akkupaketin vastus"
 
-#: ui/templates/ui/probeviewer/trip.html:181
+#: ui/templates/ui/probeviewer/trip.html:189
 msgid "New battery degradation analysis program"
 msgstr "Uusi akun huononemisen analyysiohjelma"
 
@@ -1667,14 +1983,16 @@ msgstr ""
 "Tarvittavat tiedot yhteyden muodostamiseen LEAFisi kanssa on nyt tallennettu."
 
 #: ui/templates/ui/setup/step5.html:9
-msgid ""
-"You may sign in with your username and CARWINGS password in navigation unit "
-"like showed below."
-msgstr ""
-"Voit halutessasi kokeilla kirjautua tunnuksillasi auton CARWINGS-"
-"asetuksissa, alla olevan ohjeen mukaisesti."
+msgid "You can now use TCU services."
+msgstr "Voit nyt käyttää etäohjaustoimintoja."
 
-#: ui/templates/ui/setup/step5.html:31
+#: ui/templates/ui/setup/step5.html:10
+msgid ""
+"Did you know? If you also change connection settings on your navigation "
+"unit, you will get detailed vehicle statistic informations."
+msgstr "Tiesitkö? Jos vaihdat yhteysasetukset myös auton navigointijärjestelmään, saat autosta tilastoja mm. energian kulutuksesta."
+
+#: ui/templates/ui/setup/step5.html:14
 msgid "Finish"
 msgstr "Valmis"
 
@@ -1774,6 +2092,13 @@ msgstr "Auto on jo lisätty. Poista auto ja yritä uudelleen."
 #: ui/views.py:614
 msgid "Please select a provider for SMS."
 msgstr "Ole hyvä ja valitse SMS-palvelun tarjoaja."
+
+#~ msgid ""
+#~ "You may sign in with your username and CARWINGS password in navigation "
+#~ "unit like showed below."
+#~ msgstr ""
+#~ "Voit halutessasi kokeilla kirjautua tunnuksillasi auton CARWINGS-"
+#~ "asetuksissa, alla olevan ohjeen mukaisesti."
 
 #~ msgid "Latitude"
 #~ msgstr "Leveysaste"

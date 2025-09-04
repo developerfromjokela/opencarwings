@@ -22,13 +22,10 @@ def handle_directory_response(xml_data, returning_xml):
         }
     ])
 
-    ET.SubElement(returning_xml, "send_data", {"id_type": "file", "id": "CHANINF.001"})
-    ET.SubElement(returning_xml, "send_data", {"id_type": "file", "id": "FAVTINF.002"})
-
 
     return [
-        ("CHANINF.001", resp_file),
-        ("FAVTINF.002", favt_file)
+        ("CHANINF", resp_file),
+        ("FAVTINF", favt_file)
     ]
 
 

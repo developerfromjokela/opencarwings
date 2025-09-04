@@ -119,13 +119,7 @@ def handle_dj(xml_data, files):
 
         xml_str = carwings_create_xmlfile_content(carwings_xml_root)
 
-        logger.info(xml_str)
-
         files.insert(0, ("response.xml", xml_str.encode("utf-8"),))
-
-        logger.info("Files:")
-        logger.info([x[0] for x in files])
-
 
         return compress_carwings(construct_carwings_filepacket(files))
     return None

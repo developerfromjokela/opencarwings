@@ -214,9 +214,9 @@ def create_consumption_slide(title, consumption, bar_labels, bars=0, helptext=""
     mainframe_draw.text((89, 98), date, fill=BUBBLE_TXT_COLOR, stroke_width=0.35, font=date_font, anchor="mm")
     mainframe_draw.text((90, 126), day, fill=BUBBLE_TXT_COLOR, stroke_width=0.30, font=day_font, anchor="mm")
 
-    mainframe_draw.text((33, 213), bar_labels[0], fill="white", stroke_width=0.3, font=bar_font)
-    mainframe_draw.text((225, 222), bar_labels[2], fill="white", stroke_width=0.3, font=bar_font, anchor="mm")
-    txt = bar_labels[2][::-1]
+    mainframe_draw.text((33, 213), str(bar_labels[0]), fill="white", stroke_width=0.3, font=bar_font)
+    mainframe_draw.text((225, 222), str(bar_labels[2]), fill="white", stroke_width=0.3, font=bar_font, anchor="mm")
+    txt = str(bar_labels[2])[::-1]
     x, y = 422, 222
     space_width = 4
     o_width = 3.5

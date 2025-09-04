@@ -165,13 +165,13 @@ def get_weather_forecast(xml_data, returning_xml, channel_id, _):
             ('morning', f"{current_date}T06:00"),
             ('day', f"{current_date}T12:00"),
             ('evening', f"{current_date}T18:00"),
-            ('night', f"{current_date}21:00"),
+            ('night', f"{current_date}T21:00"),
             ('late night', f"{next_date}T00:00"),
             ('early morning', f"{next_date}T03:00"),
             ('morning', f"{next_date}T06:00"),
             ('day', f"{next_date}T12:00"),
             ('evening', f"{next_date}T18:00"),
-            ('night', f"{next_date}21:00"),
+            ('night', f"{next_date}T21:00"),
         ]
 
         daily_forecast = []

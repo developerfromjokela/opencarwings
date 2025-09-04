@@ -231,9 +231,9 @@ def create_consumption_slide(title, consumption, bar_labels, bars=0, helptext=""
         else:
             x -= char_width - normal_width
 
-    cons_fullnum = consumption
+    cons_fullnum = str(consumption)
 
-    cons_first = cons_fullnum.split(".")[0].rjust("3")
+    cons_first = cons_fullnum.split(".")[0].rjust(3)
     for idx, i in enumerate(cons_first):
         pos = -85 + (42 * idx)
         print(i)

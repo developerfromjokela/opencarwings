@@ -147,7 +147,7 @@ def get_weather_forecast(xml_data, returning_xml, channel_id, _):
         city_name = get_city(car_coordinate[0], car_coordinate[1])
         car_timezone = float(xml_data['base_info'].get('navigation_settings', {}).get('time_zone', "+0.00"))
         offset = timedelta(hours=car_timezone)
-        car_tzinfo = timezone.get_fixed_timezone(car_timezone)
+        car_tzinfo = timezone.get_fixed_timezone(offset)
 
         # Get current UTC time and adjust to the specified timezone
         utc_now = timezone.now()
@@ -178,7 +178,8 @@ def get_weather_forecast(xml_data, returning_xml, channel_id, _):
         hourly = data['hourly']
         for (period, local_time_str) in periods:
             # Find the closest matching time in the hourly data
-            if local_time_str in hourly['time'] and datetime.fromisoformat(local_time_str+car_tzinfo.tzname(None)) > local_time:
+            tz_timestamp = datetime.fromisoformat(local_time_str).replace(tzinfo=car_tzinfo)
+            if local_time_str in hourly['time'] and tz_timestamp > local_time:
                 idx = hourly['time'].index(local_time_str)
                 condition = WEATHER_CODES.get(hourly['weathercode'][idx], "unknown")
                 condition_txt = WEATHER_NAMES.get(hourly['weathercode'][idx], "unknown")

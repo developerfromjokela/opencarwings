@@ -124,7 +124,7 @@ def get_weather_data(lat, lon, tz="UTC"):
         "hourly": "temperature_2m,precipitation_probability,weathercode,windspeed_10m",
         "daily": "weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max,windspeed_10m_max",
         "timezone": tz,  # Open-Meteo will return UTC, adjust locally
-        "forecast_days": 7
+        "forecast_days": 8
     }
     response = requests.get(url, params=params, headers={"User-Agent": "OpenCARWINGS"})
     if response.status_code == 200:
@@ -194,6 +194,8 @@ def get_weather_forecast(xml_data, returning_xml, channel_id, _):
         daily = data['daily']
         for i in range(len(daily['time'])):
             date = daily['time'][i]
+            if datetime.fromisoformat(date).date() == local_time.date():
+                continue
             condition = WEATHER_CODES.get(daily['weathercode'][i], "unknown")
             condition_txt = WEATHER_NAMES.get(daily['weathercode'][i], "unknown")
             temp_max = daily['temperature_2m_max'][i]
@@ -284,7 +286,7 @@ def get_weather_forecast(xml_data, returning_xml, channel_id, _):
         temp_font = ImageFont.truetype(font_file, 24)
         detail_font = ImageFont.truetype(font_file, 15)
 
-        for i, weekly in enumerate(weekly_forecast):
+        for i, weekly in enumerate(weekly_forecast[:7]):
             x_offset = 10 + (i*62)
             daily_item = Image.new("RGBA", (58, 210), (255, 255, 255, 0))
             daily_item_draw = ImageDraw.Draw(daily_item)
@@ -346,7 +348,7 @@ def get_weather_forecast(xml_data, returning_xml, channel_id, _):
         weekly_text = f"Weather Forecast for next seven days, near {location_txt}.\n"
         if len(weekly_forecast) == 0:
             weekly_text += "No forecast data available."
-        for weekly_item in weekly_forecast:
+        for weekly_item in weekly_forecast[:7]:
             weekday = datetime.fromisoformat(weekly_item['date']).strftime("%A")
             weekly_text += f"On {weekday}, forecasted to {weekly_item['condition_txt']}. With highest temperature of {weekly_item['temp_max']} degrees celsius, lowest temperature of {weekly_item['temp_min']} degrees celsius\n"
 

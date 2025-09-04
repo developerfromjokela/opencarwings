@@ -54,6 +54,7 @@ def calculate_prb_data_checksum(data, length):
 
 LANG_CODES = {
     "hun": "hu",
+    "spa": "es",
     "slo": "sl",
     "cze": "cz",
     "pol": "pl",

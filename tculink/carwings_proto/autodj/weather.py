@@ -177,7 +177,7 @@ def get_weather_forecast(xml_data, returning_xml, channel_id, _):
         hourly = data['hourly']
         for (period, local_time_str) in periods:
             # Find the closest matching time in the hourly data
-            if local_time_str in hourly['time'] and datetime.fromisoformat(period) > local_time:
+            if local_time_str in hourly['time'] and datetime.fromisoformat(local_time_str) > local_time:
                 idx = hourly['time'].index(local_time_str)
                 condition = WEATHER_CODES.get(hourly['weathercode'][idx], "unknown")
                 condition_txt = WEATHER_NAMES.get(hourly['weathercode'][idx], "unknown")

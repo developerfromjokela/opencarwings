@@ -215,7 +215,7 @@ def create_consumption_slide(title, consumption, bar_labels, bars=0, helptext=""
     mainframe_draw.text((90, 126), day, fill=BUBBLE_TXT_COLOR, stroke_width=0.30, font=day_font, anchor="mm")
 
     mainframe_draw.text((33, 213), str(bar_labels[0]), fill="white", stroke_width=0.3, font=bar_font)
-    mainframe_draw.text((225, 222), str(bar_labels[2]), fill="white", stroke_width=0.3, font=bar_font, anchor="mm")
+    mainframe_draw.text((225, 222), str(bar_labels[1]), fill="white", stroke_width=0.3, font=bar_font, anchor="mm")
     txt = str(bar_labels[2])[::-1]
     x, y = 422, 222
     space_width = 4
@@ -385,8 +385,8 @@ def get_energy_information_channel(xml_data, returning_xml, channel_id, car):
     day_word = get_word_of_month_i18n(day)
     help_text = _("The energy economy trend compared with the average of the last five trips is shown above.")
 
-    date_txt = formats.date_format(time_car_now, format='%d %b')+"."
-    day_txt = formats.date_format(time_car_now, format='%a').upper()
+    date_txt = formats.date_format(time_car_now, format='d b')+"."
+    day_txt = formats.date_format(time_car_now, format='a').upper()
 
     display_txt = _("Trend of Energy Economy\n")
     display_txt += f"{ordinal(day)} / {month}:"
@@ -413,7 +413,7 @@ def get_energy_information_channel(xml_data, returning_xml, channel_id, car):
         elif wh_per_km < 280:
             bars = 2
             economy_status = _("Average")
-        elif wh_per_km < 360:
+        else:
             bars = 1
             economy_status = _("Bad")
 

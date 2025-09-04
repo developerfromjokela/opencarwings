@@ -216,27 +216,27 @@ def create_consumption_slide(title, consumption, bar_labels, bars=0, helptext=""
 
     mainframe_draw.text((33, 213), str(bar_labels[0]), fill="white", stroke_width=0.3, font=bar_font)
     mainframe_draw.text((225, 222), str(bar_labels[1]), fill="white", stroke_width=0.3, font=bar_font, anchor="mm")
-    txt = str(bar_labels[2])[::-1]
-    x, y = 422, 222
-    space_width = 4
-    o_width = 3.5
-    normal_width = 3
-    for i, char in enumerate(txt):
-        mainframe_draw.text((x, y), char, fill="white", stroke_width=0.3, font=bar_font, anchor="rm")
-        char_width = mainframe_draw.textlength(char, font=header_font)
-        if char == " ":
-            x -= char_width - space_width
-        elif char == "o" or (i + 1 < len(txt) and txt[i + 1] == "o") or i == 1:
-            x -= char_width - o_width
-        else:
-            x -= char_width - normal_width
+    mainframe_draw.text((422, 222), str(bar_labels[2]), fill="white", stroke_width=0.3, font=bar_font, anchor="rm")
+    #txt = str(bar_labels[2])[::-1]
+    #x, y =
+    #space_width = 4
+    #o_width = 3.5
+    #normal_width = 3
+    #for i, char in enumerate(txt):
+    #    mainframe_draw.text((x, y), char, fill="white", stroke_width=0.3, font=bar_font, anchor="rm")
+    #    char_width = mainframe_draw.textlength(char, font=header_font)
+    #    if char == " ":
+    #        x -= char_width - space_width
+    #    elif char == "o" or (i + 1 < len(txt) and txt[i + 1] == "o") or i == 1:
+    #        x -= char_width - o_width
+    #    else:
+    #        x -= char_width - normal_width
 
     cons_fullnum = str(consumption)
 
     cons_first = cons_fullnum.split(".")[0].rjust(3)
     for idx, i in enumerate(cons_first):
         pos = -85 + (42 * idx)
-        print(i)
         if i != " ":
             segment = Image.open(os.path.join(resources_dir, f"seg{i}.png"))
             main_frame.paste(segment, (pos, 0), segment)
@@ -381,12 +381,12 @@ def get_energy_information_channel(xml_data, returning_xml, channel_id, car):
     slide_title = _("Check Energy Economy")
 
     day = time_car_now.day
-    month = formats.date_format(time_car_now, format='%B')
+    month = formats.date_format(time_car_now, format='B')
     day_word = get_word_of_month_i18n(day)
     help_text = _("The energy economy trend compared with the average of the last five trips is shown above.")
 
-    date_txt = formats.date_format(time_car_now, format='d b')+"."
-    day_txt = formats.date_format(time_car_now, format='a').upper()
+    date_txt = formats.date_format(time_car_now, format='j b')+"."
+    day_txt = formats.date_format(time_car_now, format='D').upper()
 
     display_txt = _("Trend of Energy Economy\n")
     display_txt += f"{ordinal(day)} / {month}:"

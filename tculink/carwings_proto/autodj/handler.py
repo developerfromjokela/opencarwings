@@ -2,8 +2,8 @@ from tculink.carwings_proto.autodj import NOT_FOUND_AUTODJ_ITEM, NOT_AUTHORIZED_
 from tculink.carwings_proto.autodj.channels import STANDARD_AUTODJ_FOLDERS, STANDARD_AUTODJ_CHANNELS
 from tculink.carwings_proto.dataobjects import construct_chnmst_payload, construct_fvtchn_payload, build_autodj_payload
 import xml.etree.ElementTree as ET
-
-from tculink.carwings_proto.utils import get_cws_authenticated_car
+from django.utils.translation import activate
+from tculink.carwings_proto.utils import get_cws_authenticated_car, carwings_lang_to_code
 
 
 def handle_directory_response(xml_data, returning_xml):
@@ -35,6 +35,7 @@ def handle_directory_response(xml_data, returning_xml):
 def handle_channel_response(xml_data, channel_id, returning_xml):
     channels = STANDARD_AUTODJ_CHANNELS
     # TODO if customisable channels add here
+    activate(carwings_lang_to_code(xml_data['base_info'].get('navigation_settings', {}).get('language', "uke")))
 
     channel = next((item for item in channels if item["id"] == channel_id), None)
     if channel is None or 'processor' not in channel:

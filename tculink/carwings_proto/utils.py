@@ -1,4 +1,5 @@
 from db.models import Car
+from django.utils.translation import gettext_lazy as _
 
 
 def get_cws_authenticated_car(xml_data):
@@ -50,6 +51,42 @@ def calculate_prb_data_checksum(data, length):
     if length == 1 and len(data) > 0:  # Process the final byte if length == 1
         sum = (sum + data[length - 1]) % 256
     return sum
+
+LANG_CODES = {
+    "hun": "hu",
+    "slo": "sl",
+    "cze": "cz",
+    "pol": "pl",
+    "grc": "gr",
+    "nor": "no",
+    "fin": "fi",
+    "swe": "se",
+    "dnk": "dk",
+    "dut": "nl",
+    "por": "pt",
+    "ita": "it",
+    "ger": "de",
+    "fre": "fr",
+    "uke": "en",
+    "mex": "es",
+    "caf": "en",
+    "use": "en"
+}
+
+def carwings_lang_to_code(lang):
+    return LANG_CODES.get(lang, 'en')
+
+def get_word_of_month_i18n(num):
+    ordinal_dict = {
+        1: _('first'), 2: _('second'), 3: _('third'), 4: _('fourth'), 5: _('fifth'),
+        6: _('sixth'), 7: _('seventh'), 8: _('eighth'), 9: _('ninth'), 10: _('tenth'),
+        11: _('eleventh'), 12: _('twelfth'), 13: _('thirteenth'), 14: _('fourteenth'), 15: _('fifteenth'),
+        16: _('sixteenth'), 17: _('seventeenth'), 18: _('eighteenth'), 19: _('nineteenth'), 20: _('twentieth'),
+        21: _('twenty-first'), 22: _('twenty-second'), 23: _('twenty-third'), 24: _('twenty-fourth'), 25: _('twenty-fifth'),
+        26: _('twenty-sixth'), 27: _('twenty-seventh'), 28: _('twenty-eighth'), 29: _('twenty-ninth'), 30: _('thirtieth'),
+        31: _('thirty-first')
+    }
+    return ordinal_dict.get(num, str(num))
 
 
 def parse_std_location(lat_int, lon_int):

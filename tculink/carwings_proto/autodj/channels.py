@@ -1,4 +1,4 @@
-from tculink.carwings_proto.autodj.opencarwings import get_infochannel
+from tculink.carwings_proto.autodj.opencarwings import get_infochannel, get_energy_information_channel
 from tculink.carwings_proto.autodj.routeplanner import handle_routeplanner
 from tculink.carwings_proto.autodj.sendtocar import handle_send_to_car_adj, handle_send_to_car
 from tculink.carwings_proto.autodj.weather import get_weather_forecast
@@ -64,7 +64,8 @@ STANDARD_AUTODJ_CHANNELS = [
         'auth': True,
         'data1': bytearray(),
         'data2': bytearray(),
-        'flag2': 0x00
+        'flag2': 0x00,
+        'processor': get_energy_information_channel
     },
     {
         'id': 0x0011,

@@ -4,7 +4,7 @@ import os
 from datetime import timedelta, datetime
 from io import BytesIO
 import xml.etree.ElementTree as ET
-
+import pngquant
 from tculink.carwings_proto.autodj import NOT_AVAIL_AUTODJ_ITEM
 from tculink.carwings_proto.dataobjects import build_autodj_payload
 from tculink.carwings_proto.utils import xml_coordinate_to_float
@@ -266,8 +266,9 @@ def get_weather_forecast(xml_data, returning_xml, channel_id, _):
 
             daily_item = ImageOps.expand(daily_item,border=1,fill='gray')
             daily_image.paste(daily_item, (x_offset, 43), daily_item)
-        daily_image_buffer = BytesIO()
-        daily_image.save(daily_image_buffer, format='JPEG', quality=40)
+        daily_image_quant = BytesIO()
+        daily_image.save(daily_image_quant, format='PNG')
+        daily_image_buffer = pngquant.quant_data(daily_image_quant.getvalue())[1]
 
 
 
@@ -329,9 +330,9 @@ def get_weather_forecast(xml_data, returning_xml, channel_id, _):
 
             daily_item = ImageOps.expand(daily_item,border=1,fill='gray')
             weekly_image.paste(daily_item, (x_offset, 43), daily_item)
-        weekly_image_buffer = BytesIO()
-        weekly_image.save(weekly_image_buffer, format='JPEG', quality=40)
-
+        weekly_image_quant = BytesIO()
+        weekly_image.save(weekly_image_quant, format='PNG')
+        weekly_image_buffer = pngquant.quant_data(weekly_image_quant.getvalue())[1]
 
         location_txt = city_name.replace("Weather nearby", "vehicle location")
         daily_text = f"Weather Forecast for today, near {location_txt}.\n"
@@ -380,7 +381,7 @@ def get_weather_forecast(xml_data, returning_xml, channel_id, _):
                 "mapPointFlag": b'\x20',
                 # save flag
                 "flag8": 0x80,
-                "imageDataField": daily_image_buffer.getvalue(),
+                "imageDataField": daily_image_buffer,
             },
             {
                 'itemId': 2,
@@ -414,7 +415,7 @@ def get_weather_forecast(xml_data, returning_xml, channel_id, _):
                 "mapPointFlag": b'\x20',
                 # save flag
                 "flag8": 0x80,
-                "imageDataField": weekly_image_buffer.getvalue(),
+                "imageDataField": weekly_image_buffer,
             }
         ]
 

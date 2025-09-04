@@ -17,6 +17,7 @@ RUN apk add --no-cache freetype-dev \
     tk-dev \
     zlib-dev \
     bash \
+    pngquant \
     dcron
 
 # Set timezone

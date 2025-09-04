@@ -4,9 +4,7 @@ import xml.etree.ElementTree as ET
 from datetime import datetime
 from io import BytesIO
 import pngquant
-from PIL.Image import Image
-from PIL.ImageDraw import ImageDraw
-from PIL.ImageFont import ImageFont
+from PIL import Image, ImageFont, ImageDraw
 from django.utils import timezone, formats
 from django.contrib.humanize.templatetags.humanize import ordinal
 from django.utils.translation import gettext_lazy as _

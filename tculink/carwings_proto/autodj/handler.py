@@ -31,8 +31,8 @@ def handle_directory_response(xml_data, returning_xml):
 
 def handle_channel_response(xml_data, channel_id, returning_xml):
     # add exception for channel update channel (purpose?)
-    if channel_id == 0x270f:
-        return []
+    #if channel_id == 0x270f:
+    #    return []
     channels = STANDARD_AUTODJ_CHANNELS
     # TODO if customisable channels add here
     activate(carwings_lang_to_code(xml_data['base_info'].get('navigation_settings', {}).get('language', "uke")))

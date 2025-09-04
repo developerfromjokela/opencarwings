@@ -381,7 +381,7 @@ msgstr ""
 "después de tu próximo viaje."
 
 #: tculink/carwings_proto/autodj/opencarwings.py:481
-msgid "Electic Car Column"
+msgid "Electric Car Column"
 msgstr "Columna del Coche Eléctrico"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:482

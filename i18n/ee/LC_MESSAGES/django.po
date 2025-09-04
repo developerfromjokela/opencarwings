@@ -344,7 +344,7 @@ msgid ""
 msgstr ""
 
 #: tculink/carwings_proto/autodj/opencarwings.py:481
-msgid "Electic Car Column"
+msgid "Electric Car Column"
 msgstr ""
 
 #: tculink/carwings_proto/autodj/opencarwings.py:482

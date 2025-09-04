@@ -1,14 +1,14 @@
 import os
 import random
-import xml.etree.ElementTree as ET
 from datetime import datetime
 from io import BytesIO
+
 import pngquant
 from PIL import Image, ImageFont, ImageDraw
-from django.utils import timezone, formats
 from django.contrib.humanize.templatetags.humanize import ordinal
-from django.utils.translation import gettext_lazy as _
+from django.utils import timezone, formats
 from django.utils.text import format_lazy
+from django.utils.translation import gettext_lazy as _
 
 from db.models import CRMTripRecord
 from tculink.carwings_proto.dataobjects import build_autodj_payload
@@ -128,9 +128,8 @@ def get_infochannel(xml_data, returning_xml, channel_id, car):
         }
     )
 
-    ET.SubElement(returning_xml, "send_data", {"id_type": "file", "id": "INFOCHAN.001"})
 
-    return [("INFOCHAN.001", resp_file)]
+    return [("INFOCHAN", resp_file)]
 
 BUBBLE_TXT_COLOR = (222, 247, 148)
 
@@ -538,9 +537,8 @@ def get_energy_information_channel(xml_data, returning_xml, channel_id, car):
         }
     )
 
-    ET.SubElement(returning_xml, "send_data", {"id_type": "file", "id": "ENERGY.001"})
 
-    return [("ENERGY.001", resp_file)]
+    return [("ENERGY", resp_file)]
 
 
 

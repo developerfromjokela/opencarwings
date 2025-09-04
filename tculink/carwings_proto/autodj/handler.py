@@ -55,8 +55,7 @@ def handle_channel_response(xml_data, channel_id, returning_xml):
                 "countOfSomeItems": 1
             }
         )
-        ET.SubElement(returning_xml, "send_data", {"id_type": "file", "id": "NOTFOUND.001"})
-        return [('NOTFOUND.001', resp_file)]
+        return [('NOTFOUND', resp_file)]
 
     car = get_cws_authenticated_car(xml_data)
     if car is None and channel.get('auth', False) and not channel.get('internal', False):
@@ -76,7 +75,6 @@ def handle_channel_response(xml_data, channel_id, returning_xml):
                 "countOfSomeItems": 1
             }
         )
-        ET.SubElement(returning_xml, "send_data", {"id_type": "file", "id": "NOTAUTH.001"})
-        return [('NOTAUTH.001', resp_file)]
+        return [('NOTAUTH', resp_file)]
 
     return channel['processor'](xml_data, returning_xml, channel_id, car)

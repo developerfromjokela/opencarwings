@@ -177,21 +177,9 @@ def compress_carwings(binary_data, resume_id=b'\01'*20):
     return resumed_compressed_packet_data
 
 
-def get_carwings_bininfo(binary_data):
-    if len(binary_data) < 6:
+def get_carwings_dj_payload(binary_data):
+    if len(binary_data) < 3:
         return None
     if binary_data[0] != 0x01 or binary_data[1] != 0x20:
         return None
-    pload_type = binary_data[2]
-    result = bytearray()
-
-    if pload_type != 0x01:
-        end_marker = b'\x01\x0F'
-        start_pos = 2
-        end_pos = binary_data.find(end_marker, start_pos)
-        if end_pos == -1:
-            return result
-        result.extend(binary_data[start_pos:end_pos])
-    if pload_type == 0x01:
-        return binary_data[2:]
-    return result
+    return binary_data[2:]

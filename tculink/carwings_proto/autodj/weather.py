@@ -3,15 +3,17 @@ import math
 import os
 from datetime import timedelta, datetime
 from io import BytesIO
-import xml.etree.ElementTree as ET
+
+import geopy.geocoders
 import pngquant
+import requests
+from PIL import Image, ImageFont, ImageDraw, ImageOps
+from django.utils import timezone
+
 from tculink.carwings_proto.autodj import NOT_AVAIL_AUTODJ_ITEM
 from tculink.carwings_proto.dataobjects import build_autodj_payload
 from tculink.carwings_proto.utils import xml_coordinate_to_float
-import geopy.geocoders
-from django.utils import timezone
-import requests
-from PIL import Image, ImageFont, ImageDraw, ImageOps
+
 logger = logging.getLogger("carwings_apl")
 
 
@@ -436,9 +438,8 @@ def get_weather_forecast(xml_data, returning_xml, channel_id, _):
         }
     )
 
-    ET.SubElement(returning_xml, "send_data", {"id_type": "file", "id": "WEATHER.001"})
 
-    return [("WEATHER.001", resp_file)]
+    return [("WEATHER", resp_file)]
 
 
 

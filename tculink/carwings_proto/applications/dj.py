@@ -4,7 +4,7 @@ import xml.etree.ElementTree as ET
 from datetime import datetime
 
 from tculink.carwings_proto.autodj.handler import handle_channel_response, handle_directory_response
-from tculink.carwings_proto.databuffer import get_carwings_bininfo, construct_carwings_filepacket, compress_carwings
+from tculink.carwings_proto.databuffer import get_carwings_dj_payload, construct_carwings_filepacket, compress_carwings
 from tculink.carwings_proto.xml import carwings_create_xmlfile_content
 
 logger = logging.getLogger("carwings_apl")
@@ -27,7 +27,7 @@ def handle_dj(xml_data, files):
             file_content = file_content['content']
 
         # Parsing command from DJ payload
-        dj_payload = get_carwings_bininfo(file_content)
+        dj_payload = get_carwings_dj_payload(file_content)
         if dj_payload is None:
             logger.error("DJ Payload is not valid!")
             log_dir = os.path.join("logs", "dj", xml_data['authentication']['navi_id'],
@@ -46,7 +46,10 @@ def handle_dj(xml_data, files):
                 f.write(file_content)
             return None
 
+        count = dj_payload[0]
+
         action = dj_payload[1]
+        command_list = dj_payload[2:]
 
         files = []
 
@@ -71,45 +74,52 @@ def handle_dj(xml_data, files):
             files.append(("response.xml", xml_str.encode("utf-8"),))
             files.append(("CHANDAT.001", resp_file))
         elif action == 0x00:
-            logger.info("Request func!")
-            handler_id = (dj_payload[2] << 8) | (dj_payload[3])
-            logger.info("Handler ID, %d", handler_id)
-            # Request channel list (CHNLIST)
-            if handler_id == 0x101:
-                for file in handle_directory_response(xml_data, app_elm):
-                    files.append(file)
-
-                op_inf = ET.SubElement(carwings_xml_root, "op_inf")
-                ET.SubElement(op_inf, "timing", {"req": "normal"})
-
-                xml_str = carwings_create_xmlfile_content(carwings_xml_root)
-                files.insert(0 , ("response.xml", xml_str.encode("utf-8"),))
-            # Request Channel Data (CHNDAT)
-            elif handler_id == 0x102:
-                if len(dj_payload) < 6:
-                    logger.error("Too short DJ payload for 0x102!")
-                    return None
-                chan_id = int.from_bytes([dj_payload[4], dj_payload[5]], byteorder='big')
-                for file in handle_channel_response(xml_data, chan_id, app_elm):
-                    files.append(file)
-
-                op_inf = ET.SubElement(carwings_xml_root, "op_inf")
-                ET.SubElement(op_inf, "timing", {"req": "normal"})
-
-                xml_str = carwings_create_xmlfile_content(carwings_xml_root)
-                files.insert(0, ("response.xml", xml_str.encode("utf-8"),))
-            else:
-                log_dir = os.path.join("logs", "dj", xml_data['authentication']['navi_id'],
-                                       datetime.now().strftime('%Y%m%d%H%M%S.%s'))
-                os.makedirs(log_dir, exist_ok=True)
-                with open(os.path.join(log_dir, f"UNKNOWNID-{id_value}"), 'wb') as f:
-                    f.write(file_content)
+            i = 0
+            datapos = 0
+            while i < count:
+                if datapos > len(command_list) - 2:
+                    break
+                handler_id = (command_list[datapos] << 8) | (command_list[(datapos) + 1])
+                i += 1
+                logger.info("Handler ID: %s", hex(handler_id))
+                if handler_id == 0x102:
+                    channel_id = (command_list[datapos + 2] << 8) | (command_list[datapos + 3])
+                    flag = command_list[datapos + 4]
+                    logger.info("  ->Channel ID: %s", hex(channel_id))
+                    logger.info("  ->Flag: %s", hex(flag))
+                    for fidx, file in enumerate(handle_channel_response(xml_data, channel_id, app_elm)):
+                        name = file[0]
+                        name += f".{fidx+1}.{i+1:03}"
+                        ET.SubElement(app_elm, "send_data", {"id_type": "file", "id": name})
+                        files.append((name, file[1]))
+                    datapos += 6
+                elif handler_id == 0x101:
+                    for fidx, file in enumerate(handle_directory_response(xml_data, app_elm)):
+                        name = file[0]
+                        name += f".{fidx+1}.{i+1:03}"
+                        ET.SubElement(app_elm, "send_data", {"id_type": "file", "id": name})
+                        files.append((name, file[1]))
+                    datapos += 3
+                else:
+                    datapos += 3
+                    log_dir = os.path.join("logs", "dj", xml_data['authentication']['navi_id'],
+                                           datetime.now().strftime('%Y%m%d%H%M%S.%s'))
+                    os.makedirs(log_dir, exist_ok=True)
+                    with open(os.path.join(log_dir, f"UNKNOWNID-{id_value}"), 'wb') as f:
+                        f.write(file_content)
         else:
             log_dir = os.path.join("logs", "dj", xml_data['authentication']['navi_id'],
                                    datetime.now().strftime('%Y%m%d%H%M%S.%s'))
             os.makedirs(log_dir, exist_ok=True)
             with open(os.path.join(log_dir, f"UNKNOWNACT-{id_value}"), 'wb') as f:
                 f.write(file_content)
+
+        op_inf = ET.SubElement(carwings_xml_root, "op_inf")
+        ET.SubElement(op_inf, "timing", {"req": "normal"})
+
+        xml_str = carwings_create_xmlfile_content(carwings_xml_root)
+
+        files.insert(0, ("response.xml", xml_str.encode("utf-8"),))
 
         return compress_carwings(construct_carwings_filepacket(files))
     return None

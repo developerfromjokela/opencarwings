@@ -109,9 +109,8 @@ def handle_send_to_car_adj(xml_data, returning_xml, channel_id, car: Car):
             "countOfSomeItems": 1
         }
     )
-    ET.SubElement(returning_xml, "send_data", {"id_type": "file", "id": "SENDTOCAR.001"})
 
-    return [("SENDTOCAR.001", resp_file)]
+    return [("SENDTOCAR.adj", resp_file)]
 
 def handle_send_to_car(_, returning_xml, channel_id, car: Car):
     car_destinations = []
@@ -162,6 +161,5 @@ def handle_send_to_car(_, returning_xml, channel_id, car: Car):
             "data": b'\x00',
         },
     )
-    ET.SubElement(returning_xml, "send_data", {"id_type": "file", "id": "SENDTOCAR.001"})
 
-    return [("SENDTOCAR.001", resp_file)]
+    return [("SENDTOCAR", resp_file)]

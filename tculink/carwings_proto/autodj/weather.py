@@ -158,37 +158,44 @@ def get_weather_forecast(xml_data, returning_xml, channel_id, _):
 
         light_theme = is_daylight(car_coordinate[0], car_coordinate[1])
 
-        periods = {
-            'morning': f"{current_date}T06:00",
-            'day': f"{current_date}T12:00",
-            'evening': f"{current_date}T18:00",
-            'night': f"{next_date}T00:00"
-        }
+
+        periods = [
+            ('early morning', f"{current_date}T03:00"),
+            ('morning', f"{current_date}T06:00"),
+            ('day', f"{current_date}T12:00"),
+            ('evening', f"{current_date}T18:00"),
+            ('night', f"{current_date}21:00"),
+            ('late night', f"{next_date}T00:00"),
+            ('early morning', f"{next_date}T03:00"),
+            ('morning', f"{next_date}T06:00"),
+            ('day', f"{next_date}T12:00"),
+            ('evening', f"{next_date}T18:00"),
+            ('night', f"{next_date}21:00"),
+        ]
 
         daily_forecast = []
         hourly = data['hourly']
-        for period, local_time_str in periods.items():
-            # Convert local time to UTC for Open-Meteo data
-
+        for (period, local_time_str) in periods:
             # Find the closest matching time in the hourly data
-            if local_time_str in hourly['time']:
+            if local_time_str in hourly['time'] and datetime.fromisoformat(period) > local_time:
                 idx = hourly['time'].index(local_time_str)
                 condition = WEATHER_CODES.get(hourly['weathercode'][idx], "unknown")
                 condition_txt = WEATHER_NAMES.get(hourly['weathercode'][idx], "unknown")
                 temp = hourly['temperature_2m'][idx]
                 rain_chance = hourly['precipitation_probability'][idx]
                 wind = hourly['windspeed_10m'][idx]
-                if period == 'night' and condition == 'clear':
+                if 'night' in period and condition == 'clear':
                     condition = 'clear_moon'
-                daily_forecast.append({
-                    'period': period,
-                    'local_time': local_time_str.split('T')[1],
-                    'condition': condition,
-                    'condition_txt': condition_txt,
-                    'temperature': temp,
-                    'rain_chance': rain_chance,
-                    'wind_speed': wind
-                })
+                if len(daily_forecast) < 4:
+                    daily_forecast.append({
+                        'period': period,
+                        'local_time': local_time_str.split('T')[1],
+                        'condition': condition,
+                        'condition_txt': condition_txt,
+                        'temperature': temp,
+                        'rain_chance': rain_chance,
+                        'wind_speed': wind
+                    })
 
         weekly_forecast = []
         daily = data['daily']

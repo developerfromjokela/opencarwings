@@ -381,7 +381,7 @@ def get_energy_information_channel(xml_data, returning_xml, channel_id, car):
     slide_title = _("Check Energy Economy")
 
     day = time_car_now.day
-    month = formats.date_format(time_car_now, format='B')
+    month = formats.date_format(time_car_now, format='F')
     day_word = get_word_of_month_i18n(day)
     help_text = _("The energy economy trend compared with the average of the last five trips is shown above.")
 

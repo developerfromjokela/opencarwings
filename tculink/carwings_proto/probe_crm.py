@@ -602,6 +602,13 @@ def parse_crmfile(data):
 
     return parse_result
 
+def apply_date_patch(date):
+    # apply patch for gps rollover, add 1024 weeks
+    rollover_timedelta = datetime.timedelta(days=1024*7)
+    if date.year < timezone.now().year-5:
+        return date + rollover_timedelta
+    return date
+
 
 def update_crm_to_db(car: Car, crm_pload):
     if car is None:
@@ -641,14 +648,14 @@ def update_crm_to_db(car: Car, crm_pload):
         for aircon in crm_pload["aircon"]:
             aircon_dbobj = CRMExcessiveAirconRecord()
             aircon_dbobj.car = car
-            aircon_dbobj.start = aircon.get("start", datetime.datetime(1970, 1, 1))
+            aircon_dbobj.start = apply_date_patch(aircon.get("start", datetime.datetime(1970, 1, 1)))
             aircon_dbobj.consumption = aircon.get("consumption", 0)
             aircon_dbobj.save()
     if "idling" in crm_pload:
         for idling in crm_pload["idling"]:
             idling_dbobj = CRMExcessiveIdlingRecord()
             idling_dbobj.car = car
-            idling_dbobj.start = idling.get("start", datetime.datetime(1970, 1, 1))
+            idling_dbobj.start = apply_date_patch(idling.get("start", datetime.datetime(1970, 1, 1)))
             idling_dbobj.duration = idling.get("duration", 0)
             idling_dbobj.save()
 
@@ -656,8 +663,8 @@ def update_crm_to_db(car: Car, crm_pload):
         for monthly in crm_pload["monthly"]:
             monthly_db = CRMMonthlyRecord()
             monthly_db.car = car
-            monthly_db.start = monthly.get("start", datetime.datetime(1970, 1, 1))
-            monthly_db.end = monthly.get("end", datetime.datetime(1970, 1, 1))
+            monthly_db.start = apply_date_patch(monthly.get("start", datetime.datetime(1970, 1, 1)))
+            monthly_db.end = apply_date_patch(monthly.get("end", datetime.datetime(1970, 1, 1)))
             monthly_db.distance = monthly.get("distance", 0)
             monthly_db.drive_time = monthly.get("drive_time", 0)
             monthly_db.average_speed = monthly.get("average_speed", 0)
@@ -679,7 +686,7 @@ def update_crm_to_db(car: Car, crm_pload):
         for msn in crm_pload["msn"]:
             msn_db = CRMMSNRecord()
             msn_db.car = car
-            msn_db.timestamp = msn.get("aquisition_ts", datetime.datetime(1970, 1, 1))
+            msn_db.timestamp = apply_date_patch(msn.get("aquisition_ts", datetime.datetime(1970, 1, 1)))
             msn_db.data = {"v": 0, "data": hex(msn.get("data", bytearray()))}
             msn_db.save()
 
@@ -692,8 +699,8 @@ def update_crm_to_db(car: Car, crm_pload):
                 charge_db.longitude = charge.get("lon", 0)
                 charge_db.charge_count = charge.get("charge_count", 0)
                 charge_db.charge_type = charge.get("charge_type", 1)
-                charge_db.start_time = charge.get("start_ts", datetime.datetime(1970, 1, 1))
-                charge_db.end_time = charge.get("end_ts", datetime.datetime(1970, 1, 1))
+                charge_db.start_time = apply_date_patch(charge.get("start_ts", datetime.datetime(1970, 1, 1)))
+                charge_db.end_time = apply_date_patch(charge.get("end_ts", datetime.datetime(1970, 1, 1)))
                 charge_db.charger_position_latitude = charge.get("charger_position_lat", 0)
                 charge_db.charger_position_longitude = charge.get("charger_position_long", 0)
                 charge_db.save()
@@ -702,8 +709,8 @@ def update_crm_to_db(car: Car, crm_pload):
         for chargehist in crm_pload["chargehistory"]:
             chargehist_db = CRMChargeHistoryRecord()
             chargehist_db.car = car
-            chargehist_db.start_time = chargehist.get("charging_start", datetime.datetime(1970, 1, 1))
-            chargehist_db.end_time = chargehist.get("charging_end", datetime.datetime(1970, 1, 1))
+            chargehist_db.start_time = apply_date_patch(chargehist.get("charging_start", datetime.datetime(1970, 1, 1)))
+            chargehist_db.end_time = apply_date_patch(chargehist.get("charging_end", datetime.datetime(1970, 1, 1)))
             chargehist_db.gids_start = chargehist.get("remaining_gids_at_start", 0)
             chargehist_db.gids_end = chargehist.get("remaining_gids_at_end", 0)
             chargehist_db.charge_bars_start = chargehist.get("remaining_charge_bars_at_start", 0)
@@ -729,7 +736,7 @@ def update_crm_to_db(car: Car, crm_pload):
         for absdata in crm_pload["absdata"]:
             abs_db = CRMABSHistoryRecord()
             abs_db.car = car
-            abs_db.timestamp = absdata.get("abs_operation_start_ts", datetime.datetime(1970, 1, 1))
+            abs_db.timestamp = apply_date_patch(absdata.get("abs_operation_start_ts", datetime.datetime(1970, 1, 1)))
             abs_db.operation_time = absdata.get("operation_time", 0)
             abs_db.latitude = absdata.get("navi_pos_lat", 0.0)
             abs_db.longitude = absdata.get("navi_pos_lon", 0.0)
@@ -751,15 +758,8 @@ def update_crm_to_db(car: Car, crm_pload):
         for trip in crm_pload["trips"]:
             trip_db = CRMTripRecord()
             trip_db.car = car
-            trip_db.start_ts = trip.get("start", datetime.datetime(1970, 1, 1))
-            trip_db.end_ts = trip.get("stop", datetime.datetime(1970, 1, 1))
-            # fix date
-            if trip_db.start_ts.year < 2010:
-                today = datetime.datetime.today()
-                trip_db.start_ts = trip_db.start_ts.replace(year=today.year, month=today.month, day=today.day)
-            if trip_db.end_ts.year < 2010:
-                today = datetime.datetime.today()
-                trip_db.end_ts = trip_db.end_ts.replace(year=today.year, month=today.month, day=today.day)
+            trip_db.start_ts = apply_date_patch(trip.get("start", datetime.datetime(1970, 1, 1)))
+            trip_db.end_ts = apply_date_patch(trip.get("stop", datetime.datetime(1970, 1, 1)))
             if "start_location" in trip:
                 trip_db.start_latitude = trip["start_location"].get("lat", 0.0)
                 trip_db.start_longitude = trip["start_location"].get("lon", 0.0)

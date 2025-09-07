@@ -137,7 +137,7 @@ class CarUpdatingSerializer(serializers.ModelSerializer):
         if 'route_plans' in validated_data:
             if validated_data.get('route_plans', None) is not None:
                 instance.route_plans.all().delete()
-                for item in validated_data['route_plans'][:6]:
+                for item in validated_data['route_plans'][:5]:
                     route_plan = RoutePlan()
                     route_plan.name = item.get('name')
                     for key, value in item.items():

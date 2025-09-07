@@ -1649,7 +1649,7 @@
         }
 
         function addNewPlan() {
-            if (routePlans.length > 5) {
+            if (routePlans.length > 4) {
                 showNotification({title: '{% translate "Cannot add new route plan" %}', message: '{% translate "You have too many route plans, please delete one and try again." %}', type: 'error'})
                 return
             }

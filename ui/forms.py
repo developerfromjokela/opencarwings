@@ -39,6 +39,7 @@ class ChangeCarwingsPasswordForm(forms.Form):
 class AccountForm(forms.Form):
     email = forms.EmailField(label=_("Email"), widget=forms.EmailInput(), max_length=254)
     notifications = forms.BooleanField(label=_("Notifications"), widget=forms.CheckboxInput(), required=False)
+    units_imperial = forms.BooleanField(label=_("Imperial Units"), widget=forms.CheckboxInput(), required=False)
 
 class SignUpForm(UserCreationForm):
     email = forms.EmailField(widget=forms.EmailInput(), max_length=254)

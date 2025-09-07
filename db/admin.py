@@ -8,7 +8,7 @@ from .models import (
     AlertHistory,
     Car, User, SendToCarLocation, CRMLatest, CRMLifetime, CRMExcessiveAirconRecord, CRMExcessiveIdlingRecord,
     CRMMonthlyRecord, CRMMSNRecord, CRMChargeRecord, CRMChargeHistoryRecord, CRMABSHistoryRecord, CRMTroubleRecord,
-    CRMTripRecord
+    CRMTripRecord, RoutePlan
 )
 
 
@@ -27,9 +27,15 @@ class LocationInfoAdmin(admin.ModelAdmin):
 
 @admin.register(SendToCarLocation)
 class SendToCarLocationAdmin(admin.ModelAdmin):
-    list_display = ('id', 'lat', 'lon', 'name')
-    list_filter = ('name',)
+    list_display = ('id', 'lat', 'lon', 'name', 'created_at')
+    list_filter = ('name', 'created_at')
     search_fields = ('lat', 'lon', 'name')
+
+@admin.register(RoutePlan)
+class RoutePlanAdmin(admin.ModelAdmin):
+    list_display = ('id',  'created_at', 'name')
+    list_filter = ('name',)
+    search_fields = ('name',)
 
 
 @admin.register(EVInfo)
@@ -81,7 +87,7 @@ class CarAdmin(admin.ModelAdmin):
                        'tcu_user', 'tcu_pass', 'last_connection', 'disable_auth')
         }),
         ('Related Objects', {
-            'fields': ('tcu_configuration', 'location', 'ev_info', 'send_to_car_location')
+            'fields': ('tcu_configuration', 'location', 'ev_info', 'send_to_car_location', 'route_plans')
         }),
         ('Command Info', {
             'fields': ('command_id', 'command_result', 'command_requested',

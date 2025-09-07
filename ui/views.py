@@ -80,12 +80,14 @@ def account(request):
     account_form = AccountForm()
     account_form.initial['email'] = request.user.email
     account_form.initial['notifications'] = request.user.email_notifications
+    account_form.initial['units_imperial'] = request.user.units_imperial
     api_key, __ = Token.objects.get_or_create(user=request.user)
     if request.method == 'POST':
         form = AccountForm(request.POST)
         if form.is_valid():
             request.user.email = form.cleaned_data['email']
             request.user.email_notifications = form.cleaned_data['notifications']
+            request.user.units_imperial = form.cleaned_data['units_imperial']
             request.user.save()
             messages.success(request, _("Account successfully updated!"))
             return redirect('account')
@@ -479,6 +481,7 @@ def car_detail(request, vin):
         "periodic_refresh_running_choices": PERIODIC_REFRESH_ACTIVE,
         "car_color_choices": CAR_COLOR,
         'sms_message': django.conf.settings.ACTIVATION_SMS_MESSAGE,
+        'imperial': 'true' if request.user.units_imperial else 'false'
     }
     return render(request, 'ui/car_detail.html', context)
 

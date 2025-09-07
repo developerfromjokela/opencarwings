@@ -3,6 +3,7 @@
 {% load static %}
 {% block title %} {{car.nickname}} {% endblock %}
 {% load i18n %}
+{% load units %}
 {% load l10n %}
 {% block content %}
     <!-- Main Content -->
@@ -74,16 +75,30 @@
             {% endif %}
         </div>
 
-        <!-- Tab Navigation -->
-        <div class="tab-nav border-b border-gray-200">
+        <div class="tab-nav-container relative">
+          <button class="scroll-arrow left-arrow absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-100 hover:bg-gray-200 text-gray-600 p-2 rounded-full hidden">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </button>
+
+          <div class="tab-nav border-b border-gray-200 flex overflow-x-auto whitespace-nowrap scroll-smooth hide-scrollbar">
             <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none {% if not show_settings %}text-blue-500 border-b-2 border-blue-500{% else %}text-gray-600{% endif %} text-sm sm:text-base" data-tab="overview">{% translate "Overview" %}</button>
             <button class="tab-btn px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="basic-info">{% translate "Basic Info" %}</button>
             <a href="/car/{{ car.vin }}/probeviewer" class="px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none text-sm sm:text-base">{% translate "Vehicle journal" %}<span class="ml-2 bg-blue-500 text-white text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm">{% translate "New!" %}</span></a>
             <button class="tab-btn px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="tcu-config">{% translate "TCU Configuration" %}</button>
             <button class="tab-btn px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="ev-status">{% translate "EV Status" %}</button>
             <button class="tab-btn px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="location">{% translate "Location" %}</button>
+            <button class="tab-btn px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="routeplanner">{% translate "Route Planner" %}</button>
             <button class="tab-btn px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="recent-alerts">{% translate "Recent Alerts" %}</button>
             <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none {% if show_settings %}text-blue-500 border-b-2 border-blue-500{% else %}text-gray-600{% endif %} text-sm sm:text-base" data-tab="settings">{% translate "Settings" %}</button>
+          </div>
+
+          <button class="scroll-arrow right-arrow absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-100 hover:bg-gray-200 text-gray-600 p-2 rounded-full hidden">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </button>
         </div>
 
         <!-- Tab Content -->
@@ -93,17 +108,17 @@
                 <h2 class="text-lg font-semibold text-gray-800 mb-4">{% translate "Overview" %}</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
                     <!-- Small Map -->
-                    <div id="overview-map" class="status-box flex flex-col items-center" style="padding: 0;">
+                    <div id="overview-map" class="map status-box flex flex-col items-center" style="padding: 0;">
                     </div>
                     <!-- Range with AC On -->
                     <div class="status-box">
                         <dt>{% translate "Range (AC On)" %}</dt>
-                        <dd id="overview-range-acon">{{ car.ev_info.range_acon }} km</dd>
+                        <dd id="overview-range-acon">{% local_dist car.ev_info.range_acon decimals=0 %}</dd>
                     </div>
                     <!-- Range with AC Off -->
                     <div class="status-box">
                         <dt>{% translate "Range (AC Off)" %}</dt>
-                        <dd id="overview-range-acoff">{{ car.ev_info.range_acoff }} km</dd>
+                        <dd id="overview-range-acoff">{% local_dist car.ev_info.range_acoff decimals=0 %}</dd>
                     </div>
                     <!-- State of Charge -->
                     <div class="status-box">
@@ -233,8 +248,8 @@
                     <div><dt class="text-gray-700 font-semibold">{% translate "State of Charge" %} ({% translate "Nominal" %}):</dt><dd class="text-gray-600" id="soc">{{ car.ev_info.soc|floatformat:3 }}%</dd></div>
                     <div><dt class="text-gray-700 font-semibold">{% translate "State of Health" %}:</dt><dd class="text-gray-600" id="soh">{{ car.ev_info.soh }}%</dd></div>
                     <div><dt class="text-gray-700 font-semibold">{% translate "Remaining kWh" %}:</dt><dd class="text-gray-600" id="remaining_kwh">{{ car.ev_info.wh_content|divide:1000 }} kWh</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "Range (AC On)" %}:</dt><dd class="text-gray-600" id="range_acon">{{ car.ev_info.range_acon }} km</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "Range (AC Off)" %}:</dt><dd class="text-gray-600" id="range_acoff">{{ car.ev_info.range_acoff }} km</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "Range (AC On)" %}:</dt><dd class="text-gray-600" id="range_acon">{% local_dist car.ev_info.range_acon decimals=0 %}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "Range (AC Off)" %}:</dt><dd class="text-gray-600" id="range_acoff">{% local_dist car.ev_info.range_acoff decimals=0 %}</dd></div>
                     <div><dt class="text-gray-700 font-semibold">{% translate "Plugged in" %}:</dt><dd class="text-gray-600" id="plugged_in">{{ car.ev_info.plugged_in|yesno:_("Yes,No") }}</dd></div>
                     <div><dt class="text-gray-700 font-semibold">{% translate "Charging" %}:</dt><dd class="text-gray-600" id="charging">{{ car.ev_info.charging|yesno:_("Yes,No") }}</dd></div>
                     <div><dt class="text-gray-700 font-semibold">{% translate "Quick-charging" %}:</dt><dd class="text-gray-600" id="quick_charging">{{ car.ev_info.quick_charging|yesno:_("Yes,No") }}</dd></div>
@@ -248,7 +263,7 @@
 
             <!-- Location -->
             <div id="location" class="tab-content">
-                <div id="map" class="mb-4"></div>
+                <div id="map" class="map mb-4"></div>
                 <h2 class="text-lg font-semibold text-gray-800 mt-4 flex items-center">{% translate "Send location to car" %}<div class="spinner ml-2" id="send-to-car-spinner"></div></h2>
                 <form id="send-to-car-search-form">
                     <input type="search" required minlength="2" placeholder="{% translate "Search for locations or enter google/apple maps link" %}" id="send-to-car-search" class="w-full p-2 border rounded mt-1">
@@ -266,6 +281,63 @@
                     <div><dt class="text-gray-700">{% translate "At Home" %}:</dt><dd class="text-gray-600" id="home">{{ car.location.home|yesno:_("Yes,No") }}</dd></div>
                     <div><dt class="text-gray-700">{% translate "Last Updated" %}:</dt><dd class="text-gray-600" id="loc_last_updated">{{ car.location.last_updated|default:"N/A"|date:"Y-m-d H:i" }}</dd></div>
                 </dl>
+            </div>
+
+            <!-- Location -->
+            <div id="routeplanner" class="tab-content">
+                <div class="flex flex-col md:flex-row gap-3 sm:gap-4" style="min-height: 500px;">
+                    <div id="routeplans" class="mb-6" style="min-width: 350px; max-width: 500px;">
+                        <h2 class="text-lg font-semibold text-gray-800 mt-4 flex items-center">{% translate "Route plans" %} <button onclick="addNewPlan()" class="ml-2 px-2 py-1 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none">{% translate "Add" %}</button></h2>
+                        <div id="routeplans-list" class="mt-2 space-y-2">
+                            {% for plan in car.route_plans.all %}
+                                <div class="flex items-center justify-between p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
+                                    <span class="text-gray-700 font-medium mx-3">{{ plan.name }}</span>
+                                    <div class="flex space-x-2">
+                                        <button
+                                            onclick="editRoutePlan('{{ plan.id }}')"
+                                            class="px-3 py-1 bg-blue-700 text-white rounded-md hover:bg-blue-600 transition text-sm"
+                                        >
+                                            {% translate "Edit" %}
+                                        </button>
+                                        <button
+                                            onclick="deleteRoutePlan('{{ plan.id }}')"
+                                            class="px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 transition text-sm"
+                                        >
+                                            {% translate "Delete" %}
+                                        </button>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            {% if car.route_plans.count == 0 %}
+                                {% translate 'No route plans added' %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div id="routeplan-editdialog" style="display: none;">
+                        <h2 class="text-lg font-semibold text-gray-800 mt-4 flex items-center">{% translate "Add/Edit a route plan" %}<div class="spinner ml-2" id="routeplan-spinner"></div></h2>
+                        <div id="routeplanner-compose" class="mt-2">
+                            <input type="text" maxlength="30" id="routeplan-name" placeholder="{% translate "Name of the plan" %}" class="w-full p-1 border rounded mt-1"/>
+                            <hr class="my-2"/>
+                            <form id="rp-start-form" class="rp-wp-search mt-2">
+                                <label for="rp-start" class="routeplan-title"><img class="routeplan-icon" src="{% static "chanicons/start.png" %}"/> {% translate "Starting point" %}</label>
+                                <input type="search" required minlength="2" placeholder="{% translate "Search for locations or enter google/apple maps link" %}" id="rp-start" class="rp-searchfield w-full p-1 border rounded mt-1">
+                                <div class="rp-search-results mt-2"></div>
+                            </form>
+                            <div id="rp-waypoints" class="ml-3">
+
+                            </div>
+                            <button class="font-medium text-blue-700 hover:underline" onclick="addWayPoint()">+ {% translate "Add waypoint" %}</button>
+                            <form id="rp-finish-form" class="rp-wp-search mt-2">
+                                <label for="rp-finish" class="routeplan-title"><img class="routeplan-icon" src="{% static "chanicons/destination.png" %}"/> {% translate "Destination point" %}</label>
+                                <input type="search" required minlength="2" placeholder="{% translate "Search for locations or enter google/apple maps link" %}" id="rp-finish" class="rp-searchfield w-full p-1 border rounded mt-1">
+                                <div class="rp-search-results mt-2"></div>
+                            </form>
+                            <button class="btn-s-disabled text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 me-2 mb-2 mt-5 " id="routeplan-submit" disabled="disabled">{% translate "Save" %}</button>
+                            <button class="text-white bg-gray-500 hover:bg-gray-700 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 me-2 mb-2 mt-5 " onclick="exitRoutePlanEditor()">{% translate "Cancel" %}</button>
+                        </div>
+                    </div>
+                    <div id="routeplanmap" class="map mb-4 flex-1 rounded-md" style="min-height: 300px;"></div>
+                </div>
             </div>
 
             <!-- Recent Alerts -->
@@ -393,10 +465,34 @@
         </div>
     </div>
 
+    <!-- Modals -->
+    <button data-modal-target="carpin-modal" data-modal-toggle="carpin-modal" style="display: none;" type="button"></button>
+    <div id="carpin-modal" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-md max-h-full">
+            <div class="relative bg-white rounded-lg shadow-sm">
+                <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" data-modal-hide="carpin-modal">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                    </svg>
+                    <span class="sr-only">{% translate "Close" %}</span>
+                </button>
+                <div class="p-4 md:p-5 text-center">
+                    <h3 class="mb-5 text-lg font-normal text-gray-700">{% translate "Set car location as" %}</h3>
+                        <button data-modal-hide="carpin-modal" onclick="setCarLocationInPlan(0)" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-500 focus:z-10 focus:ring-4 focus:ring-gray-100">{% translate "Starting point" %}</button>
+                        <button data-modal-hide="carpin-modal" onclick="setCarLocationInPlan(1)" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-500 focus:z-10 focus:ring-4 focus:ring-gray-100">{% translate "Destination point" %}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Scripts -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet-src.js"></script>
     {{ car.sms_config|json_script:"currentSmsConfig" }}
     <script>
+
+        const imperial = {{ imperial }};
+
+        const staticRes = "{% get_static_prefix %}";
 
         let currentSmsConfig = {stub: "{% translate "SMS from your device" %}"};
 
@@ -410,18 +506,18 @@
         const carId = {{ car.id }};
 
         // Initialize maps
-        let map = L.map('map', { zoomControl: true });
-        let overviewMap = L.map('overview-map', { zoomControl: false });
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(overviewMap);
+        let map;
+        let overviewMap;
+        let routeplanMap;
         let marker = null;
         let overviewMarker = null;
         let mapInitialized = false;
         let overviewMapInitialized = false;
+        let carColor = null;
+        let carName = null;
+
+        let routePlans = [];
+        let composingRoutePlan = {id: null};
 
         // Websocket client instance
         const webSockClient = new WebSocketClient("/ws/notif/", ws_connect, ws_msg, ws_err, ws_close, ws_reconnect)
@@ -434,6 +530,14 @@
                 .replace(/>/g, "&gt;")
                 .replace(/"/g, "&quot;")
                 .replace(/'/g, "&#039;");
+        }
+
+        const distanceLocalize = (km, accuracy) => {
+            if (imperial) {
+                let value = (km * 0.621371).toFixed(accuracy);
+                return `${value} mi`
+            }
+            return `${km.toFixed(accuracy)} km`
         }
 
 
@@ -465,6 +569,52 @@
 
         // Tab Switching with Map Fix
         document.addEventListener('DOMContentLoaded', () => {
+            // map init
+            map = L.map('map', { zoomControl: true });
+            overviewMap = L.map('overview-map', { zoomControl: false });
+            routeplanMap = L.map('routeplanmap', { zoomControl: true });
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(overviewMap);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(routeplanMap);
+
+            const tabNav = document.querySelector('.tab-nav');
+            const leftArrow = document.querySelector('.left-arrow');
+            const rightArrow = document.querySelector('.right-arrow');
+
+            // Function to check scroll position and toggle arrows
+            function updateArrows() {
+                const isAtStart = tabNav.scrollLeft <= 0;
+                const isAtEnd = tabNav.scrollLeft + tabNav.clientWidth >= tabNav.scrollWidth - 1;
+
+                leftArrow.classList.toggle('hidden', isAtStart);
+                rightArrow.classList.toggle('hidden', isAtEnd);
+            }
+
+            // Initial check for arrow visibility
+            updateArrows();
+
+            // Update arrows on scroll
+            tabNav.addEventListener('scroll', updateArrows);
+
+            // Scroll left on left arrow click
+            leftArrow.addEventListener('click', () => {
+            tabNav.scrollBy({ left: -200, behavior: 'smooth' });
+            });
+
+            // Scroll right on right arrow click
+            rightArrow.addEventListener('click', () => {
+            tabNav.scrollBy({ left: 200, behavior: 'smooth' });
+            });
+
+            // Update arrows on window resize
+            window.addEventListener('resize', updateArrows);
+
             const tabButtons = document.querySelectorAll('.tab-btn');
             const tabContents = document.querySelectorAll('.tab-content');
 
@@ -490,19 +640,36 @@
                         }, 300);
                     }
 
+                    if (tabId === 'routeplanner') {
+                        routeplanMap.invalidateSize();
+                    }
+
                     if (tabId === 'overview' && !overviewMapInitialized) {
                         overviewMarker = updateMap({{ car.location.lat|default:"null"|unlocalize }}, {{ car.location.lon|default:"null"|unlocalize }}, overviewMap, overviewMarker, 15, true);
                         overviewMapInitialized = true;
+                        setTimeout(() => {
+                            overviewMap.invalidateSize();
+                        }, 100);
                     } else if (tabId === 'overview') {
                         setTimeout(() => {
                             overviewMap.invalidateSize();
-                        }, 300);
+                        }, 100);
                     }
                 });
             });
 
             // Initialize overview map on page load
             overviewMarker = updateMap({{ car.location.lat|default:"null"|unlocalize }}, {{ car.location.lon|default:"null"|unlocalize }}, overviewMap, overviewMarker, 15, true);
+            const routeplanCarLatLon = [{{ car.location.lat|default:"null"|unlocalize }}, {{ car.location.lon|default:"null"|unlocalize }}];
+            if (routeplanCarLatLon.length > 0 && routeplanCarLatLon[0]) {
+                let carIcn = L.icon({
+                    iconUrl: staticRes+`car/{{ car.color }}.png`,
+                    iconSize:     [42, 25],
+                    iconAnchor:   [10, 20],
+                });
+                L.marker(routeplanCarLatLon, {icon: carIcn}).addTo(routeplanMap).on('click', openDestCopyDialog);
+                routeplanMap.fitBounds([routeplanCarLatLon], {padding: [12, 12]});
+            }
             overviewMapInitialized = true;
 
             const radioButtons = document.querySelectorAll('input[name="sms-provider"]');
@@ -520,6 +687,14 @@
 
             // Initial call to show fields based on default selection
             updateFields();
+
+            // listener for routeplan field
+            document.getElementById('routeplan-name').addEventListener('input', (evt) => {
+                if (!composingRoutePlan)
+                    composingRoutePlan = {id: null};
+                composingRoutePlan.name = evt.target.value;
+                updateRoutePlannerState((evt.target.value.length > 0 && composingRoutePlan.count && composingRoutePlan.count > 1), false);
+            });
         });
 
         // Send to car
@@ -527,6 +702,10 @@
         const sendToCarSpinner = document.getElementById('send-to-car-spinner');
         const sendToCarSearch = document.getElementById('send-to-car-search');
         const sendToCarResults = document.getElementById('send-to-car-results');
+
+        // Route planner
+        const routePlanButton = document.getElementById('routeplan-submit');
+        const routePlanSpinner = document.getElementById('routeplan-spinner');
 
         // Command State Management
         const commandSelect = document.getElementById('command-select');
@@ -548,6 +727,11 @@
         function updateSendToCarState(enabled, searching) {
             sendToCarButton.disabled = enabled ? "" : "disabled";
             sendToCarSpinner.style.display = searching ? "inline-block" : "none";
+        }
+
+        function updateRoutePlannerState(enabled, searching) {
+            routePlanButton.disabled = enabled ? "" : "disabled";
+            routePlanSpinner.style.display = searching ? "inline-block" : "none";
         }
 
         // Function to update the charge bar display
@@ -588,7 +772,7 @@
 
                 // Create the value cell
                 const valueCell = document.createElement('td');
-                valueCell.textContent = (item.time === 4095 || item.time === 2047 || item.time == 0) ? '--:--' : convertMinsToHrsMins(item.time);
+                valueCell.textContent = (item.time === 4095 || item.time === 2047 || item.time === 0) ? '--:--' : convertMinsToHrsMins(item.time);
 
                 row.appendChild(valueCell);
 
@@ -644,15 +828,22 @@
         }
 
         function updateCarUIElements(data) {
-
             if (data.sms_config) {
                 currentSmsConfig = data.sms_config;
             }
 
+            if (data.route_plans) {
+                routePlans = data.route_plans;
+                updateRoutePlans();
+            }
+
+            carColor = data.color;
+            carName = data.nickname;
+
             // Update Overview Tab
             document.getElementById('overview-soc').textContent = data.ev_info.soc_display > 0 ? `${data.ev_info.soc_display.toFixed(1)}%` : `${data.ev_info.soc.toFixed(1)}%`;
-            document.getElementById('overview-range-acon').textContent = `${data.ev_info.range_acon} km`;
-            document.getElementById('overview-range-acoff').textContent = `${data.ev_info.range_acoff} km`;
+            document.getElementById('overview-range-acon').textContent = distanceLocalize(data.ev_info.range_acon, 0);
+            document.getElementById('overview-range-acoff').textContent = distanceLocalize(data.ev_info.range_acoff, 0)
             document.getElementById('overview-plugged-in').textContent = data.ev_info.quick_charging ? 'CHAdeMO' : (data.ev_info.plugged_in ? '{% translate "Plugged In" %}' : '{% translate "Unplugged" %}');
             // Update Car Status
             const carStatus = document.getElementById('overview-car-status');
@@ -699,8 +890,8 @@
             // Update other tabs
             document.getElementById('last_connection').textContent = data.last_connection ?
                 new Date(data.last_connection).toLocaleString() : 'N/A';
-            document.getElementById('range_acon').textContent = `${data.ev_info.range_acon} km`;
-            document.getElementById('range_acoff').textContent = `${data.ev_info.range_acoff} km`;
+            document.getElementById('range_acon').textContent = distanceLocalize(data.ev_info.range_acon, 0);
+            document.getElementById('range_acoff').textContent = distanceLocalize(data.ev_info.range_acoff, 0);
             document.getElementById('plugged_in').textContent = data.ev_info.plugged_in ? '{% translate "Yes" %}' : '{% translate "No" %}';
             document.getElementById('charging').textContent = data.ev_info.charging ? '{% translate "Yes" %}' : '{% translate "No" %}';
             document.getElementById('quick_charging').textContent = data.ev_info.quick_charging ? '{% translate "Yes" %}' : '{% translate "No" %}';
@@ -1039,6 +1230,521 @@
 
         function ws_err(ws_event) {
             // unused
+        }
+
+        // Route planner
+
+        function updateRoutePlans() {
+            const editDialog = document.getElementById('routeplan-editdialog');
+            const routePlansList = document.getElementById('routeplans-list');
+            editDialog.style.display = 'none';
+            routePlansList.innerHTML = '';
+            
+            if (routePlans.length === 0) {
+                routePlansList.innerHTML = '{% translate 'No route plans added' %}';
+            }
+
+            for (let route of routePlans) {
+                const frame = document.createElement('div');
+                frame.className = 'flex items-center justify-between p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition';
+
+                const planName = document.createElement('span');
+                planName.className = 'text-gray-700 font-medium mx-3';
+                planName.innerText = `${routePlans.indexOf(route)+1}. ${route.name}`;
+
+                const actionsFrame = document.createElement('div');
+                actionsFrame.className = 'flex space-x-2';
+
+                const editBtn = document.createElement('button');
+                editBtn.onclick = () => {editRoutePlan(route.id)};
+                editBtn.className = 'px-3 py-1 bg-blue-700 text-white rounded-md hover:bg-blue-600 transition text-sm';
+                editBtn.innerText = '{% translate "Edit" %}';
+
+                const deleteBtn = document.createElement('button');
+                deleteBtn.onclick = () => {deleteRoutePlan(route.id)};
+                deleteBtn.className = 'px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 transition text-sm';
+                deleteBtn.innerText = '{% translate "Delete" %}';
+
+                actionsFrame.appendChild(editBtn);
+                actionsFrame.appendChild(deleteBtn);
+
+                frame.appendChild(planName);
+                frame.appendChild(actionsFrame);
+
+                routePlansList.appendChild(frame);
+            }
+
+            routePlansList.style.display = 'block';
+        }
+
+        function removeWayPoint(pointNo) {
+            const waypointsHolder = document.getElementById('rp-waypoints');
+            let point = waypointsHolder.childNodes.values().toArray().find(i => i.id === `rp-waypoint-${pointNo}-form`);
+            if (point)
+                waypointsHolder.removeChild(point);
+
+            updateCurrentRoutePlanFromForm();
+        }
+
+        function openDestCopyDialog() {
+            if (!composingRoutePlan.active)
+                return;
+            const modal = FlowbiteInstances.getInstance('Modal', 'carpin-modal');
+            modal.show();
+        }
+
+        function updateCurrentRoutePlanFromForm() {
+            let mapPoints = [];
+            const searchFields = Array.from(document.getElementsByClassName('rp-searchfield'));
+            composingRoutePlan = {id: (composingRoutePlan ? composingRoutePlan.id : null), active:(composingRoutePlan ? composingRoutePlan.active : false)};
+            composingRoutePlan.name = document.getElementById('routeplan-name').value;
+            for (const field of searchFields) {
+                if (!field.dataset || !field.dataset.lat || !field.dataset.lon || !field.dataset.name)
+                    continue;
+                let pointId = 0;
+                if (field.id === 'rp-finish') {
+                    pointId = 6;
+                    composingRoutePlan.finish_lat = parseFloat(field.dataset.lat).toFixed(10);
+                    composingRoutePlan.finish_lon = parseFloat(field.dataset.lon).toFixed(10);
+                    composingRoutePlan.finish_name = field.dataset.name;
+                } else if (field.id.startsWith('rp-waypoint-')) {
+                    pointId = parseInt(field.id.replace('rp-waypoint-', ''));
+                    composingRoutePlan[`point${pointId}_name`] = field.dataset.name;
+                    composingRoutePlan[`point${pointId}_lat`] = parseFloat(field.dataset.lat).toFixed(10);
+                    composingRoutePlan[`point${pointId}_lon`] = parseFloat(field.dataset.lon).toFixed(10);
+                } else {
+                    composingRoutePlan.start_lat = parseFloat(field.dataset.lat).toFixed(10);
+                    composingRoutePlan.start_lon = parseFloat(field.dataset.lon).toFixed(10);
+                    composingRoutePlan.start_name = field.dataset.name;
+                }
+
+                mapPoints.push({name: field.dataset.name, lat: field.dataset.lat, lon: field.dataset.lon, number: pointId});
+            }
+            composingRoutePlan.count = mapPoints.length;
+            routeplanMap.invalidateSize();
+            routeplanMap.eachLayer(layer => {routeplanMap.removeLayer(layer)});
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(routeplanMap);
+            let latlngs = []
+            if (mapPoints.length < 1) {
+                if (marker) {
+                    const carLatLon = [marker.getLatLng().lat, marker.getLatLng().lng];
+                    let carIcn = L.icon({
+                        iconUrl: staticRes+`car/${carColor}.png`,
+                        iconSize:     [42, 25],
+                        iconAnchor:   [10, 20],
+                    });
+                    L.marker(carLatLon, {icon: carIcn}).addTo(routeplanMap).on('click', openDestCopyDialog);
+                    latlngs.push(carLatLon);
+                    routeplanMap.fitBounds(latlngs, {padding: [12, 12]});
+                }
+            }
+            for (const mapPnt of mapPoints) {
+                const latLng = [mapPnt.lat, mapPnt.lon];
+                let markerIcn = L.icon({
+                    iconUrl: staticRes+'chanicons/'+(mapPnt.number === 0 ? 'start.png' : (mapPnt.number === 6 ? 'destination.png' : `waypoint${mapPnt.number}.png`)),
+                    iconSize:     [29, 32],
+                    iconAnchor:   [5, 32],
+                    popupAnchor: [16, -30],
+                    tooltipAnchor: [16, -30],
+                });
+
+                let marker = L.marker(latLng, {icon: markerIcn})
+                marker.bindPopup(mapPnt.name);
+                marker.addTo(routeplanMap);
+                latlngs.push(latLng);
+            }
+            if (mapPoints.length > 0) {
+                updateRoutePlannerState((mapPoints.length > 1 && document.getElementById('routeplan-name').value.length > 0), false);
+                L.polyline(latlngs, {
+                            color: 'red',
+                            weight: 3,
+                            opacity: 0.5,
+                            smoothFactor: 1
+                        }).addTo(routeplanMap);
+                if (marker) {
+                    const carLatLon = [marker.getLatLng().lat, marker.getLatLng().lng];
+                    let carIcn = L.icon({
+                        iconUrl: staticRes+`car/${carColor}.png`,
+                        iconSize:     [42, 25],
+                        iconAnchor:   [10, 20],
+                    });
+                    L.marker(carLatLon, {icon: carIcn}).addTo(routeplanMap).on('click', openDestCopyDialog);
+                    latlngs.push(carLatLon);
+                }
+                routeplanMap.fitBounds(latlngs, {padding: [12, 12]});
+            }
+        }
+
+        function routePlanPointSearch(event) {
+            event.preventDefault();
+            const searchField = event.target.getElementsByClassName('rp-searchfield')[0];
+            if (searchField.value) {
+                updateRoutePlannerState(false, true);
+                map.invalidateSize();
+
+                const planPointResults = event.target.getElementsByClassName("rp-search-results")[0]
+                planPointResults.innerHTML = '';
+
+                const searchFieldValue = searchField.value.trim();
+                let linkMatchResult = mapUrlRegex.exec(searchFieldValue);
+                if (linkMatchResult && linkMatchResult.length > 0) {
+                    fetch('/api/maplink/resolve', {
+                        method: 'POST',
+                        headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token }}'
+                        },
+                        body: JSON.stringify({url: linkMatchResult[0]})
+                    }).then(response => response.json())
+                    .then(data => {
+                        updateRoutePlannerState(false, false);
+                        if (data.location) {
+                            const location = data.location;
+
+                            // Create list element
+                            const ul = document.createElement('ul');
+                            ul.className = 'space-y-2';
+                            const li = document.createElement('li');
+                            li.className = 'bg-gray-100 p-4 py-2 rounded-lg hover:bg-gray-200 transition flex items-start';
+
+                            if (location.name === location.address) {
+                                location.name = undefined;
+                            }
+
+
+                            searchField.dataset.lat = location.lat;
+                            searchField.dataset.lon = location.lon;
+                            searchField.dataset.addr = location.address || '{% translate "No address" %}';
+                            searchField.dataset.name = location.name;
+                            if (location.name)
+                                searchField.value = `${location.name}, ${location.address}`;
+                            else
+                                searchField.value = location.address || '{% translate "No address" %}';
+
+                            updateCurrentRoutePlanFromForm();
+                        } else {
+                            planPointResults.innerText = '{% translate "Could not get location from map link" %}'
+                        }
+                    })
+                    .catch(error => {
+                        updateRoutePlannerState(false, false);
+                        console.error(error);
+                        planPointResults.innerText = '{% translate "Error searching locations" %}: '+error.error ?? error;
+                    });
+                    return
+                }
+
+                fetch('https://nominatim.openstreetmap.org/search?'+new URLSearchParams({q: searchFieldValue, format: 'json', addressdetails: 1, limit: 5}).toString())
+                    .then(response => response.json())
+                    .then(data => {
+                        updateRoutePlannerState(false, false);
+                        if (data.length > 0) {
+                              // Create list element
+                              const ul = document.createElement('ul');
+                              ul.className = 'space-y-2';
+
+                              data.forEach(location => {
+                                const li = document.createElement('li');
+                                li.className = 'bg-gray-100 p-4 py-2 rounded-lg hover:bg-gray-200 transition flex items-start';
+
+                                // Extract address components
+                                const address = location.address || {};
+                                const addressParts = [
+                                    (address.road ? [address.road,
+                                    address.house_number].join(" ") : ''),
+                                  address.neighbourhood,
+                                  address.suburb,
+                                  address.town,
+                                  address.postcode,
+                                  address.country
+                                ].filter(part => part).join(', ');
+
+                                if (location.name === address.road) {
+                                    location.name = undefined;
+                                }
+
+                                const jsonValue = JSON.stringify({lat: location.lat, lon: location.lon, name: (location.name || address.road).substring(0, 32)});
+
+                                li.innerHTML = `
+                                  <div class="flex items-center space-x-2">
+                                    <input type="radio" class="h-4 w-4 text-blue-600 rounded" name="send-to-car-option" />
+                                    <div class="flex flex-col">
+                                      <h3 class="text-sm font-semibold text-gray-800 stc-locname"></h3>
+                                      <p class="text-sm text-gray-600 stc-locaddr" style="display: ${location.name ? "block" : "none"}"></p>
+                                    </div>
+                                  </div>
+                                `;
+
+                                li.querySelector('.stc-locname').innerText = location.name || addressParts;
+                                li.querySelector('.stc-locaddr').innerText = addressParts || '{% translate "No address" %}';
+
+                                li.querySelector('input[type="radio"]').value = jsonValue;
+
+
+
+                                li.addEventListener('click', (event) => {
+                                    const checkbox = li.querySelector('div > input[type="radio"]');
+                                    if (event.target !== checkbox) {
+                                        checkbox.checked = !checkbox.checked;
+                                    }
+                                    searchField.dataset.lat = location.lat;
+                                    searchField.dataset.lon = location.lon;
+                                    searchField.dataset.addr = addressParts || '{% translate "No address" %}';
+                                    searchField.dataset.name = location.name;
+                                    if (location.name)
+                                        searchField.value = `${location.name}, ${addressParts}`;
+                                    else
+                                        searchField.value = addressParts || '{% translate "No address" %}';
+                                    planPointResults.innerHTML = '';
+
+                                    updateCurrentRoutePlanFromForm();
+                                });
+                                ul.appendChild(li);
+                              });
+
+                              planPointResults.appendChild(ul);
+                        } else {
+                            planPointResults.innerText = '{% translate "Search did not find any locations" %}'
+                        }
+                    })
+                    .catch(error => {
+                        updateRoutePlannerState(false, false);
+                        console.error(error);
+                        planPointResults.innerText = '{% translate "Error searching locations" %}: '+error.error ?? error;
+                    });
+            }
+        }
+
+        function addWayPoint(number=null, internal=false) {
+            const waypointsHolder = document.getElementById('rp-waypoints');
+            if (waypointsHolder.children.length > 4) {
+                showNotification({title: '{% translate 'Cannot add a new waypoint' %}', message: '{% translate "Maximum number of waypoints reached" %}', type: 'warning'})
+                return;
+            }
+            const newWaypointNo = number ?? waypointsHolder.children.length+1;
+            const waypointForm = document.createElement('form');
+            waypointForm.className = 'rp-wp-search mt-2';
+            waypointForm.id = `rp-waypoint-${newWaypointNo}-form`;
+            waypointForm.onsubmit = routePlanPointSearch
+
+            const inputHolder = document.createElement('div');
+            inputHolder.className = 'flex flex-row';
+
+            const inputField = document.createElement('input');
+            inputField.type = 'search';
+            inputField.required = true;
+            inputField.minLength = 2;
+            inputField.placeholder = "{% translate "Search for locations or enter google/apple maps link" %}";
+            inputField.id = `rp-waypoint-${newWaypointNo}`;
+            inputField.className = 'rp-searchfield w-full p-1 border rounded mt-1';
+
+            const removeBtn = document.createElement('button');
+            removeBtn.className = 'ml-2 mt-1 text-gray-500 hover:text-gray-700 focus:outline-none bg-transparent border-none text-lg font-semibold';
+            removeBtn.innerText = 'x';
+            removeBtn.type = 'button';
+            removeBtn.addEventListener('click', () => {removeWayPoint(newWaypointNo)});
+
+            inputHolder.appendChild(inputField);
+            inputHolder.appendChild(removeBtn);
+
+            const inputLabel = document.createElement('label');
+            inputLabel.setAttributeNS(null, 'for', inputField.id);
+            inputLabel.className = 'routeplan-title';
+            const staticPath = staticRes+`chanicons/waypoint${newWaypointNo}.png`;
+            inputLabel.innerHTML = `<img class="routeplan-icon" src="${staticPath}"/> {% translate "Waypoint" %} ${newWaypointNo}`;
+
+            const searchResultsHolder = document.createElement('div');
+            searchResultsHolder.className = 'rp-search-results mt-2';
+
+            waypointForm.appendChild(inputLabel)
+            waypointForm.appendChild(inputHolder);
+            waypointForm.appendChild(searchResultsHolder);
+
+            waypointsHolder.appendChild(waypointForm);
+            if (!internal)
+                routeplanMap.invalidateSize();
+        }
+
+        function setCarLocationInPlan(pos) {
+            const startBox = document.getElementById('rp-start');
+            const endBox = document.getElementById('rp-finish');
+            const activeBox = pos === 0 ? startBox : endBox;
+            activeBox.value = carName;
+            activeBox.dataset = {};
+            activeBox.dataset.lat = marker.getLatLng().lat;
+            activeBox.dataset.lon = marker.getLatLng().lng;
+            activeBox.dataset.addr = '{% translate "No address" %}';
+            activeBox.dataset.name = carName;
+            updateCurrentRoutePlanFromForm();
+        }
+
+        function saveRoutePlan() {
+            console.log("save!");
+            composingRoutePlan.name = document.getElementById('routeplan-name').value;
+            console.log(routePlans)
+            routePlans = routePlans.sort((a,b)=>{return new Date(b.created_at) - new Date(a.created_at)})
+            console.log(routePlans)
+            if (composingRoutePlan.id) {
+                console.log("composing route plan.id!", composingRoutePlan);
+                let idx = routePlans.indexOf(routePlans.find(i => i.id === composingRoutePlan.id));
+                console.log(idx);
+                if (idx !== -1) {
+                    routePlans[idx] = composingRoutePlan;
+                }
+                console.log(routePlans);
+                routePlans = routePlans.sort(function(x,y){ return x.id === composingRoutePlan.id ? -1 : y.id === composingRoutePlan.id ? 1: 0; })
+                console.log(routePlans);
+            } else {
+                routePlans.unshift(composingRoutePlan);
+            }
+            updateRoutePlannerState(false, true);
+            fetch(`/api/car/${vin}/`, {
+                        method: 'PATCH',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': '{{ csrf_token }}'
+                        },
+                        body: JSON.stringify({ route_plans: routePlans })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.error) {
+                            updateRoutePlannerState(false, false);
+                            showNotification({title: '{% translate "Error saving the route plan" %}', message: data.error ?? data, type: 'error'})
+                        } else {
+                            showNotification({message: "{% translate "Route plan saved!" %}", type: "success"});
+                            exitRoutePlanEditor();
+                            updateCarUIElements(data);
+                        }
+                    })
+                    .catch(error => {
+                        updateRoutePlannerState(true, false);
+                        console.error('{% translate "Error saving the route plan" %}:', error);
+                        showNotification({title: '{% translate "Error saving the route plan" %}', message: error.error ?? error, type: 'error'})
+                    });
+        }
+
+        function exitRoutePlanEditor() {
+            composingRoutePlan = {id: null};
+            const editDialog = document.getElementById('routeplan-editdialog');
+            const routePlansList = document.getElementById('routeplans');
+            const rpStart = document.getElementById('rp-start');
+            const rpFinish = document.getElementById('rp-finish');
+            const rpName = document.getElementById('routeplan-name');
+            routePlansList.style.display = 'block';
+            editDialog.style.display = 'none';
+            document.getElementById('rp-waypoints').innerHTML = '';
+            rpStart.value = '';
+            rpFinish.value = '';
+            rpName.value = '';
+            Object.keys(rpStart.dataset).forEach(dataKey => {
+                delete rpStart.dataset[dataKey];
+            });
+            Object.keys(rpFinish.dataset).forEach(dataKey => {
+                delete rpFinish.dataset[dataKey];
+            });
+            updateCurrentRoutePlanFromForm();
+        }
+
+        function addNewPlan() {
+            if (routePlans.length > 5) {
+                showNotification({title: '{% translate "Cannot add new route plan" %}', message: '{% translate "You have too many route plans, please delete one and try again." %}', type: 'error'})
+                return
+            }
+            composingRoutePlan.active = true;
+            const editDialog = document.getElementById('routeplan-editdialog');
+            const routePlansList = document.getElementById('routeplans');
+            routePlansList.style.display = 'none';
+            editDialog.style.display = 'block';
+            document.getElementById('rp-start-form').onsubmit = routePlanPointSearch;
+            document.getElementById('rp-finish-form').onsubmit = routePlanPointSearch;
+            document.getElementById('routeplan-submit').onclick = saveRoutePlan;
+            updateRoutePlannerState(false, false);
+            updateCurrentRoutePlanFromForm();
+        }
+
+        function editRoutePlan(id) {
+            const routePlanObj = routePlans.find(p => p.id === id);
+            if (routePlanObj) {
+                const editDialog = document.getElementById('routeplan-editdialog');
+                const routePlansList = document.getElementById('routeplans');
+                const rpStart = document.getElementById('rp-start');
+                const rpFinish = document.getElementById('rp-finish');
+                const rpName = document.getElementById('routeplan-name');
+                routePlansList.style.display = 'none';
+                editDialog.style.display = 'block';
+                document.getElementById('rp-start-form').onsubmit = routePlanPointSearch;
+                document.getElementById('rp-finish-form').onsubmit = routePlanPointSearch;
+                document.getElementById('routeplan-submit').onclick = saveRoutePlan;
+
+                composingRoutePlan = routePlanObj;
+                composingRoutePlan.active = true;
+                rpName.value = routePlanObj.name;
+                if (composingRoutePlan.start_name) {
+                    rpStart.value = composingRoutePlan.start_name;
+                    rpStart.dataset.name = composingRoutePlan.start_name;
+                    rpStart.dataset.address = composingRoutePlan.address;
+                }
+                if (composingRoutePlan.start_lat && composingRoutePlan.start_lon) {
+                    rpStart.dataset.lat = composingRoutePlan.start_lat;
+                    rpStart.dataset.lon = composingRoutePlan.start_lon;
+                }
+                if (composingRoutePlan.finish_name) {
+                    rpFinish.value = composingRoutePlan.finish_name;
+                    rpFinish.dataset.name = composingRoutePlan.finish_name;
+                    rpFinish.dataset.address = composingRoutePlan.address;
+                }
+                if (composingRoutePlan.finish_lat && composingRoutePlan.finish_lon) {
+                    rpFinish.dataset.lat = composingRoutePlan.finish_lat;
+                    rpFinish.dataset.lon = composingRoutePlan.finish_lon;
+                }
+                for (let num = 1; num < 6; num++) {
+                    console.log(num);
+                    if (composingRoutePlan[`point${num}_name`] && composingRoutePlan[`point${num}_lat`] && composingRoutePlan[`point${num}_lon`]) {
+                        addWayPoint(num, true);
+                        const inputForm = document.getElementById(`rp-waypoint-${num}`);
+                        inputForm.value = composingRoutePlan[`point${num}_name`];
+                        inputForm.dataset.name = composingRoutePlan[`point${num}_name`];
+                        inputForm.dataset.lat = composingRoutePlan[`point${num}_lat`];
+                        inputForm.dataset.lon = composingRoutePlan[`point${num}_lon`];
+                    }
+                }
+
+                updateCurrentRoutePlanFromForm();
+            }
+        }
+
+        function deleteRoutePlan(id) {
+            const routePlanObj = routePlans.find(p => p.id === id);
+            if (routePlanObj) {
+                if (confirm('{% translate 'Are you sure you want to delete this route plan?' %}')) {
+                    routePlans = routePlans.filter(p => p.id !== routePlanObj.id);
+                    console.log(routePlans, id, routePlanObj);
+                    fetch(`/api/car/${vin}/`, {
+                        method: 'PATCH',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': '{{ csrf_token }}'
+                        },
+                        body: JSON.stringify({ route_plans: routePlans })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.error) {
+                            showNotification({title: '{% translate "Error deleting the route plan" %}', message: data.error ?? data, type: 'error'})
+                        } else {
+                            showNotification({message: "{% translate "Route plan removed!" %}", type: "success"});
+                            updateCarUIElements(data);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('{% translate "Error deleting the route plan" %}:', error);
+                        showNotification({title: '{% translate "Error deleting the route plan" %}', message: error.error ?? error, type: 'error'})
+                    });
+                }
+            }
         }
 
         updateCarData();

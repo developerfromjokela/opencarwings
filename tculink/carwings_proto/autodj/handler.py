@@ -1,15 +1,21 @@
 from tculink.carwings_proto.autodj import NOT_FOUND_AUTODJ_ITEM, NOT_AUTHORIZED_AUTODJ_ITEM
 from tculink.carwings_proto.autodj.channels import STANDARD_AUTODJ_FOLDERS, STANDARD_AUTODJ_CHANNELS
 from tculink.carwings_proto.dataobjects import construct_chnmst_payload, construct_fvtchn_payload, build_autodj_payload
-import xml.etree.ElementTree as ET
+from django.utils.translation import gettext_lazy as _
 from django.utils.translation import activate
 from tculink.carwings_proto.utils import get_cws_authenticated_car, carwings_lang_to_code
+from unidecode import unidecode
 
 
 def handle_directory_response(xml_data, returning_xml):
     # TODO customisable user folder
     channels = [x for x in STANDARD_AUTODJ_CHANNELS if (x.get('internal', False) == False)]
-    resp_file = construct_chnmst_payload(STANDARD_AUTODJ_FOLDERS, channels)
+
+    activate(carwings_lang_to_code(xml_data['base_info'].get('navigation_settings', {}).get('language', "uke")))
+    channels = [translate_chan_name(c) for c in channels]
+    folders = [translate_chan_name(c) for c in STANDARD_AUTODJ_FOLDERS]
+
+    resp_file = construct_chnmst_payload(folders, channels)
 
     favt_file = construct_fvtchn_payload([
         {
@@ -28,11 +34,12 @@ def handle_directory_response(xml_data, returning_xml):
         ("FAVTINF", favt_file)
     ]
 
+def translate_chan_name(chan):
+    chan['name1'] = unidecode(_(chan['name1']))[:30]
+    chan['name2'] = unidecode(_(chan['name2']))[:127]
+    return chan
 
 def handle_channel_response(xml_data, channel_id, returning_xml):
-    # add exception for channel update channel (purpose?)
-    #if channel_id == 0x270f:
-    #    return []
     channels = STANDARD_AUTODJ_CHANNELS
     # TODO if customisable channels add here
     activate(carwings_lang_to_code(xml_data['base_info'].get('navigation_settings', {}).get('language', "uke")))

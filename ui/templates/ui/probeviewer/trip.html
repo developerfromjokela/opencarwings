@@ -5,6 +5,7 @@
 {% load i18n %}
 {% load l10n %}
 {% load mathfilters %}
+{% load units %}
 {% block title %} {{ trip.start_ts }} - {% translate "Vehicle data viewer" %} - {{car.nickname}} {% endblock %}
 {% block content %}
 
@@ -75,9 +76,9 @@
                         <dt><i class="mic material-symbols-outlined">flash_on</i> {% translate "Average consumption" %}</dt>
                         <dd id="overview-range-acon">{% if trip.regen != 0 %}
                             {% with regen_wh=trip.regen|div:100.0 %}
-                                {{ cons_wh|sub:regen_wh|div:trip.distance|floatformat:1 }}
+                                {% local_cons cons_wh|sub:regen_wh|div:trip.distance decimals=1 %}
                             {% endwith %}
-                        {% else %}{{ cons_wh|div:trip.distance|floatformat:1 }}{% endif %} Wh/km</dd>
+                        {% else %}{% local_cons cons_wh|div:trip.distance decimals=1 %}{% endif %}</dd>
                     </div>
                     {% endwith %}
                 {% endif %}

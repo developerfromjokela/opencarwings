@@ -125,6 +125,7 @@ class User(AbstractUser):
         },
     )
     email_notifications = models.BooleanField(default=True)
+    units_imperial = models.BooleanField(default=False)
 
 
 class TCUConfiguration(models.Model):
@@ -149,6 +150,40 @@ class SendToCarLocation(models.Model):
     lat = models.DecimalField(max_digits=20, decimal_places=10)
     lon = models.DecimalField(max_digits=20, decimal_places=10)
     name = models.CharField(max_length=32)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+class RoutePlan(models.Model):
+    name = models.CharField(max_length=31)
+    created_at = models.DateTimeField(auto_now_add=True)
+    #start
+    start_name = models.CharField(max_length=30)
+    start_lat = models.DecimalField(max_digits=20, decimal_places=10)
+    start_lon = models.DecimalField(max_digits=20, decimal_places=10)
+    #finish
+    finish_name = models.CharField(max_length=30)
+    finish_lat = models.DecimalField(max_digits=20, decimal_places=10)
+    finish_lon = models.DecimalField(max_digits=20, decimal_places=10)
+    # waypoint 1
+    point1_name = models.CharField(max_length=30, blank=True, null=True)
+    point1_lat = models.DecimalField(max_digits=20, decimal_places=10, null=True, blank=True)
+    point1_lon = models.DecimalField(max_digits=20, decimal_places=10, null=True, blank=True)
+    # waypoint 2
+    point2_name = models.CharField(max_length=30, blank=True, null=True)
+    point2_lat = models.DecimalField(max_digits=20, decimal_places=10, null=True, blank=True)
+    point2_lon = models.DecimalField(max_digits=20, decimal_places=10, null=True, blank=True)
+    # waypoint 3
+    point3_name = models.CharField(max_length=30, blank=True, null=True)
+    point3_lat = models.DecimalField(max_digits=20, decimal_places=10, null=True, blank=True)
+    point3_lon = models.DecimalField(max_digits=20, decimal_places=10, null=True, blank=True)
+    # waypoint 4
+    point4_name = models.CharField(max_length=30, blank=True, null=True)
+    point4_lat = models.DecimalField(max_digits=20, decimal_places=10, null=True, blank=True)
+    point4_lon = models.DecimalField(max_digits=20, decimal_places=10, null=True, blank=True)
+    # waypoint 5
+    point5_name = models.CharField(max_length=30, blank=True, null=True)
+    point5_lat = models.DecimalField(max_digits=20, decimal_places=10, null=True, blank=True)
+    point5_lon = models.DecimalField(max_digits=20, decimal_places=10, null=True, blank=True)
+
 
 class EVInfo(models.Model):
     range_acon = models.IntegerField(default=0, null=True, blank=True)
@@ -215,7 +250,8 @@ class Car(models.Model):
     command_request_time = models.DateTimeField(null=True, default=None, blank=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     # CarWings navi
-    send_to_car_location = models.OneToOneField(SendToCarLocation, on_delete=models.CASCADE, null=True, blank=True)
+    send_to_car_location = models.ManyToManyField(SendToCarLocation)
+    route_plans = models.ManyToManyField(RoutePlan)
 
 
 # Probe data

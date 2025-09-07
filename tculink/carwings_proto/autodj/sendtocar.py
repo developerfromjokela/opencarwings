@@ -5,6 +5,8 @@ import geopy.distance
 
 from tculink.carwings_proto.utils import xml_coordinate_to_float
 
+from django.utils.text import format_lazy
+from django.utils.translation import gettext_lazy as _
 
 def handle_send_to_car_adj(xml_data, returning_xml, channel_id, car: Car):
     car_destinations = []
@@ -38,8 +40,9 @@ def handle_send_to_car_adj(xml_data, returning_xml, channel_id, car: Car):
                 'unnamed_data': bytearray(),
                 # text shown on bottom
                 "bigDynamicField7": point_name.encode('utf-8'),
-                "bigDynamicField8": f'Location point, "{point_name}", which is {distance} kilometers away. '
-                                    f'Set it as destination by pressing pause and setting map point as destination.'.encode('utf-8'),
+                "bigDynamicField8": str(format_lazy(_('Location point, "{point_name}", which is {distance} kilometers away. '
+                                    f'Set it as destination by pressing pause and setting map point as destination.'),
+                                                    point_name=point_name, distance=distance)).encode('utf-8'),
                 "iconField": 0x0001,
                 # annoucnement sound, 1=yes,0=no
                 "longField2": 1,
@@ -74,10 +77,10 @@ def handle_send_to_car_adj(xml_data, returning_xml, channel_id, car: Car):
                 'dynamicField5': b'',
                 'dynamicField6': b'',
                 'unnamed_data': bytearray(),
-                "bigDynamicField7": 'Google Send To Car: No Destinations'.encode('utf-8'),
-                "bigDynamicField8": 'There are no destinations sent to the car. '
+                "bigDynamicField7": str(_('Google Send To Car: No Destinations')).encode('utf-8'),
+                "bigDynamicField8": str(_('There are no destinations sent to the car. '
                                     'Please send at least one destination from your computer or mobile device and'
-                                    ' access this channel again.'.encode(
+                                    ' access this channel again.')).encode(
                     'utf-8'),
                 "iconField": 0x0000,
                 # annoucnement sound, 1=yes,0=no

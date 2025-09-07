@@ -1,11 +1,15 @@
+import calendar
+import logging
 import os
 import random
 from datetime import datetime
 from io import BytesIO
+logger = logging.getLogger("carwings_apj")
 
 import pngquant
 from PIL import Image, ImageFont, ImageDraw
 from django.contrib.humanize.templatetags.humanize import ordinal
+from django.db.models.aggregates import Sum
 from django.utils import timezone, formats
 from django.utils.text import format_lazy
 from django.utils.translation import gettext_lazy as _
@@ -327,6 +331,176 @@ def create_info_slide(title, info_title):
     main_frame_jpg.save(frame_data, 'JPEG', optimize=True, quality=80,compress_level=9)
     return frame_data.getvalue()
 
+def create_ecorecord_slide(title, total, total_count, trees, records):
+    resources_dir = os.path.join(
+        os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "images")
+    font_file = os.path.join(resources_dir, "zeroemission.ttf")
+
+    header_font = ImageFont.truetype(font_file, 28)
+
+    total_info = ImageFont.truetype(font_file, 17)
+    total_data_info = ImageFont.truetype(font_file, 17)
+
+    date_label = ImageFont.truetype(font_file, 21.5)
+    trees_label = ImageFont.truetype(font_file, 19)
+
+    bignum = ImageFont.truetype(font_file, 35)
+
+    main_frame = Image.open(os.path.join(resources_dir, f"zeroemission_w.png"))
+    forest = Image.open(os.path.join(resources_dir, f"forest.png"))
+    table = Image.open(os.path.join(resources_dir, f"ecodata.png"))
+    main_frame.paste(forest, (0, 0), forest)
+    main_frame.paste(table, (0, 0), table)
+    mainframe_draw = ImageDraw.Draw(main_frame)
+    # 57,87: dat
+    # 330, 118: unit
+    space_spacing = -2
+    letter_spacing = -0.5
+    x, y = 16, 23
+
+    end_x = 16
+    font_size_correct = False
+    title_stroke_width = 0.25
+
+    while not font_size_correct:
+        for char in title:
+            char_width = mainframe_draw.textlength(char, font=header_font)
+            if char == " ":
+                end_x += char_width + space_spacing
+            else:
+                end_x += char_width + letter_spacing
+
+        if end_x > 360:
+            print(header_font.size)
+            end_x = 60
+            header_font = ImageFont.truetype(font_file, header_font.size - 1)
+            title_stroke_width -= 0.005
+        else:
+            font_size_correct = True
+
+    for char in title:
+        mainframe_draw.text((x, y), char, fill="white", stroke_width=title_stroke_width + 2, font=header_font,
+                            anchor="lm")
+        mainframe_draw.text((x, y), char, fill=(41, 140, 123), stroke_width=title_stroke_width, font=header_font,
+                            anchor="lm")
+        char_width = mainframe_draw.textlength(char, font=header_font)
+        if char == " ":
+            x += char_width + space_spacing
+        else:
+            x += char_width + letter_spacing
+
+    # 23,76: total
+    # 23,175: total res
+
+    mainframe_draw.text((22, 76), str(total), fill=(251, 186, 49), anchor="lm", stroke_width=0.3, font=total_info)
+
+    mainframe_draw.text((175, 76), f"{total_count:.1f}", fill="white", anchor="rm", stroke_width=0.3, font=total_data_info)
+
+    for i, row in enumerate(records):
+        y_offset = (i * 54)
+        txt_color_date = (255, 255, 255) if i != 0 else (231, 255, 156)
+        txt_color_data = (140, 231, 255) if i != 0 else (231, 255, 156)
+        mainframe_draw.text((23, 131 + y_offset), str(row[0]), fill=txt_color_date, anchor="lb", stroke_width=0.25,
+                            font=date_label)
+        mainframe_draw.text((172, 131 + y_offset), f"{row[1]:.1f}", fill=txt_color_data, anchor="rb", stroke_width=0.35,
+                            font=bignum)
+        mainframe_draw.text((176, 131 + y_offset), str(trees), fill=txt_color_data, anchor="lb", stroke_width=0.15,
+                            font=trees_label)
+
+        halftrees = row[1] % 1
+        fulltrees = int(row[1] - halftrees)
+        print(halftrees, fulltrees)
+        tree_x = 0
+        for i in range(fulltrees):
+            tree = Image.open(os.path.join(resources_dir, f"t5.png")).resize((30, 42))
+            main_frame.paste(tree, (234 + (36 * tree_x), 89 + y_offset), tree)
+            tree_x += 1
+
+        if halftrees > 0:
+            print(round(halftrees * 5))
+            tree = Image.open(os.path.join(resources_dir, f"t{int(round(halftrees * 5))}.png")).resize((30, 42))
+            main_frame.paste(tree, (234 + (36 * tree_x), 89 + y_offset), tree)
+
+    frame_data = BytesIO()
+    main_frame.save(frame_data, format="PNG")
+    return pngquant.quant_data(frame_data.getvalue())[1]
+
+def create_ecoforest_slide(title, total_title, total_value, emission_title, emission_value):
+    resources_dir = os.path.join(
+        os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "images")
+    font_file = os.path.join(resources_dir, "zeroemission.ttf")
+
+    header_font = ImageFont.truetype(font_file, 28)
+
+    total_info = ImageFont.truetype(font_file, 16)
+    total_data_info = ImageFont.truetype(font_file, 19)
+
+    main_frame = Image.open(os.path.join(resources_dir, f"zeroemission_w.png"))
+    forest = Image.open(os.path.join(resources_dir, f"forest.png"))
+    main_frame.paste(forest, (0, 0), forest)
+
+    globe = Image.open(os.path.join(resources_dir, f"globe.png"))
+    maptree = Image.open(os.path.join(resources_dir, f"maptree.png"))
+    main_frame.paste(globe, (0, 0), globe)
+    main_frame.paste(maptree, (0, 0), maptree)
+
+    mainframe_draw = ImageDraw.Draw(main_frame)
+    # 57,87: dat
+    # 330, 118: unit
+    space_spacing = -2
+    letter_spacing = -0.5
+    x, y = 16, 23
+
+    end_x = 16
+    font_size_correct = False
+    title_stroke_width = 0.25
+
+    while not font_size_correct:
+        for char in title:
+            char_width = mainframe_draw.textlength(char, font=header_font)
+            if char == " ":
+                end_x += char_width + space_spacing
+            else:
+                end_x += char_width + letter_spacing
+
+        if end_x > 360:
+            end_x = 60
+            header_font = ImageFont.truetype(font_file, header_font.size - 1)
+            title_stroke_width -= 0.005
+        else:
+            font_size_correct = True
+
+    for char in title:
+        mainframe_draw.text((x, y), char, fill="white", stroke_width=title_stroke_width + 2, font=header_font,
+                            anchor="lm")
+        mainframe_draw.text((x, y), char, fill=(41, 140, 123), stroke_width=title_stroke_width, font=header_font,
+                            anchor="lm")
+        char_width = mainframe_draw.textlength(char, font=header_font)
+        if char == " ":
+            x += char_width + space_spacing
+        else:
+            x += char_width + letter_spacing
+
+    mainframe_draw.text((62, 235), str(total_title), fill=(8, 33, 76), anchor="lm", stroke_width=3,
+                        font=total_info)
+    mainframe_draw.text((62, 235), str(total_title), fill=(251, 186, 49), anchor="lm", stroke_width=0.3,
+                        font=total_info)
+
+    mainframe_draw.text((62, 255), str(emission_title), fill=(8, 33, 76), anchor="lm", stroke_width=3, font=total_info)
+    mainframe_draw.text((62, 255), str(emission_title), fill=(251, 186, 49), anchor="lm", stroke_width=0.3,
+                        font=total_info)
+
+    mainframe_draw.text((440, 234), total_value, fill="white", anchor="rm", stroke_width=0.3,
+                        font=total_data_info)
+    mainframe_draw.text((440, 254), emission_value, fill="white", anchor="rm", stroke_width=0.3,
+                        font=total_data_info)
+
+    frame_data = BytesIO()
+    main_frame_jpg = main_frame.convert("RGB")
+    main_frame_jpg.save(frame_data, 'JPEG', optimize=True, quality=70,compress_level=9)
+    return frame_data.getvalue()
+
+
 def get_ordinal_suffix(day):
     if 10 <= day % 100 <= 20:
         suffix = 'th'
@@ -542,6 +716,204 @@ def get_energy_information_channel(xml_data, returning_xml, channel_id, car):
 
 
 
+def get_eco_tree_channel(xml_data, returning_xml, channel_id, car):
+    response_chdata = []
 
+    current_month = timezone.now().month
+    current_year = timezone.now().year
+    month_trips = CRMTripRecord.objects.filter(start_ts__month=current_month, start_ts__year=current_year, car=car).order_by("-start_ts")
+
+    car_timezone = float(xml_data['base_info'].get('navigation_settings', {}).get('time_zone', "+0.00"))
+    car_tzinfo = timezone.get_fixed_timezone(car_timezone)
+    time_car_now = datetime.now(tz=car_tzinfo)
+
+    trees = 0
+    tree_records = {}
+
+    start_d = time_car_now.day-3
+    if time_car_now.day < 3:
+        start_d = time_car_now.day
+
+    max_days_cal = calendar.monthrange(time_car_now.year, time_car_now.month)[1]
+    if start_d+3 > max_days_cal:
+        start_d -= (start_d-calendar.monthrange(time_car_now.year, time_car_now.month)[1])
+
+
+
+    for trip in month_trips:
+        trip_trees = trip.eco_tree_count/5
+        trees += trip_trees
+        if trip.start_ts.day < time_car_now.day+1:
+            day_idx = trip.start_ts.day
+            if day_idx in tree_records:
+                tree_records[day_idx][1] = tree_records[day_idx][1]+trip_trees
+            else:
+                tree_records[day_idx] = (formats.date_format(trip.start_ts, format='j b')+".", trip_trees, trip.start_ts)
+
+    logger.info(tree_records)
+    slide_title = _("Eco Tree Record")
+
+    if len(tree_records.keys()) < 3:
+        for d in range(4):
+            day_num = start_d+d
+            if day_num not in tree_records:
+                record_ts = time_car_now.date().replace(day=day_num)
+                tree_records[d] = (formats.date_format(record_ts, format='j b')+".", 0.0, record_ts)
+
+
+    display_txt = _("Your Eco Tree Record \n\n")
+
+    record_keys = list(sorted(tree_records.keys()))
+    record_keys.reverse()
+    tree_records = [tree_records[key] for key in record_keys][:3]
+    for tree_record in tree_records:
+        tree_word = _("tree")
+        if tree_record[1] > 1 or tree_record[1] == 0:
+            tree_word = _("trees")
+        month = formats.date_format(tree_record[2], format='F')
+        display_txt += f"{ordinal(tree_record[2].day)} / {month}:\n{tree_record[1]:.1f} {tree_word}\n\n"
+
+    tree_word = _("tree")
+    if trees > 1 or trees == 0:
+        tree_word = _("trees")
+    display_txt += format_lazy(_("Sum total: {trees} {tree_word}"), trees=f"{trees:.1f}", tree_word=tree_word)
+
+    first_record = tree_records[0]
+    month = formats.date_format(first_record[2], format='F')
+    day_word = get_word_of_month_i18n(first_record[2].day)
+    read_txt = format_lazy(
+        _('On the {day_word} of {month}, you saved {trees} <phoneme alphabet="x-SVOX-sampa_en-GB" ph="\'i:-k@@U">eco</phoneme>trees.")'),
+        trees=f"{first_record[1]:.1f}",
+        day_word=day_word,
+        month=month,
+    )
+
+    eco_record_slide_img = create_ecorecord_slide(str(slide_title), _("Total:"), trees, _("trees"), tree_records[:3])
+
+    response_chdata.append({
+            'itemId': 1,
+            'itemFlag1': 0x00,
+            'dynamicDataField1': slide_title.encode('utf-8'),
+            'dynamicDataField2': slide_title.encode('utf-8'),
+            'dynamicDataField3': b'',
+            "DMSLocation": b'\xFF' * 10,
+            'flag2': 0,
+            'flag3': 0,
+            'dynamicField4': b'',
+            # phone num field
+            'dynamicField5': b'',
+            'dynamicField6': b'',
+            'unnamed_data': bytearray(),
+            # text shown on bottom
+            "bigDynamicField7": display_txt.encode('utf-8'),
+            "bigDynamicField8": read_txt.encode('utf-8'),
+            "iconField": 0x400,
+            # annoucnement sound, 1=yes,0=no
+            "longField2": 1,
+            "flag4": 1,
+            "unknownLongId4": 0x0000,
+            # feature flag? 0xa0 = dial, 0x0F = Img
+            "flag5": 0x9F,
+            "flag6": 0xBB,
+            # image button title
+            "12byteField1": b'\x00' * 12,
+            # image name2
+            "12byteField2": b'\x00' * 12,
+            "mapPointFlag": b'\x20',
+            # save flag
+            "flag8": 0x80,
+            "imageDataField": eco_record_slide_img,
+        })
+
+    forest_title = _("World's Eco Forest")
+
+    total_trees = CRMTripRecord.objects.aggregate(trees=Sum('eco_tree_count'))['trees']/5
+    total_tonnes = round(total_trees*0.00412)
+    tree_word = _("trees")
+    tonnes_words = _("tonnes")
+    ecoforest_slide = create_ecoforest_slide(forest_title, _("Total number of Eco Trees:"),
+                                           f"{round(total_trees):.0f} {tree_word}",
+                                           _("CO2 Emission Cuts:"),
+                                           f"{round(total_tonnes):.0f} {tonnes_words}")
+
+
+    day = time_car_now.day
+    month = formats.date_format(time_car_now, format='F')
+    tip_onscreen = f"{forest_title}\n\n"
+
+    tip_onscreen += format_lazy(_("Total number of Eco Trees by {day} / {month}:"), month=month, day=ordinal(day))+"\n"
+    tip_onscreen += f"{round(total_trees):.0f} {tree_word}\n\n"
+    tip_onscreen += format_lazy(_("CO2 emissions reduced by {day} / {month}:"), month=month, day=ordinal(day))+"\n"
+    tip_onscreen += f"{round(total_tonnes):.0f} {tonnes_words}\n\n"
+
+    tip_onscreen += format_lazy(_("(This calculation is based on an assumption that the CO2 emitted by petrol-driven cars of equivalent class can be reduced by driving electric cars)"))
+    month = formats.date_format(time_car_now, format='F')
+    day_word = get_word_of_month_i18n(time_car_now.day)
+
+    tip_txt = format_lazy(
+        _('By the {day_word} of {month}, electric cars with Open Car Wings world wide saved a total of {trees} <phoneme alphabet="x-SVOX-sampa_en-GB" ph="\'i:-k@@U">eco</phoneme>trees. And {tonnes} tonnes of carbon dioxide has been reduced.'),
+        month=month,
+        day_word=day_word,
+        trees=f"{round(total_trees):.0f}",
+        tonnes=f"{round(total_tonnes):.0f}"
+    )
+
+    response_chdata.append(
+        {
+            'itemId': 2,
+            'itemFlag1': 0x00,
+            'dynamicDataField1': forest_title.encode('utf-8'),
+            'dynamicDataField2': forest_title.encode('utf-8'),
+            'dynamicDataField3': b'',
+            "DMSLocation": b'\xFF' * 10,
+            'flag2': 0,
+            'flag3': 0,
+            'dynamicField4': b'',
+            # phone num field
+            'dynamicField5': b'',
+            'dynamicField6': b'',
+            'unnamed_data': bytearray(),
+            # text shown on bottom
+            "bigDynamicField7": tip_onscreen.encode('utf-8'),
+            "bigDynamicField8": tip_txt.encode('utf-8'),
+            "iconField": 0x400,
+            # annoucnement sound, 1=yes,0=no
+            "longField2": 1,
+            "flag4": 1,
+            "unknownLongId4": 0x0000,
+            # feature flag? 0xa0 = dial, 0x0F = Img
+            "flag5": 0x9F,
+            "flag6": 0xBB,
+            # image button title
+            "12byteField1": b'\x00' * 12,
+            # image name2
+            "12byteField2": b'\x00' * 12,
+            "mapPointFlag": b'\x20',
+            # save flag
+            "flag8": 0x80,
+            "imageDataField": ecoforest_slide,
+        }
+    )
+
+
+    resp_file = build_autodj_payload(
+        0,
+        channel_id,
+        response_chdata,
+        {
+            "type": 6,
+            "data": b'\x01'
+        },
+        extra_fields={
+            'stringField1': _('ECO Tree').encode('utf-8'),
+            'stringField2': _('ECO Tree').encode('utf-8'),
+            "mode0_processedFieldCntPos": len(response_chdata),
+            "mode0_countOfSomeItems3": len(response_chdata),
+            "countOfSomeItems": 1
+        }
+    )
+
+
+    return [("ECOTREE", resp_file)]
 
 

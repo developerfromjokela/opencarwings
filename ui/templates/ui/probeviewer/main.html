@@ -5,6 +5,7 @@
 {% load i18n %}
 {% load l10n %}
 {% load mathfilters %}
+{% load units %}
 {% block title %} {% translate "Vehicle data viewer" %} - {{car.nickname}} {% endblock %}
 {% block content %}
     <script>
@@ -61,8 +62,14 @@
         </div>
 
 
-        <!-- Tab Navigation -->
-        <div class="tab-nav border-b border-gray-200">
+        <div class="tab-nav-container relative">
+          <button class="scroll-arrow left-arrow absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-100 hover:bg-gray-200 text-gray-600 p-2 rounded-full hidden">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </button>
+
+          <div class="tab-nav border-b border-gray-200 flex overflow-x-auto whitespace-nowrap scroll-smooth hide-scrollbar">
             <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none {% if not trips_act and not months_act and not chargehist_act and not charge_act and not abs_act and not idl_act and not aircon_act and not dtc_act and not msn_act %}text-blue-500 border-b-2 border-blue-500{% else %}text-gray-600{% endif %} text-sm sm:text-base" data-tab="latest">{% translate "Latest" %}</button>
             <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none text-sm sm:text-base text-gray-600" data-tab="lifetime">{% translate "Lifetime statistics" %}</button>
             <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none {% if trips_act %}text-blue-500 border-b-2 border-blue-500{% else %}text-gray-600{% endif %} text-sm sm:text-base" data-tab="trips">{% translate "Trips" %}</button>
@@ -70,10 +77,17 @@
             <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none {% if chargehist_act %}text-blue-500 border-b-2 border-blue-500{% else %}text-gray-600{% endif %} text-sm sm:text-base" data-tab="chargehist">{% translate "Charging history" %}</button>
             <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none {% if charge_act %}text-blue-500 border-b-2 border-blue-500{% else %}text-gray-600{% endif %} text-sm sm:text-base" data-tab="charge">{% translate "Charges" %}</button>
             <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none {% if idl_act %}text-blue-500 border-b-2 border-blue-500{% else %}text-gray-600{% endif %} text-sm sm:text-base" data-tab="idling">{% translate "Excessive idling history" %}</button>
-            <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none {% if aircon_act %}text-blue-500 border-b-2 border-blue-500{% else %}text-gray-600{% endif %}text-sm sm:text-base" data-tab="aircon">{% translate "Excessive A/C history" %}</button>
+            <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none {% if aircon_act %}text-blue-500 border-b-2 border-blue-500{% else %}text-gray-600{% endif %} text-sm sm:text-base" data-tab="aircon">{% translate "Excessive A/C history" %}</button>
             <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none {% if abs_act %}text-blue-500 border-b-2 border-blue-500{% else %}text-gray-600{% endif %} text-sm sm:text-base" data-tab="abs">{% translate "ABS history" %}</button>
             <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none {% if dtc_act %}text-blue-500 border-b-2 border-blue-500{% else %}text-gray-600{% endif %} text-sm sm:text-base" data-tab="dtc">{% translate "DTC history" %}</button>
             <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none {% if msn_act %}text-blue-500 border-b-2 border-blue-500{% else %}text-gray-600{% endif %} text-sm sm:text-base" data-tab="msn">{% translate "MSN history" %}</button>
+          </div>
+
+          <button class="scroll-arrow right-arrow absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-100 hover:bg-gray-200 text-gray-600 p-2 rounded-full hidden">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </button>
         </div>
 
         <!-- Tab Content -->
@@ -81,7 +95,7 @@
             <div id="latest" class="tab-content {% if not trips_act and not months_act and not chargehist_act and not charge_act and not abs_act and not idl_act and not aircon_act and not dtc_act and not msn_act %}active{% endif %}">
                 {% if latest %}
                 <dl class="grid grid-cols-1 gap-3 text-sm sm:text-base">
-                    <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">parking_meter</i> {% translate "Odometer" %}</dt><dd class="text-gray-600 font-semibold">{{ latest.odometer|intcomma }} km</dd></div>
+                    <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">parking_meter</i> {% translate "Odometer" %}</dt><dd class="text-gray-600 font-semibold">{% local_dist latest.odometer decimals=1 %}</dd></div>
                     <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">account_box</i> {% translate "Phone contacts in memory" %}</dt><dd class="text-gray-600 font-semibold">{{ latest.phone_contacts }}</dd></div>
                     <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">file_map</i> {% translate "Locations saved in address book" %}</dt><dd class="text-gray-600 font-semibold">{{ latest.navi_points_saved }}</dd></div>
                 </dl>
@@ -102,13 +116,13 @@
                     <dl class="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-3 text-sm sm:text-base">
                         <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">mode_fan</i> {% translate "A/C usage" %}</dt><dd class="text-gray-600 font-semibold">{{ lifetime.aircon_usage|div:60|floatformat:1 }} h</dd></div>
                         <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">light_mode</i> {% translate "Headlights usage" %}</dt><dd class="text-gray-600 font-semibold">{{ lifetime.headlight_on_time|div:60|floatformat:1 }} h</dd></div>
-                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">speed</i> {% translate "Average speed" %}</dt><dd class="text-gray-600 font-semibold">{{ lifetime.average_speed|floatformat:1 }} km/h</dd></div>
+                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">speed</i> {% translate "Average speed" %}</dt><dd class="text-gray-600 font-semibold">{% local_spd lifetime.average_speed decimals=1 %}</dd></div>
                         <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">energy_savings_leaf</i> {% translate "Energy regeneration" %}</dt><dd class="text-gray-600 font-semibold">{{ lifetime.regen|div:100000|floatformat:2 }} kWh</dd></div>
                         <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">bolt</i> {% translate "Energy consumption" %}</dt><dd class="text-gray-600 font-semibold">{{ lifetime.consumption|div:1000|floatformat:2 }} kWh</dd></div>
                         <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">acute</i> {% translate "Runtime" %}</dt><dd class="text-gray-600 font-semibold">{{ lifetime.running_time|div:60|floatformat:1 }} h</dd></div>
-                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">arrow_range</i> {% translate "Lifetime data mileage" %}</dt><dd class="text-gray-600 font-semibold">{{ lifetime.mileage|floatformat:2 }} km</dd></div>
+                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">arrow_range</i> {% translate "Lifetime data mileage" %}</dt><dd class="text-gray-600 font-semibold">{% local_dist lifetime.mileage decimals=2 %}</dd></div>
 
-                       {% if lifetime.mileage != 0 %} <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">electric_car</i> {% translate "Energy consumption" %}</dt><dd class="text-gray-600 font-semibold">{% if lifetime.regen != 0 %}{% with regen=lifetime.regen|div:100 %}{{ lifetime.consumption|sub:regen|div:lifetime.mileage|floatformat:1 }}{% endwith %}{% else %}{{ lifetime.consumption|div:lifetime.mileage|floatformat:1 }}{% endif %} Wh/km</dd></div>{% endif %}
+                       {% if lifetime.mileage != 0 %} <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">electric_car</i> {% translate "Energy consumption" %}</dt><dd class="text-gray-600 font-semibold">{% if lifetime.regen != 0 %}{% with regen=lifetime.regen|div:100 %}{% local_cons lifetime.consumption|sub:regen|div:lifetime.mileage decimals=1 %}{% endwith %}{% else %}{% local_cons lifetime.consumption decimals=1 %}{% endif %}</dd></div>{% endif %}
                     </dl>
                     <div class="mt-4 text-sm text-gray-600">
                         {% translate "Last Updated" %}: <span id="overview-last-updated">{{ lifetime.last_updated|default:"N/A" }}</span>
@@ -133,7 +147,7 @@
                                            {{ trip.start_ts }} ({{ trip.trip_time|div:60|div:60|stringformat:"02d" }}:{{ trip.trip_time|div:60|mod:60|stringformat:"02d" }})
                                         </p>
                                         <p class="text-sm text-gray-500 truncate">
-                                           {{ trip.distance|floatformat:2 }} km
+                                           {% local_dist trip.distance decimals=2 %}
                                         </p>
                                 </div>
                             </a>
@@ -193,9 +207,9 @@
                                    {{ month.start|date:"MONTH_DAY_FORMAT" }} - {{ month.end|date:"MONTH_DAY_FORMAT" }}
                                 </p>
                                 <dl class="mt-2 grid grid-cols-2 lg:grid-cols-4 md:grid-cols-3 gap-3 text-sm sm:text-base">
-                                    <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">road</i> {% translate "Driving distance" %}</dt><dd class="text-gray-600 font-semibold">{{ month.distance|floatformat:0 }} km</dd></div>
+                                    <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">road</i> {% translate "Driving distance" %}</dt><dd class="text-gray-600 font-semibold">{% local_dist month.distance decimals=0 %}</dd></div>
                                     <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">schedule</i> {% translate "Driving time" %}</dt><dd class="text-gray-600 font-semibold">{{ month.drive_time|div:60|floatformat:0 }} h</dd></div>
-                                    <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">speed</i> {% translate "Average speed" %}</dt><dd class="text-gray-600 font-semibold">{{ month.average_speed|floatformat:1 }} km/h</dd></div>
+                                    <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">speed</i> {% translate "Average speed" %}</dt><dd class="text-gray-600 font-semibold">{% local_dist month.average_speed decimals=1 %}</dd></div>
                                     <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">trip</i> {% translate "Trips" %}</dt><dd class="text-gray-600 font-semibold">{{ month.trip_count|floatformat:0 }}</dd></div>
                                     <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">energy_savings_leaf</i> {% translate "Regenerated energy" %}</dt><dd class="text-gray-600 font-semibold">{{ month.regen_total_wh|div:100000|floatformat:0 }} kWh</dd></div>
                                     <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">bolt</i> {% translate "Consumed energy" %}</dt><dd class="text-gray-600 font-semibold">{{ month.consumed_total_wh|div:10000|floatformat:0 }} kWh</dd></div>
@@ -204,10 +218,9 @@
                                     <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">bolt</i>{% translate "Average consumption" %}</dt><dd class="text-gray-600 font-semibold">
                                         {% if month.regen_total_wh != 0 %}
                                         {% with regen_wh=month.regen_total_wh|div:100.0 %}
-                                            {{ month.consumed_total_wh|div:10|sub:regen_wh|div:month.distance|floatformat:1 }}
+                                            {% local_cons month.consumed_total_wh|div:10|sub:regen_wh|div:month.distance decimals=1 %}
                                         {% endwith %}
-                                        {% else %}{{ month.consumed_total_wh|div:10|div:month.distance|floatformat:1 }}{% endif %}
-                                        Wh/km</dd></div>{% endif %}
+                                        {% else %}{% local_cons month.consumed_total_wh|div:10|div:month.distance decimals=1 %}{% endif %}</dd></div>{% endif %}
                                     <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">car_gear</i> X Range Freq</dt><dd class="text-gray-600 font-semibold">P:{{ month.p_range_freq }}, R:{{ month.r_range_freq }}, N:{{ month.n_range_freq }}, B:{{ month.b_range_freq }}</dd></div>
                                     <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">location_searching</i> {% translate "Average acceleration" %}</dt><dd class="text-gray-600 font-semibold">{{ month.average_accel|div:100|floatformat:2 }} G</dd></div>
                                 </dl>
@@ -404,8 +417,8 @@
                                     </p>
                                     <dl class="mt-2 grid grid-cols-2 lg:grid-cols-4 md:grid-cols-3 gap-3 text-sm sm:text-base">
                                         <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">timer</i> {% translate "Operation time" %}</dt><dd class="text-gray-600 font-semibold">{{ history.operation_time|floatformat:2 }} sec</dd></div>
-                                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">speed</i> {% translate "Vehicle speed at start" %}</dt><dd class="text-gray-600 font-semibold">{{ history.vehicle_speed_start|floatformat:2 }} km/h</dd></div>
-                                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">speed</i> {% translate "Vehicle speed at end" %}</dt><dd class="text-gray-600 font-semibold">{{ history.vehicle_speed_end|floatformat:2 }} km/h</dd></div>
+                                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">speed</i> {% translate "Vehicle speed at start" %}</dt><dd class="text-gray-600 font-semibold">{{ history.vehicle_speed_start|floatformat:2 }}</dd></div>
+                                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">speed</i> {% translate "Vehicle speed at end" %}</dt><dd class="text-gray-600 font-semibold">{% local_spd history.vehicle_speed_end decimals=2 %}</dd></div>
                                         <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">roundabout_left</i> {% translate "Road type" %}</dt><dd class="text-gray-600 font-semibold">{{ history.road_type|floatformat:0 }}</dd></div>
                                         <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">near_me</i> {% translate "Direction" %}</dt><dd class="text-gray-600 font-semibold">{{ history.direction|floatformat:1 }}</dd></div>
                                     </dl>
@@ -850,6 +863,37 @@
                 }
             }
 
+            const tabNav = document.querySelector('.tab-nav');
+            const leftArrow = document.querySelector('.left-arrow');
+            const rightArrow = document.querySelector('.right-arrow');
+
+            // Function to check scroll position and toggle arrows
+            function updateArrows() {
+              const isAtStart = tabNav.scrollLeft <= 0;
+              const isAtEnd = tabNav.scrollLeft + tabNav.clientWidth >= tabNav.scrollWidth - 1;
+
+              leftArrow.classList.toggle('hidden', isAtStart);
+              rightArrow.classList.toggle('hidden', isAtEnd);
+            }
+
+            // Initial check for arrow visibility
+            updateArrows();
+
+            // Update arrows on scroll
+            tabNav.addEventListener('scroll', updateArrows);
+
+            // Scroll left on left arrow click
+            leftArrow.addEventListener('click', () => {
+                tabNav.scrollBy({ left: -200, behavior: 'smooth' });
+            });
+
+            // Scroll right on right arrow click
+            rightArrow.addEventListener('click', () => {
+                tabNav.scrollBy({ left: 200, behavior: 'smooth' });
+            });
+
+            // Update arrows on window resize
+            window.addEventListener('resize', updateArrows);
         });
     </script>
 {% endblock %}

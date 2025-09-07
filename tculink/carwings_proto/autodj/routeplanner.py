@@ -107,7 +107,7 @@ def handle_routeplanner(_, returning_xml, channel_id, car: Car):
                         'dynamicDataField1': point_name.encode('utf-8'),
                         'dynamicDataField2': point_name.encode('utf-8'),
                         'dynamicDataField3': point_name.encode('utf-8'),
-                        "DMSLocation": construct_dms_coordinate(getattr(route_plan, route_plan, f"point{wp}_lat"), getattr(route_plan, f"point{wp}_lon", None)),
+                        "DMSLocation": construct_dms_coordinate(getattr(route_plan, f"point{wp}_lat", None), getattr(route_plan, f"point{wp}_lon", None)),
                         # is charging station flag?
                         'flag2': wp+1,
                         # waypoint number

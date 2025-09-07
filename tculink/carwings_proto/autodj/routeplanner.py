@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 from django.utils.text import format_lazy
 
 
-def handle_routeplanner(_, returning_xml, channel_id, car: Car):
+def handle_routeplanner(unused, returning_xml, channel_id, car: Car):
     # routeplans, 1,2,3,4,5
     routeplan_num = channel_id - 0x0009
     car_destinations = []
@@ -18,7 +18,7 @@ def handle_routeplanner(_, returning_xml, channel_id, car: Car):
                 {
                     'itemId': 1,
                     'itemFlag1': 1,
-                    'dynamicDataField1': _('Route Plan not available').encode('utf-8'),
+                    'dynamicDataField1': str(_('Route Plan not available')).encode('utf-8'),
                     'dynamicDataField2': b'',
                     'dynamicDataField3': b'',
                     "DMSLocation": b'\xFF' * 10,
@@ -28,8 +28,8 @@ def handle_routeplanner(_, returning_xml, channel_id, car: Car):
                     'dynamicField5': b'',
                     'dynamicField6': b'',
                     'unnamed_data': bytearray(),
-                    "bigDynamicField7": _('Route Plan not available').encode('utf-8'),
-                    "bigDynamicField8": _('This route plan is empty. Please save a route plan online and try again.').encode(
+                    "bigDynamicField7": str(_('Route Plan not available')).encode('utf-8'),
+                    "bigDynamicField8": str(_('This route plan is empty. Please save a route plan online and try again.')).encode(
                         'utf-8'),
                     "iconField": 0x0000,
                     # annoucnement sound, 1=yes,0=no

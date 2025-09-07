@@ -138,7 +138,7 @@ def handle_routeplanner(_, returning_xml, channel_id, car: Car):
             # start point
             {
                 "type": 2,
-                "data": construct_dms_coordinate(route_plan.start_lat, route_plan.end_lat),
+                "data": construct_dms_coordinate(route_plan.start_lat, route_plan.start_lon),
             },
             extra_fields={
                 'stringField1': plan_name.encode('utf-8'),

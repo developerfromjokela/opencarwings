@@ -96,8 +96,8 @@ def handle_routeplanner(_, returning_xml, channel_id, car: Car):
             }
         ]
         for wp in range(1, 5+1):
-            if route_plan[f"point{wp}_name"] and route_plan[f"point{wp}_lat"] and route_plan[f"point{wp}_lon"]:
-                point_name = route_plan[f"point{wp}_name"]
+            if getattr(route_plan, f"point{wp}_name", None) and getattr(route_plan, f"point{wp}_lat", None) and getattr(route_plan, f"point{wp}_lon", None):
+                point_name = getattr(route_plan, f"point{wp}_name")
                 if len(point_name) > 31:
                     point_name = plan_name[:31]
                 points.append(
@@ -107,7 +107,7 @@ def handle_routeplanner(_, returning_xml, channel_id, car: Car):
                         'dynamicDataField1': point_name.encode('utf-8'),
                         'dynamicDataField2': point_name.encode('utf-8'),
                         'dynamicDataField3': point_name.encode('utf-8'),
-                        "DMSLocation": construct_dms_coordinate(route_plan[f"point{wp}_lat"], route_plan[f"point{wp}_lon"]),
+                        "DMSLocation": construct_dms_coordinate(getattr(route_plan, route_plan, f"point{wp}_lat"), getattr(route_plan, f"point{wp}_lon", None)),
                         # is charging station flag?
                         'flag2': wp+1,
                         # waypoint number

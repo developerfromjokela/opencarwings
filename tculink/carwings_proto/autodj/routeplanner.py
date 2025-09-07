@@ -59,7 +59,7 @@ def handle_routeplanner(_, returning_xml, channel_id, car: Car):
             }
         )
     else:
-        route_plan = route_plans[routeplan_num]
+        route_plan = route_plans[routeplan_num-1]
         plan_name = route_plan.name
         if len(plan_name) > 31:
             plan_name = plan_name[:31]

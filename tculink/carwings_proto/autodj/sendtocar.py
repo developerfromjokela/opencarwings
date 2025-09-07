@@ -11,9 +11,9 @@ from django.utils.translation import gettext_lazy as _
 def handle_send_to_car_adj(xml_data, returning_xml, channel_id, car: Car):
     car_destinations = []
     # TODO: up to 6 destinations
-    if car.send_to_car_location is not None:
-        point_name = car.send_to_car_location.name
-        if car.send_to_car_location.name is None:
+    for send_location in car.send_to_car_location.all()[:6]:
+        point_name = send_location.name
+        if send_location.name is None:
             point_name = "Map Point"
         if len(point_name) > 32:
             point_name = point_name[:32]
@@ -22,15 +22,15 @@ def handle_send_to_car_adj(xml_data, returning_xml, channel_id, car: Car):
                 and xml_data['base_info'].get('vehicle', None) is not None
                 and xml_data['base_info']['vehicle'].get('coordinates', None) is not None):
             car_coordinate = xml_coordinate_to_float(xml_data['base_info']['vehicle']['coordinates'])
-            distance = round(geopy.distance.geodesic(car_coordinate, (car.send_to_car_location.lat, car.send_to_car_location.lon)).km)
+            distance = round(geopy.distance.geodesic(car_coordinate, (send_location.lat, send_location.lon)).km)
         car_destinations.append(
             {
-                'itemId': car.send_to_car_location.id,
+                'itemId': send_location.id,
                 'itemFlag1': 0x00,
                 'dynamicDataField1': point_name.encode('utf-8'),
                 'dynamicDataField2': b'',
                 'dynamicDataField3': b'',
-                "DMSLocation": construct_dms_coordinate(car.send_to_car_location.lat, car.send_to_car_location.lon),
+                "DMSLocation": construct_dms_coordinate(send_location.lat, send_location.lon),
                 'flag2': 0x20,
                 'flag3': 0x20,
                 'dynamicField4': b'',
@@ -117,42 +117,42 @@ def handle_send_to_car_adj(xml_data, returning_xml, channel_id, car: Car):
 
 def handle_send_to_car(_, returning_xml, channel_id, car: Car):
     car_destinations = []
-    # TODO: up to 6 destinations
-    if car is not None and car.send_to_car_location is not None:
-        point_name = car.send_to_car_location.name
-        if car.send_to_car_location.name is None:
-            point_name = "Map Point"
-        if len(point_name) > 32:
-            point_name = point_name[:32]
-        car_destinations.append(
-            {
-                'itemId': 0,
-                'itemFlag1': 0,
-                'dynamicDataField1': point_name.encode('utf-8'),
-                'dynamicDataField2': [],
-                'dynamicDataField3': [],
-                "DMSLocation": construct_dms_coordinate(car.send_to_car_location.lat, car.send_to_car_location.lon),
-                'flag2': 1,
-                'flag3': 1,
-                'dynamicField4': [],
-                'dynamicField5': [],
-                'dynamicField6': [],
-                'unnamed_data': bytearray(),
-                "bigDynamicField7": [],
-                "bigDynamicField8": [],
-                "iconField": 0x0001,
-                "longField2": 0,
-                "flag4": 0,
-                "unknownLongId4": 0,
-                "flag5": 0x80,
-                "flag6": 0,
-                "12byteField1": b'\x00' * 12,
-                "12byteField2": b'\x00' * 12,
-                "mapPointFlag": b'\x00',
-                "flag8": 0,
-                "imageDataField": bytearray()
-            }
-        )
+    if car is not None:
+        for send_location in car.send_to_car_location.all()[:6]:
+            point_name = send_location.name
+            if send_location.name is None:
+                point_name = "Map Point"
+            if len(point_name) > 32:
+                point_name = point_name[:32]
+            car_destinations.append(
+                {
+                    'itemId': 0,
+                    'itemFlag1': 0,
+                    'dynamicDataField1': point_name.encode('utf-8'),
+                    'dynamicDataField2': [],
+                    'dynamicDataField3': [],
+                    "DMSLocation": construct_dms_coordinate(send_location.lat, send_location.lon),
+                    'flag2': 1,
+                    'flag3': 1,
+                    'dynamicField4': [],
+                    'dynamicField5': [],
+                    'dynamicField6': [],
+                    'unnamed_data': bytearray(),
+                    "bigDynamicField7": [],
+                    "bigDynamicField8": [],
+                    "iconField": 0x0001,
+                    "longField2": 0,
+                    "flag4": 0,
+                    "unknownLongId4": 0,
+                    "flag5": 0x80,
+                    "flag6": 0,
+                    "12byteField1": b'\x00' * 12,
+                    "12byteField2": b'\x00' * 12,
+                    "mapPointFlag": b'\x00',
+                    "flag8": 0,
+                    "imageDataField": bytearray()
+                }
+            )
 
     resp_file = build_autodj_payload(
         1,

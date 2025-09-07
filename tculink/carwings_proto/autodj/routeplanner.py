@@ -60,6 +60,9 @@ def handle_routeplanner(_, returning_xml, channel_id, car: Car):
         )
     else:
         route_plan = route_plans[routeplan_num]
+        plan_name = route_plan.name
+        if len(plan_name) > 31:
+            plan_name = plan_name[:31]
         # finish
         points = [
             {
@@ -94,13 +97,16 @@ def handle_routeplanner(_, returning_xml, channel_id, car: Car):
         ]
         for wp in range(1, 5+1):
             if route_plan[f"point{wp}_name"] and route_plan[f"point{wp}_lat"] and route_plan[f"point{wp}_lon"]:
+                point_name = route_plan[f"point{wp}_name"]
+                if len(point_name) > 31:
+                    point_name = plan_name[:31]
                 points.append(
                     {
                         'itemId': wp+1,
                         'itemFlag1': wp+1,
-                        'dynamicDataField1': route_plan[f"point{wp}_name"].encode('utf-8'),
-                        'dynamicDataField2': route_plan[f"point{wp}_name"].encode('utf-8'),
-                        'dynamicDataField3': route_plan[f"point{wp}_name"].encode('utf-8'),
+                        'dynamicDataField1': point_name.encode('utf-8'),
+                        'dynamicDataField2': point_name.encode('utf-8'),
+                        'dynamicDataField3': point_name.encode('utf-8'),
                         "DMSLocation": construct_dms_coordinate(route_plan[f"point{wp}_lat"], route_plan[f"point{wp}_lon"]),
                         # is charging station flag?
                         'flag2': wp+1,
@@ -135,8 +141,8 @@ def handle_routeplanner(_, returning_xml, channel_id, car: Car):
                 "data": construct_dms_coordinate(route_plan.start_lat, route_plan.end_lat),
             },
             extra_fields={
-                'stringField1': route_plan.name.encode('utf-8'),
-                'stringField2': route_plan.name.encode('utf-8'),
+                'stringField1': plan_name.encode('utf-8'),
+                'stringField2': plan_name.encode('utf-8'),
                 "mode0_processedFieldCntPos": len(points),
                 "mode0_countOfSomeItems3": len(points),
                 "countOfSomeItems": 1

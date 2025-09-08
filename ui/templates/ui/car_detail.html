@@ -948,6 +948,7 @@
             document.getElementById('tcu_version').textContent = data.tcu_version ? data.tcu_version : '--';
             document.getElementById('tcu_version2').textContent = data.tcu_ver ? data.tcu_ver : '--';
             document.getElementById('navi_version').textContent = data.navi_version ? data.navi_version : '--';
+            document.getElementById('carrier').textContent = data.carrier ? data.carrier : '';
             setSignalStrength(data.signal_level);
 
             // Update connection status color

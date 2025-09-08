@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-08 10:16+0000\n"
+"POT-Creation-Date: 2025-09-08 14:15+0000\n"
 "PO-Revision-Date: 2025-09-07 15:54+0300\n"
 "Last-Translator: \n"
 "Language-Team: Spanish <es@li.org>\n"
@@ -784,157 +784,157 @@ msgstr ""
 msgid "Weather forecast"
 msgstr "Weather forecast"
 
-#: tculink/carwings_proto/utils.py:114
+#: tculink/carwings_proto/utils.py:118
 msgid "first"
 msgstr "primero"
 
 # Standard for the first day of the month, e.g., "el primero de noviembre"
-#: tculink/carwings_proto/utils.py:114
+#: tculink/carwings_proto/utils.py:118
 msgid "second"
 msgstr "dos"
 
 # e.g., "el dos de noviembre"
-#: tculink/carwings_proto/utils.py:114
+#: tculink/carwings_proto/utils.py:118
 msgid "third"
 msgstr "tres"
 
 # e.g., "el tres de noviembre"
-#: tculink/carwings_proto/utils.py:114
+#: tculink/carwings_proto/utils.py:118
 msgid "fourth"
 msgstr "cuatro"
 
 # e.g., "el cuatro de noviembre"
-#: tculink/carwings_proto/utils.py:114
+#: tculink/carwings_proto/utils.py:118
 msgid "fifth"
 msgstr "cinco"
 
 # e.g., "el cinco de noviembre"
-#: tculink/carwings_proto/utils.py:115
+#: tculink/carwings_proto/utils.py:119
 msgid "sixth"
 msgstr "seis"
 
 # e.g., "el seis de noviembre"
-#: tculink/carwings_proto/utils.py:115
+#: tculink/carwings_proto/utils.py:119
 msgid "seventh"
 msgstr "siete"
 
 # e.g., "el siete de noviembre"
-#: tculink/carwings_proto/utils.py:115
+#: tculink/carwings_proto/utils.py:119
 msgid "eighth"
 msgstr "ocho"
 
 # e.g., "el ocho de noviembre"
-#: tculink/carwings_proto/utils.py:115
+#: tculink/carwings_proto/utils.py:119
 msgid "ninth"
 msgstr "nueve"
 
 # e.g., "el nueve de noviembre"
-#: tculink/carwings_proto/utils.py:115
+#: tculink/carwings_proto/utils.py:119
 msgid "tenth"
 msgstr "diez"
 
 # e.g., "el diez de noviembre"
-#: tculink/carwings_proto/utils.py:116
+#: tculink/carwings_proto/utils.py:120
 msgid "eleventh"
 msgstr "once"
 
 # e.g., "el once de noviembre"
-#: tculink/carwings_proto/utils.py:116
+#: tculink/carwings_proto/utils.py:120
 msgid "twelfth"
 msgstr "doce"
 
 # e.g., "el doce de noviembre"
-#: tculink/carwings_proto/utils.py:116
+#: tculink/carwings_proto/utils.py:120
 msgid "thirteenth"
 msgstr "trece"
 
 # e.g., "el trece de noviembre"
-#: tculink/carwings_proto/utils.py:116
+#: tculink/carwings_proto/utils.py:120
 msgid "fourteenth"
 msgstr "catorce"
 
 # e.g., "el catorce de noviembre"
-#: tculink/carwings_proto/utils.py:116
+#: tculink/carwings_proto/utils.py:120
 msgid "fifteenth"
 msgstr "quince"
 
 # e.g., "el quince de noviembre"
-#: tculink/carwings_proto/utils.py:117
+#: tculink/carwings_proto/utils.py:121
 msgid "sixteenth"
 msgstr "dieciséis"
 
 # e.g., "el dieciséis de noviembre"
-#: tculink/carwings_proto/utils.py:117
+#: tculink/carwings_proto/utils.py:121
 msgid "seventeenth"
 msgstr "diecisiete"
 
 # e.g., "el diecisiete de noviembre"
-#: tculink/carwings_proto/utils.py:117
+#: tculink/carwings_proto/utils.py:121
 msgid "eighteenth"
 msgstr "dieciocho"
 
 # e.g., "el dieciocho de noviembre"
-#: tculink/carwings_proto/utils.py:117
+#: tculink/carwings_proto/utils.py:121
 msgid "nineteenth"
 msgstr "diecinueve"
 
 # e.g., "el diecinueve de noviembre"
-#: tculink/carwings_proto/utils.py:117
+#: tculink/carwings_proto/utils.py:121
 msgid "twentieth"
 msgstr "veinte"
 
 # e.g., "el veinte de noviembre"
-#: tculink/carwings_proto/utils.py:118
+#: tculink/carwings_proto/utils.py:122
 msgid "twenty-first"
 msgstr "veintiuno"
 
 # e.g., "el veintiuno de noviembre"
-#: tculink/carwings_proto/utils.py:118
+#: tculink/carwings_proto/utils.py:122
 msgid "twenty-second"
 msgstr "veintidós"
 
 # e.g., "el veintidós de noviembre"
-#: tculink/carwings_proto/utils.py:118
+#: tculink/carwings_proto/utils.py:122
 msgid "twenty-third"
 msgstr "veintitrés"
 
 # e.g., "el veintitrés de noviembre"
-#: tculink/carwings_proto/utils.py:118
+#: tculink/carwings_proto/utils.py:122
 msgid "twenty-fourth"
 msgstr "veinticuatro"
 
 # e.g., "el veinticuatro de noviembre"
-#: tculink/carwings_proto/utils.py:118
+#: tculink/carwings_proto/utils.py:122
 msgid "twenty-fifth"
 msgstr "veinticinco"
 
 # e.g., "el veinticinco de noviembre"
-#: tculink/carwings_proto/utils.py:119
+#: tculink/carwings_proto/utils.py:123
 msgid "twenty-sixth"
 msgstr "veintiséis"
 
 # e.g., "el veintiséis de noviembre"
-#: tculink/carwings_proto/utils.py:119
+#: tculink/carwings_proto/utils.py:123
 msgid "twenty-seventh"
 msgstr "veintisiete"
 
 # e.g., "el veintisiete de noviembre"
-#: tculink/carwings_proto/utils.py:119
+#: tculink/carwings_proto/utils.py:123
 msgid "twenty-eighth"
 msgstr "veintiocho"
 
 # e.g., "el veintiocho de noviembre"
-#: tculink/carwings_proto/utils.py:119
+#: tculink/carwings_proto/utils.py:123
 msgid "twenty-ninth"
 msgstr "veintinueve"
 
 # e.g., "el veintinueve de noviembre"
-#: tculink/carwings_proto/utils.py:119
+#: tculink/carwings_proto/utils.py:123
 msgid "thirtieth"
 msgstr "treinta"
 
 # e.g., "el treinta de noviembre"
-#: tculink/carwings_proto/utils.py:120
+#: tculink/carwings_proto/utils.py:124
 msgid "thirty-first"
 msgstr "treinta y uno"
 
@@ -1484,15 +1484,15 @@ msgid "Send location to car"
 msgstr "Enviar punto del mapa al coche"
 
 #: ui/templates/ui/car_detail.html:284 ui/templates/ui/car_detail.html:338
-#: ui/templates/ui/car_detail.html:347 ui/templates/ui/car_detail.html:1571
+#: ui/templates/ui/car_detail.html:347 ui/templates/ui/car_detail.html:1572
 msgid "Search for locations or enter google/apple maps link"
 msgstr "Buscar ubicaciones o ingresar enlace de Google/Apple Maps"
 
-#: ui/templates/ui/car_detail.html:288 ui/templates/ui/car_detail.html:973
+#: ui/templates/ui/car_detail.html:288 ui/templates/ui/car_detail.html:974
 msgid "Last shared location"
 msgstr "Último punto del mapa compartido"
 
-#: ui/templates/ui/car_detail.html:290 ui/templates/ui/car_detail.html:975
+#: ui/templates/ui/car_detail.html:290 ui/templates/ui/car_detail.html:976
 msgid "No past shared location"
 msgstr "No hay puntos del mapa compartidos anteriormente"
 
@@ -1512,15 +1512,15 @@ msgstr "Route plans"
 msgid "Add"
 msgstr "Añadir"
 
-#: ui/templates/ui/car_detail.html:315 ui/templates/ui/car_detail.html:1293
+#: ui/templates/ui/car_detail.html:315 ui/templates/ui/car_detail.html:1294
 msgid "Edit"
 msgstr "Edit"
 
-#: ui/templates/ui/car_detail.html:321 ui/templates/ui/car_detail.html:1298
+#: ui/templates/ui/car_detail.html:321 ui/templates/ui/car_detail.html:1299
 msgid "Delete"
 msgstr "Delete"
 
-#: ui/templates/ui/car_detail.html:327 ui/templates/ui/car_detail.html:1276
+#: ui/templates/ui/car_detail.html:327 ui/templates/ui/car_detail.html:1277
 msgid "No route plans added"
 msgstr "No se agregaron planes de ruta"
 
@@ -1631,8 +1631,8 @@ msgid "SMS from your device"
 msgstr "Enviar SMS desde tu dispositivo"
 
 #: ui/templates/ui/car_detail.html:837 ui/templates/ui/car_detail.html:841
-#: ui/templates/ui/car_detail.html:842 ui/templates/ui/car_detail.html:1028
-#: ui/templates/ui/car_detail.html:1036 ui/templates/ui/car_detail.html:1037
+#: ui/templates/ui/car_detail.html:842 ui/templates/ui/car_detail.html:1029
+#: ui/templates/ui/car_detail.html:1037 ui/templates/ui/car_detail.html:1038
 msgid "Error sending command"
 msgstr "Error al enviar el comando"
 
@@ -1656,82 +1656,82 @@ msgstr "Sí"
 msgid "No"
 msgstr "No"
 
-#: ui/templates/ui/car_detail.html:1059 ui/templates/ui/car_detail.html:1067
-#: ui/templates/ui/car_detail.html:1068
+#: ui/templates/ui/car_detail.html:1060 ui/templates/ui/car_detail.html:1068
+#: ui/templates/ui/car_detail.html:1069
 msgid "Error sending location to car"
 msgstr "Error al enviar la ubicación al coche"
 
-#: ui/templates/ui/car_detail.html:1061
+#: ui/templates/ui/car_detail.html:1062
 msgid "Location sent!"
 msgstr "¡Punto del mapa enviado!"
 
-#: ui/templates/ui/car_detail.html:1117 ui/templates/ui/car_detail.html:1180
-#: ui/templates/ui/car_detail.html:1451 ui/templates/ui/car_detail.html:1456
-#: ui/templates/ui/car_detail.html:1513 ui/templates/ui/car_detail.html:1526
-#: ui/templates/ui/car_detail.html:1531 ui/templates/ui/car_detail.html:1610
+#: ui/templates/ui/car_detail.html:1118 ui/templates/ui/car_detail.html:1181
+#: ui/templates/ui/car_detail.html:1452 ui/templates/ui/car_detail.html:1457
+#: ui/templates/ui/car_detail.html:1514 ui/templates/ui/car_detail.html:1527
+#: ui/templates/ui/car_detail.html:1532 ui/templates/ui/car_detail.html:1611
 msgid "No address"
 msgstr "Sin dirección"
 
-#: ui/templates/ui/car_detail.html:1127 ui/templates/ui/car_detail.html:1460
+#: ui/templates/ui/car_detail.html:1128 ui/templates/ui/car_detail.html:1461
 msgid "Could not get location from map link"
 msgstr "No se pudo obtener la ubicación desde el enlace"
 
-#: ui/templates/ui/car_detail.html:1133 ui/templates/ui/car_detail.html:1205
-#: ui/templates/ui/car_detail.html:1466 ui/templates/ui/car_detail.html:1547
+#: ui/templates/ui/car_detail.html:1134 ui/templates/ui/car_detail.html:1206
+#: ui/templates/ui/car_detail.html:1467 ui/templates/ui/car_detail.html:1548
 msgid "Error searching locations"
 msgstr "Error al buscar ubicaciones"
 
-#: ui/templates/ui/car_detail.html:1199 ui/templates/ui/car_detail.html:1541
+#: ui/templates/ui/car_detail.html:1200 ui/templates/ui/car_detail.html:1542
 msgid "Search did not find any locations"
 msgstr "La búsqueda no encontró ninguna ubicación"
 
-#: ui/templates/ui/car_detail.html:1224
+#: ui/templates/ui/car_detail.html:1225
 msgid "Connection established!"
 msgstr "¡Conexión establecida!"
 
-#: ui/templates/ui/car_detail.html:1229
+#: ui/templates/ui/car_detail.html:1230
 msgid "Reconnecting..."
 msgstr "Reconectando..."
 
-#: ui/templates/ui/car_detail.html:1555
+#: ui/templates/ui/car_detail.html:1556
 msgid "Cannot add a new waypoint"
 msgstr "No se puede agregar un nuevo punto de ruta"
 
-#: ui/templates/ui/car_detail.html:1555
+#: ui/templates/ui/car_detail.html:1556
 msgid "Maximum number of waypoints reached"
 msgstr "Número máximo de puntos de ruta alcanzados"
 
-#: ui/templates/ui/car_detail.html:1588
+#: ui/templates/ui/car_detail.html:1589
 msgid "Waypoint"
 msgstr "Punto de ruta"
 
-#: ui/templates/ui/car_detail.html:1647 ui/templates/ui/car_detail.html:1656
-#: ui/templates/ui/car_detail.html:1657
+#: ui/templates/ui/car_detail.html:1648 ui/templates/ui/car_detail.html:1657
+#: ui/templates/ui/car_detail.html:1658
 msgid "Error saving the route plan"
 msgstr "Error al guardar el plan de ruta"
 
-#: ui/templates/ui/car_detail.html:1649
+#: ui/templates/ui/car_detail.html:1650
 msgid "Route plan saved!"
 msgstr "¡Plan de ruta guardado!"
 
-#: ui/templates/ui/car_detail.html:1685
+#: ui/templates/ui/car_detail.html:1686
 msgid "Cannot add new route plan"
 msgstr "No se puede agregar un nuevo plan de ruta"
 
-#: ui/templates/ui/car_detail.html:1685
+#: ui/templates/ui/car_detail.html:1686
 msgid "You have too many route plans, please delete one and try again."
 msgstr "Tienes demasiados planes de ruta, elimina uno y vuelve a intentarlo."
 
-#: ui/templates/ui/car_detail.html:1754
+#: ui/templates/ui/car_detail.html:1755
 msgid "Are you sure you want to delete this route plan?"
 msgstr "¿Estás seguro de que deseas eliminar este plan de ruta?"
 
-#: ui/templates/ui/car_detail.html:1768 ui/templates/ui/car_detail.html:1775
-#: ui/templates/ui/car_detail.html:1776
+#: ui/templates/ui/car_detail.html:1769 ui/templates/ui/car_detail.html:1776
+#: ui/templates/ui/car_detail.html:1777
 msgid "Error deleting the route plan"
 msgstr "Error al eliminar el plan de ruta"
 
-#: ui/templates/ui/car_detail.html:1770
+#: ui/templates/ui/car_detail.html:1771
 msgid "Route plan removed!"
 msgstr "¡Plan de ruta eliminado!"
 

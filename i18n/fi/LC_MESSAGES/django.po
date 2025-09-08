@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-08 10:16+0000\n"
+"POT-Creation-Date: 2025-09-08 14:15+0000\n"
 "PO-Revision-Date: 2025-09-07 15:56+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -774,127 +774,127 @@ msgstr ""
 msgid "Weather forecast"
 msgstr "Sääennuste"
 
-#: tculink/carwings_proto/utils.py:114
+#: tculink/carwings_proto/utils.py:118
 msgid "first"
 msgstr "ensimmäinen"
 
-#: tculink/carwings_proto/utils.py:114
+#: tculink/carwings_proto/utils.py:118
 msgid "second"
 msgstr "toinen"
 
-#: tculink/carwings_proto/utils.py:114
+#: tculink/carwings_proto/utils.py:118
 msgid "third"
 msgstr "kolmas"
 
-#: tculink/carwings_proto/utils.py:114
+#: tculink/carwings_proto/utils.py:118
 msgid "fourth"
 msgstr "neljännes"
 
-#: tculink/carwings_proto/utils.py:114
+#: tculink/carwings_proto/utils.py:118
 msgid "fifth"
 msgstr "viides"
 
-#: tculink/carwings_proto/utils.py:115
+#: tculink/carwings_proto/utils.py:119
 msgid "sixth"
 msgstr "kuude"
 
-#: tculink/carwings_proto/utils.py:115
+#: tculink/carwings_proto/utils.py:119
 msgid "seventh"
 msgstr "seitsemäs"
 
-#: tculink/carwings_proto/utils.py:115
+#: tculink/carwings_proto/utils.py:119
 msgid "eighth"
 msgstr "kahdeksas"
 
-#: tculink/carwings_proto/utils.py:115
+#: tculink/carwings_proto/utils.py:119
 msgid "ninth"
 msgstr "yhdeksäs"
 
-#: tculink/carwings_proto/utils.py:115
+#: tculink/carwings_proto/utils.py:119
 msgid "tenth"
 msgstr "kymmenes"
 
-#: tculink/carwings_proto/utils.py:116
+#: tculink/carwings_proto/utils.py:120
 msgid "eleventh"
 msgstr "yhtä toista"
 
-#: tculink/carwings_proto/utils.py:116
+#: tculink/carwings_proto/utils.py:120
 msgid "twelfth"
 msgstr "kahdes toista"
 
-#: tculink/carwings_proto/utils.py:116
+#: tculink/carwings_proto/utils.py:120
 msgid "thirteenth"
 msgstr "kolmatta toista"
 
-#: tculink/carwings_proto/utils.py:116
+#: tculink/carwings_proto/utils.py:120
 msgid "fourteenth"
 msgstr "neljättä toista"
 
-#: tculink/carwings_proto/utils.py:116
+#: tculink/carwings_proto/utils.py:120
 msgid "fifteenth"
 msgstr "viittä toista"
 
-#: tculink/carwings_proto/utils.py:117
+#: tculink/carwings_proto/utils.py:121
 msgid "sixteenth"
 msgstr "kuutta toista"
 
-#: tculink/carwings_proto/utils.py:117
+#: tculink/carwings_proto/utils.py:121
 msgid "seventeenth"
 msgstr "seitsemättä toista"
 
-#: tculink/carwings_proto/utils.py:117
+#: tculink/carwings_proto/utils.py:121
 msgid "eighteenth"
 msgstr "kahdeksatta toista"
 
-#: tculink/carwings_proto/utils.py:117
+#: tculink/carwings_proto/utils.py:121
 msgid "nineteenth"
 msgstr "yhdeksättä toista"
 
-#: tculink/carwings_proto/utils.py:117
+#: tculink/carwings_proto/utils.py:121
 msgid "twentieth"
 msgstr "kahdes kymmenettä"
 
-#: tculink/carwings_proto/utils.py:118
+#: tculink/carwings_proto/utils.py:122
 msgid "twenty-first"
 msgstr "kahdes kymmenes ensimmäistä"
 
-#: tculink/carwings_proto/utils.py:118
+#: tculink/carwings_proto/utils.py:122
 msgid "twenty-second"
 msgstr "kahdes kymmenes kahta"
 
-#: tculink/carwings_proto/utils.py:118
+#: tculink/carwings_proto/utils.py:122
 msgid "twenty-third"
 msgstr "kahdes kymmenes kolmatta"
 
-#: tculink/carwings_proto/utils.py:118
+#: tculink/carwings_proto/utils.py:122
 msgid "twenty-fourth"
 msgstr "kahdes kymmenes neljättä"
 
-#: tculink/carwings_proto/utils.py:118
+#: tculink/carwings_proto/utils.py:122
 msgid "twenty-fifth"
 msgstr "kahdes kymmenes viidettä"
 
-#: tculink/carwings_proto/utils.py:119
+#: tculink/carwings_proto/utils.py:123
 msgid "twenty-sixth"
 msgstr "kahdes kymmenes kuudetta"
 
-#: tculink/carwings_proto/utils.py:119
+#: tculink/carwings_proto/utils.py:123
 msgid "twenty-seventh"
 msgstr "kahdes kymmenes seitsemättä"
 
-#: tculink/carwings_proto/utils.py:119
+#: tculink/carwings_proto/utils.py:123
 msgid "twenty-eighth"
 msgstr "kahdes kymmenes kahdeksatta"
 
-#: tculink/carwings_proto/utils.py:119
+#: tculink/carwings_proto/utils.py:123
 msgid "twenty-ninth"
 msgstr "kahdes kymmenes yhdeksättä"
 
-#: tculink/carwings_proto/utils.py:119
+#: tculink/carwings_proto/utils.py:123
 msgid "thirtieth"
 msgstr "kolmaskymmenes"
 
-#: tculink/carwings_proto/utils.py:120
+#: tculink/carwings_proto/utils.py:124
 msgid "thirty-first"
 msgstr "kolmas kymmenes ensimmäistä"
 
@@ -1442,15 +1442,15 @@ msgid "Send location to car"
 msgstr "Lähetä määränpää autoon"
 
 #: ui/templates/ui/car_detail.html:284 ui/templates/ui/car_detail.html:338
-#: ui/templates/ui/car_detail.html:347 ui/templates/ui/car_detail.html:1571
+#: ui/templates/ui/car_detail.html:347 ui/templates/ui/car_detail.html:1572
 msgid "Search for locations or enter google/apple maps link"
 msgstr "Hae kohteita tai syötä Google/Apple maps-linkki"
 
-#: ui/templates/ui/car_detail.html:288 ui/templates/ui/car_detail.html:973
+#: ui/templates/ui/car_detail.html:288 ui/templates/ui/car_detail.html:974
 msgid "Last shared location"
 msgstr "Viimeksi jaettu kohde"
 
-#: ui/templates/ui/car_detail.html:290 ui/templates/ui/car_detail.html:975
+#: ui/templates/ui/car_detail.html:290 ui/templates/ui/car_detail.html:976
 msgid "No past shared location"
 msgstr "Ei aikaisemmin jaettuja kohteita"
 
@@ -1470,15 +1470,15 @@ msgstr "Reittisuunnitelmat"
 msgid "Add"
 msgstr "Lisää"
 
-#: ui/templates/ui/car_detail.html:315 ui/templates/ui/car_detail.html:1293
+#: ui/templates/ui/car_detail.html:315 ui/templates/ui/car_detail.html:1294
 msgid "Edit"
 msgstr "Muokkaa"
 
-#: ui/templates/ui/car_detail.html:321 ui/templates/ui/car_detail.html:1298
+#: ui/templates/ui/car_detail.html:321 ui/templates/ui/car_detail.html:1299
 msgid "Delete"
 msgstr "Poista"
 
-#: ui/templates/ui/car_detail.html:327 ui/templates/ui/car_detail.html:1276
+#: ui/templates/ui/car_detail.html:327 ui/templates/ui/car_detail.html:1277
 msgid "No route plans added"
 msgstr "Ei lisättyjä reittisuunnitelmia"
 
@@ -1590,8 +1590,8 @@ msgid "SMS from your device"
 msgstr "SMS-viestin lähetys laitteestasi"
 
 #: ui/templates/ui/car_detail.html:837 ui/templates/ui/car_detail.html:841
-#: ui/templates/ui/car_detail.html:842 ui/templates/ui/car_detail.html:1028
-#: ui/templates/ui/car_detail.html:1036 ui/templates/ui/car_detail.html:1037
+#: ui/templates/ui/car_detail.html:842 ui/templates/ui/car_detail.html:1029
+#: ui/templates/ui/car_detail.html:1037 ui/templates/ui/car_detail.html:1038
 msgid "Error sending command"
 msgstr "Komennon lähetys epäonnistui"
 
@@ -1615,84 +1615,84 @@ msgstr "Kyllä"
 msgid "No"
 msgstr "Ei"
 
-#: ui/templates/ui/car_detail.html:1059 ui/templates/ui/car_detail.html:1067
-#: ui/templates/ui/car_detail.html:1068
+#: ui/templates/ui/car_detail.html:1060 ui/templates/ui/car_detail.html:1068
+#: ui/templates/ui/car_detail.html:1069
 msgid "Error sending location to car"
 msgstr "Sijainnin lähetys autoon epäonnistui"
 
-#: ui/templates/ui/car_detail.html:1061
+#: ui/templates/ui/car_detail.html:1062
 msgid "Location sent!"
 msgstr "Määränpää lähetetty!"
 
-#: ui/templates/ui/car_detail.html:1117 ui/templates/ui/car_detail.html:1180
-#: ui/templates/ui/car_detail.html:1451 ui/templates/ui/car_detail.html:1456
-#: ui/templates/ui/car_detail.html:1513 ui/templates/ui/car_detail.html:1526
-#: ui/templates/ui/car_detail.html:1531 ui/templates/ui/car_detail.html:1610
+#: ui/templates/ui/car_detail.html:1118 ui/templates/ui/car_detail.html:1181
+#: ui/templates/ui/car_detail.html:1452 ui/templates/ui/car_detail.html:1457
+#: ui/templates/ui/car_detail.html:1514 ui/templates/ui/car_detail.html:1527
+#: ui/templates/ui/car_detail.html:1532 ui/templates/ui/car_detail.html:1611
 msgid "No address"
 msgstr "Ei osoitetta"
 
-#: ui/templates/ui/car_detail.html:1127 ui/templates/ui/car_detail.html:1460
+#: ui/templates/ui/car_detail.html:1128 ui/templates/ui/car_detail.html:1461
 msgid "Could not get location from map link"
 msgstr "Ei saatu sijaintia linkistä"
 
-#: ui/templates/ui/car_detail.html:1133 ui/templates/ui/car_detail.html:1205
-#: ui/templates/ui/car_detail.html:1466 ui/templates/ui/car_detail.html:1547
+#: ui/templates/ui/car_detail.html:1134 ui/templates/ui/car_detail.html:1206
+#: ui/templates/ui/car_detail.html:1467 ui/templates/ui/car_detail.html:1548
 msgid "Error searching locations"
 msgstr "Kohteiden haku epäonnistui"
 
-#: ui/templates/ui/car_detail.html:1199 ui/templates/ui/car_detail.html:1541
+#: ui/templates/ui/car_detail.html:1200 ui/templates/ui/car_detail.html:1542
 msgid "Search did not find any locations"
 msgstr "Haku ei tuottanut tulosta"
 
-#: ui/templates/ui/car_detail.html:1224
+#: ui/templates/ui/car_detail.html:1225
 msgid "Connection established!"
 msgstr "Yhdistetty!"
 
-#: ui/templates/ui/car_detail.html:1229
+#: ui/templates/ui/car_detail.html:1230
 msgid "Reconnecting..."
 msgstr "Yhdistetään uudelleen..."
 
-#: ui/templates/ui/car_detail.html:1555
+#: ui/templates/ui/car_detail.html:1556
 msgid "Cannot add a new waypoint"
 msgstr "Ei voitu lisätä reittipistettä"
 
-#: ui/templates/ui/car_detail.html:1555
+#: ui/templates/ui/car_detail.html:1556
 msgid "Maximum number of waypoints reached"
 msgstr "Maksimimäärä reittipisteitä saavutettu"
 
-#: ui/templates/ui/car_detail.html:1588
+#: ui/templates/ui/car_detail.html:1589
 msgid "Waypoint"
 msgstr "Reittipiste"
 
-#: ui/templates/ui/car_detail.html:1647 ui/templates/ui/car_detail.html:1656
-#: ui/templates/ui/car_detail.html:1657
+#: ui/templates/ui/car_detail.html:1648 ui/templates/ui/car_detail.html:1657
+#: ui/templates/ui/car_detail.html:1658
 msgid "Error saving the route plan"
 msgstr "Reittisuunnitelmaa ei voitu tallentaa"
 
-#: ui/templates/ui/car_detail.html:1649
+#: ui/templates/ui/car_detail.html:1650
 msgid "Route plan saved!"
 msgstr "Reittisuunnitelma tallennettu!"
 
-#: ui/templates/ui/car_detail.html:1685
+#: ui/templates/ui/car_detail.html:1686
 msgid "Cannot add new route plan"
 msgstr "Reittisuunnitelmaa ei voitu lisätä"
 
-#: ui/templates/ui/car_detail.html:1685
+#: ui/templates/ui/car_detail.html:1686
 msgid "You have too many route plans, please delete one and try again."
 msgstr ""
 "Sinulla on liian monta reittisuunnitelmaa tallennettuna, poista ainakin yksi "
 "ja yritä uudelleen."
 
-#: ui/templates/ui/car_detail.html:1754
+#: ui/templates/ui/car_detail.html:1755
 msgid "Are you sure you want to delete this route plan?"
 msgstr "Haluatko varmasti poistaa tämän reittisuunnitelman?"
 
-#: ui/templates/ui/car_detail.html:1768 ui/templates/ui/car_detail.html:1775
-#: ui/templates/ui/car_detail.html:1776
+#: ui/templates/ui/car_detail.html:1769 ui/templates/ui/car_detail.html:1776
+#: ui/templates/ui/car_detail.html:1777
 msgid "Error deleting the route plan"
 msgstr "Reittisuunnitelmaa ei voitu poistaa"
 
-#: ui/templates/ui/car_detail.html:1770
+#: ui/templates/ui/car_detail.html:1771
 msgid "Route plan removed!"
 msgstr "Reittisuunnitelma tallennettu!"
 

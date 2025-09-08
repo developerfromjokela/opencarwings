@@ -1,5 +1,8 @@
 import io
 import logging
+
+from tculink.carwings_proto.utils import update_car_info
+
 logger = logging.getLogger("carwings")
 
 from django.http import HttpResponse
@@ -43,6 +46,7 @@ def carwings_http_gateway(request):
         logger.warning("No service info in XML file!")
         return HttpResponse(status=400)
 
+    update_car_info(parsed_xml)
 
     resp_buffer = bytearray()
 

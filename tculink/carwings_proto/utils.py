@@ -1,5 +1,8 @@
+import logging
+from django.utils import timezone
 from db.models import Car
 from django.utils.translation import gettext_lazy as _
+logger = logging.getLogger("carwings")
 
 
 def get_cws_authenticated_car(xml_data):
@@ -32,6 +35,35 @@ def get_cws_authenticated_car(xml_data):
         except Car.DoesNotExist:
             return None
     return None
+
+def update_car_info(xml_data):
+    car_obj = get_cws_authenticated_car(xml_data)
+    if car_obj is not None:
+        car_obj.last_connection = timezone.now()
+        if 'base_info' in xml_data:
+            if 'vehicle' in xml_data['base_info']:
+                carrier = xml_data['base_info']['vehicle'].get('carrier')
+                signal_level = int(xml_data['base_info']['vehicle'].get('rss', -1))
+                odometer = int(xml_data['base_info']['vehicle'].get('odometer', -1))
+                car_obj.odometer = odometer
+                car_obj.signal_level = signal_level
+                car_obj.carrier = carrier
+                if 'coordinates' in xml_data['base_info']['vehicle']:
+                    car_obj.coordinates = xml_data['base_info']['vehicle']['coordinates']
+                    try:
+                        car_coordinate = xml_coordinate_to_float(xml_data['base_info']['vehicle']['coordinates'])
+                        car_obj.location.lat = car_coordinate[0]
+                        car_obj.location.lon = car_coordinate[1]
+                        car_obj.location.home = False
+                        car_obj.location.save()
+                    except Exception as e:
+                        logger.exception(e)
+            if 'software' in xml_data['base_info']:
+                car_obj.navi_version = xml_data['base_info']['software'].get('navi', None)
+                car_obj.map_version = xml_data['base_info']['software'].get('map', None)
+                car_obj.tcu_version = xml_data['base_info']['software'].get('dcm', None)
+        car_obj.save()
+
 
 def calculate_prb_data_checksum(data, length):
     """

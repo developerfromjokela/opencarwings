@@ -80,7 +80,7 @@ class CarAdmin(admin.ModelAdmin):
     fieldsets = (
         ('Vehicle Info', {
             'fields': ('vin', 'sms_config', 'vehicle_code1', 'vehicle_code2',
-                       'vehicle_code3', 'vehicle_code4', 'nickname', 'owner')
+                       'vehicle_code3', 'vehicle_code4', 'nickname', 'owner', 'odometer', 'signal_level', 'carrier', 'map_version', 'navi_version')
         }),
         ('TCU Info', {
             'fields': ('tcu_model', 'tcu_serial', 'iccid', 'tcu_ver',

@@ -15,6 +15,16 @@
                     {% with 'car/'|add:car.color|add:'.png' as car_static %}
                       <img src="{% static car_static %}" style="padding-right: 15px; max-height: 60px; object-fit: cover"/>
                     {% endwith %}
+                    <div class="cell-signal signal-{{ car.signal_level }} mr-3" style="display: {% if car.signal_level > 0 %}block{% else %}none{% endif %};">
+                        <div class="signal-bars">
+                          <div class="bar"></div>
+                          <div class="bar"></div>
+                          <div class="bar"></div>
+                          <div class="bar"></div>
+                          <div class="bar"></div>
+                        </div>
+                        <div class="carrier" id="carrier">{{ car.carrier }}</div>
+                    </div>
                     {{ car.nickname }}
                     {% now "U" as current_time %}
                     {% if car.last_connection %}
@@ -206,6 +216,11 @@
             <div id="basic-info" class="tab-content">
                 <dl class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 text-sm sm:text-base">
                     <div><dt class="text-gray-700 font-semibold">VIN:</dt><dd class="text-gray-600">{{ car.vin }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "Odometer" %}:</dt><dd class="text-gray-600" id="odometer">{% if car.odometer > 0 %}{% local_dist car.odometer decimals=0 %}{% else %}--{% endif %}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "Navi version" %}:</dt><dd class="text-gray-600" id="navi_version">{{ car.navi_version|default:"--"  }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "Map version" %}:</dt><dd class="text-gray-600" id="map_version">{{ car.map_version|default:"--"  }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "TCU version (from navi)" %}:</dt><dd class="text-gray-600" id="tcu_version">{{ car.tcu_version|default:"--"  }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "TCU version (from TCU)" %}:</dt><dd class="text-gray-600" id="tcu_version2">{{ car.tcu_ver|default:"--" }}</dd></div>
                     <div><dt class="text-gray-700 font-semibold">{% translate "Vehicle Code" %} 1:</dt><dd class="text-gray-600">{{ car.vehicle_code1 }}</dd></div>
                     <div><dt class="text-gray-700 font-semibold">{% translate "Vehicle Code" %} 2:</dt><dd class="text-gray-600">{{ car.vehicle_code2 }}</dd></div>
                     <div><dt class="text-gray-700 font-semibold">{% translate "Vehicle Code" %} 3:</dt><dd class="text-gray-600">{{ car.vehicle_code3 }}</dd></div>
@@ -530,6 +545,17 @@
                 .replace(/>/g, "&gt;")
                 .replace(/"/g, "&quot;")
                 .replace(/'/g, "&#039;");
+        }
+
+        function setSignalStrength(strength) {
+          const signalDiv = document.querySelector('.cell-signal');
+          signalDiv.className = 'cell-signal mr-3'; // Reset classes
+          if (strength >= 1 && strength <= 5) {
+              signalDiv.style.display = 'block';
+            signalDiv.classList.add(`signal-${strength}`);
+          } else {
+              signalDiv.style.display = 'none';
+          }
         }
 
         const distanceLocalize = (km, accuracy) => {
@@ -917,6 +943,12 @@
             document.getElementById('home').textContent = data.location.home ? '{% translate "Yes" %}' : '{% translate "No" %}';
             document.getElementById('loc_last_updated').textContent = data.location.last_updated ?
                 new Date(data.location.last_updated).toLocaleString() : 'N/A';
+            document.getElementById('odometer').textContent = data.odometer !== -1 ? data.odometer : '--';
+            document.getElementById('map_version').textContent = data.map_version ? data.map_version : '--';
+            document.getElementById('tcu_version').textContent = data.tcu_version ? data.tcu_version : '--';
+            document.getElementById('tcu_version2').textContent = data.tcu_ver ? data.tcu_ver : '--';
+            document.getElementById('navi_version').textContent = data.navi_version ? data.navi_version : '--';
+            setSignalStrength(data.signal_level);
 
             // Update connection status color
             const connectionStatus = document.getElementById('connection-status');

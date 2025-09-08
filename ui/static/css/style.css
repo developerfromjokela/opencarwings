@@ -255,3 +255,67 @@
     .map {
         z-index: 0 !important;
     }
+
+
+
+    .carrier {
+      font-size: 10px;
+      color: #333;
+      text-align: center;
+      line-height: 0.7rem;
+    }
+
+
+    .bar {
+      width: 6px;
+      background: linear-gradient(180deg, #030303, #010101);
+      border-radius: 2px;
+      transition: height 0.3s ease, opacity 0.3s ease;
+      opacity: 1;
+    }
+
+    .cell-signal {
+        height: 24px;
+        width: 40px;
+    }
+
+    .signal-bars {
+      display: flex;
+      gap: 2px;
+      align-items: flex-end;
+        height: 24px;
+        margin-bottom: 3px;
+    }
+
+    .cell-signal .bar:nth-child(1) { height: 8px; opacity: 0.2; }
+    .cell-signal .bar:nth-child(1) { height: 8px; opacity: 0.2; }
+    .cell-signal .bar:nth-child(2) { height: 12px; opacity: 0.2; }
+    .cell-signal .bar:nth-child(1) { height: 8px; opacity: 0.2; }
+    .cell-signal .bar:nth-child(2) { height: 12px; opacity: 0.2; }
+    .cell-signal .bar:nth-child(3) { height: 16px; opacity: 0.2; }
+    .cell-signal .bar:nth-child(1) { height: 8px; opacity: 0.2; }
+    .cell-signal .bar:nth-child(2) { height: 12px; opacity: 0.2; }
+    .cell-signal .bar:nth-child(3) { height: 16px; opacity: 0.2; }
+    .cell-signal .bar:nth-child(4) { height: 20px; opacity: 0.2; }
+    .cell-signal .bar:nth-child(1) { height: 8px; opacity: 0.2; }
+    .cell-signal .bar:nth-child(2) { height: 12px; opacity: 0.2; }
+    .cell-signal .bar:nth-child(3) { height: 16px; opacity: 0.2; }
+    .cell-signal .bar:nth-child(4) { height: 20px; opacity: 0.2; }
+    .cell-signal .bar:nth-child(5) { height: 24px; opacity: 0.2; }
+
+    /* Bar heights for different signal levels */
+    .signal-1 .bar:nth-child(1) { height: 8px; opacity: 1; }
+    .signal-2 .bar:nth-child(1) { height: 8px; opacity: 1; }
+    .signal-2 .bar:nth-child(2) { height: 12px; opacity: 1; }
+    .signal-3 .bar:nth-child(1) { height: 8px; opacity: 1; }
+    .signal-3 .bar:nth-child(2) { height: 12px; opacity: 1; }
+    .signal-3 .bar:nth-child(3) { height: 16px; opacity: 1; }
+    .signal-4 .bar:nth-child(1) { height: 8px; opacity: 1; }
+    .signal-4 .bar:nth-child(2) { height: 12px; opacity: 1; }
+    .signal-4 .bar:nth-child(3) { height: 16px; opacity: 1; }
+    .signal-4 .bar:nth-child(4) { height: 20px; opacity: 1; }
+    .signal-5 .bar:nth-child(1) { height: 8px; opacity: 1; }
+    .signal-5 .bar:nth-child(2) { height: 12px; opacity: 1; }
+    .signal-5 .bar:nth-child(3) { height: 16px; opacity: 1; }
+    .signal-5 .bar:nth-child(4) { height: 20px; opacity: 1; }
+    .signal-5 .bar:nth-child(5) { height: 24px; opacity: 1; }

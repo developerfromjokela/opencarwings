@@ -252,6 +252,12 @@ class Car(models.Model):
     # CarWings navi
     send_to_car_location = models.ManyToManyField(SendToCarLocation)
     route_plans = models.ManyToManyField(RoutePlan)
+    carrier = models.CharField(max_length=64, null=True, default=None)
+    signal_level = models.IntegerField(default=-1)
+    odometer = models.IntegerField(default=-1)
+    navi_version = models.CharField(max_length=64, null=True, default=None, blank=True)
+    map_version = models.CharField(max_length=64, null=True, default=None, blank=True)
+    tcu_version = models.CharField(max_length=64, null=True, default=None, blank=True)
 
 
 # Probe data

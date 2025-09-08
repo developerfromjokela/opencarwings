@@ -25,7 +25,7 @@ class Step2Form(forms.Form):
     vin = forms.CharField(label="VIN", max_length=22, required=True, strip=True, min_length=5)
 
 class Step3Form(forms.Form):
-    nickname = forms.CharField(label=_("Nickname"), max_length=64, required=True, strip=True, min_length=5)
+    nickname = forms.CharField(label=_("Nickname"), max_length=64, required=True, strip=True, min_length=2)
 
 
 class ChangePasswordForm(forms.Form):

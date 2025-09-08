@@ -45,6 +45,10 @@ def update_car_info(xml_data):
                 carrier = xml_data['base_info']['vehicle'].get('carrier')
                 signal_level = xml_data['base_info']['vehicle'].get('rss', -1)
                 odometer = xml_data['base_info']['vehicle'].get('odometer', -1)
+                if odometer is None:
+                    odometer = -1
+                if signal_level is None:
+                    signal_level = -1
                 car_obj.odometer = odometer
                 car_obj.signal_level = signal_level
                 car_obj.carrier = carrier

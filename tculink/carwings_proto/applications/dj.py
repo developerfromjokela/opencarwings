@@ -3,8 +3,11 @@ import os
 import xml.etree.ElementTree as ET
 from datetime import datetime
 
+from django.utils.translation import activate, get_language
+
 from tculink.carwings_proto.autodj.handler import handle_channel_response, handle_directory_response
 from tculink.carwings_proto.databuffer import get_carwings_dj_payload, construct_carwings_filepacket, compress_carwings
+from tculink.carwings_proto.utils import carwings_lang_to_code
 from tculink.carwings_proto.xml import carwings_create_xmlfile_content
 
 logger = logging.getLogger("carwings_apl")
@@ -45,6 +48,11 @@ def handle_dj(xml_data, files):
             with open(os.path.join(log_dir, f"UNKNOWNDJPAYL-{id_value}"), 'wb') as f:
                 f.write(file_content)
             return None
+
+        activate(carwings_lang_to_code(xml_data['base_info'].get('navigation_settings', {}).get('language', "uke")))
+
+        logger.info("CWS lang: ")
+        logger.info(get_language())
 
         count = dj_payload[0]
 

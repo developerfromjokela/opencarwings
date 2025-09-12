@@ -746,7 +746,9 @@ def get_eco_tree_channel(xml_data, returning_xml, channel_id, car):
         if trip.start_ts.day < time_car_now.day+1:
             day_idx = trip.start_ts.day
             if day_idx in tree_records:
-                tree_records[day_idx][1] = tree_records[day_idx][1]+trip_trees
+                temp_itm = list(tree_records[day_idx])
+                temp_itm[1] = temp_itm[1]+trip_trees
+                tree_records[day_idx] = tuple(temp_itm)
             else:
                 tree_records[day_idx] = (formats.date_format(trip.start_ts, format='j b')+".", trip_trees, trip.start_ts)
 

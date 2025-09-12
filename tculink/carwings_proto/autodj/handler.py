@@ -11,7 +11,6 @@ def handle_directory_response(xml_data, returning_xml):
     # TODO customisable user folder
     channels = [x for x in STANDARD_AUTODJ_CHANNELS if (x.get('internal', False) == False)]
 
-    activate(carwings_lang_to_code(xml_data['base_info'].get('navigation_settings', {}).get('language', "uke")))
     channels = [translate_chan_name(c) for c in channels]
     folders = [translate_chan_name(c) for c in STANDARD_AUTODJ_FOLDERS]
 
@@ -42,7 +41,6 @@ def translate_chan_name(chan):
 def handle_channel_response(xml_data, channel_id, returning_xml):
     channels = STANDARD_AUTODJ_CHANNELS
     # TODO if customisable channels add here
-    activate(carwings_lang_to_code(xml_data['base_info'].get('navigation_settings', {}).get('language', "uke")))
 
     channel = next((item for item in channels if item["id"] == channel_id), None)
     if channel is None or 'processor' not in channel:

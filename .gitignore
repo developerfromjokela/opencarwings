@@ -5,3 +5,4 @@ logs
 *.p8
 *.cert
 __pycache__
+.env

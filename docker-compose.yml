@@ -13,9 +13,6 @@ services:
       PSQL_DATABASE_PORT: 5432
       REDIS_HOST: redis
       REDIS_PORT: 6379
-      WORKER_CONNECTIONS: ${WORKER_CONNECTIONS}
-      WORKER_TIMEOUT: ${WORKER_TIMEOUT}
-      WORKERS: ${WORKERS}
       TZ: ${TZ}
     restart: always
     volumes:

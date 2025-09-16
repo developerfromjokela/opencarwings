@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'mathfilters',
+    'rest_framework',
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
     'rest_framework.authtoken',
@@ -72,13 +73,16 @@ TEMPLATES = [
         'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
-            'context_processors.py': [
-                'django.template.context_processors.py.debug',
-                'django.template.context_processors.py.request',
-                'django.contrib.auth.context_processors.py.auth',
-                'django.contrib.messages.context_processors.py.messages',
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
                 'ui.context_processors.load_ver_info',
             ],
+            'libraries': {
+                'math_filters': 'ui.templatetags.math_filters',
+            },
         },
     },
 ]
@@ -94,7 +98,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.environ.get('PSQL_DATABASE', 'mysql-db'),
         'USER': os.environ.get('PSQL_USER', 'mysql-user'),
-        'PASSWORD': os.environ.get('MYSQL_PASSWORD', 'mysql-password'),
+        'PASSWORD': os.environ.get('PSQL_PASSWORD', 'mysql-password'),
         'HOST': os.environ.get('PSQL_DATABASE_HOST', 'db'),
         'PORT': os.environ.get('PSQL_DATABASE_PORT', 3306)
 #        'OPTIONS': {'init_command': 'SET storage_engine=INNODB;'}
@@ -234,3 +238,4 @@ FCM_SERVICE_FILE = ""
 FCM_PROJECT_ID = ""
 # Leave empty to disable, the server will try to scrape all location info available, but may fail sometimes
 GOOGLE_API_KEY = ""
+OPENCHARGEMAP_API_KEY = ""

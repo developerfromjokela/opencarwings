@@ -18,16 +18,12 @@ from db.models import CRMTripRecord
 from tculink.carwings_proto.dataobjects import build_autodj_payload
 from tculink.carwings_proto.utils import get_word_of_month_i18n
 
-RELEASE_NOTES = "What's new in OpenCARWINGS?\n1. Route Planner\n2.Multiple Send To Car Locations\n3. Data Channels\n4. Energy Information"
+RELEASE_NOTES = "What's new in OpenCARWINGS?\n1. Charging Stations\n"
 
-RELEASE_NOTES_SPK = ("What's new in Open CAR WINGS? September release.\nNumber one. Route Planner. With new support of Route Planner, you can"
-                     " plan your navigation routes in advance via your computer or mobile phone. It supports up to "
-                     "5 waypoints and it is possible to send 5 routes to the car."
-                     "\nNumber two. Multiple Send To Car Locations. Previously familar Google Send To Car function"
-                     " supports sending up to six destinations, instead of previously supporting only one."
-                     "\n3. Data Channels. Data channels are fully functional as of now and support for custom channels are coming soon."
-                     "\n4. Energy Information. With the introduction of vehicle data, it is now possible to view your monthly trips, average consumption and more."
-                     " Individual trips are transmitted to the Open Car Wings server with detailed information. In addition to this, data channels about E V information are now available.")
+RELEASE_NOTES_SPK = ("What's new in Open CAR WINGS? Last updated 17th of September.\nNumber one. Charging Stations.\n"
+                     "You are now able to search for new charging stations in your area and do automatic updates on startup.\n"
+                     "Charging Stations are loaded from Open Charge Map service. In upcoming releases, in addition to Charging Station Updates, "
+                     "you will also be able to see charging station availability in the area.\n")
 
 NOT_SIGNEDIN_NOTE = ("To make use of more functions of Open Car Wings, please sign in with your User I D and Car Wings "
                      "password inside your car.\n\nGo to Car Wings menu, Settings, Security Settings, to input and send "

@@ -1,6 +1,7 @@
 import io
 import logging
 
+from tculink.carwings_proto.applications.cp import handle_cp
 from tculink.carwings_proto.utils import update_car_info
 
 logger = logging.getLogger("carwings")
@@ -61,6 +62,12 @@ def carwings_http_gateway(request):
         dj_resp = handle_dj(parsed_xml, files)
         if dj_resp is not None:
             resp_buffer = dj_resp
+
+    # Charge points
+    if parsed_xml["service_info"]["application"]["name"] == "CP":
+        cp_resp = handle_cp(parsed_xml, files)
+        if cp_resp is not None:
+            resp_buffer = cp_resp
 
     # Probe (vehicle data)
     if parsed_xml["service_info"]["application"]["name"] == "PI":

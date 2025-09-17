@@ -98,6 +98,62 @@ def construct_chnmst_payload(folders, channels):
 
     return payload
 
+def create_cpinfo(obj):
+    payload = bytearray(b'\xFF'*6)
+    payload.extend(b'\x00'*3)
+    payload.extend(b'\x01\x14')
+    payload += obj['poi_id'].to_bytes(4, 'big')
+    payload += len(obj['name']).to_bytes(1, 'big')
+    payload += obj['name'].encode('utf-8')
+    payload += len(obj['code']).to_bytes(1, 'big')
+    payload += obj['code'].encode('utf-8')
+    payload += len(obj['county']).to_bytes(1, 'big')
+    payload += obj['county'].encode('utf-8')
+    payload += len(obj['region']).to_bytes(1, 'big')
+    payload += obj['region'].encode('utf-8')
+    payload += len(obj['city']).to_bytes(1, 'big')
+    payload += obj['city'].encode('utf-8')
+    payload += len(obj['town']).to_bytes(1, 'big')
+    payload += obj['town'].encode('utf-8')
+    # usually meta1-3 empty, holiday or normal opening times?
+    payload += len(obj['meta1']).to_bytes(1, 'big')
+    payload += obj['meta1'].encode('utf-8')
+    payload += len(obj['meta2']).to_bytes(1, 'big')
+    payload += obj['meta2'].encode('utf-8')
+    payload += len(obj['meta3']).to_bytes(1, 'big')
+    payload += obj['meta3'].encode('utf-8')
+
+    payload += construct_dms_coordinate(obj['lat'], obj['lon'])
+    #payload += bytes.fromhex('80 00 0A 2D 06 C3 3B 36 11 00')
+    payload += len(obj['address']).to_bytes(1, 'big')
+    payload += obj['address'].encode('utf-8')
+    payload += obj['mesh_id'].to_bytes(4, 'big')
+    payload += len(obj['phone']).to_bytes(1, 'big')
+    payload += obj['phone'].encode('utf-8')
+    payload += len(obj['sites']).to_bytes(1, 'big')
+    for site in obj['sites']:
+        # 6-byte infoblock
+        payload += site
+    payload += len(obj['stations']).to_bytes(1, 'big')
+    for station in obj['stations']:
+        payload += b'\x00'*4
+        # flag
+        payload += station['flag1'].to_bytes(1, 'big')
+        payload += station['fast_flag'].to_bytes(1, 'big')
+        payload += station['slow_flag'].to_bytes(1, 'big')
+        payload += station['flag2'].to_bytes(1, 'big')
+        payload += b'\x00'*2
+        payload += station['flag3'].to_bytes(1, 'big')
+        # desc
+        payload += len(station['opt_desc']).to_bytes(1, 'big')
+        payload += station['opt_desc'].encode('utf-8')
+
+    # config string for UI
+    payload += len(obj['config_str']).to_bytes(2, 'big')
+    payload += obj['config_str'].encode('utf-8')
+
+    return payload
+
 def build_autodj_payload(
     message_type: int,
     channel_id: int,

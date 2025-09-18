@@ -70,7 +70,12 @@
                     <dt><i class="mic material-symbols-outlined">eco</i> {% translate "Regenerated" %}</dt>
                     <dd id="overview-range-acon">{{ trip.regen|div:100000.0|floatformat:1 }} kWh</dd>
                 </div>
-                {% if trip.motor_consumption|addition:trip.aircon_consumption != 0 and trip.distance != 0 %}
+                {% if trip.wh_energy_start != 0 and trip.wh_energy_end != 0 and trip.distance != 0 %}
+                    <div class="status-box">
+                        <dt><i class="mic material-symbols-outlined">flash_on</i> {% translate "Average consumption" %}</dt>
+                        <dd id="overview-range-acon">{% local_cons trip.wh_energy_start|sub:trip.wh_energy_end|div:trip.distance decimals=1 %}</dd>
+                    </div>
+                {% elif trip.motor_consumption|addition:trip.aircon_consumption != 0 and trip.distance != 0 %}
                     {% with cons_wh=trip.motor_consumption|addition:trip.aircon_consumption|div:10.0 %}
                     <div class="status-box">
                         <dt><i class="mic material-symbols-outlined">flash_on</i> {% translate "Average consumption" %}</dt>

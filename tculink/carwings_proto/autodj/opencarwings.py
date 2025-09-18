@@ -533,12 +533,11 @@ def get_energy_information_channel(xml_data, returning_xml, channel_id, car):
     driven_km = 0
     consumptions = []
     for trip in last_trips:
-        consume_wh = (trip.motor_consumption+trip.aircon_consumption)/10.0
-        regen_wh = trip.regen/100.0
-        spent_energy += (consume_wh-regen_wh)
-        driven_km += trip.distance
-        if (consume_wh-regen_wh) != 0 and trip.distance != 0:
-            consumptions.append((consume_wh-regen_wh)/trip.distance)
+        energy = trip.wh_energy_start-trip.wh_energy_end
+        if energy != 0 and trip.distance >= 1:
+            spent_energy += energy
+            driven_km += trip.distance
+            consumptions.append(energy/trip.distance)
 
     wh_per_km = -1
     if driven_km > 0 and spent_energy > 0:

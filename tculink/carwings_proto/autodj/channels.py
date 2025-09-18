@@ -1,10 +1,10 @@
+from django.utils.text import format_lazy
+
 from tculink.carwings_proto.autodj.opencarwings import get_infochannel, get_energy_information_channel, \
     get_eco_tree_channel
 from tculink.carwings_proto.autodj.routeplanner import handle_routeplanner
 from tculink.carwings_proto.autodj.sendtocar import handle_send_to_car_adj, handle_send_to_car
 from tculink.carwings_proto.autodj.weather import get_weather_forecast
-from django.utils.translation import gettext_lazy as _
-from django.utils.text import format_lazy
 
 STANDARD_AUTODJ_FOLDERS = [
     {

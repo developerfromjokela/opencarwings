@@ -131,15 +131,16 @@ def parse_std_location(lat_int, lon_int):
     Parse 32-bit latitude and longitude into GPS coordinates.
     """
 
-    def to_decimal_degrees(coord_int):
-        # Convert to decimal degrees: divide by 512 and then by 3600
-        return (coord_int / 512.0) / 3600.0
+    def dms_to_decimal(coord_int):
+        degrees = (coord_int >> 24) & 0xFF
+        minutes = (coord_int >> 16) & 0xFF
+        seconds_x100 = coord_int & 0xFFFF
+        seconds = seconds_x100 / 100.0
+        decimal = degrees + minutes / 60.0 + seconds / 3600.0
+        return decimal
 
-    # Parse latitude and longitude
-    lat_decimal = to_decimal_degrees(lat_int)
-    lon_decimal = to_decimal_degrees(lon_int)
 
-    return lat_decimal, lon_decimal
+    return dms_to_decimal(lat_int), dms_to_decimal(lon_int)
 
 
 def xml_dms_to_decimal(dms):

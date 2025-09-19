@@ -1,3 +1,5 @@
+from datetime import datetime
+
 def pad_bytes(data: bytes, length=6, padding=b'\xFF') -> bytes:
     if len(data) > length:
         raise ValueError(f"Input data exceeds {length} bytes")
@@ -417,3 +419,244 @@ def build_autodj_payload(
 
     body.extend(payload)
     return bytes(body)
+
+def compose_ca_list(items):
+    data = bytearray()
+    data += b'\x00'*9
+    data += b'\x01\x19'
+    data += len(items).to_bytes(4, 'big')
+    for item in items:
+        data += item['poi_id'].to_bytes(4, 'big')
+        data += construct_dms_coordinate(item['latitude'], item['longitude'])
+    return data
+
+
+def compose_ca_data(data_dict) -> bytes:
+    """
+    Compose CA Data in the format expected by Parse_CAData function.
+
+    Parameters:
+        data_dict: Dictionary containing the CA data fields
+
+    Expected dictionary keys:
+        - poi_id: int (default: 0)
+        - charging_station_name: str (default: "")
+        - char40_data: int (default: 0xFFFF)
+        - dynamic_string2: str (default: "")
+        - dynamic_string3: str (default: "")
+        - dynamic_string4: str (default: "")
+        - dynamic_string5: str (default: "")
+        - skip_string1: str (default: "")
+        - skip_string2: str (default: "")
+        - latitude: poi latitude
+        - longitude: poi longitude
+        - dynamic_string6: str (default: "")
+        - short_id1: int (default: 0)
+        - short_id2: int (default: 0)
+        - dynamic_string7: str (default: "")
+        - conf_byte1: int (default: 0)
+        - conf_byte2: int (default: 0)
+        - station_type_id: int (default: 0)
+        - station_type1_id: int (default: 0, only used if station_type_id == 1)
+        - charge_station_items: list of dicts with 'mesh_point' and 'dynamic_field'
+        - secondary_station_info: list of strings
+        - third_station_info: list of strings
+        - last_meta: list of meta object dicts
+
+    Returns:
+        bytes: The composed CA data
+    """
+    data = bytearray()
+
+    data.extend(b'\x00' * 9)  # First 7 bytes (unknown purpose)
+
+    # Message ID
+    data.extend(b'\x01\x18')
+
+    # POI_ID
+    poi_id = data_dict.get('poi_id', 0)
+    data += poi_id.to_bytes(4, 'big')
+
+    # Charging station name (length byte + string)
+    charging_station_name = data_dict.get('charging_station_name', '')
+    name_bytes = charging_station_name.encode('utf-8')[:32]  # Max 32 chars
+    data += (len(name_bytes).to_bytes(1, 'big'))
+    data.extend(name_bytes)
+
+    # char40 data (length byte + hex string representation)
+    char40_bytes = data_dict.get('char40_data', '').encode('ascii')[:32]  # Max 32 chars
+    data += (len(char40_bytes)).to_bytes(1, 'big')
+    data.extend(char40_bytes)
+
+    # Dynamic string 2 (length byte + string)
+    dynamic_string2 = data_dict.get('dynamic_string2', '')
+    str2_bytes = dynamic_string2.encode('utf-8')[:32]  # Max 32 chars
+    data += (len(str2_bytes)).to_bytes(1, 'big')
+    data.extend(str2_bytes)
+
+    # Dynamic string 3 (length byte + string)
+    dynamic_string3 = data_dict.get('dynamic_string3', '')
+    str3_bytes = dynamic_string3.encode('utf-8')[:32]  # Max 32 chars
+    data += (len(str3_bytes)).to_bytes(1, 'big')
+    data.extend(str3_bytes)
+
+    # Dynamic string 4 (length byte + string)
+    dynamic_string4 = data_dict.get('dynamic_string4', '')
+    str4_bytes = dynamic_string4.encode('utf-8')[:32]  # Max 32 chars
+    data += (len(str4_bytes)).to_bytes(1, 'big')
+    data.extend(str4_bytes)
+
+    # Dynamic string 5 (length byte + string)
+    dynamic_string5 = data_dict.get('dynamic_string5', '')
+    str5_bytes = dynamic_string5.encode('utf-8')[:32]  # Max 32 chars
+    data += (len(str5_bytes)).to_bytes(1, 'big')
+    data.extend(str5_bytes)
+
+    # Skip string 1 (length byte + string) - parser skips this
+    skip_string1 = data_dict.get('skip_string1', '')
+    skip1_bytes = skip_string1.encode('utf-8')[:32]
+    data += (len(skip1_bytes)).to_bytes(1, 'big')
+    data.extend(skip1_bytes)
+
+    # Skip string 2 (length byte + string) - parser skips this
+    skip_string2 = data_dict.get('skip_string2', '')
+    skip2_bytes = skip_string2.encode('utf-8')[:32]
+    data += (len(skip2_bytes)).to_bytes(1, 'big')
+    data.extend(skip2_bytes)
+
+    # String before mesh point (length byte + data + mesh point)
+    mesh_str_len = 0  # We'll just use 0 for the string before mesh point
+    data.append(mesh_str_len)
+
+    # Mesh point data (10 bytes)
+    data.extend(construct_dms_coordinate(data_dict.get('latitude', 0), data_dict.get('longitude', 0)))
+
+    # Dynamic string 6 (length byte + string)
+    dynamic_string6 = data_dict.get('dynamic_string6', '')
+    str6_bytes = dynamic_string6.encode('utf-8')[:64]  # Max 64 chars
+    data += (len(str6_bytes)).to_bytes(1, 'big')
+    data.extend(str6_bytes)
+
+    # Short IDs (2 bytes each, little endian)
+    short_id1 = data_dict.get('short_id1', 0)
+    short_id2 = data_dict.get('short_id2', 0)
+    data += short_id1.to_bytes(2, 'big')
+    data += short_id2.to_bytes(2, 'big')
+
+    # Dynamic string 7 (length byte + string)
+    dynamic_string7 = data_dict.get('dynamic_string7', '')
+    str7_bytes = dynamic_string7.encode('utf-8')[:48]  # Max 48 chars
+    data += (len(str7_bytes)).to_bytes(1, 'big')
+    data.extend(str7_bytes)
+
+    # Configuration bytes
+    conf_byte1 = data_dict.get('conf_byte1', 0)
+    conf_byte2 = data_dict.get('conf_byte2', 0)
+    data.append(conf_byte1)
+    data.append(conf_byte2)
+
+    # Station type ID
+    station_type_id = data_dict.get('station_type_id', 0)
+    data.append(station_type_id)
+
+    # Station type 1 ID (4 bytes) - only if station_type_id == 1
+    if station_type_id == 1:
+        station_type1_id = data_dict.get('station_type1_id', 0)
+        data += station_type1_id.to_bytes(4, 'big')
+
+    # Charge station items
+    charge_station_items = data_dict.get('charge_station_items', [])
+    if len(charge_station_items) > 5:
+        raise ValueError("Maximum 5 charge station items allowed")
+
+    data.append(len(charge_station_items))
+    for item in charge_station_items:
+        # Mesh point (10 bytes)
+        data.extend(construct_dms_coordinate(item.get('lat', 0), item.get('lon', 0)))
+
+        # Dynamic field (length byte + string)
+        dyn_field = item.get('dynamic_field', '').encode('utf-8')[:32]
+        data += (len(dyn_field)).to_bytes(1, 'big')
+        data.extend(dyn_field)
+
+    # Secondary station info
+    secondary_station_info = data_dict.get('secondary_station_info', [])
+    if len(secondary_station_info) > 5:
+        raise ValueError("Maximum 5 secondary station info items allowed")
+
+    data.append(len(secondary_station_info))
+    for info in secondary_station_info:
+        info_bytes = info.encode('utf-8')[:32]
+        data += (len(info_bytes)).to_bytes(1, 'big')
+        data.extend(info_bytes)
+
+    # Third station info
+    third_station_info = data_dict.get('third_station_info', [])
+    if len(third_station_info) > 5:
+        raise ValueError("Maximum 5 third station info items allowed")
+
+    data.append(len(third_station_info))
+    for info in third_station_info:
+        info_bytes = info.encode('utf-8')[:32]
+        data += (len(info_bytes)).to_bytes(1, 'big')
+        data.extend(info_bytes)
+
+    # Last meta data
+    last_meta = data_dict.get('last_meta', [])
+    if len(last_meta) > 32:
+        raise ValueError("Maximum 32 last meta items allowed")
+
+    data.append(len(last_meta))
+    for i, meta in enumerate(last_meta):
+        # Fast Charge method
+        data.append(meta.get('fast_charge_method', 0))
+        # Slow Charge Method
+        data.append(meta.get('slow_charge_method', 0))
+        # Flag 3
+        data.append(meta.get('flag3', 0))
+        # Unknown 2-byte value (little endian)
+        unk_val = meta.get('unknown_short', 0)
+        data += unk_val.to_bytes(2, 'big')
+
+        # Big dynamic field (2 bytes length + data)
+        big_field = meta.get('big_dynamic_field', b'')
+        if len(big_field) > 1024:  # Max 0x400 bytes
+            raise ValueError("big_dynamic_field must be <= 1024 bytes")
+        data += len(big_field).to_bytes(2, 'big')
+        data.extend(big_field)
+
+        # Available status
+        data.append(meta.get('avail_sts', 0))
+        # Useable counter number
+        data.append(meta.get('useable_cntr_num', 0))
+        # Using counter number
+        data.append(meta.get('using_cntr_num', 0))
+        # Unknown counter number
+        data.append(meta.get('unknown_cntr_num', 0))
+
+        # Last updated date/time (7 bytes)
+        # Format: 2 bytes year, then 5 bytes for month/day/hour/minute/second
+        datetime_tstamp: datetime = meta.get('last_updated', None)
+        if datetime_tstamp is None:
+            raise ValueError("last_updated is invalid")
+        data += datetime_tstamp.year.to_bytes(2, 'big')
+        data += datetime_tstamp.month.to_bytes(1, 'big')
+        data += datetime_tstamp.day.to_bytes(1, 'big')
+        data += datetime_tstamp.hour.to_bytes(1, 'big')
+        data += datetime_tstamp.minute.to_bytes(1, 'big')
+        data += datetime_tstamp.second.to_bytes(1, 'big')
+
+        # Supplier name (length byte + string)
+        supplier = meta.get('supplier_name', '').encode('utf-8')[:64]
+        data += (len(supplier)).to_bytes(1, 'big')
+        data.extend(supplier)
+
+        # Network name (length byte + string)
+        network = meta.get('network_name', '').encode('utf-8')[:128]
+        data += (len(network)).to_bytes(1, 'big')
+        data.extend(network)
+
+        # Reservation flag
+        data.append(meta.get('reservation_flag', 0))
+
+    return bytes(data)

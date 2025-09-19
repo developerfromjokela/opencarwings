@@ -6,9 +6,10 @@ from django.conf import settings
 import xml.etree.ElementTree as ET
 
 from tculink.carwings_proto.databuffer import construct_carwings_filepacket, compress_carwings
-from tculink.carwings_proto.dataobjects import create_cpinfo, construct_dms_coordinate
+from tculink.carwings_proto.dataobjects import create_cpinfo, construct_dms_coordinate, compose_ca_list, compose_ca_data
 from tculink.carwings_proto.meshutils import read_big_endian_u_int32, unpack_monster_id_to_mesh_id, MeshPoint, MapPoint, \
     mesh_point_to_map_point
+from tculink.carwings_proto.utils import parse_std_location
 from tculink.carwings_proto.xml import carwings_create_xmlfile_content
 
 logger = logging.getLogger("carwings_cp")
@@ -95,7 +96,205 @@ def handle_cp(xml_data, files):
 
         req_id = int.from_bytes(file_content[4:6], byteorder="big")
         logger.info("CP Request ID %d", req_id)
-        if req_id == 277:
+        if req_id == 281:
+            location_center = parse_std_location(int.from_bytes(file_content[13:17], "big"), int.from_bytes(file_content[9:13], "big"))
+            logger.debug("handle availability!! %f, %f", location_center[0], location_center[1])
+            chargers = requests.get("https://api.iternio.com/1/get_chargers", params={
+                'lat': str(location_center[0]),
+                'lon': str(location_center[1]),
+                'radius': '35000',
+                'types': 'j1772,type2,chademo',
+                'sort_by_distance': 'true',
+                'sort_by_power': 'false',
+                'limit': '100'
+            }, headers={"User-Agent": "OpenCARWINGS", "Authorization": f"APIKEY {settings.ITERNIO_API_KEY}"}).json().get("result", [])
+            parsed_chargers = [{'poi_id': chg['id'], 'latitude': chg['lat'], 'longitude': chg['lon']} for chg in chargers]
+            logger.debug("CHARGERS: %d", parsed_chargers)
+            files.append(compose_ca_list(parsed_chargers))
+        elif req_id == 280:
+            count = int.from_bytes(file_content[6:10], byteorder="big")
+
+            if count > 100:
+                count = 100
+
+            data = file_content[10:]
+
+            charger_ids = []
+
+            for i in range(int(count)):
+                charger_ids.append(int.from_bytes(data[(i * 4):(i * 4) + 4], byteorder="big"))
+
+            logger.debug("get chargingstation for availability!! %d", count)
+            chargers = requests.post('https://api.iternio.com/2/charger/_get/details', json={
+                'chargerIds': charger_ids
+            }, headers={"x-api-key": settings.ITERNIO_API_KEY}).json().get("items", [])
+            logger.info("chargingstations: %d", len(chargers))
+            for chg in chargers:
+                if "item" in chg and chg["item"] is not None:
+                    chg = chg["item"]
+                    realtime_status = chg.get('hasDynamicStatus', False)
+                    overall_status = chg.get('accessibility', {}).get('status', '')
+
+
+                    station_items = []
+                    meta_items = []
+                    name_items = []
+                    secondary_items = []
+
+                    if next((plug for plug in chg["evses"] if plug["connectors"][0]['standard'] == "CHADEMO"),
+                            None) is not None:
+                        avail_sts = 0
+                        total_count = 0
+                        availability_count = 0
+                        used_count = 0
+                        unavailable_count = 0
+                        last_status = datetime.datetime.now()
+                        station_items.append({
+                                    'lat': chg['coordinates']['lat'],
+                                    'lon': chg['coordinates']['long'],
+                                    'dynamic_field': 'DC charger'
+                                })
+                        name_items.append(chg.get('name', 'Charging Station')[:32])
+                        secondary_items.append(chg.get('name', 'Charging Station')[:32])
+                        for station in [plug for plug in chg["evses"] if plug["connectors"][0]['standard'] == "CHADEMO"]:
+                            total_count += 1
+                            last_update_ts = station.get("statusLastUpdated", None)
+                            if last_update_ts is not None and len(last_update_ts) > 0:
+                                last_status = datetime.datetime.fromisoformat(last_update_ts.split(".")[0])
+                            if station.get("status", "") in ["AVAILABLE"]:
+                                availability_count += 1
+                            elif station.get("status", "") in ["BLOCKED", "CHARGING"]:
+                                used_count += 1
+                            else:
+                                unavailable_count += 1
+
+                        config_params = ["3", "*", "$12", "!", "%", "?", "#"]
+
+                        if (chg.get('openingTimes', {}).get('twentyfourseven', False) or False):
+                            config_params.append("&1")
+                        else:
+                            config_params.append("&3")
+
+                        conf_str = "1 "
+                        conf_str += ";".join(config_params)
+
+                        if overall_status == "OPEN":
+                            avail_sts = 3
+                            if availability_count == 0:
+                                avail_sts = 4
+                            if unavailable_count == total_count:
+                                avail_sts = 1
+                            if not realtime_status:
+                                avail_sts = 0
+                        if overall_status in ["CONSTRUCTION", "CLOSED"]:
+                            avail_sts = 1
+                        meta_items.append(
+                            {
+                                'fast_charge_method': 1,
+                                'slow_charge_method': 3,
+                                'flag3': total_count,
+                                # avail_sts: 0 = unknown, 1 = not available, 2 = available, 3 = available again?, 4 = busy, 5 = unknown
+                                'avail_sts': avail_sts,
+                                'useable_cntr_num': availability_count,
+                                'using_cntr_num': used_count,
+                                'unknown_cntr_num': unavailable_count,
+                                'last_updated': last_status,
+                                'supplier_name': '',
+                                'network_name': chg.get('network', {}).get('name', 'Unknown'),
+                                'big_dynamic_field': conf_str.encode('utf-8'),
+                                'reservation_flag': 2
+                            }
+                        )
+
+                    if next((plug for plug in chg["evses"] if plug["connectors"][0]['standard'] in ["TYPE2", "J1772"]),
+                            None) is not None:
+                        avail_sts = 0
+                        total_count = 0
+                        availability_count = 0
+                        used_count = 0
+                        unavailable_count = 0
+                        last_status = datetime.datetime.now()
+                        station_items.append({
+                                    'lat': chg['coordinates']['lat'],
+                                    'lon': chg['coordinates']['long'],
+                                    'dynamic_field': 'AC charger'
+                                })
+                        name_items.append(chg.get('name', 'Charging Station')[:32])
+                        secondary_items.append(chg.get('name', 'Charging Station')[:32])
+                        for station in [plug for plug in chg["evses"] if plug["connectors"][0]['standard'] in ["TYPE2", "J1772"]]:
+                            total_count += 1
+                            last_update_ts = station.get("statusLastUpdated", None)
+                            if last_update_ts is not None and len(last_update_ts) > 0:
+                                last_status = datetime.datetime.fromisoformat(last_update_ts.split(".")[0])
+                            if station.get("status", "") in ["AVAILABLE"]:
+                                availability_count += 1
+                            elif station.get("status", "") in ["BLOCKED", "CHARGING"]:
+                                used_count += 1
+                            else:
+                                unavailable_count += 1
+
+                        config_params = ["3", "*", "$12", "!", "%", "?", "#"]
+
+                        if (chg.get('openingTimes', {}).get('twentyfourseven', False) or False):
+                            config_params.append("&1")
+                        else:
+                            config_params.append("&3")
+
+                        conf_str = "3 "
+                        conf_str += ";".join(config_params)
+
+                        if overall_status == "OPEN":
+                            avail_sts = 3
+                            if availability_count == 0:
+                                avail_sts = 4
+                            if unavailable_count == total_count:
+                                avail_sts = 1
+                            if not realtime_status:
+                                avail_sts = 0
+                        if overall_status in ["CONSTRUCTION", "CLOSED"]:
+                            avail_sts = 1
+                        meta_items.append(
+                            {
+                                'fast_charge_method': 3,
+                                'slow_charge_method': 177,
+                                'flag3': total_count,
+                                # avail_sts: 0 = unknown, 1 = not available, 2 = available, 3 = available again?, 4 = busy, 5 = unknown
+                                'avail_sts': avail_sts,
+                                'useable_cntr_num': availability_count,
+                                'using_cntr_num': used_count,
+                                'unknown_cntr_num': unavailable_count,
+                                'last_updated': last_status,
+                                'supplier_name': '',
+                                'network_name': chg.get('network', {}).get('name', 'Unknown'),
+                                'big_dynamic_field': conf_str.encode('utf-8'),
+                                'reservation_flag': 2
+                            }
+                        )
+
+                    files.append(compose_ca_data(
+                        {
+                            'poi_id': chg['id'],
+                            'latitude': chg['coordinates']['lat'],
+                            'longitude': chg['coordinates']['long'],
+                            'charging_station_name': chg.get('name', 'Charging Station')[:32],
+                            'dynamic_string2': '',
+                            'dynamic_string3': chg.get('address', ''),
+                            'dynamic_string4': '',
+                            'dynamic_string5': '',
+                            'dynamic_string6': '',
+                            'dynamic_string7': '',
+                            'skip_string1': '',
+                            'skip_string2': '',
+                            'station_type_id': 0,
+                            'conf_byte1': 1,
+                            'conf_byte2': 2,
+                            'secondary_station_info': name_items,
+                            'third_station_info': secondary_items,
+                            'charge_station_items': station_items,
+                            'last_meta': meta_items,
+                        }
+                    ))
+        elif req_id == 277:
             count = int.from_bytes(file_content[6:10], byteorder="big")
 
             data = file_content[10:]

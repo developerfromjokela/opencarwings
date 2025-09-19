@@ -234,3 +234,4 @@ FCM_PROJECT_ID = ""
 # Leave empty to disable, the server will try to scrape all location info available, but may fail sometimes
 GOOGLE_API_KEY = ""
 OPENCHARGEMAP_API_KEY = ""
+ITERNIO_API_KEY = ""

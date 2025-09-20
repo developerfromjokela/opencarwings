@@ -36,7 +36,7 @@ def handle_directory_response(xml_data, returning_xml):
         ("FAVTINF", favt_file)
     ]
 
-def translate_chan_name(chan, non_unicode):
+def translate_chan_name(chan, non_unicode=False):
     new_chan = chan.copy()
     new_chan['name1'] = str(_(chan['name1']))[:31]
     new_chan['name2'] = str(_(chan['name2']))[:127]

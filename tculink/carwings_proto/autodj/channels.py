@@ -1,10 +1,13 @@
 from django.utils.text import format_lazy
+from django.utils.translation import gettext_lazy as _
 
 from tculink.carwings_proto.autodj.opencarwings import get_infochannel, get_energy_information_channel, \
     get_eco_tree_channel
 from tculink.carwings_proto.autodj.routeplanner import handle_routeplanner
 from tculink.carwings_proto.autodj.sendtocar import handle_send_to_car_adj, handle_send_to_car
 from tculink.carwings_proto.autodj.weather import get_weather_forecast
+from unidecode import unidecode
+
 
 STANDARD_AUTODJ_FOLDERS = [
     {
@@ -201,3 +204,18 @@ STANDARD_AUTODJ_CHANNELS = [
         'processor': get_weather_forecast
     }
 ]
+
+def translate_chan_name(chan, non_unicode=False):
+    new_chan = chan.copy()
+    new_chan['name1'] = str(_(chan['name1']))[:31]
+    new_chan['name2'] = str(_(chan['name2']))[:127]
+    if non_unicode:
+        new_chan['name1'] = unidecode(new_chan['name1'])
+        new_chan['name2'] = unidecode(new_chan['name2'])
+    return new_chan
+
+def get_info_channel_data(car):
+    # TODO customisable user folder and channels
+    channels = [translate_chan_name(c, True) for c in STANDARD_AUTODJ_CHANNELS if (c.get('internal', False) == False)]
+    folders = [translate_chan_name(c, True) for c in STANDARD_AUTODJ_FOLDERS]
+    return channels, folders

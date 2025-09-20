@@ -2586,6 +2586,24 @@ msgstr "Auto on juba lisatud. Palun eemalda ja proovi uuesti."
 msgid "Please select a provider for SMS."
 msgstr "Palun vali SMS-teenuse pakkuja."
 
+msgid "Not authenticated"
+msgstr ""
+
+msgid "Please authenticate to Car Wings before saving a favorite channel"
+msgstr ""
+
+msgid "Channel not found"
+msgstr "This channel does not exist and cannot be added to favorites list"
+
+msgid "This channel does not exist and cannot be added to favorites list"
+msgstr ""
+
+msgid "Favorite channel added"
+msgstr ""
+
+msgid "The channel has been added to favorites"
+msgstr ""
+
 #~ msgid ""
 #~ "You may sign in with your username and CARWINGS password in navigation "
 #~ "unit like showed below."

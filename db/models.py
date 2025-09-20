@@ -258,6 +258,7 @@ class Car(models.Model):
     navi_version = models.CharField(max_length=64, null=True, default=None, blank=True)
     map_version = models.CharField(max_length=64, null=True, default=None, blank=True)
     tcu_version = models.CharField(max_length=64, null=True, default=None, blank=True)
+    favorite_channels = models.JSONField(default=dict)
 
 
 # Probe data

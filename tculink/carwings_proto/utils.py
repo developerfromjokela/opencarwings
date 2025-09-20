@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 logger = logging.getLogger("carwings")
 
 
-def get_cws_authenticated_car(xml_data):
+def get_cws_authenticated_car(xml_data) -> Car|None:
     if 'authentication' in xml_data:
 
         car_vin = xml_data['authentication']['vin']

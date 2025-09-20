@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-08 10:16+0000\n"
-"PO-Revision-Date: 2025-09-07 19:15+0300\n"
+"PO-Revision-Date: 2025-09-21 01:00+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -2440,7 +2440,7 @@ msgid ""
 "to the form below"
 msgstr ""
 "5. Запишите идентификаторы: Unit ID, TCU ID, SIM ID и VIN. Затем введите их "
-"в форму ниже."
+"в форму ниже"
 
 #: ui/templates/ui/setup/step3.html:29
 msgid "Back to basics"
@@ -2600,3 +2600,23 @@ msgstr "Автомобиль уже добавлен. Пожалуйста, уд
 #: ui/views.py:617
 msgid "Please select a provider for SMS."
 msgstr "Пожалуйста, выберите провайдера SMS."
+
+msgid "Not authenticated"
+msgstr "Не аутентифицировано"
+
+msgid "Please authenticate to Car Wings before saving a favorite channel"
+msgstr ""
+"Пожалуйста, пройдите аутентификацию в Car Wings перед сохранением любимого "
+"канала"
+
+msgid "Channel not found"
+msgstr "Канал не найден"
+
+msgid "This channel does not exist and cannot be added to favorites list"
+msgstr "Этот канал не существует и не может быть добавлен в список избранных."
+
+msgid "Favorite channel added"
+msgstr "Добавлен в список избранных"
+
+msgid "The channel has been added to favorites"
+msgstr "Канал добавлен в избранное"

@@ -5,10 +5,13 @@ from datetime import datetime
 
 from django.utils.translation import activate, get_language
 
+from tculink.carwings_proto.autodj.channels import get_info_channel_data
 from tculink.carwings_proto.autodj.handler import handle_channel_response, handle_directory_response
 from tculink.carwings_proto.databuffer import get_carwings_dj_payload, construct_carwings_filepacket, compress_carwings
-from tculink.carwings_proto.utils import carwings_lang_to_code
+from tculink.carwings_proto.dataobjects import construct_gnrlms_payload
+from tculink.carwings_proto.utils import carwings_lang_to_code, get_cws_authenticated_car
 from tculink.carwings_proto.xml import carwings_create_xmlfile_content
+from django.utils.translation import gettext_lazy as _
 
 logger = logging.getLogger("carwings_apl")
 
@@ -70,15 +73,29 @@ def handle_dj(xml_data, files):
 
         if action == 0x01:
             logger.info("Save to Favorite list func!")
-            resp_file = bytearray.fromhex('00 00 00 00 00 00 00 00 00 04 02 0C 13 4E 6F 74 20 69 6D 70 6C 65 6D 65 6E 74 65 64 20 79 65 74 31 53 61 76 69 6E 67 20 74 6F 20 66 61 76 6F 72 69 74 65 73 20 6C 69 73 74 20 69 73 20 6E 6F 74 20 77 6F 72 6B 69 6E 67 20 63 75 72 72 65 6E 74 6C 79')
-            print(resp_file.hex())
+            position = int.from_bytes(dj_payload[7:9], "big")
+            channel_id = int.from_bytes(dj_payload[9:11], "big")
+            car = get_cws_authenticated_car(xml_data)
+            if car is None:
+                resp_file = construct_gnrlms_payload(0xC, _("Not authenticated"), _("Please authenticate to Car Wings before saving a favorite channel"))
+            else:
+                channels, folders = get_info_channel_data(car)
+                channel_info = next((c for c in channels if c['id'] == channel_id), None)
+                if channel_info is None:
+                    resp_file = construct_gnrlms_payload(0xC, _("Channel not found"), _("This channel does not exist and cannot be added to favorites list"))
+                else:
+                    car_favorites_map = car.favorite_channels
+                    car_favorites_map[position-1] = channel_info['id']
+                    car.favorite_channels = car_favorites_map
+                    car.save()
+                    resp_file = construct_gnrlms_payload(0xB, _("Favorite channel added"), _("The channel has been added to favorites"))
+
             ET.SubElement(app_elm, "send_data", {"id_type": "file", "id": "CHANDAT.001"})
 
             op_inf = ET.SubElement(carwings_xml_root, "op_inf")
             ET.SubElement(op_inf, "timing", {"req": "normal"})
 
             xml_str = carwings_create_xmlfile_content(carwings_xml_root)
-            print(xml_str)
             files.append(("response.xml", xml_str.encode("utf-8"),))
             files.append(("CHANDAT.001", resp_file))
         elif action == 0x00:

@@ -23,6 +23,16 @@ def construct_fvtchn_payload(channels):
 
     return payload
 
+def construct_gnrlms_payload(code, title, message):
+    payload = bytearray()
+    payload += b'\x00'*9
+    payload += b'\x04\x02'
+    payload += code.to_bytes(1, byteorder='big')
+    payload += len(title).to_bytes(1, byteorder='big')
+    payload += title.encode('utf-8')
+    payload += len(message).to_bytes(1, byteorder='big')
+    payload += message.encode('utf-8')
+
 
 def construct_dms_coordinate(latitude: float, longitude: float) -> bytearray:
     """

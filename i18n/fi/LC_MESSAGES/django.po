@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-08 14:15+0000\n"
-"PO-Revision-Date: 2025-09-07 15:56+0300\n"
+"PO-Revision-Date: 2025-09-21 00:58+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fi\n"
@@ -2590,6 +2590,25 @@ msgstr "Auto on jo lisätty. Poista auto ja yritä uudelleen."
 #: ui/views.py:617
 msgid "Please select a provider for SMS."
 msgstr "Ole hyvä ja valitse SMS-palvelun tarjoaja."
+
+msgid "Not authenticated"
+msgstr "Ei käyttäjää tiedssa"
+
+msgid "Please authenticate to Car Wings before saving a favorite channel"
+msgstr "Kirjaudu Car Wings tunnuksillasi ennen suosikkikanavan tallentamista"
+
+msgid "Channel not found"
+msgstr "Channel not found"
+
+msgid "This channel does not exist and cannot be added to favorites list"
+msgstr ""
+"Tätä kanavaa ei ole olemassa, eikä sitä voida lisätä suosikkiluetteloon."
+
+msgid "Favorite channel added"
+msgstr "Suosikkikanava lisätty"
+
+msgid "The channel has been added to favorites"
+msgstr "Kanava on lisätty suosikkeihin"
 
 #~ msgid ""
 #~ "You may sign in with your username and CARWINGS password in navigation "

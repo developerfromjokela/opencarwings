@@ -1,49 +1,51 @@
 from django.utils.translation import gettext_lazy as _, activate
-from unidecode import unidecode
 
 from tculink.carwings_proto.autodj import NOT_FOUND_AUTODJ_ITEM, NOT_AUTHORIZED_AUTODJ_ITEM
-from tculink.carwings_proto.autodj.channels import STANDARD_AUTODJ_FOLDERS, STANDARD_AUTODJ_CHANNELS
+from tculink.carwings_proto.autodj.channels import STANDARD_AUTODJ_CHANNELS, get_info_channel_data
 from tculink.carwings_proto.dataobjects import construct_chnmst_payload, construct_fvtchn_payload, build_autodj_payload
 from tculink.carwings_proto.utils import get_cws_authenticated_car, carwings_lang_to_code
 
 
 def handle_directory_response(xml_data, returning_xml):
-    # TODO customisable user folder
 
     activate(carwings_lang_to_code(xml_data['base_info'].get('navigation_settings', {}).get('language', "uke")))
 
-    channels = [x for x in STANDARD_AUTODJ_CHANNELS if (x.get('internal', False) == False)]
-
-    channels = [translate_chan_name(c, True) for c in channels]
-    folders = [translate_chan_name(c, True) for c in STANDARD_AUTODJ_FOLDERS]
+    channels, folders = get_info_channel_data(xml_data['base_info'])
 
     resp_file = construct_chnmst_payload(folders, channels)
 
-    favt_file = construct_fvtchn_payload([
+    fav_channels = [
         {
-            'id': 0xA001,
+            'id': 0xA000,
             'position': 1,
             'channel_id': 0x0000,
             'name1': str(_('Info from OpenCARWINGS')),
             'name2': str(_('Info from OpenCARWINGS')),
             'flag': 0x04
         }
-    ])
+    ]
+
+    car = get_cws_authenticated_car(xml_data)
+    if car is not None:
+        for pos, chan_id in car.favorite_channels.values():
+            channel_info = next((x for x in channels if x['id'] == chan_id), None)
+            if channel_info is not None:
+                fav_channels.append({
+                    'id': 0xA000+pos,
+                    'position': pos,
+                    'channel_id': chan_id,
+                    'name1': channel_info['name1'],
+                    'name2': channel_info['name2'],
+                    'flag': 0x04
+                })
+
+    favt_file = construct_fvtchn_payload(fav_channels)
 
 
     return [
         ("CHANINF", resp_file),
         ("FAVTINF", favt_file)
     ]
-
-def translate_chan_name(chan, non_unicode=False):
-    new_chan = chan.copy()
-    new_chan['name1'] = str(_(chan['name1']))[:31]
-    new_chan['name2'] = str(_(chan['name2']))[:127]
-    if non_unicode:
-        new_chan['name1'] = unidecode(new_chan['name1'])
-        new_chan['name2'] = unidecode(new_chan['name2'])
-    return new_chan
 
 def handle_channel_response(xml_data, channel_id, returning_xml):
     channels = STANDARD_AUTODJ_CHANNELS

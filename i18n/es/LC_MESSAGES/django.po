@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-08 14:15+0000\n"
-"PO-Revision-Date: 2025-09-07 15:54+0300\n"
+"PO-Revision-Date: 2025-09-21 00:59+0300\n"
 "Last-Translator: \n"
 "Language-Team: Spanish <es@li.org>\n"
 "Language: es\n"
@@ -2640,6 +2640,25 @@ msgstr "El coche ya está añadido. Por favor, elimínalo y vuelve a intentarlo.
 #: ui/views.py:617
 msgid "Please select a provider for SMS."
 msgstr "Por favor, selecciona un proveedor para SMS."
+
+msgid "Not authenticated"
+msgstr "Not authenticated"
+
+msgid "Please authenticate to Car Wings before saving a favorite channel"
+msgstr ""
+"Por favor, autentíquese en Car Wings antes de guardar un canal favorito"
+
+msgid "Channel not found"
+msgstr "Canal no encontrado"
+
+msgid "This channel does not exist and cannot be added to favorites list"
+msgstr "Este canal no existe y no se puede agregar a la lista de favoritos."
+
+msgid "Favorite channel added"
+msgstr "Canal favorito añadido"
+
+msgid "The channel has been added to favorites"
+msgstr "El canal ha sido añadido a favoritos"
 
 #~ msgid ""
 #~ "You may sign in with your username and CARWINGS password in navigation "

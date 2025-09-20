@@ -14,7 +14,7 @@ def handle_directory_response(xml_data, returning_xml):
 
     channels = [x for x in STANDARD_AUTODJ_CHANNELS if (x.get('internal', False) == False)]
 
-    channels = [translate_chan_name(c) for c in channels]
+    channels = [translate_chan_name(c, True) for c in channels]
     folders = [translate_chan_name(c, True) for c in STANDARD_AUTODJ_FOLDERS]
 
     resp_file = construct_chnmst_payload(folders, channels)

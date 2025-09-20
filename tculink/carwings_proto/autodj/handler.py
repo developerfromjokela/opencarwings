@@ -24,8 +24,8 @@ def handle_directory_response(xml_data, returning_xml):
             'id': 0xA001,
             'position': 1,
             'channel_id': 0x0000,
-            'name1': 'Info from OpenCARWINGS',
-            'name2': 'Info from OpenCARWINGS',
+            'name1': str(_('Info from OpenCARWINGS')),
+            'name2': str(_('Info from OpenCARWINGS')),
             'flag': 0x04
         }
     ])
@@ -37,7 +37,7 @@ def handle_directory_response(xml_data, returning_xml):
     ]
 
 def translate_chan_name(chan):
-    new_chan = chan
+    new_chan = chan.copy()
     new_chan['name1'] = unidecode(_(chan['name1']))[:30]
     new_chan['name2'] = unidecode(_(chan['name2']))[:127]
     return new_chan

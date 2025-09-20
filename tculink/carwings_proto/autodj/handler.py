@@ -1,14 +1,17 @@
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext_lazy as _, activate
 from unidecode import unidecode
 
 from tculink.carwings_proto.autodj import NOT_FOUND_AUTODJ_ITEM, NOT_AUTHORIZED_AUTODJ_ITEM
 from tculink.carwings_proto.autodj.channels import STANDARD_AUTODJ_FOLDERS, STANDARD_AUTODJ_CHANNELS
 from tculink.carwings_proto.dataobjects import construct_chnmst_payload, construct_fvtchn_payload, build_autodj_payload
-from tculink.carwings_proto.utils import get_cws_authenticated_car
+from tculink.carwings_proto.utils import get_cws_authenticated_car, carwings_lang_to_code
 
 
 def handle_directory_response(xml_data, returning_xml):
     # TODO customisable user folder
+
+    activate(carwings_lang_to_code(xml_data['base_info'].get('navigation_settings', {}).get('language', "uke")))
+
     channels = [x for x in STANDARD_AUTODJ_CHANNELS if (x.get('internal', False) == False)]
 
     channels = [translate_chan_name(c) for c in channels]

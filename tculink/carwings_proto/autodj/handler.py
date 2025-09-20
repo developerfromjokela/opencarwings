@@ -15,7 +15,7 @@ def handle_directory_response(xml_data, returning_xml):
     channels = [x for x in STANDARD_AUTODJ_CHANNELS if (x.get('internal', False) == False)]
 
     channels = [translate_chan_name(c) for c in channels]
-    folders = [translate_chan_name(c) for c in STANDARD_AUTODJ_FOLDERS]
+    folders = [translate_chan_name(c, True) for c in STANDARD_AUTODJ_FOLDERS]
 
     resp_file = construct_chnmst_payload(folders, channels)
 
@@ -36,10 +36,13 @@ def handle_directory_response(xml_data, returning_xml):
         ("FAVTINF", favt_file)
     ]
 
-def translate_chan_name(chan):
+def translate_chan_name(chan, non_unicode):
     new_chan = chan.copy()
-    new_chan['name1'] = unidecode(_(chan['name1']))[:30]
-    new_chan['name2'] = unidecode(_(chan['name2']))[:127]
+    new_chan['name1'] = str(_(chan['name1']))[:31]
+    new_chan['name2'] = str(_(chan['name2']))[:127]
+    if non_unicode:
+        new_chan['name1'] = unidecode(new_chan['name1'])
+        new_chan['name2'] = unidecode(new_chan['name2'])
     return new_chan
 
 def handle_channel_response(xml_data, channel_id, returning_xml):

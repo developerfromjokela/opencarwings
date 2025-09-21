@@ -73,21 +73,23 @@ def handle_dj(xml_data, files):
 
         if action == 0x01:
             logger.info("Save to Favorite list func!")
-            position = int.from_bytes(dj_payload[7:9], "big")
-            channel_id = int.from_bytes(dj_payload[9:11], "big")
-            logger.info("POS: %d, CHAN ID: %d", position, channel_id)
             car = get_cws_authenticated_car(xml_data)
             if car is None:
                 resp_file = construct_gnrlms_payload(0xC, _("Not authenticated"), _("Please authenticate to Car Wings before saving a favorite channel"))
             else:
-                channels, folders = get_info_channel_data(car)
-                channel_info = next((c for c in channels if c['id'] == channel_id), None)
-                if channel_info is None:
-                    resp_file = construct_gnrlms_payload(0xC, _("Channel not found"), _("This channel does not exist and cannot be added to favorites list"))
-                else:
-                    car.favorite_channels[str(position)] = channel_info['id']
-                    car.save()
-                    resp_file = construct_gnrlms_payload(0xB, _("Favorite channel added"), _("The channel has been added to favorites"))
+                car.favorite_channels = {}
+                count_itms = int.from_bytes([dj_payload[4]], "big")
+                items_data = dj_payload[5:]
+                for itm in range(count_itms):
+                    data_block = items_data[(itm * 3):(itm * 3) + 3]
+                    pos_num = data_block[0]
+                    if pos_num == 1:
+                        continue
+                    chan_id = int.from_bytes(data_block[1:3], "big")
+                    logger.info("POS: %d, CHAN ID: %d", pos_num, chan_id)
+                    car.favorite_channels[str(pos_num)] = chan_id
+                car.save()
+                resp_file = construct_gnrlms_payload(0xB, _("Favorite channel added"), _("The channel has been added to favorites"))
 
             ET.SubElement(app_elm, "send_data", {"id_type": "file", "id": "CHANDAT.001"})
 

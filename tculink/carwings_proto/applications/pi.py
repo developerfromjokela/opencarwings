@@ -1,10 +1,16 @@
+import csv
+import io
 import os
 import xml.etree.ElementTree as ET
 from datetime import datetime
 import random
+import uuid
+from django.core.files.base import ContentFile
 
+from db.models import DOTFile
 from tculink.carwings_proto.databuffer import construct_carwings_filepacket, compress_carwings, probe_xor_data
 from tculink.carwings_proto.probe_crm import parse_crmfile, update_crm_to_db
+from tculink.carwings_proto.probe_dot import parse_dotfile, prb_dotfiletypes
 from tculink.carwings_proto.utils import calculate_prb_data_checksum, get_cws_authenticated_car
 from tculink.carwings_proto.xml import carwings_create_xmlfile_content
 import logging
@@ -110,7 +116,7 @@ def handle_pi(xml_data, files):
                                 data = decrypted_data[38:]
                                 if data[0] == 0xE1:
                                     logger.info("CRM File!")
-                                    car_ref = get_cws_authenticated_car(xml_data)
+                                    car_ref = get_cws_authenticated_car(xml_data, check_user=False)
                                     if car_ref is not None:
                                         logger.info("Starting CRM file parse")
                                         try:
@@ -123,7 +129,28 @@ def handle_pi(xml_data, files):
                                         logger.warning("Car ref not available, skip!")
                                 elif data[0] == 0x05:
                                     logger.info("DOT file!")
-                                    # TODO dotfile handling, implement when format known
+                                    car_ref = get_cws_authenticated_car(xml_data, check_user=False)
+                                    if car_ref is not None:
+                                        logger.info("Starting DOT file parse")
+                                        try:
+                                            dot_data = parse_dotfile(decrypted_data)
+                                            gps_time = next((x["GPS time"] for x in dot_data if "GPS time" in x), None)
+                                            csv_file = io.StringIO()
+                                            fieldnames = [x[0] for x in list(prb_dotfiletypes.values())]
+                                            writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+                                            writer.writeheader()
+                                            writer.writerows(dot_data)
+                                            content = csv_file.getvalue().encode('utf-8')
+                                            csv_file_obj = ContentFile(content, name=f"DOT-{uuid.uuid4()}.csv")
+                                            dot_dbrecord = DOTFile()
+                                            dot_dbrecord.file = csv_file_obj
+                                            dot_dbrecord.capture_ts = gps_time
+                                            dot_dbrecord.save()
+                                        except Exception as e:
+                                            logger.error("CRMFILE ERR")
+                                            logger.exception(e)
+                                    else:
+                                        logger.warning("Car ref not available, skip!")
 
 
                             confirmation_content = bytearray.fromhex('00 00 00 00 00 00 00 00 00 05 14')

@@ -8,7 +8,7 @@ from .models import (
     AlertHistory,
     Car, User, SendToCarLocation, CRMLatest, CRMLifetime, CRMExcessiveAirconRecord, CRMExcessiveIdlingRecord,
     CRMMonthlyRecord, CRMMSNRecord, CRMChargeRecord, CRMChargeHistoryRecord, CRMABSHistoryRecord, CRMTroubleRecord,
-    CRMTripRecord, RoutePlan
+    CRMTripRecord, RoutePlan, DOTFile
 )
 
 
@@ -154,3 +154,7 @@ class CRMTroubleRecordAdmin(admin.ModelAdmin):
 @admin.register(CRMTripRecord)
 class CRMTripRecordAdmin(admin.ModelAdmin):
     list_display = ('car', 'start_ts', 'end_ts', 'distance')
+
+@admin.register(DOTFile)
+class DOTFileAdmin(admin.ModelAdmin):
+    list_display = ('car', 'upload_ts', 'capture_ts')

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-08 14:15+0000\n"
-"PO-Revision-Date: 2025-09-21 00:59+0300\n"
+"PO-Revision-Date: 2025-09-22 00:31+0300\n"
 "Last-Translator: \n"
 "Language-Team: Spanish <es@li.org>\n"
 "Language: es\n"
@@ -2642,7 +2642,7 @@ msgid "Please select a provider for SMS."
 msgstr "Por favor, selecciona un proveedor para SMS."
 
 msgid "Not authenticated"
-msgstr "Not authenticated"
+msgstr "No autenticado"
 
 msgid "Please authenticate to Car Wings before saving a favorite channel"
 msgstr ""
@@ -2659,6 +2659,16 @@ msgstr "Canal favorito añadido"
 
 msgid "The channel has been added to favorites"
 msgstr "El canal ha sido añadido a favoritos"
+
+msgid "DOT-files"
+msgstr "DOT-datos"
+
+msgid "No DOT data available"
+msgstr "No hay datos DOT disponibles"
+
+msgid "DOT data comes available on next startup after a trip."
+msgstr "Los datos DOT estarán disponibles en el siguiente arranque después de un viaje."
+
 
 #~ msgid ""
 #~ "You may sign in with your username and CARWINGS password in navigation "

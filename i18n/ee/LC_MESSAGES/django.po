@@ -2587,22 +2587,31 @@ msgid "Please select a provider for SMS."
 msgstr "Palun vali SMS-teenuse pakkuja."
 
 msgid "Not authenticated"
-msgstr ""
+msgstr "Pole autentitud"
 
 msgid "Please authenticate to Car Wings before saving a favorite channel"
-msgstr ""
+msgstr "Palun autentige Car Wingsis enne lemmikkanali salvestamist"
 
 msgid "Channel not found"
-msgstr "This channel does not exist and cannot be added to favorites list"
+msgstr "Kanalit ei leitud"
 
 msgid "This channel does not exist and cannot be added to favorites list"
-msgstr ""
+msgstr "Seda kanalit ei eksisteeri ja seda ei saa lemmikute nimekirja lisada"
 
 msgid "Favorite channel added"
-msgstr ""
+msgstr "Lemmikkanal lisatud"
 
 msgid "The channel has been added to favorites"
-msgstr ""
+msgstr "Kanal on lisatud lemmikute hulka"
+
+msgid "DOT-files"
+msgstr "DOT-failid"
+
+msgid "No DOT data available"
+msgstr "DOT-andmed puuduvad"
+
+msgid "DOT data comes available on next startup after a trip."
+msgstr "DOT-andmed muutuvad kättesaadavaks järgmisel käivitamisel pärast reisi."
 
 #~ msgid ""
 #~ "You may sign in with your username and CARWINGS password in navigation "

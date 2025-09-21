@@ -2610,6 +2610,16 @@ msgstr "Suosikkikanava lisätty"
 msgid "The channel has been added to favorites"
 msgstr "Kanava on lisätty suosikkeihin"
 
+msgid "DOT-files"
+msgstr "DOT-tiedostot"
+
+msgid "No DOT data available"
+msgstr "DOT tiedot ei saatavilla"
+
+msgid "DOT data comes available on next startup after a trip."
+msgstr "DOT tiedot tulevat saataville matkan jälkeisen käynnistyksen yhteydessä."
+
+
 #~ msgid ""
 #~ "You may sign in with your username and CARWINGS password in navigation "
 #~ "unit like showed below."

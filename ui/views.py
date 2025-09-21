@@ -14,7 +14,7 @@ from rest_framework.response import Response
 from db.models import Car, COMMAND_TYPES, AlertHistory, EVInfo, LocationInfo, TCUConfiguration, PERIODIC_REFRESH, \
     PERIODIC_REFRESH_ACTIVE, CAR_COLOR, CRMLatest, CRMLifetime, CRMTripRecord, CRMMonthlyRecord, CRMChargeHistoryRecord, \
     CRMChargeRecord, CRMABSHistoryRecord, CRMExcessiveIdlingRecord, CRMExcessiveAirconRecord, CRMTroubleRecord, \
-    CRMMSNRecord
+    CRMMSNRecord, DOTFile
 from tculink.utils.password_hash import check_password_validity, password_hash
 from .forms import Step2Form, Step3Form, SettingsForm, ChangeCarwingsPasswordForm, AccountForm, SignUpForm
 from django.shortcuts import render, redirect
@@ -688,66 +688,72 @@ def probeviewer_home(request, vin):
         lifetime = None
 
     trips = CRMTripRecord.objects.filter(car=car).order_by('-start_ts')
-    paginator = Paginator(trips, 25)  # Show 25 contacts per page.
+    paginator = Paginator(trips, 25)
 
     trips_page = request.GET.get("tp", 0)
     trips_paginator = paginator.get_page(trips_page if trips_page != 0 else 1)
 
     monthly = CRMMonthlyRecord.objects.filter(car=car).order_by('-start')
-    paginator2 = Paginator(monthly, 12)  # Show 25 contacts per page.
+    paginator2 = Paginator(monthly, 12)
 
     months_page = request.GET.get("mp", 0)
     months_paginator = paginator2.get_page(months_page if months_page != 0 else 1)
 
     chargehist = CRMChargeHistoryRecord.objects.filter(car=car).order_by('-start_time')
-    paginator3 = Paginator(chargehist, 8)  # Show 25 contacts per page.
+    paginator3 = Paginator(chargehist, 8)
 
     chargehist_page = request.GET.get("chp", 0)
     chargehist = paginator3.get_page(chargehist_page if chargehist_page != 0 else 1)
 
     charge = CRMChargeRecord.objects.filter(car=car).order_by('-start_time')
-    paginator4 = Paginator(charge, 8)  # Show 25 contacts per page.
+    paginator4 = Paginator(charge, 8)
 
     charge_page = request.GET.get("cp", 0)
     charge = paginator4.get_page(charge_page if charge_page != 0 else 1)
 
     abs = CRMABSHistoryRecord.objects.filter(car=car).order_by('-timestamp')
-    paginator5 = Paginator(abs, 8)  # Show 25 contacts per page.
+    paginator5 = Paginator(abs, 8)
 
     abs_page = request.GET.get("ap", 0)
     abs = paginator5.get_page(abs_page if abs_page != 0 else 1)
 
     idling = CRMExcessiveIdlingRecord.objects.filter(car=car).order_by('-start')
-    paginator6 = Paginator(idling, 30)  # Show 25 contacts per page.
+    paginator6 = Paginator(idling, 30)
 
     idling_page = request.GET.get("idl", 0)
     idling = paginator6.get_page(idling_page if idling_page != 0 else 1)
 
     aircon = CRMExcessiveAirconRecord.objects.filter(car=car).order_by('-start')
-    paginator7 = Paginator(aircon, 30)  # Show 25 contacts per page.
+    paginator7 = Paginator(aircon, 30)
 
     aircon_page = request.GET.get("aircon", 0)
     aircon = paginator7.get_page(aircon_page if aircon_page != 0 else 1)
 
     trouble = CRMTroubleRecord.objects.filter(car=car)
-    paginator8 = Paginator(trouble, 30)  # Show 25 contacts per page.
+    paginator8 = Paginator(trouble, 30)
 
     trouble_page = request.GET.get("dtc", 0)
     trouble = paginator8.get_page(trouble_page if trouble_page != 0 else 1)
 
     msn = CRMMSNRecord.objects.filter(car=car).order_by('-timestamp')
-    paginator9 = Paginator(msn, 30)  # Show 25 contacts per page.
+    paginator9 = Paginator(msn, 30)
 
     msn_page = request.GET.get("msn", 0)
     msn = paginator9.get_page(msn_page if msn_page != 0 else 1)
+    
+    dotfiles = DOTFile.objects.filter(car=car).order_by('-upload_ts')
+    paginator10 = Paginator(dotfiles, 30)
+
+    dot_page = request.GET.get("dot", 0)
+    dotfiles = paginator10.get_page(dot_page if dot_page != 0 else 1)
 
 
     return render(request, 'ui/probeviewer/main.html',
                   {'car': car, 'latest': latest, "lifetime": lifetime, "abs": abs, "dtc": trouble,
                    "msn": msn, "aircon": aircon, "idl": idling, "trips": trips_paginator, "chargehist": chargehist,
-                   "charge": charge, "dtc_act": trouble_page != 0, "msn_act": msn_page != 0, "aircon_act": aircon_page != 0,
+                   "charge": charge, "dotfiles": dotfiles, "dtc_act": trouble_page != 0, "msn_act": msn_page != 0, "aircon_act": aircon_page != 0,
                    "idl_act": idling_page != 0, "abs_act": abs_page != 0, "charge_act": charge_page != 0, "chargehist_act": chargehist_page != 0,
-                   "months": months_paginator, "trips_act": trips_page != 0, "months_act": (months_page != 0 and trips_page == 0)})
+                   "months": months_paginator, "trips_act": trips_page != 0, "months_act": (months_page != 0 and trips_page == 0), "dot_act":  dot_page != 0})
 
 
 def probeviewer_trip(request, vin, trip):

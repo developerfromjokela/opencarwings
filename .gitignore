@@ -1,6 +1,7 @@
 carwings/settings.py
 db.sqlite3
 staticfiles
+mediafiles
 logs
 *.p8
 *.cert

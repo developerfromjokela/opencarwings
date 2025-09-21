@@ -1,15 +1,16 @@
 import datetime
 import logging
-import requests
-from unidecode import unidecode
-from django.conf import settings
 import xml.etree.ElementTree as ET
+
+import requests
+from django.conf import settings
+from unidecode import unidecode
 
 from tculink.carwings_proto.databuffer import construct_carwings_filepacket, compress_carwings
 from tculink.carwings_proto.dataobjects import create_cpinfo, construct_dms_coordinate, compose_ca_list, compose_ca_data
 from tculink.carwings_proto.meshutils import read_big_endian_u_int32, unpack_monster_id_to_mesh_id, MeshPoint, MapPoint, \
     mesh_point_to_map_point
-from tculink.carwings_proto.utils import parse_std_location, encode_utf8
+from tculink.carwings_proto.utils import encode_utf8, parse_std_location_precise
 from tculink.carwings_proto.xml import carwings_create_xmlfile_content
 
 logger = logging.getLogger("carwings_cp")
@@ -97,7 +98,7 @@ def handle_cp(xml_data, files):
         req_id = int.from_bytes(file_content[4:6], byteorder="big")
         logger.info("CP Request ID %d", req_id)
         if req_id == 281:
-            location_center = parse_std_location(int.from_bytes(file_content[13:17], "big"), int.from_bytes(file_content[9:13], "big"))
+            location_center = parse_std_location_precise(int.from_bytes(file_content[13:17], "big"), int.from_bytes(file_content[9:13], "big"))
             logger.debug("handle availability!! %f, %f", location_center[0], location_center[1])
             chargers = requests.get("https://api.iternio.com/1/get_chargers", params={
                 'lat': str(location_center[0]),

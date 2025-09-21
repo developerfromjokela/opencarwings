@@ -6,7 +6,7 @@ from unidecode import unidecode
 logger = logging.getLogger("carwings")
 
 
-def get_cws_authenticated_car(xml_data) -> Car|None:
+def get_cws_authenticated_car(xml_data, check_user=True) -> Car|None:
     if 'authentication' in xml_data:
 
         car_vin = xml_data['authentication']['vin']
@@ -29,7 +29,7 @@ def get_cws_authenticated_car(xml_data) -> Car|None:
                 return None
 
             # confirm user&pass
-            if car.owner.username != username or car.owner.tcu_pass_hash != password:
+            if check_user and (car.owner.username != username or car.owner.tcu_pass_hash != password):
                 return None
 
             return car
@@ -127,7 +127,7 @@ def get_word_of_month_i18n(num):
     return ordinal_dict.get(num, str(num))
 
 
-def parse_std_location(lat_int, lon_int):
+def parse_std_location_precise(lat_int, lon_int):
     """
     Parse 32-bit latitude and longitude into GPS coordinates.
     """
@@ -142,6 +142,21 @@ def parse_std_location(lat_int, lon_int):
 
 
     return dms_to_decimal(lat_int), dms_to_decimal(lon_int)
+
+def parse_std_location(lat_int, lon_int):
+    """
+    Parse 32-bit latitude and longitude into GPS coordinates.
+    """
+
+    def to_decimal_degrees(coord_int):
+        # Convert to decimal degrees: divide by 512 and then by 3600
+        return (coord_int / 512.0) / 3600.0
+
+    # Parse latitude and longitude
+    lat_decimal = to_decimal_degrees(lat_int)
+    lon_decimal = to_decimal_degrees(lon_int)
+
+    return lat_decimal, lon_decimal
 
 
 def xml_dms_to_decimal(dms):

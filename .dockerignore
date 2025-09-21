@@ -1,4 +1,5 @@
 carwings
 logs
 staticfiles
+mediafiles
 .env

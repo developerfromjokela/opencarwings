@@ -18,6 +18,7 @@ services:
     volumes:
       - ./carwings/:/app/carwings/
       - ./staticfiles/:/app/staticfiles/
+      - ./mediafiles/:/app/mediafiles/
       - ./logs/:/app/logs/
     ports:
       - "${BACKEND_PORT}:80"

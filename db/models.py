@@ -443,4 +443,10 @@ class CRMTripRecord(models.Model):
     used_preheating = models.BooleanField(default=False)
 
 
-## TODO: Probe DOT
+## Probe DOT
+
+class DOTFile(models.Model):
+    car = models.ForeignKey(Car, on_delete=models.CASCADE)
+    capture_ts = models.DateTimeField(null=True, default=None, blank=True)
+    upload_ts = models.DateTimeField(auto_now_add=True)
+    file = models.FileField(upload_to="probe/dotfiles/%Y/%m/%d/")

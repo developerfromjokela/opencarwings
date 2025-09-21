@@ -70,8 +70,9 @@
           </button>
 
           <div class="tab-nav border-b border-gray-200 flex overflow-x-auto whitespace-nowrap scroll-smooth hide-scrollbar">
-            <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none {% if not trips_act and not months_act and not chargehist_act and not charge_act and not abs_act and not idl_act and not aircon_act and not dtc_act and not msn_act %}text-blue-500 border-b-2 border-blue-500{% else %}text-gray-600{% endif %} text-sm sm:text-base" data-tab="latest">{% translate "Latest" %}</button>
+            <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none {% if not trips_act and not months_act and not chargehist_act and not charge_act and not abs_act and not idl_act and not aircon_act and not dtc_act and not msn_act and not dot_act %}text-blue-500 border-b-2 border-blue-500{% else %}text-gray-600{% endif %} text-sm sm:text-base" data-tab="latest">{% translate "Latest" %}</button>
             <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none text-sm sm:text-base text-gray-600" data-tab="lifetime">{% translate "Lifetime statistics" %}</button>
+            <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none {% if dot_act %}text-blue-500 border-b-2 border-blue-500{% else %}text-gray-600{% endif %} text-sm sm:text-base" data-tab="dotdata">{% translate "DOT-files" %}</button>
             <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none {% if trips_act %}text-blue-500 border-b-2 border-blue-500{% else %}text-gray-600{% endif %} text-sm sm:text-base" data-tab="trips">{% translate "Trips" %}</button>
             <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none {% if months_act %}text-blue-500 border-b-2 border-blue-500{% else %}text-gray-600{% endif %} text-sm sm:text-base" data-tab="monthly">{% translate "Monthly statistics" %}</button>
             <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none {% if chargehist_act %}text-blue-500 border-b-2 border-blue-500{% else %}text-gray-600{% endif %} text-sm sm:text-base" data-tab="chargehist">{% translate "Charging history" %}</button>
@@ -92,7 +93,7 @@
 
         <!-- Tab Content -->
         <div class="mt-6 bg-white p-4 sm:p-6 rounded-lg shadow-md">
-            <div id="latest" class="tab-content {% if not trips_act and not months_act and not chargehist_act and not charge_act and not abs_act and not idl_act and not aircon_act and not dtc_act and not msn_act %}active{% endif %}">
+            <div id="latest" class="tab-content {% if not trips_act and not months_act and not chargehist_act and not charge_act and not abs_act and not idl_act and not aircon_act and not dtc_act and not msn_act and not dot_act %}active{% endif %}">
                 {% if latest %}
                 <dl class="grid grid-cols-1 gap-3 text-sm sm:text-base">
                     <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">parking_meter</i> {% translate "Odometer" %}</dt><dd class="text-gray-600 font-semibold">{% local_dist latest.odometer decimals=1 %}</dd></div>
@@ -131,6 +132,65 @@
                 <div class="flex flex-col text-center items-center justify-center">
                     <h3 class="text-lg font-semibold text-gray-800 mb-4">{% translate "No vehicle data available" %}</h3>
                     <p class="max-w-md">{% translate "In order to receive vehicle data, CARWINGS navigation unit must have correct connection settings." %}</p>
+                    <a href="/static/navi_guide.html" class="text-blue-600 hover:underline" target="_blank">{% translate "Learn more" %}</a>
+                </div>
+                {% endif %}
+            </div>
+
+            <div id="dotdata" class="tab-content{% if dot_act %} active{% endif %}">
+                {% if dotfiles %}
+                    <ul class="divide-y divide-gray-200">
+                    {% for file in dotfiles %}
+                        <li class="py-3 sm:pb-4">
+                            <a href="{{ file.file.url }}">
+                                <div class="flex-1 min-w-0">
+                                        <p class="text-sm font-medium text-gray-900 truncate">
+                                            {% if file.capture_ts %}
+                                            {{ file.capture_ts }}
+                                            {% else %}
+                                            {{ file.upload_ts }}
+                                            {% endif %}
+                                        </p>
+                                </div>
+                            </a>
+                        </li>
+                    {% endfor %}
+                    </ul>
+
+                    <nav class="flex items-center justify-center">
+                      <ul class="flex items-center -space-x-px h-8 text-sm">
+                          <li>
+                          <a {% if dotfiles.number|add:'-4' > 1 %} href="?tp={{ dotfiles.number|add:'-5' }}" {% else %}disabled{% endif %} class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700">
+                            <span class="sr-only">Previous</span>
+                            <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+                            </svg>
+                          </a>
+                        </li>
+
+                        {% for i in dotfiles.paginator.page_range %}
+                            <li>
+                            {% if dotfiles.number == i %}
+                                      <a href="?dot={{ i }}" aria-current="page" class="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700">{{ i }}</a>
+                            {% elif i > dotfiles.number|add:'-5' and i < dotfiles.number|add:'5' %}
+                                <a href="?dot={{ i }}" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">{{ i }}</a>
+                            {% endif %}
+                            </li>
+                        {% endfor %}
+
+
+                        <li><a {% if dotfiles.paginator.num_pages > dotfiles.number|add:'4' %}href="?dot={{ dotfiles.number|add:'5' }}" {% else %}disabled{% endif %} class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700">        <span class="sr-only">Next</span>
+                            <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                            </svg></a></li>
+
+                      </ul>
+                    </nav>
+
+                {% else %}
+                <div class="flex flex-col text-center items-center justify-center">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">{% translate "No DOT data available" %}</h3>
+                    <p class="max-w-md">{% translate "DOT data comes available on next startup after a trip." %}<br><br/><span class="text-yellow-700"><i class="mic material-symbols-outlined">warning</i> {% translate "In order to receive data, CARWINGS navigation unit must have correct connection settings." %}</span></p>
                     <a href="/static/navi_guide.html" class="text-blue-600 hover:underline" target="_blank">{% translate "Learn more" %}</a>
                 </div>
                 {% endif %}

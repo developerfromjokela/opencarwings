@@ -31,8 +31,8 @@ def handle_directory_response(xml_data, returning_xml):
             channel_info = next((x for x in channels if x['id'] == chan_id), None)
             if channel_info is not None:
                 fav_channels.append({
-                    'id': 0xA000+pos,
-                    'position': pos,
+                    'id': 40960+int(pos),
+                    'position': int(pos),
                     'channel_id': chan_id,
                     'name1': channel_info['name1'],
                     'name2': channel_info['name2'],

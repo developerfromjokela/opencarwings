@@ -27,7 +27,7 @@ def handle_directory_response(xml_data, returning_xml):
 
     car = get_cws_authenticated_car(xml_data)
     if car is not None:
-        for pos, chan_id in car.favorite_channels.values():
+        for pos, chan_id in car.favorite_channels.items():
             channel_info = next((x for x in channels if x['id'] == chan_id), None)
             if channel_info is not None:
                 fav_channels.append({

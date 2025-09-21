@@ -32,6 +32,7 @@ def construct_gnrlms_payload(code, title, message):
     payload += title.encode('utf-8')
     payload += len(message).to_bytes(1, byteorder='big')
     payload += message.encode('utf-8')
+    return payload
 
 
 def construct_dms_coordinate(latitude: float, longitude: float) -> bytearray:

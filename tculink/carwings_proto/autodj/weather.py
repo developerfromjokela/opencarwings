@@ -10,11 +10,11 @@ import requests
 from PIL import Image, ImageFont, ImageDraw, ImageOps
 from django.utils import timezone
 from django.utils.text import format_lazy
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext as _
 
 from tculink.carwings_proto.autodj import NOT_AVAIL_AUTODJ_ITEM
 from tculink.carwings_proto.dataobjects import build_autodj_payload
-from tculink.carwings_proto.utils import xml_coordinate_to_float
+from tculink.carwings_proto.utils import xml_coordinate_to_float, encode_utf8
 
 logger = logging.getLogger("carwings_apl")
 
@@ -52,35 +52,35 @@ WEATHER_CODES = {
 }
 
 WEATHER_NAMES = {
-    0: _("clear"),
-    1: _("mainly clear"),
-    2: _("partly cloudy"),
-    3: _("cloudy"),
-    45: _("foggy"),
-    48: _("foggy with rime ice"),
-    51: _("drizzling lightly"),
-    53: _("drizzling moderately"),
-    55: _("heavy drizzling"),
+    0: "clear",
+    1: "mainly clear",
+    2: "partly cloudy",
+    3: "cloudy",
+    45: "foggy",
+    48: "foggy with rime ice",
+    51: "drizzling lightly",
+    53: "drizzling moderately",
+    55: "heavy drizzling",
     # fr=freezing
-    56: _("drizzling lightly freezed"),
-    57: _("drizzling moderately freezed"),
-    61: _("raining slightly"),
-    63: _("raining moderately"),
-    65: _("raining heavily"),
-    66: _("freeze raining lightly"),
-    67: _("freeze raining moderately"),
-    71: _("snowing slightly"),
-    73: _("moderate snowing"),
-    75: _("snowing heavily"),
-    77: _("snowing grain"),
-    80: _("slight rain shower"),
-    81: _("moderate rain shower"),
-    82: _("violent rain shower"),
-    85: _("slight snow shower"),
-    86: _("heavy snow shower"),
-    95: _("thunderstorm"),
-    96: _("thunderstorm"),
-    99: _("thunderstorm")
+    56: "drizzling lightly freezed",
+    57: "drizzling moderately freezed",
+    61: "raining slightly",
+    63: "raining moderately",
+    65: "raining heavily",
+    66: "freeze raining lightly",
+    67: "freeze raining moderately",
+    71: "snowing slightly",
+    73: "moderate snowing",
+    75: "snowing heavily",
+    77: "snowing grain",
+    80: "slight rain shower",
+    81: "moderate rain shower",
+    82: "violent rain shower",
+    85: "slight snow shower",
+    86: "heavy snow shower",
+    95: "thunderstorm",
+    96: "thunderstorm",
+    99: "thunderstorm"
 }
 
 
@@ -382,8 +382,8 @@ def get_weather_forecast(xml_data, returning_xml, channel_id, car):
             {
                 'itemId': 1,
                 'itemFlag1': 0x00,
-                'dynamicDataField1': str(_('Weather forecast')).encode('utf-8'),
-                'dynamicDataField2': daily_title_text.encode('utf-8'),
+                'dynamicDataField1': encode_utf8(_('Weather forecast')),
+                'dynamicDataField2': encode_utf8(daily_title_text),
                 'dynamicDataField3': b'',
                 "DMSLocation": b'\xFF' * 10,
                 'flag2': 0,
@@ -394,8 +394,8 @@ def get_weather_forecast(xml_data, returning_xml, channel_id, car):
                 'dynamicField6': b'',
                 'unnamed_data': bytearray(),
                 # text shown on bottom
-                "bigDynamicField7": daily_text.encode('utf-8'),
-                "bigDynamicField8": daily_text.encode('utf-8'),
+                "bigDynamicField7": encode_utf8(daily_text),
+                "bigDynamicField8": encode_utf8(daily_text),
                 "iconField": 0x310,
                 # annoucnement sound, 1=yes,0=no
                 "longField2": 1,
@@ -416,8 +416,8 @@ def get_weather_forecast(xml_data, returning_xml, channel_id, car):
             {
                 'itemId': 2,
                 'itemFlag1': 0x00,
-                'dynamicDataField1': str(_('Weather forecast')).encode('utf-8'),
-                'dynamicDataField2': weekly_title_text.encode('utf-8'),
+                'dynamicDataField1': encode_utf8(_('Weather forecast')),
+                'dynamicDataField2': encode_utf8(weekly_title_text),
                 'dynamicDataField3': b'',
                 "DMSLocation": b'\xFF' * 10,
                 'flag2': 0,
@@ -428,8 +428,8 @@ def get_weather_forecast(xml_data, returning_xml, channel_id, car):
                 'dynamicField6': b'',
                 'unnamed_data': bytearray(),
                 # text shown on bottom
-                "bigDynamicField7": weekly_text.encode('utf-8'),
-                "bigDynamicField8": weekly_text.encode('utf-8'),
+                "bigDynamicField7": encode_utf8(weekly_text),
+                "bigDynamicField8": encode_utf8(weekly_text),
                 "iconField": 0x310,
                 # annoucnement sound, 1=yes,0=no
                 "longField2": 1,
@@ -458,8 +458,8 @@ def get_weather_forecast(xml_data, returning_xml, channel_id, car):
             "data": b'\x01'
         },
         extra_fields={
-            'stringField1': str(_('Weather forecast')).encode('utf-8'),
-            'stringField2': str(_('Weather forecast')).encode('utf-8'),
+            'stringField1': _('Weather forecast'),
+            'stringField2': _('Weather forecast'),
             "mode0_processedFieldCntPos": len(response_chdata),
             "mode0_countOfSomeItems3": len(response_chdata),
             "countOfSomeItems": 1

@@ -1,5 +1,5 @@
 from django.utils.text import format_lazy
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext as _
 
 from tculink.carwings_proto.autodj.opencarwings import get_infochannel, get_energy_information_channel, \
     get_eco_tree_channel
@@ -216,6 +216,6 @@ def translate_chan_name(chan, non_unicode=False):
 
 def get_info_channel_data(car):
     # TODO customisable user folder and channels
-    channels = [translate_chan_name(c, True) for c in STANDARD_AUTODJ_CHANNELS if (c.get('internal', False) == False)]
-    folders = [translate_chan_name(c, True) for c in STANDARD_AUTODJ_FOLDERS]
+    channels = [translate_chan_name(c) for c in STANDARD_AUTODJ_CHANNELS if (c.get('internal', False) == False)]
+    folders = [translate_chan_name(c) for c in STANDARD_AUTODJ_FOLDERS]
     return channels, folders

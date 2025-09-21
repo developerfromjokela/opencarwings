@@ -14,7 +14,7 @@ from tculink.gdc_proto.parser import parse_gdc_packet
 from tculink.gdc_proto.responses import create_charge_status_response, create_charge_request_response, \
     create_ac_setting_response, create_ac_stop_response, create_config_read, auth_common_dest
 from tculink.utils.notifications import send_vehicle_alert_notification
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext as _
 
 
 # Configure logging

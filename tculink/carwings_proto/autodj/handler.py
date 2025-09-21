@@ -1,4 +1,4 @@
-from django.utils.translation import gettext_lazy as _, activate
+from django.utils.translation import gettext as _, activate, deactivate
 
 from tculink.carwings_proto.autodj import NOT_FOUND_AUTODJ_ITEM, NOT_AUTHORIZED_AUTODJ_ITEM
 from tculink.carwings_proto.autodj.channels import STANDARD_AUTODJ_CHANNELS, get_info_channel_data
@@ -41,6 +41,7 @@ def handle_directory_response(xml_data, returning_xml):
 
     favt_file = construct_fvtchn_payload(fav_channels)
 
+    deactivate()
 
     return [
         ("CHANINF", resp_file),
@@ -48,7 +49,8 @@ def handle_directory_response(xml_data, returning_xml):
     ]
 
 def handle_channel_response(xml_data, channel_id, returning_xml):
-    channels = STANDARD_AUTODJ_CHANNELS
+    car = get_cws_authenticated_car(xml_data)
+    channels, folders = get_info_channel_data(car)
     # TODO if customisable channels add here
 
     channel = next((item for item in channels if item["id"] == channel_id), None)
@@ -62,8 +64,8 @@ def handle_channel_response(xml_data, channel_id, returning_xml):
                 "data": b'\x01'
             },
             extra_fields={
-                'stringField1': 'Data Channel not available'.encode('utf-8'),
-                'stringField2': 'Data Channel not available'.encode('utf-8'),
+                'stringField1': _('Data Channel not available'),
+                'stringField2': _('Data Channel not available'),
                 "mode0_processedFieldCntPos": 1,
                 "mode0_countOfSomeItems3": 1,
                 "countOfSomeItems": 1
@@ -71,7 +73,6 @@ def handle_channel_response(xml_data, channel_id, returning_xml):
         )
         return [('NOTFOUND', resp_file)]
 
-    car = get_cws_authenticated_car(xml_data)
     if car is None and channel.get('auth', False) and not channel.get('internal', False):
         resp_file = build_autodj_payload(
             0,
@@ -82,8 +83,8 @@ def handle_channel_response(xml_data, channel_id, returning_xml):
                 "data": b'\x01'
             },
             extra_fields={
-                'stringField1': 'Not authorized'.encode('utf-8'),
-                'stringField2': 'Not authorized'.encode('utf-8'),
+                'stringField1': _('Not authorized'),
+                'stringField2': _('Not authorized'),
                 "mode0_processedFieldCntPos": 1,
                 "mode0_countOfSomeItems3": 1,
                 "countOfSomeItems": 1

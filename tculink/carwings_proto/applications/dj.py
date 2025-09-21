@@ -3,7 +3,7 @@ import os
 import xml.etree.ElementTree as ET
 from datetime import datetime
 
-from django.utils.translation import activate, get_language
+from django.utils.translation import activate, get_language, deactivate
 
 from tculink.carwings_proto.autodj.channels import get_info_channel_data
 from tculink.carwings_proto.autodj.handler import handle_channel_response, handle_directory_response
@@ -11,7 +11,7 @@ from tculink.carwings_proto.databuffer import get_carwings_dj_payload, construct
 from tculink.carwings_proto.dataobjects import construct_gnrlms_payload
 from tculink.carwings_proto.utils import carwings_lang_to_code, get_cws_authenticated_car
 from tculink.carwings_proto.xml import carwings_create_xmlfile_content
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext as _
 
 logger = logging.getLogger("carwings_apl")
 
@@ -138,6 +138,8 @@ def handle_dj(xml_data, files):
             os.makedirs(log_dir, exist_ok=True)
             with open(os.path.join(log_dir, f"UNKNOWNACT-{id_value}"), 'wb') as f:
                 f.write(file_content)
+
+        deactivate()
 
         op_inf = ET.SubElement(carwings_xml_root, "op_inf")
         ET.SubElement(op_inf, "timing", {"req": "normal"})

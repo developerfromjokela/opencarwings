@@ -9,7 +9,7 @@ from tculink.carwings_proto.databuffer import construct_carwings_filepacket, com
 from tculink.carwings_proto.dataobjects import create_cpinfo, construct_dms_coordinate, compose_ca_list, compose_ca_data
 from tculink.carwings_proto.meshutils import read_big_endian_u_int32, unpack_monster_id_to_mesh_id, MeshPoint, MapPoint, \
     mesh_point_to_map_point
-from tculink.carwings_proto.utils import parse_std_location
+from tculink.carwings_proto.utils import parse_std_location, encode_utf8
 from tculink.carwings_proto.xml import carwings_create_xmlfile_content
 
 logger = logging.getLogger("carwings_cp")
@@ -201,7 +201,7 @@ def handle_cp(xml_data, files):
                                 'last_updated': last_status,
                                 'supplier_name': '',
                                 'network_name': chg.get('network', {}).get('name', 'Unknown'),
-                                'big_dynamic_field': conf_str.encode('utf-8'),
+                                'big_dynamic_field': encode_utf8(conf_str),
                                 'reservation_flag': 2
                             }
                         )
@@ -266,7 +266,7 @@ def handle_cp(xml_data, files):
                                 'last_updated': last_status,
                                 'supplier_name': '',
                                 'network_name': chg.get('network', {}).get('name', 'Unknown'),
-                                'big_dynamic_field': conf_str.encode('utf-8'),
+                                'big_dynamic_field': encode_utf8(conf_str),
                                 'reservation_flag': 2
                             }
                         )
@@ -357,7 +357,7 @@ def handle_cp(xml_data, files):
                 data = charger['ID'].to_bytes(4, 'big')
                 # Calculate revision info based on last modification day
                 tstamp = abs(datetime.datetime.fromisoformat(charger['DateLastVerified'].replace("Z", "")).timestamp() - datetime.datetime(2020, 1, 1, 0, 0, 0).timestamp())
-                data += int(tstamp).to_bytes(4, 'big')
+                data += int(tstamp+2100).to_bytes(4, 'big')
                 data += construct_dms_coordinate(charger['AddressInfo']['Latitude'],
                                                  charger['AddressInfo']['Longitude'])
                 mesh_id, bbox = find_containing_mesh_id(charger['AddressInfo']['Latitude'],
@@ -414,7 +414,6 @@ def handle_cp(xml_data, files):
             # normal:
             # resp_file = bytes.fromhex('FF FF FF FF FF FF FF 00 00 01 14 05 05 05 03 17 4C 61 64 65 73 74 61 73 6A 6F 6E 20 66 6F 72 20 65 6C 62 69 6C 65 72 04 30 30 31 32 04 4F 73 6C 6F 04 4F 73 6C 6F 0A 4E 6F 72 64 73 74 72 61 6E 64 00 00 00 00 80 00 0A 29 08 F3 3B 2B 10 0F 0B 40 56 61 72 73 76 69 6E 67 65 6E 59 E9 9D 12 00 00 01 00 00 00 00 01 03 A2 03 00 00 02 00 00 16 33 20 33 3B 40 3B 2A 3B 24 31 32 3B 26 31 3B 21 3B 25 3B 3F 3B 23 00'.replace(' ', ''))
             # resp_file = bytes.fromhex('FF FF FF FF FF FF FF 00 00 01 14 05 05 05 03 05 53 68 65 6C 6C 04 30 30 31 32 04 4F 73 6C 6F 04 4F 73 6C 6F 0A 4E 6F 72 64 73 74 72 61 6E 64 00 00 00 00 80 00 0A 29 08 F3 3B 2B 10 0F 0E 31 40 4E 79 71 75 69 73 74 76 65 69 65 6E 59 E9 9D 12 0E 2B 28 34 37 29 2D 32 32 32 38 32 32 30 39 00 01 00 00 00 00 01 01 03 03 00 00 02 00 00 16 31 20 33 3B 40 3B 2A 3B 24 31 32 3B 26 32 3B 21 3B 25 3B 3F 3B 23 00'.replace(' ', ''))
-
             for charger in chargers_info:
                 station_qc_type = 3
                 station_ac_type = 3
@@ -444,16 +443,16 @@ def handle_cp(xml_data, files):
                     'poi_id': charger['ID'],
                     'name': unidecode(charger['AddressInfo'].get('Title', 'Charging Station') or "Charging Station")[:30],
                     'code': '',
-                    'county': unidecode(charger["AddressInfo"].get("Town", '') or "")[:30],
-                    'region': unidecode(charger["AddressInfo"].get('StateOrProvince', '') or "")[:30],
-                    'city': unidecode(charger["AddressInfo"].get("Town", '') or "")[:30],
-                    'town': unidecode(charger["AddressInfo"].get("Postcode", '') or "")[:30],
+                    'county': (charger["AddressInfo"].get("Town", '') or "")[:30],
+                    'region': (charger["AddressInfo"].get('StateOrProvince', '') or "")[:30],
+                    'city': (charger["AddressInfo"].get("Town", '') or "")[:30],
+                    'town': (charger["AddressInfo"].get("Postcode", '') or "")[:30],
                     'meta1': '',
                     'meta2': '',
                     'meta3': '',
                     'lat': charger["AddressInfo"]["Latitude"],
                     'lon': charger["AddressInfo"]["Longitude"],
-                    'address': unidecode(charger["AddressInfo"].get("AddressLine1", "") or "")[:30],
+                    'address': (charger["AddressInfo"].get("AddressLine1", "") or "")[:30],
                     'mesh_id': 65535,
                     'phone': phone_num,
                     'sites': [],

@@ -3,10 +3,10 @@ from tculink.carwings_proto.dataobjects import build_autodj_payload, construct_d
 import xml.etree.ElementTree as ET
 import geopy.distance
 
-from tculink.carwings_proto.utils import xml_coordinate_to_float
+from tculink.carwings_proto.utils import xml_coordinate_to_float, encode_utf8
 
 from django.utils.text import format_lazy
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext as _
 
 def handle_send_to_car_adj(xml_data, returning_xml, channel_id, car: Car):
     car_destinations = []
@@ -27,7 +27,7 @@ def handle_send_to_car_adj(xml_data, returning_xml, channel_id, car: Car):
             {
                 'itemId': send_location.id,
                 'itemFlag1': 0x00,
-                'dynamicDataField1': point_name.encode('utf-8'),
+                'dynamicDataField1': encode_utf8(point_name),
                 'dynamicDataField2': b'',
                 'dynamicDataField3': b'',
                 "DMSLocation": construct_dms_coordinate(send_location.lat, send_location.lon),
@@ -39,10 +39,10 @@ def handle_send_to_car_adj(xml_data, returning_xml, channel_id, car: Car):
                 'dynamicField6': b'',
                 'unnamed_data': bytearray(),
                 # text shown on bottom
-                "bigDynamicField7": point_name.encode('utf-8'),
-                "bigDynamicField8": str(format_lazy(_('Location point, "{point_name}", which is {distance} kilometers away. '
+                "bigDynamicField7": encode_utf8(point_name),
+                "bigDynamicField8": encode_utf8(format_lazy(_('Location point, "{point_name}", which is {distance} kilometers away. '
                                     f'Set it as destination by pressing pause and setting map point as destination.'),
-                                                    point_name=point_name, distance=distance)).encode('utf-8'),
+                                                    point_name=point_name, distance=distance)),
                 "iconField": 0x0001,
                 # annoucnement sound, 1=yes,0=no
                 "longField2": 1,
@@ -67,7 +67,7 @@ def handle_send_to_car_adj(xml_data, returning_xml, channel_id, car: Car):
             {
                 'itemId': 1,
                 'itemFlag1': 1,
-                'dynamicDataField1': 'Google Send To Car'.encode('utf-8'),
+                'dynamicDataField1': encode_utf8('Google Send To Car'),
                 'dynamicDataField2': b'',
                 'dynamicDataField3': b'',
                 "DMSLocation": b'\xFF' * 10,
@@ -77,11 +77,10 @@ def handle_send_to_car_adj(xml_data, returning_xml, channel_id, car: Car):
                 'dynamicField5': b'',
                 'dynamicField6': b'',
                 'unnamed_data': bytearray(),
-                "bigDynamicField7": str(_('Google Send To Car: No Destinations')).encode('utf-8'),
-                "bigDynamicField8": str(_('There are no destinations sent to the car. '
+                "bigDynamicField7": encode_utf8(_('Google Send To Car: No Destinations')),
+                "bigDynamicField8": encode_utf8(_('There are no destinations sent to the car. '
                                     'Please send at least one destination from your computer or mobile device and'
-                                    ' access this channel again.')).encode(
-                    'utf-8'),
+                                    ' access this channel again.')),
                 "iconField": 0x0000,
                 # annoucnement sound, 1=yes,0=no
                 "longField2": 1,
@@ -105,8 +104,8 @@ def handle_send_to_car_adj(xml_data, returning_xml, channel_id, car: Car):
             "data": b'\x01'
         },
         extra_fields={
-            'stringField1': 'Google Send to Car'.encode('utf-8'),
-            'stringField2': 'Google Send to Car'.encode('utf-8'),
+            'stringField1': 'Google Send to Car',
+            'stringField2': 'Google Send to Car',
             "mode0_processedFieldCntPos": len(car_destinations),
             "mode0_countOfSomeItems3": len(car_destinations),
             "countOfSomeItems": 1
@@ -128,7 +127,7 @@ def handle_send_to_car(_, returning_xml, channel_id, car: Car):
                 {
                     'itemId': 0,
                     'itemFlag1': 0,
-                    'dynamicDataField1': point_name.encode('utf-8'),
+                    'dynamicDataField1': encode_utf8(point_name),
                     'dynamicDataField2': [],
                     'dynamicDataField3': [],
                     "DMSLocation": construct_dms_coordinate(send_location.lat, send_location.lon),

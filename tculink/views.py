@@ -16,7 +16,10 @@ from tculink.carwings_proto.applications.gls import handle_gls
 from tculink.carwings_proto.applications.pi import handle_pi
 from tculink.carwings_proto.databuffer import decompress_body, parse_carwings_files
 from tculink.carwings_proto.xml import parse_carwings_xml
+from rest_framework.decorators import authentication_classes, permission_classes
 
+@authentication_classes([])
+@permission_classes([])
 @csrf_exempt
 def carwings_http_gateway(request):
     """Handle Carwings telematics POST request."""

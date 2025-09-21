@@ -1,8 +1,10 @@
 from db.models import Car
 from tculink.carwings_proto.dataobjects import build_autodj_payload, construct_dms_coordinate
 
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext as _
 from django.utils.text import format_lazy
+
+from tculink.carwings_proto.utils import encode_utf8
 
 
 def handle_routeplanner(unused, returning_xml, channel_id, car: Car):
@@ -18,7 +20,7 @@ def handle_routeplanner(unused, returning_xml, channel_id, car: Car):
                 {
                     'itemId': 1,
                     'itemFlag1': 1,
-                    'dynamicDataField1': str(_('Route Plan not available')).encode('utf-8'),
+                    'dynamicDataField1': encode_utf8(_('Route Plan not available')),
                     'dynamicDataField2': b'',
                     'dynamicDataField3': b'',
                     "DMSLocation": b'\xFF' * 10,
@@ -28,9 +30,8 @@ def handle_routeplanner(unused, returning_xml, channel_id, car: Car):
                     'dynamicField5': b'',
                     'dynamicField6': b'',
                     'unnamed_data': bytearray(),
-                    "bigDynamicField7": str(_('Route Plan not available')).encode('utf-8'),
-                    "bigDynamicField8": str(_('This route plan is empty. Please save a route plan online and try again.')).encode(
-                        'utf-8'),
+                    "bigDynamicField7": encode_utf8(_('Route Plan not available')),
+                    "bigDynamicField8": encode_utf8(_('This route plan is empty. Please save a route plan online and try again.')),
                     "iconField": 0x0000,
                     # annoucnement sound, 1=yes,0=no
                     "longField2": 1,
@@ -51,8 +52,8 @@ def handle_routeplanner(unused, returning_xml, channel_id, car: Car):
                 "data": b'\x01',
             },
             extra_fields={
-                'stringField1': format_lazy(_('Route Plan {num}'), num=routeplan_num).encode('utf-8'),
-                'stringField2': format_lazy(_('Route Plan {num}'), num=routeplan_num).encode('utf-8'),
+                'stringField1': format_lazy(_('Route Plan {num}'), num=routeplan_num),
+                'stringField2': format_lazy(_('Route Plan {num}'), num=routeplan_num),
                 "mode0_processedFieldCntPos": 1,
                 "mode0_countOfSomeItems3": 1,
                 "countOfSomeItems": 1
@@ -68,9 +69,9 @@ def handle_routeplanner(unused, returning_xml, channel_id, car: Car):
             {
                 'itemId': 1,
                 'itemFlag1': 1,
-                'dynamicDataField1': route_plan.finish_name.encode('utf-8'),
-                'dynamicDataField2': route_plan.finish_name.encode('utf-8'),
-                'dynamicDataField3': route_plan.finish_name.encode('utf-8'),
+                'dynamicDataField1': encode_utf8(route_plan.finish_name),
+                'dynamicDataField2': encode_utf8(route_plan.finish_name),
+                'dynamicDataField3': encode_utf8(route_plan.finish_name),
                 "DMSLocation": construct_dms_coordinate(route_plan.finish_lat, route_plan.finish_lon),
                 # is charging station flag?
                 'flag2': 1,
@@ -104,9 +105,9 @@ def handle_routeplanner(unused, returning_xml, channel_id, car: Car):
                     {
                         'itemId': wp+1,
                         'itemFlag1': wp+1,
-                        'dynamicDataField1': point_name.encode('utf-8'),
-                        'dynamicDataField2': point_name.encode('utf-8'),
-                        'dynamicDataField3': point_name.encode('utf-8'),
+                        'dynamicDataField1': encode_utf8(point_name),
+                        'dynamicDataField2': encode_utf8(point_name),
+                        'dynamicDataField3': encode_utf8(point_name),
                         "DMSLocation": construct_dms_coordinate(getattr(route_plan, f"point{wp}_lat", None), getattr(route_plan, f"point{wp}_lon", None)),
                         # is charging station flag?
                         'flag2': wp+1,
@@ -141,8 +142,8 @@ def handle_routeplanner(unused, returning_xml, channel_id, car: Car):
                 "data": construct_dms_coordinate(route_plan.start_lat, route_plan.start_lon),
             },
             extra_fields={
-                'stringField1': plan_name.encode('utf-8'),
-                'stringField2': plan_name.encode('utf-8'),
+                'stringField1': plan_name,
+                'stringField2': plan_name,
                 "mode0_processedFieldCntPos": len(points),
                 "mode0_countOfSomeItems3": len(points),
                 "countOfSomeItems": 1

@@ -1,7 +1,8 @@
 import logging
 from django.utils import timezone
 from db.models import Car
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext as _
+from unidecode import unidecode
 logger = logging.getLogger("carwings")
 
 
@@ -151,3 +152,72 @@ def xml_coordinate_to_float(crd):
     if crd.get('datum', '') != 'wgs84':
         raise Exception('Coordinate must be WGS84')
     return xml_dms_to_decimal(crd['latitude']), xml_dms_to_decimal(crd['longitude'])
+
+
+def encode_utf8(text):
+    if not isinstance(text, str):
+        text = str(text)
+
+    result = bytearray()
+
+    for char in text:
+        code_point = ord(char)
+
+        # Handle characters outside valid Unicode range (>= 0x110000)
+        if code_point >= 0x110000:
+            decoded_char = unidecode(char)
+            if decoded_char:
+                replacement_bytes = encode_utf8(decoded_char)
+                result.extend(replacement_bytes)
+                continue
+            else:
+                raise ValueError(f"Character U+{code_point:X} exceeds valid Unicode range")
+
+        # ascii
+        if code_point < 0x80:
+            result.append(code_point)
+        # 2-byte sequence
+        elif code_point < 0x800:
+            byte1 = 0xC0 | (code_point >> 6)
+            byte2 = 0x80 | (code_point & 0x3F)
+
+            # Validate first byte range (matches validation logic)
+            if byte1 < 0xC2:
+                raise ValueError(f"Invalid UTF-8 encoding for U+{code_point:X}")
+
+            result.append(byte1)
+            result.append(byte2)
+        # 3-byte sequence
+        elif code_point < 0x10000:
+            byte1 = 0xE0 | (code_point >> 12)
+            byte2 = 0x80 | ((code_point >> 6) & 0x3F)
+            byte3 = 0x80 | (code_point & 0x3F)
+
+            result.append(byte1)
+            result.append(byte2)
+            result.append(byte3)
+
+        # 4-byte sequence
+        elif code_point < 0x110000:
+            byte1 = 0xF0 | (code_point >> 18)
+
+            # Validate first byte doesn't exceed 0xF7
+            if byte1 > 0xF7:
+                ascii_replacement = unidecode(char)
+                if ascii_replacement:
+                    replacement_bytes = encode_utf8(ascii_replacement)
+                    result.extend(replacement_bytes)
+                    continue
+                else:
+                    raise ValueError(f"Invalid UTF-8 encoding for U+{code_point:X}")
+
+            byte2 = 0x80 | ((code_point >> 12) & 0x3F)
+            byte3 = 0x80 | ((code_point >> 6) & 0x3F)
+            byte4 = 0x80 | (code_point & 0x3F)
+
+            result.append(byte1)
+            result.append(byte2)
+            result.append(byte3)
+            result.append(byte4)
+
+    return bytes(result)

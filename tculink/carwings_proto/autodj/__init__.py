@@ -1,3 +1,4 @@
+from tculink.carwings_proto.utils import encode_utf8
 
 # CARWINGS built-in icons
 ICONS = (
@@ -28,7 +29,7 @@ NOT_FOUND_AUTODJ_ITEM = [
     {
         'itemId': 1,
         'itemFlag1': 1,
-        'dynamicDataField1': 'Data Channel not available'.encode('utf-8'),
+        'dynamicDataField1': encode_utf8('Data Channel not available'),
         'dynamicDataField2': b'',
         'dynamicDataField3': b'',
         "DMSLocation": b'\xFF' * 10,
@@ -38,8 +39,8 @@ NOT_FOUND_AUTODJ_ITEM = [
         'dynamicField5': b'',
         'dynamicField6': b'',
         'unnamed_data': bytearray(),
-        "bigDynamicField7": 'Data Channel not available'.encode('utf-8'),
-        "bigDynamicField8": 'This Data Channel that was requested, is no longer available or accessible.'.encode('utf-8'),
+        "bigDynamicField7": encode_utf8('Data Channel not available'),
+        "bigDynamicField8": encode_utf8('This Data Channel that was requested, is no longer available or accessible.'),
         "iconField": 0x0000,
         # annoucnement sound, 1=yes,0=no
         "longField2": 1,
@@ -59,7 +60,7 @@ NOT_AVAIL_AUTODJ_ITEM = [
     {
         'itemId': 1,
         'itemFlag1': 1,
-        'dynamicDataField1': 'Data Channel not available'.encode('utf-8'),
+        'dynamicDataField1': encode_utf8('Data Channel not available'),
         'dynamicDataField2': b'',
         'dynamicDataField3': b'',
         "DMSLocation": b'\xFF' * 10,
@@ -69,9 +70,9 @@ NOT_AVAIL_AUTODJ_ITEM = [
         'dynamicField5': b'',
         'dynamicField6': b'',
         'unnamed_data': bytearray(),
-        "bigDynamicField7": 'Data Channel not available'.encode('utf-8'),
-        "bigDynamicField8": 'This Data Channel that was requested, is not available at the moment.'
-                            ' Please try again later.'.encode('utf-8'),
+        "bigDynamicField7": encode_utf8('Data Channel not available'),
+        "bigDynamicField8": encode_utf8('This Data Channel that was requested, is not available at the moment.'
+                            ' Please try again later.'),
         "iconField": 0x0000,
         # annoucnement sound, 1=yes,0=no
         "longField2": 1,
@@ -91,7 +92,7 @@ NOT_AUTHORIZED_AUTODJ_ITEM = [
     {
         'itemId': 1,
         'itemFlag1': 1,
-        'dynamicDataField1': 'Not authorized'.encode('utf-8'),
+        'dynamicDataField1': encode_utf8('Not authorized'),
         'dynamicDataField2': b'',
         'dynamicDataField3': b'',
         "DMSLocation": b'\xFF' * 10,
@@ -101,9 +102,9 @@ NOT_AUTHORIZED_AUTODJ_ITEM = [
         'dynamicField5': b'',
         'dynamicField6': b'',
         'unnamed_data': bytearray(),
-        "bigDynamicField7": 'Data Channel not available'.encode('utf-8'),
-        "bigDynamicField8": 'To view this data channel, you will need to sign in with your Open Car Wings credentials. '
-                            'Head to Car Wings settings and input your credentials under "Security settings".'.encode('utf-8'),
+        "bigDynamicField7": encode_utf8('Data Channel not available'),
+        "bigDynamicField8": encode_utf8('To view this data channel, you will need to sign in with your Open Car Wings credentials. '
+                            'Head to Car Wings settings and input your credentials under "Security settings".'),
         "iconField": 0x0000,
         # annoucnement sound, 1=yes,0=no
         "longField2": 1,

@@ -12,11 +12,11 @@ from django.contrib.humanize.templatetags.humanize import ordinal
 from django.db.models.aggregates import Sum
 from django.utils import timezone, formats
 from django.utils.text import format_lazy
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext as _
 
 from db.models import CRMTripRecord
 from tculink.carwings_proto.dataobjects import build_autodj_payload
-from tculink.carwings_proto.utils import get_word_of_month_i18n
+from tculink.carwings_proto.utils import get_word_of_month_i18n, encode_utf8
 
 RELEASE_NOTES = "What's new in OpenCARWINGS?\n1. Charging Stations\n"
 
@@ -38,8 +38,8 @@ def get_infochannel(xml_data, returning_xml, channel_id, car):
         {
             'itemId': 1,
             'itemFlag1': 0x00,
-            'dynamicDataField1': 'What\'s new?'.encode('utf-8'),
-            'dynamicDataField2': f"What\'s new?".encode('utf-8'),
+            'dynamicDataField1': encode_utf8('What\'s new?'),
+            'dynamicDataField2': encode_utf8('What\'s new?'),
             'dynamicDataField3': b'',
             "DMSLocation": b'\xFF' * 10,
             'flag2': 0,
@@ -50,8 +50,8 @@ def get_infochannel(xml_data, returning_xml, channel_id, car):
             'dynamicField6': b'',
             'unnamed_data': bytearray(),
             # text shown on bottom
-            "bigDynamicField7": RELEASE_NOTES.encode('utf-8'),
-            "bigDynamicField8": RELEASE_NOTES_SPK.encode('utf-8'),
+            "bigDynamicField7": encode_utf8(RELEASE_NOTES),
+            "bigDynamicField8": encode_utf8(RELEASE_NOTES_SPK),
             "iconField": 0x400,
             # annoucnement sound, 1=yes,0=no
             "longField2": 1,
@@ -78,8 +78,8 @@ def get_infochannel(xml_data, returning_xml, channel_id, car):
             {
                 'itemId': 2,
                 'itemFlag1': 0x00,
-                'dynamicDataField1': 'Tips & Tricks'.encode('utf-8'),
-                'dynamicDataField2': "Tips & Tricks".encode('utf-8'),
+                'dynamicDataField1': encode_utf8('Tips & Tricks'),
+                'dynamicDataField2': encode_utf8("Tips & Tricks"),
                 'dynamicDataField3': b'',
                 "DMSLocation": b'\xFF' * 10,
                 'flag2': 0,
@@ -90,8 +90,8 @@ def get_infochannel(xml_data, returning_xml, channel_id, car):
                 'dynamicField6': b'',
                 'unnamed_data': bytearray(),
                 # text shown on bottom
-                "bigDynamicField7": NOT_SIGNEDIN_NOTE.encode('utf-8'),
-                "bigDynamicField8": NOT_SIGNEDIN_NOTE.encode('utf-8'),
+                "bigDynamicField7": encode_utf8(NOT_SIGNEDIN_NOTE),
+                "bigDynamicField8": encode_utf8(NOT_SIGNEDIN_NOTE),
                 "iconField": 0x400,
                 # annoucnement sound, 1=yes,0=no
                 "longField2": 1,
@@ -120,8 +120,8 @@ def get_infochannel(xml_data, returning_xml, channel_id, car):
             "data": b'\x01'
         },
         extra_fields={
-            'stringField1': 'Info from OpenCARWINGS'.encode('utf-8'),
-            'stringField2': 'Info from OpenCARWINGS'.encode('utf-8'),
+            'stringField1': _('Info from OpenCARWINGS'),
+            'stringField2': _('Info from OpenCARWINGS'),
             "mode0_processedFieldCntPos": len(response_chdata),
             "mode0_countOfSomeItems3": len(response_chdata),
             "countOfSomeItems": 1
@@ -612,8 +612,8 @@ def get_energy_information_channel(xml_data, returning_xml, channel_id, car):
     response_chdata.append({
             'itemId': 1,
             'itemFlag1': 0x00,
-            'dynamicDataField1': slide_title.encode('utf-8'),
-            'dynamicDataField2': slide_title.encode('utf-8'),
+            'dynamicDataField1': encode_utf8(slide_title),
+            'dynamicDataField2': encode_utf8(slide_title),
             'dynamicDataField3': b'',
             "DMSLocation": b'\xFF' * 10,
             'flag2': 0,
@@ -624,8 +624,8 @@ def get_energy_information_channel(xml_data, returning_xml, channel_id, car):
             'dynamicField6': b'',
             'unnamed_data': bytearray(),
             # text shown on bottom
-            "bigDynamicField7": display_txt.encode('utf-8'),
-            "bigDynamicField8": read_txt.encode('utf-8'),
+            "bigDynamicField7": encode_utf8(display_txt),
+            "bigDynamicField8": encode_utf8(read_txt),
             "iconField": 0x400,
             # annoucnement sound, 1=yes,0=no
             "longField2": 1,
@@ -655,8 +655,8 @@ def get_energy_information_channel(xml_data, returning_xml, channel_id, car):
         {
             'itemId': 2,
             'itemFlag1': 0x00,
-            'dynamicDataField1': tip_title.encode('utf-8'),
-            'dynamicDataField2': tip_title.encode('utf-8'),
+            'dynamicDataField1': encode_utf8(tip_title),
+            'dynamicDataField2': encode_utf8(tip_title),
             'dynamicDataField3': b'',
             "DMSLocation": b'\xFF' * 10,
             'flag2': 0,
@@ -667,8 +667,8 @@ def get_energy_information_channel(xml_data, returning_xml, channel_id, car):
             'dynamicField6': b'',
             'unnamed_data': bytearray(),
             # text shown on bottom
-            "bigDynamicField7": tip_onscreen.encode('utf-8'),
-            "bigDynamicField8": tip_txt.encode('utf-8'),
+            "bigDynamicField7": encode_utf8(tip_onscreen),
+            "bigDynamicField8": encode_utf8(tip_txt),
             "iconField": 0x400,
             # annoucnement sound, 1=yes,0=no
             "longField2": 1,
@@ -698,8 +698,8 @@ def get_energy_information_channel(xml_data, returning_xml, channel_id, car):
             "data": b'\x01'
         },
         extra_fields={
-            'stringField1': _('Energy Information').encode('utf-8'),
-            'stringField2': _('Energy Information').encode('utf-8'),
+            'stringField1': _('Energy Information'),
+            'stringField2': _('Energy Information'),
             "mode0_processedFieldCntPos": len(response_chdata),
             "mode0_countOfSomeItems3": len(response_chdata),
             "countOfSomeItems": 1
@@ -790,8 +790,8 @@ def get_eco_tree_channel(xml_data, returning_xml, channel_id, car):
     response_chdata.append({
             'itemId': 1,
             'itemFlag1': 0x00,
-            'dynamicDataField1': slide_title.encode('utf-8'),
-            'dynamicDataField2': slide_title.encode('utf-8'),
+            'dynamicDataField1': encode_utf8(slide_title),
+            'dynamicDataField2': encode_utf8(slide_title),
             'dynamicDataField3': b'',
             "DMSLocation": b'\xFF' * 10,
             'flag2': 0,
@@ -802,8 +802,8 @@ def get_eco_tree_channel(xml_data, returning_xml, channel_id, car):
             'dynamicField6': b'',
             'unnamed_data': bytearray(),
             # text shown on bottom
-            "bigDynamicField7": display_txt.encode('utf-8'),
-            "bigDynamicField8": read_txt.encode('utf-8'),
+            "bigDynamicField7": encode_utf8(display_txt),
+            "bigDynamicField8": encode_utf8(read_txt),
             "iconField": 0x400,
             # annoucnement sound, 1=yes,0=no
             "longField2": 1,
@@ -859,8 +859,8 @@ def get_eco_tree_channel(xml_data, returning_xml, channel_id, car):
         {
             'itemId': 2,
             'itemFlag1': 0x00,
-            'dynamicDataField1': forest_title.encode('utf-8'),
-            'dynamicDataField2': forest_title.encode('utf-8'),
+            'dynamicDataField1': encode_utf8(forest_title),
+            'dynamicDataField2': encode_utf8(forest_title),
             'dynamicDataField3': b'',
             "DMSLocation": b'\xFF' * 10,
             'flag2': 0,
@@ -871,8 +871,8 @@ def get_eco_tree_channel(xml_data, returning_xml, channel_id, car):
             'dynamicField6': b'',
             'unnamed_data': bytearray(),
             # text shown on bottom
-            "bigDynamicField7": tip_onscreen.encode('utf-8'),
-            "bigDynamicField8": tip_txt.encode('utf-8'),
+            "bigDynamicField7": encode_utf8(tip_onscreen),
+            "bigDynamicField8": encode_utf8(tip_txt),
             "iconField": 0x400,
             # annoucnement sound, 1=yes,0=no
             "longField2": 1,
@@ -902,8 +902,8 @@ def get_eco_tree_channel(xml_data, returning_xml, channel_id, car):
             "data": b'\x01'
         },
         extra_fields={
-            'stringField1': _('ECO Tree').encode('utf-8'),
-            'stringField2': _('ECO Tree').encode('utf-8'),
+            'stringField1': _('ECO Tree'),
+            'stringField2': _('ECO Tree'),
             "mode0_processedFieldCntPos": len(response_chdata),
             "mode0_countOfSomeItems3": len(response_chdata),
             "countOfSomeItems": 1

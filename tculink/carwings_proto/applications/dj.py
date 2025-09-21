@@ -85,7 +85,7 @@ def handle_dj(xml_data, files):
                     resp_file = construct_gnrlms_payload(0xC, _("Channel not found"), _("This channel does not exist and cannot be added to favorites list"))
                 else:
                     car_favorites_map = car.favorite_channels
-                    car_favorites_map[position-1] = channel_info['id']
+                    car_favorites_map[str(position)] = channel_info['id']
                     car.favorite_channels = car_favorites_map
                     car.save()
                     resp_file = construct_gnrlms_payload(0xB, _("Favorite channel added"), _("The channel has been added to favorites"))

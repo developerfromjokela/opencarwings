@@ -75,6 +75,7 @@ def handle_dj(xml_data, files):
             logger.info("Save to Favorite list func!")
             position = int.from_bytes(dj_payload[7:9], "big")
             channel_id = int.from_bytes(dj_payload[9:11], "big")
+            logger.info("POS: %d, CHAN ID: %d", position, channel_id)
             car = get_cws_authenticated_car(xml_data)
             if car is None:
                 resp_file = construct_gnrlms_payload(0xC, _("Not authenticated"), _("Please authenticate to Car Wings before saving a favorite channel"))
@@ -84,9 +85,7 @@ def handle_dj(xml_data, files):
                 if channel_info is None:
                     resp_file = construct_gnrlms_payload(0xC, _("Channel not found"), _("This channel does not exist and cannot be added to favorites list"))
                 else:
-                    car_favorites_map = car.favorite_channels
-                    car_favorites_map[str(position)] = channel_info['id']
-                    car.favorite_channels = car_favorites_map
+                    car.favorite_channels[str(position)] = channel_info['id']
                     car.save()
                     resp_file = construct_gnrlms_payload(0xB, _("Favorite channel added"), _("The channel has been added to favorites"))
 

@@ -159,7 +159,7 @@
                     <div class="status-card">
                         <span class="text-left text-2sm">{% translate "Trip start" %}</span>
                         <dl class="mt-4 grid grid-cols-1 gap-3 text-sm sm:text-base">
-                            <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">device_thermostat</i> {% translate "Battery pack temperature" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.batt_temp_start }} °C</dd></div>
+                            <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">device_thermostat</i> {% translate "Battery pack temperature" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.batt_temp_start|mul:0.25 }} °C</dd></div>
                             <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">cardiology</i> SOH</dt><dd class="text-gray-600 font-semibold">{{ trip.soh_start }} %</dd></div>
                             <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">battery_android_6</i> {% translate "Energy content" %} (kWh)</dt><dd class="text-gray-600 font-semibold">{{ trip.wh_energy_start|div:1000|floatformat:2 }}</dd></div>
                             <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">battery_android_frame_question</i> {% translate "Energy content" %} (GID)</dt><dd class="text-gray-600 font-semibold">{{ trip.bda_energy_content_start|floatformat:0 }}</dd></div>
@@ -176,7 +176,7 @@
                     <div class="status-card">
                         <span class="text-2sm">{% translate "Trip end" %}</span>
                         <dl class="mt-4 grid grid-cols-1 gap-3 text-sm sm:text-base">
-                            <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">device_thermostat</i> {% translate "Battery pack temperature" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.batt_temp_end }} C</dd></div>
+                            <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">device_thermostat</i> {% translate "Battery pack temperature" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.batt_temp_end|mul:0.25 }} °C</dd></div>
                             <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">cardiology</i> SOH</dt><dd class="text-gray-600 font-semibold">{{ trip.soh_end }} %</dd></div>
                             <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">battery_android_6</i> {% translate "Energy content" %} (kWh)</dt><dd class="text-gray-600 font-semibold">{{ trip.wh_energy_end|div:1000|floatformat:2 }}</dd></div>
                             <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">battery_android_frame_question</i> {% translate "Energy content" %} (GID)</dt><dd class="text-gray-600 font-semibold">{{ trip.bda_energy_content_end|floatformat:0 }}</dd></div>

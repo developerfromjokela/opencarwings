@@ -146,6 +146,7 @@ def handle_pi(xml_data, files):
                                             content = csv_file.getvalue().encode('utf-8')
                                             csv_file_obj = ContentFile(content, name=f"DOT-{uuid.uuid4()}.csv")
                                             dot_dbrecord = DOTFile()
+                                            dot_dbrecord.car = car_ref
                                             dot_dbrecord.file = csv_file_obj
                                             dot_dbrecord.capture_ts = gps_time
                                             dot_dbrecord.save()

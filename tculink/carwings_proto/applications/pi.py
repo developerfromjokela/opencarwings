@@ -137,6 +137,9 @@ def handle_pi(xml_data, files):
                                             gps_time = next((x["GPS time"] for x in dot_data if "GPS time" in x), None)
                                             csv_file = io.StringIO()
                                             fieldnames = [x[0] for x in list(prb_dotfiletypes.values())]
+                                            fieldnames.append("road_type")
+                                            fieldnames.append("road_collected")
+                                            fieldnames.append("GPS time_raw")
                                             writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
                                             writer.writeheader()
                                             writer.writerows(dot_data)
@@ -147,7 +150,7 @@ def handle_pi(xml_data, files):
                                             dot_dbrecord.capture_ts = gps_time
                                             dot_dbrecord.save()
                                         except Exception as e:
-                                            logger.error("CRMFILE ERR")
+                                            logger.error("DOTFILE ERR")
                                             logger.exception(e)
                                     else:
                                         logger.warning("Car ref not available, skip!")

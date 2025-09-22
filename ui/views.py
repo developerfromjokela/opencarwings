@@ -550,7 +550,7 @@ def setup_step1(request):
 
 def setup_step2(request):
     if not request.user.is_authenticated:
-        return redirect('/login')
+        return redirect('/signin')
     if 'step' not in request.session:
         return redirect('/setup/step1')
     elif request.session['step']['current_step'] != 2:
@@ -582,7 +582,7 @@ def setup_step2(request):
 
 def setup_step3(request):
     if not request.user.is_authenticated:
-        return redirect('/login')
+        return redirect('/signin')
     if 'step' not in request.session:
         return redirect('/setup/step3')
     elif request.session['step']['current_step'] != 3:
@@ -604,7 +604,7 @@ def setup_step3(request):
 
 def setup_step4(request):
     if not request.user.is_authenticated:
-        return redirect('/login')
+        return redirect('/signin')
     if 'step' not in request.session:
         return redirect('/setup/step1')
     elif request.session['step']['current_step'] != 4:
@@ -639,7 +639,7 @@ def setup_step4(request):
 
 def setup_step5(request):
     if not request.user.is_authenticated:
-        return redirect('/login')
+        return redirect('/signin')
     if 'step' not in request.session:
         return redirect('/setup/step1')
     elif request.session['step']['current_step'] != 5:

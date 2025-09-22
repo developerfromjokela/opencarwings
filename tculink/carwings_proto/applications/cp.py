@@ -1,5 +1,6 @@
 import datetime
 import logging
+import math
 import xml.etree.ElementTree as ET
 
 import requests
@@ -60,21 +61,63 @@ def point_in_bounding_box(lat, lon, bbox):
     topleft_lat, topleft_lon = bbox[1]
     bottomright_lat, bottomright_lon = bbox[2]
 
-    # Extract the bounds
     min_lat = min(bottomleft_lat, topleft_lat, bottomright_lat)
     max_lat = max(bottomleft_lat, topleft_lat, bottomright_lat)
     min_lon = min(bottomleft_lon, topleft_lon, bottomright_lon)
     max_lon = max(bottomleft_lon, topleft_lon, bottomright_lon)
 
-    # Check if point is within bounds
     return min_lat <= lat <= max_lat and min_lon <= lon <= max_lon
+
+
+def haversine_distance(lat1, lon1, lat2, lon2):
+    lat1, lon1, lat2, lon2 = map(math.radians, [lat1, lon1, lat2, lon2])
+    dlat = lat2 - lat1
+    dlon = lon2 - lon1
+    a = math.sin(dlat / 2) ** 2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2
+    c = 2 * math.asin(math.sqrt(a))
+    r = 6371
+    return c * r
+
+
+def distance_to_bounding_box(lat, lon, bbox):
+    bottomleft_lat, bottomleft_lon = bbox[0]
+    topleft_lat, topleft_lon = bbox[1]
+    bottomright_lat, bottomright_lon = bbox[2]
+
+    min_lat = min(bottomleft_lat, topleft_lat, bottomright_lat)
+    max_lat = max(bottomleft_lat, topleft_lat, bottomright_lat)
+    min_lon = min(bottomleft_lon, topleft_lon, bottomright_lon)
+    max_lon = max(bottomleft_lon, topleft_lon, bottomright_lon)
+
+    if min_lat <= lat <= max_lat and min_lon <= lon <= max_lon:
+        return 0
+
+    closest_lat = max(min_lat, min(lat, max_lat))
+    closest_lon = max(min_lon, min(lon, max_lon))
+
+    return haversine_distance(lat, lon, closest_lat, closest_lon)
 
 
 def find_containing_mesh_id(lat, lon, bounding_boxes):
     for mesh_id, bbox in bounding_boxes.items():
         if point_in_bounding_box(lat, lon, bbox):
             return mesh_id, bbox
-    return None, None
+
+    # If no containing mesh found, find the nearest one
+    min_distance = float('inf')
+    nearest_mesh_id = None
+    nearest_bbox = None
+
+    logger.warning("Searching for nearest meshid: %f %f", lat, lon)
+
+    for mesh_id, bbox in bounding_boxes.items():
+        distance = distance_to_bounding_box(lat, lon, bbox)
+        if distance < min_distance:
+            min_distance = distance
+            nearest_mesh_id = mesh_id
+            nearest_bbox = bbox
+
+    return nearest_mesh_id, nearest_bbox
 
 def handle_cp(xml_data, files):
     if 'send_data' in xml_data['service_info']['application']:

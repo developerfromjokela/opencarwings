@@ -26,7 +26,7 @@ prb_dotfiletypes = {
     37: ("GPS Time [Relative]", 1),
     38: ("GPS Position [Relative]", 9),
     42: ("Deadreckoning position [Relative]", 8),
-    44: ("Navi position [Relative]", 8),
+    44: ("Navi position [Relative]", 4),
     250: ("Timezone", 1),
     64: ("VCan speed", 3),
     65: ("VCan winker", 2)

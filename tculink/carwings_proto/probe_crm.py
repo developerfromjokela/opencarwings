@@ -73,6 +73,8 @@ def parse_crmfile(data):
                 logger.debug("Block count: %d", size_field)
                 size = 6 * size_field
                 logger.debug("Size: %s", hex(size))
+                if size == 0:
+                    size += 1
                 size = size+2
             elif meta["type"] == 0x10:
                 size_field = dotfile_data[pos + 7]

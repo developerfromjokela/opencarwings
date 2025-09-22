@@ -1,5 +1,6 @@
 import datetime
 import logging
+from django.utils import timezone
 
 logger = logging.getLogger("probe")
 
@@ -40,6 +41,12 @@ road_types = {
     4: "other"
 }
 
+def apply_date_patch(date):
+    # apply patch for gps rollover, add 1024 weeks
+    rollover_timedelta = datetime.timedelta(days=1024*7)
+    if date.year < timezone.now().year-5:
+        return date + rollover_timedelta
+    return date
 
 def parse_dotfile(dotfile_data):
     pos = 0
@@ -73,7 +80,7 @@ def parse_dotfile(dotfile_data):
             elif item_type == 0x5:
                 struct[prb_type[0] + "_raw"] = "%02d.%02d.%02d %02d:%02d:%02d" % (data[0], data[1], data[2], data[3], data[4],
                                                                                 data[5])
-                struct[prb_type[0]] = datetime.datetime(2000 + data[0], data[1], data[2], data[3], data[4], data[5])
+                struct[prb_type[0]] = apply_date_patch(datetime.datetime(2000 + data[0], data[1], data[2], data[3], data[4], data[5]))
             elif item_type == 16 or item_type == 17:
                 struct[prb_type[0]] = True if int.from_bytes(data, byteorder="big") == 0x31 else False
             elif item_type == 18:

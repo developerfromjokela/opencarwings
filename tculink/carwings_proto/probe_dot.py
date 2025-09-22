@@ -92,7 +92,7 @@ def parse_dotfile(dotfile_data):
             if item_type == 0x05:
                 gps_time_aquired = True
         else:
-            logger.warning("UNKNOWN DOT TYPE: %d, pos: %d", item_type, pos)
+            raise Exception("UNKNOWN DOT TYPE: ", item_type, "HEX", hex(item_type), "pos:", pos)
 
     if len(struct.keys()) > 0:
         blocks.append(struct)

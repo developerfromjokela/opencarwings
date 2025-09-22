@@ -161,6 +161,9 @@ msgstr "päivittäin"
 msgid "Every 5 minutes"
 msgstr "5 min välein"
 
+msgid "Every 10 minutes"
+msgstr "10 min välein"
+
 #: db/models.py:63
 msgid "Every 15 minutes"
 msgstr "15 min välein"

@@ -159,6 +159,9 @@ msgstr "Iga päev"
 msgid "Every 5 minutes"
 msgstr "Iga 5 minuti järel"
 
+msgid "Every 10 minutes"
+msgstr "Iga 10 minuti järel"
+
 #: db/models.py:63
 msgid "Every 15 minutes"
 msgstr "Iga 15 minuti järel"

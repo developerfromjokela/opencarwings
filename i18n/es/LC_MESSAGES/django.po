@@ -162,6 +162,9 @@ msgstr "Cada día"
 msgid "Every 5 minutes"
 msgstr "Cada 5 minutos"
 
+msgid "Every 10 minutes"
+msgstr "Cada 10 minutos"
+
 #: db/models.py:63
 msgid "Every 15 minutes"
 msgstr "Cada 15 minutos"

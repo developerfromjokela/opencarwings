@@ -60,6 +60,7 @@ PERIODIC_REFRESH = (
 PERIODIC_REFRESH_ACTIVE = (
     (0, _("Never")),
     (5, _("Every 5 minutes")),
+    (10, _("Every 10 minutes")),
     (15, _("Every 15 minutes")),
     (30, _("Every 30 minutes")),
     (45, _("Every 45 minutes")),
@@ -365,6 +366,15 @@ class CRMABSHistoryRecord(models.Model):
     longitude = models.DecimalField(default=0, decimal_places=15, max_digits=32)
     road_type = models.IntegerField(default=0)
     direction = models.IntegerField(default=0)
+
+class CRMDistanceRecord(models.Model):
+    car = models.ForeignKey(Car, on_delete=models.CASCADE)
+    timestamp = models.DateTimeField()
+    consumed_wh = models.IntegerField(default=0)
+    regenerated_wh = models.IntegerField(default=0)
+    latitude = models.DecimalField(default=0, decimal_places=15, max_digits=32)
+    longitude = models.DecimalField(default=0, decimal_places=15, max_digits=32)
+    road_type = models.IntegerField(default=0)
 
 class CRMTroubleRecord(models.Model):
     car = models.ForeignKey(Car, on_delete=models.CASCADE)

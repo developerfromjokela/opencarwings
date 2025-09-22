@@ -1,5 +1,6 @@
 from db.models import Car, CRMLatest, CRMLifetime, CRMExcessiveAirconRecord, CRMExcessiveIdlingRecord, CRMMonthlyRecord, \
-    CRMMSNRecord, CRMChargeRecord, CRMChargeHistoryRecord, CRMABSHistoryRecord, CRMTroubleRecord, CRMTripRecord
+    CRMMSNRecord, CRMChargeRecord, CRMChargeHistoryRecord, CRMABSHistoryRecord, CRMTroubleRecord, CRMTripRecord, \
+    CRMDistanceRecord
 from tculink.carwings_proto.crm_labels import CRM_LABELS
 import logging
 logger = logging.getLogger("probe")
@@ -36,7 +37,8 @@ first_blocks = {
     "absdata": 0xCC,
     "charge": 0xC5,
     "chargehistory": 0xDA,
-    "trouble": 0xF8
+    "trouble": 0xF8,
+    "distance": 0xB8
 }
 
 crm_labelmap = {}
@@ -71,40 +73,30 @@ def parse_crmfile(data):
                 logger.debug("Block count: %d", size_field)
                 size = 6 * size_field
                 logger.debug("Size: %s", hex(size))
-                if size == 0:
-                    size += 1
                 size = size+2
             elif meta["type"] == 0x10:
                 size_field = dotfile_data[pos + 7]
                 logger.debug("MSN Byte count: %s", size_field)
                 logger.debug("Size: %s", hex(size))
-                if size == 0:
-                    size += 1
                 size = size+8
             elif meta["type"] == 0x11:
                 size_field = dotfile_data[pos + 1]
                 logger.debug("Block count: %d", size_field)
-                size = 0x20 * size_field
+                size = 30 * size_field
                 logger.debug("Size: %s", hex(size))
-                if size == 0:
-                    size += 1
                 size = size+2
             elif meta["type"] == 0x12 or meta["type"] == 0x13\
                     or meta["type"] == 0x14 or meta["type"] == 0x15:
                 size_field = dotfile_data[pos + 1]
                 logger.debug("Block count: %d", size_field)
-                size = 20 * size_field
+                size = 18 * size_field
                 logger.debug("Size: %s", hex(size))
-                if size == 0:
-                    size += 1
                 size = size+2
             elif meta["type"] == 0x17:
                 size_field = dotfile_data[pos + 1]
                 logger.debug("Block count: %d", size_field)
                 size = 25 * size_field
                 logger.debug("Size: %s", hex(size))
-                if size == 0:
-                    size += 1
                 size = size+2
             logger.debug("DATALEN: %d",size-1)
             parsingblocks.append({
@@ -134,7 +126,8 @@ def parse_crmfile(data):
         "absdata": [],
         "charge": [],
         "chargehistory": [],
-        "trouble": []
+        "trouble": [],
+        'distance': []
     }
 
     currentblock = None
@@ -306,11 +299,11 @@ def parse_crmfile(data):
                                                       block_data[4], block_data[5])
             continue
         if crmblock["type"] == 0x82:
-            location = parse_std_location(int.from_bytes(block_data[1:5], "big"), int.from_bytes(block_data[5:9], "big"))
+            location = parse_std_location(struct.unpack('>i',block_data[0:4])[0], struct.unpack('>i',block_data[4:9])[0])
             draft_struct["start_location"] = {"lat": location[0], "lon": location[1], "raw": hex(block_data)}
             continue
         if crmblock["type"] == 0x83:
-            location = parse_std_location(int.from_bytes(block_data[1:5], "big"), int.from_bytes(block_data[5:9], "big"))
+            location = parse_std_location(struct.unpack('>i',block_data[0:4])[0], struct.unpack('>i',block_data[4:9])[0])
             draft_struct["stop_location"] = {"lat": location[0], "lon": location[1], "raw": hex(block_data)}
             continue
         if crmblock["type"] == 0x85:
@@ -364,6 +357,18 @@ def parse_crmfile(data):
         if crmblock["type"] == 0x9A:
             draft_struct["max_speed"] = int.from_bytes(block_data, byteorder="big", signed=False)/10
             continue
+        if crmblock["type"] == 0xB8:
+            location = parse_std_location(struct.unpack('>i',block_data[15:19])[0], struct.unpack('>i',block_data[19:23])[0])
+            draft_struct = {
+                'timestamp': datetime.datetime(2000 + block_data[0], block_data[1], block_data[2], block_data[3],
+                                                      block_data[4], block_data[5], block_data[6]),
+                'consumed_wh': int.from_bytes(block_data[7:11], "big"),
+                'regenerated_wh': int.from_bytes(block_data[11:15], "big"),
+                'latitude': location[0],
+                'longitude': location[1],
+                "road_type": int.from_bytes(block_data[24:], "big"),
+            }
+            continue
         if crmblock["type"] == 0xB9:
             draft_struct["accelerator_work"] = {
                 "sudden_start_consumption": int.from_bytes(block_data[:4], byteorder="big", signed=False),
@@ -383,13 +388,13 @@ def parse_crmfile(data):
         if crmblock["type"] == 0xD3:
             sudden_starts = []
             items_count = block_data[0]
-            for i in range(items_count+1):
+            for i in range(items_count):
                 item_data = block_data[(i*20)+1:((i+1)*20)+1]
-                location = parse_std_location(int.from_bytes(block_data[12:16], "big"), int.from_bytes(block_data[16:20], "big"))
+                location = parse_std_location(struct.unpack('>i',item_data[10:14])[0], struct.unpack('>i',item_data[14:18])[0])
                 sudden_starts.append({
-                    "timestamp": datetime.time(item_data[0], block_data[1], block_data[2], block_data[3]),
-                    "power_consumption": block_data[4:8],
-                    "elapsed_time": block_data[8:12],
+                    "timestamp": datetime.time(item_data[0], item_data[1], item_data[2], item_data[3]),
+                    "power_consumption": item_data[4:8],
+                    "elapsed_time": item_data[8:12],
                     "latitude": location[0],
                     "longitude": location[1],
                 })
@@ -398,13 +403,13 @@ def parse_crmfile(data):
         if crmblock["type"] == 0xD4:
             sudden_accels = []
             items_count = block_data[0]
-            for i in range(items_count+1):
+            for i in range(items_count):
                 item_data = block_data[(i*20)+1:((i+1)*20)+1]
-                location = parse_std_location(int.from_bytes(block_data[12:16], "big"), int.from_bytes(block_data[16:20], "big"))
+                location = parse_std_location(struct.unpack('>i',item_data[10:14])[0], struct.unpack('>i',item_data[14:18])[0])
                 sudden_accels.append({
-                    "timestamp": datetime.time(item_data[0], block_data[1], block_data[2], block_data[3]),
-                    "power_consumption": block_data[4:8],
-                    "elapsed_time": block_data[8:12],
+                    "timestamp": datetime.time(item_data[0], item_data[1], item_data[2], item_data[3]),
+                    "power_consumption": int.from_bytes(item_data[4:8], "big"),
+                    "elapsed_time": int.from_bytes(item_data[9:13], "big"),
                     "latitude": location[0],
                     "longitude": location[1],
                 })
@@ -413,13 +418,13 @@ def parse_crmfile(data):
         if crmblock["type"] == 0xD5:
             non_eco_decelerations = []
             items_count = block_data[0]
-            for i in range(items_count+1):
+            for i in range(items_count):
                 item_data = block_data[(i*20)+1:((i+1)*20)+1]
-                location = parse_std_location(int.from_bytes(block_data[12:16], "big"), int.from_bytes(block_data[16:20], "big"))
+                location = parse_std_location(struct.unpack('>i',item_data[10:14])[0], struct.unpack('>i',item_data[14:18])[0])
                 non_eco_decelerations.append({
-                    "timestamp": datetime.time(item_data[0], block_data[1], block_data[2], block_data[3]),
-                    "power_consumption": block_data[4:8],
-                    "elapsed_time": block_data[8:12],
+                    "timestamp": datetime.time(item_data[0], item_data[1], item_data[2], item_data[3]),
+                    "power_consumption": item_data[4:8],
+                    "elapsed_time": item_data[8:12],
                     "latitude": location[0],
                     "longitude": location[1],
                 })
@@ -428,13 +433,13 @@ def parse_crmfile(data):
         if crmblock["type"] == 0xD6:
             non_constant_speeds = []
             items_count = block_data[0]
-            for i in range(items_count+1):
+            for i in range(items_count):
                 item_data = block_data[(i*20)+1:((i+1)*20)+1]
-                location = parse_std_location(int.from_bytes(block_data[12:16], "big"), int.from_bytes(block_data[16:20], "big"))
+                location = parse_std_location(struct.unpack('>i',item_data[10:14])[0], struct.unpack('>i',item_data[14:18])[0])
                 non_constant_speeds.append({
-                    "timestamp": datetime.time(item_data[0], block_data[1], block_data[2], block_data[3]),
-                    "power_consumption": block_data[4:8],
-                    "elapsed_time": block_data[8:12],
+                    "timestamp": datetime.time(item_data[0], item_data[1], item_data[2], item_data[3]),
+                    "power_consumption": item_data[4:8],
+                    "elapsed_time": item_data[8:12],
                     "latitude": location[0],
                     "longitude": location[1],
                 })
@@ -492,8 +497,8 @@ def parse_crmfile(data):
             items_count = block_data[0]
             charges = []
             for i in range(items_count+1):
-                location = parse_std_location(int.from_bytes(block_data[:4], "big"), int.from_bytes(block_data[4:8], "big"))
-                charger_loc = parse_std_location(int.from_bytes(block_data[22:26], "big"),int.from_bytes(block_data[26:30], "big"))
+                location = parse_std_location(struct.unpack('>i',block_data[:4])[0], struct.unpack('>i',block_data[4:8])[0])
+                charger_loc = parse_std_location(struct.unpack('>i',block_data[22:26])[0],struct.unpack('>i',block_data[26:30])[0])
                 charges.append({
                     "lat": location[0],
                     "long": location[1],
@@ -522,7 +527,7 @@ def parse_crmfile(data):
             draft_struct["remaining_gids_at_end"] = int.from_bytes(block_data[16:18], byteorder="big", signed=False)
             draft_struct["power_consumption"] = int.from_bytes(block_data[18:20], byteorder="big", signed=False)
             draft_struct["charging_type"] = block_data[20]
-            location = parse_std_location(int.from_bytes(block_data[21:25], "big"), int.from_bytes(block_data[25:29], "big"))
+            location = parse_std_location(struct.unpack('>i',block_data[21:25])[0], struct.unpack('>i',block_data[25:29])[0])
             draft_struct["lat"] = location[0]
             draft_struct["lon"] = location[1]
             draft_struct["batt_avg_temp_start"] = block_data[29]
@@ -753,6 +758,18 @@ def update_crm_to_db(car: Car, crm_pload):
                 trouble_db.car = car
                 trouble_db.data = trouble
                 trouble_db.save()
+
+    if "distance" in crm_pload:
+        for distance in crm_pload["distance"]:
+            distance_db = CRMDistanceRecord()
+            distance_db.car = car
+            distance_db.timestamp = apply_date_patch(distance.get('timestamp', datetime.datetime(1970, 1, 1)))
+            distance_db.consumed_wh = distance.get("consumed_wh", 0)
+            distance_db.regenerated_wh = distance.get("regenerated_wh", 0)
+            distance_db.latitude = distance.get("latitude", 0.0)
+            distance_db.longitude = distance.get("longitude", 0.0)
+            distance_db.road_type = distance.get("road_type", 0)
+            distance_db.save()
 
     if "trips" in crm_pload:
         for trip in crm_pload["trips"]:

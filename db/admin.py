@@ -8,7 +8,7 @@ from .models import (
     AlertHistory,
     Car, User, SendToCarLocation, CRMLatest, CRMLifetime, CRMExcessiveAirconRecord, CRMExcessiveIdlingRecord,
     CRMMonthlyRecord, CRMMSNRecord, CRMChargeRecord, CRMChargeHistoryRecord, CRMABSHistoryRecord, CRMTroubleRecord,
-    CRMTripRecord, RoutePlan, DOTFile
+    CRMTripRecord, RoutePlan, DOTFile, CRMDistanceRecord
 )
 
 
@@ -133,6 +133,10 @@ class CRMMonthlyRecordAdmin(admin.ModelAdmin):
 
 @admin.register(CRMMSNRecord)
 class CRMMSNRecordAdmin(admin.ModelAdmin):
+    list_display = ('car', 'timestamp')
+
+@admin.register(CRMDistanceRecord)
+class CRMDistanceRecordAdmin(admin.ModelAdmin):
     list_display = ('car', 'timestamp')
 
 @admin.register(CRMChargeRecord)

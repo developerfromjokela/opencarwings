@@ -1,17 +1,16 @@
-from db.models import Car
-from tculink.carwings_proto.dataobjects import build_autodj_payload, construct_dms_coordinate
-import xml.etree.ElementTree as ET
 import geopy.distance
-
-from tculink.carwings_proto.utils import xml_coordinate_to_float, encode_utf8
-
 from django.utils.text import format_lazy
 from django.utils.translation import gettext as _
+
+from db.models import Car
+from tculink.carwings_proto.dataobjects import build_autodj_payload, construct_dms_coordinate
+from tculink.carwings_proto.utils import xml_coordinate_to_float, encode_utf8
+
 
 def handle_send_to_car_adj(xml_data, returning_xml, channel_id, car: Car):
     car_destinations = []
     # TODO: up to 6 destinations
-    for send_location in car.send_to_car_location.all()[:6]:
+    for send_location in car.send_to_car_location.all().order_by('-created_at')[:6]:
         point_name = send_location.name
         if send_location.name is None:
             point_name = "Map Point"
@@ -117,7 +116,7 @@ def handle_send_to_car_adj(xml_data, returning_xml, channel_id, car: Car):
 def handle_send_to_car(_, returning_xml, channel_id, car: Car):
     car_destinations = []
     if car is not None:
-        for send_location in car.send_to_car_location.all()[:6]:
+        for send_location in car.send_to_car_location.all().order_by('-created_at')[:6]:
             point_name = send_location.name
             if send_location.name is None:
                 point_name = "Map Point"

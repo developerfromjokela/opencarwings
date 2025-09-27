@@ -1,7 +1,8 @@
 from rest_framework import serializers
 
-from db import models
 from db.models import Car, TCUConfiguration, LocationInfo, EVInfo, AlertHistory, SendToCarLocation, RoutePlan
+from tculink.carwings_proto.autodj import ICONS
+from tculink.carwings_proto.autodj.channels import get_info_channel_data
 
 
 class TCUConfigurationSerializer(serializers.ModelSerializer):
@@ -88,7 +89,7 @@ class CarSerializer(serializers.ModelSerializer):
         data['send_to_car_location_all'] = SendToCarLocationSerializer(many=True).to_representation(instance.send_to_car_location)
         if instance.send_to_car_location.count() > 0:
             data['send_to_car_location'] = SendToCarLocationSerializer().to_representation(
-                instance.send_to_car_location.order_by('created_at').first())
+                instance.send_to_car_location.order_by('-created_at').first())
         else:
             data["send_to_car_location"] = None
         return data
@@ -102,9 +103,11 @@ class CarUpdatingSerializer(serializers.ModelSerializer):
     send_to_car_location_all = SendToCarLocationSerializer(required=False, allow_null=True, many=True)
     route_plans = RoutePlanSerializer(many=True, required=False)
     ev_info = EVInfoUpdatingSerializer(required=False)
+    favorite_channels = serializers.JSONField(required=False)
+    custom_channels = serializers.JSONField(required=False)
     class Meta:
         model = Car
-        fields = [ 'send_to_car_location', 'send_to_car_location_all', 'ev_info', 'route_plans']
+        fields = [ 'send_to_car_location', 'send_to_car_location_all', 'ev_info', 'route_plans', 'favorite_channels', 'custom_channels' ]
 
     def update(self, instance, validated_data):
         if 'send_to_car_location' in validated_data:
@@ -146,7 +149,33 @@ class CarUpdatingSerializer(serializers.ModelSerializer):
                     route_plan.save()
                     instance.route_plans.add(route_plan)
 
-
+        if 'custom_channels' in validated_data and isinstance(validated_data['custom_channels'], dict):
+            chandict = validated_data['custom_channels']
+            validated_customchandict = {}
+            for i in range(16):
+                i = str(i)
+                if i in chandict:
+                    chanitem = chandict[i]
+                    print(chanitem)
+                    if 'name' in chanitem and 'icon' in chanitem and 'url' in chanitem:
+                        validated_customchandict[i] = {
+                            'name': chanitem['name'][:30],
+                            'icon': next((x[0] for x in list(ICONS.values()) if x[0] == chanitem['icon']), "info.png"),
+                            'url': chanitem['url'][:255],
+                            'location': chanitem.get('location', False) or False,
+                        }
+            instance.custom_channels = validated_customchandict
+        if 'favorite_channels' in validated_data and isinstance(validated_data['favorite_channels'], dict):
+            chandict = validated_data['favorite_channels']
+            all_chans, _ = get_info_channel_data(instance)
+            validated_chandict = {}
+            for i in range(2, 16+1):
+                i = str(i)
+                if i in chandict:
+                    chan_id = chandict[i]
+                    if next((x for x in all_chans if x['id'] == chan_id), None) is not None:
+                        validated_chandict[i] = chan_id
+            instance.favorite_channels = validated_chandict
 
         if validated_data.get('ev_info', None) is not None:
             if instance.ev_info is None:

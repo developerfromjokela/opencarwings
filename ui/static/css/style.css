@@ -256,6 +256,13 @@
         z-index: 0 !important;
     }
 
+    .collapsing-btn {
+        color: rgb(100, 102, 106) !important;
+    }
+
+    .collapsing-btn[aria-expanded="true"] {
+        color: white !important;
+    }
 
 
     .carrier {

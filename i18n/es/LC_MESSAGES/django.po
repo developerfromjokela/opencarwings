@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-08 14:15+0000\n"
-"PO-Revision-Date: 2025-09-22 00:31+0300\n"
+"POT-Creation-Date: 2025-09-27 16:35+0000\n"
+"PO-Revision-Date: 2025-09-27 19:40+0300\n"
 "Last-Translator: \n"
 "Language-Team: Spanish <es@li.org>\n"
 "Language: es\n"
@@ -70,11 +70,11 @@ msgid "Command timeout"
 msgstr "Tiempo de espera del comando"
 
 #: db/models.py:24 db/models.py:39 ui/templates/ui/account.html:15
-#: ui/templates/ui/car_detail.html:72 ui/templates/ui/car_list.html:18
+#: ui/templates/ui/car_detail.html:70 ui/templates/ui/car_list.html:18
 #: ui/templates/ui/change_carwings_password.html:17
 #: ui/templates/ui/change_password.html:17
 #: ui/templates/ui/probeviewer/main.html:48
-#: ui/templates/ui/probeviewer/trip.html:94
+#: ui/templates/ui/probeviewer/trip.html:99
 #: ui/templates/ui/reset_password_confirm.html:34
 #: ui/templates/ui/setup/step2.html:13 ui/templates/ui/setup/step3.html:13
 #: ui/templates/ui/setup/step4.html:13
@@ -98,11 +98,11 @@ msgid "Waiting"
 msgstr "Esperando"
 
 #: db/models.py:38 ui/templates/ui/account.html:14
-#: ui/templates/ui/car_detail.html:71 ui/templates/ui/car_list.html:17
+#: ui/templates/ui/car_detail.html:69 ui/templates/ui/car_list.html:17
 #: ui/templates/ui/change_carwings_password.html:16
 #: ui/templates/ui/change_password.html:16
 #: ui/templates/ui/probeviewer/main.html:47
-#: ui/templates/ui/probeviewer/trip.html:93
+#: ui/templates/ui/probeviewer/trip.html:98
 #: ui/templates/ui/reset_password_complete.html:10
 #: ui/templates/ui/reset_password_confirm.html:33
 #: ui/templates/ui/setup/step2.html:12 ui/templates/ui/setup/step3.html:12
@@ -122,11 +122,11 @@ msgstr "Esperando respuesta"
 msgid "Park"
 msgstr "Estacionar"
 
-#: db/models.py:46 ui/templates/ui/car_detail.html:937
+#: db/models.py:46 ui/templates/ui/car_detail.html:1115
 msgid "Drive"
 msgstr "Conducir"
 
-#: db/models.py:47 ui/templates/ui/car_detail.html:937
+#: db/models.py:47 ui/templates/ui/car_detail.html:1115
 msgid "Reverse"
 msgstr "Marcha atrás"
 
@@ -134,27 +134,27 @@ msgstr "Marcha atrás"
 msgid "Never"
 msgstr "Nunca"
 
-#: db/models.py:52 db/models.py:64
+#: db/models.py:52 db/models.py:65
 msgid "Every 30 minutes"
 msgstr "Cada 30 minutos"
 
-#: db/models.py:53 db/models.py:65
+#: db/models.py:53 db/models.py:66
 msgid "Every 45 minutes"
 msgstr "Cada 45 minutos"
 
-#: db/models.py:54 db/models.py:66
+#: db/models.py:54 db/models.py:67
 msgid "Every hour"
 msgstr "Cada hora"
 
-#: db/models.py:55 db/models.py:67
+#: db/models.py:55 db/models.py:68
 msgid "Every three hours"
 msgstr "Cada tres horas"
 
-#: db/models.py:56 db/models.py:68
+#: db/models.py:56 db/models.py:69
 msgid "Every 12 hours"
 msgstr "Cada 12 horas"
 
-#: db/models.py:57 db/models.py:69
+#: db/models.py:57 db/models.py:70
 msgid "Every day"
 msgstr "Cada día"
 
@@ -162,22 +162,23 @@ msgstr "Cada día"
 msgid "Every 5 minutes"
 msgstr "Cada 5 minutos"
 
+#: db/models.py:63
 msgid "Every 10 minutes"
 msgstr "Cada 10 minutos"
 
-#: db/models.py:63
+#: db/models.py:64
 msgid "Every 15 minutes"
 msgstr "Cada 15 minutos"
 
-#: db/models.py:84
+#: db/models.py:85
 msgid "Slow charge"
 msgstr "Estado de carga"
 
-#: db/models.py:85
+#: db/models.py:86
 msgid "Quick charge"
 msgstr "Parada de carga rápida"
 
-#: db/models.py:96
+#: db/models.py:97
 msgid ""
 "Enter a valid username. This value may contain only unaccented lowercase a-z "
 "and uppercase A-Z letters, numbers, and /./-/_ characters."
@@ -185,7 +186,7 @@ msgstr ""
 "Ingresa un nombre de usuario válido. Este valor solo puede contener letras "
 "minúsculas y mayúsculas a-z sin acentos, números y los caracteres /./-/_."
 
-#: db/models.py:104
+#: db/models.py:105
 msgid ""
 "Enter a valid TCU Password. This value may contain only unaccented lowercase "
 "a-z and uppercase A-Z letters, numbers, and /=/-/_/+/@/#/?/! characters."
@@ -194,91 +195,53 @@ msgstr ""
 "minúsculas y mayúsculas a-z sin acentos, números y los caracteres /=/-/_/+/@/"
 "#/?/!."
 
-#: db/models.py:116
+#: db/models.py:117
 msgid "username"
 msgstr "nombre de usuario"
 
-#: db/models.py:120
+#: db/models.py:121
 msgid "Required. 16 characters or fewer. Letters, digits and /./-/_ only."
 msgstr "Requerido. 16 caracteres o menos. Solo letras, dígitos y /./-/_."
 
-#: db/models.py:124
+#: db/models.py:125
 msgid "A user with that username already exists."
 msgstr "Ya existe un usuario con ese nombre de usuario."
 
-#: tculink/carwings_proto/autodj/channels.py:13
-#: tculink/carwings_proto/autodj/channels.py:14
-msgid "OpenCARWINGS"
-msgstr "OpenCARWINGS"
+#: tculink/carwings_proto/applications/dj.py:78
+msgid "Not authenticated"
+msgstr "No autenticado"
 
-#: tculink/carwings_proto/autodj/channels.py:21
-msgid "Route Planning & Navigation"
-msgstr "Plan de rutas y navegación"
+#: tculink/carwings_proto/applications/dj.py:78
+msgid "Please authenticate to Car Wings before saving a favorite channel"
+msgstr ""
+"Por favor, autentíquese en Car Wings antes de guardar un canal favorito"
 
-#: tculink/carwings_proto/autodj/channels.py:22
-#: ui/templates/ui/car_detail.html:102
-msgid "Route Planner"
-msgstr "Planificador de rutas"
+#: tculink/carwings_proto/applications/dj.py:92
+msgid "Favorite channel added"
+msgstr "Canal favorito añadido"
 
-#: tculink/carwings_proto/autodj/channels.py:29
-#: tculink/carwings_proto/autodj/channels.py:30
-msgid "Online Services"
-msgstr "Servicios en línea"
+#: tculink/carwings_proto/applications/dj.py:92
+msgid "The channel has been added to favorites"
+msgstr "El canal ha sido añadido a favoritos"
 
-#: tculink/carwings_proto/autodj/channels.py:37
-#: tculink/carwings_proto/autodj/channels.py:38
-msgid "Custom channels"
-msgstr "Canales personalizados"
-
-#: tculink/carwings_proto/autodj/channels.py:48
+#: tculink/carwings_proto/autodj/handler.py:23
+#: tculink/carwings_proto/autodj/handler.py:24
+#: tculink/carwings_proto/autodj/opencarwings.py:123
+#: tculink/carwings_proto/autodj/opencarwings.py:124
 msgid "Info from OpenCARWINGS"
 msgstr "Información de OpenCARWINGS"
 
-#: tculink/carwings_proto/autodj/channels.py:49
-msgid "Any new announcements or features can be shown here"
-msgstr "Cualquier anuncio o característica nueva se puede mostrar aquí"
+#: tculink/carwings_proto/autodj/handler.py:67
+#: tculink/carwings_proto/autodj/handler.py:68
+msgid "Data Channel not available"
+msgstr "Canal de datos no disponible"
 
-#: tculink/carwings_proto/autodj/channels.py:62
-msgid "Energy Economy"
-msgstr "Ahorro Energético"
+#: tculink/carwings_proto/autodj/handler.py:86
+#: tculink/carwings_proto/autodj/handler.py:87
+msgid "Not authorized"
+msgstr "No autorizado"
 
-#: tculink/carwings_proto/autodj/channels.py:63
-msgid "Get latest energy economy information"
-msgstr "Obtenga la información más reciente sobre economía energética"
-
-#: tculink/carwings_proto/autodj/channels.py:76
-msgid "Eco Trees"
-msgstr "Árboles ecológicos"
-
-#: tculink/carwings_proto/autodj/channels.py:77
-msgid "Get latest eco tree information"
-msgstr "Obtenga la información más reciente sobre árboles ecológicos"
-
-#: tculink/carwings_proto/autodj/channels.py:92
-#: tculink/carwings_proto/autodj/channels.py:93
-#: tculink/carwings_proto/autodj/channels.py:106
-#: tculink/carwings_proto/autodj/channels.py:107
-#: tculink/carwings_proto/autodj/channels.py:120
-#: tculink/carwings_proto/autodj/channels.py:121
-#: tculink/carwings_proto/autodj/channels.py:134
-#: tculink/carwings_proto/autodj/channels.py:135
-#: tculink/carwings_proto/autodj/channels.py:148
-#: tculink/carwings_proto/autodj/channels.py:149
-#: tculink/carwings_proto/autodj/routeplanner.py:54
-#: tculink/carwings_proto/autodj/routeplanner.py:55
-#, python-brace-format
-msgid "Route Plan {num}"
-msgstr "Plan de ruta {num}"
-
-#: tculink/carwings_proto/autodj/channels.py:192
-msgid "Weather Forecast"
-msgstr "Pronóstico del tiempo"
-
-#: tculink/carwings_proto/autodj/channels.py:193
-msgid "Download Weather Forecast for your area"
-msgstr "Descargue el pronóstico del tiempo para su zona"
-
-#: tculink/carwings_proto/autodj/opencarwings.py:513
+#: tculink/carwings_proto/autodj/opencarwings.py:509
 msgid ""
 "Use remote climate control or the timer so that the cabin will be at a "
 "comfortable temperature before starting.  This allows the car to save energy "
@@ -288,7 +251,7 @@ msgstr ""
 "a una temperatura cómoda antes de arrancar. Esto permite al coche ahorrar "
 "energía mientras se conduce."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:514
+#: tculink/carwings_proto/autodj/opencarwings.py:510
 msgid ""
 "Keep your car in the garage during winter times to keep the battery pack "
 "warm.  This will increase your range a bit, especially in colder climates."
@@ -297,7 +260,7 @@ msgstr ""
 "baterías caliente. Esto aumentará ligeramente tu autonomía, especialmente en "
 "climas más fríos."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:515
+#: tculink/carwings_proto/autodj/opencarwings.py:511
 msgid ""
 "Use <phoneme alphabet=\"x-SVOX-sampa_en-GB\" ph=\"'i:-k@@U\">eco</phoneme> "
 "mode or B-mode when possible to increase your regenerative energy."
@@ -305,7 +268,7 @@ msgstr ""
 "Usa el modo eko o el modo B cuando sea posible para aumentar tu energía "
 "regenerativa."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:516
+#: tculink/carwings_proto/autodj/opencarwings.py:512
 msgid ""
 "Check your tire pressure at least once a month to ensure they are at optimal "
 "level.  Low tire pressure decreases rolling effect of the car and more "
@@ -315,7 +278,7 @@ msgstr ""
 "de que estén en el nivel óptimo. Una presión baja reduce el efecto de "
 "rodadura del coche y se utiliza más energía en la propulsión."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:517
+#: tculink/carwings_proto/autodj/opencarwings.py:513
 msgid ""
 "Plan your routes to include charging stations, especially on longer trips, "
 "to avoid range anxiety and ensure smooth travel."
@@ -324,7 +287,7 @@ msgstr ""
 "viajes largos, para evitar la ansiedad por la autonomía y garantizar un "
 "viaje fluido."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:518
+#: tculink/carwings_proto/autodj/opencarwings.py:514
 msgid ""
 "Avoid rapid acceleration and maintain a steady speed to maximize battery "
 "efficiency, as aggressive driving can significantly reduce your range."
@@ -333,7 +296,7 @@ msgstr ""
 "la eficiencia de la batería, ya que una conducción agresiva puede reducir "
 "significativamente tu autonomía."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:519
+#: tculink/carwings_proto/autodj/opencarwings.py:515
 msgid ""
 "Use the Nissan Leaf’s navigation system to find the most energy-efficient "
 "routes, which can help conserve battery power on unfamiliar roads."
@@ -342,7 +305,7 @@ msgstr ""
 "eficientes energéticamente, lo que puede ayudar a conservar la energía de la "
 "batería en carreteras desconocidas."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:520
+#: tculink/carwings_proto/autodj/opencarwings.py:516
 msgid ""
 "In colder times, try to use more of seat heating and steering wheel heating "
 "while keeping your air conditioning on lower settings. Auxiliary heating "
@@ -353,7 +316,7 @@ msgstr ""
 "elementos de calefacción auxiliares consumen menos que el sistema de aire "
 "acondicionado del coche."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:521
+#: tculink/carwings_proto/autodj/opencarwings.py:517
 msgid ""
 "Park in shaded areas during hot weather to keep the battery cool, as extreme "
 "heat can reduce battery efficiency and longevity."
@@ -362,7 +325,7 @@ msgstr ""
 "batería fresca, ya que el calor extremo puede reducir la eficiencia y la "
 "longevidad de la batería."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:522
+#: tculink/carwings_proto/autodj/opencarwings.py:518
 msgid ""
 "Try to charge the battery up to 80 percent for daily usage. Charging to "
 "full, every day, is not recommended for battery longevity."
@@ -370,7 +333,7 @@ msgstr ""
 "Intenta cargar la batería hasta un 80 por ciento para el uso diario. Cargar "
 "al máximo todos los días no es recomendable para la longevidad de la batería."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:523
+#: tculink/carwings_proto/autodj/opencarwings.py:519
 msgid ""
 "With Open Car Wings, you can review your driving efficiency of each trip, "
 "online. With the data, it is easier to determine which areas of driving "
@@ -380,26 +343,26 @@ msgstr ""
 "en línea. Con los datos, es más fácil determinar qué áreas de conducción "
 "necesitan mejorar para lograr una eficiencia energética óptima. "
 
-#: tculink/carwings_proto/autodj/opencarwings.py:553
-#: tculink/carwings_proto/autodj/opencarwings.py:588
+#: tculink/carwings_proto/autodj/opencarwings.py:548
+#: tculink/carwings_proto/autodj/opencarwings.py:583
 msgid "Average"
 msgstr "Normal"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:553
-#: tculink/carwings_proto/autodj/opencarwings.py:577
+#: tculink/carwings_proto/autodj/opencarwings.py:548
+#: tculink/carwings_proto/autodj/opencarwings.py:572
 msgid "Good"
 msgstr "Bueno"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:553
-#: tculink/carwings_proto/autodj/opencarwings.py:580
+#: tculink/carwings_proto/autodj/opencarwings.py:548
+#: tculink/carwings_proto/autodj/opencarwings.py:575
 msgid "Very good"
 msgstr "Muy bueno"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:554
+#: tculink/carwings_proto/autodj/opencarwings.py:549
 msgid "Check Energy Economy"
 msgstr "Comprobar Ahorro Energético"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:559
+#: tculink/carwings_proto/autodj/opencarwings.py:554
 msgid ""
 "The energy economy trend compared with the average of the last five trips is "
 "shown above."
@@ -407,27 +370,27 @@ msgstr ""
 "Arriba se muestra una tendencia del Ahorro Energético comparado con la media "
 "de los últimos cinco recorridos."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:564
+#: tculink/carwings_proto/autodj/opencarwings.py:559
 msgid "Trend of Energy Economy\n"
 msgstr "Tendencia de Ahorro Energético\n"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:591
+#: tculink/carwings_proto/autodj/opencarwings.py:586
 msgid "Bad"
 msgstr "Malo"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:596
+#: tculink/carwings_proto/autodj/opencarwings.py:591
 msgid "[Average]\n"
 msgstr "[Promedio]\n"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:598
+#: tculink/carwings_proto/autodj/opencarwings.py:593
 msgid "[Best]\n"
 msgstr "[Mejor]\n"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:600
+#: tculink/carwings_proto/autodj/opencarwings.py:595
 msgid "[Worst]\n"
 msgstr "[El peor]\n"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:603
+#: tculink/carwings_proto/autodj/opencarwings.py:598
 #, python-brace-format
 msgid ""
 "\n"
@@ -440,7 +403,7 @@ msgstr ""
 "vatios-hora por kilómetro.\n"
 "Basado en los últimos 5 viajes, tu economía de energía es {economy_status}. "
 
-#: tculink/carwings_proto/autodj/opencarwings.py:609
+#: tculink/carwings_proto/autodj/opencarwings.py:604
 msgid ""
 "There is no trip records available yet. Try checking in again after your "
 "next trip."
@@ -448,7 +411,7 @@ msgstr ""
 "Aún no hay registros de viajes disponibles. Intenta revisar de nuevo después "
 "de tu próximo viaje."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:611
+#: tculink/carwings_proto/autodj/opencarwings.py:606
 #, python-brace-format
 msgid ""
 "\n"
@@ -461,25 +424,25 @@ msgstr ""
 "debido a la falta de información de viajes. Intenta revisar este canal de "
 "nuevo después de tu próximo viaje. "
 
-#: tculink/carwings_proto/autodj/opencarwings.py:652
+#: tculink/carwings_proto/autodj/opencarwings.py:647
 msgid "Electric Car Column"
 msgstr "Columna del Coche Eléctrico"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:653
-#: tculink/carwings_proto/autodj/opencarwings.py:657
+#: tculink/carwings_proto/autodj/opencarwings.py:648
+#: tculink/carwings_proto/autodj/opencarwings.py:652
 msgid "Drive Tip"
 msgstr "Consejo para la Conducción"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:706
-#: tculink/carwings_proto/autodj/opencarwings.py:707
+#: tculink/carwings_proto/autodj/opencarwings.py:701
+#: tculink/carwings_proto/autodj/opencarwings.py:702
 msgid "Energy Information"
 msgstr "Ahorro de Energía"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:754
+#: tculink/carwings_proto/autodj/opencarwings.py:751
 msgid "Eco Tree Record"
 msgstr "Registro Eco árboles"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:764
+#: tculink/carwings_proto/autodj/opencarwings.py:761
 msgid ""
 "Your Eco Tree Record \n"
 "\n"
@@ -487,61 +450,61 @@ msgstr ""
 "Su registro de árboles ecológicos\n"
 "\n"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:770
-#: tculink/carwings_proto/autodj/opencarwings.py:776
+#: tculink/carwings_proto/autodj/opencarwings.py:767
+#: tculink/carwings_proto/autodj/opencarwings.py:773
 msgid "tree"
 msgstr "árbole"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:772
-#: tculink/carwings_proto/autodj/opencarwings.py:778
-#: tculink/carwings_proto/autodj/opencarwings.py:791
-#: tculink/carwings_proto/autodj/opencarwings.py:832
+#: tculink/carwings_proto/autodj/opencarwings.py:769
+#: tculink/carwings_proto/autodj/opencarwings.py:775
+#: tculink/carwings_proto/autodj/opencarwings.py:788
+#: tculink/carwings_proto/autodj/opencarwings.py:829
 msgid "trees"
 msgstr "árboles"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:779
+#: tculink/carwings_proto/autodj/opencarwings.py:776
 #, python-brace-format
 msgid "Sum total: {trees} {tree_word}"
 msgstr "Suma total: {trees} {tree_word}"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:785
+#: tculink/carwings_proto/autodj/opencarwings.py:782
 #, python-brace-format
 msgid ""
 "On the {day_word} of {month}, you saved {trees} <phoneme alphabet=\"x-SVOX-"
 "sampa_en-GB\" ph=\"'i:-k@@U\">eco</phoneme>trees.\")"
 msgstr "A {day_word} of {month}, has salvado {trees} eco árboles"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:791
+#: tculink/carwings_proto/autodj/opencarwings.py:788
 msgid "Total:"
 msgstr "Total:"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:828
+#: tculink/carwings_proto/autodj/opencarwings.py:825
 msgid "World's Eco Forest"
 msgstr "Bosque eco del planeta"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:833
+#: tculink/carwings_proto/autodj/opencarwings.py:830
 msgid "tonnes"
 msgstr "toneladas"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:834
+#: tculink/carwings_proto/autodj/opencarwings.py:831
 msgid "Total number of Eco Trees:"
 msgstr "Número total de árboles eco:"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:836
+#: tculink/carwings_proto/autodj/opencarwings.py:833
 msgid "CO2 Emission Cuts:"
 msgstr "Reducción emisiones de CO2:"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:844
+#: tculink/carwings_proto/autodj/opencarwings.py:841
 #, python-brace-format
 msgid "Total number of Eco Trees by {day} / {month}:"
 msgstr "Número total de árboles ecológicos por {day} / {month}:"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:846
+#: tculink/carwings_proto/autodj/opencarwings.py:843
 #, python-brace-format
 msgid "CO2 emissions reduced by {day} / {month}:"
 msgstr "Emisiones de CO2 reducidas en {day} / {month}:"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:849
+#: tculink/carwings_proto/autodj/opencarwings.py:846
 msgid ""
 "(This calculation is based on an assumption that the CO2 emitted by petrol-"
 "driven cars of equivalent class can be reduced by driving electric cars)"
@@ -550,7 +513,7 @@ msgstr ""
 "vehículos de gasolina de clase equivalente pueden reducirse conduciendo "
 "vehículos eléctricos)"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:854
+#: tculink/carwings_proto/autodj/opencarwings.py:851
 #, python-brace-format
 msgid ""
 "By the {day_word} of {month}, electric cars with Open Car Wings world wide "
@@ -562,24 +525,30 @@ msgstr ""
 "el mundosalvaron un total de {trees} árboles eco. Y se han reducido {tonnes} "
 "toneladas de dióxido de carbono."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:908
-#: tculink/carwings_proto/autodj/opencarwings.py:909
+#: tculink/carwings_proto/autodj/opencarwings.py:905
+#: tculink/carwings_proto/autodj/opencarwings.py:906
 msgid "ECO Tree"
 msgstr "Árbol ECO"
 
-#: tculink/carwings_proto/autodj/routeplanner.py:21
-#: tculink/carwings_proto/autodj/routeplanner.py:31
+#: tculink/carwings_proto/autodj/routeplanner.py:23
+#: tculink/carwings_proto/autodj/routeplanner.py:33
 msgid "Route Plan not available"
 msgstr "Plan de ruta no disponible"
 
-#: tculink/carwings_proto/autodj/routeplanner.py:32
+#: tculink/carwings_proto/autodj/routeplanner.py:34
 msgid ""
 "This route plan is empty. Please save a route plan online and try again."
 msgstr ""
 "Este plan de ruta está vacío. Guarda un plan de ruta en línea y vuelve a "
 "intentarlo."
 
-#: tculink/carwings_proto/autodj/sendtocar.py:43
+#: tculink/carwings_proto/autodj/routeplanner.py:55
+#: tculink/carwings_proto/autodj/routeplanner.py:56
+#, python-brace-format
+msgid "Route Plan {num}"
+msgstr "Plan de ruta {num}"
+
+#: tculink/carwings_proto/autodj/sendtocar.py:42
 #, python-brace-format
 msgid ""
 "Location point, \"{point_name}\", which is {distance} kilometers away. Set "
@@ -589,11 +558,11 @@ msgstr ""
 "Establézcalo como destino pulsando pausa y configurando el punto del mapa "
 "como destino."
 
-#: tculink/carwings_proto/autodj/sendtocar.py:80
+#: tculink/carwings_proto/autodj/sendtocar.py:79
 msgid "Google Send To Car: No Destinations"
 msgstr "Google Send To Car: No Destinations"
 
-#: tculink/carwings_proto/autodj/sendtocar.py:81
+#: tculink/carwings_proto/autodj/sendtocar.py:80
 msgid ""
 "There are no destinations sent to the car. Please send at least one "
 "destination from your computer or mobile device and access this channel "
@@ -601,112 +570,6 @@ msgid ""
 msgstr ""
 "No hay destinos enviados al coche. Por favor, envíe al menos un destino "
 "desde su ordenador o dispositivo móvil y acceda a este canal de nuevo."
-
-#: tculink/carwings_proto/autodj/weather.py:55
-msgid "clear"
-msgstr "despejado"
-
-#: tculink/carwings_proto/autodj/weather.py:56
-msgid "mainly clear"
-msgstr "mayormente despejado"
-
-#: tculink/carwings_proto/autodj/weather.py:57
-msgid "partly cloudy"
-msgstr "parcialmente nublado"
-
-#: tculink/carwings_proto/autodj/weather.py:58
-msgid "cloudy"
-msgstr "nublado"
-
-#: tculink/carwings_proto/autodj/weather.py:59
-msgid "foggy"
-msgstr "con niebla"
-
-#: tculink/carwings_proto/autodj/weather.py:60
-msgid "foggy with rime ice"
-msgstr "con niebla y escarcha"
-
-#: tculink/carwings_proto/autodj/weather.py:61
-msgid "drizzling lightly"
-msgstr "llovizna ligera"
-
-#: tculink/carwings_proto/autodj/weather.py:62
-msgid "drizzling moderately"
-msgstr "llovizna moderada"
-
-#: tculink/carwings_proto/autodj/weather.py:63
-msgid "heavy drizzling"
-msgstr "llovizna intensa"
-
-#: tculink/carwings_proto/autodj/weather.py:65
-msgid "drizzling lightly freezed"
-msgstr "llovizna ligera helada"
-
-#: tculink/carwings_proto/autodj/weather.py:66
-msgid "drizzling moderately freezed"
-msgstr "llovizna moderada helada"
-
-#: tculink/carwings_proto/autodj/weather.py:67
-msgid "raining slightly"
-msgstr "lluvia ligera"
-
-#: tculink/carwings_proto/autodj/weather.py:68
-msgid "raining moderately"
-msgstr "lluvia moderada"
-
-#: tculink/carwings_proto/autodj/weather.py:69
-msgid "raining heavily"
-msgstr "lluvia intensa"
-
-#: tculink/carwings_proto/autodj/weather.py:70
-msgid "freeze raining lightly"
-msgstr "lluvia helada ligera"
-
-#: tculink/carwings_proto/autodj/weather.py:71
-msgid "freeze raining moderately"
-msgstr "lluvia helada moderada"
-
-#: tculink/carwings_proto/autodj/weather.py:72
-msgid "snowing slightly"
-msgstr "nevada ligera"
-
-#: tculink/carwings_proto/autodj/weather.py:73
-msgid "moderate snowing"
-msgstr "nevada moderada"
-
-#: tculink/carwings_proto/autodj/weather.py:74
-msgid "snowing heavily"
-msgstr "nevada intensa"
-
-#: tculink/carwings_proto/autodj/weather.py:75
-msgid "snowing grain"
-msgstr "nieve granulada"
-
-#: tculink/carwings_proto/autodj/weather.py:76
-msgid "slight rain shower"
-msgstr "chubasco ligero"
-
-#: tculink/carwings_proto/autodj/weather.py:77
-msgid "moderate rain shower"
-msgstr "chubasco moderado"
-
-#: tculink/carwings_proto/autodj/weather.py:78
-msgid "violent rain shower"
-msgstr "chubasco violento"
-
-#: tculink/carwings_proto/autodj/weather.py:79
-msgid "slight snow shower"
-msgstr "chubasco de nieve ligero"
-
-#: tculink/carwings_proto/autodj/weather.py:80
-msgid "heavy snow shower"
-msgstr "chubasco de nieve intenso"
-
-#: tculink/carwings_proto/autodj/weather.py:81
-#: tculink/carwings_proto/autodj/weather.py:82
-#: tculink/carwings_proto/autodj/weather.py:83
-msgid "thunderstorm"
-msgstr "tormenta"
 
 #: tculink/carwings_proto/autodj/weather.py:166
 #: tculink/carwings_proto/autodj/weather.py:172
@@ -787,157 +650,157 @@ msgstr ""
 msgid "Weather forecast"
 msgstr "Weather forecast"
 
-#: tculink/carwings_proto/utils.py:118
+#: tculink/carwings_proto/utils.py:119
 msgid "first"
 msgstr "primero"
 
 # Standard for the first day of the month, e.g., "el primero de noviembre"
-#: tculink/carwings_proto/utils.py:118
+#: tculink/carwings_proto/utils.py:119
 msgid "second"
 msgstr "dos"
 
 # e.g., "el dos de noviembre"
-#: tculink/carwings_proto/utils.py:118
+#: tculink/carwings_proto/utils.py:119
 msgid "third"
 msgstr "tres"
 
 # e.g., "el tres de noviembre"
-#: tculink/carwings_proto/utils.py:118
+#: tculink/carwings_proto/utils.py:119
 msgid "fourth"
 msgstr "cuatro"
 
 # e.g., "el cuatro de noviembre"
-#: tculink/carwings_proto/utils.py:118
+#: tculink/carwings_proto/utils.py:119
 msgid "fifth"
 msgstr "cinco"
 
 # e.g., "el cinco de noviembre"
-#: tculink/carwings_proto/utils.py:119
+#: tculink/carwings_proto/utils.py:120
 msgid "sixth"
 msgstr "seis"
 
 # e.g., "el seis de noviembre"
-#: tculink/carwings_proto/utils.py:119
+#: tculink/carwings_proto/utils.py:120
 msgid "seventh"
 msgstr "siete"
 
 # e.g., "el siete de noviembre"
-#: tculink/carwings_proto/utils.py:119
+#: tculink/carwings_proto/utils.py:120
 msgid "eighth"
 msgstr "ocho"
 
 # e.g., "el ocho de noviembre"
-#: tculink/carwings_proto/utils.py:119
+#: tculink/carwings_proto/utils.py:120
 msgid "ninth"
 msgstr "nueve"
 
 # e.g., "el nueve de noviembre"
-#: tculink/carwings_proto/utils.py:119
+#: tculink/carwings_proto/utils.py:120
 msgid "tenth"
 msgstr "diez"
 
 # e.g., "el diez de noviembre"
-#: tculink/carwings_proto/utils.py:120
+#: tculink/carwings_proto/utils.py:121
 msgid "eleventh"
 msgstr "once"
 
 # e.g., "el once de noviembre"
-#: tculink/carwings_proto/utils.py:120
+#: tculink/carwings_proto/utils.py:121
 msgid "twelfth"
 msgstr "doce"
 
 # e.g., "el doce de noviembre"
-#: tculink/carwings_proto/utils.py:120
+#: tculink/carwings_proto/utils.py:121
 msgid "thirteenth"
 msgstr "trece"
 
 # e.g., "el trece de noviembre"
-#: tculink/carwings_proto/utils.py:120
+#: tculink/carwings_proto/utils.py:121
 msgid "fourteenth"
 msgstr "catorce"
 
 # e.g., "el catorce de noviembre"
-#: tculink/carwings_proto/utils.py:120
+#: tculink/carwings_proto/utils.py:121
 msgid "fifteenth"
 msgstr "quince"
 
 # e.g., "el quince de noviembre"
-#: tculink/carwings_proto/utils.py:121
+#: tculink/carwings_proto/utils.py:122
 msgid "sixteenth"
 msgstr "dieciséis"
 
 # e.g., "el dieciséis de noviembre"
-#: tculink/carwings_proto/utils.py:121
+#: tculink/carwings_proto/utils.py:122
 msgid "seventeenth"
 msgstr "diecisiete"
 
 # e.g., "el diecisiete de noviembre"
-#: tculink/carwings_proto/utils.py:121
+#: tculink/carwings_proto/utils.py:122
 msgid "eighteenth"
 msgstr "dieciocho"
 
 # e.g., "el dieciocho de noviembre"
-#: tculink/carwings_proto/utils.py:121
+#: tculink/carwings_proto/utils.py:122
 msgid "nineteenth"
 msgstr "diecinueve"
 
 # e.g., "el diecinueve de noviembre"
-#: tculink/carwings_proto/utils.py:121
+#: tculink/carwings_proto/utils.py:122
 msgid "twentieth"
 msgstr "veinte"
 
 # e.g., "el veinte de noviembre"
-#: tculink/carwings_proto/utils.py:122
+#: tculink/carwings_proto/utils.py:123
 msgid "twenty-first"
 msgstr "veintiuno"
 
 # e.g., "el veintiuno de noviembre"
-#: tculink/carwings_proto/utils.py:122
+#: tculink/carwings_proto/utils.py:123
 msgid "twenty-second"
 msgstr "veintidós"
 
 # e.g., "el veintidós de noviembre"
-#: tculink/carwings_proto/utils.py:122
+#: tculink/carwings_proto/utils.py:123
 msgid "twenty-third"
 msgstr "veintitrés"
 
 # e.g., "el veintitrés de noviembre"
-#: tculink/carwings_proto/utils.py:122
+#: tculink/carwings_proto/utils.py:123
 msgid "twenty-fourth"
 msgstr "veinticuatro"
 
 # e.g., "el veinticuatro de noviembre"
-#: tculink/carwings_proto/utils.py:122
+#: tculink/carwings_proto/utils.py:123
 msgid "twenty-fifth"
 msgstr "veinticinco"
 
 # e.g., "el veinticinco de noviembre"
-#: tculink/carwings_proto/utils.py:123
+#: tculink/carwings_proto/utils.py:124
 msgid "twenty-sixth"
 msgstr "veintiséis"
 
 # e.g., "el veintiséis de noviembre"
-#: tculink/carwings_proto/utils.py:123
+#: tculink/carwings_proto/utils.py:124
 msgid "twenty-seventh"
 msgstr "veintisiete"
 
 # e.g., "el veintisiete de noviembre"
-#: tculink/carwings_proto/utils.py:123
+#: tculink/carwings_proto/utils.py:124
 msgid "twenty-eighth"
 msgstr "veintiocho"
 
 # e.g., "el veintiocho de noviembre"
-#: tculink/carwings_proto/utils.py:123
+#: tculink/carwings_proto/utils.py:124
 msgid "twenty-ninth"
 msgstr "veintinueve"
 
 # e.g., "el veintinueve de noviembre"
-#: tculink/carwings_proto/utils.py:123
+#: tculink/carwings_proto/utils.py:124
 msgid "thirtieth"
 msgstr "treinta"
 
 # e.g., "el treinta de noviembre"
-#: tculink/carwings_proto/utils.py:124
+#: tculink/carwings_proto/utils.py:125
 msgid "thirty-first"
 msgstr "treinta y uno"
 
@@ -1094,7 +957,7 @@ msgstr ""
 "Se enviará una solicitud POST a la URL del webhook especificada cuando sea "
 "necesario."
 
-#: ui/forms.py:17 ui/forms.py:28 ui/templates/ui/car_detail.html:388
+#: ui/forms.py:17 ui/forms.py:28 ui/templates/ui/car_detail.html:452
 msgid "Nickname"
 msgstr "Apodo"
 
@@ -1102,7 +965,7 @@ msgstr "Apodo"
 msgid "Disable TCU authentication"
 msgstr "Desactivar autenticación del TCU"
 
-#: ui/forms.py:19 ui/templates/ui/car_detail.html:421
+#: ui/forms.py:19 ui/templates/ui/car_detail.html:485
 msgid "Show calculated battery percentage"
 msgstr "Mostrar porcentaje de batería calculado"
 
@@ -1118,7 +981,7 @@ msgstr "Notificaciones"
 msgid "Imperial Units"
 msgstr "Unidades imperiales"
 
-#: ui/forms.py:48 ui/templates/ui/car_detail.html:242
+#: ui/forms.py:48 ui/templates/ui/car_detail.html:241
 #: ui/templates/ui/landing.html:19 ui/templates/ui/signin.html:30
 msgid "Password"
 msgstr "Contraseña"
@@ -1140,36 +1003,37 @@ msgid "This password is used for signing in to your account inside the car"
 msgstr ""
 "Esta contraseña se usa para iniciar sesión en tu cuenta dentro del coche"
 
-#: ui/templates/ui/account.html:16 ui/templates/ui/car_detail.html:73
+#: ui/templates/ui/account.html:16 ui/templates/ui/car_detail.html:71
 #: ui/templates/ui/car_list.html:19
 #: ui/templates/ui/change_carwings_password.html:18
 #: ui/templates/ui/change_password.html:18
 #: ui/templates/ui/probeviewer/main.html:49
-#: ui/templates/ui/probeviewer/trip.html:95
+#: ui/templates/ui/probeviewer/trip.html:100
 #: ui/templates/ui/reset_password_confirm.html:35
 #: ui/templates/ui/setup/step2.html:14 ui/templates/ui/setup/step3.html:14
 #: ui/templates/ui/setup/step4.html:14
 msgid "Notice"
 msgstr "Aviso"
 
-#: ui/templates/ui/account.html:17 ui/templates/ui/car_detail.html:74
+#: ui/templates/ui/account.html:17 ui/templates/ui/car_detail.html:72
 #: ui/templates/ui/car_list.html:20
 #: ui/templates/ui/change_carwings_password.html:19
 #: ui/templates/ui/change_password.html:19
 #: ui/templates/ui/probeviewer/main.html:50
-#: ui/templates/ui/probeviewer/trip.html:96
+#: ui/templates/ui/probeviewer/trip.html:101
 #: ui/templates/ui/reset_password_confirm.html:36
 #: ui/templates/ui/setup/step2.html:15 ui/templates/ui/setup/step3.html:15
 #: ui/templates/ui/setup/step4.html:15
 msgid "Warning"
 msgstr "Advertencia"
 
-#: ui/templates/ui/account.html:22 ui/templates/ui/car_detail.html:79
-#: ui/templates/ui/car_detail.html:492 ui/templates/ui/car_list.html:25
+#: ui/templates/ui/account.html:22 ui/templates/ui/car_detail.html:77
+#: ui/templates/ui/car_detail.html:556 ui/templates/ui/car_detail.html:575
+#: ui/templates/ui/car_detail.html:609 ui/templates/ui/car_list.html:25
 #: ui/templates/ui/change_carwings_password.html:24
 #: ui/templates/ui/change_password.html:24
 #: ui/templates/ui/probeviewer/main.html:55
-#: ui/templates/ui/probeviewer/trip.html:101
+#: ui/templates/ui/probeviewer/trip.html:106
 #: ui/templates/ui/reset_password_confirm.html:20
 #: ui/templates/ui/reset_password_confirm.html:41
 #: ui/templates/ui/setup/step2.html:20 ui/templates/ui/setup/step3.html:20
@@ -1193,8 +1057,9 @@ msgstr "Documentación de la API"
 msgid "Reset API-key"
 msgstr "Restablecer clave de API"
 
-#: ui/templates/ui/account.html:48 ui/templates/ui/car_detail.html:350
-#: ui/templates/ui/car_detail.html:475 ui/templates/ui/setup/step2.html:50
+#: ui/templates/ui/account.html:48 ui/templates/ui/car_detail.html:349
+#: ui/templates/ui/car_detail.html:419 ui/templates/ui/car_detail.html:539
+#: ui/templates/ui/car_detail.html:638 ui/templates/ui/setup/step2.html:50
 #: ui/templates/ui/setup/step3.html:36 ui/templates/ui/setup/step4.html:60
 msgid "Save"
 msgstr "Guardar"
@@ -1245,329 +1110,364 @@ msgstr "Editor VFlash"
 msgid "Back to cars"
 msgstr "Volver a los coches"
 
-#: ui/templates/ui/car_detail.html:61
+#: ui/templates/ui/car_detail.html:59
 msgid "Send command"
 msgstr "Enviar comando"
 
-#: ui/templates/ui/car_detail.html:96 ui/templates/ui/car_detail.html:118
+#: ui/templates/ui/car_detail.html:94 ui/templates/ui/car_detail.html:117
 msgid "Overview"
 msgstr "Resumen"
 
-#: ui/templates/ui/car_detail.html:97
+#: ui/templates/ui/car_detail.html:95
 msgid "Basic Info"
 msgstr "Información básica"
 
-#: ui/templates/ui/car_detail.html:98
+#: ui/templates/ui/car_detail.html:96
 msgid "Vehicle journal"
 msgstr "Código del vehículo"
 
-#: ui/templates/ui/car_detail.html:98
+#: ui/templates/ui/car_detail.html:96
 msgid "New!"
 msgstr "¡Nuevo!"
 
-#: ui/templates/ui/car_detail.html:99
+#: ui/templates/ui/car_detail.html:97
 msgid "TCU Configuration"
 msgstr "Configuración del TCU"
 
-#: ui/templates/ui/car_detail.html:100
+#: ui/templates/ui/car_detail.html:98
 msgid "EV Status"
 msgstr "Estado del vehículo eléctrico"
 
-#: ui/templates/ui/car_detail.html:101
+#: ui/templates/ui/car_detail.html:99
 msgid "Location"
 msgstr "Ubicación"
 
-#: ui/templates/ui/car_detail.html:103
+#: ui/templates/ui/car_detail.html:100
+msgid "Route Planner"
+msgstr "Planificador de rutas"
+
+#: ui/templates/ui/car_detail.html:102
 msgid "Recent Alerts"
 msgstr "Alertas recientes"
 
-#: ui/templates/ui/car_detail.html:104 ui/templates/ui/car_detail.html:383
+#: ui/templates/ui/car_detail.html:103 ui/templates/ui/car_detail.html:447
 msgid "Settings"
 msgstr "Configuraciones"
 
-#: ui/templates/ui/car_detail.html:125 ui/templates/ui/car_detail.html:266
+#: ui/templates/ui/car_detail.html:124 ui/templates/ui/car_detail.html:265
 msgid "Range (AC On)"
 msgstr "Autonomía (A/C encendido)"
 
-#: ui/templates/ui/car_detail.html:130 ui/templates/ui/car_detail.html:267
+#: ui/templates/ui/car_detail.html:129 ui/templates/ui/car_detail.html:266
 msgid "Range (AC Off)"
 msgstr "Autonomía (A/C apagado)"
 
-#: ui/templates/ui/car_detail.html:136 ui/templates/ui/car_detail.html:139
-#: ui/templates/ui/car_detail.html:262 ui/templates/ui/car_detail.html:263
+#: ui/templates/ui/car_detail.html:135 ui/templates/ui/car_detail.html:138
+#: ui/templates/ui/car_detail.html:261 ui/templates/ui/car_detail.html:262
 msgid "State of Charge"
 msgstr "Estado de carga"
 
-#: ui/templates/ui/car_detail.html:139 ui/templates/ui/car_detail.html:263
+#: ui/templates/ui/car_detail.html:138 ui/templates/ui/car_detail.html:262
 msgid "Nominal"
 msgstr "Nominal"
 
-#: ui/templates/ui/car_detail.html:156
+#: ui/templates/ui/car_detail.html:155
 msgid "EMPTY"
 msgstr "VACÍO"
 
-#: ui/templates/ui/car_detail.html:157
+#: ui/templates/ui/car_detail.html:156
 msgid "FULL"
 msgstr "LLENO"
 
-#: ui/templates/ui/car_detail.html:162 ui/templates/ui/car_detail.html:257
-#: ui/templates/ui/car_detail.html:258 ui/templates/ui/car_detail.html:259
+#: ui/templates/ui/car_detail.html:161 ui/templates/ui/car_detail.html:256
+#: ui/templates/ui/car_detail.html:257 ui/templates/ui/car_detail.html:258
 msgid "Charge time"
 msgstr "Tiempo de carga"
 
-#: ui/templates/ui/car_detail.html:170
+#: ui/templates/ui/car_detail.html:169
 msgid "Charge Cable"
 msgstr "Cable de carga"
 
-#: ui/templates/ui/car_detail.html:174
+#: ui/templates/ui/car_detail.html:173
 msgid "Plugged In,Unplugged"
 msgstr "Conectado,Desconectado"
 
-#: ui/templates/ui/car_detail.html:179
+#: ui/templates/ui/car_detail.html:178
 msgid "Car status"
 msgstr "Estado del coche"
 
-#: ui/templates/ui/car_detail.html:183 ui/templates/ui/car_detail.html:185
-#: ui/templates/ui/car_detail.html:878 ui/templates/ui/car_detail.html:880
-#: ui/templates/ui/car_detail.html:894
+#: ui/templates/ui/car_detail.html:182 ui/templates/ui/car_detail.html:184
+#: ui/templates/ui/car_detail.html:1056 ui/templates/ui/car_detail.html:1058
+#: ui/templates/ui/car_detail.html:1072
 msgid "On"
 msgstr "Encendido"
 
-#: ui/templates/ui/car_detail.html:183 ui/templates/ui/car_detail.html:878
-#: ui/templates/ui/car_detail.html:937
+#: ui/templates/ui/car_detail.html:182 ui/templates/ui/car_detail.html:1056
+#: ui/templates/ui/car_detail.html:1115
 msgid "Parked"
 msgstr "Estacionado"
 
-#: ui/templates/ui/car_detail.html:185 ui/templates/ui/car_detail.html:880
+#: ui/templates/ui/car_detail.html:184 ui/templates/ui/car_detail.html:1058
 msgid "Driving"
 msgstr "Conduciendo"
 
-#: ui/templates/ui/car_detail.html:189 ui/templates/ui/car_detail.html:884
-#: ui/templates/ui/probeviewer/main.html:284
-#: ui/templates/ui/probeviewer/main.html:354
+#: ui/templates/ui/car_detail.html:188 ui/templates/ui/car_detail.html:1062
+#: ui/templates/ui/probeviewer/main.html:344
+#: ui/templates/ui/probeviewer/main.html:414
 msgid "Charging finished"
 msgstr "Carga finalizada"
 
-#: ui/templates/ui/car_detail.html:191 ui/templates/ui/car_detail.html:269
-#: ui/templates/ui/car_detail.html:886
+#: ui/templates/ui/car_detail.html:190 ui/templates/ui/car_detail.html:268
+#: ui/templates/ui/car_detail.html:1064
 msgid "Charging"
 msgstr "Cargando"
 
-#: ui/templates/ui/car_detail.html:193 ui/templates/ui/car_detail.html:888
-#: ui/templates/ui/car_detail.html:894
+#: ui/templates/ui/car_detail.html:192 ui/templates/ui/car_detail.html:1066
+#: ui/templates/ui/car_detail.html:1072
 msgid "Off"
 msgstr "Apagado"
 
-#: ui/templates/ui/car_detail.html:200
+#: ui/templates/ui/car_detail.html:199
 msgid "AC Status"
 msgstr "Estado del aire acondicionado"
 
-#: ui/templates/ui/car_detail.html:202
+#: ui/templates/ui/car_detail.html:201
 msgid "On,Off"
 msgstr "Encendido,Apagado"
 
-#: ui/templates/ui/car_detail.html:211 ui/templates/ui/car_detail.html:248
-#: ui/templates/ui/car_detail.html:275 ui/templates/ui/car_detail.html:297
-#: ui/templates/ui/probeviewer/main.html:103
-#: ui/templates/ui/probeviewer/main.html:128
+#: ui/templates/ui/car_detail.html:210 ui/templates/ui/car_detail.html:247
+#: ui/templates/ui/car_detail.html:274 ui/templates/ui/car_detail.html:296
+#: ui/templates/ui/probeviewer/main.html:104
+#: ui/templates/ui/probeviewer/main.html:129
 msgid "Last Updated"
 msgstr "Última actualización"
 
-#: ui/templates/ui/car_detail.html:219 ui/templates/ui/probeviewer/main.html:98
+#: ui/templates/ui/car_detail.html:218 ui/templates/ui/probeviewer/main.html:99
 msgid "Odometer"
 msgstr "Odómetro"
 
-#: ui/templates/ui/car_detail.html:220
+#: ui/templates/ui/car_detail.html:219
 msgid "Navi version"
 msgstr "Versión del sistema de navegación"
 
-#: ui/templates/ui/car_detail.html:221
+#: ui/templates/ui/car_detail.html:220
 msgid "Map version"
 msgstr "Versión de mapas"
 
-#: ui/templates/ui/car_detail.html:222
+#: ui/templates/ui/car_detail.html:221
 msgid "TCU version (from navi)"
 msgstr "Versión del TCU (desde navegación)"
 
-#: ui/templates/ui/car_detail.html:223
+#: ui/templates/ui/car_detail.html:222
 msgid "TCU version (from TCU)"
 msgstr "Versión del TCU (desde TCU)"
 
-#: ui/templates/ui/car_detail.html:224 ui/templates/ui/car_detail.html:225
-#: ui/templates/ui/car_detail.html:226 ui/templates/ui/car_detail.html:227
+#: ui/templates/ui/car_detail.html:223 ui/templates/ui/car_detail.html:224
+#: ui/templates/ui/car_detail.html:225 ui/templates/ui/car_detail.html:226
 msgid "Vehicle Code"
 msgstr "Código del vehículo"
 
-#: ui/templates/ui/car_detail.html:231
+#: ui/templates/ui/car_detail.html:230
 msgid "Version"
 msgstr "Versión"
 
-#: ui/templates/ui/car_detail.html:232
+#: ui/templates/ui/car_detail.html:231
 msgid "Last Connection"
 msgstr "Última conexión"
 
-#: ui/templates/ui/car_detail.html:239
+#: ui/templates/ui/car_detail.html:238
 msgid "PPP Dial Code"
 msgstr "Código de marcación PPP"
 
-#: ui/templates/ui/car_detail.html:241 ui/templates/ui/landing.html:15
+#: ui/templates/ui/car_detail.html:240 ui/templates/ui/landing.html:15
 #: ui/templates/ui/signin.html:26
 msgid "Username"
 msgstr "Nombre de usuario"
 
-#: ui/templates/ui/car_detail.html:245
+#: ui/templates/ui/car_detail.html:244
 msgid "Server"
 msgstr "Servidor"
 
-#: ui/templates/ui/car_detail.html:246
+#: ui/templates/ui/car_detail.html:245
 msgid "Proxy"
 msgstr "Proxy"
 
-#: ui/templates/ui/car_detail.html:247
+#: ui/templates/ui/car_detail.html:246
 msgid "Connection Type"
 msgstr "Tipo de conexión"
 
-#: ui/templates/ui/car_detail.html:255
+#: ui/templates/ui/car_detail.html:254
 msgid "Car on"
 msgstr "Coche encendido"
 
-#: ui/templates/ui/car_detail.html:255 ui/templates/ui/car_detail.html:268
-#: ui/templates/ui/car_detail.html:269 ui/templates/ui/car_detail.html:270
-#: ui/templates/ui/car_detail.html:271 ui/templates/ui/car_detail.html:296
+#: ui/templates/ui/car_detail.html:254 ui/templates/ui/car_detail.html:267
+#: ui/templates/ui/car_detail.html:268 ui/templates/ui/car_detail.html:269
+#: ui/templates/ui/car_detail.html:270 ui/templates/ui/car_detail.html:295
 msgid "Yes,No"
 msgstr "Sí,No"
 
-#: ui/templates/ui/car_detail.html:256
+#: ui/templates/ui/car_detail.html:255
 msgid "Gear"
 msgstr "Marcha"
 
-#: ui/templates/ui/car_detail.html:260
+#: ui/templates/ui/car_detail.html:259
 msgid "Charge bars"
 msgstr "Barras de carga"
 
-#: ui/templates/ui/car_detail.html:261
-#: ui/templates/ui/probeviewer/trip.html:188
+#: ui/templates/ui/car_detail.html:260
+#: ui/templates/ui/probeviewer/trip.html:190
 msgid "Capacity bars"
 msgstr "Barras de capacidad"
 
-#: ui/templates/ui/car_detail.html:262
+#: ui/templates/ui/car_detail.html:261
 msgid "Display"
 msgstr "Pantalla"
 
-#: ui/templates/ui/car_detail.html:264
+#: ui/templates/ui/car_detail.html:263
 msgid "State of Health"
 msgstr "Estado de salud"
 
-#: ui/templates/ui/car_detail.html:265
+#: ui/templates/ui/car_detail.html:264
 msgid "Remaining kWh"
 msgstr "kWh restantes"
 
-#: ui/templates/ui/car_detail.html:268
+#: ui/templates/ui/car_detail.html:267
 msgid "Plugged in"
 msgstr "Conectado"
 
-#: ui/templates/ui/car_detail.html:270
+#: ui/templates/ui/car_detail.html:269
 msgid "Quick-charging"
 msgstr "Carga rápida"
 
-#: ui/templates/ui/car_detail.html:271
+#: ui/templates/ui/car_detail.html:270
 msgid "Preconditioning (A/C)"
 msgstr "Preacondicionamiento (A/C)"
 
-#: ui/templates/ui/car_detail.html:272
+#: ui/templates/ui/car_detail.html:271
 msgid "GIDs remaining"
 msgstr "GIDs restantes"
 
-#: ui/templates/ui/car_detail.html:273
+#: ui/templates/ui/car_detail.html:272
 msgid "Counter"
 msgstr "Contador"
 
-#: ui/templates/ui/car_detail.html:282
+#: ui/templates/ui/car_detail.html:281
 msgid "Send location to car"
 msgstr "Enviar punto del mapa al coche"
 
-#: ui/templates/ui/car_detail.html:284 ui/templates/ui/car_detail.html:338
-#: ui/templates/ui/car_detail.html:347 ui/templates/ui/car_detail.html:1572
+#: ui/templates/ui/car_detail.html:283 ui/templates/ui/car_detail.html:337
+#: ui/templates/ui/car_detail.html:346 ui/templates/ui/car_detail.html:1750
 msgid "Search for locations or enter google/apple maps link"
 msgstr "Buscar ubicaciones o ingresar enlace de Google/Apple Maps"
 
-#: ui/templates/ui/car_detail.html:288 ui/templates/ui/car_detail.html:974
+#: ui/templates/ui/car_detail.html:287 ui/templates/ui/car_detail.html:1152
 msgid "Last shared location"
 msgstr "Último punto del mapa compartido"
 
-#: ui/templates/ui/car_detail.html:290 ui/templates/ui/car_detail.html:976
+#: ui/templates/ui/car_detail.html:289 ui/templates/ui/car_detail.html:1154
 msgid "No past shared location"
 msgstr "No hay puntos del mapa compartidos anteriormente"
 
-#: ui/templates/ui/car_detail.html:293
+#: ui/templates/ui/car_detail.html:292
 msgid "Send"
 msgstr "Enviar"
 
-#: ui/templates/ui/car_detail.html:296
+#: ui/templates/ui/car_detail.html:295
 msgid "At Home"
 msgstr "En casa"
 
-#: ui/templates/ui/car_detail.html:305
+#: ui/templates/ui/car_detail.html:304
 msgid "Route plans"
 msgstr "Route plans"
 
-#: ui/templates/ui/car_detail.html:305 ui/templates/ui/car_list.html:33
+#: ui/templates/ui/car_detail.html:304 ui/templates/ui/car_list.html:33
 msgid "Add"
 msgstr "Añadir"
 
-#: ui/templates/ui/car_detail.html:315 ui/templates/ui/car_detail.html:1294
+#: ui/templates/ui/car_detail.html:314 ui/templates/ui/car_detail.html:1472
 msgid "Edit"
 msgstr "Edit"
 
-#: ui/templates/ui/car_detail.html:321 ui/templates/ui/car_detail.html:1299
+#: ui/templates/ui/car_detail.html:320 ui/templates/ui/car_detail.html:1477
 msgid "Delete"
 msgstr "Delete"
 
-#: ui/templates/ui/car_detail.html:327 ui/templates/ui/car_detail.html:1277
+#: ui/templates/ui/car_detail.html:326 ui/templates/ui/car_detail.html:1455
 msgid "No route plans added"
 msgstr "No se agregaron planes de ruta"
 
-#: ui/templates/ui/car_detail.html:332
+#: ui/templates/ui/car_detail.html:331
 msgid "Add/Edit a route plan"
 msgstr "Add/Edit a route plan"
 
-#: ui/templates/ui/car_detail.html:334
+#: ui/templates/ui/car_detail.html:333
 msgid "Name of the plan"
 msgstr "Nombre del plan"
 
-#: ui/templates/ui/car_detail.html:337 ui/templates/ui/car_detail.html:496
+#: ui/templates/ui/car_detail.html:336 ui/templates/ui/car_detail.html:560
 msgid "Starting point"
 msgstr "Punto de partida"
 
-#: ui/templates/ui/car_detail.html:344
+#: ui/templates/ui/car_detail.html:343
 msgid "Add waypoint"
 msgstr "Añadir punto de ruta"
 
-#: ui/templates/ui/car_detail.html:346 ui/templates/ui/car_detail.html:497
+#: ui/templates/ui/car_detail.html:345 ui/templates/ui/car_detail.html:561
 msgid "Destination point"
 msgstr "Punto de destino"
 
-#: ui/templates/ui/car_detail.html:351
+#: ui/templates/ui/car_detail.html:350
 msgid "Cancel"
 msgstr "Cancel"
 
-#: ui/templates/ui/car_detail.html:364
+#: ui/templates/ui/car_detail.html:360
+msgid "Favorite channels"
+msgstr "Canales favoritos"
+
+#: ui/templates/ui/car_detail.html:369 ui/templates/ui/car_detail.html:370
+#: ui/templates/ui/car_detail.html:371 ui/templates/ui/car_detail.html:372
+#: ui/templates/ui/car_detail.html:373 ui/templates/ui/car_detail.html:374
+#: ui/templates/ui/car_detail.html:375 ui/templates/ui/car_detail.html:378
+#: ui/templates/ui/car_detail.html:379 ui/templates/ui/car_detail.html:380
+#: ui/templates/ui/car_detail.html:381 ui/templates/ui/car_detail.html:382
+#: ui/templates/ui/car_detail.html:383 ui/templates/ui/car_detail.html:384
+#: ui/templates/ui/car_detail.html:385 ui/templates/ui/car_detail.html:1960
+msgid "No selected channel"
+msgstr "Vacía"
+
+#: ui/templates/ui/car_detail.html:391
+msgid "Custom channels"
+msgstr "Mis canales"
+
+#: ui/templates/ui/car_detail.html:399 ui/templates/ui/car_detail.html:400
+#: ui/templates/ui/car_detail.html:401 ui/templates/ui/car_detail.html:402
+#: ui/templates/ui/car_detail.html:403 ui/templates/ui/car_detail.html:404
+#: ui/templates/ui/car_detail.html:405 ui/templates/ui/car_detail.html:406
+#: ui/templates/ui/car_detail.html:409 ui/templates/ui/car_detail.html:410
+#: ui/templates/ui/car_detail.html:411 ui/templates/ui/car_detail.html:412
+#: ui/templates/ui/car_detail.html:413 ui/templates/ui/car_detail.html:414
+#: ui/templates/ui/car_detail.html:415 ui/templates/ui/car_detail.html:416
+#: ui/templates/ui/car_detail.html:2032
+msgid "No content"
+msgstr "Sin contenido"
+
+#: ui/templates/ui/car_detail.html:428
 msgid "Type"
 msgstr "Tipo"
 
-#: ui/templates/ui/car_detail.html:365
+#: ui/templates/ui/car_detail.html:429
 msgid "Timestamp"
 msgstr "Marca de tiempo"
 
-#: ui/templates/ui/car_detail.html:366
+#: ui/templates/ui/car_detail.html:430
 msgid "Additional Data"
 msgstr "Datos adicionales"
 
-#: ui/templates/ui/car_detail.html:398
+#: ui/templates/ui/car_detail.html:462
 msgid "Skip authentication from TCU"
 msgstr "Omitir autenticación desde el TCU"
 
-#: ui/templates/ui/car_detail.html:399
+#: ui/templates/ui/car_detail.html:463
 msgid ""
 "On AZE0 (2013) and newer LEAFs, username and password inserted to navi are "
 "not saved due to an error. In this case, check this box to skip the "
@@ -1577,15 +1477,15 @@ msgstr ""
 "insertados en el sistema de navegación no se guardan debido a un error. En "
 "este caso, marca esta casilla para omitir la autenticación"
 
-#: ui/templates/ui/car_detail.html:405
+#: ui/templates/ui/car_detail.html:469
 msgid "Car color"
 msgstr "Color del coche"
 
-#: ui/templates/ui/car_detail.html:414
+#: ui/templates/ui/car_detail.html:478
 msgid "Maximum GIDs value"
 msgstr "Valor máximo de GIDs"
 
-#: ui/templates/ui/car_detail.html:416
+#: ui/templates/ui/car_detail.html:480
 #, python-format
 msgid ""
 "OpenCARWINGS will try to auto-detect your battery size and fill this field. "
@@ -1596,7 +1496,7 @@ msgstr ""
 "completar este campo. Para coches con batería cambiada/reemplazada, ingresa "
 "la cantidad máxima de GIDs cuando la batería es nueva (SoH 100%%)."
 
-#: ui/templates/ui/car_detail.html:422
+#: ui/templates/ui/car_detail.html:486
 msgid ""
 "On AZE0 (>2013) generation cars, it is possible to see available battery "
 "capacity in percentage. For ZE0, such feature was never implemented. By "
@@ -1608,135 +1508,172 @@ msgstr ""
 "implementó. Al habilitar esta opción, se calculará el valor porcentual de "
 "'pantalla', que puede no ser preciso."
 
-#: ui/templates/ui/car_detail.html:428
+#: ui/templates/ui/car_detail.html:492
 msgid "Periodic data refresh interval"
 msgstr "Intervalo de actualización periódica de datos"
 
-#: ui/templates/ui/car_detail.html:437
+#: ui/templates/ui/car_detail.html:501
 msgid "Periodic data refresh interval (while driving or charging)"
 msgstr ""
 "Intervalo de actualización periódica de datos (mientras conduces o cargas)"
 
-#: ui/templates/ui/car_detail.html:446 ui/templates/ui/setup/step4.html:29
+#: ui/templates/ui/car_detail.html:510 ui/templates/ui/setup/step4.html:29
 msgid "SMS provider"
 msgstr "Proveedor de SMS"
 
-#: ui/templates/ui/car_detail.html:476
+#: ui/templates/ui/car_detail.html:540
 msgid "Remove car"
 msgstr "Eliminar coche"
 
-#: ui/templates/ui/car_detail.html:495
+#: ui/templates/ui/car_detail.html:559
 msgid "Set car location as"
 msgstr "Establecer la ubicación del vehículo como"
 
-#: ui/templates/ui/car_detail.html:512
+#: ui/templates/ui/car_detail.html:578
+msgid "Select data channel"
+msgstr "Seleccionar canal de datos"
+
+#: ui/templates/ui/car_detail.html:613
+msgid "Edit data channel"
+msgstr "Editar canal de datos"
+
+#: ui/templates/ui/car_detail.html:614
+msgid "Channel name"
+msgstr "Nombre del canal"
+
+#: ui/templates/ui/car_detail.html:618
+msgid "Channel icon"
+msgstr "Icono del canal"
+
+#: ui/templates/ui/car_detail.html:629
+msgid "Data URL"
+msgstr "URL de datos"
+
+#: ui/templates/ui/car_detail.html:631
+msgid "Data URL format and documentation"
+msgstr "Formato y documentación de la URL de datos"
+
+#: ui/templates/ui/car_detail.html:635
+msgid "Allow sending current vehicle location"
+msgstr "Permitir enviar la ubicación actual del vehículo"
+
+#: ui/templates/ui/car_detail.html:657
 msgid "SMS from your device"
 msgstr "Enviar SMS desde tu dispositivo"
 
-#: ui/templates/ui/car_detail.html:837 ui/templates/ui/car_detail.html:841
-#: ui/templates/ui/car_detail.html:842 ui/templates/ui/car_detail.html:1029
-#: ui/templates/ui/car_detail.html:1037 ui/templates/ui/car_detail.html:1038
+#: ui/templates/ui/car_detail.html:1004 ui/templates/ui/car_detail.html:1008
+#: ui/templates/ui/car_detail.html:1009 ui/templates/ui/car_detail.html:1207
+#: ui/templates/ui/car_detail.html:1215 ui/templates/ui/car_detail.html:1216
 msgid "Error sending command"
 msgstr "Error al enviar el comando"
 
-#: ui/templates/ui/car_detail.html:873
+#: ui/templates/ui/car_detail.html:1051
 msgid "Plugged In"
 msgstr "Conectado"
 
-#: ui/templates/ui/car_detail.html:873
+#: ui/templates/ui/car_detail.html:1051
 msgid "Unplugged"
 msgstr "Desconectado"
 
-#: ui/templates/ui/car_detail.html:921 ui/templates/ui/car_detail.html:922
-#: ui/templates/ui/car_detail.html:923 ui/templates/ui/car_detail.html:932
-#: ui/templates/ui/car_detail.html:938 ui/templates/ui/car_detail.html:943
+#: ui/templates/ui/car_detail.html:1099 ui/templates/ui/car_detail.html:1100
+#: ui/templates/ui/car_detail.html:1101 ui/templates/ui/car_detail.html:1110
+#: ui/templates/ui/car_detail.html:1116 ui/templates/ui/car_detail.html:1121
 msgid "Yes"
 msgstr "Sí"
 
-#: ui/templates/ui/car_detail.html:921 ui/templates/ui/car_detail.html:922
-#: ui/templates/ui/car_detail.html:923 ui/templates/ui/car_detail.html:932
-#: ui/templates/ui/car_detail.html:938 ui/templates/ui/car_detail.html:943
+#: ui/templates/ui/car_detail.html:1099 ui/templates/ui/car_detail.html:1100
+#: ui/templates/ui/car_detail.html:1101 ui/templates/ui/car_detail.html:1110
+#: ui/templates/ui/car_detail.html:1116 ui/templates/ui/car_detail.html:1121
 msgid "No"
 msgstr "No"
 
-#: ui/templates/ui/car_detail.html:1060 ui/templates/ui/car_detail.html:1068
-#: ui/templates/ui/car_detail.html:1069
+#: ui/templates/ui/car_detail.html:1238 ui/templates/ui/car_detail.html:1246
+#: ui/templates/ui/car_detail.html:1247
 msgid "Error sending location to car"
 msgstr "Error al enviar la ubicación al coche"
 
-#: ui/templates/ui/car_detail.html:1062
+#: ui/templates/ui/car_detail.html:1240
 msgid "Location sent!"
 msgstr "¡Punto del mapa enviado!"
 
-#: ui/templates/ui/car_detail.html:1118 ui/templates/ui/car_detail.html:1181
-#: ui/templates/ui/car_detail.html:1452 ui/templates/ui/car_detail.html:1457
-#: ui/templates/ui/car_detail.html:1514 ui/templates/ui/car_detail.html:1527
-#: ui/templates/ui/car_detail.html:1532 ui/templates/ui/car_detail.html:1611
+#: ui/templates/ui/car_detail.html:1296 ui/templates/ui/car_detail.html:1359
+#: ui/templates/ui/car_detail.html:1630 ui/templates/ui/car_detail.html:1635
+#: ui/templates/ui/car_detail.html:1692 ui/templates/ui/car_detail.html:1705
+#: ui/templates/ui/car_detail.html:1710 ui/templates/ui/car_detail.html:1789
 msgid "No address"
 msgstr "Sin dirección"
 
-#: ui/templates/ui/car_detail.html:1128 ui/templates/ui/car_detail.html:1461
+#: ui/templates/ui/car_detail.html:1306 ui/templates/ui/car_detail.html:1639
 msgid "Could not get location from map link"
 msgstr "No se pudo obtener la ubicación desde el enlace"
 
-#: ui/templates/ui/car_detail.html:1134 ui/templates/ui/car_detail.html:1206
-#: ui/templates/ui/car_detail.html:1467 ui/templates/ui/car_detail.html:1548
+#: ui/templates/ui/car_detail.html:1312 ui/templates/ui/car_detail.html:1384
+#: ui/templates/ui/car_detail.html:1645 ui/templates/ui/car_detail.html:1726
 msgid "Error searching locations"
 msgstr "Error al buscar ubicaciones"
 
-#: ui/templates/ui/car_detail.html:1200 ui/templates/ui/car_detail.html:1542
+#: ui/templates/ui/car_detail.html:1378 ui/templates/ui/car_detail.html:1720
 msgid "Search did not find any locations"
 msgstr "La búsqueda no encontró ninguna ubicación"
 
-#: ui/templates/ui/car_detail.html:1225
+#: ui/templates/ui/car_detail.html:1403
 msgid "Connection established!"
 msgstr "¡Conexión establecida!"
 
-#: ui/templates/ui/car_detail.html:1230
+#: ui/templates/ui/car_detail.html:1408
 msgid "Reconnecting..."
 msgstr "Reconectando..."
 
-#: ui/templates/ui/car_detail.html:1556
+#: ui/templates/ui/car_detail.html:1734
 msgid "Cannot add a new waypoint"
 msgstr "No se puede agregar un nuevo punto de ruta"
 
-#: ui/templates/ui/car_detail.html:1556
+#: ui/templates/ui/car_detail.html:1734
 msgid "Maximum number of waypoints reached"
 msgstr "Número máximo de puntos de ruta alcanzados"
 
-#: ui/templates/ui/car_detail.html:1589
+#: ui/templates/ui/car_detail.html:1767
 msgid "Waypoint"
 msgstr "Punto de ruta"
 
-#: ui/templates/ui/car_detail.html:1648 ui/templates/ui/car_detail.html:1657
-#: ui/templates/ui/car_detail.html:1658
+#: ui/templates/ui/car_detail.html:1819 ui/templates/ui/car_detail.html:1828
+#: ui/templates/ui/car_detail.html:1829
 msgid "Error saving the route plan"
 msgstr "Error al guardar el plan de ruta"
 
-#: ui/templates/ui/car_detail.html:1650
+#: ui/templates/ui/car_detail.html:1821
 msgid "Route plan saved!"
 msgstr "¡Plan de ruta guardado!"
 
-#: ui/templates/ui/car_detail.html:1686
+#: ui/templates/ui/car_detail.html:1857
 msgid "Cannot add new route plan"
 msgstr "No se puede agregar un nuevo plan de ruta"
 
-#: ui/templates/ui/car_detail.html:1686
+#: ui/templates/ui/car_detail.html:1857
 msgid "You have too many route plans, please delete one and try again."
 msgstr "Tienes demasiados planes de ruta, elimina uno y vuelve a intentarlo."
 
-#: ui/templates/ui/car_detail.html:1755
+#: ui/templates/ui/car_detail.html:1925
 msgid "Are you sure you want to delete this route plan?"
 msgstr "¿Estás seguro de que deseas eliminar este plan de ruta?"
 
-#: ui/templates/ui/car_detail.html:1769 ui/templates/ui/car_detail.html:1776
-#: ui/templates/ui/car_detail.html:1777
+#: ui/templates/ui/car_detail.html:1938 ui/templates/ui/car_detail.html:1945
+#: ui/templates/ui/car_detail.html:1946
 msgid "Error deleting the route plan"
 msgstr "Error al eliminar el plan de ruta"
 
-#: ui/templates/ui/car_detail.html:1771
+#: ui/templates/ui/car_detail.html:1940
 msgid "Route plan removed!"
 msgstr "¡Plan de ruta eliminado!"
+
+#: ui/templates/ui/car_detail.html:2094 ui/templates/ui/car_detail.html:2102
+#: ui/templates/ui/car_detail.html:2103
+msgid "Error saving CARWINGS settings"
+msgstr "Error al guardar la configuración de CARWINGS"
+
+#: ui/templates/ui/car_detail.html:2096
+msgid "CARWINGS settings saved!"
+msgstr "¡Configuración de CARWINGS guardada!"
 
 #: ui/templates/ui/car_list.html:5 ui/templates/ui/car_list.html:33
 msgid "My cars"
@@ -1838,57 +1775,61 @@ msgid "Lifetime statistics"
 msgstr "Estadísticas de por vida"
 
 #: ui/templates/ui/probeviewer/main.html:75
-#: ui/templates/ui/probeviewer/main.html:213
+msgid "DOT-files"
+msgstr "DOT-datos"
+
+#: ui/templates/ui/probeviewer/main.html:76
+#: ui/templates/ui/probeviewer/main.html:273
 msgid "Trips"
 msgstr "Viajes"
 
-#: ui/templates/ui/probeviewer/main.html:76
+#: ui/templates/ui/probeviewer/main.html:77
 msgid "Monthly statistics"
 msgstr "Estadísticas mensuales"
 
-#: ui/templates/ui/probeviewer/main.html:77
+#: ui/templates/ui/probeviewer/main.html:78
 msgid "Charging history"
 msgstr "Historial de carga"
 
-#: ui/templates/ui/probeviewer/main.html:78
+#: ui/templates/ui/probeviewer/main.html:79
 msgid "Charges"
 msgstr "Cargas"
 
-#: ui/templates/ui/probeviewer/main.html:79
+#: ui/templates/ui/probeviewer/main.html:80
 msgid "Excessive idling history"
 msgstr "Historial de ralentí excesivo"
 
-#: ui/templates/ui/probeviewer/main.html:80
+#: ui/templates/ui/probeviewer/main.html:81
 msgid "Excessive A/C history"
 msgstr "Historial de uso excesivo de aire acondicionado"
 
-#: ui/templates/ui/probeviewer/main.html:81
+#: ui/templates/ui/probeviewer/main.html:82
 msgid "ABS history"
 msgstr "Historial de ABS"
 
-#: ui/templates/ui/probeviewer/main.html:82
+#: ui/templates/ui/probeviewer/main.html:83
 msgid "DTC history"
 msgstr "Historial de códigos DTC"
 
-#: ui/templates/ui/probeviewer/main.html:83
+#: ui/templates/ui/probeviewer/main.html:84
 msgid "MSN history"
 msgstr "Historial de MSN"
 
-#: ui/templates/ui/probeviewer/main.html:99
+#: ui/templates/ui/probeviewer/main.html:100
 msgid "Phone contacts in memory"
 msgstr "Contactos telefónicos en memoria"
 
-#: ui/templates/ui/probeviewer/main.html:100
+#: ui/templates/ui/probeviewer/main.html:101
 msgid "Locations saved in address book"
 msgstr "Ubicaciones guardadas en la libreta de direcciones"
 
-#: ui/templates/ui/probeviewer/main.html:107
-#: ui/templates/ui/probeviewer/main.html:132
+#: ui/templates/ui/probeviewer/main.html:108
+#: ui/templates/ui/probeviewer/main.html:133
 msgid "No vehicle data available"
 msgstr "No hay datos del vehículo disponibles"
 
-#: ui/templates/ui/probeviewer/main.html:108
-#: ui/templates/ui/probeviewer/main.html:133
+#: ui/templates/ui/probeviewer/main.html:109
+#: ui/templates/ui/probeviewer/main.html:134
 msgid ""
 "In order to receive vehicle data, CARWINGS navigation unit must have correct "
 "connection settings."
@@ -1896,74 +1837,76 @@ msgstr ""
 "Para recibir datos del vehículo, la unidad de navegación CARWINGS debe tener "
 "configuraciones de conexión correctas."
 
-#: ui/templates/ui/probeviewer/main.html:109
-#: ui/templates/ui/probeviewer/main.html:134
-#: ui/templates/ui/probeviewer/main.html:192
-#: ui/templates/ui/probeviewer/main.html:266
-#: ui/templates/ui/probeviewer/main.html:336
-#: ui/templates/ui/probeviewer/main.html:401
-#: ui/templates/ui/probeviewer/main.html:465
-#: ui/templates/ui/probeviewer/main.html:534
-#: ui/templates/ui/probeviewer/main.html:602
-#: ui/templates/ui/probeviewer/main.html:670
-#: ui/templates/ui/probeviewer/main.html:738
-#: ui/templates/ui/probeviewer/main.html:806
+#: ui/templates/ui/probeviewer/main.html:110
+#: ui/templates/ui/probeviewer/main.html:135
+#: ui/templates/ui/probeviewer/main.html:194
+#: ui/templates/ui/probeviewer/main.html:252
+#: ui/templates/ui/probeviewer/main.html:326
+#: ui/templates/ui/probeviewer/main.html:396
+#: ui/templates/ui/probeviewer/main.html:461
+#: ui/templates/ui/probeviewer/main.html:525
+#: ui/templates/ui/probeviewer/main.html:594
+#: ui/templates/ui/probeviewer/main.html:662
+#: ui/templates/ui/probeviewer/main.html:730
+#: ui/templates/ui/probeviewer/main.html:798
+#: ui/templates/ui/probeviewer/main.html:866
 #: ui/templates/ui/setup/step5.html:10
 msgid "Learn more"
 msgstr "Saber más"
 
-#: ui/templates/ui/probeviewer/main.html:117
-#: ui/templates/ui/probeviewer/trip.html:128
+#: ui/templates/ui/probeviewer/main.html:118
+#: ui/templates/ui/probeviewer/trip.html:133
 msgid "A/C usage"
 msgstr "Uso del aire acondicionado"
 
-#: ui/templates/ui/probeviewer/main.html:118
+#: ui/templates/ui/probeviewer/main.html:119
 msgid "Headlights usage"
 msgstr "Uso de faros"
 
-#: ui/templates/ui/probeviewer/main.html:119
-#: ui/templates/ui/probeviewer/main.html:212
+#: ui/templates/ui/probeviewer/main.html:120
+#: ui/templates/ui/probeviewer/main.html:272
 #: ui/templates/ui/probeviewer/trip.html:31
 msgid "Average speed"
 msgstr "Velocidad promedio"
 
-#: ui/templates/ui/probeviewer/main.html:120
+#: ui/templates/ui/probeviewer/main.html:121
 msgid "Energy regeneration"
 msgstr "Regeneración de energía"
 
-#: ui/templates/ui/probeviewer/main.html:121
-#: ui/templates/ui/probeviewer/main.html:125
+#: ui/templates/ui/probeviewer/main.html:122
+#: ui/templates/ui/probeviewer/main.html:126
 msgid "Energy consumption"
 msgstr "Consumo de energía"
 
-#: ui/templates/ui/probeviewer/main.html:122
+#: ui/templates/ui/probeviewer/main.html:123
 msgid "Runtime"
 msgstr "Tiempo de funcionamiento"
 
-#: ui/templates/ui/probeviewer/main.html:123
+#: ui/templates/ui/probeviewer/main.html:124
 msgid "Lifetime data mileage"
 msgstr "Kilometraje de datos de por vida"
 
-#: ui/templates/ui/probeviewer/main.html:190
-msgid "No trip data available"
-msgstr "No hay datos de viaje disponibles"
+#: ui/templates/ui/probeviewer/main.html:192
+msgid "No DOT data available"
+msgstr "No hay datos DOT disponibles"
 
-#: ui/templates/ui/probeviewer/main.html:191
-msgid "Trip information comes available on next startup after the trip."
+#: ui/templates/ui/probeviewer/main.html:193
+msgid "DOT data comes available on next startup after a trip."
 msgstr ""
-"La información del viaje estará disponible en el próximo arranque después "
-"del viaje."
+"Los datos DOT estarán disponibles en el siguiente arranque después de un "
+"viaje."
 
-#: ui/templates/ui/probeviewer/main.html:191
-#: ui/templates/ui/probeviewer/main.html:265
-#: ui/templates/ui/probeviewer/main.html:335
-#: ui/templates/ui/probeviewer/main.html:400
-#: ui/templates/ui/probeviewer/main.html:464
-#: ui/templates/ui/probeviewer/main.html:533
-#: ui/templates/ui/probeviewer/main.html:601
-#: ui/templates/ui/probeviewer/main.html:669
-#: ui/templates/ui/probeviewer/main.html:737
-#: ui/templates/ui/probeviewer/main.html:805
+#: ui/templates/ui/probeviewer/main.html:193
+#: ui/templates/ui/probeviewer/main.html:251
+#: ui/templates/ui/probeviewer/main.html:325
+#: ui/templates/ui/probeviewer/main.html:395
+#: ui/templates/ui/probeviewer/main.html:460
+#: ui/templates/ui/probeviewer/main.html:524
+#: ui/templates/ui/probeviewer/main.html:593
+#: ui/templates/ui/probeviewer/main.html:661
+#: ui/templates/ui/probeviewer/main.html:729
+#: ui/templates/ui/probeviewer/main.html:797
+#: ui/templates/ui/probeviewer/main.html:865
 msgid ""
 "In order to receive data, CARWINGS navigation unit must have correct "
 "connection settings."
@@ -1971,135 +1914,146 @@ msgstr ""
 "Para recibir datos, la unidad de navegación CARWINGS debe tener "
 "configuraciones de conexión correctas."
 
-#: ui/templates/ui/probeviewer/main.html:210
+#: ui/templates/ui/probeviewer/main.html:250
+msgid "No trip data available"
+msgstr "No hay datos de viaje disponibles"
+
+#: ui/templates/ui/probeviewer/main.html:251
+msgid "Trip information comes available on next startup after the trip."
+msgstr ""
+"La información del viaje estará disponible en el próximo arranque después "
+"del viaje."
+
+#: ui/templates/ui/probeviewer/main.html:270
 msgid "Driving distance"
 msgstr "Distancia recorrida"
 
-#: ui/templates/ui/probeviewer/main.html:211
+#: ui/templates/ui/probeviewer/main.html:271
 msgid "Driving time"
 msgstr "Tiempo de conducción"
 
-#: ui/templates/ui/probeviewer/main.html:214
-#: ui/templates/ui/probeviewer/trip.html:143
+#: ui/templates/ui/probeviewer/main.html:274
+#: ui/templates/ui/probeviewer/trip.html:148
 msgid "Regenerated energy"
 msgstr "Energía regenerada"
 
-#: ui/templates/ui/probeviewer/main.html:215
+#: ui/templates/ui/probeviewer/main.html:275
 msgid "Consumed energy"
 msgstr "Energía consumida"
 
-#: ui/templates/ui/probeviewer/main.html:218
-#: ui/templates/ui/probeviewer/trip.html:76
+#: ui/templates/ui/probeviewer/main.html:278
+#: ui/templates/ui/probeviewer/trip.html:75
+#: ui/templates/ui/probeviewer/trip.html:81
 msgid "Average consumption"
 msgstr "Average consumption"
 
-#: ui/templates/ui/probeviewer/main.html:225
-#: ui/templates/ui/probeviewer/trip.html:134
+#: ui/templates/ui/probeviewer/main.html:285
+#: ui/templates/ui/probeviewer/trip.html:139
 msgid "Average acceleration"
 msgstr "Aceleración promedio"
 
-#: ui/templates/ui/probeviewer/main.html:264
+#: ui/templates/ui/probeviewer/main.html:324
 msgid "No monthly analytics available"
 msgstr "No hay análisis mensuales disponibles"
 
-#: ui/templates/ui/probeviewer/main.html:265
+#: ui/templates/ui/probeviewer/main.html:325
 msgid "Monthly analytics information comes available at the end of the month."
 msgstr ""
 "La información de análisis mensuales estará disponible al final del mes."
 
-#: ui/templates/ui/probeviewer/main.html:287
+#: ui/templates/ui/probeviewer/main.html:347
 msgid "State at start"
 msgstr "Estado al inicio"
 
-#: ui/templates/ui/probeviewer/main.html:288
+#: ui/templates/ui/probeviewer/main.html:348
 msgid "State at end"
 msgstr "Estado al final"
 
-#: ui/templates/ui/probeviewer/main.html:289
-#: ui/templates/ui/probeviewer/main.html:358
+#: ui/templates/ui/probeviewer/main.html:349
+#: ui/templates/ui/probeviewer/main.html:418
 msgid "Charging type"
 msgstr "Tipo de carga"
 
-#: ui/templates/ui/probeviewer/main.html:290
+#: ui/templates/ui/probeviewer/main.html:350
 msgid "Charged energy"
 msgstr "Energía cargada"
 
-#: ui/templates/ui/probeviewer/main.html:291
+#: ui/templates/ui/probeviewer/main.html:351
 msgid "Cell temp. (start)"
 msgstr "Temperatura de celda (inicio)"
 
-#: ui/templates/ui/probeviewer/main.html:291
-#: ui/templates/ui/probeviewer/main.html:292
-#: ui/templates/ui/probeviewer/main.html:293
+#: ui/templates/ui/probeviewer/main.html:351
+#: ui/templates/ui/probeviewer/main.html:352
+#: ui/templates/ui/probeviewer/main.html:353
 msgid "avg/max/min"
 msgstr "promedio/máximo/mínimo"
 
-#: ui/templates/ui/probeviewer/main.html:292
+#: ui/templates/ui/probeviewer/main.html:352
 msgid "Cell temp. (end)"
 msgstr "Temperatura de celda (final)"
 
-#: ui/templates/ui/probeviewer/main.html:293
+#: ui/templates/ui/probeviewer/main.html:353
 msgid "Cell volt. (start)"
 msgstr "Voltaje de celda (inicio)"
 
-#: ui/templates/ui/probeviewer/main.html:294
+#: ui/templates/ui/probeviewer/main.html:354
 msgid "Charges while ign. off"
 msgstr "Cargas con encendido apagado"
 
-#: ui/templates/ui/probeviewer/main.html:334
+#: ui/templates/ui/probeviewer/main.html:394
 msgid "No charging history available"
 msgstr "No hay historial de carga disponible"
 
-#: ui/templates/ui/probeviewer/main.html:335
+#: ui/templates/ui/probeviewer/main.html:395
 msgid ""
 "Charging history may become available on next startup after the charging."
 msgstr ""
 "El historial de carga puede estar disponible en el próximo arranque después "
 "de la carga."
 
-#: ui/templates/ui/probeviewer/main.html:357
+#: ui/templates/ui/probeviewer/main.html:417
 msgid "Charge count"
 msgstr "Conteo de cargas"
 
-#: ui/templates/ui/probeviewer/main.html:359
+#: ui/templates/ui/probeviewer/main.html:419
 msgid "Charge position"
 msgstr "Posición de carga"
 
-#: ui/templates/ui/probeviewer/main.html:399
+#: ui/templates/ui/probeviewer/main.html:459
 msgid "No charge data available"
 msgstr "No hay datos de carga disponibles"
 
-#: ui/templates/ui/probeviewer/main.html:400
+#: ui/templates/ui/probeviewer/main.html:460
 msgid "Charging data may become available on next startup after the charging."
 msgstr ""
 "Los datos de carga pueden estar disponibles en el próximo arranque después "
 "de la carga."
 
-#: ui/templates/ui/probeviewer/main.html:419
+#: ui/templates/ui/probeviewer/main.html:479
 msgid "Operation time"
 msgstr "Tiempo de operación"
 
-#: ui/templates/ui/probeviewer/main.html:420
+#: ui/templates/ui/probeviewer/main.html:480
 msgid "Vehicle speed at start"
 msgstr "Velocidad del vehículo al inicio"
 
-#: ui/templates/ui/probeviewer/main.html:421
+#: ui/templates/ui/probeviewer/main.html:481
 msgid "Vehicle speed at end"
 msgstr "Velocidad del vehículo al final"
 
-#: ui/templates/ui/probeviewer/main.html:422
+#: ui/templates/ui/probeviewer/main.html:482
 msgid "Road type"
 msgstr "Tipo de carretera"
 
-#: ui/templates/ui/probeviewer/main.html:423
+#: ui/templates/ui/probeviewer/main.html:483
 msgid "Direction"
 msgstr "Dirección"
 
-#: ui/templates/ui/probeviewer/main.html:463
+#: ui/templates/ui/probeviewer/main.html:523
 msgid "No ABS data available"
 msgstr "No hay datos de ABS disponibles"
 
-#: ui/templates/ui/probeviewer/main.html:464
+#: ui/templates/ui/probeviewer/main.html:524
 msgid ""
 "ABS data may become available on next startup if your vehicle configuration "
 "allows it."
@@ -2107,29 +2061,29 @@ msgstr ""
 "Los datos de ABS pueden estar disponibles en el próximo arranque si la "
 "configuración del vehículo lo permite."
 
-#: ui/templates/ui/probeviewer/main.html:477
-#: ui/templates/ui/probeviewer/main.html:545
-#: ui/templates/ui/probeviewer/main.html:613
-#: ui/templates/ui/probeviewer/main.html:681
-#: ui/templates/ui/probeviewer/main.html:749
+#: ui/templates/ui/probeviewer/main.html:537
+#: ui/templates/ui/probeviewer/main.html:605
+#: ui/templates/ui/probeviewer/main.html:673
+#: ui/templates/ui/probeviewer/main.html:741
+#: ui/templates/ui/probeviewer/main.html:809
 msgid "Date and time"
 msgstr "Fecha y hora"
 
-#: ui/templates/ui/probeviewer/main.html:480
-#: ui/templates/ui/probeviewer/main.html:616
+#: ui/templates/ui/probeviewer/main.html:540
+#: ui/templates/ui/probeviewer/main.html:676
 #: ui/templates/ui/probeviewer/trip.html:39
 msgid "Duration"
 msgstr "Duración"
 
-#: ui/templates/ui/probeviewer/main.html:532
-#: ui/templates/ui/probeviewer/main.html:600
-#: ui/templates/ui/probeviewer/main.html:668
+#: ui/templates/ui/probeviewer/main.html:592
+#: ui/templates/ui/probeviewer/main.html:660
+#: ui/templates/ui/probeviewer/main.html:728
 msgid "No idling data available"
 msgstr "No hay datos de ralentí disponibles"
 
-#: ui/templates/ui/probeviewer/main.html:533
-#: ui/templates/ui/probeviewer/main.html:601
-#: ui/templates/ui/probeviewer/main.html:669
+#: ui/templates/ui/probeviewer/main.html:593
+#: ui/templates/ui/probeviewer/main.html:661
+#: ui/templates/ui/probeviewer/main.html:729
 msgid ""
 "Idling data may become available on next startup if your vehicle "
 "configuration allows it."
@@ -2137,20 +2091,20 @@ msgstr ""
 "Los datos de ralentí pueden estar disponibles en el próximo arranque si la "
 "configuración del vehículo lo permite."
 
-#: ui/templates/ui/probeviewer/main.html:548
+#: ui/templates/ui/probeviewer/main.html:608
 msgid "Consumption"
 msgstr "Consumo"
 
-#: ui/templates/ui/probeviewer/main.html:684
-#: ui/templates/ui/probeviewer/main.html:752
+#: ui/templates/ui/probeviewer/main.html:744
+#: ui/templates/ui/probeviewer/main.html:812
 msgid "Data"
 msgstr "Datos"
 
-#: ui/templates/ui/probeviewer/main.html:736
+#: ui/templates/ui/probeviewer/main.html:796
 msgid "No DTC data available"
 msgstr "No hay datos de DTC disponibles"
 
-#: ui/templates/ui/probeviewer/main.html:737
+#: ui/templates/ui/probeviewer/main.html:797
 msgid ""
 "DTC data may become available on next startup if your vehicle has active DTC "
 "trouble code."
@@ -2158,11 +2112,11 @@ msgstr ""
 "Los datos de DTC pueden estar disponibles en el próximo arranque si el "
 "vehículo tiene un código de problema DTC activo."
 
-#: ui/templates/ui/probeviewer/main.html:804
+#: ui/templates/ui/probeviewer/main.html:864
 msgid "No MSN data available"
 msgstr "No hay datos de MSN disponibles"
 
-#: ui/templates/ui/probeviewer/main.html:805
+#: ui/templates/ui/probeviewer/main.html:865
 msgid "MSN data may become available on next startup."
 msgstr "Los datos de MSN pueden estar disponibles en el próximo arranque."
 
@@ -2186,178 +2140,175 @@ msgstr "Árboles ecológicos"
 msgid "Regenerated"
 msgstr "Regenerado"
 
-#: ui/templates/ui/probeviewer/trip.html:112
+#: ui/templates/ui/probeviewer/trip.html:117
 msgid "Info"
 msgstr "Información"
 
-#: ui/templates/ui/probeviewer/trip.html:113
+#: ui/templates/ui/probeviewer/trip.html:118
 msgid "Energy"
 msgstr "Energía"
 
-#: ui/templates/ui/probeviewer/trip.html:114
+#: ui/templates/ui/probeviewer/trip.html:119
 msgid "HV Battery"
 msgstr "Batería de alto voltaje"
 
-#: ui/templates/ui/probeviewer/trip.html:121
+#: ui/templates/ui/probeviewer/trip.html:126
 msgid "Trip end date"
 msgstr "Fecha de finalización del viaje"
 
-#: ui/templates/ui/probeviewer/trip.html:122
+#: ui/templates/ui/probeviewer/trip.html:127
 msgid "Outside temperature at start"
 msgstr "Temperatura exterior al inicio"
 
-#: ui/templates/ui/probeviewer/trip.html:123
+#: ui/templates/ui/probeviewer/trip.html:128
 msgid "Outside temperature at finish"
 msgstr "Temperatura exterior al final"
 
-#: ui/templates/ui/probeviewer/trip.html:124
+#: ui/templates/ui/probeviewer/trip.html:129
 msgid "Max speed"
 msgstr "Velocidad máxima"
 
-#: ui/templates/ui/probeviewer/trip.html:125
+#: ui/templates/ui/probeviewer/trip.html:130
 msgid "Cabin preconditioning before trip"
 msgstr "Preacondicionamiento de la cabina antes del viaje"
 
-#: ui/templates/ui/probeviewer/trip.html:126
+#: ui/templates/ui/probeviewer/trip.html:131
 msgid "Highway driving time"
 msgstr "Tiempo de conducción en autopista"
 
-#: ui/templates/ui/probeviewer/trip.html:127
+#: ui/templates/ui/probeviewer/trip.html:132
 msgid "Optimal highway driving time"
 msgstr "Tiempo óptimo de conducción en autopista"
 
-#: ui/templates/ui/probeviewer/trip.html:129
+#: ui/templates/ui/probeviewer/trip.html:134
 msgid "Idling time"
 msgstr "Tiempo de ralentí"
 
-#: ui/templates/ui/probeviewer/trip.html:130
+#: ui/templates/ui/probeviewer/trip.html:135
 msgid "Headlights usage time"
 msgstr "Tiempo de uso de faros"
 
-#: ui/templates/ui/probeviewer/trip.html:131
+#: ui/templates/ui/probeviewer/trip.html:136
 msgid "Sudden accelerations"
 msgstr "Aceleraciones repentinas"
 
-#: ui/templates/ui/probeviewer/trip.html:132
+#: ui/templates/ui/probeviewer/trip.html:137
 msgid "Sudden decelerations"
 msgstr "Desaceleraciones repentinas"
 
-#: ui/templates/ui/probeviewer/trip.html:133
+#: ui/templates/ui/probeviewer/trip.html:138
 msgid "Odometer at start"
 msgstr "Odómetro al inicio"
 
-#: ui/templates/ui/probeviewer/trip.html:139
+#: ui/templates/ui/probeviewer/trip.html:144
 msgid "A/C consumption"
 msgstr "Consumo de aire acondicionado"
 
-#: ui/templates/ui/probeviewer/trip.html:140
+#: ui/templates/ui/probeviewer/trip.html:145
 msgid "Auxiliary consumption"
 msgstr "Consumo auxiliar"
 
-#: ui/templates/ui/probeviewer/trip.html:141
+#: ui/templates/ui/probeviewer/trip.html:146
 msgid "Motor consumption"
 msgstr "Consumo del motor"
 
-#: ui/templates/ui/probeviewer/trip.html:142
+#: ui/templates/ui/probeviewer/trip.html:147
 msgid "Idle consumption"
 msgstr "Consumo en ralentí"
 
-#: ui/templates/ui/probeviewer/trip.html:144
+#: ui/templates/ui/probeviewer/trip.html:149
 msgid "Sudden acceleration consumption"
 msgstr "Consumo por aceleración repentina"
 
-#: ui/templates/ui/probeviewer/trip.html:145
+#: ui/templates/ui/probeviewer/trip.html:150
 msgid "Sudden acceleration time"
 msgstr "Tiempo de aceleración repentina"
 
-#: ui/templates/ui/probeviewer/trip.html:146
+#: ui/templates/ui/probeviewer/trip.html:151
 msgid "Non-eco deceleration consumption"
 msgstr "Consumo por desaceleración no ecológica"
 
-#: ui/templates/ui/probeviewer/trip.html:147
+#: ui/templates/ui/probeviewer/trip.html:152
 msgid "Non-eco deceleration time"
 msgstr "Tiempo de desaceleración no ecológica"
 
-#: ui/templates/ui/probeviewer/trip.html:148
+#: ui/templates/ui/probeviewer/trip.html:153
 msgid "Sudden start consumption"
 msgstr "Consumo por arranque repentino"
 
-#: ui/templates/ui/probeviewer/trip.html:149
+#: ui/templates/ui/probeviewer/trip.html:154
 msgid "Sudden start time"
 msgstr "Tiempo de arranque repentino"
 
-#: ui/templates/ui/probeviewer/trip.html:155
+#: ui/templates/ui/probeviewer/trip.html:160
 msgid "Trip start"
 msgstr "Inicio del viaje"
 
-#: ui/templates/ui/probeviewer/trip.html:157
-#: ui/templates/ui/probeviewer/trip.html:174
+#: ui/templates/ui/probeviewer/trip.html:162
+#: ui/templates/ui/probeviewer/trip.html:179
 msgid "Battery pack temperature"
 msgstr "Temperatura del paquete de baterías"
 
-#: ui/templates/ui/probeviewer/trip.html:159
-#: ui/templates/ui/probeviewer/trip.html:160
-#: ui/templates/ui/probeviewer/trip.html:176
-#: ui/templates/ui/probeviewer/trip.html:177
+#: ui/templates/ui/probeviewer/trip.html:164
+#: ui/templates/ui/probeviewer/trip.html:165
+#: ui/templates/ui/probeviewer/trip.html:181
+#: ui/templates/ui/probeviewer/trip.html:182
 msgid "Energy content"
 msgstr "Contenido de energía"
 
-#: ui/templates/ui/probeviewer/trip.html:161
-#: ui/templates/ui/probeviewer/trip.html:178
+#: ui/templates/ui/probeviewer/trip.html:166
+#: ui/templates/ui/probeviewer/trip.html:183
 msgid "Average cell temperature"
 msgstr "Temperatura promedio de celda"
 
-#: ui/templates/ui/probeviewer/trip.html:162
-#: ui/templates/ui/probeviewer/trip.html:179
+#: ui/templates/ui/probeviewer/trip.html:167
+#: ui/templates/ui/probeviewer/trip.html:184
 msgid "Max cell temperature"
 msgstr "Temperatura máxima de celda"
 
-#: ui/templates/ui/probeviewer/trip.html:163
-#: ui/templates/ui/probeviewer/trip.html:180
+#: ui/templates/ui/probeviewer/trip.html:168
+#: ui/templates/ui/probeviewer/trip.html:185
 msgid "Min cell temperature"
 msgstr "Temperatura mínima de celda"
 
-#: ui/templates/ui/probeviewer/trip.html:164
-#: ui/templates/ui/probeviewer/trip.html:181
+#: ui/templates/ui/probeviewer/trip.html:169
 msgid "Average cell voltage"
 msgstr "Voltaje promedio de celda"
 
-#: ui/templates/ui/probeviewer/trip.html:165
-#: ui/templates/ui/probeviewer/trip.html:182
+#: ui/templates/ui/probeviewer/trip.html:170
 msgid "Max cell voltage"
 msgstr "Voltaje máximo de celda"
 
-#: ui/templates/ui/probeviewer/trip.html:166
-#: ui/templates/ui/probeviewer/trip.html:183
+#: ui/templates/ui/probeviewer/trip.html:171
 msgid "Min cell voltage"
 msgstr "Voltaje mínimo de celda"
 
-#: ui/templates/ui/probeviewer/trip.html:167
+#: ui/templates/ui/probeviewer/trip.html:172
 msgid "AC charges (total?)"
 msgstr "Cargas de CA (¿total?)"
 
-#: ui/templates/ui/probeviewer/trip.html:168
+#: ui/templates/ui/probeviewer/trip.html:173
 msgid "QC charges (total?)"
 msgstr "Cargas rápidas (¿total?)"
 
-#: ui/templates/ui/probeviewer/trip.html:172
+#: ui/templates/ui/probeviewer/trip.html:177
 msgid "Trip end"
 msgstr "Fin del viaje"
 
-#: ui/templates/ui/probeviewer/trip.html:184
+#: ui/templates/ui/probeviewer/trip.html:186
 msgid "Accumulated current"
 msgstr "Corriente acumulada"
 
-#: ui/templates/ui/probeviewer/trip.html:185
-#: ui/templates/ui/probeviewer/trip.html:189
+#: ui/templates/ui/probeviewer/trip.html:187
+#: ui/templates/ui/probeviewer/trip.html:191
 msgid "SOH"
 msgstr "Estado de salud (SOH)"
 
-#: ui/templates/ui/probeviewer/trip.html:186
+#: ui/templates/ui/probeviewer/trip.html:188
 msgid "Pack resistance"
 msgstr "Resistencia del paquete"
 
-#: ui/templates/ui/probeviewer/trip.html:190
+#: ui/templates/ui/probeviewer/trip.html:192
 msgid "New battery degradation analysis program"
 msgstr "Nuevo programa de análisis de degradación de batería"
 
@@ -2584,107 +2535,189 @@ msgstr "Agregar nuevo perfil de conexión"
 msgid "Export VFlash"
 msgstr "Exportar VFlash"
 
-#: ui/views.py:32
+#: ui/views.py:34
 msgid "TCU setup"
 msgstr "Configuración del TCU"
 
-#: ui/views.py:33
+#: ui/views.py:35
 msgid "TCU identifiers"
 msgstr "Identificadores del TCU"
 
-#: ui/views.py:34
+#: ui/views.py:36
 msgid "Basic information"
 msgstr "Información básica"
 
-#: ui/views.py:35
+#: ui/views.py:37
 msgid "SMS configuration"
 msgstr "Configuración de SMS"
 
-#: ui/views.py:36
+#: ui/views.py:38
 msgid "Car added"
 msgstr "Coche añadido"
 
-#: ui/views.py:92
+#: ui/views.py:94
 msgid "Account successfully updated!"
 msgstr "¡Cuenta actualizada con éxito!"
 
-#: ui/views.py:95
+#: ui/views.py:97
 msgid "Please fill the form correctly and try again."
 msgstr "Por favor, completa el formulario correctamente y vuelve a intentarlo."
 
-#: ui/views.py:462
+#: ui/views.py:464
 msgid "Successfully saved settings."
 msgstr "Configuraciones guardadas con éxito."
 
-#: ui/views.py:464 ui/views.py:580 ui/views.py:601
+#: ui/views.py:466 ui/views.py:595 ui/views.py:616
 msgid "Please fill the form correctly"
 msgstr "Por favor, completa el formulario correctamente"
 
-#: ui/views.py:467 ui/views.py:636
+#: ui/views.py:469 ui/views.py:651
 msgid "Please fill all necessary fields and try again."
 msgstr "Por favor, completa todos los campos necesarios y vuelve a intentarlo."
 
-#: ui/views.py:471
+#: ui/views.py:473
 msgid "Waiting for first connection.."
 msgstr "Esperando la primera conexión..."
 
-#: ui/views.py:498
+#: ui/views.py:513
 msgid "Sign-up is not enabled on this instance"
 msgstr "El registro no está habilitado en esta instancia"
 
-#: ui/views.py:527
+#: ui/views.py:542
 msgid "Invalid username or password."
 msgstr "Nombre de usuario o contraseña inválidos."
 
-#: ui/views.py:567
+#: ui/views.py:582
 msgid "Car is already added. Please remove and try again."
 msgstr "El coche ya está añadido. Por favor, elimínalo y vuelve a intentarlo."
 
-#: ui/views.py:617
+#: ui/views.py:632
 msgid "Please select a provider for SMS."
 msgstr "Por favor, selecciona un proveedor para SMS."
 
-msgid "Not authenticated"
-msgstr "No autenticado"
+msgid "OpenCARWINGS"
+msgstr "OpenCARWINGS"
 
-msgid "Please authenticate to Car Wings before saving a favorite channel"
-msgstr ""
-"Por favor, autentíquese en Car Wings antes de guardar un canal favorito"
+msgid "Route Planning & Navigation"
+msgstr "Plan de rutas y navegación"
 
-msgid "Channel not found"
-msgstr "Canal no encontrado"
+msgid "Online Services"
+msgstr "Servicios en línea"
+
+msgid "Any new announcements or features can be shown here"
+msgstr "Cualquier anuncio o característica nueva se puede mostrar aquí"
+
+msgid "Energy Economy"
+msgstr "Ahorro Energético"
+
+msgid "Get latest energy economy information"
+msgstr "Obtenga la información más reciente sobre economía energética"
+
+msgid "Eco Trees"
+msgstr "Árboles ecológicos"
+
+msgid "Get latest eco tree information"
+msgstr "Obtenga la información más reciente sobre árboles ecológicos"
+
+msgid "Weather Forecast"
+msgstr "Pronóstico del tiempo"
+
+msgid "Download Weather Forecast for your area"
+msgstr "Descargue el pronóstico del tiempo para su zona"
+
+msgid "clear"
+msgstr "despejado"
+
+msgid "mainly clear"
+msgstr "mayormente despejado"
+
+msgid "partly cloudy"
+msgstr "parcialmente nublado"
+
+msgid "cloudy"
+msgstr "nublado"
+
+msgid "foggy"
+msgstr "con niebla"
+
+msgid "foggy with rime ice"
+msgstr "con niebla y escarcha"
+
+msgid "drizzling lightly"
+msgstr "llovizna ligera"
+
+msgid "drizzling moderately"
+msgstr "llovizna moderada"
+
+msgid "heavy drizzling"
+msgstr "llovizna intensa"
+
+msgid "drizzling lightly freezed"
+msgstr "llovizna ligera helada"
+
+msgid "drizzling moderately freezed"
+msgstr "llovizna moderada helada"
+
+msgid "raining slightly"
+msgstr "lluvia ligera"
+
+msgid "raining moderately"
+msgstr "lluvia moderada"
+
+msgid "raining heavily"
+msgstr "lluvia intensa"
+
+msgid "freeze raining lightly"
+msgstr "lluvia helada ligera"
+
+msgid "freeze raining moderately"
+msgstr "lluvia helada moderada"
+
+msgid "snowing slightly"
+msgstr "nevada ligera"
+
+msgid "moderate snowing"
+msgstr "nevada moderada"
+
+msgid "snowing heavily"
+msgstr "nevada intensa"
+
+msgid "snowing grain"
+msgstr "nieve granulada"
+
+msgid "slight rain shower"
+msgstr "chubasco ligero"
+
+msgid "moderate rain shower"
+msgstr "chubasco moderado"
+
+msgid "violent rain shower"
+msgstr "chubasco violento"
+
+msgid "slight snow shower"
+msgstr "chubasco de nieve ligero"
+
+msgid "heavy snow shower"
+msgstr "chubasco de nieve intenso"
+
+msgid "thunderstorm"
+msgstr "tormenta"
 
 msgid "This channel does not exist and cannot be added to favorites list"
 msgstr "Este canal no existe y no se puede agregar a la lista de favoritos."
 
-msgid "Favorite channel added"
-msgstr "Canal favorito añadido"
+msgid ""
+"You may sign in with your username and CARWINGS password in navigation unit "
+"like showed below."
+msgstr ""
+"Puedes iniciar sesión con tu nombre de usuario y contraseña de CARWINGS en "
+"la unidad de navegación como se muestra a continuación."
 
-msgid "The channel has been added to favorites"
-msgstr "El canal ha sido añadido a favoritos"
+msgid "International Phone number of TCU (+xxxxxxxxxxxx)"
+msgstr "Número de teléfono internacional de TCU (+xxxxxxxxxxxx)"
 
-msgid "DOT-files"
-msgstr "DOT-datos"
+msgid "Latitude"
+msgstr "Latitud"
 
-msgid "No DOT data available"
-msgstr "No hay datos DOT disponibles"
-
-msgid "DOT data comes available on next startup after a trip."
-msgstr "Los datos DOT estarán disponibles en el siguiente arranque después de un viaje."
-
-
-#~ msgid ""
-#~ "You may sign in with your username and CARWINGS password in navigation "
-#~ "unit like showed below."
-#~ msgstr ""
-#~ "Puedes iniciar sesión con tu nombre de usuario y contraseña de CARWINGS "
-#~ "en la unidad de navegación como se muestra a continuación."
-
-#~ msgid "International Phone number of TCU (+xxxxxxxxxxxx)"
-#~ msgstr "Número de teléfono internacional de TCU (+xxxxxxxxxxxx)"
-
-#~ msgid "Latitude"
-#~ msgstr "Latitud"
-
-#~ msgid "Longitude"
-#~ msgstr "Longitud"
+msgid "Longitude"
+msgstr "Longitud"

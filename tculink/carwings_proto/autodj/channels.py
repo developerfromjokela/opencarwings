@@ -1,6 +1,8 @@
 from django.utils.text import format_lazy
 from django.utils.translation import gettext as _
 
+from tculink.carwings_proto.autodj import ICONS
+from tculink.carwings_proto.autodj.custom import handle_custom_channel
 from tculink.carwings_proto.autodj.opencarwings import get_infochannel, get_energy_information_channel, \
     get_eco_tree_channel
 from tculink.carwings_proto.autodj.routeplanner import handle_routeplanner
@@ -215,7 +217,29 @@ def translate_chan_name(chan, non_unicode=False):
     return new_chan
 
 def get_info_channel_data(car):
-    # TODO customisable user folder and channels
     channels = [translate_chan_name(c) for c in STANDARD_AUTODJ_CHANNELS if (c.get('internal', False) == False)]
     folders = [translate_chan_name(c) for c in STANDARD_AUTODJ_FOLDERS]
+
+    if car is not None:
+        for pos, data in car.custom_channels.items():
+            resolved_icon = 0x0400
+            for icon_id, item in ICONS.items():
+                if item[0] == data['icon']:
+                    resolved_icon = icon_id
+                    break
+            channels.append({
+                'id': 0x1000+int(pos),
+                'internal_id': 0x1000+int(pos),
+                'name1': data['name'],
+                'name2': data['name'],
+                'folder_id': 4,
+                'icon': resolved_icon,
+                'enabled': True,
+                'auth': True,
+                'data1': bytearray(),
+                'data2': bytearray(),
+                'flag2': 0x00,
+                'processor': handle_custom_channel
+            })
+
     return channels, folders

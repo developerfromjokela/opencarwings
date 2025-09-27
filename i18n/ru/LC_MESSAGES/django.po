@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-08 10:16+0000\n"
-"PO-Revision-Date: 2025-09-21 01:00+0300\n"
+"POT-Creation-Date: 2025-09-27 16:35+0000\n"
+"PO-Revision-Date: 2025-09-27 19:51+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -71,11 +71,11 @@ msgid "Command timeout"
 msgstr "Тайм-аут команды"
 
 #: db/models.py:24 db/models.py:39 ui/templates/ui/account.html:15
-#: ui/templates/ui/car_detail.html:72 ui/templates/ui/car_list.html:18
+#: ui/templates/ui/car_detail.html:70 ui/templates/ui/car_list.html:18
 #: ui/templates/ui/change_carwings_password.html:17
 #: ui/templates/ui/change_password.html:17
 #: ui/templates/ui/probeviewer/main.html:48
-#: ui/templates/ui/probeviewer/trip.html:94
+#: ui/templates/ui/probeviewer/trip.html:99
 #: ui/templates/ui/reset_password_confirm.html:34
 #: ui/templates/ui/setup/step2.html:13 ui/templates/ui/setup/step3.html:13
 #: ui/templates/ui/setup/step4.html:13
@@ -99,11 +99,11 @@ msgid "Waiting"
 msgstr "Ожидание"
 
 #: db/models.py:38 ui/templates/ui/account.html:14
-#: ui/templates/ui/car_detail.html:71 ui/templates/ui/car_list.html:17
+#: ui/templates/ui/car_detail.html:69 ui/templates/ui/car_list.html:17
 #: ui/templates/ui/change_carwings_password.html:16
 #: ui/templates/ui/change_password.html:16
 #: ui/templates/ui/probeviewer/main.html:47
-#: ui/templates/ui/probeviewer/trip.html:93
+#: ui/templates/ui/probeviewer/trip.html:98
 #: ui/templates/ui/reset_password_complete.html:10
 #: ui/templates/ui/reset_password_confirm.html:33
 #: ui/templates/ui/setup/step2.html:12 ui/templates/ui/setup/step3.html:12
@@ -123,11 +123,11 @@ msgstr "Ожидание ответа"
 msgid "Park"
 msgstr "Парковка"
 
-#: db/models.py:46 ui/templates/ui/car_detail.html:937
+#: db/models.py:46 ui/templates/ui/car_detail.html:1115
 msgid "Drive"
 msgstr "Движение"
 
-#: db/models.py:47 ui/templates/ui/car_detail.html:937
+#: db/models.py:47 ui/templates/ui/car_detail.html:1115
 msgid "Reverse"
 msgstr "Задний ход"
 
@@ -135,27 +135,27 @@ msgstr "Задний ход"
 msgid "Never"
 msgstr "Никогда"
 
-#: db/models.py:52 db/models.py:64
+#: db/models.py:52 db/models.py:65
 msgid "Every 30 minutes"
 msgstr "Каждые 30 минут"
 
-#: db/models.py:53 db/models.py:65
+#: db/models.py:53 db/models.py:66
 msgid "Every 45 minutes"
 msgstr "Каждые 45 минут"
 
-#: db/models.py:54 db/models.py:66
+#: db/models.py:54 db/models.py:67
 msgid "Every hour"
 msgstr "Каждый час"
 
-#: db/models.py:55 db/models.py:67
+#: db/models.py:55 db/models.py:68
 msgid "Every three hours"
 msgstr "Каждые 3 часа"
 
-#: db/models.py:56 db/models.py:68
+#: db/models.py:56 db/models.py:69
 msgid "Every 12 hours"
 msgstr "Каждые 12 часов"
 
-#: db/models.py:57 db/models.py:69
+#: db/models.py:57 db/models.py:70
 msgid "Every day"
 msgstr "Каждый день"
 
@@ -163,22 +163,23 @@ msgstr "Каждый день"
 msgid "Every 5 minutes"
 msgstr "Каждые 5 минут"
 
+#: db/models.py:63
 msgid "Every 10 minutes"
 msgstr "Каждые 10 минут"
 
-#: db/models.py:63
+#: db/models.py:64
 msgid "Every 15 minutes"
 msgstr "Каждые 15 минут"
 
-#: db/models.py:84
+#: db/models.py:85
 msgid "Slow charge"
 msgstr "Медленная зарядка"
 
-#: db/models.py:85
+#: db/models.py:86
 msgid "Quick charge"
 msgstr "Быстрая зарядка"
 
-#: db/models.py:96
+#: db/models.py:97
 msgid ""
 "Enter a valid username. This value may contain only unaccented lowercase a-z "
 "and uppercase A-Z letters, numbers, and /./-/_ characters."
@@ -187,7 +188,7 @@ msgstr ""
 "строчные буквы a–z и заглавные буквы A–Z без диакритических знаков, цифры и "
 "символы /./-/_."
 
-#: db/models.py:104
+#: db/models.py:105
 msgid ""
 "Enter a valid TCU Password. This value may contain only unaccented lowercase "
 "a-z and uppercase A-Z letters, numbers, and /=/-/_/+/@/#/?/! characters."
@@ -196,92 +197,55 @@ msgstr ""
 "буквы a–z и заглавные буквы A–Z без диакритических знаков, цифры и символы /"
 "=/-/_/+/@/#/?/!."
 
-#: db/models.py:116
+#: db/models.py:117
 msgid "username"
 msgstr "Имя пользователя"
 
-#: db/models.py:120
+#: db/models.py:121
 msgid "Required. 16 characters or fewer. Letters, digits and /./-/_ only."
 msgstr ""
 "Обязательно. Не более 16 символов. Только буквы, цифры и символы /./-/_."
 
-#: db/models.py:124
+#: db/models.py:125
 msgid "A user with that username already exists."
 msgstr "Пользователь с таким именем уже существует."
 
-#: tculink/carwings_proto/autodj/channels.py:13
-#: tculink/carwings_proto/autodj/channels.py:14
-msgid "OpenCARWINGS"
-msgstr "OpenCARWINGS"
+#: tculink/carwings_proto/applications/dj.py:78
+msgid "Not authenticated"
+msgstr "Не аутентифицировано"
 
-#: tculink/carwings_proto/autodj/channels.py:21
-msgid "Route Planning & Navigation"
-msgstr "Планирование маршрута и навигация"
+#: tculink/carwings_proto/applications/dj.py:78
+msgid "Please authenticate to Car Wings before saving a favorite channel"
+msgstr ""
+"Пожалуйста, пройдите аутентификацию в Car Wings перед сохранением любимого "
+"канала"
 
-#: tculink/carwings_proto/autodj/channels.py:22
-#: ui/templates/ui/car_detail.html:102
-msgid "Route Planner"
-msgstr "Планировщик маршрутов"
+#: tculink/carwings_proto/applications/dj.py:92
+msgid "Favorite channel added"
+msgstr "Добавлен в список избранных"
 
-#: tculink/carwings_proto/autodj/channels.py:29
-#: tculink/carwings_proto/autodj/channels.py:30
-msgid "Online Services"
-msgstr "Онлайн-сервисы"
+#: tculink/carwings_proto/applications/dj.py:92
+msgid "The channel has been added to favorites"
+msgstr "Канал добавлен в избранное"
 
-#: tculink/carwings_proto/autodj/channels.py:37
-#: tculink/carwings_proto/autodj/channels.py:38
-msgid "Custom channels"
-msgstr "Пользовательские каналы"
-
-#: tculink/carwings_proto/autodj/channels.py:48
+#: tculink/carwings_proto/autodj/handler.py:23
+#: tculink/carwings_proto/autodj/handler.py:24
+#: tculink/carwings_proto/autodj/opencarwings.py:123
+#: tculink/carwings_proto/autodj/opencarwings.py:124
 msgid "Info from OpenCARWINGS"
 msgstr "Информация от OpenCARWINGS"
 
-#: tculink/carwings_proto/autodj/channels.py:49
-msgid "Any new announcements or features can be shown here"
-msgstr "Здесь могут быть показаны любые новые объявления или функции."
+#: tculink/carwings_proto/autodj/handler.py:67
+#: tculink/carwings_proto/autodj/handler.py:68
+msgid "Data Channel not available"
+msgstr "Канал недоступен"
 
-#: tculink/carwings_proto/autodj/channels.py:62
-msgid "Energy Economy"
-msgstr "Энергоэффективность"
+#: tculink/carwings_proto/autodj/handler.py:86
+#: tculink/carwings_proto/autodj/handler.py:87
+msgid "Not authorized"
+msgstr "Не аутентифицировано"
 
-#: tculink/carwings_proto/autodj/channels.py:63
-msgid "Get latest energy economy information"
-msgstr "Получите актуальную информацию об энергоэффективности"
-
-#: tculink/carwings_proto/autodj/channels.py:76
-msgid "Eco Trees"
-msgstr "Экодеревья"
-
-#: tculink/carwings_proto/autodj/channels.py:77
-msgid "Get latest eco tree information"
-msgstr "Получите актуальную информацию об экодеревьях"
-
-#: tculink/carwings_proto/autodj/channels.py:92
-#: tculink/carwings_proto/autodj/channels.py:93
-#: tculink/carwings_proto/autodj/channels.py:106
-#: tculink/carwings_proto/autodj/channels.py:107
-#: tculink/carwings_proto/autodj/channels.py:120
-#: tculink/carwings_proto/autodj/channels.py:121
-#: tculink/carwings_proto/autodj/channels.py:134
-#: tculink/carwings_proto/autodj/channels.py:135
-#: tculink/carwings_proto/autodj/channels.py:148
-#: tculink/carwings_proto/autodj/channels.py:149
-#: tculink/carwings_proto/autodj/routeplanner.py:54
-#: tculink/carwings_proto/autodj/routeplanner.py:55
-#, python-brace-format
-msgid "Route Plan {num}"
-msgstr "План маршрута {num}"
-
-#: tculink/carwings_proto/autodj/channels.py:192
-msgid "Weather Forecast"
-msgstr "Прогноз погоды"
-
-#: tculink/carwings_proto/autodj/channels.py:193
-msgid "Download Weather Forecast for your area"
-msgstr "Загрузите прогноз погоды для вашего региона"
-
-#: tculink/carwings_proto/autodj/opencarwings.py:513
+#: tculink/carwings_proto/autodj/opencarwings.py:509
 msgid ""
 "Use remote climate control or the timer so that the cabin will be at a "
 "comfortable temperature before starting.  This allows the car to save energy "
@@ -291,7 +255,7 @@ msgstr ""
 "началом поездки в салоне была комфортная температура. Это позволяет "
 "автомобилю экономить энергию во время движения."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:514
+#: tculink/carwings_proto/autodj/opencarwings.py:510
 msgid ""
 "Keep your car in the garage during winter times to keep the battery pack "
 "warm.  This will increase your range a bit, especially in colder climates."
@@ -299,7 +263,7 @@ msgstr ""
 "Зимой держите автомобиль в гараже, чтобы аккумулятор оставался тёплым. Это "
 "немного увеличит запас хода, особенно в холодном климате."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:515
+#: tculink/carwings_proto/autodj/opencarwings.py:511
 msgid ""
 "Use <phoneme alphabet=\"x-SVOX-sampa_en-GB\" ph=\"'i:-k@@U\">eco</phoneme> "
 "mode or B-mode when possible to increase your regenerative energy."
@@ -307,7 +271,7 @@ msgstr ""
 "По возможности используйте эко-режим или B-режим, чтобы увеличить "
 "регенеративную энергию."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:516
+#: tculink/carwings_proto/autodj/opencarwings.py:512
 msgid ""
 "Check your tire pressure at least once a month to ensure they are at optimal "
 "level.  Low tire pressure decreases rolling effect of the car and more "
@@ -317,7 +281,7 @@ msgstr ""
 "что оно находится на оптимальном уровне. Низкое давление в шинах ухудшает "
 "качение автомобиля и увеличивает расход энергии на движение."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:517
+#: tculink/carwings_proto/autodj/opencarwings.py:513
 msgid ""
 "Plan your routes to include charging stations, especially on longer trips, "
 "to avoid range anxiety and ensure smooth travel."
@@ -326,7 +290,7 @@ msgstr ""
 "длительных поездках, чтобы избежать беспокойства о запасе хода и обеспечить "
 "комфортное путешествие."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:518
+#: tculink/carwings_proto/autodj/opencarwings.py:514
 msgid ""
 "Avoid rapid acceleration and maintain a steady speed to maximize battery "
 "efficiency, as aggressive driving can significantly reduce your range."
@@ -335,7 +299,7 @@ msgstr ""
 "максимально эффективно использовать аккумулятор, так как агрессивное "
 "вождение может значительно сократить запас хода."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:519
+#: tculink/carwings_proto/autodj/opencarwings.py:515
 msgid ""
 "Use the Nissan Leaf’s navigation system to find the most energy-efficient "
 "routes, which can help conserve battery power on unfamiliar roads."
@@ -344,7 +308,7 @@ msgstr ""
 "энергоэффективных маршрутов, что поможет сэкономить заряд аккумулятора на "
 "незнакомых дорогах."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:520
+#: tculink/carwings_proto/autodj/opencarwings.py:516
 msgid ""
 "In colder times, try to use more of seat heating and steering wheel heating "
 "while keeping your air conditioning on lower settings. Auxiliary heating "
@@ -354,7 +318,7 @@ msgstr ""
 "снижая мощность кондиционера. Дополнительные нагревательные элементы "
 "потребляют меньше энергии, чем система кондиционирования автомобиля."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:521
+#: tculink/carwings_proto/autodj/opencarwings.py:517
 msgid ""
 "Park in shaded areas during hot weather to keep the battery cool, as extreme "
 "heat can reduce battery efficiency and longevity."
@@ -363,7 +327,7 @@ msgstr ""
 "прохладным, так как сильная жара может снизить эффективность и срок службы "
 "аккумулятора."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:522
+#: tculink/carwings_proto/autodj/opencarwings.py:518
 msgid ""
 "Try to charge the battery up to 80 percent for daily usage. Charging to "
 "full, every day, is not recommended for battery longevity."
@@ -371,7 +335,7 @@ msgstr ""
 "Старайтесь заряжать аккумулятор до 80% при ежедневном использовании. Полная "
 "зарядка каждый день не рекомендуется для продления срока службы аккумулятора."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:523
+#: tculink/carwings_proto/autodj/opencarwings.py:519
 msgid ""
 "With Open Car Wings, you can review your driving efficiency of each trip, "
 "online. With the data, it is easier to determine which areas of driving "
@@ -381,26 +345,26 @@ msgstr ""
 "каждой поездки. Эти данные помогут определить, какие аспекты вождения нужно "
 "улучшить для достижения максимальной энергоэффективности."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:553
-#: tculink/carwings_proto/autodj/opencarwings.py:588
+#: tculink/carwings_proto/autodj/opencarwings.py:548
+#: tculink/carwings_proto/autodj/opencarwings.py:583
 msgid "Average"
 msgstr "Среднее"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:553
-#: tculink/carwings_proto/autodj/opencarwings.py:577
+#: tculink/carwings_proto/autodj/opencarwings.py:548
+#: tculink/carwings_proto/autodj/opencarwings.py:572
 msgid "Good"
 msgstr "Хорошо"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:553
-#: tculink/carwings_proto/autodj/opencarwings.py:580
+#: tculink/carwings_proto/autodj/opencarwings.py:548
+#: tculink/carwings_proto/autodj/opencarwings.py:575
 msgid "Very good"
 msgstr "Очень хорошо"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:554
+#: tculink/carwings_proto/autodj/opencarwings.py:549
 msgid "Check Energy Economy"
 msgstr "Проверка энергоэффективности"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:559
+#: tculink/carwings_proto/autodj/opencarwings.py:554
 msgid ""
 "The energy economy trend compared with the average of the last five trips is "
 "shown above."
@@ -408,27 +372,27 @@ msgstr ""
 "Тенденция энергоэффективности по сравнению со средним показателем за "
 "последние пять поездок показана выше."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:564
+#: tculink/carwings_proto/autodj/opencarwings.py:559
 msgid "Trend of Energy Economy\n"
 msgstr "Тенденция энергоэффективности\n"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:591
+#: tculink/carwings_proto/autodj/opencarwings.py:586
 msgid "Bad"
 msgstr "Плохо"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:596
+#: tculink/carwings_proto/autodj/opencarwings.py:591
 msgid "[Average]\n"
 msgstr "[Среднее]\n"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:598
+#: tculink/carwings_proto/autodj/opencarwings.py:593
 msgid "[Best]\n"
 msgstr "[Лучшее]\n"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:600
+#: tculink/carwings_proto/autodj/opencarwings.py:595
 msgid "[Worst]\n"
 msgstr "[Худшее]\n"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:603
+#: tculink/carwings_proto/autodj/opencarwings.py:598
 #, python-brace-format
 msgid ""
 "\n"
@@ -442,7 +406,7 @@ msgstr ""
 "На основе последних 5 поездок ваша энергоэффективность оценивается как "
 "{economy_status}."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:609
+#: tculink/carwings_proto/autodj/opencarwings.py:604
 msgid ""
 "There is no trip records available yet. Try checking in again after your "
 "next trip."
@@ -450,7 +414,7 @@ msgstr ""
 "Записей о поездках пока нет. Попробуйте проверить снова после следующей "
 "поездки."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:611
+#: tculink/carwings_proto/autodj/opencarwings.py:606
 #, python-brace-format
 msgid ""
 "\n"
@@ -463,25 +427,25 @@ msgstr ""
 "рассчитан из-за отсутствия информации о поездках. Попробуйте снова зайти на "
 "этот канал после следующей поездки."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:652
+#: tculink/carwings_proto/autodj/opencarwings.py:647
 msgid "Electric Car Column"
 msgstr "Колонка об электромобилях"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:653
-#: tculink/carwings_proto/autodj/opencarwings.py:657
+#: tculink/carwings_proto/autodj/opencarwings.py:648
+#: tculink/carwings_proto/autodj/opencarwings.py:652
 msgid "Drive Tip"
 msgstr "Совет водителю"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:706
-#: tculink/carwings_proto/autodj/opencarwings.py:707
+#: tculink/carwings_proto/autodj/opencarwings.py:701
+#: tculink/carwings_proto/autodj/opencarwings.py:702
 msgid "Energy Information"
 msgstr "Информация об энергии"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:754
+#: tculink/carwings_proto/autodj/opencarwings.py:751
 msgid "Eco Tree Record"
 msgstr "Запись об экодеревьях"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:764
+#: tculink/carwings_proto/autodj/opencarwings.py:761
 msgid ""
 "Your Eco Tree Record \n"
 "\n"
@@ -489,61 +453,61 @@ msgstr ""
 "Ваши экодеревья\n"
 "\n"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:770
-#: tculink/carwings_proto/autodj/opencarwings.py:776
+#: tculink/carwings_proto/autodj/opencarwings.py:767
+#: tculink/carwings_proto/autodj/opencarwings.py:773
 msgid "tree"
 msgstr "дерево"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:772
-#: tculink/carwings_proto/autodj/opencarwings.py:778
-#: tculink/carwings_proto/autodj/opencarwings.py:791
-#: tculink/carwings_proto/autodj/opencarwings.py:832
+#: tculink/carwings_proto/autodj/opencarwings.py:769
+#: tculink/carwings_proto/autodj/opencarwings.py:775
+#: tculink/carwings_proto/autodj/opencarwings.py:788
+#: tculink/carwings_proto/autodj/opencarwings.py:829
 msgid "trees"
 msgstr "деревья"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:779
+#: tculink/carwings_proto/autodj/opencarwings.py:776
 #, python-brace-format
 msgid "Sum total: {trees} {tree_word}"
 msgstr "Всего: {trees} {tree_word}"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:785
+#: tculink/carwings_proto/autodj/opencarwings.py:782
 #, python-brace-format
 msgid ""
 "On the {day_word} of {month}, you saved {trees} <phoneme alphabet=\"x-SVOX-"
 "sampa_en-GB\" ph=\"'i:-k@@U\">eco</phoneme>trees.\")"
 msgstr "{day_word} {month} вы спасли {trees} экодеревьев."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:791
+#: tculink/carwings_proto/autodj/opencarwings.py:788
 msgid "Total:"
 msgstr "Всего:"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:828
+#: tculink/carwings_proto/autodj/opencarwings.py:825
 msgid "World's Eco Forest"
 msgstr "Мировой экологический лес"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:833
+#: tculink/carwings_proto/autodj/opencarwings.py:830
 msgid "tonnes"
 msgstr "тонн"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:834
+#: tculink/carwings_proto/autodj/opencarwings.py:831
 msgid "Total number of Eco Trees:"
 msgstr "Общее количество экодеревьев:"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:836
+#: tculink/carwings_proto/autodj/opencarwings.py:833
 msgid "CO2 Emission Cuts:"
 msgstr "Сокращение выбросов CO2:"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:844
+#: tculink/carwings_proto/autodj/opencarwings.py:841
 #, python-brace-format
 msgid "Total number of Eco Trees by {day} / {month}:"
 msgstr "Общее количество экодеревьев на {day}/{month}:"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:846
+#: tculink/carwings_proto/autodj/opencarwings.py:843
 #, python-brace-format
 msgid "CO2 emissions reduced by {day} / {month}:"
 msgstr "Снижение выбросов CO2 на {day}/{month}:"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:849
+#: tculink/carwings_proto/autodj/opencarwings.py:846
 msgid ""
 "(This calculation is based on an assumption that the CO2 emitted by petrol-"
 "driven cars of equivalent class can be reduced by driving electric cars)"
@@ -552,7 +516,7 @@ msgstr ""
 "автомобилями с бензиновым двигателем аналогичного класса, можно сократить за "
 "счёт использования электромобилей.)"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:854
+#: tculink/carwings_proto/autodj/opencarwings.py:851
 #, python-brace-format
 msgid ""
 "By the {day_word} of {month}, electric cars with Open Car Wings world wide "
@@ -564,24 +528,30 @@ msgstr ""
 "общей сложности {trees} экодеревьев. Выбросы углекислого газа сократились на "
 "{tonnes} тонн."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:908
-#: tculink/carwings_proto/autodj/opencarwings.py:909
+#: tculink/carwings_proto/autodj/opencarwings.py:905
+#: tculink/carwings_proto/autodj/opencarwings.py:906
 msgid "ECO Tree"
 msgstr "Экодерево"
 
-#: tculink/carwings_proto/autodj/routeplanner.py:21
-#: tculink/carwings_proto/autodj/routeplanner.py:31
+#: tculink/carwings_proto/autodj/routeplanner.py:23
+#: tculink/carwings_proto/autodj/routeplanner.py:33
 msgid "Route Plan not available"
 msgstr "План маршрута недоступен"
 
-#: tculink/carwings_proto/autodj/routeplanner.py:32
+#: tculink/carwings_proto/autodj/routeplanner.py:34
 msgid ""
 "This route plan is empty. Please save a route plan online and try again."
 msgstr ""
 "Этот план маршрута пуст. Пожалуйста, сохраните план маршрута онлайн и "
 "попробуйте снова."
 
-#: tculink/carwings_proto/autodj/sendtocar.py:43
+#: tculink/carwings_proto/autodj/routeplanner.py:55
+#: tculink/carwings_proto/autodj/routeplanner.py:56
+#, python-brace-format
+msgid "Route Plan {num}"
+msgstr "План маршрута {num}"
+
+#: tculink/carwings_proto/autodj/sendtocar.py:42
 #, python-brace-format
 msgid ""
 "Location point, \"{point_name}\", which is {distance} kilometers away. Set "
@@ -591,11 +561,11 @@ msgstr ""
 "Установите её в качестве пункта назначения, нажав на паузу и выбрав точку на "
 "карте в качестве пункта назначения."
 
-#: tculink/carwings_proto/autodj/sendtocar.py:80
+#: tculink/carwings_proto/autodj/sendtocar.py:79
 msgid "Google Send To Car: No Destinations"
 msgstr "Google Send To Car: Пункты назначения отсутствуют"
 
-#: tculink/carwings_proto/autodj/sendtocar.py:81
+#: tculink/carwings_proto/autodj/sendtocar.py:80
 msgid ""
 "There are no destinations sent to the car. Please send at least one "
 "destination from your computer or mobile device and access this channel "
@@ -604,112 +574,6 @@ msgstr ""
 "На автомобиль не отправлено ни одного пункта назначения. Пожалуйста, "
 "отправьте хотя бы один пункт назначения с компьютера или мобильного "
 "устройства и снова зайдите на этот канал."
-
-#: tculink/carwings_proto/autodj/weather.py:55
-msgid "clear"
-msgstr "ясно"
-
-#: tculink/carwings_proto/autodj/weather.py:56
-msgid "mainly clear"
-msgstr "в основном ясно"
-
-#: tculink/carwings_proto/autodj/weather.py:57
-msgid "partly cloudy"
-msgstr "переменная облачность"
-
-#: tculink/carwings_proto/autodj/weather.py:58
-msgid "cloudy"
-msgstr "облачно"
-
-#: tculink/carwings_proto/autodj/weather.py:59
-msgid "foggy"
-msgstr "туманно"
-
-#: tculink/carwings_proto/autodj/weather.py:60
-msgid "foggy with rime ice"
-msgstr "туман с изморозью"
-
-#: tculink/carwings_proto/autodj/weather.py:61
-msgid "drizzling lightly"
-msgstr "лёгкая морось"
-
-#: tculink/carwings_proto/autodj/weather.py:62
-msgid "drizzling moderately"
-msgstr "умеренная морось"
-
-#: tculink/carwings_proto/autodj/weather.py:63
-msgid "heavy drizzling"
-msgstr "сильная морось"
-
-#: tculink/carwings_proto/autodj/weather.py:65
-msgid "drizzling lightly freezed"
-msgstr "лёгкая замороженная морось"
-
-#: tculink/carwings_proto/autodj/weather.py:66
-msgid "drizzling moderately freezed"
-msgstr "умеренная замороженная морось"
-
-#: tculink/carwings_proto/autodj/weather.py:67
-msgid "raining slightly"
-msgstr "небольшой дождь"
-
-#: tculink/carwings_proto/autodj/weather.py:68
-msgid "raining moderately"
-msgstr "умеренный дождь"
-
-#: tculink/carwings_proto/autodj/weather.py:69
-msgid "raining heavily"
-msgstr "сильный дождь"
-
-#: tculink/carwings_proto/autodj/weather.py:70
-msgid "freeze raining lightly"
-msgstr "лёгкий ледяной дождь"
-
-#: tculink/carwings_proto/autodj/weather.py:71
-msgid "freeze raining moderately"
-msgstr "умеренный ледяной дождь"
-
-#: tculink/carwings_proto/autodj/weather.py:72
-msgid "snowing slightly"
-msgstr "небольшой снег"
-
-#: tculink/carwings_proto/autodj/weather.py:73
-msgid "moderate snowing"
-msgstr "умеренный снег"
-
-#: tculink/carwings_proto/autodj/weather.py:74
-msgid "snowing heavily"
-msgstr "сильный снег"
-
-#: tculink/carwings_proto/autodj/weather.py:75
-msgid "snowing grain"
-msgstr "снежные крупинки"
-
-#: tculink/carwings_proto/autodj/weather.py:76
-msgid "slight rain shower"
-msgstr "небольшой ливень"
-
-#: tculink/carwings_proto/autodj/weather.py:77
-msgid "moderate rain shower"
-msgstr "умеренный ливень"
-
-#: tculink/carwings_proto/autodj/weather.py:78
-msgid "violent rain shower"
-msgstr "сильный ливень"
-
-#: tculink/carwings_proto/autodj/weather.py:79
-msgid "slight snow shower"
-msgstr "небольшой снегопад"
-
-#: tculink/carwings_proto/autodj/weather.py:80
-msgid "heavy snow shower"
-msgstr "сильный снегопад"
-
-#: tculink/carwings_proto/autodj/weather.py:81
-#: tculink/carwings_proto/autodj/weather.py:82
-#: tculink/carwings_proto/autodj/weather.py:83
-msgid "thunderstorm"
-msgstr "гроза"
 
 #: tculink/carwings_proto/autodj/weather.py:166
 #: tculink/carwings_proto/autodj/weather.py:172
@@ -786,127 +650,127 @@ msgstr ""
 msgid "Weather forecast"
 msgstr "Прогноз погоды"
 
-#: tculink/carwings_proto/utils.py:118
+#: tculink/carwings_proto/utils.py:119
 msgid "first"
 msgstr "первый"
 
-#: tculink/carwings_proto/utils.py:118
+#: tculink/carwings_proto/utils.py:119
 msgid "second"
 msgstr "второй"
 
-#: tculink/carwings_proto/utils.py:118
+#: tculink/carwings_proto/utils.py:119
 msgid "third"
 msgstr "третий"
 
-#: tculink/carwings_proto/utils.py:118
+#: tculink/carwings_proto/utils.py:119
 msgid "fourth"
 msgstr "четвёртый"
 
-#: tculink/carwings_proto/utils.py:118
+#: tculink/carwings_proto/utils.py:119
 msgid "fifth"
 msgstr "пятый"
 
-#: tculink/carwings_proto/utils.py:119
+#: tculink/carwings_proto/utils.py:120
 msgid "sixth"
 msgstr "шестой"
 
-#: tculink/carwings_proto/utils.py:119
+#: tculink/carwings_proto/utils.py:120
 msgid "seventh"
 msgstr "седьмой"
 
-#: tculink/carwings_proto/utils.py:119
+#: tculink/carwings_proto/utils.py:120
 msgid "eighth"
 msgstr "восьмой"
 
-#: tculink/carwings_proto/utils.py:119
+#: tculink/carwings_proto/utils.py:120
 msgid "ninth"
 msgstr "девятый"
 
-#: tculink/carwings_proto/utils.py:119
+#: tculink/carwings_proto/utils.py:120
 msgid "tenth"
 msgstr "десятый"
 
-#: tculink/carwings_proto/utils.py:120
+#: tculink/carwings_proto/utils.py:121
 msgid "eleventh"
 msgstr "одиннадцатый"
 
-#: tculink/carwings_proto/utils.py:120
+#: tculink/carwings_proto/utils.py:121
 msgid "twelfth"
 msgstr "двенадцатый"
 
-#: tculink/carwings_proto/utils.py:120
+#: tculink/carwings_proto/utils.py:121
 msgid "thirteenth"
 msgstr "тринадцатый"
 
-#: tculink/carwings_proto/utils.py:120
+#: tculink/carwings_proto/utils.py:121
 msgid "fourteenth"
 msgstr "четырнадцатый"
 
-#: tculink/carwings_proto/utils.py:120
+#: tculink/carwings_proto/utils.py:121
 msgid "fifteenth"
 msgstr "пятнадцатый"
 
-#: tculink/carwings_proto/utils.py:121
+#: tculink/carwings_proto/utils.py:122
 msgid "sixteenth"
 msgstr "шестнадцатый"
 
-#: tculink/carwings_proto/utils.py:121
+#: tculink/carwings_proto/utils.py:122
 msgid "seventeenth"
 msgstr "семнадцатый"
 
-#: tculink/carwings_proto/utils.py:121
+#: tculink/carwings_proto/utils.py:122
 msgid "eighteenth"
 msgstr "восемнадцатый"
 
-#: tculink/carwings_proto/utils.py:121
+#: tculink/carwings_proto/utils.py:122
 msgid "nineteenth"
 msgstr "девятнадцатый"
 
-#: tculink/carwings_proto/utils.py:121
+#: tculink/carwings_proto/utils.py:122
 msgid "twentieth"
 msgstr "двадцатый"
 
-#: tculink/carwings_proto/utils.py:122
+#: tculink/carwings_proto/utils.py:123
 msgid "twenty-first"
 msgstr "двадцать первый"
 
-#: tculink/carwings_proto/utils.py:122
+#: tculink/carwings_proto/utils.py:123
 msgid "twenty-second"
 msgstr "двадцать второй"
 
-#: tculink/carwings_proto/utils.py:122
+#: tculink/carwings_proto/utils.py:123
 msgid "twenty-third"
 msgstr "двадцать третий"
 
-#: tculink/carwings_proto/utils.py:122
+#: tculink/carwings_proto/utils.py:123
 msgid "twenty-fourth"
 msgstr "двадцать четвёртый"
 
-#: tculink/carwings_proto/utils.py:122
+#: tculink/carwings_proto/utils.py:123
 msgid "twenty-fifth"
 msgstr "двадцать пятый"
 
-#: tculink/carwings_proto/utils.py:123
+#: tculink/carwings_proto/utils.py:124
 msgid "twenty-sixth"
 msgstr "двадцать шестой"
 
-#: tculink/carwings_proto/utils.py:123
+#: tculink/carwings_proto/utils.py:124
 msgid "twenty-seventh"
 msgstr "двадцать седьмой"
 
-#: tculink/carwings_proto/utils.py:123
+#: tculink/carwings_proto/utils.py:124
 msgid "twenty-eighth"
 msgstr "двадцать восьмой"
 
-#: tculink/carwings_proto/utils.py:123
+#: tculink/carwings_proto/utils.py:124
 msgid "twenty-ninth"
 msgstr "двадцать девятый"
 
-#: tculink/carwings_proto/utils.py:123
+#: tculink/carwings_proto/utils.py:124
 msgid "thirtieth"
 msgstr "тридцатый"
 
-#: tculink/carwings_proto/utils.py:124
+#: tculink/carwings_proto/utils.py:125
 msgid "thirty-first"
 msgstr "тридцать первый"
 
@@ -1057,7 +921,7 @@ msgid "POST-request will be sent to specified webhook URL when necessary."
 msgstr ""
 "POST-запрос будет отправлен на указанный URL-адрес вебхука при необходимости."
 
-#: ui/forms.py:17 ui/forms.py:28 ui/templates/ui/car_detail.html:388
+#: ui/forms.py:17 ui/forms.py:28 ui/templates/ui/car_detail.html:452
 msgid "Nickname"
 msgstr "Псевдоним"
 
@@ -1065,7 +929,7 @@ msgstr "Псевдоним"
 msgid "Disable TCU authentication"
 msgstr "Отключить аутентификацию TCU"
 
-#: ui/forms.py:19 ui/templates/ui/car_detail.html:421
+#: ui/forms.py:19 ui/templates/ui/car_detail.html:485
 msgid "Show calculated battery percentage"
 msgstr "Показать расчётный процент заряда батареи"
 
@@ -1081,7 +945,7 @@ msgstr "Уведомления"
 msgid "Imperial Units"
 msgstr "Имперские единицы измерения"
 
-#: ui/forms.py:48 ui/templates/ui/car_detail.html:242
+#: ui/forms.py:48 ui/templates/ui/car_detail.html:241
 #: ui/templates/ui/landing.html:19 ui/templates/ui/signin.html:30
 msgid "Password"
 msgstr "Пароль"
@@ -1104,36 +968,37 @@ msgstr ""
 "Этот пароль используется для входа в вашу учётную запись в навигационной "
 "системе автомобиля"
 
-#: ui/templates/ui/account.html:16 ui/templates/ui/car_detail.html:73
+#: ui/templates/ui/account.html:16 ui/templates/ui/car_detail.html:71
 #: ui/templates/ui/car_list.html:19
 #: ui/templates/ui/change_carwings_password.html:18
 #: ui/templates/ui/change_password.html:18
 #: ui/templates/ui/probeviewer/main.html:49
-#: ui/templates/ui/probeviewer/trip.html:95
+#: ui/templates/ui/probeviewer/trip.html:100
 #: ui/templates/ui/reset_password_confirm.html:35
 #: ui/templates/ui/setup/step2.html:14 ui/templates/ui/setup/step3.html:14
 #: ui/templates/ui/setup/step4.html:14
 msgid "Notice"
 msgstr "Уведомление"
 
-#: ui/templates/ui/account.html:17 ui/templates/ui/car_detail.html:74
+#: ui/templates/ui/account.html:17 ui/templates/ui/car_detail.html:72
 #: ui/templates/ui/car_list.html:20
 #: ui/templates/ui/change_carwings_password.html:19
 #: ui/templates/ui/change_password.html:19
 #: ui/templates/ui/probeviewer/main.html:50
-#: ui/templates/ui/probeviewer/trip.html:96
+#: ui/templates/ui/probeviewer/trip.html:101
 #: ui/templates/ui/reset_password_confirm.html:36
 #: ui/templates/ui/setup/step2.html:15 ui/templates/ui/setup/step3.html:15
 #: ui/templates/ui/setup/step4.html:15
 msgid "Warning"
 msgstr "Предупреждение"
 
-#: ui/templates/ui/account.html:22 ui/templates/ui/car_detail.html:79
-#: ui/templates/ui/car_detail.html:492 ui/templates/ui/car_list.html:25
+#: ui/templates/ui/account.html:22 ui/templates/ui/car_detail.html:77
+#: ui/templates/ui/car_detail.html:556 ui/templates/ui/car_detail.html:575
+#: ui/templates/ui/car_detail.html:609 ui/templates/ui/car_list.html:25
 #: ui/templates/ui/change_carwings_password.html:24
 #: ui/templates/ui/change_password.html:24
 #: ui/templates/ui/probeviewer/main.html:55
-#: ui/templates/ui/probeviewer/trip.html:101
+#: ui/templates/ui/probeviewer/trip.html:106
 #: ui/templates/ui/reset_password_confirm.html:20
 #: ui/templates/ui/reset_password_confirm.html:41
 #: ui/templates/ui/setup/step2.html:20 ui/templates/ui/setup/step3.html:20
@@ -1157,8 +1022,9 @@ msgstr "Документация API"
 msgid "Reset API-key"
 msgstr "Сбросить ключ API"
 
-#: ui/templates/ui/account.html:48 ui/templates/ui/car_detail.html:350
-#: ui/templates/ui/car_detail.html:475 ui/templates/ui/setup/step2.html:50
+#: ui/templates/ui/account.html:48 ui/templates/ui/car_detail.html:349
+#: ui/templates/ui/car_detail.html:419 ui/templates/ui/car_detail.html:539
+#: ui/templates/ui/car_detail.html:638 ui/templates/ui/setup/step2.html:50
 #: ui/templates/ui/setup/step3.html:36 ui/templates/ui/setup/step4.html:60
 msgid "Save"
 msgstr "Сохранить"
@@ -1209,329 +1075,364 @@ msgstr "Редактор VFlash"
 msgid "Back to cars"
 msgstr "Вернуться к списку автомобилей"
 
-#: ui/templates/ui/car_detail.html:61
+#: ui/templates/ui/car_detail.html:59
 msgid "Send command"
 msgstr "Отправить команду"
 
-#: ui/templates/ui/car_detail.html:96 ui/templates/ui/car_detail.html:118
+#: ui/templates/ui/car_detail.html:94 ui/templates/ui/car_detail.html:117
 msgid "Overview"
 msgstr "Обзор"
 
-#: ui/templates/ui/car_detail.html:97
+#: ui/templates/ui/car_detail.html:95
 msgid "Basic Info"
 msgstr "Основная информация"
 
-#: ui/templates/ui/car_detail.html:98
+#: ui/templates/ui/car_detail.html:96
 msgid "Vehicle journal"
 msgstr "Журнал автомобиля"
 
-#: ui/templates/ui/car_detail.html:98
+#: ui/templates/ui/car_detail.html:96
 msgid "New!"
 msgstr "Новое!"
 
-#: ui/templates/ui/car_detail.html:99
+#: ui/templates/ui/car_detail.html:97
 msgid "TCU Configuration"
 msgstr "Конфигурация TCU"
 
-#: ui/templates/ui/car_detail.html:100
+#: ui/templates/ui/car_detail.html:98
 msgid "EV Status"
 msgstr "Статус электромобиля"
 
-#: ui/templates/ui/car_detail.html:101
+#: ui/templates/ui/car_detail.html:99
 msgid "Location"
 msgstr "Местоположение"
 
-#: ui/templates/ui/car_detail.html:103
+#: ui/templates/ui/car_detail.html:100
+msgid "Route Planner"
+msgstr "Планировщик маршрутов"
+
+#: ui/templates/ui/car_detail.html:102
 msgid "Recent Alerts"
 msgstr "Последние уведомления"
 
-#: ui/templates/ui/car_detail.html:104 ui/templates/ui/car_detail.html:383
+#: ui/templates/ui/car_detail.html:103 ui/templates/ui/car_detail.html:447
 msgid "Settings"
 msgstr "Настройки"
 
-#: ui/templates/ui/car_detail.html:125 ui/templates/ui/car_detail.html:266
+#: ui/templates/ui/car_detail.html:124 ui/templates/ui/car_detail.html:265
 msgid "Range (AC On)"
 msgstr "Запас хода (с кондиционером)"
 
-#: ui/templates/ui/car_detail.html:130 ui/templates/ui/car_detail.html:267
+#: ui/templates/ui/car_detail.html:129 ui/templates/ui/car_detail.html:266
 msgid "Range (AC Off)"
 msgstr "Запас хода (без кондиционера)"
 
-#: ui/templates/ui/car_detail.html:136 ui/templates/ui/car_detail.html:139
-#: ui/templates/ui/car_detail.html:262 ui/templates/ui/car_detail.html:263
+#: ui/templates/ui/car_detail.html:135 ui/templates/ui/car_detail.html:138
+#: ui/templates/ui/car_detail.html:261 ui/templates/ui/car_detail.html:262
 msgid "State of Charge"
 msgstr "Уровень заряда"
 
-#: ui/templates/ui/car_detail.html:139 ui/templates/ui/car_detail.html:263
+#: ui/templates/ui/car_detail.html:138 ui/templates/ui/car_detail.html:262
 msgid "Nominal"
 msgstr "Номинальный"
 
-#: ui/templates/ui/car_detail.html:156
+#: ui/templates/ui/car_detail.html:155
 msgid "EMPTY"
 msgstr "ПУСТО"
 
-#: ui/templates/ui/car_detail.html:157
+#: ui/templates/ui/car_detail.html:156
 msgid "FULL"
 msgstr "ПОЛНЫЙ"
 
-#: ui/templates/ui/car_detail.html:162 ui/templates/ui/car_detail.html:257
-#: ui/templates/ui/car_detail.html:258 ui/templates/ui/car_detail.html:259
+#: ui/templates/ui/car_detail.html:161 ui/templates/ui/car_detail.html:256
+#: ui/templates/ui/car_detail.html:257 ui/templates/ui/car_detail.html:258
 msgid "Charge time"
 msgstr "Время зарядки"
 
-#: ui/templates/ui/car_detail.html:170
+#: ui/templates/ui/car_detail.html:169
 msgid "Charge Cable"
 msgstr "Зарядный кабель"
 
-#: ui/templates/ui/car_detail.html:174
+#: ui/templates/ui/car_detail.html:173
 msgid "Plugged In,Unplugged"
 msgstr "Подключён,Отключён"
 
-#: ui/templates/ui/car_detail.html:179
+#: ui/templates/ui/car_detail.html:178
 msgid "Car status"
 msgstr "Статус автомобиля"
 
-#: ui/templates/ui/car_detail.html:183 ui/templates/ui/car_detail.html:185
-#: ui/templates/ui/car_detail.html:878 ui/templates/ui/car_detail.html:880
-#: ui/templates/ui/car_detail.html:894
+#: ui/templates/ui/car_detail.html:182 ui/templates/ui/car_detail.html:184
+#: ui/templates/ui/car_detail.html:1056 ui/templates/ui/car_detail.html:1058
+#: ui/templates/ui/car_detail.html:1072
 msgid "On"
 msgstr "Включён"
 
-#: ui/templates/ui/car_detail.html:183 ui/templates/ui/car_detail.html:878
-#: ui/templates/ui/car_detail.html:937
+#: ui/templates/ui/car_detail.html:182 ui/templates/ui/car_detail.html:1056
+#: ui/templates/ui/car_detail.html:1115
 msgid "Parked"
 msgstr "На парковке"
 
-#: ui/templates/ui/car_detail.html:185 ui/templates/ui/car_detail.html:880
+#: ui/templates/ui/car_detail.html:184 ui/templates/ui/car_detail.html:1058
 msgid "Driving"
 msgstr "В движении"
 
-#: ui/templates/ui/car_detail.html:189 ui/templates/ui/car_detail.html:884
-#: ui/templates/ui/probeviewer/main.html:284
-#: ui/templates/ui/probeviewer/main.html:354
+#: ui/templates/ui/car_detail.html:188 ui/templates/ui/car_detail.html:1062
+#: ui/templates/ui/probeviewer/main.html:344
+#: ui/templates/ui/probeviewer/main.html:414
 msgid "Charging finished"
 msgstr "Зарядка завершена"
 
-#: ui/templates/ui/car_detail.html:191 ui/templates/ui/car_detail.html:269
-#: ui/templates/ui/car_detail.html:886
+#: ui/templates/ui/car_detail.html:190 ui/templates/ui/car_detail.html:268
+#: ui/templates/ui/car_detail.html:1064
 msgid "Charging"
 msgstr "Заряжается"
 
-#: ui/templates/ui/car_detail.html:193 ui/templates/ui/car_detail.html:888
-#: ui/templates/ui/car_detail.html:894
+#: ui/templates/ui/car_detail.html:192 ui/templates/ui/car_detail.html:1066
+#: ui/templates/ui/car_detail.html:1072
 msgid "Off"
 msgstr "Выключен"
 
-#: ui/templates/ui/car_detail.html:200
+#: ui/templates/ui/car_detail.html:199
 msgid "AC Status"
 msgstr "Статус кондиционера"
 
-#: ui/templates/ui/car_detail.html:202
+#: ui/templates/ui/car_detail.html:201
 msgid "On,Off"
 msgstr "Включён,Выключен"
 
-#: ui/templates/ui/car_detail.html:211 ui/templates/ui/car_detail.html:248
-#: ui/templates/ui/car_detail.html:275 ui/templates/ui/car_detail.html:297
-#: ui/templates/ui/probeviewer/main.html:103
-#: ui/templates/ui/probeviewer/main.html:128
+#: ui/templates/ui/car_detail.html:210 ui/templates/ui/car_detail.html:247
+#: ui/templates/ui/car_detail.html:274 ui/templates/ui/car_detail.html:296
+#: ui/templates/ui/probeviewer/main.html:104
+#: ui/templates/ui/probeviewer/main.html:129
 msgid "Last Updated"
 msgstr "Последнее обновление"
 
-#: ui/templates/ui/car_detail.html:219 ui/templates/ui/probeviewer/main.html:98
+#: ui/templates/ui/car_detail.html:218 ui/templates/ui/probeviewer/main.html:99
 msgid "Odometer"
 msgstr "Одометр"
 
-#: ui/templates/ui/car_detail.html:220
+#: ui/templates/ui/car_detail.html:219
 msgid "Navi version"
 msgstr "Версия навигационной системы"
 
-#: ui/templates/ui/car_detail.html:221
+#: ui/templates/ui/car_detail.html:220
 msgid "Map version"
 msgstr "Версия карт"
 
-#: ui/templates/ui/car_detail.html:222
+#: ui/templates/ui/car_detail.html:221
 msgid "TCU version (from navi)"
 msgstr "Версия TCU (из навигационной системы)"
 
-#: ui/templates/ui/car_detail.html:223
+#: ui/templates/ui/car_detail.html:222
 msgid "TCU version (from TCU)"
 msgstr "Версия TCU (из TCU)"
 
-#: ui/templates/ui/car_detail.html:224 ui/templates/ui/car_detail.html:225
-#: ui/templates/ui/car_detail.html:226 ui/templates/ui/car_detail.html:227
+#: ui/templates/ui/car_detail.html:223 ui/templates/ui/car_detail.html:224
+#: ui/templates/ui/car_detail.html:225 ui/templates/ui/car_detail.html:226
 msgid "Vehicle Code"
 msgstr "Код автомобиля"
 
-#: ui/templates/ui/car_detail.html:231
+#: ui/templates/ui/car_detail.html:230
 msgid "Version"
 msgstr "Версия"
 
-#: ui/templates/ui/car_detail.html:232
+#: ui/templates/ui/car_detail.html:231
 msgid "Last Connection"
 msgstr "Последнее соединение"
 
-#: ui/templates/ui/car_detail.html:239
+#: ui/templates/ui/car_detail.html:238
 msgid "PPP Dial Code"
 msgstr "Код набора PPP"
 
-#: ui/templates/ui/car_detail.html:241 ui/templates/ui/landing.html:15
+#: ui/templates/ui/car_detail.html:240 ui/templates/ui/landing.html:15
 #: ui/templates/ui/signin.html:26
 msgid "Username"
 msgstr "Имя пользователя"
 
-#: ui/templates/ui/car_detail.html:245
+#: ui/templates/ui/car_detail.html:244
 msgid "Server"
 msgstr "Сервер"
 
-#: ui/templates/ui/car_detail.html:246
+#: ui/templates/ui/car_detail.html:245
 msgid "Proxy"
 msgstr "Прокси"
 
-#: ui/templates/ui/car_detail.html:247
+#: ui/templates/ui/car_detail.html:246
 msgid "Connection Type"
 msgstr "Тип соединения"
 
-#: ui/templates/ui/car_detail.html:255
+#: ui/templates/ui/car_detail.html:254
 msgid "Car on"
 msgstr "Автомобиль включён"
 
-#: ui/templates/ui/car_detail.html:255 ui/templates/ui/car_detail.html:268
-#: ui/templates/ui/car_detail.html:269 ui/templates/ui/car_detail.html:270
-#: ui/templates/ui/car_detail.html:271 ui/templates/ui/car_detail.html:296
+#: ui/templates/ui/car_detail.html:254 ui/templates/ui/car_detail.html:267
+#: ui/templates/ui/car_detail.html:268 ui/templates/ui/car_detail.html:269
+#: ui/templates/ui/car_detail.html:270 ui/templates/ui/car_detail.html:295
 msgid "Yes,No"
 msgstr "Да,Нет"
 
-#: ui/templates/ui/car_detail.html:256
+#: ui/templates/ui/car_detail.html:255
 msgid "Gear"
 msgstr "Передача"
 
-#: ui/templates/ui/car_detail.html:260
+#: ui/templates/ui/car_detail.html:259
 msgid "Charge bars"
 msgstr "Полосы заряда"
 
-#: ui/templates/ui/car_detail.html:261
-#: ui/templates/ui/probeviewer/trip.html:188
+#: ui/templates/ui/car_detail.html:260
+#: ui/templates/ui/probeviewer/trip.html:190
 msgid "Capacity bars"
 msgstr "Полосы ёмкости"
 
-#: ui/templates/ui/car_detail.html:262
+#: ui/templates/ui/car_detail.html:261
 msgid "Display"
 msgstr "Дисплей"
 
-#: ui/templates/ui/car_detail.html:264
+#: ui/templates/ui/car_detail.html:263
 msgid "State of Health"
 msgstr "Состояние батареи (SOH)"
 
-#: ui/templates/ui/car_detail.html:265
+#: ui/templates/ui/car_detail.html:264
 msgid "Remaining kWh"
 msgstr "Оставшиеся кВт·ч"
 
-#: ui/templates/ui/car_detail.html:268
+#: ui/templates/ui/car_detail.html:267
 msgid "Plugged in"
 msgstr "Подключён к зарядке"
 
-#: ui/templates/ui/car_detail.html:270
+#: ui/templates/ui/car_detail.html:269
 msgid "Quick-charging"
 msgstr "Быстрая зарядка"
 
-#: ui/templates/ui/car_detail.html:271
+#: ui/templates/ui/car_detail.html:270
 msgid "Preconditioning (A/C)"
 msgstr "Предварительное кондиционирование"
 
-#: ui/templates/ui/car_detail.html:272
+#: ui/templates/ui/car_detail.html:271
 msgid "GIDs remaining"
 msgstr "Оставшиеся GID"
 
-#: ui/templates/ui/car_detail.html:273
+#: ui/templates/ui/car_detail.html:272
 msgid "Counter"
 msgstr "Счётчик"
 
-#: ui/templates/ui/car_detail.html:282
+#: ui/templates/ui/car_detail.html:281
 msgid "Send location to car"
 msgstr "Отправить местоположение в автомобиль"
 
-#: ui/templates/ui/car_detail.html:284 ui/templates/ui/car_detail.html:338
-#: ui/templates/ui/car_detail.html:347 ui/templates/ui/car_detail.html:1572
+#: ui/templates/ui/car_detail.html:283 ui/templates/ui/car_detail.html:337
+#: ui/templates/ui/car_detail.html:346 ui/templates/ui/car_detail.html:1750
 msgid "Search for locations or enter google/apple maps link"
 msgstr "Поиск местоположения или ввод ссылки на Google/Apple Maps"
 
-#: ui/templates/ui/car_detail.html:288 ui/templates/ui/car_detail.html:974
+#: ui/templates/ui/car_detail.html:287 ui/templates/ui/car_detail.html:1152
 msgid "Last shared location"
 msgstr "Последнее отправленное местоположение"
 
-#: ui/templates/ui/car_detail.html:290 ui/templates/ui/car_detail.html:976
+#: ui/templates/ui/car_detail.html:289 ui/templates/ui/car_detail.html:1154
 msgid "No past shared location"
 msgstr "Нет ранее отправленных местоположений"
 
-#: ui/templates/ui/car_detail.html:293
+#: ui/templates/ui/car_detail.html:292
 msgid "Send"
 msgstr "Отправить"
 
-#: ui/templates/ui/car_detail.html:296
+#: ui/templates/ui/car_detail.html:295
 msgid "At Home"
 msgstr "Дома"
 
-#: ui/templates/ui/car_detail.html:305
+#: ui/templates/ui/car_detail.html:304
 msgid "Route plans"
 msgstr "Планы маршрутов"
 
-#: ui/templates/ui/car_detail.html:305 ui/templates/ui/car_list.html:33
+#: ui/templates/ui/car_detail.html:304 ui/templates/ui/car_list.html:33
 msgid "Add"
 msgstr "Добавить"
 
-#: ui/templates/ui/car_detail.html:315 ui/templates/ui/car_detail.html:1294
+#: ui/templates/ui/car_detail.html:314 ui/templates/ui/car_detail.html:1472
 msgid "Edit"
 msgstr "Редактировать"
 
-#: ui/templates/ui/car_detail.html:321 ui/templates/ui/car_detail.html:1299
+#: ui/templates/ui/car_detail.html:320 ui/templates/ui/car_detail.html:1477
 msgid "Delete"
 msgstr "Удалить"
 
-#: ui/templates/ui/car_detail.html:327 ui/templates/ui/car_detail.html:1277
+#: ui/templates/ui/car_detail.html:326 ui/templates/ui/car_detail.html:1455
 msgid "No route plans added"
 msgstr "Планы маршрутов не добавлены"
 
-#: ui/templates/ui/car_detail.html:332
+#: ui/templates/ui/car_detail.html:331
 msgid "Add/Edit a route plan"
 msgstr "Добавить/редактировать план маршрута"
 
-#: ui/templates/ui/car_detail.html:334
+#: ui/templates/ui/car_detail.html:333
 msgid "Name of the plan"
 msgstr "Название плана"
 
-#: ui/templates/ui/car_detail.html:337 ui/templates/ui/car_detail.html:496
+#: ui/templates/ui/car_detail.html:336 ui/templates/ui/car_detail.html:560
 msgid "Starting point"
 msgstr "Начальная точка"
 
-#: ui/templates/ui/car_detail.html:344
+#: ui/templates/ui/car_detail.html:343
 msgid "Add waypoint"
 msgstr "Добавить промежуточную точку"
 
-#: ui/templates/ui/car_detail.html:346 ui/templates/ui/car_detail.html:497
+#: ui/templates/ui/car_detail.html:345 ui/templates/ui/car_detail.html:561
 msgid "Destination point"
 msgstr "Пункт назначения"
 
-#: ui/templates/ui/car_detail.html:351
+#: ui/templates/ui/car_detail.html:350
 msgid "Cancel"
 msgstr "Отменить"
 
-#: ui/templates/ui/car_detail.html:364
+#: ui/templates/ui/car_detail.html:360
+msgid "Favorite channels"
+msgstr "Избранное"
+
+#: ui/templates/ui/car_detail.html:369 ui/templates/ui/car_detail.html:370
+#: ui/templates/ui/car_detail.html:371 ui/templates/ui/car_detail.html:372
+#: ui/templates/ui/car_detail.html:373 ui/templates/ui/car_detail.html:374
+#: ui/templates/ui/car_detail.html:375 ui/templates/ui/car_detail.html:378
+#: ui/templates/ui/car_detail.html:379 ui/templates/ui/car_detail.html:380
+#: ui/templates/ui/car_detail.html:381 ui/templates/ui/car_detail.html:382
+#: ui/templates/ui/car_detail.html:383 ui/templates/ui/car_detail.html:384
+#: ui/templates/ui/car_detail.html:385 ui/templates/ui/car_detail.html:1960
+msgid "No selected channel"
+msgstr "Канал не выбран"
+
+#: ui/templates/ui/car_detail.html:391
+msgid "Custom channels"
+msgstr "Мои каналы"
+
+#: ui/templates/ui/car_detail.html:399 ui/templates/ui/car_detail.html:400
+#: ui/templates/ui/car_detail.html:401 ui/templates/ui/car_detail.html:402
+#: ui/templates/ui/car_detail.html:403 ui/templates/ui/car_detail.html:404
+#: ui/templates/ui/car_detail.html:405 ui/templates/ui/car_detail.html:406
+#: ui/templates/ui/car_detail.html:409 ui/templates/ui/car_detail.html:410
+#: ui/templates/ui/car_detail.html:411 ui/templates/ui/car_detail.html:412
+#: ui/templates/ui/car_detail.html:413 ui/templates/ui/car_detail.html:414
+#: ui/templates/ui/car_detail.html:415 ui/templates/ui/car_detail.html:416
+#: ui/templates/ui/car_detail.html:2032
+msgid "No content"
+msgstr "Нет контента"
+
+#: ui/templates/ui/car_detail.html:428
 msgid "Type"
 msgstr "Тип"
 
-#: ui/templates/ui/car_detail.html:365
+#: ui/templates/ui/car_detail.html:429
 msgid "Timestamp"
 msgstr "Временная метка"
 
-#: ui/templates/ui/car_detail.html:366
+#: ui/templates/ui/car_detail.html:430
 msgid "Additional Data"
 msgstr "Дополнительные данные"
 
-#: ui/templates/ui/car_detail.html:398
+#: ui/templates/ui/car_detail.html:462
 msgid "Skip authentication from TCU"
 msgstr "Пропустить аутентификацию TCU"
 
-#: ui/templates/ui/car_detail.html:399
+#: ui/templates/ui/car_detail.html:463
 msgid ""
 "On AZE0 (2013) and newer LEAFs, username and password inserted to navi are "
 "not saved due to an error. In this case, check this box to skip the "
@@ -1541,15 +1442,15 @@ msgstr ""
 "навигационную систему, могут не сохраняться из-за ошибки. В этом случае "
 "установите этот флажок, чтобы пропустить аутентификацию."
 
-#: ui/templates/ui/car_detail.html:405
+#: ui/templates/ui/car_detail.html:469
 msgid "Car color"
 msgstr "Цвет автомобиля"
 
-#: ui/templates/ui/car_detail.html:414
+#: ui/templates/ui/car_detail.html:478
 msgid "Maximum GIDs value"
 msgstr "Максимальное значение GID"
 
-#: ui/templates/ui/car_detail.html:416
+#: ui/templates/ui/car_detail.html:480
 #, python-format
 msgid ""
 "OpenCARWINGS will try to auto-detect your battery size and fill this field. "
@@ -1560,7 +1461,7 @@ msgstr ""
 "это поле. Для автомобилей с заменённой батареей введите максимальное "
 "значение GID для новой батареи (SoH 100%%)."
 
-#: ui/templates/ui/car_detail.html:422
+#: ui/templates/ui/car_detail.html:486
 msgid ""
 "On AZE0 (>2013) generation cars, it is possible to see available battery "
 "capacity in percentage. For ZE0, such feature was never implemented. By "
@@ -1572,135 +1473,172 @@ msgstr ""
 "этой опции значение процента на дисплее будет рассчитано, но может быть "
 "неточным."
 
-#: ui/templates/ui/car_detail.html:428
+#: ui/templates/ui/car_detail.html:492
 msgid "Periodic data refresh interval"
 msgstr "Интервал периодического обновления данных"
 
-#: ui/templates/ui/car_detail.html:437
+#: ui/templates/ui/car_detail.html:501
 msgid "Periodic data refresh interval (while driving or charging)"
 msgstr ""
 "Интервал периодического обновления данных (во время движения или зарядки)"
 
-#: ui/templates/ui/car_detail.html:446 ui/templates/ui/setup/step4.html:29
+#: ui/templates/ui/car_detail.html:510 ui/templates/ui/setup/step4.html:29
 msgid "SMS provider"
 msgstr "Провайдер SMS"
 
-#: ui/templates/ui/car_detail.html:476
+#: ui/templates/ui/car_detail.html:540
 msgid "Remove car"
 msgstr "Удалить автомобиль"
 
-#: ui/templates/ui/car_detail.html:495
+#: ui/templates/ui/car_detail.html:559
 msgid "Set car location as"
 msgstr "Установить местоположение автомобиля как"
 
-#: ui/templates/ui/car_detail.html:512
+#: ui/templates/ui/car_detail.html:578
+msgid "Select data channel"
+msgstr "Выберите канал"
+
+#: ui/templates/ui/car_detail.html:613
+msgid "Edit data channel"
+msgstr "Редактировать канал"
+
+#: ui/templates/ui/car_detail.html:614
+msgid "Channel name"
+msgstr "Название канала"
+
+#: ui/templates/ui/car_detail.html:618
+msgid "Channel icon"
+msgstr "Значок канала"
+
+#: ui/templates/ui/car_detail.html:629
+msgid "Data URL"
+msgstr "URL-адрес"
+
+#: ui/templates/ui/car_detail.html:631
+msgid "Data URL format and documentation"
+msgstr "Формат URL-адреса данных и документация"
+
+#: ui/templates/ui/car_detail.html:635
+msgid "Allow sending current vehicle location"
+msgstr "Разрешить отправку текущего местоположения автомобиля"
+
+#: ui/templates/ui/car_detail.html:657
 msgid "SMS from your device"
 msgstr "SMS с вашего устройства"
 
-#: ui/templates/ui/car_detail.html:837 ui/templates/ui/car_detail.html:841
-#: ui/templates/ui/car_detail.html:842 ui/templates/ui/car_detail.html:1029
-#: ui/templates/ui/car_detail.html:1037 ui/templates/ui/car_detail.html:1038
+#: ui/templates/ui/car_detail.html:1004 ui/templates/ui/car_detail.html:1008
+#: ui/templates/ui/car_detail.html:1009 ui/templates/ui/car_detail.html:1207
+#: ui/templates/ui/car_detail.html:1215 ui/templates/ui/car_detail.html:1216
 msgid "Error sending command"
 msgstr "Ошибка при отправке команды"
 
-#: ui/templates/ui/car_detail.html:873
+#: ui/templates/ui/car_detail.html:1051
 msgid "Plugged In"
 msgstr "Подключён"
 
-#: ui/templates/ui/car_detail.html:873
+#: ui/templates/ui/car_detail.html:1051
 msgid "Unplugged"
 msgstr "Отключён"
 
-#: ui/templates/ui/car_detail.html:921 ui/templates/ui/car_detail.html:922
-#: ui/templates/ui/car_detail.html:923 ui/templates/ui/car_detail.html:932
-#: ui/templates/ui/car_detail.html:938 ui/templates/ui/car_detail.html:943
+#: ui/templates/ui/car_detail.html:1099 ui/templates/ui/car_detail.html:1100
+#: ui/templates/ui/car_detail.html:1101 ui/templates/ui/car_detail.html:1110
+#: ui/templates/ui/car_detail.html:1116 ui/templates/ui/car_detail.html:1121
 msgid "Yes"
 msgstr "Да"
 
-#: ui/templates/ui/car_detail.html:921 ui/templates/ui/car_detail.html:922
-#: ui/templates/ui/car_detail.html:923 ui/templates/ui/car_detail.html:932
-#: ui/templates/ui/car_detail.html:938 ui/templates/ui/car_detail.html:943
+#: ui/templates/ui/car_detail.html:1099 ui/templates/ui/car_detail.html:1100
+#: ui/templates/ui/car_detail.html:1101 ui/templates/ui/car_detail.html:1110
+#: ui/templates/ui/car_detail.html:1116 ui/templates/ui/car_detail.html:1121
 msgid "No"
 msgstr "Нет"
 
-#: ui/templates/ui/car_detail.html:1060 ui/templates/ui/car_detail.html:1068
-#: ui/templates/ui/car_detail.html:1069
+#: ui/templates/ui/car_detail.html:1238 ui/templates/ui/car_detail.html:1246
+#: ui/templates/ui/car_detail.html:1247
 msgid "Error sending location to car"
 msgstr "Ошибка при отправке местоположения в автомобиль"
 
-#: ui/templates/ui/car_detail.html:1062
+#: ui/templates/ui/car_detail.html:1240
 msgid "Location sent!"
 msgstr "Местоположение отправлено!"
 
-#: ui/templates/ui/car_detail.html:1118 ui/templates/ui/car_detail.html:1181
-#: ui/templates/ui/car_detail.html:1452 ui/templates/ui/car_detail.html:1457
-#: ui/templates/ui/car_detail.html:1514 ui/templates/ui/car_detail.html:1527
-#: ui/templates/ui/car_detail.html:1532 ui/templates/ui/car_detail.html:1611
+#: ui/templates/ui/car_detail.html:1296 ui/templates/ui/car_detail.html:1359
+#: ui/templates/ui/car_detail.html:1630 ui/templates/ui/car_detail.html:1635
+#: ui/templates/ui/car_detail.html:1692 ui/templates/ui/car_detail.html:1705
+#: ui/templates/ui/car_detail.html:1710 ui/templates/ui/car_detail.html:1789
 msgid "No address"
 msgstr "Адрес отсутствует"
 
-#: ui/templates/ui/car_detail.html:1128 ui/templates/ui/car_detail.html:1461
+#: ui/templates/ui/car_detail.html:1306 ui/templates/ui/car_detail.html:1639
 msgid "Could not get location from map link"
 msgstr "Не удалось получить местоположение по ссылке на карту"
 
-#: ui/templates/ui/car_detail.html:1134 ui/templates/ui/car_detail.html:1206
-#: ui/templates/ui/car_detail.html:1467 ui/templates/ui/car_detail.html:1548
+#: ui/templates/ui/car_detail.html:1312 ui/templates/ui/car_detail.html:1384
+#: ui/templates/ui/car_detail.html:1645 ui/templates/ui/car_detail.html:1726
 msgid "Error searching locations"
 msgstr "Ошибка при поиске местоположений"
 
-#: ui/templates/ui/car_detail.html:1200 ui/templates/ui/car_detail.html:1542
+#: ui/templates/ui/car_detail.html:1378 ui/templates/ui/car_detail.html:1720
 msgid "Search did not find any locations"
 msgstr "Поиск не нашёл местоположений"
 
-#: ui/templates/ui/car_detail.html:1225
+#: ui/templates/ui/car_detail.html:1403
 msgid "Connection established!"
 msgstr "Соединение установлено!"
 
-#: ui/templates/ui/car_detail.html:1230
+#: ui/templates/ui/car_detail.html:1408
 msgid "Reconnecting..."
 msgstr "Переподключение…"
 
-#: ui/templates/ui/car_detail.html:1556
+#: ui/templates/ui/car_detail.html:1734
 msgid "Cannot add a new waypoint"
 msgstr "Невозможно добавить новую промежуточную точку"
 
-#: ui/templates/ui/car_detail.html:1556
+#: ui/templates/ui/car_detail.html:1734
 msgid "Maximum number of waypoints reached"
 msgstr "Достигнуто максимальное количество промежуточных точек"
 
-#: ui/templates/ui/car_detail.html:1589
+#: ui/templates/ui/car_detail.html:1767
 msgid "Waypoint"
 msgstr "Промежуточная точка"
 
-#: ui/templates/ui/car_detail.html:1648 ui/templates/ui/car_detail.html:1657
-#: ui/templates/ui/car_detail.html:1658
+#: ui/templates/ui/car_detail.html:1819 ui/templates/ui/car_detail.html:1828
+#: ui/templates/ui/car_detail.html:1829
 msgid "Error saving the route plan"
 msgstr "Ошибка при сохранении плана маршрута"
 
-#: ui/templates/ui/car_detail.html:1650
+#: ui/templates/ui/car_detail.html:1821
 msgid "Route plan saved!"
 msgstr "План маршрута сохранён!"
 
-#: ui/templates/ui/car_detail.html:1686
+#: ui/templates/ui/car_detail.html:1857
 msgid "Cannot add new route plan"
 msgstr "Невозможно добавить новый план маршрута"
 
-#: ui/templates/ui/car_detail.html:1686
+#: ui/templates/ui/car_detail.html:1857
 msgid "You have too many route plans, please delete one and try again."
 msgstr "У вас слишком много планов маршрутов, удалите один и попробуйте снова."
 
-#: ui/templates/ui/car_detail.html:1755
+#: ui/templates/ui/car_detail.html:1925
 msgid "Are you sure you want to delete this route plan?"
 msgstr "Вы уверены, что хотите удалить этот план маршрута?"
 
-#: ui/templates/ui/car_detail.html:1769 ui/templates/ui/car_detail.html:1776
-#: ui/templates/ui/car_detail.html:1777
+#: ui/templates/ui/car_detail.html:1938 ui/templates/ui/car_detail.html:1945
+#: ui/templates/ui/car_detail.html:1946
 msgid "Error deleting the route plan"
 msgstr "Ошибка при удалении плана маршрута"
 
-#: ui/templates/ui/car_detail.html:1771
+#: ui/templates/ui/car_detail.html:1940
 msgid "Route plan removed!"
 msgstr "План маршрута удалён!"
+
+#: ui/templates/ui/car_detail.html:2094 ui/templates/ui/car_detail.html:2102
+#: ui/templates/ui/car_detail.html:2103
+msgid "Error saving CARWINGS settings"
+msgstr "Ошибка сохранения настроек CARWINGS"
+
+#: ui/templates/ui/car_detail.html:2096
+msgid "CARWINGS settings saved!"
+msgstr "Настройки CARWINGS сохранены!"
 
 #: ui/templates/ui/car_list.html:5 ui/templates/ui/car_list.html:33
 msgid "My cars"
@@ -1802,57 +1740,61 @@ msgid "Lifetime statistics"
 msgstr "Статистика за весь период"
 
 #: ui/templates/ui/probeviewer/main.html:75
-#: ui/templates/ui/probeviewer/main.html:213
+msgid "DOT-files"
+msgstr "DOT-tiedostot"
+
+#: ui/templates/ui/probeviewer/main.html:76
+#: ui/templates/ui/probeviewer/main.html:273
 msgid "Trips"
 msgstr "Поездки"
 
-#: ui/templates/ui/probeviewer/main.html:76
+#: ui/templates/ui/probeviewer/main.html:77
 msgid "Monthly statistics"
 msgstr "Месячная статистика"
 
-#: ui/templates/ui/probeviewer/main.html:77
+#: ui/templates/ui/probeviewer/main.html:78
 msgid "Charging history"
 msgstr "История зарядки"
 
-#: ui/templates/ui/probeviewer/main.html:78
+#: ui/templates/ui/probeviewer/main.html:79
 msgid "Charges"
 msgstr "Зарядки"
 
-#: ui/templates/ui/probeviewer/main.html:79
+#: ui/templates/ui/probeviewer/main.html:80
 msgid "Excessive idling history"
 msgstr "История чрезмерного холостого хода"
 
-#: ui/templates/ui/probeviewer/main.html:80
+#: ui/templates/ui/probeviewer/main.html:81
 msgid "Excessive A/C history"
 msgstr "История чрезмерного использования кондиционера"
 
-#: ui/templates/ui/probeviewer/main.html:81
+#: ui/templates/ui/probeviewer/main.html:82
 msgid "ABS history"
 msgstr "История ABS"
 
-#: ui/templates/ui/probeviewer/main.html:82
+#: ui/templates/ui/probeviewer/main.html:83
 msgid "DTC history"
 msgstr "История DTC"
 
-#: ui/templates/ui/probeviewer/main.html:83
+#: ui/templates/ui/probeviewer/main.html:84
 msgid "MSN history"
 msgstr "История MSN"
 
-#: ui/templates/ui/probeviewer/main.html:99
+#: ui/templates/ui/probeviewer/main.html:100
 msgid "Phone contacts in memory"
 msgstr "Контакты телефона в памяти"
 
-#: ui/templates/ui/probeviewer/main.html:100
+#: ui/templates/ui/probeviewer/main.html:101
 msgid "Locations saved in address book"
 msgstr "Местоположения, сохранённые в адресной книге"
 
-#: ui/templates/ui/probeviewer/main.html:107
-#: ui/templates/ui/probeviewer/main.html:132
+#: ui/templates/ui/probeviewer/main.html:108
+#: ui/templates/ui/probeviewer/main.html:133
 msgid "No vehicle data available"
 msgstr "Данные об автомобиле отсутствуют"
 
-#: ui/templates/ui/probeviewer/main.html:108
-#: ui/templates/ui/probeviewer/main.html:133
+#: ui/templates/ui/probeviewer/main.html:109
+#: ui/templates/ui/probeviewer/main.html:134
 msgid ""
 "In order to receive vehicle data, CARWINGS navigation unit must have correct "
 "connection settings."
@@ -1860,74 +1802,75 @@ msgstr ""
 "Для получения данных об автомобиле навигационная система CARWINGS должна "
 "иметь правильные настройки подключения."
 
-#: ui/templates/ui/probeviewer/main.html:109
-#: ui/templates/ui/probeviewer/main.html:134
-#: ui/templates/ui/probeviewer/main.html:192
-#: ui/templates/ui/probeviewer/main.html:266
-#: ui/templates/ui/probeviewer/main.html:336
-#: ui/templates/ui/probeviewer/main.html:401
-#: ui/templates/ui/probeviewer/main.html:465
-#: ui/templates/ui/probeviewer/main.html:534
-#: ui/templates/ui/probeviewer/main.html:602
-#: ui/templates/ui/probeviewer/main.html:670
-#: ui/templates/ui/probeviewer/main.html:738
-#: ui/templates/ui/probeviewer/main.html:806
+#: ui/templates/ui/probeviewer/main.html:110
+#: ui/templates/ui/probeviewer/main.html:135
+#: ui/templates/ui/probeviewer/main.html:194
+#: ui/templates/ui/probeviewer/main.html:252
+#: ui/templates/ui/probeviewer/main.html:326
+#: ui/templates/ui/probeviewer/main.html:396
+#: ui/templates/ui/probeviewer/main.html:461
+#: ui/templates/ui/probeviewer/main.html:525
+#: ui/templates/ui/probeviewer/main.html:594
+#: ui/templates/ui/probeviewer/main.html:662
+#: ui/templates/ui/probeviewer/main.html:730
+#: ui/templates/ui/probeviewer/main.html:798
+#: ui/templates/ui/probeviewer/main.html:866
 #: ui/templates/ui/setup/step5.html:10
 msgid "Learn more"
 msgstr "Узнать больше"
 
-#: ui/templates/ui/probeviewer/main.html:117
-#: ui/templates/ui/probeviewer/trip.html:128
+#: ui/templates/ui/probeviewer/main.html:118
+#: ui/templates/ui/probeviewer/trip.html:133
 msgid "A/C usage"
 msgstr "Использование кондиционера"
 
-#: ui/templates/ui/probeviewer/main.html:118
+#: ui/templates/ui/probeviewer/main.html:119
 msgid "Headlights usage"
 msgstr "Использование фар"
 
-#: ui/templates/ui/probeviewer/main.html:119
-#: ui/templates/ui/probeviewer/main.html:212
+#: ui/templates/ui/probeviewer/main.html:120
+#: ui/templates/ui/probeviewer/main.html:272
 #: ui/templates/ui/probeviewer/trip.html:31
 msgid "Average speed"
 msgstr "Средняя скорость"
 
-#: ui/templates/ui/probeviewer/main.html:120
+#: ui/templates/ui/probeviewer/main.html:121
 msgid "Energy regeneration"
 msgstr "Регенерация энергии"
 
-#: ui/templates/ui/probeviewer/main.html:121
-#: ui/templates/ui/probeviewer/main.html:125
+#: ui/templates/ui/probeviewer/main.html:122
+#: ui/templates/ui/probeviewer/main.html:126
 msgid "Energy consumption"
 msgstr "Потребление энергии"
 
-#: ui/templates/ui/probeviewer/main.html:122
+#: ui/templates/ui/probeviewer/main.html:123
 msgid "Runtime"
 msgstr "Время работы"
 
-#: ui/templates/ui/probeviewer/main.html:123
+#: ui/templates/ui/probeviewer/main.html:124
 msgid "Lifetime data mileage"
 msgstr "Пробег за весь период"
 
-#: ui/templates/ui/probeviewer/main.html:190
-msgid "No trip data available"
-msgstr "Данные о поездках отсутствуют"
+#: ui/templates/ui/probeviewer/main.html:192
+msgid "No DOT data available"
+msgstr "DOT tiedot ei saatavilla"
 
-#: ui/templates/ui/probeviewer/main.html:191
-msgid "Trip information comes available on next startup after the trip."
+#: ui/templates/ui/probeviewer/main.html:193
+msgid "DOT data comes available on next startup after a trip."
 msgstr ""
-"Информация о поездке становится доступной при следующем запуске после "
-"поездки."
+"DOT tiedot tulevat saataville matkan jälkeisen käynnistyksen yhteydessä."
 
-#: ui/templates/ui/probeviewer/main.html:191
-#: ui/templates/ui/probeviewer/main.html:265
-#: ui/templates/ui/probeviewer/main.html:335
-#: ui/templates/ui/probeviewer/main.html:400
-#: ui/templates/ui/probeviewer/main.html:464
-#: ui/templates/ui/probeviewer/main.html:533
-#: ui/templates/ui/probeviewer/main.html:601
-#: ui/templates/ui/probeviewer/main.html:669
-#: ui/templates/ui/probeviewer/main.html:737
-#: ui/templates/ui/probeviewer/main.html:805
+#: ui/templates/ui/probeviewer/main.html:193
+#: ui/templates/ui/probeviewer/main.html:251
+#: ui/templates/ui/probeviewer/main.html:325
+#: ui/templates/ui/probeviewer/main.html:395
+#: ui/templates/ui/probeviewer/main.html:460
+#: ui/templates/ui/probeviewer/main.html:524
+#: ui/templates/ui/probeviewer/main.html:593
+#: ui/templates/ui/probeviewer/main.html:661
+#: ui/templates/ui/probeviewer/main.html:729
+#: ui/templates/ui/probeviewer/main.html:797
+#: ui/templates/ui/probeviewer/main.html:865
 msgid ""
 "In order to receive data, CARWINGS navigation unit must have correct "
 "connection settings."
@@ -1935,132 +1878,143 @@ msgstr ""
 "Для получения данных навигационная система CARWINGS должна иметь правильные "
 "настройки подключения."
 
-#: ui/templates/ui/probeviewer/main.html:210
+#: ui/templates/ui/probeviewer/main.html:250
+msgid "No trip data available"
+msgstr "Данные о поездках отсутствуют"
+
+#: ui/templates/ui/probeviewer/main.html:251
+msgid "Trip information comes available on next startup after the trip."
+msgstr ""
+"Информация о поездке становится доступной при следующем запуске после "
+"поездки."
+
+#: ui/templates/ui/probeviewer/main.html:270
 msgid "Driving distance"
 msgstr "Дистанция поездки"
 
-#: ui/templates/ui/probeviewer/main.html:211
+#: ui/templates/ui/probeviewer/main.html:271
 msgid "Driving time"
 msgstr "Время в пути"
 
-#: ui/templates/ui/probeviewer/main.html:214
-#: ui/templates/ui/probeviewer/trip.html:143
+#: ui/templates/ui/probeviewer/main.html:274
+#: ui/templates/ui/probeviewer/trip.html:148
 msgid "Regenerated energy"
 msgstr "Регенерированная энергия"
 
-#: ui/templates/ui/probeviewer/main.html:215
+#: ui/templates/ui/probeviewer/main.html:275
 msgid "Consumed energy"
 msgstr "Потреблённая энергия"
 
-#: ui/templates/ui/probeviewer/main.html:218
-#: ui/templates/ui/probeviewer/trip.html:76
+#: ui/templates/ui/probeviewer/main.html:278
+#: ui/templates/ui/probeviewer/trip.html:75
+#: ui/templates/ui/probeviewer/trip.html:81
 msgid "Average consumption"
 msgstr "Среднее потребление"
 
-#: ui/templates/ui/probeviewer/main.html:225
-#: ui/templates/ui/probeviewer/trip.html:134
+#: ui/templates/ui/probeviewer/main.html:285
+#: ui/templates/ui/probeviewer/trip.html:139
 msgid "Average acceleration"
 msgstr "Среднее ускорение"
 
-#: ui/templates/ui/probeviewer/main.html:264
+#: ui/templates/ui/probeviewer/main.html:324
 msgid "No monthly analytics available"
 msgstr "Месячная аналитика отсутствует"
 
-#: ui/templates/ui/probeviewer/main.html:265
+#: ui/templates/ui/probeviewer/main.html:325
 msgid "Monthly analytics information comes available at the end of the month."
 msgstr "Месячная аналитическая информация становится доступной в конце месяца."
 
-#: ui/templates/ui/probeviewer/main.html:287
+#: ui/templates/ui/probeviewer/main.html:347
 msgid "State at start"
 msgstr "Состояние на момент начала"
 
-#: ui/templates/ui/probeviewer/main.html:288
+#: ui/templates/ui/probeviewer/main.html:348
 msgid "State at end"
 msgstr "Состояние на момент окончания"
 
-#: ui/templates/ui/probeviewer/main.html:289
-#: ui/templates/ui/probeviewer/main.html:358
+#: ui/templates/ui/probeviewer/main.html:349
+#: ui/templates/ui/probeviewer/main.html:418
 msgid "Charging type"
 msgstr "Тип зарядки"
 
-#: ui/templates/ui/probeviewer/main.html:290
+#: ui/templates/ui/probeviewer/main.html:350
 msgid "Charged energy"
 msgstr "Заряженная энергия"
 
-#: ui/templates/ui/probeviewer/main.html:291
+#: ui/templates/ui/probeviewer/main.html:351
 msgid "Cell temp. (start)"
 msgstr "Температура ячейки (начало)"
 
-#: ui/templates/ui/probeviewer/main.html:291
-#: ui/templates/ui/probeviewer/main.html:292
-#: ui/templates/ui/probeviewer/main.html:293
+#: ui/templates/ui/probeviewer/main.html:351
+#: ui/templates/ui/probeviewer/main.html:352
+#: ui/templates/ui/probeviewer/main.html:353
 msgid "avg/max/min"
 msgstr "сред./макс./мин."
 
-#: ui/templates/ui/probeviewer/main.html:292
+#: ui/templates/ui/probeviewer/main.html:352
 msgid "Cell temp. (end)"
 msgstr "Температура ячейки (конец)"
 
-#: ui/templates/ui/probeviewer/main.html:293
+#: ui/templates/ui/probeviewer/main.html:353
 msgid "Cell volt. (start)"
 msgstr "Напряжение ячейки (начало)"
 
-#: ui/templates/ui/probeviewer/main.html:294
+#: ui/templates/ui/probeviewer/main.html:354
 msgid "Charges while ign. off"
 msgstr "Зарядки при выключенном зажигании"
 
-#: ui/templates/ui/probeviewer/main.html:334
+#: ui/templates/ui/probeviewer/main.html:394
 msgid "No charging history available"
 msgstr "История зарядки отсутствует"
 
-#: ui/templates/ui/probeviewer/main.html:335
+#: ui/templates/ui/probeviewer/main.html:395
 msgid ""
 "Charging history may become available on next startup after the charging."
 msgstr ""
 "История зарядки может стать доступной при следующем запуске после зарядки."
 
-#: ui/templates/ui/probeviewer/main.html:357
+#: ui/templates/ui/probeviewer/main.html:417
 msgid "Charge count"
 msgstr "Количество зарядок"
 
-#: ui/templates/ui/probeviewer/main.html:359
+#: ui/templates/ui/probeviewer/main.html:419
 msgid "Charge position"
 msgstr "Место зарядки"
 
-#: ui/templates/ui/probeviewer/main.html:399
+#: ui/templates/ui/probeviewer/main.html:459
 msgid "No charge data available"
 msgstr "Данные о зарядке отсутствуют"
 
-#: ui/templates/ui/probeviewer/main.html:400
+#: ui/templates/ui/probeviewer/main.html:460
 msgid "Charging data may become available on next startup after the charging."
 msgstr ""
 "Данные о зарядке могут стать доступными при следующем запуске после зарядки."
 
-#: ui/templates/ui/probeviewer/main.html:419
+#: ui/templates/ui/probeviewer/main.html:479
 msgid "Operation time"
 msgstr "Время работы"
 
-#: ui/templates/ui/probeviewer/main.html:420
+#: ui/templates/ui/probeviewer/main.html:480
 msgid "Vehicle speed at start"
 msgstr "Скорость автомобиля в начале"
 
-#: ui/templates/ui/probeviewer/main.html:421
+#: ui/templates/ui/probeviewer/main.html:481
 msgid "Vehicle speed at end"
 msgstr "Скорость автомобиля в конце"
 
-#: ui/templates/ui/probeviewer/main.html:422
+#: ui/templates/ui/probeviewer/main.html:482
 msgid "Road type"
 msgstr "Тип дороги"
 
-#: ui/templates/ui/probeviewer/main.html:423
+#: ui/templates/ui/probeviewer/main.html:483
 msgid "Direction"
 msgstr "Направление"
 
-#: ui/templates/ui/probeviewer/main.html:463
+#: ui/templates/ui/probeviewer/main.html:523
 msgid "No ABS data available"
 msgstr "Данные ABS отсутствуют"
 
-#: ui/templates/ui/probeviewer/main.html:464
+#: ui/templates/ui/probeviewer/main.html:524
 msgid ""
 "ABS data may become available on next startup if your vehicle configuration "
 "allows it."
@@ -2068,29 +2022,29 @@ msgstr ""
 "Данные ABS могут стать доступными при следующем запуске, если это позволяет "
 "конфигурация вашего автомобиля."
 
-#: ui/templates/ui/probeviewer/main.html:477
-#: ui/templates/ui/probeviewer/main.html:545
-#: ui/templates/ui/probeviewer/main.html:613
-#: ui/templates/ui/probeviewer/main.html:681
-#: ui/templates/ui/probeviewer/main.html:749
+#: ui/templates/ui/probeviewer/main.html:537
+#: ui/templates/ui/probeviewer/main.html:605
+#: ui/templates/ui/probeviewer/main.html:673
+#: ui/templates/ui/probeviewer/main.html:741
+#: ui/templates/ui/probeviewer/main.html:809
 msgid "Date and time"
 msgstr "Дата и время"
 
-#: ui/templates/ui/probeviewer/main.html:480
-#: ui/templates/ui/probeviewer/main.html:616
+#: ui/templates/ui/probeviewer/main.html:540
+#: ui/templates/ui/probeviewer/main.html:676
 #: ui/templates/ui/probeviewer/trip.html:39
 msgid "Duration"
 msgstr "Продолжительность"
 
-#: ui/templates/ui/probeviewer/main.html:532
-#: ui/templates/ui/probeviewer/main.html:600
-#: ui/templates/ui/probeviewer/main.html:668
+#: ui/templates/ui/probeviewer/main.html:592
+#: ui/templates/ui/probeviewer/main.html:660
+#: ui/templates/ui/probeviewer/main.html:728
 msgid "No idling data available"
 msgstr "Данные о холостом ходе отсутствуют"
 
-#: ui/templates/ui/probeviewer/main.html:533
-#: ui/templates/ui/probeviewer/main.html:601
-#: ui/templates/ui/probeviewer/main.html:669
+#: ui/templates/ui/probeviewer/main.html:593
+#: ui/templates/ui/probeviewer/main.html:661
+#: ui/templates/ui/probeviewer/main.html:729
 msgid ""
 "Idling data may become available on next startup if your vehicle "
 "configuration allows it."
@@ -2098,20 +2052,20 @@ msgstr ""
 "Данные о холостом ходе могут стать доступными при следующем запуске, если "
 "это позволяет конфигурация вашего автомобиля."
 
-#: ui/templates/ui/probeviewer/main.html:548
+#: ui/templates/ui/probeviewer/main.html:608
 msgid "Consumption"
 msgstr "Потребление"
 
-#: ui/templates/ui/probeviewer/main.html:684
-#: ui/templates/ui/probeviewer/main.html:752
+#: ui/templates/ui/probeviewer/main.html:744
+#: ui/templates/ui/probeviewer/main.html:812
 msgid "Data"
 msgstr "Данные"
 
-#: ui/templates/ui/probeviewer/main.html:736
+#: ui/templates/ui/probeviewer/main.html:796
 msgid "No DTC data available"
 msgstr "Данные DTC отсутствуют"
 
-#: ui/templates/ui/probeviewer/main.html:737
+#: ui/templates/ui/probeviewer/main.html:797
 msgid ""
 "DTC data may become available on next startup if your vehicle has active DTC "
 "trouble code."
@@ -2119,11 +2073,11 @@ msgstr ""
 "Данные DTC могут стать доступными при следующем запуске, если в вашем "
 "автомобиле есть активный код неисправности DTC."
 
-#: ui/templates/ui/probeviewer/main.html:804
+#: ui/templates/ui/probeviewer/main.html:864
 msgid "No MSN data available"
 msgstr "Данные MSN отсутствуют"
 
-#: ui/templates/ui/probeviewer/main.html:805
+#: ui/templates/ui/probeviewer/main.html:865
 msgid "MSN data may become available on next startup."
 msgstr "Данные MSN могут стать доступными при следующем запуске."
 
@@ -2147,178 +2101,175 @@ msgstr "Экодеревья"
 msgid "Regenerated"
 msgstr "Регенерировано"
 
-#: ui/templates/ui/probeviewer/trip.html:112
+#: ui/templates/ui/probeviewer/trip.html:117
 msgid "Info"
 msgstr "Информация"
 
-#: ui/templates/ui/probeviewer/trip.html:113
+#: ui/templates/ui/probeviewer/trip.html:118
 msgid "Energy"
 msgstr "Энергия"
 
-#: ui/templates/ui/probeviewer/trip.html:114
+#: ui/templates/ui/probeviewer/trip.html:119
 msgid "HV Battery"
 msgstr "Высоковольтная батарея"
 
-#: ui/templates/ui/probeviewer/trip.html:121
+#: ui/templates/ui/probeviewer/trip.html:126
 msgid "Trip end date"
 msgstr "Дата окончания поездки"
 
-#: ui/templates/ui/probeviewer/trip.html:122
+#: ui/templates/ui/probeviewer/trip.html:127
 msgid "Outside temperature at start"
 msgstr "Наружная температура при запуске"
 
-#: ui/templates/ui/probeviewer/trip.html:123
+#: ui/templates/ui/probeviewer/trip.html:128
 msgid "Outside temperature at finish"
 msgstr "Наружная температура на финише"
 
-#: ui/templates/ui/probeviewer/trip.html:124
+#: ui/templates/ui/probeviewer/trip.html:129
 msgid "Max speed"
 msgstr "Максимальная скорость"
 
-#: ui/templates/ui/probeviewer/trip.html:125
+#: ui/templates/ui/probeviewer/trip.html:130
 msgid "Cabin preconditioning before trip"
 msgstr "Подготовка салона перед поездкой"
 
-#: ui/templates/ui/probeviewer/trip.html:126
+#: ui/templates/ui/probeviewer/trip.html:131
 msgid "Highway driving time"
 msgstr "Время движения по трассе"
 
-#: ui/templates/ui/probeviewer/trip.html:127
+#: ui/templates/ui/probeviewer/trip.html:132
 msgid "Optimal highway driving time"
 msgstr "Оптимальное время движения по трассе"
 
-#: ui/templates/ui/probeviewer/trip.html:129
+#: ui/templates/ui/probeviewer/trip.html:134
 msgid "Idling time"
 msgstr "Время холостого хода"
 
-#: ui/templates/ui/probeviewer/trip.html:130
+#: ui/templates/ui/probeviewer/trip.html:135
 msgid "Headlights usage time"
 msgstr "Время использования фар"
 
-#: ui/templates/ui/probeviewer/trip.html:131
+#: ui/templates/ui/probeviewer/trip.html:136
 msgid "Sudden accelerations"
 msgstr "Резкие ускорения"
 
-#: ui/templates/ui/probeviewer/trip.html:132
+#: ui/templates/ui/probeviewer/trip.html:137
 msgid "Sudden decelerations"
 msgstr "Резкие замедления"
 
-#: ui/templates/ui/probeviewer/trip.html:133
+#: ui/templates/ui/probeviewer/trip.html:138
 msgid "Odometer at start"
 msgstr "Показания одометра в начале"
 
-#: ui/templates/ui/probeviewer/trip.html:139
+#: ui/templates/ui/probeviewer/trip.html:144
 msgid "A/C consumption"
 msgstr "Потребление кондиционера"
 
-#: ui/templates/ui/probeviewer/trip.html:140
+#: ui/templates/ui/probeviewer/trip.html:145
 msgid "Auxiliary consumption"
 msgstr "Потребление дополнительного оборудования"
 
-#: ui/templates/ui/probeviewer/trip.html:141
+#: ui/templates/ui/probeviewer/trip.html:146
 msgid "Motor consumption"
 msgstr "Расход мотора"
 
-#: ui/templates/ui/probeviewer/trip.html:142
+#: ui/templates/ui/probeviewer/trip.html:147
 msgid "Idle consumption"
 msgstr "Потребление на холостом ходу"
 
-#: ui/templates/ui/probeviewer/trip.html:144
+#: ui/templates/ui/probeviewer/trip.html:149
 msgid "Sudden acceleration consumption"
 msgstr "Потребление при резком ускорении"
 
-#: ui/templates/ui/probeviewer/trip.html:145
+#: ui/templates/ui/probeviewer/trip.html:150
 msgid "Sudden acceleration time"
 msgstr "Время резкого ускорения"
 
-#: ui/templates/ui/probeviewer/trip.html:146
+#: ui/templates/ui/probeviewer/trip.html:151
 msgid "Non-eco deceleration consumption"
 msgstr "Потребление при неэкономичном замедлении"
 
-#: ui/templates/ui/probeviewer/trip.html:147
+#: ui/templates/ui/probeviewer/trip.html:152
 msgid "Non-eco deceleration time"
 msgstr "Время неэкономичного замедления"
 
-#: ui/templates/ui/probeviewer/trip.html:148
+#: ui/templates/ui/probeviewer/trip.html:153
 msgid "Sudden start consumption"
 msgstr "Потребление при резком старте"
 
-#: ui/templates/ui/probeviewer/trip.html:149
+#: ui/templates/ui/probeviewer/trip.html:154
 msgid "Sudden start time"
 msgstr "Время резкого старта"
 
-#: ui/templates/ui/probeviewer/trip.html:155
+#: ui/templates/ui/probeviewer/trip.html:160
 msgid "Trip start"
 msgstr "Начало поездки"
 
-#: ui/templates/ui/probeviewer/trip.html:157
-#: ui/templates/ui/probeviewer/trip.html:174
+#: ui/templates/ui/probeviewer/trip.html:162
+#: ui/templates/ui/probeviewer/trip.html:179
 msgid "Battery pack temperature"
 msgstr "Температура аккумуляторной батареи"
 
-#: ui/templates/ui/probeviewer/trip.html:159
-#: ui/templates/ui/probeviewer/trip.html:160
-#: ui/templates/ui/probeviewer/trip.html:176
-#: ui/templates/ui/probeviewer/trip.html:177
+#: ui/templates/ui/probeviewer/trip.html:164
+#: ui/templates/ui/probeviewer/trip.html:165
+#: ui/templates/ui/probeviewer/trip.html:181
+#: ui/templates/ui/probeviewer/trip.html:182
 msgid "Energy content"
 msgstr "Энергосодержание"
 
-#: ui/templates/ui/probeviewer/trip.html:161
-#: ui/templates/ui/probeviewer/trip.html:178
+#: ui/templates/ui/probeviewer/trip.html:166
+#: ui/templates/ui/probeviewer/trip.html:183
 msgid "Average cell temperature"
 msgstr "Средняя температура ячеек"
 
-#: ui/templates/ui/probeviewer/trip.html:162
-#: ui/templates/ui/probeviewer/trip.html:179
+#: ui/templates/ui/probeviewer/trip.html:167
+#: ui/templates/ui/probeviewer/trip.html:184
 msgid "Max cell temperature"
 msgstr "Максимальная температура ячеек"
 
-#: ui/templates/ui/probeviewer/trip.html:163
-#: ui/templates/ui/probeviewer/trip.html:180
+#: ui/templates/ui/probeviewer/trip.html:168
+#: ui/templates/ui/probeviewer/trip.html:185
 msgid "Min cell temperature"
 msgstr "Минимальная температура ячеек"
 
-#: ui/templates/ui/probeviewer/trip.html:164
-#: ui/templates/ui/probeviewer/trip.html:181
+#: ui/templates/ui/probeviewer/trip.html:169
 msgid "Average cell voltage"
 msgstr "Среднее напряжение ячеек"
 
-#: ui/templates/ui/probeviewer/trip.html:165
-#: ui/templates/ui/probeviewer/trip.html:182
+#: ui/templates/ui/probeviewer/trip.html:170
 msgid "Max cell voltage"
 msgstr "Максимальное напряжение ячеек"
 
-#: ui/templates/ui/probeviewer/trip.html:166
-#: ui/templates/ui/probeviewer/trip.html:183
+#: ui/templates/ui/probeviewer/trip.html:171
 msgid "Min cell voltage"
 msgstr "Минимальное напряжение ячеек"
 
-#: ui/templates/ui/probeviewer/trip.html:167
+#: ui/templates/ui/probeviewer/trip.html:172
 msgid "AC charges (total?)"
 msgstr "Количество медленных зарядок"
 
-#: ui/templates/ui/probeviewer/trip.html:168
+#: ui/templates/ui/probeviewer/trip.html:173
 msgid "QC charges (total?)"
 msgstr "Количество быстрых зарядок"
 
-#: ui/templates/ui/probeviewer/trip.html:172
+#: ui/templates/ui/probeviewer/trip.html:177
 msgid "Trip end"
 msgstr "Конец поездки"
 
-#: ui/templates/ui/probeviewer/trip.html:184
+#: ui/templates/ui/probeviewer/trip.html:186
 msgid "Accumulated current"
 msgstr "Накопленный ток"
 
-#: ui/templates/ui/probeviewer/trip.html:185
-#: ui/templates/ui/probeviewer/trip.html:189
+#: ui/templates/ui/probeviewer/trip.html:187
+#: ui/templates/ui/probeviewer/trip.html:191
 msgid "SOH"
 msgstr "Состояние батареи (SOH)"
 
-#: ui/templates/ui/probeviewer/trip.html:186
+#: ui/templates/ui/probeviewer/trip.html:188
 msgid "Pack resistance"
 msgstr "Сопротивление батареи"
 
-#: ui/templates/ui/probeviewer/trip.html:190
+#: ui/templates/ui/probeviewer/trip.html:192
 msgid "New battery degradation analysis program"
 msgstr "Новая программа анализа деградации батареи"
 
@@ -2544,91 +2495,173 @@ msgstr "Добавить новый профиль подключения"
 msgid "Export VFlash"
 msgstr "Экспортировать VFlash"
 
-#: ui/views.py:32
+#: ui/views.py:34
 msgid "TCU setup"
 msgstr "Настройка TCU"
 
-#: ui/views.py:33
+#: ui/views.py:35
 msgid "TCU identifiers"
 msgstr "Идентификаторы TCU"
 
-#: ui/views.py:34
+#: ui/views.py:36
 msgid "Basic information"
 msgstr "Основная информация"
 
-#: ui/views.py:35
+#: ui/views.py:37
 msgid "SMS configuration"
 msgstr "Конфигурация SMS"
 
-#: ui/views.py:36
+#: ui/views.py:38
 msgid "Car added"
 msgstr "Автомобиль добавлен"
 
-#: ui/views.py:92
+#: ui/views.py:94
 msgid "Account successfully updated!"
 msgstr "Аккаунт успешно обновлён!"
 
-#: ui/views.py:95
+#: ui/views.py:97
 msgid "Please fill the form correctly and try again."
 msgstr "Пожалуйста, заполните форму корректно и попробуйте снова."
 
-#: ui/views.py:462
+#: ui/views.py:464
 msgid "Successfully saved settings."
 msgstr "Настройки успешно сохранены."
 
-#: ui/views.py:464 ui/views.py:580 ui/views.py:601
+#: ui/views.py:466 ui/views.py:595 ui/views.py:616
 msgid "Please fill the form correctly"
 msgstr "Пожалуйста, заполните форму корректно"
 
-#: ui/views.py:467 ui/views.py:636
+#: ui/views.py:469 ui/views.py:651
 msgid "Please fill all necessary fields and try again."
 msgstr "Пожалуйста, заполните все обязательные поля и попробуйте снова."
 
-#: ui/views.py:471
+#: ui/views.py:473
 msgid "Waiting for first connection.."
 msgstr "Ждем первого подключения.."
 
-#: ui/views.py:498
+#: ui/views.py:513
 msgid "Sign-up is not enabled on this instance"
 msgstr "Регистрация не включена на этом экземпляре"
 
-#: ui/views.py:527
+#: ui/views.py:542
 msgid "Invalid username or password."
 msgstr "Неверное имя пользователя или пароль."
 
-#: ui/views.py:567
+#: ui/views.py:582
 msgid "Car is already added. Please remove and try again."
 msgstr "Автомобиль уже добавлен. Пожалуйста, удалите его и попробуйте снова."
 
-#: ui/views.py:617
+#: ui/views.py:632
 msgid "Please select a provider for SMS."
 msgstr "Пожалуйста, выберите провайдера SMS."
 
-msgid "Not authenticated"
-msgstr "Не аутентифицировано"
+msgid "OpenCARWINGS"
+msgstr "OpenCARWINGS"
 
-msgid "Please authenticate to Car Wings before saving a favorite channel"
-msgstr ""
-"Пожалуйста, пройдите аутентификацию в Car Wings перед сохранением любимого "
-"канала"
+msgid "Route Planning & Navigation"
+msgstr "Планирование маршрута и навигация"
 
-msgid "Channel not found"
-msgstr "Канал не найден"
+msgid "Online Services"
+msgstr "Онлайн-сервисы"
+
+msgid "Any new announcements or features can be shown here"
+msgstr "Здесь могут быть показаны любые новые объявления или функции."
+
+msgid "Energy Economy"
+msgstr "Энергоэффективность"
+
+msgid "Get latest energy economy information"
+msgstr "Получите актуальную информацию об энергоэффективности"
+
+msgid "Eco Trees"
+msgstr "Экодеревья"
+
+msgid "Get latest eco tree information"
+msgstr "Получите актуальную информацию об экодеревьях"
+
+msgid "Weather Forecast"
+msgstr "Прогноз погоды"
+
+msgid "Download Weather Forecast for your area"
+msgstr "Загрузите прогноз погоды для вашего региона"
+
+msgid "clear"
+msgstr "ясно"
+
+msgid "mainly clear"
+msgstr "в основном ясно"
+
+msgid "partly cloudy"
+msgstr "переменная облачность"
+
+msgid "cloudy"
+msgstr "облачно"
+
+msgid "foggy"
+msgstr "туманно"
+
+msgid "foggy with rime ice"
+msgstr "туман с изморозью"
+
+msgid "drizzling lightly"
+msgstr "лёгкая морось"
+
+msgid "drizzling moderately"
+msgstr "умеренная морось"
+
+msgid "heavy drizzling"
+msgstr "сильная морось"
+
+msgid "drizzling lightly freezed"
+msgstr "лёгкая замороженная морось"
+
+msgid "drizzling moderately freezed"
+msgstr "умеренная замороженная морось"
+
+msgid "raining slightly"
+msgstr "небольшой дождь"
+
+msgid "raining moderately"
+msgstr "умеренный дождь"
+
+msgid "raining heavily"
+msgstr "сильный дождь"
+
+msgid "freeze raining lightly"
+msgstr "лёгкий ледяной дождь"
+
+msgid "freeze raining moderately"
+msgstr "умеренный ледяной дождь"
+
+msgid "snowing slightly"
+msgstr "небольшой снег"
+
+msgid "moderate snowing"
+msgstr "умеренный снег"
+
+msgid "snowing heavily"
+msgstr "сильный снег"
+
+msgid "snowing grain"
+msgstr "снежные крупинки"
+
+msgid "slight rain shower"
+msgstr "небольшой ливень"
+
+msgid "moderate rain shower"
+msgstr "умеренный ливень"
+
+msgid "violent rain shower"
+msgstr "сильный ливень"
+
+msgid "slight snow shower"
+msgstr "небольшой снегопад"
+
+msgid "heavy snow shower"
+msgstr "сильный снегопад"
+
+msgid "thunderstorm"
+msgstr "гроза"
 
 msgid "This channel does not exist and cannot be added to favorites list"
 msgstr "Этот канал не существует и не может быть добавлен в список избранных."
-
-msgid "Favorite channel added"
-msgstr "Добавлен в список избранных"
-
-msgid "The channel has been added to favorites"
-msgstr "Канал добавлен в избранное"
-
-msgid "DOT-files"
-msgstr "DOT-tiedostot"
-
-msgid "No DOT data available"
-msgstr "DOT tiedot ei saatavilla"
-
-msgid "DOT data comes available on next startup after a trip."
-msgstr "DOT tiedot tulevat saataville matkan jälkeisen käynnistyksen yhteydessä."

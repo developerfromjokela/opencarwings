@@ -15,6 +15,8 @@ from db.models import Car, COMMAND_TYPES, AlertHistory, EVInfo, LocationInfo, TC
     PERIODIC_REFRESH_ACTIVE, CAR_COLOR, CRMLatest, CRMLifetime, CRMTripRecord, CRMMonthlyRecord, CRMChargeHistoryRecord, \
     CRMChargeRecord, CRMABSHistoryRecord, CRMExcessiveIdlingRecord, CRMExcessiveAirconRecord, CRMTroubleRecord, \
     CRMMSNRecord, DOTFile
+from tculink.carwings_proto.autodj import ICONS
+from tculink.carwings_proto.autodj.channels import get_info_channel_data
 from tculink.utils.password_hash import check_password_validity, password_hash
 from .forms import Step2Form, Step3Form, SettingsForm, ChangeCarwingsPasswordForm, AccountForm, SignUpForm
 from django.shortcuts import render, redirect
@@ -470,6 +472,17 @@ def car_detail(request, vin):
     if car.last_connection is None:
         messages.info(request, _("Waiting for first connection.."))
 
+    # get default channels
+    channels, folders = get_info_channel_data(None)
+
+    channel_map = []
+    for folder in folders:
+        new_folder = {'id': folder['id'], 'name': folder['name1'], 'icon': "chanicons/"+ICONS[0xFFFE][0]}
+        folder_chans = [{'id': x['id'], 'name': x['name1'], 'icon': "chanicons/"+ICONS[x['icon']][0]} for x in channels if x['folder_id'] == new_folder['id']]
+        if folder['id'] != 4:
+            new_folder["channels"] = folder_chans
+        channel_map.append(new_folder)
+
     alerts = AlertHistory.objects.filter(car=car).order_by('-timestamp')[:30]
     context = {
         'car': car,
@@ -481,6 +494,8 @@ def car_detail(request, vin):
         "periodic_refresh_running_choices": PERIODIC_REFRESH_ACTIVE,
         "car_color_choices": CAR_COLOR,
         'sms_message': django.conf.settings.ACTIVATION_SMS_MESSAGE,
+        'channels': channel_map,
+        'chan_icon_choices': list(ICONS.values()),
         'imperial': 'true' if request.user.units_imperial else 'false'
     }
     return render(request, 'ui/car_detail.html', context)
@@ -573,7 +588,7 @@ def setup_step2(request):
                         "tcu_id": re.sub('\D', '', form.cleaned_data['tcu_id']),
                         "unit_id": re.sub('\D', '', form.cleaned_data['unit_id']),
                         "sim_id": re.sub('\D', '', form.cleaned_data['sim_id']),
-                        "vin": form.cleaned_data['vin'].strip(),
+                        "vin": form.cleaned_data['vin'].strip().upper(),
                     }
                     return redirect('/setup/step3')
             else:

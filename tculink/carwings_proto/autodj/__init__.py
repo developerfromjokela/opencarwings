@@ -1,29 +1,29 @@
 from tculink.carwings_proto.utils import encode_utf8
 
 # CARWINGS built-in icons
-ICONS = (
-    (0x340, "cloud.png", "cloud"),
-    (1, "destination.png", "destination"),
-    (2, "waypoint1.png", "waypoint1"),
-    (3, "waypoint2.png", "waypoint2"),
-    (4, "waypoint3.png", "waypoint3"),
-    (5, "waypoint4.png", "waypoint4"),
-    (6, "waypoint5.png", "waypoint5"),
-    (0x100, "compasslink.png", "compasslink"),
-    (0x200, "telephone.png", "telephone"),
-    (0x310, "sun.png", "sun"),
-    (0x320, "moon.png", "moon"),
-    (0x330, "umbrella.png", "umbrella"),
-    (0x350, "snowman.png", "snowman"),
-    (0x400, "info.png", "info"),
-    (0x500, "news.png", "news"),
-    (0x600, "mail.png", "mail"),
-    (0x700, "city.png", "city"),
-    (0x800, "toll.png", "toll"),
-    (0x900, "park.png", "park"),
-    (0xB00, "explore.png", "explore"),
-    (0xFFFE, "folder.png", "folder"),
-)
+ICONS = {
+    0x340: ("cloud.png", "cloud"),
+    1: ("destination.png", "destination"),
+    2: ("waypoint1.png", "waypoint1"),
+    3: ("waypoint2.png", "waypoint2"),
+    4: ("waypoint3.png", "waypoint3"),
+    5: ("waypoint4.png", "waypoint4"),
+    6: ("waypoint5.png", "waypoint5"),
+    0x100: ("compasslink.png", "compasslink"),
+    0x200: ("telephone.png", "telephone"),
+    0x310: ("sun.png", "sun"),
+    0x320: ("moon.png", "moon"),
+    0x330: ("umbrella.png", "umbrella"),
+    0x350: ("snowman.png", "snowman"),
+    0x400: ("info.png", "info"),
+    0x500: ("news.png", "news"),
+    0x600: ("mail.png", "mail"),
+    0x700: ("city.png", "city"),
+    0x800: ("toll.png", "toll"),
+    0x900: ("park.png", "park"),
+    0xB00: ("explore.png", "explore"),
+    0xFFFE: ("folder.png", "folder"),
+}
 
 NOT_FOUND_AUTODJ_ITEM = [
     {

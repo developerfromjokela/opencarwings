@@ -10,7 +10,8 @@ def handle_directory_response(xml_data, returning_xml):
 
     activate(carwings_lang_to_code(xml_data['base_info'].get('navigation_settings', {}).get('language', "uke")))
 
-    channels, folders = get_info_channel_data(xml_data['base_info'])
+    car = get_cws_authenticated_car(xml_data)
+    channels, folders = get_info_channel_data(car)
 
     resp_file = construct_chnmst_payload(folders, channels)
 
@@ -25,7 +26,6 @@ def handle_directory_response(xml_data, returning_xml):
         }
     ]
 
-    car = get_cws_authenticated_car(xml_data)
     if car is not None:
         for pos, chan_id in car.favorite_channels.items():
             channel_info = next((x for x in channels if x['id'] == chan_id), None)

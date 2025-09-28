@@ -70,11 +70,11 @@
         <h2><span class="step-number">Step 1:</span> Obtain a SIM Card</h2>
         <p>You’ll need a SIM card to enable cellular connectivity for the TCU. Here’s how to proceed:</p>
         <ul>
-            <li><strong>Recommended Provider:</strong> Choose a SIM card from <a href="https://hologram.io/" target="_blank">Hologram</a>. Hologram offers free inbound SMS, which is critical for TCU functionality, as many telematics systems rely on SMS for initial configuration or diagnostics.</li>
-            <li><strong>SIM Type:</strong> Ensure it’s a standard Mini SIM (2FF) or compatible with an adapter, as some TCUs don’t support smaller Micro/Nano SIMs directly.</li>
-            <li><strong>Data Plan:</strong> Select a plan with at least 10-50 MB of monthly data (TCUs typically use minimal data for telemetry).</li>
-            <li><strong>Ordering:</strong> Visit Hologram’s website, sign up, and order a SIM. Activate it via their dashboard after receiving it.</li>
-            <li><strong>Alternative Providers:</strong> If Hologram isn’t available, use a provider with affordable data and SMS support (e.g., AT&T, T-Mobile prepaid SIMs), but you will need a way to send SMS from the internet. 46elks or something similar.</li>
+            <li><strong>Recommended Provider:</strong> <b>GL-1 variant</b> SIM card from provider <a href="https://hologram.io/" target="_blank">Hologram.io</a>. Resellers in EU: DigiKey, Mouser. (Sparkfun CEL-17117 is same as GL-1 SIM). Hologram offers free inbound SMS, which is critical for TCU functionality, which relies on SMS for initial configuration or diagnostics. Monthly cost of 1 dollars with data consumption billed separately. <br/><b style="color: red;">NOTE! Make sure you order GL-1 variant of Hologram SIM card, other variants don't work with this TCU!</b></li>
+            <li><strong>SIM Type:</strong> Ensure it’s a standard Mini SIM (2FF) or compatible with an adapter.</li>
+            <li><strong>Data Plan:</strong> Select a plan with at least 1-5 MB of monthly data without navigation unit, 5-20 MB of monthly data with navigation unit (TCUs typically use minimal data for telemetry, while navigation unit consumes a bit more for functions).</li>
+            <li><strong>Ordering:</strong> You can order sim on Hologram’s website, or use one of resellers. Resellers tend to be cheaper, although shipping costs are expensive. Reseller list will be updated once cheaper options are found. After receiving the SIM, activate it on holoram dashboard before use.</li>
+            <li><strong>Alternative Providers:</strong> If Hologram isn’t available, use a provider with affordable data and SMS support (e.g., AT&T, T-Mobile prepaid SIMs), but you will need a way to send SMS from the internet if you wish to use automations. 46elks, something similar or your own solution via webhook. If you intend to use it on the mobile app primarily, you can send SMS from OpenCARWINGS app automatically for each command.</li>
         </ul>
         <p><span class="warning">Note:</span> Test the SIM in a phone first to ensure it’s active and receives SMS/data.</p>
     </div>

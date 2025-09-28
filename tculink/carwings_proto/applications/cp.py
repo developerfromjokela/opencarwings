@@ -454,10 +454,6 @@ def handle_cp(xml_data, files):
                 chargers_info = chargers_info + chargers_resp
 
             logger.info("TOTAL CP INFO: %d", len(chargers_info))
-            # resp_file = bytes.fromhex('00 00 00 00 00 00 00 00 00 01 14 05 05 05 03 03 54 53 54 03 44 45 46 03 47 48 49 03 4A 4B 4C 03 4D 4E 4F 03 41 41 41 03 42 42 42 03 43 43 43 03 43 43 43 80 00 0A 29 08 F3 3B 2B 10 0F 08 44 45 53 43 44 45 53 43 59 E9 9D 12 03 45 45 45 00 00 00 01 80 00 0A 29 08 F3 3B 2B 10 0F 03 54 61 67 01 02 3F 3F 01 02 44 44 01 02 45 45 01 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00'.replace(' ', ''))
-            # normal:
-            # resp_file = bytes.fromhex('FF FF FF FF FF FF FF 00 00 01 14 05 05 05 03 17 4C 61 64 65 73 74 61 73 6A 6F 6E 20 66 6F 72 20 65 6C 62 69 6C 65 72 04 30 30 31 32 04 4F 73 6C 6F 04 4F 73 6C 6F 0A 4E 6F 72 64 73 74 72 61 6E 64 00 00 00 00 80 00 0A 29 08 F3 3B 2B 10 0F 0B 40 56 61 72 73 76 69 6E 67 65 6E 59 E9 9D 12 00 00 01 00 00 00 00 01 03 A2 03 00 00 02 00 00 16 33 20 33 3B 40 3B 2A 3B 24 31 32 3B 26 31 3B 21 3B 25 3B 3F 3B 23 00'.replace(' ', ''))
-            # resp_file = bytes.fromhex('FF FF FF FF FF FF FF 00 00 01 14 05 05 05 03 05 53 68 65 6C 6C 04 30 30 31 32 04 4F 73 6C 6F 04 4F 73 6C 6F 0A 4E 6F 72 64 73 74 72 61 6E 64 00 00 00 00 80 00 0A 29 08 F3 3B 2B 10 0F 0E 31 40 4E 79 71 75 69 73 74 76 65 69 65 6E 59 E9 9D 12 0E 2B 28 34 37 29 2D 32 32 32 38 32 32 30 39 00 01 00 00 00 00 01 01 03 03 00 00 02 00 00 16 31 20 33 3B 40 3B 2A 3B 24 31 32 3B 26 32 3B 21 3B 25 3B 3F 3B 23 00'.replace(' ', ''))
             for charger in chargers_info:
                 station_qc_type = 3
                 station_ac_type = 3
@@ -487,16 +483,16 @@ def handle_cp(xml_data, files):
                     'poi_id': charger['ID'],
                     'name': unidecode(charger['AddressInfo'].get('Title', 'Charging Station') or "Charging Station")[:30],
                     'code': '',
-                    'county': (charger["AddressInfo"].get("Town", '') or "")[:30],
-                    'region': (charger["AddressInfo"].get('StateOrProvince', '') or "")[:30],
-                    'city': (charger["AddressInfo"].get("Town", '') or "")[:30],
-                    'town': (charger["AddressInfo"].get("Postcode", '') or "")[:30],
+                    'county': unidecode(charger["AddressInfo"].get("Town", '') or "")[:30],
+                    'region': unidecode(charger["AddressInfo"].get('StateOrProvince', '') or "")[:30],
+                    'city': unidecode(charger["AddressInfo"].get("Town", '') or "")[:30],
+                    'town': unidecode(charger["AddressInfo"].get("Postcode", '') or "")[:30],
                     'meta1': '',
                     'meta2': '',
                     'meta3': '',
                     'lat': charger["AddressInfo"]["Latitude"],
                     'lon': charger["AddressInfo"]["Longitude"],
-                    'address': (charger["AddressInfo"].get("AddressLine1", "") or "")[:30],
+                    'address': unidecode(charger["AddressInfo"].get("AddressLine1", "") or "")[:30],
                     'mesh_id': 65535,
                     'phone': phone_num,
                     'sites': [],

@@ -18,6 +18,8 @@ ALERT_TYPES = (
     (6, _('Configuration read')),
     (7, _('A/C auto off')),
     (8, _("Quick charge stop")),
+    (9, _('Battery heater start')),
+    (10, _('Battery heater stop')),
     (96, _('Charge error')),
     (97, _('A/C error')),
     (98, _('Command timeout')),

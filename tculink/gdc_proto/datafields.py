@@ -24,6 +24,8 @@ def get_body_type(byte):
         return "charge_result"
     if byte == 0x2e:
         return "config_read"
+    if byte == 0x2f:
+        return "battery_heat"
     return None
 
 def check_packet_size_match(packet):

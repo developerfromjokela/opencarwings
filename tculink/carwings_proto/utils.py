@@ -44,6 +44,7 @@ def update_car_info(xml_data):
         if 'base_info' in xml_data:
             if 'vehicle' in xml_data['base_info']:
                 carrier = xml_data['base_info']['vehicle'].get('carrier')
+                status = xml_data['base_info']['vehicle'].get('status', None)
                 signal_level = xml_data['base_info']['vehicle'].get('rss', -1)
                 odometer = xml_data['base_info']['vehicle'].get('odometer', -1)
                 # odometer is not sent in every CarWings request
@@ -53,6 +54,12 @@ def update_car_info(xml_data):
                     signal_level = -1
                 car_obj.signal_level = signal_level
                 car_obj.carrier = carrier
+                if status is not None:
+                    car_obj.ev_info.car_running = True
+                    car_obj.ev_info.car_gear = 0
+                    if status == "run":
+                        car_obj.ev_info.car_gear = 1
+                    car_obj.ev_info.save()
                 if 'coordinates' in xml_data['base_info']['vehicle']:
                     car_obj.coordinates = xml_data['base_info']['vehicle']['coordinates']
                     try:

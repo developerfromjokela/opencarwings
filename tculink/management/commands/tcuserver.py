@@ -333,6 +333,20 @@ class Command(BaseCommand):
                                     _("Charging command has been sent successfully. If vehicle did not start charging, "
                                      "please check that the charging cable is connected and power is available."),
                                     _("Charge start command executed"))
+
+                            if body_type == "battery_heat":
+                                # TODO: capture resultstate to determine battery heater status
+                                logger.warning("Battery heat! Resultstate: %d, alertstate: %d", req_body["resultstate"], req_body["alertstate"])
+                                new_alert = AlertHistory()
+                                new_alert.type = 9
+                                new_alert.car = car
+                                new_alert.command_id = car.command_id
+                                await sync_to_async(new_alert.save)()
+                                await send_vehicle_alert_notification(
+                                    car,
+                                    _("Battery heater notification"),
+                                    _("Battery heater notification")
+                                )
                     elif parsed_data["message_type"][0] == 5:
                         if not authenticated:
                             break

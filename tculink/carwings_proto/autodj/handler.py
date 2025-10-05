@@ -51,7 +51,6 @@ def handle_directory_response(xml_data, returning_xml):
 def handle_channel_response(xml_data, channel_id, returning_xml):
     car = get_cws_authenticated_car(xml_data)
     channels, folders = get_info_channel_data(car)
-    # TODO if customisable channels add here
 
     channel = next((item for item in channels if item["id"] == channel_id), None)
     if channel is None or 'processor' not in channel:

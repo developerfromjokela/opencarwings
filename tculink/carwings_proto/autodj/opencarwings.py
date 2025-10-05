@@ -72,7 +72,7 @@ def get_infochannel(xml_data, returning_xml, channel_id, car):
     ]
 
     if car is None:
-        with open(os.path.join(resources_dir, "releasenotes.jpg"), "rb") as f:
+        with open(os.path.join(resources_dir, "tipstricks.jpg"), "rb") as f:
             tips_img = f.read()
         response_chdata.append(
             {

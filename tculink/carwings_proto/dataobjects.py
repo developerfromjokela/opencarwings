@@ -114,7 +114,8 @@ def construct_chnmst_payload(folders, channels):
         payload += encoded_name2
         payload += channel['folder_id'].to_bytes(2, byteorder='big')
         payload += channel['icon'].to_bytes(2, byteorder='big')
-        payload += (0x88 if channel['enabled'] else 00).to_bytes(1, byteorder='big')
+        # bit 7 = enabled, 6 = available while driving, bit 3 = enabled for auto-download
+        payload += (0xC8 if channel['enabled'] else 00).to_bytes(1, byteorder='big')
         payload += pad_bytes(channel['data1'])
         payload += pad_bytes(channel['data2'])
         payload += channel['flag2'].to_bytes(1, byteorder='big')

@@ -17,12 +17,12 @@ class ChannelMapPoint(serializers.Serializer):
 class ChannelData(serializers.Serializer):
     title1 = serializers.CharField(max_length=0x20)
     title2 = serializers.CharField(max_length=0x80)
-    title3 = serializers.CharField(max_length=0x40, required=False)
-    onscreen = serializers.CharField(max_length=0x400, required=False)
-    tts = serializers.CharField(max_length=0x400, required=False)
+    title3 = serializers.CharField(max_length=0x40, required=False, allow_blank=True)
+    onscreen = serializers.CharField(max_length=0x400, required=False, allow_blank=True)
+    tts = serializers.CharField(max_length=0x400, required=False, allow_blank=True)
     map_point = ChannelMapPoint(required=False)
-    phone_number = serializers.CharField(max_length=0x20, required=False)
-    img_base64 = serializers.CharField(max_length=25000, required=False)
+    phone_number = serializers.CharField(max_length=0x20, required=False, allow_blank=True)
+    img_base64 = serializers.CharField(max_length=25000, required=False, allow_blank=True)
     bell = serializers.BooleanField(default=True, required=False)
     save = serializers.BooleanField(default=True, required=False)
 

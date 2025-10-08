@@ -213,6 +213,9 @@ class EVInfo(models.Model):
     obc_6kw = models.IntegerField(default=0)
     param21 = models.IntegerField(default=0)
     force_soc_display = models.BooleanField(default=False)
+    obc_6kw_avail = models.BooleanField(default=False)
+    batt_heater_avail = models.BooleanField(default=False)
+    batt_heater_status = models.BooleanField(default=False)
     last_updated = models.DateTimeField(null=True, default=None, blank=True)
 
 class AlertHistory(models.Model):

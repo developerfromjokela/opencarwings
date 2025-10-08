@@ -188,6 +188,8 @@
                                     {% translate "Charging finished" %}
                                 {% elif car.ev_info.charging %}
                                     {% translate "Charging" %}
+                                {% elif car.ev_info.batt_heater_status %}
+                                    {% translate "Battery heater active" %}
                                 {% else %}
                                     {% translate "Off" %}
                                 {% endif %}
@@ -227,7 +229,6 @@
                     <div><dt class="text-gray-700 font-semibold">TCU ID:</dt><dd class="text-gray-600">{{ car.tcu_model|default:"N/A" }}</dd></div>
                     <div><dt class="text-gray-700 font-semibold">Navi ID:</dt><dd class="text-gray-600">{{ car.tcu_serial|default:"N/A" }}</dd></div>
                     <div><dt class="text-gray-700 font-semibold">SIM ID:</dt><dd class="text-gray-600">{{ car.iccid|default:"N/A" }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">TCU {% translate "Version" %}:</dt><dd class="text-gray-600">{{ car.tcu_ver|default:"N/A" }}</dd></div>
                     <div><dt class="text-gray-700 font-semibold">{% translate "Last Connection" %}:</dt><dd class="text-gray-600" id="last_connection">{{ car.last_connection|default:"Never"|date:"Y-m-d H:i" }}</dd></div>
                 </dl>
             </div>
@@ -255,6 +256,7 @@
                     <div><dt class="text-gray-700 font-semibold">{% translate "Gear" %}:</dt><dd class="text-gray-600" id="car_gear">{{ car.ev_info.car_gear }}</dd></div>
                     <div><dt class="text-gray-700 font-semibold">{% translate "Charge time" %} (120V/L1):</dt><dd class="text-gray-600" id="limit_chg_time">{% if car.ev_info.limit_chg_time == 2047 or car.ev_info.limit_chg_time < 1 %}--:--{% else %}{{ car.ev_info.limit_chg_time }}{% endif %}</dd></div>
                     <div><dt class="text-gray-700 font-semibold">{% translate "Charge time" %} (240V/L2):</dt><dd class="text-gray-600" id="full_chg_time">{% if car.ev_info.full_chg_time == 2047 or car.ev_info.full_chg_time < 1 %}--:--{% else %}{{ car.ev_info.full_chg_time }}{% endif %}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "6kW OBC exists" %}:</dt><dd class="text-gray-600" id="obc_6kw_avail">{{ car.ev_info.obc_6kw_avail|yesno:_("Yes,No") }}</dd></div>
                     <div><dt class="text-gray-700 font-semibold">{% translate "Charge time" %} (6.6KW):</dt><dd class="text-gray-600" id="6kw_time">{% if car.ev_info.obc_6kw == 2047 or car.ev_info.obc_6kw == 4095 or car.ev_info.obc_6kw < 1 %}--:--{% else %}{{ car.ev_info.obc_6kw }}{% endif %}</dd></div>
                     <div><dt class="text-gray-700 font-semibold">{% translate "Charge bars" %}:</dt><dd class="text-gray-600" id="charge_bars">{{ car.ev_info.charge_bars }} / 12</dd></div>
                     <div><dt class="text-gray-700 font-semibold">{% translate "Capacity bars" %}:</dt><dd class="text-gray-600" id="cap_bars">{{ car.ev_info.cap_bars }} %</dd></div>
@@ -269,8 +271,9 @@
                     <div><dt class="text-gray-700 font-semibold">{% translate "Quick-charging" %}:</dt><dd class="text-gray-600" id="quick_charging">{{ car.ev_info.quick_charging|yesno:_("Yes,No") }}</dd></div>
                     <div><dt class="text-gray-700 font-semibold">{% translate "Preconditioning (A/C)" %}:</dt><dd class="text-gray-600" id="ac_status">{{ car.ev_info.ac_status|yesno:_("Yes,No") }}</dd></div>
                     <div><dt class="text-gray-700 font-semibold">{% translate "GIDs remaining" %}:</dt><dd class="text-gray-600" id="gids">{{ car.ev_info.gids }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "Battery heater exists" %}:</dt><dd class="text-gray-600" id="batt_heater_avail">{{ car.ev_info.batt_heater_avail|yesno:_("Yes,No") }}</dd></div>
+                    <div><dt class="text-gray-700 font-semibold">{% translate "Battery heater active" %}:</dt><dd class="text-gray-600" id="batt_heater_status">{{ car.ev_info.batt_heater_status|yesno:_("Yes,No") }}</dd></div>
                     <div><dt class="text-gray-700 font-semibold">{% translate "Counter" %}:</dt><dd class="text-gray-600" id="counter">{{ car.ev_info.counter }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">Param21:</dt><dd class="text-gray-600" id="param21">{{ car.ev_info.param21 }}</dd></div>
                     <div><dt class="text-gray-700 font-semibold">{% translate "Last Updated" %}:</dt><dd class="text-gray-600" id="ev_last_updated">{{ car.ev_info.last_updated|default:"N/A"|date:"Y-m-d H:i" }}</dd></div>
                 </dl>
             </div>
@@ -1062,6 +1065,8 @@
                     carStatus.textContent = '{% translate "Charging finished" %}';
                 } else if (data.ev_info.charging) {
                     carStatus.textContent = '{% translate "Charging" %}';
+                } else if (data.ev_info.batt_heater_status) {
+                    carStatus.textContent = '{% translate "Battery heater active" %}';
                 } else {
                     carStatus.textContent = '{% translate "Off" %}';
                 }
@@ -1114,6 +1119,9 @@
             document.getElementById('cap_bars').textContent = data.ev_info.cap_bars + " / 12";
             document.getElementById('car_gear').textContent = data.ev_info.car_gear === 0 ? '{% translate "Parked" %}' : (data.ev_info.car_gear === 2 ? '{% translate "Reverse" %}' : '{% translate "Drive" %}');
             document.getElementById('ac_status').textContent = data.ev_info.ac_status ? '{% translate "Yes" %}' : '{% translate "No" %}';
+            document.getElementById('obc_6kw_avail').textContent = data.ev_info.obc_6kw_avail ? '{% translate "Yes" %}' : '{% translate "No" %}';
+            document.getElementById('batt_heater_avail').textContent = data.ev_info.batt_heater_avail ? '{% translate "Yes" %}' : '{% translate "No" %}';
+            document.getElementById('batt_heater_status').textContent = data.ev_info.batt_heater_status ? '{% translate "Yes" %}' : '{% translate "No" %}';
             document.getElementById('ev_last_updated').textContent = data.ev_info.last_updated ?
                 new Date(data.ev_info.last_updated).toLocaleString() : 'N/A';
             /*document.getElementById('lat').textContent = data.location.lat || 'N/A';

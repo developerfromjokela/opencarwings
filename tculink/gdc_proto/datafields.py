@@ -162,8 +162,9 @@ def parse_evinfo(byte_data, aze0=False):
         ((byte_data[15] & 0b00111111) << 1) | ((byte_data[16] & 0b10000000) >> 7)
     )
 
-    param21 = 0
-
+    obc_6kw_exist = False
+    batt_heat_exist = False
+    batt_heat_active = False
     counter = (
         ((byte_data[12] & 0b00000011) << 8) | (byte_data[13])
     )
@@ -173,7 +174,12 @@ def parse_evinfo(byte_data, aze0=False):
             (byte_data[20] << 3) | ((byte_data[21] & 0b11100000) >> 5)
         )
 
-        param21 = (byte_data[21] & 0b00011111)
+        obc_6kw_exist = bool((byte_data[21] & 0b00010000) >> 4)
+        batt_heat_exist = bool((byte_data[21] & 0b00000010) >> 1)
+        batt_heat_active = ((byte_data[21] & 0b00001100) >> 2) != 0
+
+
+
 
 
     range_acon = byte_data[2]
@@ -204,7 +210,9 @@ def parse_evinfo(byte_data, aze0=False):
         "gids": gids,
         "soh": soh,
         "counter": counter,
-        "param21": param21,
+        "obc_6kw_exist": obc_6kw_exist,
+        "batt_heat_exist": batt_heat_exist,
+        "batt_heat_active": batt_heat_active,
         "capacity_bars": capacity_bars,
         "full_chg": chg_time_1,
         "limit_chg": chg_time_2,

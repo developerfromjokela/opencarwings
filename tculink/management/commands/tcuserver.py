@@ -78,7 +78,9 @@ def set_evinfo(car, ev_info, tcu_info):
     car.ev_info.full_chg_time = ev_info.get("full_chg", 0)
     car.ev_info.limit_chg_time = ev_info.get("limit_chg", 0)
     car.ev_info.obc_6kw = ev_info.get("6kw_chg", 0)
-    car.ev_info.param21 = ev_info.get("param21", 0)
+    car.ev_info.obc_6kw_avail = ev_info.get("obc_6kw_exist", False)
+    car.ev_info.batt_heater_avail = ev_info.get("batt_heat_exist", False)
+    car.ev_info.batt_heater_status = ev_info.get("batt_heat_active", False)
     car.ev_info.wh_content = ev_info.get("gids", 0)*WH_PER_GID_GEN1
     car.ev_info.car_running = ev_info.get("ignition", False)
     if ev_info.get("parked", False):

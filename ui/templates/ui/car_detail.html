@@ -1106,7 +1106,6 @@
             document.getElementById('quick_charging').textContent = data.ev_info.quick_charging ? '{% translate "Yes" %}' : '{% translate "No" %}';
             document.getElementById('gids').textContent = data.ev_info.gids;
             document.getElementById('counter').textContent = data.ev_info.counter;
-            document.getElementById('param21').textContent = data.ev_info.param21;
             document.getElementById('soh').textContent = data.ev_info.soh+"%";
             document.getElementById('remaining_kwh').textContent = (data.ev_info.wh_content/1000).toFixed(2)+" kWh";
             document.getElementById('full_chg_time').textContent = (data.ev_info.full_chg_time === 2047 || data.ev_info.full_chg_time == 0) ? '--:--' : convertMinsToHrsMins(data.ev_info.full_chg_time);

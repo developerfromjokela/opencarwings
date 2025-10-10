@@ -302,11 +302,11 @@ def parse_crmfile(data):
             continue
         if crmblock["type"] == 0x82:
             location = parse_std_location(struct.unpack('>i',block_data[0:4])[0], struct.unpack('>i',block_data[4:9])[0])
-            draft_struct["start_location"] = {"lat": location[0], "lon": location[1], "raw": hex(block_data)}
+            draft_struct["start_location"] = {"lat": location[0], "lon": location[1], "raw": block_data.hex()}
             continue
         if crmblock["type"] == 0x83:
             location = parse_std_location(struct.unpack('>i',block_data[0:4])[0], struct.unpack('>i',block_data[4:9])[0])
-            draft_struct["stop_location"] = {"lat": location[0], "lon": location[1], "raw": hex(block_data)}
+            draft_struct["stop_location"] = {"lat": location[0], "lon": location[1], "raw": block_data.hex()}
             continue
         if crmblock["type"] == 0x85:
             draft_struct["distance"] = int.from_bytes(block_data, byteorder="big", signed=False)/1000.0

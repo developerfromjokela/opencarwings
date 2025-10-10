@@ -415,7 +415,7 @@ def parse_crmfile(data):
                     "latitude": location[0],
                     "longitude": location[1],
                 })
-            draft_struct["sudden_accelerations"] = sudden_accels
+            draft_struct["sudden_accelerations_list"] = sudden_accels
             continue
         if crmblock["type"] == 0xD5:
             non_eco_decelerations = []
@@ -814,7 +814,7 @@ def update_crm_to_db(car: Car, crm_pload):
             trip_db.idle_consumption = trip.get("idle_consumption", 0)
             trip_db.used_preheating = trip.get("used_preheating", False)
             trip_db.sudden_starts_list = trip.get("sudden_starts", [])
-            trip_db.sudden_accelerations_list = trip.get("sudden_accelerations", [])
+            trip_db.sudden_accelerations_list = trip.get("sudden_accelerations_list", [])
             trip_db.non_eco_decelerations_list = trip.get("non_eco_decelerations", [])
             trip_db.non_constant_speeds = trip.get("non_constant_speeds", [])
             if "batt_info" in trip:

@@ -1,33 +1,35 @@
 import re
-from http.cookiejar import DefaultCookiePolicy, CookiePolicy
+from http.cookiejar import CookiePolicy
 from urllib.parse import urlparse, parse_qs, unquote
 
 import django.conf
 import requests
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.views import PasswordResetView
+from django.contrib.messages.views import SuccessMessageMixin
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404
+from django.shortcuts import render, redirect
+from django.utils.translation import gettext_lazy as _
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+
 from db.models import Car, COMMAND_TYPES, AlertHistory, EVInfo, LocationInfo, TCUConfiguration, PERIODIC_REFRESH, \
     PERIODIC_REFRESH_ACTIVE, CAR_COLOR, CRMLatest, CRMLifetime, CRMTripRecord, CRMMonthlyRecord, CRMChargeHistoryRecord, \
     CRMChargeRecord, CRMABSHistoryRecord, CRMExcessiveIdlingRecord, CRMExcessiveAirconRecord, CRMTroubleRecord, \
-    CRMMSNRecord, DOTFile
+    CRMMSNRecord, DOTFile, ProbeConfig
 from tculink.carwings_proto.autodj import ICONS
 from tculink.carwings_proto.autodj.channels import get_info_channel_data
+from tculink.carwings_proto.probe_config import PROBE_CONFIGS, PROBE_CONFIG_INFO
 from tculink.utils.password_hash import check_password_validity, password_hash
-from .forms import Step2Form, Step3Form, SettingsForm, ChangeCarwingsPasswordForm, AccountForm, SignUpForm
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout
-from django.contrib import messages
-from django.contrib.auth.forms import PasswordChangeForm
-from django.contrib.auth.views import PasswordChangeView
-from django.contrib.auth.views import PasswordResetView
-from django.contrib.messages.views import SuccessMessageMixin
-from django.utils.translation import gettext_lazy as _
-
+from .forms import Step2Form, Step3Form, SettingsForm, ChangeCarwingsPasswordForm, AccountForm, SignUpForm, \
+    ProbeConfigForm
 from .serializers import MapLinkResolverResponseSerializer, MapLinkResolverInputSerializer
 
 SETUP_STEPS = [
@@ -693,6 +695,38 @@ def probeviewer_home(request, vin):
     car = get_object_or_404(Car, vin=vin, owner=request.user)
 
     try:
+        probe_config = ProbeConfig.objects.get(car=car)
+    except ProbeConfig.DoesNotExist:
+        probe_config = ProbeConfig()
+        probe_config.car = car
+        probe_config.save()
+
+    if request.method == 'POST':
+        form = ProbeConfigForm(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data)
+            if form.cleaned_data['request'] == 'update' and probe_config.pending_change == False and form.cleaned_data['new_config_id'] in PROBE_CONFIGS:
+                probe_config.new_config_id = form.cleaned_data['new_config_id']
+                probe_config.pending_change = True
+                probe_config.change_result = 0
+                probe_config.save()
+                messages.success(request, _('Update requested! Update will occur on next boot.'))
+            if form.cleaned_data['request'] == 'cancel' and probe_config.pending_change:
+                probe_config.change_result = -1
+                probe_config.pending_change = False
+                probe_config.new_config_id = -1
+                probe_config.save()
+                messages.success(request, _('Update request cancelled!'))
+        else:
+            messages.error(request, _("Please fill the form correctly and try again."))
+
+    avail_probe_configs = []
+
+    for conf_id in PROBE_CONFIGS.keys():
+        if conf_id in PROBE_CONFIG_INFO:
+            avail_probe_configs.append((conf_id, PROBE_CONFIG_INFO[conf_id]))
+
+    try:
         latest = CRMLatest.objects.get(car=car)
     except CRMLatest.DoesNotExist:
         latest = None
@@ -764,7 +798,7 @@ def probeviewer_home(request, vin):
 
 
     return render(request, 'ui/probeviewer/main.html',
-                  {'car': car, 'latest': latest, "lifetime": lifetime, "abs": abs, "dtc": trouble,
+                  {'car': car, 'probe_config': probe_config, 'probe_configs': avail_probe_configs, 'latest': latest, "lifetime": lifetime, "abs": abs, "dtc": trouble,
                    "msn": msn, "aircon": aircon, "idl": idling, "trips": trips_paginator, "chargehist": chargehist,
                    "charge": charge, "dotfiles": dotfiles, "dtc_act": trouble_page != 0, "msn_act": msn_page != 0, "aircon_act": aircon_page != 0,
                    "idl_act": idling_page != 0, "abs_act": abs_page != 0, "charge_act": charge_page != 0, "chargehist_act": chargehist_page != 0,

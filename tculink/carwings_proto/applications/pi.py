@@ -7,11 +7,13 @@ import random
 import uuid
 from django.core.files.base import ContentFile
 
-from db.models import DOTFile
+from db.models import DOTFile, ProbeConfig
 from tculink.carwings_proto.databuffer import construct_carwings_filepacket, compress_carwings, probe_xor_data
+from tculink.carwings_proto.probe_config import PROBE_CONFIGS
 from tculink.carwings_proto.probe_crm import parse_crmfile, update_crm_to_db
 from tculink.carwings_proto.probe_dot import parse_dotfile, prb_dotfiletypes
-from tculink.carwings_proto.utils import calculate_prb_data_checksum, get_cws_authenticated_car
+from tculink.carwings_proto.utils import calculate_prb_data_checksum, get_cws_authenticated_car, \
+    calculate_prb_update_checksum
 from tculink.carwings_proto.xml import carwings_create_xmlfile_content
 import logging
 logger = logging.getLogger("probe")
@@ -50,10 +52,71 @@ def handle_pi(xml_data, files):
                 # Send request to start sending over data
                 # 010f 01, 0x0583
                 outgoing_files.append(("PIRESP1.003", bytes.fromhex('00 00 00 00 00 00 00 00 00 01 0f 01')))
-                outgoing_files.append(("PIRESP2.003", bytes.fromhex('00 00 00 00 00 00 00 00 00 04 01 05 83')))
+
+                action_payload = bytes.fromhex('00 00 00 00 00 00 00 00 00 04 01 05 83')
+
+                car_ref = get_cws_authenticated_car(xml_data, check_user=False)
+                if car_ref is not None:
+                    # get or create config ref
+                    try:
+                        probe_config = ProbeConfig.objects.get(car=car_ref)
+                    except ProbeConfig.DoesNotExist:
+                        probe_config = ProbeConfig()
+                        probe_config.car = car_ref
+
+                    probe_config.config_id = int.from_bytes([file_content[6], file_content[7]], byteorder="big")
+
+                    if probe_config.pending_change:
+                        if probe_config.new_config_id in PROBE_CONFIGS:
+                            new_config_payload = PROBE_CONFIGS[probe_config.new_config_id]
+
+                            action_payload = bytes.fromhex('00 00 00 00 00 00 00 00 00 05 11')
+                            xorred_data = probe_xor_data(new_config_payload[6:], new_config_payload[2])
+
+                            encrypted_payload = new_config_payload[:6]
+                            encrypted_payload += xorred_data
+
+                            # make bytearray for setting checksum
+                            encrypted_payload = bytearray(encrypted_payload)
+                            new_checksum = calculate_prb_update_checksum(encrypted_payload, len(encrypted_payload))
+                            encrypted_payload[-1] = new_checksum
+
+                            action_payload += encrypted_payload
+                        else:
+                            probe_config.new_config_id = -1
+                        # Set default result as failure, let 0x584 change the result to success.
+                        # Invalid update payload does not return anything from HU, so assume it fails until we know the result.
+                        probe_config.pending_change = False
+                        probe_config.change_result = 2
+
+                    probe_config.save()
+
+
+                outgoing_files.append(("PIRESP2.003", action_payload))
 
                 filenames.append("PIRESP1.003")
                 filenames.append("PIRESP2.003")
+            elif command_id == 0x584:
+                logger.info("0x584 Config change result")
+                cfg_change_result = file_content[6]
+                logger.info("0x584 Result code: %d", cfg_change_result)
+                car_ref = get_cws_authenticated_car(xml_data, check_user=False)
+                if car_ref is not None:
+                    try:
+                        probe_config = ProbeConfig.objects.get(car=car_ref)
+                        if probe_config.new_config_id != -1:
+                            probe_config.config_id = probe_config.new_config_id
+                            probe_config.new_config_id = -1
+                            probe_config.pending_change = False
+                            probe_config.change_result = 1 if cfg_change_result == 0 else 3
+                            probe_config.save()
+                        else:
+                            logger.warning("No active probeconfig change")
+                    except ProbeConfig.DoesNotExist:
+                        logger.warning("Probe config does not exist for car!")
+                # 0x584 after config change to continue with PRB download
+                outgoing_files.append(("PIRESP1.003", bytes.fromhex('00 00 00 00 00 00 00 00 00 04 01 05 84')))
+                filenames.append("PIRESP1.003")
             elif command_id == 0x581:
                 logger.info("0x581 Incoming Data")
                 filename_length = int(file_content[6])

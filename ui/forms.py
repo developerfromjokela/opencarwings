@@ -41,6 +41,10 @@ class AccountForm(forms.Form):
     notifications = forms.BooleanField(label=_("Notifications"), widget=forms.CheckboxInput(), required=False)
     units_imperial = forms.BooleanField(label=_("Imperial Units"), widget=forms.CheckboxInput(), required=False)
 
+class ProbeConfigForm(forms.Form):
+    new_config_id = forms.IntegerField(label="New Config ID", required=False)
+    request = forms.CharField(widget=forms.HiddenInput(), required=True)
+
 class SignUpForm(UserCreationForm):
     email = forms.EmailField(widget=forms.EmailInput(), max_length=254)
     def __init__(self, *args, **kwargs):

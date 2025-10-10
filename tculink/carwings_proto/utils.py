@@ -96,6 +96,18 @@ def calculate_prb_data_checksum(data, length):
         sum = (sum + data[length - 1]) % 256
     return sum
 
+def calculate_prb_update_checksum(data: bytes, length: int) -> int:
+    if not data or length <= 0 or length > len(data):
+        return 0
+
+    checksum = 0
+    if length > 1:
+        # Sum the first length-1 bytes, modulo 256 to emulate char overflow
+        for i in range(length - 1):
+            checksum = (checksum + data[i]) & 0xFF
+
+    return checksum
+
 LANG_CODES = {
     "hun": "hu",
     "spa": "es",

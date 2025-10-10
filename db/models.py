@@ -88,6 +88,14 @@ CHARGE_TYPES = (
     (2, _("Quick charge")),
 )
 
+PROBE_CONFIG_RESULTS = (
+    (-1, _('No command')),
+    (0, _("Pending")),
+    (1, _("Success")),
+    (2, _("Failure")),
+    (3, _("Rejected")),
+)
+
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
@@ -267,6 +275,13 @@ class Car(models.Model):
     favorite_channels = models.JSONField(default=dict)
     custom_channels = models.JSONField(default=dict)
 
+# Probe config
+class ProbeConfig(models.Model):
+    car = models.ForeignKey(Car, on_delete=models.CASCADE)
+    config_id = models.IntegerField(default=-1)
+    pending_change = models.BooleanField(default=False)
+    change_result = models.IntegerField(default=-1, choices=PROBE_CONFIG_RESULTS)
+    new_config_id = models.IntegerField(default=-1)
 
 # Probe data
 

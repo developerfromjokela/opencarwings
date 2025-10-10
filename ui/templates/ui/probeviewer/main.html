@@ -6,6 +6,7 @@
 {% load l10n %}
 {% load mathfilters %}
 {% load units %}
+{% load probeconfig %}
 {% block title %} {% translate "Vehicle data viewer" %} - {{car.nickname}} {% endblock %}
 {% block content %}
     <script>
@@ -99,6 +100,39 @@
                     <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">parking_meter</i> {% translate "Odometer" %}</dt><dd class="text-gray-600 font-semibold">{% local_dist latest.odometer decimals=1 %}</dd></div>
                     <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">account_box</i> {% translate "Phone contacts in memory" %}</dt><dd class="text-gray-600 font-semibold">{{ latest.phone_contacts }}</dd></div>
                     <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">file_map</i> {% translate "Locations saved in address book" %}</dt><dd class="text-gray-600 font-semibold">{{ latest.navi_points_saved }}</dd></div>
+                </dl>
+                <hr class="my-2"/>
+                <span class="text-md">{% translate "Telemetry configuration" %}</span>
+                <dl class="grid grid-cols-1 gap-3 text-sm sm:text-base mt-4">
+                    <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">123</i> {% translate "Telemetry Configuration ID" %}</dt><dd class="text-gray-600 font-semibold">{{ probe_config.config_id|probe_config_name }}</dd></div>
+                    {% if probe_config.new_config_id != -1 %}
+                    <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">pending</i> {% translate "New Telemetry Configuration ID" %}</dt><dd class="text-gray-600 font-semibold">{{ probe_config.new_config_id|probe_config_name }}</dd></div>
+                    {% endif %}
+                    {% if probe_config.change_result != -1 %}
+                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">help</i> {% translate "Configuration update status" %}</dt><dd class="text-gray-600 font-semibold">{{ probe_config.get_change_result_display }}</dd></div>
+                    {% endif %}
+                    {% if probe_config.pending_change %}
+                        <span class="text-sm">{% translate "Please turn on the car for vehicle data auto-update or access a CARWINGS data channel to perform configuration update." %}</span>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="request" value="cancel"/>
+                            <button type="submit" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 me-2 mb-2 mt-2">{% translate "Cancel update" %}</button>
+                        </form>
+                    {% else %}
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="block mt-5">
+                                <label class="block text-gray-700 mt-2 ">{% translate "New Telemetry Configuration" %}</label>
+                                <select name="new_config_id" class="w-full periodic-select sm:w-auto border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    {% for value, label in probe_configs %}
+                                        <option value="{{ value }}">{{ label }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <input type="hidden" name="request" value="update"/>
+                            <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 me-2 mb-2 mt-2" type="submit">{% translate "Update" %}</button>
+                        </form>
+                    {% endif %}
                 </dl>
                 <div class="mt-4 text-sm text-gray-600">
                     {% translate "Last Updated" %}: <span id="overview-last-updated">{{ latest.last_updated|default:"N/A" }}</span>

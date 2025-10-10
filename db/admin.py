@@ -8,7 +8,7 @@ from .models import (
     AlertHistory,
     Car, User, SendToCarLocation, CRMLatest, CRMLifetime, CRMExcessiveAirconRecord, CRMExcessiveIdlingRecord,
     CRMMonthlyRecord, CRMMSNRecord, CRMChargeRecord, CRMChargeHistoryRecord, CRMABSHistoryRecord, CRMTroubleRecord,
-    CRMTripRecord, RoutePlan, DOTFile, CRMDistanceRecord
+    CRMTripRecord, RoutePlan, DOTFile, CRMDistanceRecord, ProbeConfig
 )
 
 
@@ -111,6 +111,10 @@ class CustomUserAdmin(UserAdmin):
     )
 
 # PRB
+@admin.register(ProbeConfig)
+class ProbeConfigAdmin(admin.ModelAdmin):
+    list_display = ('car', 'config_id')
+
 @admin.register(CRMLatest)
 class CRMLatestAdmin(admin.ModelAdmin):
     list_display = ('car', 'odometer', 'last_updated')

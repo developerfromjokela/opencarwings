@@ -115,6 +115,9 @@
         <!-- Tab Navigation -->
         <div class="tab-nav border-b border-gray-200">
             <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none text-blue-500 border-b-2 border-blue-500 text-sm sm:text-base" data-tab="info">{% translate "Info" %}</button>
+            {% if trip.start_latitude != 0 or trip.end_latitude != 0 %}
+            <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none text-sm sm:text-base text-gray-600" data-tab="map">{% translate "Map" %}</button>
+            {% endif %}
             <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none text-sm sm:text-base text-gray-600" data-tab="energy">{% translate "Energy" %}</button>
             <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none text-sm sm:text-base text-gray-600" data-tab="battery">{% translate "HV Battery" %}</button>
         </div>
@@ -139,6 +142,11 @@
                         <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">location_searching</i> {% translate "Average acceleration" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.average_acceleration|div:100|floatformat:2 }} G</dd></div>
                     </dl>
             </div>
+            {% if trip.start_latitude != 0 or trip.end_latitude != 0 %}
+                <div id="map" class="tab-content">
+                    <div id="mainMap" class="map mb-4" style="height: 100%"></div>
+                </div>
+            {% endif %}
             <div id="energy" class="tab-content">
                 <dl class="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-3 text-sm sm:text-base">
                     <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">mode_fan</i> {% translate "A/C consumption" %}</dt><dd class="text-gray-600 font-semibold">{{ trip.aircon_consumption|div:10000|floatformat:2 }} kWh</dd></div>
@@ -198,9 +206,45 @@
     </div>
 
     <!-- Scripts -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet-src.js"></script>
 
     <script>
+        const staticRes = "{% get_static_prefix %}";
+
+        {% if trip.start_latitude != 0 or trip.end_latitude != 0 %}
+
+        let mainMap;
+
+        function updateMap() {
+            mainMap.invalidateSize();
+            mainMap.eachLayer(layer => {mainMap.removeLayer(layer)});
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(mainMap);
+            let latlngs = []
+            let mapPoints = [
+                {icon: 'start.png', lat: {{trip.start_latitude|default:"null"|unlocalize}}, lon: {{trip.start_longitude|default:"null"|unlocalize}}},
+                {icon: 'destination.png', lat: {{trip.end_latitude|default:"null"|unlocalize}}, lon: {{trip.end_longitude|default:"null"|unlocalize}}},
+            ];
+            for (const mapPnt of mapPoints) {
+                const latLng = [mapPnt.lat, mapPnt.lon];
+                let markerIcn = L.icon({
+                    iconUrl: staticRes+'chanicons/'+mapPnt.icon,
+                    iconSize:     [29, 32],
+                    iconAnchor:   [5, 32],
+                    popupAnchor: [16, -30],
+                    tooltipAnchor: [16, -30],
+                });
+
+                let marker = L.marker(latLng, {icon: markerIcn})
+                marker.addTo(mainMap);
+                latlngs.push(latLng);
+            }
+            mainMap.fitBounds(latlngs, {padding: [12, 12]});
+            setTimeout(() => {mainMap.invalidateSize()}, 300);
+        }
+        {% endif %}
+
         document.addEventListener('DOMContentLoaded', () => {
             const tabButtons = document.querySelectorAll('.tab-btn');
             const tabContents = document.querySelectorAll('.tab-content');
@@ -216,6 +260,12 @@
                 const selectedButton = document.querySelector(`[data-tab="${tabId}"]`);
                 const selectedContent = document.getElementById(tabId);
 
+                {% if trip.start_latitude != 0 or trip.end_latitude != 0 %}
+                if (tabId === 'map') {
+                    updateMap();
+                }
+                {% endif %}
+
                 if (selectedButton && selectedContent) {
                     selectedButton.classList.remove('text-gray-600');
                     selectedButton.classList.add('text-blue-500', 'border-b-2', 'border-blue-500');
@@ -229,8 +279,10 @@
                     activateTab(button.getAttribute('data-tab'));
                 });
             });
-
-
+            {% if trip.start_latitude != 0 or trip.end_latitude != 0 %}
+            mainMap = L.map('mainMap', { zoomControl: true });
+            updateMap();
+            {% endif %}
         });
     </script>
 {% endblock %}

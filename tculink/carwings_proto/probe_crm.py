@@ -341,11 +341,9 @@ def parse_crmfile(data):
             draft_struct["average_speed"] = int.from_bytes(block_data, byteorder="big", signed=False)/10.0
             continue
         if crmblock["type"] == 0x90:
-            print(block_data.hex())
             draft_struct["outside_temp_start"] = int.from_bytes(block_data, byteorder="big")
             continue
         if crmblock["type"] == 0x91:
-            print(block_data.hex())
             draft_struct["outside_temp_stop"] = int.from_bytes(block_data, byteorder="big")
             continue
         if crmblock["type"] == 0x92:
@@ -492,7 +490,6 @@ def parse_crmfile(data):
             draft_struct["eco_trees"] = int.from_bytes(block_data, byteorder="big", signed=False)
             continue
         if crmblock["type"] == 0xEE:
-            print(block_data)
             draft_struct["batt_degradation_analysis_new"] = {
                 "capacity_bars_end": block_data[0]
             }
@@ -514,7 +511,7 @@ def parse_crmfile(data):
             for i in range(items_count+1):
                 location = parse_std_location(struct.unpack('>i',block_data[:4])[0], struct.unpack('>i',block_data[4:8])[0])
                 charger_loc = parse_std_location(struct.unpack('>i',block_data[22:26])[0],struct.unpack('>i',block_data[26:30])[0])
-                print(block_data[10:26])
+                logger.debug(block_data[10:26])
                 charges.append({
                     "lat": location[0],
                     "long": location[1],

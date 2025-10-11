@@ -208,6 +208,11 @@
     <!-- Scripts -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet-src.js"></script>
 
+    {{ trip.non_constant_speeds|json_script:"non_constant_spd" }}
+    {{ trip.sudden_accelerations_list|json_script:"sudden_accel" }}
+    {{ trip.sudden_starts_list|json_script:"sudden_start" }}
+    {{ trip.non_eco_decelerations_list|json_script:"non_eco" }}
+
     <script>
         const staticRes = "{% get_static_prefix %}";
 
@@ -222,7 +227,7 @@
                 attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(mainMap);
             let latlngs = []
-            let mapPoints = [
+            const mapPoints = [
                 {icon: 'start.png', lat: {{trip.start_latitude|default:"null"|unlocalize}}, lon: {{trip.start_longitude|default:"null"|unlocalize}}},
                 {icon: 'destination.png', lat: {{trip.end_latitude|default:"null"|unlocalize}}, lon: {{trip.end_longitude|default:"null"|unlocalize}}},
             ];
@@ -247,6 +252,43 @@
                     smoothFactor: 1
             }).addTo(mainMap);
             mainMap.fitBounds(latlngs, {padding: [12, 12]});
+
+            let non_eco = JSON.parse(document.getElementById("non_eco").textContent);
+            let sudden_start = JSON.parse(document.getElementById("sudden_start").textContent);
+            let sudden_accel = JSON.parse(document.getElementById("sudden_accel").textContent);
+            let non_constant_spd = JSON.parse(document.getElementById("non_constant_spd").textContent);
+            if (typeof non_eco === "string")
+                non_eco = JSON.parse(non_eco);
+            if (typeof non_constant_spd === "string")
+                non_constant_spd = JSON.parse(non_constant_spd);
+            if (typeof sudden_start === "string")
+                sudden_start = JSON.parse(sudden_start);
+            if (typeof sudden_accel === "string")
+                sudden_accel = JSON.parse(sudden_accel);
+
+            for (let itm of non_eco) {
+                let marker = L.marker([itm.latitude, itm.longitude])
+                marker.bindPopup(`Non-eco deceleration: ${itm.timestamp}, Wh: ${itm.power_consumption}`);
+                marker.addTo(mainMap);
+            }
+
+            for (let itm of sudden_start) {
+                let marker = L.marker([itm.latitude, itm.longitude])
+                marker.bindPopup(`Sudden start: ${itm.timestamp}, Wh: ${itm.power_consumption}`);
+                marker.addTo(mainMap);
+            }
+
+            for (let itm of sudden_accel) {
+                let marker = L.marker([itm.latitude, itm.longitude])
+                marker.bindPopup(`Sudden acceleration: ${itm.timestamp}, Wh: ${itm.power_consumption}`);
+                marker.addTo(mainMap);
+            }
+
+            for (let itm of non_constant_spd) {
+                let marker = L.marker([itm.latitude, itm.longitude])
+                marker.bindPopup(`Non-constant speed: ${itm.timestamp}, Wh: ${itm.power_consumption}`);
+                marker.addTo(mainMap);
+            }
         }
         {% endif %}
 

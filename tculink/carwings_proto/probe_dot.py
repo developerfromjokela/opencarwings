@@ -2,6 +2,8 @@ import datetime
 import logging
 from django.utils import timezone
 
+from tculink.carwings_proto.utils import parse_std_location
+
 logger = logging.getLogger("probe")
 
 
@@ -83,6 +85,10 @@ def parse_dotfile(dotfile_data):
                 struct[prb_type[0]] = apply_date_patch(datetime.datetime(2000 + data[0], data[1], data[2], data[3], data[4], data[5]))
             elif item_type == 16 or item_type == 17:
                 struct[prb_type[0]] = True if int.from_bytes(data, byteorder="big") == 0x31 else False
+            elif item_type == 12 or item_type == 10:
+                location = parse_std_location(struct.unpack('>i', data[0:4])[0],
+                                              struct.unpack('>i', data[4:9])[0])
+                struct[prb_type[0]] = '%f,%f' % (location[0], location[1])
             elif item_type == 18:
                 road_type = data[0] & 3
                 road_collection_status = ((data[0] >> 2) & 1)

@@ -240,8 +240,13 @@
                 marker.addTo(mainMap);
                 latlngs.push(latLng);
             }
+            L.polyline(latlngs, {
+                    color: 'red',
+                    weight: 3,
+                    opacity: 0.5,
+                    smoothFactor: 1
+            }).addTo(mainMap);
             mainMap.fitBounds(latlngs, {padding: [12, 12]});
-            setTimeout(() => {mainMap.invalidateSize()}, 300);
         }
         {% endif %}
 
@@ -262,7 +267,7 @@
 
                 {% if trip.start_latitude != 0 or trip.end_latitude != 0 %}
                 if (tabId === 'map') {
-                    updateMap();
+                    setTimeout(() => {updateMap()}, 300);
                 }
                 {% endif %}
 

@@ -508,24 +508,20 @@ def parse_crmfile(data):
         # charges
         if crmblock["type"] == 0xC5:
             items_count = block_data[0]
-            if "charges" not in draft_struct:
-                draft_struct["charges"] = []
             for i in range(items_count+1):
-                location = parse_std_location(struct.unpack('>i',block_data[:4])[0], struct.unpack('>i',block_data[4:8])[0])
-                charger_loc = parse_std_location(struct.unpack('>i',block_data[22:26])[0],struct.unpack('>i',block_data[26:30])[0])
-                logger.debug(block_data[10:26])
-                draft_struct["charges"].append({
+                location = parse_std_location(struct.unpack('>i',block_data[1:5])[0], struct.unpack('>i',block_data[5:9])[0])
+                parse_result[currentblock].append({
                     "lat": location[0],
                     "long": location[1],
-                    "charge_count": block_data[8],
-                    "charge_type": block_data[9],
-                    #"start_ts": (2000 + block_data[10], block_data[11], block_data[12], block_data[13],
-                    #                                  block_data[14], block_data[15]),
-                    #"end_ts": (2000 + block_data[16], block_data[17], block_data[18], block_data[19],
-                    #                                  block_data[20], block_data[21]),
-                    "charger_position_lat": charger_loc[0],
-                    "charger_position_long": charger_loc[1],
-                    "charger_position_flag": int.from_bytes(block_data[30:32], byteorder="big", signed=False)
+                    "charge_count": block_data[9],
+                    "charge_type": block_data[10],
+                    "start_ts": datetime.datetime(2000 + block_data[11], block_data[12], block_data[13], block_data[14],
+                                                      block_data[15], block_data[16]),
+                    "end_ts": datetime.datetime(2000 + block_data[17], block_data[18], block_data[19], block_data[20],
+                                                      block_data[21], block_data[22]),
+                    "other_ts": datetime.datetime(2000 + block_data[24], block_data[25], block_data[26], block_data[27],
+                                                block_data[28], block_data[29]),
+                    "charger_position_flag": block_data[23],
                 })
             continue
 
@@ -710,20 +706,18 @@ def update_crm_to_db(car: Car, crm_pload):
             msn_db.save()
 
     if "charge" in crm_pload:
-        for charge_row in crm_pload["charge"]:
-            if "charges" in charge_row:
-                for charge in charge_row["charges"]:
-                    charge_db = CRMChargeRecord()
-                    charge_db.car = car
-                    charge_db.latitude = charge.get("lat", 0)
-                    charge_db.longitude = charge.get("lon", 0)
-                    charge_db.charge_count = charge.get("charge_count", 0)
-                    charge_db.charge_type = charge.get("charge_type", 1)
-                    charge_db.start_time = apply_date_patch(charge.get("start_ts", datetime.datetime(1970, 1, 1)))
-                    charge_db.end_time = apply_date_patch(charge.get("end_ts", datetime.datetime(1970, 1, 1)))
-                    charge_db.charger_position_latitude = charge.get("charger_position_lat", 0)
-                    charge_db.charger_position_longitude = charge.get("charger_position_long", 0)
-                    charge_db.save()
+        for charge in crm_pload["charge"]:
+            charge_db = CRMChargeRecord()
+            charge_db.car = car
+            charge_db.latitude = charge.get("lat", 0)
+            charge_db.longitude = charge.get("lon", 0)
+            charge_db.charge_count = charge.get("charge_count", 0)
+            charge_db.charge_type = charge.get("charge_type", 1)
+            charge_db.start_time = apply_date_patch(charge.get("start_ts", datetime.datetime(1970, 1, 1)))
+            charge_db.end_time = apply_date_patch(charge.get("end_ts", datetime.datetime(1970, 1, 1)))
+            charge_db.charger_position_latitude = charge.get("charger_position_lat", 0)
+            charge_db.charger_position_longitude = charge.get("charger_position_long", 0)
+            charge_db.save()
 
     if "chargehistory" in crm_pload:
         for chargehist in crm_pload["chargehistory"]:
@@ -792,6 +786,8 @@ def update_crm_to_db(car: Car, crm_pload):
             trip_db.car = car
             trip_db.start_ts = apply_date_patch(trip.get("start", datetime.datetime(1970, 1, 1)))
             trip_db.end_ts = apply_date_patch(trip.get("stop", datetime.datetime(1970, 1, 1)))
+            if trip_db.start_ts.year == 1989 and trip_db.end_ts.year != 1989:
+                trip_db.start_ts = trip_db.end_ts - datetime.timedelta(seconds=trip.get("time", 0))
             if "start_location" in trip:
                 trip_db.start_latitude = trip["start_location"].get("lat", 0.0)
                 trip_db.start_longitude = trip["start_location"].get("lon", 0.0)

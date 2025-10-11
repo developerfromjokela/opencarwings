@@ -6,6 +6,7 @@ import logging
 logger = logging.getLogger("probe")
 from tculink.carwings_proto.utils import parse_std_location
 import struct
+import json
 import datetime
 from django.utils import timezone
 
@@ -826,9 +827,9 @@ def update_crm_to_db(car: Car, crm_pload):
             trip_db.idle_consumption = trip.get("idle_consumption", 0)
             trip_db.used_preheating = trip.get("used_preheating", False)
             trip_db.sudden_starts_list = trip.get("sudden_starts", [])
-            trip_db.sudden_accelerations_list = trip.get("sudden_accelerations_list", [])
-            trip_db.non_eco_decelerations_list = trip.get("non_eco_decelerations", [])
-            trip_db.non_constant_speeds = trip.get("non_constant_speeds", [])
+            trip_db.sudden_accelerations_list = json.dumps(trip.get("sudden_accelerations_list", []), default=str)
+            trip_db.non_eco_decelerations_list = json.dumps(trip.get("non_eco_decelerations", []), default=str)
+            trip_db.non_constant_speeds = json.dumps(trip.get("non_constant_speeds", []), default=str)
             if "batt_info" in trip:
                 trip_db.batt_temp_start = trip["batt_info"].get("temp_start", 0)
                 trip_db.batt_temp_stop = trip["batt_info"].get("temp_end", 0)

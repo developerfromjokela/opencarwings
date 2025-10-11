@@ -206,9 +206,17 @@ def parse_crmfile(data):
 
         # monthly
         if crmblock["type"] == 0xA0:
+            if block_data[1] < 1:
+                block_data[1] = 1
+            if block_data[2] < 1:
+                block_data[2] = 1
             draft_struct["start"] = datetime.datetime(2000 + block_data[0], block_data[1], block_data[2])
             continue
         if crmblock["type"] == 0xA1:
+            if block_data[1] < 1:
+                block_data[1] = 1
+            if block_data[2] < 1:
+                block_data[2] = 1
             draft_struct["end"] = datetime.datetime(2000 + block_data[0], block_data[1], block_data[2])
             continue
         if crmblock["type"] == 0xA3:
@@ -302,11 +310,11 @@ def parse_crmfile(data):
             continue
         if crmblock["type"] == 0x82:
             location = parse_std_location(struct.unpack('>i',block_data[0:4])[0], struct.unpack('>i',block_data[4:9])[0])
-            draft_struct["start_location"] = {"lat": location[0], "lon": location[1], "raw": block_data.hex()}
+            draft_struct["start_location"] = {"lat": location[0], "lon": location[1]}
             continue
         if crmblock["type"] == 0x83:
             location = parse_std_location(struct.unpack('>i',block_data[0:4])[0], struct.unpack('>i',block_data[4:9])[0])
-            draft_struct["stop_location"] = {"lat": location[0], "lon": location[1], "raw": block_data.hex()}
+            draft_struct["stop_location"] = {"lat": location[0], "lon": location[1]}
             continue
         if crmblock["type"] == 0x85:
             draft_struct["distance"] = int.from_bytes(block_data, byteorder="big", signed=False)/1000.0
@@ -333,10 +341,12 @@ def parse_crmfile(data):
             draft_struct["average_speed"] = int.from_bytes(block_data, byteorder="big", signed=False)/10.0
             continue
         if crmblock["type"] == 0x90:
-            draft_struct["outside_temp_start"] = int.from_bytes(block_data, byteorder="big", signed=False)
+            print(block_data.hex())
+            draft_struct["outside_temp_start"] = int.from_bytes(block_data, byteorder="big")
             continue
         if crmblock["type"] == 0x91:
-            draft_struct["outside_temp_stop"] = int.from_bytes(block_data, byteorder="big", signed=False)
+            print(block_data.hex())
+            draft_struct["outside_temp_stop"] = int.from_bytes(block_data, byteorder="big")
             continue
         if crmblock["type"] == 0x92:
             draft_struct["time"] = int.from_bytes(block_data, byteorder="big", signed=False)
@@ -374,11 +384,11 @@ def parse_crmfile(data):
         if crmblock["type"] == 0xB9:
             draft_struct["accelerator_work"] = {
                 "sudden_start_consumption": int.from_bytes(block_data[:4], byteorder="big", signed=False),
-                "sudden_start_time": int.from_bytes([block_data[4], block_data[5], block_data[6], block_data[7]], "big"),
+                "sudden_start_timestamp": datetime.time(block_data[4], block_data[5], block_data[6], block_data[7]),
                 "sudden_acceleration_consumption": int.from_bytes(block_data[8:12], byteorder="big", signed=False),
-                "sudden_acceleration_time": int.from_bytes([block_data[12], block_data[13], block_data[14], block_data[15]], "big"),
+                "sudden_acceleration_timestamp": datetime.time(block_data[12], block_data[13], block_data[14], block_data[15]),
                 "non_eco_deceleration_consumption": int.from_bytes(block_data[16:20], byteorder="big", signed=False),
-                "non_eco_deceleration_time": int.from_bytes([block_data[16], block_data[17], block_data[18], block_data[19]], "big"),
+                "non_eco_deceleration_timestamp": datetime.time(block_data[16], block_data[17], block_data[18], block_data[19]),
             }
             continue
         if crmblock["type"] == 0xBA:
@@ -391,7 +401,8 @@ def parse_crmfile(data):
             sudden_starts = []
             items_count = block_data[0]
             for i in range(items_count):
-                item_data = block_data[(i*20)+1:((i+1)*20)+1]
+                item_data = block_data[(i*18)+1:((i+1)*18)+1]
+                logger.debug(item_data.hex())
                 location = parse_std_location(struct.unpack('>i',item_data[10:14])[0], struct.unpack('>i',item_data[14:18])[0])
                 sudden_starts.append({
                     "timestamp": datetime.time(item_data[0], item_data[1], item_data[2], item_data[3]),
@@ -406,7 +417,7 @@ def parse_crmfile(data):
             sudden_accels = []
             items_count = block_data[0]
             for i in range(items_count):
-                item_data = block_data[(i*20)+1:((i+1)*20)+1]
+                item_data = block_data[(i*18)+1:((i+1)*18)+1]
                 location = parse_std_location(struct.unpack('>i',item_data[10:14])[0], struct.unpack('>i',item_data[14:18])[0])
                 sudden_accels.append({
                     "timestamp": datetime.time(item_data[0], item_data[1], item_data[2], item_data[3]),
@@ -415,18 +426,18 @@ def parse_crmfile(data):
                     "latitude": location[0],
                     "longitude": location[1],
                 })
-            draft_struct["sudden_accelerations_list"] = sudden_accels
+            draft_struct["sudden_accelerations"] = sudden_accels
             continue
         if crmblock["type"] == 0xD5:
             non_eco_decelerations = []
             items_count = block_data[0]
             for i in range(items_count):
-                item_data = block_data[(i*20)+1:((i+1)*20)+1]
+                item_data = block_data[(i*18)+1:((i+1)*18)+1]
                 location = parse_std_location(struct.unpack('>i',item_data[10:14])[0], struct.unpack('>i',item_data[14:18])[0])
                 non_eco_decelerations.append({
                     "timestamp": datetime.time(item_data[0], item_data[1], item_data[2], item_data[3]),
-                    "power_consumption": item_data[4:8],
-                    "elapsed_time": item_data[8:12],
+                    "power_consumption": int.from_bytes(item_data[4:8], "big"),
+                    "elapsed_time": int.from_bytes(item_data[8:12], "big"),
                     "latitude": location[0],
                     "longitude": location[1],
                 })
@@ -436,12 +447,12 @@ def parse_crmfile(data):
             non_constant_speeds = []
             items_count = block_data[0]
             for i in range(items_count):
-                item_data = block_data[(i*20)+1:((i+1)*20)+1]
+                item_data = block_data[(i*18)+1:((i+1)*18)+1]
                 location = parse_std_location(struct.unpack('>i',item_data[10:14])[0], struct.unpack('>i',item_data[14:18])[0])
                 non_constant_speeds.append({
                     "timestamp": datetime.time(item_data[0], item_data[1], item_data[2], item_data[3]),
-                    "power_consumption": item_data[4:8],
-                    "elapsed_time": item_data[8:12],
+                    "power_consumption": int.from_bytes(item_data[4:8], "big"),
+                    "elapsed_time": int.from_bytes(item_data[8:12], "big"),
                     "latitude": location[0],
                     "longitude": location[1],
                 })
@@ -481,10 +492,12 @@ def parse_crmfile(data):
             draft_struct["eco_trees"] = int.from_bytes(block_data, byteorder="big", signed=False)
             continue
         if crmblock["type"] == 0xEE:
+            print(block_data)
             draft_struct["batt_degradation_analysis_new"] = {
-                "capacity_bars_end": block_data[0],
-                "soc_end": block_data[1],
+                "capacity_bars_end": block_data[0]
             }
+            if len(block_data) > 1:
+                draft_struct["batt_degradation_analysis_new"]["soc_end"] = block_data[1]
             continue
 
         # msn
@@ -501,14 +514,15 @@ def parse_crmfile(data):
             for i in range(items_count+1):
                 location = parse_std_location(struct.unpack('>i',block_data[:4])[0], struct.unpack('>i',block_data[4:8])[0])
                 charger_loc = parse_std_location(struct.unpack('>i',block_data[22:26])[0],struct.unpack('>i',block_data[26:30])[0])
+                print(block_data[10:26])
                 charges.append({
                     "lat": location[0],
                     "long": location[1],
                     "charge_count": block_data[8],
                     "charge_type": block_data[9],
-                    "start_ts": datetime.datetime(2000 + block_data[10], block_data[11], block_data[12], block_data[13],
+                    "start_ts": (2000 + block_data[10], block_data[11], block_data[12], block_data[13],
                                                       block_data[14], block_data[15]),
-                    "end_ts": datetime.datetime(2000 + block_data[16], block_data[17], block_data[18], block_data[19],
+                    "end_ts": (2000 + block_data[16], block_data[17], block_data[18], block_data[19],
                                                       block_data[20], block_data[21]),
                     "charger_position_lat": charger_loc[0],
                     "charger_position_long": charger_loc[1],
@@ -540,7 +554,7 @@ def parse_crmfile(data):
             draft_struct["batt_min_temp_end"] = block_data[34]
             draft_struct["batt_avg_cell_volt_start"] = block_data[35]
             draft_struct["batt_max_cell_volt_start"] = block_data[36]
-            draft_struct["batt_min_cell_volt_start"] = block_data[37]
+            draft_struct["batt_min_cell_volt_end"] = block_data[37]
             draft_struct["current_accumulation_start"] = block_data[38]
             draft_struct["no_charges_while_ignoff"] = block_data[39]
             continue
@@ -563,7 +577,7 @@ def parse_crmfile(data):
         if crmblock["type"] == 0xF8:
             trouble_count = block_data[0]
             records = []
-            offset = 1
+            offset = 1  # Start after record_count
 
 
             def count_set_bits(value: int, num_bits: int = 16) -> int:
@@ -593,7 +607,7 @@ def parse_crmfile(data):
                     "warninginfo_set_bits": bitfield2_set_bits,
                 })
 
-                offset += 25
+                offset += 25  # Advance to next record
             draft_struct["records"] = records
 
 

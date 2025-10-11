@@ -424,7 +424,7 @@ def parse_crmfile(data):
                     "latitude": location[0],
                     "longitude": location[1],
                 })
-            draft_struct["sudden_accelerations"] = sudden_accels
+            draft_struct["sudden_accelerations_list"] = sudden_accels
             continue
         if crmblock["type"] == 0xD5:
             non_eco_decelerations = []

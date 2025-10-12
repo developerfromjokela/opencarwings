@@ -509,7 +509,7 @@
                                     <dl class="mt-2 grid grid-cols-2 lg:grid-cols-4 md:grid-cols-3 gap-3 text-sm sm:text-base">
                                         <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">history</i> {% translate "Charge count" %}</dt><dd class="text-gray-600 font-semibold">{{ history.charge_count|floatformat:0 }}</dd></div>
                                         <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">{% if history.charge_type == 2 %}ev_station{% else %}electrical_services{% endif %}</i> {% translate "Charging type" %}</dt><dd class="text-gray-600 font-semibold">{{ history.get_charge_type_display }}</dd></div>
-                                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">location_on</i> {% translate "Charge position" %}</dt><dd class="text-gray-600 font-semibold">{{ history.charger_position_latitude }},{{ history.charger_position_longitude }}</dd></div>
+                                        <div><dt class="text-gray-500 text-sm"><i class="mic material-symbols-outlined">location_on</i> {% translate "Charge position" %}</dt><dd class="text-gray-600 font-semibold">{{ history.latitude }},{{ history.longitude }}</dd></div>
                                     </dl>
                                 </div>
                             </li>

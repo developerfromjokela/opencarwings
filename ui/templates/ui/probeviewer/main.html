@@ -371,15 +371,15 @@
                         <div class="space-y-3 mb-6">
                           <label class="flex items-center space-x-3 cursor-pointer">
                             <input type="radio" name="period" value="day" checked class="w-4 h-4 text-blue-600">
-                            <span class="text-gray-700">Single Day</span>
+                            <span class="text-gray-700">{% translate "Single Day" %}</span>
                           </label>
                           <label class="flex items-center space-x-3 cursor-pointer">
                             <input type="radio" name="period" value="week" class="w-4 h-4 text-blue-600">
-                            <span class="text-gray-700">Single Week</span>
+                            <span class="text-gray-700">{% translate "Single Week" %}</span>
                           </label>
                           <label class="flex items-center space-x-3 cursor-pointer">
                             <input type="radio" name="period" value="month" class="w-4 h-4 text-blue-600">
-                            <span class="text-gray-700">Single Month</span>
+                            <span class="text-gray-700">{% translate "Single Month" %}</span>
                           </label>
                         </div>
 
@@ -394,7 +394,7 @@
                             </button>
                           </div>
 
-                          <div class="grid grid-cols-7 gap-1 mb-2">
+                          <div class="grid grid-cols-7 gap-1 mb-2" id="calendar-weekdays">
                             <div class="text-center text-xs font-semibold text-gray-600 py-2">Mon</div>
                             <div class="text-center text-xs font-semibold text-gray-600 py-2">Tue</div>
                             <div class="text-center text-xs font-semibold text-gray-600 py-2">Wed</div>
@@ -1192,6 +1192,20 @@
         function renderCalendar() {
           var year = currentMonth.getFullYear();
           var month = currentMonth.getMonth();
+
+          var calendaritms = document.getElementById('calendar-weekdays').getElementsByClassName('text-xs');
+          const formatter = new Intl.DateTimeFormat('default', {
+            weekday: 'short'
+          });
+          const today = new Date();
+          const startDay = 1; // Monday
+          for (let day = startDay; day < startDay + 7; day++) {
+            const date = new Date(today);
+            date.setDate(today.getDate() + ((day - today.getDay() + 7) % 7));
+            const formattedParts = formatter.formatToParts(date);
+            const shortName = formattedParts.find(part => part.type === 'weekday').value;
+            calendaritms[day-1].textContent = shortName;
+          }
 
           document.getElementById('monthYear').textContent = monthNames[month] + ' ' + year;
 

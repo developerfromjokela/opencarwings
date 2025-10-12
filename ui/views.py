@@ -704,7 +704,6 @@ def probeviewer_home(request, vin):
     if request.method == 'POST':
         form = ProbeConfigForm(request.POST)
         if form.is_valid():
-            print(form.cleaned_data)
             if form.cleaned_data['request'] == 'update' and probe_config.pending_change == False and form.cleaned_data['new_config_id'] in PROBE_CONFIGS:
                 probe_config.new_config_id = form.cleaned_data['new_config_id']
                 probe_config.pending_change = True

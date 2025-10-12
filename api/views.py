@@ -225,7 +225,6 @@ def probe_location_hist(request, vin):
     alerts = CRMDistanceRecord.objects.filter(car=car).order_by('-timestamp')
     if start_date and end_date:
         try:
-            print(start_date, end_date)
             start = parser.parse(start_date)
             end = parser.parse(end_date)
 

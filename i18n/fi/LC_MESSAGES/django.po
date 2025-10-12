@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-10 20:13+0000\n"
-"PO-Revision-Date: 2025-10-10 23:19+0300\n"
+"POT-Creation-Date: 2025-10-12 15:36+0000\n"
+"PO-Revision-Date: 2025-10-12 18:37+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fi\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.7\n"
 
-#: api/views.py:246
+#: api/views.py:288
 msgid "Failed to send SMS message to TCU. Please try again in a moment."
 msgstr ""
 "Tekstiviestiä ei voitu lähettää autoon. Kokeile uudelleen hetken kuluttua."
@@ -562,7 +562,7 @@ msgstr ""
 msgid "Route Plan {num}"
 msgstr "Suunniteltu reitti {num}"
 
-#: tculink/carwings_proto/autodj/sendtocar.py:42
+#: tculink/carwings_proto/autodj/sendtocar.py:41
 #, python-brace-format
 msgid ""
 "Location point, \"{point_name}\", which is {distance} kilometers away. Set "
@@ -571,11 +571,11 @@ msgstr ""
 "Kohde, \"{point_name}\", mihin on etäisyys {distance} kilometriä. Aseta se "
 "määränpääksi painamalla Paussi ja asettamalla se määränpääksi."
 
-#: tculink/carwings_proto/autodj/sendtocar.py:79
+#: tculink/carwings_proto/autodj/sendtocar.py:78
 msgid "Google Send To Car: No Destinations"
 msgstr "Google Send To Car: No Sijainteja"
 
-#: tculink/carwings_proto/autodj/sendtocar.py:80
+#: tculink/carwings_proto/autodj/sendtocar.py:79
 msgid ""
 "There are no destinations sent to the car. Please send at least one "
 "destination from your computer or mobile device and access this channel "
@@ -1066,25 +1066,25 @@ msgstr "API-avaimen nollaaminen tuotti virheen"
 msgid "An error occurred while resetting the API key"
 msgstr "Tapahtui virhe API-avaimen nollauksessa"
 
-#: ui/templates/ui/base.html:44
+#: ui/templates/ui/base.html:45
 msgid "Sign Out"
 msgstr "Kirjaudu ulos"
 
-#: ui/templates/ui/base.html:46 ui/templates/ui/landing.html:11
+#: ui/templates/ui/base.html:47 ui/templates/ui/landing.html:11
 #: ui/templates/ui/landing.html:22 ui/templates/ui/signin.html:3
 #: ui/templates/ui/signin.html:9 ui/templates/ui/signin.html:33
 msgid "Sign In"
 msgstr "Kirjaudu"
 
-#: ui/templates/ui/base.html:65
+#: ui/templates/ui/base.html:66
 msgid "Project"
 msgstr "projekti"
 
-#: ui/templates/ui/base.html:67
+#: ui/templates/ui/base.html:68
 msgid "Tools"
 msgstr "Työkalut"
 
-#: ui/templates/ui/base.html:68 ui/templates/ui/vflash_editor.html:5
+#: ui/templates/ui/base.html:69 ui/templates/ui/vflash_editor.html:5
 msgid "VFlash Editor"
 msgstr "VFlash-muokkaustyökalu"
 
@@ -1194,8 +1194,8 @@ msgid "Driving"
 msgstr "Ajossa"
 
 #: ui/templates/ui/car_detail.html:188 ui/templates/ui/car_detail.html:1065
-#: ui/templates/ui/probeviewer/main.html:378
-#: ui/templates/ui/probeviewer/main.html:448
+#: ui/templates/ui/probeviewer/main.html:437
+#: ui/templates/ui/probeviewer/main.html:507
 msgid "Charging finished"
 msgstr "Lataus valmis"
 
@@ -1224,13 +1224,13 @@ msgstr "Päällä,Pois"
 
 #: ui/templates/ui/car_detail.html:212 ui/templates/ui/car_detail.html:248
 #: ui/templates/ui/car_detail.html:277 ui/templates/ui/car_detail.html:299
-#: ui/templates/ui/probeviewer/main.html:138
-#: ui/templates/ui/probeviewer/main.html:163
+#: ui/templates/ui/probeviewer/main.html:139
+#: ui/templates/ui/probeviewer/main.html:164
 msgid "Last Updated"
 msgstr "Viimeksi päivitetty"
 
 #: ui/templates/ui/car_detail.html:220
-#: ui/templates/ui/probeviewer/main.html:100
+#: ui/templates/ui/probeviewer/main.html:101
 msgid "Odometer"
 msgstr "Matkamittari"
 
@@ -1305,7 +1305,7 @@ msgid "Charge bars"
 msgstr "Lataustason palkit"
 
 #: ui/templates/ui/car_detail.html:262
-#: ui/templates/ui/probeviewer/trip.html:190
+#: ui/templates/ui/probeviewer/trip.html:198
 msgid "Capacity bars"
 msgstr "Kapasiteetin palkit"
 
@@ -1779,7 +1779,7 @@ msgid "DOT-files"
 msgstr "DOT-tiedostot"
 
 #: ui/templates/ui/probeviewer/main.html:77
-#: ui/templates/ui/probeviewer/main.html:307
+#: ui/templates/ui/probeviewer/main.html:308
 msgid "Trips"
 msgstr "Matkat"
 
@@ -1788,58 +1788,62 @@ msgid "Monthly statistics"
 msgstr "Kuukausittaiset tilastot"
 
 #: ui/templates/ui/probeviewer/main.html:79
+msgid "Location history"
+msgstr "Sijaintihistoria"
+
+#: ui/templates/ui/probeviewer/main.html:80
 msgid "Charging history"
 msgstr "Lataushistoria"
 
-#: ui/templates/ui/probeviewer/main.html:80
+#: ui/templates/ui/probeviewer/main.html:81
 msgid "Charges"
 msgstr "Lataukset"
 
-#: ui/templates/ui/probeviewer/main.html:81
+#: ui/templates/ui/probeviewer/main.html:82
 msgid "Excessive idling history"
 msgstr "Tyhjäkäynnin historia"
 
-#: ui/templates/ui/probeviewer/main.html:82
+#: ui/templates/ui/probeviewer/main.html:83
 msgid "Excessive A/C history"
 msgstr "Ilmastoinnin tyhjäkäyntihistoria"
 
-#: ui/templates/ui/probeviewer/main.html:83
+#: ui/templates/ui/probeviewer/main.html:84
 msgid "ABS history"
 msgstr "ABS-jarrujen historia"
 
-#: ui/templates/ui/probeviewer/main.html:84
+#: ui/templates/ui/probeviewer/main.html:85
 msgid "DTC history"
 msgstr "Vikakoodihistoria"
 
-#: ui/templates/ui/probeviewer/main.html:85
+#: ui/templates/ui/probeviewer/main.html:86
 msgid "MSN history"
 msgstr "MSN-historia"
 
-#: ui/templates/ui/probeviewer/main.html:101
+#: ui/templates/ui/probeviewer/main.html:102
 msgid "Phone contacts in memory"
 msgstr "Puhelimen yhteystietoja muistissa"
 
-#: ui/templates/ui/probeviewer/main.html:102
+#: ui/templates/ui/probeviewer/main.html:103
 msgid "Locations saved in address book"
 msgstr "Sijainteja tallennettu osoitekirjaan"
 
-#: ui/templates/ui/probeviewer/main.html:105
+#: ui/templates/ui/probeviewer/main.html:106
 msgid "Telemetry configuration"
 msgstr "Telemetrian konfiguraatio"
 
-#: ui/templates/ui/probeviewer/main.html:107
+#: ui/templates/ui/probeviewer/main.html:108
 msgid "Telemetry Configuration ID"
 msgstr "Telemetriakonfiguraation tunnus"
 
-#: ui/templates/ui/probeviewer/main.html:109
+#: ui/templates/ui/probeviewer/main.html:110
 msgid "New Telemetry Configuration ID"
 msgstr "Uuden telemetriakonfiguraation tunnus"
 
-#: ui/templates/ui/probeviewer/main.html:112
+#: ui/templates/ui/probeviewer/main.html:113
 msgid "Configuration update status"
 msgstr "Konfiguraation päivityksen tila"
 
-#: ui/templates/ui/probeviewer/main.html:115
+#: ui/templates/ui/probeviewer/main.html:116
 msgid ""
 "Please turn on the car for vehicle data auto-update or access a CARWINGS "
 "data channel to perform configuration update."
@@ -1847,25 +1851,25 @@ msgstr ""
 "Käynnistä auto ajoneuvotietojen automaattista päivitystä varten tai käytä "
 "CARWINGS-datakanavaa, jotta konfiguraatio päivittyy autoon."
 
-#: ui/templates/ui/probeviewer/main.html:119
+#: ui/templates/ui/probeviewer/main.html:120
 msgid "Cancel update"
 msgstr "Peruuta päivitys"
 
-#: ui/templates/ui/probeviewer/main.html:125
+#: ui/templates/ui/probeviewer/main.html:126
 msgid "New Telemetry Configuration"
 msgstr "Uusi telemetriakonfiguraatio"
 
-#: ui/templates/ui/probeviewer/main.html:133
+#: ui/templates/ui/probeviewer/main.html:134
 msgid "Update"
 msgstr "Päivitä"
 
-#: ui/templates/ui/probeviewer/main.html:142
-#: ui/templates/ui/probeviewer/main.html:167
+#: ui/templates/ui/probeviewer/main.html:143
+#: ui/templates/ui/probeviewer/main.html:168
 msgid "No vehicle data available"
 msgstr "Auton tietoja ei saatavilla"
 
-#: ui/templates/ui/probeviewer/main.html:143
-#: ui/templates/ui/probeviewer/main.html:168
+#: ui/templates/ui/probeviewer/main.html:144
+#: ui/templates/ui/probeviewer/main.html:169
 msgid ""
 "In order to receive vehicle data, CARWINGS navigation unit must have correct "
 "connection settings."
@@ -1873,75 +1877,77 @@ msgstr ""
 "Jotta pystyt vastaanottamaan tietoja, CARWINGS navigointiyksikössä on oltava "
 "oikeat yhteysasetukset."
 
-#: ui/templates/ui/probeviewer/main.html:144
-#: ui/templates/ui/probeviewer/main.html:169
-#: ui/templates/ui/probeviewer/main.html:228
-#: ui/templates/ui/probeviewer/main.html:286
-#: ui/templates/ui/probeviewer/main.html:360
-#: ui/templates/ui/probeviewer/main.html:430
-#: ui/templates/ui/probeviewer/main.html:495
-#: ui/templates/ui/probeviewer/main.html:559
-#: ui/templates/ui/probeviewer/main.html:628
-#: ui/templates/ui/probeviewer/main.html:696
-#: ui/templates/ui/probeviewer/main.html:764
-#: ui/templates/ui/probeviewer/main.html:832
-#: ui/templates/ui/probeviewer/main.html:900
+#: ui/templates/ui/probeviewer/main.html:145
+#: ui/templates/ui/probeviewer/main.html:170
+#: ui/templates/ui/probeviewer/main.html:229
+#: ui/templates/ui/probeviewer/main.html:287
+#: ui/templates/ui/probeviewer/main.html:361
+#: ui/templates/ui/probeviewer/main.html:419
+#: ui/templates/ui/probeviewer/main.html:489
+#: ui/templates/ui/probeviewer/main.html:554
+#: ui/templates/ui/probeviewer/main.html:618
+#: ui/templates/ui/probeviewer/main.html:687
+#: ui/templates/ui/probeviewer/main.html:755
+#: ui/templates/ui/probeviewer/main.html:823
+#: ui/templates/ui/probeviewer/main.html:891
+#: ui/templates/ui/probeviewer/main.html:959
 #: ui/templates/ui/setup/step5.html:10
 msgid "Learn more"
 msgstr "Lue lisää"
 
-#: ui/templates/ui/probeviewer/main.html:152
-#: ui/templates/ui/probeviewer/trip.html:133
+#: ui/templates/ui/probeviewer/main.html:153
+#: ui/templates/ui/probeviewer/trip.html:136
 msgid "A/C usage"
 msgstr "Ilmastointilaitteen ikä"
 
-#: ui/templates/ui/probeviewer/main.html:153
+#: ui/templates/ui/probeviewer/main.html:154
 msgid "Headlights usage"
 msgstr "Ajovalojen ikä"
 
-#: ui/templates/ui/probeviewer/main.html:154
-#: ui/templates/ui/probeviewer/main.html:306
+#: ui/templates/ui/probeviewer/main.html:155
+#: ui/templates/ui/probeviewer/main.html:307
 #: ui/templates/ui/probeviewer/trip.html:31
 msgid "Average speed"
 msgstr "Keskinopeus"
 
-#: ui/templates/ui/probeviewer/main.html:155
+#: ui/templates/ui/probeviewer/main.html:156
 msgid "Energy regeneration"
 msgstr "Regeneroitu energia"
 
-#: ui/templates/ui/probeviewer/main.html:156
-#: ui/templates/ui/probeviewer/main.html:160
+#: ui/templates/ui/probeviewer/main.html:157
+#: ui/templates/ui/probeviewer/main.html:161
 msgid "Energy consumption"
 msgstr "Kulutettu energia"
 
-#: ui/templates/ui/probeviewer/main.html:157
+#: ui/templates/ui/probeviewer/main.html:158
 msgid "Runtime"
 msgstr "Käynnissä yhteensä"
 
-#: ui/templates/ui/probeviewer/main.html:158
+#: ui/templates/ui/probeviewer/main.html:159
 msgid "Lifetime data mileage"
 msgstr "Elinikäisen tietojen matka"
 
-#: ui/templates/ui/probeviewer/main.html:226
+#: ui/templates/ui/probeviewer/main.html:227
 msgid "No DOT data available"
 msgstr "DOT tiedot ei saatavilla"
 
-#: ui/templates/ui/probeviewer/main.html:227
+#: ui/templates/ui/probeviewer/main.html:228
 msgid "DOT data comes available on next startup after a trip."
 msgstr ""
 "DOT tiedot tulevat saataville matkan jälkeisen käynnistyksen yhteydessä."
 
-#: ui/templates/ui/probeviewer/main.html:227
-#: ui/templates/ui/probeviewer/main.html:285
-#: ui/templates/ui/probeviewer/main.html:359
-#: ui/templates/ui/probeviewer/main.html:429
-#: ui/templates/ui/probeviewer/main.html:494
-#: ui/templates/ui/probeviewer/main.html:558
-#: ui/templates/ui/probeviewer/main.html:627
-#: ui/templates/ui/probeviewer/main.html:695
-#: ui/templates/ui/probeviewer/main.html:763
-#: ui/templates/ui/probeviewer/main.html:831
-#: ui/templates/ui/probeviewer/main.html:899
+#: ui/templates/ui/probeviewer/main.html:228
+#: ui/templates/ui/probeviewer/main.html:286
+#: ui/templates/ui/probeviewer/main.html:360
+#: ui/templates/ui/probeviewer/main.html:418
+#: ui/templates/ui/probeviewer/main.html:488
+#: ui/templates/ui/probeviewer/main.html:553
+#: ui/templates/ui/probeviewer/main.html:617
+#: ui/templates/ui/probeviewer/main.html:686
+#: ui/templates/ui/probeviewer/main.html:754
+#: ui/templates/ui/probeviewer/main.html:822
+#: ui/templates/ui/probeviewer/main.html:890
+#: ui/templates/ui/probeviewer/main.html:958
 msgid ""
 "In order to receive data, CARWINGS navigation unit must have correct "
 "connection settings."
@@ -1949,141 +1955,169 @@ msgstr ""
 "Jotta voit vastaanottaa tietoja, CARWINGS-navigointiyksikössä on oltava "
 "oikeat yhteysasetukset."
 
-#: ui/templates/ui/probeviewer/main.html:284
+#: ui/templates/ui/probeviewer/main.html:285
 msgid "No trip data available"
 msgstr "Ei matkatietoja saatavilla"
 
-#: ui/templates/ui/probeviewer/main.html:285
+#: ui/templates/ui/probeviewer/main.html:286
 msgid "Trip information comes available on next startup after the trip."
 msgstr "Matkatiedot päivittyvät yleensä ajetun matkan jälkeisen ajon aikana."
 
-#: ui/templates/ui/probeviewer/main.html:304
+#: ui/templates/ui/probeviewer/main.html:305
 msgid "Driving distance"
 msgstr "Ajettu matka"
 
-#: ui/templates/ui/probeviewer/main.html:305
+#: ui/templates/ui/probeviewer/main.html:306
 msgid "Driving time"
 msgstr "Aika"
 
-#: ui/templates/ui/probeviewer/main.html:308
-#: ui/templates/ui/probeviewer/trip.html:148
+#: ui/templates/ui/probeviewer/main.html:309
+#: ui/templates/ui/probeviewer/trip.html:156
 msgid "Regenerated energy"
 msgstr "Regeneroitu energia"
 
-#: ui/templates/ui/probeviewer/main.html:309
+#: ui/templates/ui/probeviewer/main.html:310
 msgid "Consumed energy"
 msgstr "Käytetty energia"
 
-#: ui/templates/ui/probeviewer/main.html:312
+#: ui/templates/ui/probeviewer/main.html:313
 #: ui/templates/ui/probeviewer/trip.html:75
 #: ui/templates/ui/probeviewer/trip.html:81
 msgid "Average consumption"
 msgstr "Keskikulutus"
 
-#: ui/templates/ui/probeviewer/main.html:319
-#: ui/templates/ui/probeviewer/trip.html:139
+#: ui/templates/ui/probeviewer/main.html:320
+#: ui/templates/ui/probeviewer/trip.html:142
 msgid "Average acceleration"
 msgstr "Keskiverto kiihdytysvoima"
 
-#: ui/templates/ui/probeviewer/main.html:358
+#: ui/templates/ui/probeviewer/main.html:359
 msgid "No monthly analytics available"
 msgstr "Kuukausittaisia tilastoja ei saatavilla"
 
-#: ui/templates/ui/probeviewer/main.html:359
+#: ui/templates/ui/probeviewer/main.html:360
 msgid "Monthly analytics information comes available at the end of the month."
 msgstr "Kuukausittaiset tilastot tulevat autosta kuukauden päätteeksi."
 
-#: ui/templates/ui/probeviewer/main.html:381
+#: ui/templates/ui/probeviewer/main.html:374
+msgid "Single Day"
+msgstr "Yksittäinen päivä"
+
+#: ui/templates/ui/probeviewer/main.html:378
+msgid "Single Week"
+msgstr "Yksittäinen viikko"
+
+#: ui/templates/ui/probeviewer/main.html:382
+msgid "Single Month"
+msgstr "Yksittäinen kuukausi"
+
+#: ui/templates/ui/probeviewer/main.html:410
+msgid "Export to GPX"
+msgstr "Vie GPX-muodossa"
+
+#: ui/templates/ui/probeviewer/main.html:417
+msgid "No location available"
+msgstr "Sijaintihistoria ei saatavilla"
+
+#: ui/templates/ui/probeviewer/main.html:418
+msgid ""
+"Location information comes available on next startup, if your current "
+"configuration allows it."
+msgstr ""
+"Sijaintitiedot tulevat näkyviin seuraavan käynnistyksen yhteydessä, jos "
+"telemetriakonfiguraatio sallii sen."
+
+#: ui/templates/ui/probeviewer/main.html:440
 msgid "State at start"
 msgstr "Varaus alkaessa"
 
-#: ui/templates/ui/probeviewer/main.html:382
+#: ui/templates/ui/probeviewer/main.html:441
 msgid "State at end"
 msgstr "Varaus päättyessä"
 
-#: ui/templates/ui/probeviewer/main.html:383
-#: ui/templates/ui/probeviewer/main.html:452
+#: ui/templates/ui/probeviewer/main.html:442
+#: ui/templates/ui/probeviewer/main.html:511
 msgid "Charging type"
 msgstr "Latauksen tyyppi"
 
-#: ui/templates/ui/probeviewer/main.html:384
+#: ui/templates/ui/probeviewer/main.html:443
 msgid "Charged energy"
 msgstr "Ladattu energia"
 
-#: ui/templates/ui/probeviewer/main.html:385
+#: ui/templates/ui/probeviewer/main.html:444
 msgid "Cell temp. (start)"
 msgstr "Kennojen lämpöt. (alku)"
 
-#: ui/templates/ui/probeviewer/main.html:385
-#: ui/templates/ui/probeviewer/main.html:386
-#: ui/templates/ui/probeviewer/main.html:387
+#: ui/templates/ui/probeviewer/main.html:444
+#: ui/templates/ui/probeviewer/main.html:445
+#: ui/templates/ui/probeviewer/main.html:446
 msgid "avg/max/min"
 msgstr "kesk/maks/min"
 
-#: ui/templates/ui/probeviewer/main.html:386
+#: ui/templates/ui/probeviewer/main.html:445
 msgid "Cell temp. (end)"
 msgstr "Kennojen lämpöt. (loppu)"
 
-#: ui/templates/ui/probeviewer/main.html:387
+#: ui/templates/ui/probeviewer/main.html:446
 msgid "Cell volt. (start)"
 msgstr "Kennojen jännit. (alku)"
 
-#: ui/templates/ui/probeviewer/main.html:388
+#: ui/templates/ui/probeviewer/main.html:447
 msgid "Charges while ign. off"
 msgstr "Lataukset kun ign. off"
 
-#: ui/templates/ui/probeviewer/main.html:428
+#: ui/templates/ui/probeviewer/main.html:487
 msgid "No charging history available"
 msgstr "Lataushistoria ei saatavilla"
 
-#: ui/templates/ui/probeviewer/main.html:429
+#: ui/templates/ui/probeviewer/main.html:488
 msgid ""
 "Charging history may become available on next startup after the charging."
 msgstr ""
 "Lataushistoria saattaa tulla nähtäville seuraavan käynnistyksen yhteydessä."
 
-#: ui/templates/ui/probeviewer/main.html:451
+#: ui/templates/ui/probeviewer/main.html:510
 msgid "Charge count"
 msgstr "Latausten määrä"
 
-#: ui/templates/ui/probeviewer/main.html:453
+#: ui/templates/ui/probeviewer/main.html:512
 msgid "Charge position"
 msgstr "Latauksen sijainti"
 
-#: ui/templates/ui/probeviewer/main.html:493
+#: ui/templates/ui/probeviewer/main.html:552
 msgid "No charge data available"
 msgstr "Lataustietoja ei saatavilla"
 
-#: ui/templates/ui/probeviewer/main.html:494
+#: ui/templates/ui/probeviewer/main.html:553
 msgid "Charging data may become available on next startup after the charging."
 msgstr ""
 "Lataushistoria saattaa tulla nähtäville seuraavan käynnistyksen yhteydessä."
 
-#: ui/templates/ui/probeviewer/main.html:513
+#: ui/templates/ui/probeviewer/main.html:572
 msgid "Operation time"
 msgstr "Aktiivinen aika"
 
-#: ui/templates/ui/probeviewer/main.html:514
+#: ui/templates/ui/probeviewer/main.html:573
 msgid "Vehicle speed at start"
 msgstr "Ajoneuvon nopeus alussa"
 
-#: ui/templates/ui/probeviewer/main.html:515
+#: ui/templates/ui/probeviewer/main.html:574
 msgid "Vehicle speed at end"
 msgstr "Ajoneuvon nopeus lopussa"
 
-#: ui/templates/ui/probeviewer/main.html:516
+#: ui/templates/ui/probeviewer/main.html:575
 msgid "Road type"
 msgstr "Tietyyppi"
 
-#: ui/templates/ui/probeviewer/main.html:517
+#: ui/templates/ui/probeviewer/main.html:576
 msgid "Direction"
 msgstr "Suunta"
 
-#: ui/templates/ui/probeviewer/main.html:557
+#: ui/templates/ui/probeviewer/main.html:616
 msgid "No ABS data available"
 msgstr "ABS-tietoja ei saatavilla"
 
-#: ui/templates/ui/probeviewer/main.html:558
+#: ui/templates/ui/probeviewer/main.html:617
 msgid ""
 "ABS data may become available on next startup if your vehicle configuration "
 "allows it."
@@ -2091,29 +2125,29 @@ msgstr ""
 "ABS-tiedot voivat tulla näkyviin seuraavan käynnistyksen yhteydessä jos "
 "autosi asetukset sallivat sen."
 
-#: ui/templates/ui/probeviewer/main.html:571
-#: ui/templates/ui/probeviewer/main.html:639
-#: ui/templates/ui/probeviewer/main.html:707
-#: ui/templates/ui/probeviewer/main.html:775
-#: ui/templates/ui/probeviewer/main.html:843
+#: ui/templates/ui/probeviewer/main.html:630
+#: ui/templates/ui/probeviewer/main.html:698
+#: ui/templates/ui/probeviewer/main.html:766
+#: ui/templates/ui/probeviewer/main.html:834
+#: ui/templates/ui/probeviewer/main.html:902
 msgid "Date and time"
 msgstr "Aika ja kellonaika"
 
-#: ui/templates/ui/probeviewer/main.html:574
-#: ui/templates/ui/probeviewer/main.html:710
+#: ui/templates/ui/probeviewer/main.html:633
+#: ui/templates/ui/probeviewer/main.html:769
 #: ui/templates/ui/probeviewer/trip.html:39
 msgid "Duration"
 msgstr "Kesto"
 
-#: ui/templates/ui/probeviewer/main.html:626
-#: ui/templates/ui/probeviewer/main.html:694
-#: ui/templates/ui/probeviewer/main.html:762
+#: ui/templates/ui/probeviewer/main.html:685
+#: ui/templates/ui/probeviewer/main.html:753
+#: ui/templates/ui/probeviewer/main.html:821
 msgid "No idling data available"
 msgstr "Tyhjäkäyntitietoja ei saatavilla"
 
-#: ui/templates/ui/probeviewer/main.html:627
-#: ui/templates/ui/probeviewer/main.html:695
-#: ui/templates/ui/probeviewer/main.html:763
+#: ui/templates/ui/probeviewer/main.html:686
+#: ui/templates/ui/probeviewer/main.html:754
+#: ui/templates/ui/probeviewer/main.html:822
 msgid ""
 "Idling data may become available on next startup if your vehicle "
 "configuration allows it."
@@ -2121,20 +2155,20 @@ msgstr ""
 "Tyhjäkäyntitiedot voivat tulla näkyviin seuraavan käynnistyksen yhteydessä "
 "jos autosi asetukset sallivat sen."
 
-#: ui/templates/ui/probeviewer/main.html:642
+#: ui/templates/ui/probeviewer/main.html:701
 msgid "Consumption"
 msgstr "Kulutus"
 
-#: ui/templates/ui/probeviewer/main.html:778
-#: ui/templates/ui/probeviewer/main.html:846
+#: ui/templates/ui/probeviewer/main.html:837
+#: ui/templates/ui/probeviewer/main.html:905
 msgid "Data"
 msgstr "Tiedot"
 
-#: ui/templates/ui/probeviewer/main.html:830
+#: ui/templates/ui/probeviewer/main.html:889
 msgid "No DTC data available"
 msgstr "Vikakooditietoja ei saatavilla"
 
-#: ui/templates/ui/probeviewer/main.html:831
+#: ui/templates/ui/probeviewer/main.html:890
 msgid ""
 "DTC data may become available on next startup if your vehicle has active DTC "
 "trouble code."
@@ -2142,13 +2176,19 @@ msgstr ""
 "Vikakooditiedot tulevat saataville seuraavan käynnistyksen yhteydessä jos "
 "vikakoodeja esiintyy autossa."
 
-#: ui/templates/ui/probeviewer/main.html:898
+#: ui/templates/ui/probeviewer/main.html:957
 msgid "No MSN data available"
 msgstr "MSN-tietoja ei saatavilla"
 
-#: ui/templates/ui/probeviewer/main.html:899
+#: ui/templates/ui/probeviewer/main.html:958
 msgid "MSN data may become available on next startup."
 msgstr "MSN-tiedot voivat tulla näkyviin seuraavan käynnistyksen yhteydessä."
+
+#: ui/templates/ui/probeviewer/main.html:1183
+#: ui/templates/ui/probeviewer/main.html:1187
+#: ui/templates/ui/probeviewer/main.html:1188
+msgid "Error loading location history"
+msgstr "Virhe sijaintihistorian latauksessa"
 
 #: ui/templates/ui/probeviewer/trip.html:18
 msgid "Trip"
@@ -2174,171 +2214,175 @@ msgstr "Regeneroitu"
 msgid "Info"
 msgstr "Tiedot"
 
-#: ui/templates/ui/probeviewer/trip.html:118
+#: ui/templates/ui/probeviewer/trip.html:119
+msgid "Map"
+msgstr "Kartta"
+
+#: ui/templates/ui/probeviewer/trip.html:121
 msgid "Energy"
 msgstr "Energia"
 
-#: ui/templates/ui/probeviewer/trip.html:119
+#: ui/templates/ui/probeviewer/trip.html:122
 msgid "HV Battery"
 msgstr "Ajoakku"
 
-#: ui/templates/ui/probeviewer/trip.html:126
+#: ui/templates/ui/probeviewer/trip.html:129
 msgid "Trip end date"
 msgstr "Matkan päättymisajankohta"
 
-#: ui/templates/ui/probeviewer/trip.html:127
+#: ui/templates/ui/probeviewer/trip.html:130
 msgid "Outside temperature at start"
 msgstr "Ulkolämpötila matkan alkaessa"
 
-#: ui/templates/ui/probeviewer/trip.html:128
+#: ui/templates/ui/probeviewer/trip.html:131
 msgid "Outside temperature at finish"
 msgstr "Ulkolämpötila matkan päättyessä"
 
-#: ui/templates/ui/probeviewer/trip.html:129
+#: ui/templates/ui/probeviewer/trip.html:132
 msgid "Max speed"
 msgstr "Maksiminopeus"
 
-#: ui/templates/ui/probeviewer/trip.html:130
+#: ui/templates/ui/probeviewer/trip.html:133
 msgid "Cabin preconditioning before trip"
 msgstr "Matkustamon esilämmitys ennen matkaa"
 
-#: ui/templates/ui/probeviewer/trip.html:131
+#: ui/templates/ui/probeviewer/trip.html:134
 msgid "Highway driving time"
 msgstr "Ajoaika moottoritiellä"
 
-#: ui/templates/ui/probeviewer/trip.html:132
+#: ui/templates/ui/probeviewer/trip.html:135
 msgid "Optimal highway driving time"
 msgstr "Optiminopeudella ajettu aika moottoritiellä"
 
-#: ui/templates/ui/probeviewer/trip.html:134
+#: ui/templates/ui/probeviewer/trip.html:137
 msgid "Idling time"
 msgstr "Tyhjäkäynnillä ollut aika"
 
-#: ui/templates/ui/probeviewer/trip.html:135
+#: ui/templates/ui/probeviewer/trip.html:138
 msgid "Headlights usage time"
 msgstr "Ajovalojen käyttö"
 
-#: ui/templates/ui/probeviewer/trip.html:136
+#: ui/templates/ui/probeviewer/trip.html:139
 msgid "Sudden accelerations"
 msgstr "Äkilliset kiihdytykset"
 
-#: ui/templates/ui/probeviewer/trip.html:137
+#: ui/templates/ui/probeviewer/trip.html:140
 msgid "Sudden decelerations"
 msgstr "Äkilliset pysähdykset"
 
-#: ui/templates/ui/probeviewer/trip.html:138
+#: ui/templates/ui/probeviewer/trip.html:141
 msgid "Odometer at start"
 msgstr "Matkamittari matkan alussa"
 
-#: ui/templates/ui/probeviewer/trip.html:144
+#: ui/templates/ui/probeviewer/trip.html:152
 msgid "A/C consumption"
 msgstr "Ilmastoinnin kulutus"
 
-#: ui/templates/ui/probeviewer/trip.html:145
+#: ui/templates/ui/probeviewer/trip.html:153
 msgid "Auxiliary consumption"
 msgstr "Apulaitteiden kulutus"
 
-#: ui/templates/ui/probeviewer/trip.html:146
+#: ui/templates/ui/probeviewer/trip.html:154
 msgid "Motor consumption"
 msgstr "Moottorin kulutus"
 
-#: ui/templates/ui/probeviewer/trip.html:147
+#: ui/templates/ui/probeviewer/trip.html:155
 msgid "Idle consumption"
 msgstr "Tyhjäkäynnin kulutus"
 
-#: ui/templates/ui/probeviewer/trip.html:149
+#: ui/templates/ui/probeviewer/trip.html:157
 msgid "Sudden acceleration consumption"
 msgstr "Äkillisten kiihdytyksten kulutus"
 
-#: ui/templates/ui/probeviewer/trip.html:150
+#: ui/templates/ui/probeviewer/trip.html:158
 msgid "Sudden acceleration time"
 msgstr "Äkillisten kiihdytysten aika"
 
-#: ui/templates/ui/probeviewer/trip.html:151
+#: ui/templates/ui/probeviewer/trip.html:159
 msgid "Non-eco deceleration consumption"
 msgstr "Ei-ekologisten kiihdytysten kulutus"
 
-#: ui/templates/ui/probeviewer/trip.html:152
+#: ui/templates/ui/probeviewer/trip.html:160
 msgid "Non-eco deceleration time"
 msgstr "Ei-ekologisten kiihdytysten aika"
 
-#: ui/templates/ui/probeviewer/trip.html:153
+#: ui/templates/ui/probeviewer/trip.html:161
 msgid "Sudden start consumption"
 msgstr "Äkillisten lähtöjen kulutus"
 
-#: ui/templates/ui/probeviewer/trip.html:154
+#: ui/templates/ui/probeviewer/trip.html:162
 msgid "Sudden start time"
 msgstr "Äkillisten lähtöjen aika"
 
-#: ui/templates/ui/probeviewer/trip.html:160
+#: ui/templates/ui/probeviewer/trip.html:168
 msgid "Trip start"
 msgstr "Matkan alku"
 
-#: ui/templates/ui/probeviewer/trip.html:162
-#: ui/templates/ui/probeviewer/trip.html:179
+#: ui/templates/ui/probeviewer/trip.html:170
+#: ui/templates/ui/probeviewer/trip.html:187
 msgid "Battery pack temperature"
 msgstr "Akkupaketin lämpötila"
 
-#: ui/templates/ui/probeviewer/trip.html:164
-#: ui/templates/ui/probeviewer/trip.html:165
-#: ui/templates/ui/probeviewer/trip.html:181
-#: ui/templates/ui/probeviewer/trip.html:182
+#: ui/templates/ui/probeviewer/trip.html:172
+#: ui/templates/ui/probeviewer/trip.html:173
+#: ui/templates/ui/probeviewer/trip.html:189
+#: ui/templates/ui/probeviewer/trip.html:190
 msgid "Energy content"
 msgstr "Akun varaus"
 
-#: ui/templates/ui/probeviewer/trip.html:166
-#: ui/templates/ui/probeviewer/trip.html:183
+#: ui/templates/ui/probeviewer/trip.html:174
+#: ui/templates/ui/probeviewer/trip.html:191
 msgid "Average cell temperature"
 msgstr "Kennojen lämpötilan keskiarvo"
 
-#: ui/templates/ui/probeviewer/trip.html:167
-#: ui/templates/ui/probeviewer/trip.html:184
+#: ui/templates/ui/probeviewer/trip.html:175
+#: ui/templates/ui/probeviewer/trip.html:192
 msgid "Max cell temperature"
 msgstr "Kennojen korkein lämpötila"
 
-#: ui/templates/ui/probeviewer/trip.html:168
-#: ui/templates/ui/probeviewer/trip.html:185
+#: ui/templates/ui/probeviewer/trip.html:176
+#: ui/templates/ui/probeviewer/trip.html:193
 msgid "Min cell temperature"
 msgstr "Kennojen matalin lämpötila"
 
-#: ui/templates/ui/probeviewer/trip.html:169
+#: ui/templates/ui/probeviewer/trip.html:177
 msgid "Average cell voltage"
 msgstr "Kennojen jännitteiden keskiarvo"
 
-#: ui/templates/ui/probeviewer/trip.html:170
+#: ui/templates/ui/probeviewer/trip.html:178
 msgid "Max cell voltage"
 msgstr "Kennojen korkein jännite"
 
-#: ui/templates/ui/probeviewer/trip.html:171
+#: ui/templates/ui/probeviewer/trip.html:179
 msgid "Min cell voltage"
 msgstr "Kennojen matalin jännite"
 
-#: ui/templates/ui/probeviewer/trip.html:172
+#: ui/templates/ui/probeviewer/trip.html:180
 msgid "AC charges (total?)"
 msgstr "AC-lataukset (yht.?)"
 
-#: ui/templates/ui/probeviewer/trip.html:173
+#: ui/templates/ui/probeviewer/trip.html:181
 msgid "QC charges (total?)"
 msgstr "Pikalatauksia (yht.?)"
 
-#: ui/templates/ui/probeviewer/trip.html:177
+#: ui/templates/ui/probeviewer/trip.html:185
 msgid "Trip end"
 msgstr "Matkan päättyminen"
 
-#: ui/templates/ui/probeviewer/trip.html:186
+#: ui/templates/ui/probeviewer/trip.html:194
 msgid "Accumulated current"
 msgstr "Kerätty energia"
 
-#: ui/templates/ui/probeviewer/trip.html:187
-#: ui/templates/ui/probeviewer/trip.html:191
+#: ui/templates/ui/probeviewer/trip.html:195
+#: ui/templates/ui/probeviewer/trip.html:199
 msgid "SOH"
 msgstr "SOH"
 
-#: ui/templates/ui/probeviewer/trip.html:188
+#: ui/templates/ui/probeviewer/trip.html:196
 msgid "Pack resistance"
 msgstr "Akkupaketin vastus"
 
-#: ui/templates/ui/probeviewer/trip.html:192
+#: ui/templates/ui/probeviewer/trip.html:200
 msgid "New battery degradation analysis program"
 msgstr "Uusi akun huononemisen analyysiohjelma"
 
@@ -2588,7 +2632,7 @@ msgstr "Kaikki valmista!"
 msgid "Account successfully updated!"
 msgstr "Tilitiedot päivitetty!"
 
-#: ui/views.py:99 ui/views.py:721
+#: ui/views.py:99 ui/views.py:720
 msgid "Please fill the form correctly and try again."
 msgstr "Täytä lomake oikein ja yritä uudelleen."
 
@@ -2624,145 +2668,145 @@ msgstr "Auto on jo lisätty. Poista auto ja yritä uudelleen."
 msgid "Please select a provider for SMS."
 msgstr "Ole hyvä ja valitse SMS-palvelun tarjoaja."
 
-#: ui/views.py:713
+#: ui/views.py:712
 msgid "Update requested! Update will occur on next boot."
 msgstr ""
 "Päivitys pyydetty! Päivitys tapahtuu seuraavan käynnistyksen yhteydessä."
 
-#: ui/views.py:719
+#: ui/views.py:718
 msgid "Update request cancelled!"
 msgstr "Päivityspyyntö peruttu!"
 
-msgid "Version"
-msgstr "Versio"
+#~ msgid "Version"
+#~ msgstr "Versio"
 
-msgid "OpenCARWINGS"
-msgstr "OpenCARWINGS"
+#~ msgid "OpenCARWINGS"
+#~ msgstr "OpenCARWINGS"
 
-msgid "Route Planning & Navigation"
-msgstr "Reittisuunnittelu ja navigointi"
+#~ msgid "Route Planning & Navigation"
+#~ msgstr "Reittisuunnittelu ja navigointi"
 
-msgid "Online Services"
-msgstr "Online-palvelut"
+#~ msgid "Online Services"
+#~ msgstr "Online-palvelut"
 
-msgid "Any new announcements or features can be shown here"
-msgstr "Uudet ilmoitukset tai ominaisuudet voidaan näyttää täällä"
+#~ msgid "Any new announcements or features can be shown here"
+#~ msgstr "Uudet ilmoitukset tai ominaisuudet voidaan näyttää täällä"
 
-msgid "Energy Economy"
-msgstr "Energiatalous"
+#~ msgid "Energy Economy"
+#~ msgstr "Energiatalous"
 
-msgid "Get latest energy economy information"
-msgstr "Hanki uusimmat tiedot energiataloudesta"
+#~ msgid "Get latest energy economy information"
+#~ msgstr "Hanki uusimmat tiedot energiataloudesta"
 
-msgid "Eco Trees"
-msgstr "Eko-puut"
+#~ msgid "Eco Trees"
+#~ msgstr "Eko-puut"
 
-msgid "Get latest eco tree information"
-msgstr "Hanki uusimmat tiedot ekopuista"
+#~ msgid "Get latest eco tree information"
+#~ msgstr "Hanki uusimmat tiedot ekopuista"
 
-msgid "Weather Forecast"
-msgstr "Sääennuste"
+#~ msgid "Weather Forecast"
+#~ msgstr "Sääennuste"
 
-msgid "Download Weather Forecast for your area"
-msgstr "Lataa lähialueesi kattava sääennuste"
+#~ msgid "Download Weather Forecast for your area"
+#~ msgstr "Lataa lähialueesi kattava sääennuste"
 
-msgid "clear"
-msgstr "selkeää"
+#~ msgid "clear"
+#~ msgstr "selkeää"
 
-msgid "mainly clear"
-msgstr "pääosin selkeää"
+#~ msgid "mainly clear"
+#~ msgstr "pääosin selkeää"
 
-msgid "partly cloudy"
-msgstr "osittain pilvistä"
+#~ msgid "partly cloudy"
+#~ msgstr "osittain pilvistä"
 
-msgid "cloudy"
-msgstr "pilvistä"
+#~ msgid "cloudy"
+#~ msgstr "pilvistä"
 
-msgid "foggy"
-msgstr "sumuista"
+#~ msgid "foggy"
+#~ msgstr "sumuista"
 
-msgid "foggy with rime ice"
-msgstr "sumuista ja huurteista"
+#~ msgid "foggy with rime ice"
+#~ msgstr "sumuista ja huurteista"
 
-msgid "drizzling lightly"
-msgstr "kevyesti tihkusadetta"
+#~ msgid "drizzling lightly"
+#~ msgstr "kevyesti tihkusadetta"
 
-msgid "drizzling moderately"
-msgstr "kohtalaisesti tihkusadetta"
+#~ msgid "drizzling moderately"
+#~ msgstr "kohtalaisesti tihkusadetta"
 
-msgid "heavy drizzling"
-msgstr "voimakasta tihkusadetta"
+#~ msgid "heavy drizzling"
+#~ msgstr "voimakasta tihkusadetta"
 
-msgid "drizzling lightly freezed"
-msgstr "kevyesti jäätävää tihkusadetta"
+#~ msgid "drizzling lightly freezed"
+#~ msgstr "kevyesti jäätävää tihkusadetta"
 
-msgid "drizzling moderately freezed"
-msgstr "kohtalaisesti jäätävää tihkusadetta"
+#~ msgid "drizzling moderately freezed"
+#~ msgstr "kohtalaisesti jäätävää tihkusadetta"
 
-msgid "raining slightly"
-msgstr "kevyesti sadetta"
+#~ msgid "raining slightly"
+#~ msgstr "kevyesti sadetta"
 
-msgid "raining moderately"
-msgstr "kohtalaisesti sadetta"
+#~ msgid "raining moderately"
+#~ msgstr "kohtalaisesti sadetta"
 
-msgid "raining heavily"
-msgstr "voimakasta sadetta"
+#~ msgid "raining heavily"
+#~ msgstr "voimakasta sadetta"
 
-msgid "freeze raining lightly"
-msgstr "kevyesti jäätävää sadetta"
+#~ msgid "freeze raining lightly"
+#~ msgstr "kevyesti jäätävää sadetta"
 
-msgid "freeze raining moderately"
-msgstr "kohtalaisesti jäätävää sadetta"
+#~ msgid "freeze raining moderately"
+#~ msgstr "kohtalaisesti jäätävää sadetta"
 
-msgid "snowing slightly"
-msgstr "kevyesti lumisadetta"
+#~ msgid "snowing slightly"
+#~ msgstr "kevyesti lumisadetta"
 
-msgid "moderate snowing"
-msgstr "kohtalaisesti lumisadetta"
+#~ msgid "moderate snowing"
+#~ msgstr "kohtalaisesti lumisadetta"
 
-msgid "snowing heavily"
-msgstr "voimakasta lumisadetta"
+#~ msgid "snowing heavily"
+#~ msgstr "voimakasta lumisadetta"
 
-msgid "snowing grain"
-msgstr "rae lumisadetta"
+#~ msgid "snowing grain"
+#~ msgstr "rae lumisadetta"
 
-msgid "slight rain shower"
-msgstr "kevyitä sadekuuroja"
+#~ msgid "slight rain shower"
+#~ msgstr "kevyitä sadekuuroja"
 
-msgid "moderate rain shower"
-msgstr "kohtalaisia sadekuuroja"
+#~ msgid "moderate rain shower"
+#~ msgstr "kohtalaisia sadekuuroja"
 
-msgid "violent rain shower"
-msgstr "voimakkaita sadekuuroja"
+#~ msgid "violent rain shower"
+#~ msgstr "voimakkaita sadekuuroja"
 
-msgid "slight snow shower"
-msgstr "kevyitä lumikuuroja"
+#~ msgid "slight snow shower"
+#~ msgstr "kevyitä lumikuuroja"
 
-msgid "heavy snow shower"
-msgstr "voimakkaita lumikuuroja"
+#~ msgid "heavy snow shower"
+#~ msgstr "voimakkaita lumikuuroja"
 
-msgid "thunderstorm"
-msgstr "ukkosmyrsky"
+#~ msgid "thunderstorm"
+#~ msgstr "ukkosmyrsky"
 
-msgid "This channel does not exist and cannot be added to favorites list"
-msgstr ""
-"Tätä kanavaa ei ole olemassa, eikä sitä voida lisätä suosikkiluetteloon."
+#~ msgid "This channel does not exist and cannot be added to favorites list"
+#~ msgstr ""
+#~ "Tätä kanavaa ei ole olemassa, eikä sitä voida lisätä suosikkiluetteloon."
 
-msgid ""
-"You may sign in with your username and CARWINGS password in navigation unit "
-"like showed below."
-msgstr ""
-"Voit halutessasi kokeilla kirjautua tunnuksillasi auton CARWINGS-"
-"asetuksissa, alla olevan ohjeen mukaisesti."
+#~ msgid ""
+#~ "You may sign in with your username and CARWINGS password in navigation "
+#~ "unit like showed below."
+#~ msgstr ""
+#~ "Voit halutessasi kokeilla kirjautua tunnuksillasi auton CARWINGS-"
+#~ "asetuksissa, alla olevan ohjeen mukaisesti."
 
-msgid "Latitude"
-msgstr "Leveysaste"
+#~ msgid "Latitude"
+#~ msgstr "Leveysaste"
 
-msgid "Longitude"
-msgstr "Pituusaste"
+#~ msgid "Longitude"
+#~ msgstr "Pituusaste"
 
-msgid "VFlash editor"
-msgstr "VFlash-muokkaustyökalu"
+#~ msgid "VFlash editor"
+#~ msgstr "VFlash-muokkaustyökalu"
 
-msgid "GIDs remaining (relative)"
-msgstr "Jäljellä olevat GID:t (relatiivi)"
+#~ msgid "GIDs remaining (relative)"
+#~ msgstr "Jäljellä olevat GID:t (relatiivi)"

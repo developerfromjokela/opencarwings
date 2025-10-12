@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-10 20:13+0000\n"
-"PO-Revision-Date: 2025-10-10 23:19+0300\n"
+"POT-Creation-Date: 2025-10-12 15:36+0000\n"
+"PO-Revision-Date: 2025-10-12 18:41+0300\n"
 "Last-Translator: Grok <grok@x.ai>\n"
 "Language-Team: Estonian <et@li.org>\n"
 "Language: et\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.7\n"
 
-#: api/views.py:246
+#: api/views.py:288
 msgid "Failed to send SMS message to TCU. Please try again in a moment."
 msgstr ""
 "SMS-sõnumi saatmine TCU-le ebaõnnestus. Palun proovi mõne aja pärast uuesti."
@@ -557,7 +557,7 @@ msgstr ""
 msgid "Route Plan {num}"
 msgstr "Marsruudiplaan {num}"
 
-#: tculink/carwings_proto/autodj/sendtocar.py:42
+#: tculink/carwings_proto/autodj/sendtocar.py:41
 #, python-brace-format
 msgid ""
 "Location point, \"{point_name}\", which is {distance} kilometers away. Set "
@@ -566,11 +566,11 @@ msgstr ""
 "Asukohapunkt \"{point_name}\", mis on {distance} kilomeetri kaugusel. "
 "Määrake see sihtkohaks, vajutades pausi ja määrates kaardipunkti sihtkohaks."
 
-#: tculink/carwings_proto/autodj/sendtocar.py:79
+#: tculink/carwings_proto/autodj/sendtocar.py:78
 msgid "Google Send To Car: No Destinations"
 msgstr "Google Send To Car: sihtkohti pole"
 
-#: tculink/carwings_proto/autodj/sendtocar.py:80
+#: tculink/carwings_proto/autodj/sendtocar.py:79
 msgid ""
 "There are no destinations sent to the car. Please send at least one "
 "destination from your computer or mobile device and access this channel "
@@ -1058,25 +1058,25 @@ msgstr "API-võtme lähtestamisel ilmnes viga"
 msgid "An error occurred while resetting the API key"
 msgstr "API-võtme lähtestamisel ilmnes viga"
 
-#: ui/templates/ui/base.html:44
+#: ui/templates/ui/base.html:45
 msgid "Sign Out"
 msgstr "Logi välja"
 
-#: ui/templates/ui/base.html:46 ui/templates/ui/landing.html:11
+#: ui/templates/ui/base.html:47 ui/templates/ui/landing.html:11
 #: ui/templates/ui/landing.html:22 ui/templates/ui/signin.html:3
 #: ui/templates/ui/signin.html:9 ui/templates/ui/signin.html:33
 msgid "Sign In"
 msgstr "Logi sisse"
 
-#: ui/templates/ui/base.html:65
+#: ui/templates/ui/base.html:66
 msgid "Project"
 msgstr "Projekt"
 
-#: ui/templates/ui/base.html:67
+#: ui/templates/ui/base.html:68
 msgid "Tools"
 msgstr "Tööriistad"
 
-#: ui/templates/ui/base.html:68 ui/templates/ui/vflash_editor.html:5
+#: ui/templates/ui/base.html:69 ui/templates/ui/vflash_editor.html:5
 msgid "VFlash Editor"
 msgstr "VFlash redaktor"
 
@@ -1186,8 +1186,8 @@ msgid "Driving"
 msgstr "Sõitmine"
 
 #: ui/templates/ui/car_detail.html:188 ui/templates/ui/car_detail.html:1065
-#: ui/templates/ui/probeviewer/main.html:378
-#: ui/templates/ui/probeviewer/main.html:448
+#: ui/templates/ui/probeviewer/main.html:437
+#: ui/templates/ui/probeviewer/main.html:507
 msgid "Charging finished"
 msgstr "Laadimine lõpetatud"
 
@@ -1216,13 +1216,13 @@ msgstr "Sees, Väljas"
 
 #: ui/templates/ui/car_detail.html:212 ui/templates/ui/car_detail.html:248
 #: ui/templates/ui/car_detail.html:277 ui/templates/ui/car_detail.html:299
-#: ui/templates/ui/probeviewer/main.html:138
-#: ui/templates/ui/probeviewer/main.html:163
+#: ui/templates/ui/probeviewer/main.html:139
+#: ui/templates/ui/probeviewer/main.html:164
 msgid "Last Updated"
 msgstr "Viimati uuendatud"
 
 #: ui/templates/ui/car_detail.html:220
-#: ui/templates/ui/probeviewer/main.html:100
+#: ui/templates/ui/probeviewer/main.html:101
 msgid "Odometer"
 msgstr "Odomeeter"
 
@@ -1297,7 +1297,7 @@ msgid "Charge bars"
 msgstr "Laadimisribad"
 
 #: ui/templates/ui/car_detail.html:262
-#: ui/templates/ui/probeviewer/trip.html:190
+#: ui/templates/ui/probeviewer/trip.html:198
 msgid "Capacity bars"
 msgstr "Mahutavusribad"
 
@@ -1769,7 +1769,7 @@ msgid "DOT-files"
 msgstr "DOT-failid"
 
 #: ui/templates/ui/probeviewer/main.html:77
-#: ui/templates/ui/probeviewer/main.html:307
+#: ui/templates/ui/probeviewer/main.html:308
 msgid "Trips"
 msgstr "Sõidud"
 
@@ -1778,58 +1778,62 @@ msgid "Monthly statistics"
 msgstr "Kuu statistika"
 
 #: ui/templates/ui/probeviewer/main.html:79
+msgid "Location history"
+msgstr "Asukoha ajalugu"
+
+#: ui/templates/ui/probeviewer/main.html:80
 msgid "Charging history"
 msgstr "Laadimise ajalugu"
 
-#: ui/templates/ui/probeviewer/main.html:80
+#: ui/templates/ui/probeviewer/main.html:81
 msgid "Charges"
 msgstr "Laadimised"
 
-#: ui/templates/ui/probeviewer/main.html:81
+#: ui/templates/ui/probeviewer/main.html:82
 msgid "Excessive idling history"
 msgstr "Liigne tühikäigu ajalugu"
 
-#: ui/templates/ui/probeviewer/main.html:82
+#: ui/templates/ui/probeviewer/main.html:83
 msgid "Excessive A/C history"
 msgstr "Liigne kliimaseadme kasutamise ajalugu"
 
-#: ui/templates/ui/probeviewer/main.html:83
+#: ui/templates/ui/probeviewer/main.html:84
 msgid "ABS history"
 msgstr "ABS ajalugu"
 
-#: ui/templates/ui/probeviewer/main.html:84
+#: ui/templates/ui/probeviewer/main.html:85
 msgid "DTC history"
 msgstr "DTC ajalugu"
 
-#: ui/templates/ui/probeviewer/main.html:85
+#: ui/templates/ui/probeviewer/main.html:86
 msgid "MSN history"
 msgstr "MSN ajalugu"
 
-#: ui/templates/ui/probeviewer/main.html:101
+#: ui/templates/ui/probeviewer/main.html:102
 msgid "Phone contacts in memory"
 msgstr "Telefonikontaktid mälus"
 
-#: ui/templates/ui/probeviewer/main.html:102
+#: ui/templates/ui/probeviewer/main.html:103
 msgid "Locations saved in address book"
 msgstr "Aadressiraamatusse salvestatud asukohad"
 
-#: ui/templates/ui/probeviewer/main.html:105
+#: ui/templates/ui/probeviewer/main.html:106
 msgid "Telemetry configuration"
 msgstr "Telemeetria konfiguratsioon"
 
-#: ui/templates/ui/probeviewer/main.html:107
+#: ui/templates/ui/probeviewer/main.html:108
 msgid "Telemetry Configuration ID"
 msgstr "Telemeetria konfiguratsiooni ID"
 
-#: ui/templates/ui/probeviewer/main.html:109
+#: ui/templates/ui/probeviewer/main.html:110
 msgid "New Telemetry Configuration ID"
 msgstr "Uus telemeetria konfiguratsiooni ID"
 
-#: ui/templates/ui/probeviewer/main.html:112
+#: ui/templates/ui/probeviewer/main.html:113
 msgid "Configuration update status"
 msgstr "Konfiguratsiooni värskendamise olek"
 
-#: ui/templates/ui/probeviewer/main.html:115
+#: ui/templates/ui/probeviewer/main.html:116
 msgid ""
 "Please turn on the car for vehicle data auto-update or access a CARWINGS "
 "data channel to perform configuration update."
@@ -1837,25 +1841,25 @@ msgstr ""
 "Sõiduki andmete automaatseks värskendamiseks lülitage auto sisse või avage "
 "konfiguratsiooni värskendamiseks CARWINGSi andmekanal."
 
-#: ui/templates/ui/probeviewer/main.html:119
+#: ui/templates/ui/probeviewer/main.html:120
 msgid "Cancel update"
 msgstr "Tühista värskendus"
 
-#: ui/templates/ui/probeviewer/main.html:125
+#: ui/templates/ui/probeviewer/main.html:126
 msgid "New Telemetry Configuration"
 msgstr "Uus telemeetria konfiguratsioon"
 
-#: ui/templates/ui/probeviewer/main.html:133
+#: ui/templates/ui/probeviewer/main.html:134
 msgid "Update"
 msgstr "Värskendus"
 
-#: ui/templates/ui/probeviewer/main.html:142
-#: ui/templates/ui/probeviewer/main.html:167
+#: ui/templates/ui/probeviewer/main.html:143
+#: ui/templates/ui/probeviewer/main.html:168
 msgid "No vehicle data available"
 msgstr "Sõiduki andmed pole saadaval"
 
-#: ui/templates/ui/probeviewer/main.html:143
-#: ui/templates/ui/probeviewer/main.html:168
+#: ui/templates/ui/probeviewer/main.html:144
+#: ui/templates/ui/probeviewer/main.html:169
 msgid ""
 "In order to receive vehicle data, CARWINGS navigation unit must have correct "
 "connection settings."
@@ -1863,218 +1867,248 @@ msgstr ""
 "Sõiduki andmete saamiseks peab CARWINGS naviseadmel olema õiged ühenduse "
 "seaded."
 
-#: ui/templates/ui/probeviewer/main.html:144
-#: ui/templates/ui/probeviewer/main.html:169
-#: ui/templates/ui/probeviewer/main.html:228
-#: ui/templates/ui/probeviewer/main.html:286
-#: ui/templates/ui/probeviewer/main.html:360
-#: ui/templates/ui/probeviewer/main.html:430
-#: ui/templates/ui/probeviewer/main.html:495
-#: ui/templates/ui/probeviewer/main.html:559
-#: ui/templates/ui/probeviewer/main.html:628
-#: ui/templates/ui/probeviewer/main.html:696
-#: ui/templates/ui/probeviewer/main.html:764
-#: ui/templates/ui/probeviewer/main.html:832
-#: ui/templates/ui/probeviewer/main.html:900
+#: ui/templates/ui/probeviewer/main.html:145
+#: ui/templates/ui/probeviewer/main.html:170
+#: ui/templates/ui/probeviewer/main.html:229
+#: ui/templates/ui/probeviewer/main.html:287
+#: ui/templates/ui/probeviewer/main.html:361
+#: ui/templates/ui/probeviewer/main.html:419
+#: ui/templates/ui/probeviewer/main.html:489
+#: ui/templates/ui/probeviewer/main.html:554
+#: ui/templates/ui/probeviewer/main.html:618
+#: ui/templates/ui/probeviewer/main.html:687
+#: ui/templates/ui/probeviewer/main.html:755
+#: ui/templates/ui/probeviewer/main.html:823
+#: ui/templates/ui/probeviewer/main.html:891
+#: ui/templates/ui/probeviewer/main.html:959
 #: ui/templates/ui/setup/step5.html:10
 msgid "Learn more"
 msgstr "Lisateave"
 
-#: ui/templates/ui/probeviewer/main.html:152
-#: ui/templates/ui/probeviewer/trip.html:133
+#: ui/templates/ui/probeviewer/main.html:153
+#: ui/templates/ui/probeviewer/trip.html:136
 msgid "A/C usage"
 msgstr "Kliimaseadme kasutus"
 
-#: ui/templates/ui/probeviewer/main.html:153
+#: ui/templates/ui/probeviewer/main.html:154
 msgid "Headlights usage"
 msgstr "Esitulede kasutus"
 
-#: ui/templates/ui/probeviewer/main.html:154
-#: ui/templates/ui/probeviewer/main.html:306
+#: ui/templates/ui/probeviewer/main.html:155
+#: ui/templates/ui/probeviewer/main.html:307
 #: ui/templates/ui/probeviewer/trip.html:31
 msgid "Average speed"
 msgstr "Keskmine kiirus"
 
-#: ui/templates/ui/probeviewer/main.html:155
+#: ui/templates/ui/probeviewer/main.html:156
 msgid "Energy regeneration"
 msgstr "Energia taastamine"
 
-#: ui/templates/ui/probeviewer/main.html:156
-#: ui/templates/ui/probeviewer/main.html:160
+#: ui/templates/ui/probeviewer/main.html:157
+#: ui/templates/ui/probeviewer/main.html:161
 msgid "Energy consumption"
 msgstr "Energiatarbimine"
 
-#: ui/templates/ui/probeviewer/main.html:157
+#: ui/templates/ui/probeviewer/main.html:158
 msgid "Runtime"
 msgstr "Tööaeg"
 
-#: ui/templates/ui/probeviewer/main.html:158
+#: ui/templates/ui/probeviewer/main.html:159
 msgid "Lifetime data mileage"
 msgstr "Eluaegne andmete läbisõit"
 
-#: ui/templates/ui/probeviewer/main.html:226
+#: ui/templates/ui/probeviewer/main.html:227
 msgid "No DOT data available"
 msgstr "DOT-andmed puuduvad"
 
-#: ui/templates/ui/probeviewer/main.html:227
+#: ui/templates/ui/probeviewer/main.html:228
 msgid "DOT data comes available on next startup after a trip."
 msgstr ""
 "DOT-andmed muutuvad kättesaadavaks järgmisel käivitamisel pärast reisi."
 
-#: ui/templates/ui/probeviewer/main.html:227
-#: ui/templates/ui/probeviewer/main.html:285
-#: ui/templates/ui/probeviewer/main.html:359
-#: ui/templates/ui/probeviewer/main.html:429
-#: ui/templates/ui/probeviewer/main.html:494
-#: ui/templates/ui/probeviewer/main.html:558
-#: ui/templates/ui/probeviewer/main.html:627
-#: ui/templates/ui/probeviewer/main.html:695
-#: ui/templates/ui/probeviewer/main.html:763
-#: ui/templates/ui/probeviewer/main.html:831
-#: ui/templates/ui/probeviewer/main.html:899
+#: ui/templates/ui/probeviewer/main.html:228
+#: ui/templates/ui/probeviewer/main.html:286
+#: ui/templates/ui/probeviewer/main.html:360
+#: ui/templates/ui/probeviewer/main.html:418
+#: ui/templates/ui/probeviewer/main.html:488
+#: ui/templates/ui/probeviewer/main.html:553
+#: ui/templates/ui/probeviewer/main.html:617
+#: ui/templates/ui/probeviewer/main.html:686
+#: ui/templates/ui/probeviewer/main.html:754
+#: ui/templates/ui/probeviewer/main.html:822
+#: ui/templates/ui/probeviewer/main.html:890
+#: ui/templates/ui/probeviewer/main.html:958
 msgid ""
 "In order to receive data, CARWINGS navigation unit must have correct "
 "connection settings."
 msgstr ""
 "Andmete saamiseks peab CARWINGS naviseadmel olema õiged ühenduse seaded."
 
-#: ui/templates/ui/probeviewer/main.html:284
+#: ui/templates/ui/probeviewer/main.html:285
 msgid "No trip data available"
 msgstr "Sõiduandmed pole saadaval"
 
-#: ui/templates/ui/probeviewer/main.html:285
+#: ui/templates/ui/probeviewer/main.html:286
 msgid "Trip information comes available on next startup after the trip."
 msgstr "Sõiduinfo muutub kättesaadavaks järgmisel käivitamisel pärast sõitu."
 
-#: ui/templates/ui/probeviewer/main.html:304
+#: ui/templates/ui/probeviewer/main.html:305
 msgid "Driving distance"
 msgstr "Sõidukaugus"
 
-#: ui/templates/ui/probeviewer/main.html:305
+#: ui/templates/ui/probeviewer/main.html:306
 msgid "Driving time"
 msgstr "Sõiduaeg"
 
-#: ui/templates/ui/probeviewer/main.html:308
-#: ui/templates/ui/probeviewer/trip.html:148
+#: ui/templates/ui/probeviewer/main.html:309
+#: ui/templates/ui/probeviewer/trip.html:156
 msgid "Regenerated energy"
 msgstr "Taastatud energia"
 
-#: ui/templates/ui/probeviewer/main.html:309
+#: ui/templates/ui/probeviewer/main.html:310
 msgid "Consumed energy"
 msgstr "Tarbitud energia"
 
-#: ui/templates/ui/probeviewer/main.html:312
+#: ui/templates/ui/probeviewer/main.html:313
 #: ui/templates/ui/probeviewer/trip.html:75
 #: ui/templates/ui/probeviewer/trip.html:81
 msgid "Average consumption"
 msgstr "Keskmine tarbimine"
 
-#: ui/templates/ui/probeviewer/main.html:319
-#: ui/templates/ui/probeviewer/trip.html:139
+#: ui/templates/ui/probeviewer/main.html:320
+#: ui/templates/ui/probeviewer/trip.html:142
 msgid "Average acceleration"
 msgstr "Keskmine kiirendus"
 
-#: ui/templates/ui/probeviewer/main.html:358
+#: ui/templates/ui/probeviewer/main.html:359
 msgid "No monthly analytics available"
 msgstr "Kuu analüütika pole saadaval"
 
-#: ui/templates/ui/probeviewer/main.html:359
+#: ui/templates/ui/probeviewer/main.html:360
 msgid "Monthly analytics information comes available at the end of the month."
 msgstr "Kuu analüütika info muutub kättesaadavaks kuu lõpus."
 
-#: ui/templates/ui/probeviewer/main.html:381
+#: ui/templates/ui/probeviewer/main.html:374
+msgid "Single Day"
+msgstr "Üksikpäev"
+
+#: ui/templates/ui/probeviewer/main.html:378
+msgid "Single Week"
+msgstr "Üks nädal"
+
+#: ui/templates/ui/probeviewer/main.html:382
+msgid "Single Month"
+msgstr "Üks kuu"
+
+#: ui/templates/ui/probeviewer/main.html:410
+msgid "Export to GPX"
+msgstr "Ekspordi GPX-vormingus"
+
+#: ui/templates/ui/probeviewer/main.html:417
+msgid "No location available"
+msgstr "No location available"
+
+#: ui/templates/ui/probeviewer/main.html:418
+msgid ""
+"Location information comes available on next startup, if your current "
+"configuration allows it."
+msgstr ""
+"Asukohateave on saadaval järgmisel käivitamisel, kui teie praegune "
+"konfiguratsioon seda lubab."
+
+#: ui/templates/ui/probeviewer/main.html:440
 msgid "State at start"
 msgstr "Seisund alguses"
 
-#: ui/templates/ui/probeviewer/main.html:382
+#: ui/templates/ui/probeviewer/main.html:441
 msgid "State at end"
 msgstr "Seisund lõpus"
 
-#: ui/templates/ui/probeviewer/main.html:383
-#: ui/templates/ui/probeviewer/main.html:452
+#: ui/templates/ui/probeviewer/main.html:442
+#: ui/templates/ui/probeviewer/main.html:511
 msgid "Charging type"
 msgstr "Laadimise tüüp"
 
-#: ui/templates/ui/probeviewer/main.html:384
+#: ui/templates/ui/probeviewer/main.html:443
 msgid "Charged energy"
 msgstr "Laaditud energia"
 
-#: ui/templates/ui/probeviewer/main.html:385
+#: ui/templates/ui/probeviewer/main.html:444
 msgid "Cell temp. (start)"
 msgstr "Raku temp. (algus)"
 
-#: ui/templates/ui/probeviewer/main.html:385
-#: ui/templates/ui/probeviewer/main.html:386
-#: ui/templates/ui/probeviewer/main.html:387
+#: ui/templates/ui/probeviewer/main.html:444
+#: ui/templates/ui/probeviewer/main.html:445
+#: ui/templates/ui/probeviewer/main.html:446
 msgid "avg/max/min"
 msgstr "keskmine/max/min"
 
-#: ui/templates/ui/probeviewer/main.html:386
+#: ui/templates/ui/probeviewer/main.html:445
 msgid "Cell temp. (end)"
 msgstr "Raku temp. (lõpp)"
 
-#: ui/templates/ui/probeviewer/main.html:387
+#: ui/templates/ui/probeviewer/main.html:446
 msgid "Cell volt. (start)"
 msgstr "Raku pinge (algus)"
 
-#: ui/templates/ui/probeviewer/main.html:388
+#: ui/templates/ui/probeviewer/main.html:447
 msgid "Charges while ign. off"
 msgstr "Laadimised süüte väljalülitamisel"
 
-#: ui/templates/ui/probeviewer/main.html:428
+#: ui/templates/ui/probeviewer/main.html:487
 msgid "No charging history available"
 msgstr "Laadimise ajalugu pole saadaval"
 
-#: ui/templates/ui/probeviewer/main.html:429
+#: ui/templates/ui/probeviewer/main.html:488
 msgid ""
 "Charging history may become available on next startup after the charging."
 msgstr ""
 "Laadimise ajalugu võib muutuda kättesaadavaks järgmisel käivitamisel pärast "
 "laadimist."
 
-#: ui/templates/ui/probeviewer/main.html:451
+#: ui/templates/ui/probeviewer/main.html:510
 msgid "Charge count"
 msgstr "Laadimiste arv"
 
-#: ui/templates/ui/probeviewer/main.html:453
+#: ui/templates/ui/probeviewer/main.html:512
 msgid "Charge position"
 msgstr "Laadimise asukoht"
 
-#: ui/templates/ui/probeviewer/main.html:493
+#: ui/templates/ui/probeviewer/main.html:552
 msgid "No charge data available"
 msgstr "Laadimisandmed pole saadaval"
 
-#: ui/templates/ui/probeviewer/main.html:494
+#: ui/templates/ui/probeviewer/main.html:553
 msgid "Charging data may become available on next startup after the charging."
 msgstr ""
 "Laadimisandmed võivad muutuda kättesaadavaks järgmisel käivitamisel pärast "
 "laadimist."
 
-#: ui/templates/ui/probeviewer/main.html:513
+#: ui/templates/ui/probeviewer/main.html:572
 msgid "Operation time"
 msgstr "Tööaeg"
 
-#: ui/templates/ui/probeviewer/main.html:514
+#: ui/templates/ui/probeviewer/main.html:573
 msgid "Vehicle speed at start"
 msgstr "Sõiduki kiirus alguses"
 
-#: ui/templates/ui/probeviewer/main.html:515
+#: ui/templates/ui/probeviewer/main.html:574
 msgid "Vehicle speed at end"
 msgstr "Sõiduki kiirus lõpus"
 
-#: ui/templates/ui/probeviewer/main.html:516
+#: ui/templates/ui/probeviewer/main.html:575
 msgid "Road type"
 msgstr "Tee tüüp"
 
-#: ui/templates/ui/probeviewer/main.html:517
+#: ui/templates/ui/probeviewer/main.html:576
 msgid "Direction"
 msgstr "Suund"
 
-#: ui/templates/ui/probeviewer/main.html:557
+#: ui/templates/ui/probeviewer/main.html:616
 msgid "No ABS data available"
 msgstr "ABS andmed pole saadaval"
 
-#: ui/templates/ui/probeviewer/main.html:558
+#: ui/templates/ui/probeviewer/main.html:617
 msgid ""
 "ABS data may become available on next startup if your vehicle configuration "
 "allows it."
@@ -2082,29 +2116,29 @@ msgstr ""
 "ABS andmed võivad muutuda kättesaadavaks järgmisel käivitamisel, kui sinu "
 "sõiduki konfiguratsioon seda võimaldab."
 
-#: ui/templates/ui/probeviewer/main.html:571
-#: ui/templates/ui/probeviewer/main.html:639
-#: ui/templates/ui/probeviewer/main.html:707
-#: ui/templates/ui/probeviewer/main.html:775
-#: ui/templates/ui/probeviewer/main.html:843
+#: ui/templates/ui/probeviewer/main.html:630
+#: ui/templates/ui/probeviewer/main.html:698
+#: ui/templates/ui/probeviewer/main.html:766
+#: ui/templates/ui/probeviewer/main.html:834
+#: ui/templates/ui/probeviewer/main.html:902
 msgid "Date and time"
 msgstr "Kuupäev ja kellaaeg"
 
-#: ui/templates/ui/probeviewer/main.html:574
-#: ui/templates/ui/probeviewer/main.html:710
+#: ui/templates/ui/probeviewer/main.html:633
+#: ui/templates/ui/probeviewer/main.html:769
 #: ui/templates/ui/probeviewer/trip.html:39
 msgid "Duration"
 msgstr "Kestus"
 
-#: ui/templates/ui/probeviewer/main.html:626
-#: ui/templates/ui/probeviewer/main.html:694
-#: ui/templates/ui/probeviewer/main.html:762
+#: ui/templates/ui/probeviewer/main.html:685
+#: ui/templates/ui/probeviewer/main.html:753
+#: ui/templates/ui/probeviewer/main.html:821
 msgid "No idling data available"
 msgstr "Tühikäigu andmed pole saadaval"
 
-#: ui/templates/ui/probeviewer/main.html:627
-#: ui/templates/ui/probeviewer/main.html:695
-#: ui/templates/ui/probeviewer/main.html:763
+#: ui/templates/ui/probeviewer/main.html:686
+#: ui/templates/ui/probeviewer/main.html:754
+#: ui/templates/ui/probeviewer/main.html:822
 msgid ""
 "Idling data may become available on next startup if your vehicle "
 "configuration allows it."
@@ -2112,20 +2146,20 @@ msgstr ""
 "Tühikäigu andmed võivad muutuda kättesaadavaks järgmisel käivitamisel, kui "
 "sinu sõiduki konfiguratsioon seda võimaldab."
 
-#: ui/templates/ui/probeviewer/main.html:642
+#: ui/templates/ui/probeviewer/main.html:701
 msgid "Consumption"
 msgstr "Tarbimine"
 
-#: ui/templates/ui/probeviewer/main.html:778
-#: ui/templates/ui/probeviewer/main.html:846
+#: ui/templates/ui/probeviewer/main.html:837
+#: ui/templates/ui/probeviewer/main.html:905
 msgid "Data"
 msgstr "Andmed"
 
-#: ui/templates/ui/probeviewer/main.html:830
+#: ui/templates/ui/probeviewer/main.html:889
 msgid "No DTC data available"
 msgstr "DTC andmed pole saadaval"
 
-#: ui/templates/ui/probeviewer/main.html:831
+#: ui/templates/ui/probeviewer/main.html:890
 msgid ""
 "DTC data may become available on next startup if your vehicle has active DTC "
 "trouble code."
@@ -2133,13 +2167,19 @@ msgstr ""
 "DTC andmed võivad muutuda kättesaadavaks järgmisel käivitamisel, kui sinu "
 "sõidukil on aktiivne DTC veakood."
 
-#: ui/templates/ui/probeviewer/main.html:898
+#: ui/templates/ui/probeviewer/main.html:957
 msgid "No MSN data available"
 msgstr "MSN andmed pole saadaval"
 
-#: ui/templates/ui/probeviewer/main.html:899
+#: ui/templates/ui/probeviewer/main.html:958
 msgid "MSN data may become available on next startup."
 msgstr "MSN andmed võivad muutuda kättesaadavaks järgmisel käivitamisel."
+
+#: ui/templates/ui/probeviewer/main.html:1183
+#: ui/templates/ui/probeviewer/main.html:1187
+#: ui/templates/ui/probeviewer/main.html:1188
+msgid "Error loading location history"
+msgstr "Asukohaajaloo laadimisel tekkis viga"
 
 #: ui/templates/ui/probeviewer/trip.html:18
 msgid "Trip"
@@ -2165,171 +2205,175 @@ msgstr "Taastatud"
 msgid "Info"
 msgstr "Info"
 
-#: ui/templates/ui/probeviewer/trip.html:118
+#: ui/templates/ui/probeviewer/trip.html:119
+msgid "Map"
+msgstr "Map"
+
+#: ui/templates/ui/probeviewer/trip.html:121
 msgid "Energy"
 msgstr "Energia"
 
-#: ui/templates/ui/probeviewer/trip.html:119
+#: ui/templates/ui/probeviewer/trip.html:122
 msgid "HV Battery"
 msgstr "Kõrgepinge aku"
 
-#: ui/templates/ui/probeviewer/trip.html:126
+#: ui/templates/ui/probeviewer/trip.html:129
 msgid "Trip end date"
 msgstr "Sõidu lõppkuupäev"
 
-#: ui/templates/ui/probeviewer/trip.html:127
+#: ui/templates/ui/probeviewer/trip.html:130
 msgid "Outside temperature at start"
 msgstr "Välistemperatuur alguses"
 
-#: ui/templates/ui/probeviewer/trip.html:128
+#: ui/templates/ui/probeviewer/trip.html:131
 msgid "Outside temperature at finish"
 msgstr "Välistemperatuur lõpus"
 
-#: ui/templates/ui/probeviewer/trip.html:129
+#: ui/templates/ui/probeviewer/trip.html:132
 msgid "Max speed"
 msgstr "Maksimaalne kiirus"
 
-#: ui/templates/ui/probeviewer/trip.html:130
+#: ui/templates/ui/probeviewer/trip.html:133
 msgid "Cabin preconditioning before trip"
 msgstr "Salongi eelkonditsioneerimine enne sõitu"
 
-#: ui/templates/ui/probeviewer/trip.html:131
+#: ui/templates/ui/probeviewer/trip.html:134
 msgid "Highway driving time"
 msgstr "Maanteel sõitmise aeg"
 
-#: ui/templates/ui/probeviewer/trip.html:132
+#: ui/templates/ui/probeviewer/trip.html:135
 msgid "Optimal highway driving time"
 msgstr "Optimaalne maanteel sõitmise aeg"
 
-#: ui/templates/ui/probeviewer/trip.html:134
+#: ui/templates/ui/probeviewer/trip.html:137
 msgid "Idling time"
 msgstr "Tühikäigu aeg"
 
-#: ui/templates/ui/probeviewer/trip.html:135
+#: ui/templates/ui/probeviewer/trip.html:138
 msgid "Headlights usage time"
 msgstr "Esitulede kasutamise aeg"
 
-#: ui/templates/ui/probeviewer/trip.html:136
+#: ui/templates/ui/probeviewer/trip.html:139
 msgid "Sudden accelerations"
 msgstr "Järsud kiirendused"
 
-#: ui/templates/ui/probeviewer/trip.html:137
+#: ui/templates/ui/probeviewer/trip.html:140
 msgid "Sudden decelerations"
 msgstr "Järsud aeglustused"
 
-#: ui/templates/ui/probeviewer/trip.html:138
+#: ui/templates/ui/probeviewer/trip.html:141
 msgid "Odometer at start"
 msgstr "Odomeeter alguses"
 
-#: ui/templates/ui/probeviewer/trip.html:144
+#: ui/templates/ui/probeviewer/trip.html:152
 msgid "A/C consumption"
 msgstr "Kliimaseadme tarbimine"
 
-#: ui/templates/ui/probeviewer/trip.html:145
+#: ui/templates/ui/probeviewer/trip.html:153
 msgid "Auxiliary consumption"
 msgstr "Abiseadmete tarbimine"
 
-#: ui/templates/ui/probeviewer/trip.html:146
+#: ui/templates/ui/probeviewer/trip.html:154
 msgid "Motor consumption"
 msgstr "Mootori tarbimine"
 
-#: ui/templates/ui/probeviewer/trip.html:147
+#: ui/templates/ui/probeviewer/trip.html:155
 msgid "Idle consumption"
 msgstr "Tühikäigu tarbimine"
 
-#: ui/templates/ui/probeviewer/trip.html:149
+#: ui/templates/ui/probeviewer/trip.html:157
 msgid "Sudden acceleration consumption"
 msgstr "Järsku kiirenduse tarbimine"
 
-#: ui/templates/ui/probeviewer/trip.html:150
+#: ui/templates/ui/probeviewer/trip.html:158
 msgid "Sudden acceleration time"
 msgstr "Järsku kiirenduse aeg"
 
-#: ui/templates/ui/probeviewer/trip.html:151
+#: ui/templates/ui/probeviewer/trip.html:159
 msgid "Non-eco deceleration consumption"
 msgstr "Mitte-ökonoomse aeglustuse tarbimine"
 
-#: ui/templates/ui/probeviewer/trip.html:152
+#: ui/templates/ui/probeviewer/trip.html:160
 msgid "Non-eco deceleration time"
 msgstr "Mitte-ökonoomse aeglustuse aeg"
 
-#: ui/templates/ui/probeviewer/trip.html:153
+#: ui/templates/ui/probeviewer/trip.html:161
 msgid "Sudden start consumption"
 msgstr "Järsku käivitamise tarbimine"
 
-#: ui/templates/ui/probeviewer/trip.html:154
+#: ui/templates/ui/probeviewer/trip.html:162
 msgid "Sudden start time"
 msgstr "Järsku käivitamise aeg"
 
-#: ui/templates/ui/probeviewer/trip.html:160
+#: ui/templates/ui/probeviewer/trip.html:168
 msgid "Trip start"
 msgstr "Sõidu algus"
 
-#: ui/templates/ui/probeviewer/trip.html:162
-#: ui/templates/ui/probeviewer/trip.html:179
+#: ui/templates/ui/probeviewer/trip.html:170
+#: ui/templates/ui/probeviewer/trip.html:187
 msgid "Battery pack temperature"
 msgstr "Aku temperatuuri"
 
-#: ui/templates/ui/probeviewer/trip.html:164
-#: ui/templates/ui/probeviewer/trip.html:165
-#: ui/templates/ui/probeviewer/trip.html:181
-#: ui/templates/ui/probeviewer/trip.html:182
+#: ui/templates/ui/probeviewer/trip.html:172
+#: ui/templates/ui/probeviewer/trip.html:173
+#: ui/templates/ui/probeviewer/trip.html:189
+#: ui/templates/ui/probeviewer/trip.html:190
 msgid "Energy content"
 msgstr "Energiasisaldus"
 
-#: ui/templates/ui/probeviewer/trip.html:166
-#: ui/templates/ui/probeviewer/trip.html:183
+#: ui/templates/ui/probeviewer/trip.html:174
+#: ui/templates/ui/probeviewer/trip.html:191
 msgid "Average cell temperature"
 msgstr "Keskmine raku temperatuur"
 
-#: ui/templates/ui/probeviewer/trip.html:167
-#: ui/templates/ui/probeviewer/trip.html:184
+#: ui/templates/ui/probeviewer/trip.html:175
+#: ui/templates/ui/probeviewer/trip.html:192
 msgid "Max cell temperature"
 msgstr "Maksimaalne raku temperatuur"
 
-#: ui/templates/ui/probeviewer/trip.html:168
-#: ui/templates/ui/probeviewer/trip.html:185
+#: ui/templates/ui/probeviewer/trip.html:176
+#: ui/templates/ui/probeviewer/trip.html:193
 msgid "Min cell temperature"
 msgstr "Minimaalne raku temperatuur"
 
-#: ui/templates/ui/probeviewer/trip.html:169
+#: ui/templates/ui/probeviewer/trip.html:177
 msgid "Average cell voltage"
 msgstr "Keskmine raku pinge"
 
-#: ui/templates/ui/probeviewer/trip.html:170
+#: ui/templates/ui/probeviewer/trip.html:178
 msgid "Max cell voltage"
 msgstr "Maksimaalne raku pinge"
 
-#: ui/templates/ui/probeviewer/trip.html:171
+#: ui/templates/ui/probeviewer/trip.html:179
 msgid "Min cell voltage"
 msgstr "Minimaalne raku pinge"
 
-#: ui/templates/ui/probeviewer/trip.html:172
+#: ui/templates/ui/probeviewer/trip.html:180
 msgid "AC charges (total?)"
 msgstr "Vahelduvvoolu laadimised (kokku?)"
 
-#: ui/templates/ui/probeviewer/trip.html:173
+#: ui/templates/ui/probeviewer/trip.html:181
 msgid "QC charges (total?)"
 msgstr "Kiirlaadimised (kokku?)"
 
-#: ui/templates/ui/probeviewer/trip.html:177
+#: ui/templates/ui/probeviewer/trip.html:185
 msgid "Trip end"
 msgstr "Sõidu lõpp"
 
-#: ui/templates/ui/probeviewer/trip.html:186
+#: ui/templates/ui/probeviewer/trip.html:194
 msgid "Accumulated current"
 msgstr "Kogunenud vool"
 
-#: ui/templates/ui/probeviewer/trip.html:187
-#: ui/templates/ui/probeviewer/trip.html:191
+#: ui/templates/ui/probeviewer/trip.html:195
+#: ui/templates/ui/probeviewer/trip.html:199
 msgid "SOH"
 msgstr "Aku seisund"
 
-#: ui/templates/ui/probeviewer/trip.html:188
+#: ui/templates/ui/probeviewer/trip.html:196
 msgid "Pack resistance"
 msgstr "Aku takistus"
 
-#: ui/templates/ui/probeviewer/trip.html:192
+#: ui/templates/ui/probeviewer/trip.html:200
 msgid "New battery degradation analysis program"
 msgstr "Uus aku degradeerumise analüüsi programm"
 
@@ -2576,7 +2620,7 @@ msgstr "Auto lisatud"
 msgid "Account successfully updated!"
 msgstr "Konto edukalt uuendatud!"
 
-#: ui/views.py:99 ui/views.py:721
+#: ui/views.py:99 ui/views.py:720
 msgid "Please fill the form correctly and try again."
 msgstr "Palun täida vorm korrektselt ja proovi uuesti."
 
@@ -2612,131 +2656,132 @@ msgstr "Auto on juba lisatud. Palun eemalda ja proovi uuesti."
 msgid "Please select a provider for SMS."
 msgstr "Palun vali SMS-teenuse pakkuja."
 
-#: ui/views.py:713
+#: ui/views.py:712
 msgid "Update requested! Update will occur on next boot."
 msgstr "Värskendust taotletud! Värskendus toimub järgmisel käivitamisel."
 
-#: ui/views.py:719
+#: ui/views.py:718
 msgid "Update request cancelled!"
 msgstr "Update request cancelled!"
 
-msgid "Version"
-msgstr "Versioon"
+#~ msgid "Version"
+#~ msgstr "Versioon"
 
-msgid "OpenCARWINGS"
-msgstr "OpenCARWINGS"
+#~ msgid "OpenCARWINGS"
+#~ msgstr "OpenCARWINGS"
 
-msgid "Route Planning & Navigation"
-msgstr "Marsruudi planeerimine ja navigeerimine"
+#~ msgid "Route Planning & Navigation"
+#~ msgstr "Marsruudi planeerimine ja navigeerimine"
 
-msgid "Online Services"
-msgstr "Veebitteenused"
+#~ msgid "Online Services"
+#~ msgstr "Veebitteenused"
 
-msgid "Any new announcements or features can be shown here"
-msgstr "Siin saab kuvada kõiki uusi teateid või funktsioone"
+#~ msgid "Any new announcements or features can be shown here"
+#~ msgstr "Siin saab kuvada kõiki uusi teateid või funktsioone"
 
-msgid "Energy Economy"
-msgstr "Energiatõhusus"
+#~ msgid "Energy Economy"
+#~ msgstr "Energiatõhusus"
 
-msgid "Get latest energy economy information"
-msgstr "Hangi uusimat energiatõhususe teavet"
+#~ msgid "Get latest energy economy information"
+#~ msgstr "Hangi uusimat energiatõhususe teavet"
 
-msgid "Eco Trees"
-msgstr "Ökopuud"
+#~ msgid "Eco Trees"
+#~ msgstr "Ökopuud"
 
-msgid "Get latest eco tree information"
-msgstr "Hankige uusimat teavet ökopuude kohta"
+#~ msgid "Get latest eco tree information"
+#~ msgstr "Hankige uusimat teavet ökopuude kohta"
 
-msgid "Weather Forecast"
-msgstr "Ilmaennustus"
+#~ msgid "Weather Forecast"
+#~ msgstr "Ilmaennustus"
 
-msgid "Download Weather Forecast for your area"
-msgstr "Laadi alla oma piirkonna ilmaennustus"
+#~ msgid "Download Weather Forecast for your area"
+#~ msgstr "Laadi alla oma piirkonna ilmaennustus"
 
-msgid "clear"
-msgstr "selge"
+#~ msgid "clear"
+#~ msgstr "selge"
 
-msgid "mainly clear"
-msgstr "valdavalt selge"
+#~ msgid "mainly clear"
+#~ msgstr "valdavalt selge"
 
-msgid "partly cloudy"
-msgstr "osaliselt pilvine"
+#~ msgid "partly cloudy"
+#~ msgstr "osaliselt pilvine"
 
-msgid "cloudy"
-msgstr "pilvine"
+#~ msgid "cloudy"
+#~ msgstr "pilvine"
 
-msgid "foggy"
-msgstr "udune"
+#~ msgid "foggy"
+#~ msgstr "udune"
 
-msgid "foggy with rime ice"
-msgstr "udune ja jääkülm"
+#~ msgid "foggy with rime ice"
+#~ msgstr "udune ja jääkülm"
 
-msgid "drizzling lightly"
-msgstr "uduvihma"
+#~ msgid "drizzling lightly"
+#~ msgstr "uduvihma"
 
-msgid "drizzling moderately"
-msgstr "mõõdukalt uduvihma"
+#~ msgid "drizzling moderately"
+#~ msgstr "mõõdukalt uduvihma"
 
-msgid "heavy drizzling"
-msgstr "tugev uduvihm"
+#~ msgid "heavy drizzling"
+#~ msgstr "tugev uduvihm"
 
-msgid "drizzling lightly freezed"
-msgstr "uduvihm kergelt jäätunud"
+#~ msgid "drizzling lightly freezed"
+#~ msgstr "uduvihm kergelt jäätunud"
 
-msgid "drizzling moderately freezed"
-msgstr "uduvihm, mõõdukalt külm"
+#~ msgid "drizzling moderately freezed"
+#~ msgstr "uduvihm, mõõdukalt külm"
 
-msgid "raining slightly"
-msgstr "sajab kergelt vihma"
+#~ msgid "raining slightly"
+#~ msgstr "sajab kergelt vihma"
 
-msgid "raining moderately"
-msgstr "mõõdukalt vihma"
+#~ msgid "raining moderately"
+#~ msgstr "mõõdukalt vihma"
 
-msgid "raining heavily"
-msgstr "tugevalt vihma sajab"
+#~ msgid "raining heavily"
+#~ msgstr "tugevalt vihma sajab"
 
-msgid "freeze raining lightly"
-msgstr "sajab kergelt külma vihma"
+#~ msgid "freeze raining lightly"
+#~ msgstr "sajab kergelt külma vihma"
 
-msgid "freeze raining moderately"
-msgstr "mõõdukalt jäävihma"
+#~ msgid "freeze raining moderately"
+#~ msgstr "mõõdukalt jäävihma"
 
-msgid "snowing slightly"
-msgstr "sajab kergelt lund"
+#~ msgid "snowing slightly"
+#~ msgstr "sajab kergelt lund"
 
-msgid "moderate snowing"
-msgstr "mõõdukas lumesadu"
+#~ msgid "moderate snowing"
+#~ msgstr "mõõdukas lumesadu"
 
-msgid "snowing heavily"
-msgstr "tugevalt lund sadas"
+#~ msgid "snowing heavily"
+#~ msgstr "tugevalt lund sadas"
 
-msgid "snowing grain"
-msgstr "lumesadu"
+#~ msgid "snowing grain"
+#~ msgstr "lumesadu"
 
-msgid "slight rain shower"
-msgstr "kerge vihmahoog"
+#~ msgid "slight rain shower"
+#~ msgstr "kerge vihmahoog"
 
-msgid "moderate rain shower"
-msgstr "mõõdukas vihmahoog"
+#~ msgid "moderate rain shower"
+#~ msgstr "mõõdukas vihmahoog"
 
-msgid "violent rain shower"
-msgstr "äge vihmasadu"
+#~ msgid "violent rain shower"
+#~ msgstr "äge vihmasadu"
 
-msgid "slight snow shower"
-msgstr "kerge lumesadu"
+#~ msgid "slight snow shower"
+#~ msgstr "kerge lumesadu"
 
-msgid "heavy snow shower"
-msgstr "tugev lumesadu"
+#~ msgid "heavy snow shower"
+#~ msgstr "tugev lumesadu"
 
-msgid "thunderstorm"
-msgstr "äikesetorm"
+#~ msgid "thunderstorm"
+#~ msgstr "äikesetorm"
 
-msgid "This channel does not exist and cannot be added to favorites list"
-msgstr "Seda kanalit ei eksisteeri ja seda ei saa lemmikute nimekirja lisada"
+#~ msgid "This channel does not exist and cannot be added to favorites list"
+#~ msgstr ""
+#~ "Seda kanalit ei eksisteeri ja seda ei saa lemmikute nimekirja lisada"
 
-msgid ""
-"You may sign in with your username and CARWINGS password in navigation unit "
-"like showed below."
-msgstr ""
-"Võid naviseadmes sisse logida oma kasutajanime ja CARWINGS parooliga, nagu "
-"allpool näidatud."
+#~ msgid ""
+#~ "You may sign in with your username and CARWINGS password in navigation "
+#~ "unit like showed below."
+#~ msgstr ""
+#~ "Võid naviseadmes sisse logida oma kasutajanime ja CARWINGS parooliga, "
+#~ "nagu allpool näidatud."

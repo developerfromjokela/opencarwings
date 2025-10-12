@@ -76,6 +76,7 @@
             <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none {% if dot_act %}text-blue-500 border-b-2 border-blue-500{% else %}text-gray-600{% endif %} text-sm sm:text-base" data-tab="dotdata">{% translate "DOT-files" %}</button>
             <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none {% if trips_act %}text-blue-500 border-b-2 border-blue-500{% else %}text-gray-600{% endif %} text-sm sm:text-base" data-tab="trips">{% translate "Trips" %}</button>
             <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none {% if months_act %}text-blue-500 border-b-2 border-blue-500{% else %}text-gray-600{% endif %} text-sm sm:text-base" data-tab="monthly">{% translate "Monthly statistics" %}</button>
+            <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none {% if location_act %}text-blue-500 border-b-2 border-blue-500{% else %}text-gray-600{% endif %} text-sm sm:text-base" data-tab="location">{% translate "Location history" %}</button>
             <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none {% if chargehist_act %}text-blue-500 border-b-2 border-blue-500{% else %}text-gray-600{% endif %} text-sm sm:text-base" data-tab="chargehist">{% translate "Charging history" %}</button>
             <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none {% if charge_act %}text-blue-500 border-b-2 border-blue-500{% else %}text-gray-600{% endif %} text-sm sm:text-base" data-tab="charge">{% translate "Charges" %}</button>
             <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none {% if idl_act %}text-blue-500 border-b-2 border-blue-500{% else %}text-gray-600{% endif %} text-sm sm:text-base" data-tab="idling">{% translate "Excessive idling history" %}</button>
@@ -357,6 +358,64 @@
                 <div class="flex flex-col text-center items-center justify-center">
                     <h3 class="text-lg font-semibold text-gray-800 mb-4">{% translate "No monthly analytics available" %}</h3>
                     <p class="max-w-md">{% translate "Monthly analytics information comes available at the end of the month." %}<br><br/><span class="text-yellow-700"><i class="mic material-symbols-outlined">warning</i> {% translate "In order to receive data, CARWINGS navigation unit must have correct connection settings." %}</span></p>
+                    <a href="/static/navi_guide.html" class="text-blue-600 hover:underline" target="_blank">{% translate "Learn more" %}</a>
+                </div>
+                {% endif %}
+            </div>
+
+            <div id="location" class="tab-content">
+                {% if locations %}
+                    {{ locations|json_script:"lochist_init" }}
+                    <div class="flex flex-col md:flex-row gap-3 sm:gap-4" style="min-height: 500px;">
+                    <div id="locationsbox" class="mb-6" style="min-width: 350px; max-width: 500px;">
+                        <div class="space-y-3 mb-6">
+                          <label class="flex items-center space-x-3 cursor-pointer">
+                            <input type="radio" name="period" value="day" checked class="w-4 h-4 text-blue-600">
+                            <span class="text-gray-700">Single Day</span>
+                          </label>
+                          <label class="flex items-center space-x-3 cursor-pointer">
+                            <input type="radio" name="period" value="week" class="w-4 h-4 text-blue-600">
+                            <span class="text-gray-700">Single Week</span>
+                          </label>
+                          <label class="flex items-center space-x-3 cursor-pointer">
+                            <input type="radio" name="period" value="month" class="w-4 h-4 text-blue-600">
+                            <span class="text-gray-700">Single Month</span>
+                          </label>
+                        </div>
+
+                        <div class="border border-gray-200 rounded-lg p-4">
+                          <div class="flex items-center justify-between mb-4">
+                            <button id="prevMonth" class="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded text-gray-700">
+                              &larr;
+                            </button>
+                            <h3 id="monthYear" class="text-lg font-semibold text-gray-800"></h3>
+                            <button id="nextMonth" class="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded text-gray-700">
+                              &rarr;
+                            </button>
+                          </div>
+
+                          <div class="grid grid-cols-7 gap-1 mb-2">
+                            <div class="text-center text-xs font-semibold text-gray-600 py-2">Mon</div>
+                            <div class="text-center text-xs font-semibold text-gray-600 py-2">Tue</div>
+                            <div class="text-center text-xs font-semibold text-gray-600 py-2">Wed</div>
+                            <div class="text-center text-xs font-semibold text-gray-600 py-2">Thu</div>
+                            <div class="text-center text-xs font-semibold text-gray-600 py-2">Fri</div>
+                            <div class="text-center text-xs font-semibold text-gray-600 py-2">Sat</div>
+                            <div class="text-center text-xs font-semibold text-gray-600 py-2">Sun</div>
+                          </div>
+
+                          <div id="calendar" class="grid grid-cols-7 gap-1"></div>
+
+                        </div>
+                        <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 me-2 mb-2 mt-2" onclick="exportGPX()">{% translate "Export to GPX" %}</button>
+                    </div>
+                    <div id="locationmap" class="map mb-4 flex-1 rounded-md" style="min-height: 300px;"></div>
+                </div>
+
+                {% else %}
+                <div class="flex flex-col text-center items-center justify-center">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">{% translate "No location available" %}</h3>
+                    <p class="max-w-md">{% translate "Location information comes available on next startup, if your current configuration allows it." %}<br><br/><span class="text-yellow-700"><i class="mic material-symbols-outlined">warning</i> {% translate "In order to receive data, CARWINGS navigation unit must have correct connection settings." %}</span></p>
                     <a href="/static/navi_guide.html" class="text-blue-600 hover:underline" target="_blank">{% translate "Learn more" %}</a>
                 </div>
                 {% endif %}
@@ -923,6 +982,10 @@
                 const selectedButton = document.querySelector(`[data-tab="${tabId}"]`);
                 const selectedContent = document.getElementById(tabId);
 
+                if (tabId === 'location') {
+                    setTimeout(() => {updateMap()}, 300);
+                }
+
                 if (selectedButton && selectedContent) {
                     selectedButton.classList.remove('text-gray-600');
                     selectedButton.classList.add('text-blue-500', 'border-b-2', 'border-blue-500');
@@ -990,4 +1053,245 @@
             window.addEventListener('resize', updateArrows);
         });
     </script>
+    {% if locations %}
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {mainMap = L.map('locationmap', { zoomControl: true })})
+
+        var currentMonth = new Date();
+        var periodType = 'day';
+        var selectedDate = null;
+
+        var getMonth = function(idx) {
+          var objDate = new Date();
+          objDate.setDate(1);
+          objDate.setMonth(idx-1);
+          return objDate.toLocaleString('default', { month: "long" });
+        }
+
+        var monthNames = [];
+
+        for (var mI = 1; mI < 13; mI++) {
+            monthNames.push(getMonth(mI));
+        }
+
+        var radios = document.querySelectorAll('input[name="period"]');
+        for (var i = 0; i < radios.length; i++) {
+          radios[i].addEventListener('change', function(e) {
+            periodType = e.target.value;
+            selectedDate = null;
+            renderCalendar();
+          });
+        }
+
+        document.getElementById('prevMonth').addEventListener('click', function() {
+          currentMonth.setMonth(currentMonth.getMonth() - 1);
+          renderCalendar();
+        });
+
+        document.getElementById('nextMonth').addEventListener('click', function() {
+          currentMonth.setMonth(currentMonth.getMonth() + 1);
+          renderCalendar();
+        });
+
+        function getWeekRange(date) {
+          var day = date.getDay();
+          var diff = date.getDate() - (day === 0 ? 6 : day - 1); // Adjust to Monday (0=Sunday -> -6, 1=Monday -> 0, etc.)
+          var monday = new Date(date);
+          monday.setDate(diff);
+          var sunday = new Date(monday);
+          sunday.setDate(monday.getDate() + 6);
+          return { start: monday, end: sunday };
+        }
+
+        function getWeekNumber(date) {
+          var d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+          var dayNum = d.getUTCDay() || 7;
+          d.setUTCDate(d.getUTCDate() + 4 - dayNum); // Use Thursday for ISO week number
+          var yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+          return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+        }
+
+        function isDateInRange(day) {
+          if (!selectedDate) return false;
+
+          var date = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), day);
+
+          if (periodType === 'day') {
+            return selectedDate.toDateString() === date.toDateString();
+          } else if (periodType === 'week') {
+            return date >= selectedDate.start && date <= selectedDate.end;
+          } else if (periodType === 'month') {
+            return date.getMonth() === selectedDate.getMonth() &&
+                   date.getFullYear() === selectedDate.getFullYear();
+          }
+          return false;
+        }
+
+        function handleDateClick(day) {
+          var clickedDate = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), day);
+
+          if (periodType === 'day') {
+            selectedDate = clickedDate;
+          } else if (periodType === 'week') {
+            selectedDate = getWeekRange(clickedDate);
+          } else if (periodType === 'month') {
+            selectedDate = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 1);
+          }
+
+          renderCalendar();
+          updateSelectedPeriod();
+        }
+
+        function updateSelectedPeriod() {
+            if (!selectedDate) {
+              return;
+            }
+
+            let startDate;
+            let endDate;
+
+            if (periodType === 'day') {
+              startDate = selectedDate;
+              endDate = new Date(selectedDate);
+              endDate.setDate(endDate.getDate() + 1);
+            } else if (periodType === 'week') {
+              startDate = selectedDate.start;
+              endDate = selectedDate.end;
+            } else if (periodType === 'month') {
+              startDate = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 1);
+              endDate = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 0);
+            }
+
+
+
+            startDate = new Date(startDate.getTime() - (startDate.getTimezoneOffset() * 60000))
+            endDate = new Date(endDate.getTime() - (endDate.getTimezoneOffset() * 60000))
+
+
+            fetch(`/api/probe/location/{{ car.vin }}/?` + new URLSearchParams({start: startDate.toISOString(), end: endDate.toISOString()}), {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (!data.error) {
+                    mapPoints = data;
+                    updateMap();
+                } else if (data.error) {
+                    showNotification({title: '{% translate "Error loading location history" %}', message: data.error ?? data, type: 'error'});
+                }
+            })
+            .catch(error => {
+                console.error('{% translate "Error loading location history" %}:', error);
+                showNotification({title: '{% translate "Error loading location history" %}', message: error.error ?? error, type: 'error'});
+            });
+        }
+
+        function renderCalendar() {
+          var year = currentMonth.getFullYear();
+          var month = currentMonth.getMonth();
+
+          document.getElementById('monthYear').textContent = monthNames[month] + ' ' + year;
+
+          var firstDay = new Date(year, month, 1);
+          var lastDay = new Date(year, month + 1, 0);
+          var daysInMonth = lastDay.getDate();
+          var startingDayOfWeek = firstDay.getDay();
+          var adjustedStartingDay = (startingDayOfWeek === 0 ? 6 : startingDayOfWeek - 1); // Shift Sunday (0) to 6, Monday (1) to 0, etc.
+
+          var calendar = document.getElementById('calendar');
+          calendar.innerHTML = '';
+
+          for (var i = 0; i < adjustedStartingDay; i++) {
+            var emptyCell = document.createElement('div');
+            emptyCell.className = 'h-10';
+            calendar.appendChild(emptyCell);
+          }
+
+          for (var day = 1; day <= daysInMonth; day++) {
+            var dayCell = document.createElement('button');
+            dayCell.textContent = day;
+            dayCell.className = 'h-10 rounded hover:bg-gray-100 transition-colors';
+
+            if (isDateInRange(day)) {
+              dayCell.className += ' bg-blue-500 text-white hover:bg-blue-600';
+            } else {
+              dayCell.className += ' text-gray-700';
+            }
+
+            dayCell.setAttribute('data-day', day);
+            dayCell.addEventListener('click', function() {
+              handleDateClick(parseInt(this.getAttribute('data-day')));
+            });
+            calendar.appendChild(dayCell);
+          }
+        }
+
+        // map
+        let mainMap;
+
+        let mapPoints = JSON.parse(document.getElementById("lochist_init").textContent);
+
+        if (typeof mapPoints === "string")
+            mapPoints = JSON.parse(mapPoints);
+
+        function updateMap() {
+            mainMap.invalidateSize();
+            mainMap.eachLayer(layer => {mainMap.removeLayer(layer)});
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(mainMap);
+            let latlngs = [];
+            let markers = [];
+            for (const mapPnt of mapPoints) {
+                const latLng = [mapPnt.latitude, mapPnt.longitude];
+                let marker = L.circleMarker(latLng, {color: '#3388ff', radius: 5, fillOpacity: 1.0})
+                marker.bindPopup(`${new Date(mapPnt.timestamp).toLocaleString()}`);
+                markers.push(marker);
+                latlngs.push(latLng);
+            }
+            L.polyline(latlngs, {
+                    color: 'red',
+                    weight: 3,
+                    opacity: 0.5,
+                    smoothFactor: 1
+            }).addTo(mainMap);
+            for (let marker of markers) {
+                marker.addTo(mainMap);
+            }
+            if (latlngs.length > 0) {
+                mainMap.fitBounds(latlngs, {padding: [12, 12]});
+            }
+        }
+
+        const createXmlString = (lines) => {
+          let result = '<gpx xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd" version="1.1" creator="runtracker"><metadata/><trk><name></name><desc></desc>'
+           result += '<trkseg>';
+            result += lines.map((point) => `<trkpt lat="${point[1]}" lon="${point[0]}"><ele>${point[2]}</ele></trkpt>`).join('');
+            result += '</trkseg>'
+          result += '</trk></gpx>';
+          return result;
+        }
+
+        const downloadGpxFile = (
+          lines
+        ) => {
+          const xml = createXmlString(lines);
+          const url = 'data:application/gpx+xml;charset=utf-8,' + xml;
+          const link = document.createElement('a');
+          link.download = `export.gpx`;
+          link.href = url;
+          document.body.appendChild(link);
+          link.click();
+        };
+
+        const exportGPX = () => {
+            downloadGpxFile(mapPoints.map((point) => [point.longitude, point.latitude, point.timestamp]));
+        }
+
+        renderCalendar();
+    </script>
+    {% endif %}
 {% endblock %}

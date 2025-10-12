@@ -1,30 +1,33 @@
+from datetime import datetime
 from random import randint
 
 import django
+from dateutil import parser
+from dateutil.parser import ParserError
 from django.core.exceptions import ObjectDoesNotExist
+from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.utils.module_loading import import_string
-from rest_framework.permissions import IsAuthenticated
-from rest_framework_simplejwt.exceptions import TokenError
-from rest_framework_simplejwt.settings import api_settings
-from rest_framework_simplejwt.token_blacklist.models import OutstandingToken, BlacklistedToken
-from rest_framework_simplejwt.tokens import RefreshToken
-from rest_framework_simplejwt.views import TokenObtainPairView
 from django.utils.translation import gettext_lazy as _
-from api.models import TokenMetadata
-from api.serializers import JWTTokenObtainPairSerializer, TokenMetadataUpdateSerializer, TokenMetadataSerializer
-from tculink.sms import send_using_provider
-from django.utils import timezone
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status, permissions
 from rest_framework.decorators import api_view
 from rest_framework.generics import get_object_or_404, RetrieveAPIView, UpdateAPIView, DestroyAPIView
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework_simplejwt.exceptions import TokenError
+from rest_framework_simplejwt.settings import api_settings
+from rest_framework_simplejwt.token_blacklist.models import OutstandingToken, BlacklistedToken
+from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.views import TokenObtainPairView
 
-from db.models import Car, AlertHistory, COMMAND_TYPES, User
+from api.models import TokenMetadata
+from api.serializers import JWTTokenObtainPairSerializer, TokenMetadataUpdateSerializer, TokenMetadataSerializer
+from db.models import Car, AlertHistory, COMMAND_TYPES, CRMDistanceRecord
+from tculink.sms import send_using_provider
 from ui.serializers import CarSerializer, CarSerializerList, AlertHistorySerializer, \
-    CommandResponseSerializer, CommandErrorSerializer, CarUpdatingSerializer
+    CommandResponseSerializer, CommandErrorSerializer, CarUpdatingSerializer, CRMDistanceRecordSerializer
 
 
 class IsCarOwner(permissions.BasePermission):
@@ -208,6 +211,46 @@ def alerts_api(request, vin):
     serializer = AlertHistorySerializer(alerts, many=True)
     return Response(serializer.data)
 
+
+@api_view(['GET'])
+def probe_location_hist(request, vin):
+    if not request.user.is_authenticated:
+        return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+    car = get_object_or_404(Car, vin=vin, owner=request.user)
+
+    start_date = request.query_params.get('start')
+    end_date = request.query_params.get('end')
+
+    alerts = CRMDistanceRecord.objects.filter(car=car).order_by('-timestamp')
+    if start_date and end_date:
+        try:
+            print(start_date, end_date)
+            start = parser.parse(start_date)
+            end = parser.parse(end_date)
+
+            if (end - start).days > 34:
+                return Response(
+                    {'error': 'Date range cannot exceed 34 days'},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+
+            alerts = alerts.filter(timestamp__range=[start, end])
+        except ParserError:
+            return Response(
+                {'error': 'Invalid date format'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+    elif start_date or end_date:
+        return Response(
+            {'error': 'Both start and end dates are required'},
+            status=status.HTTP_400_BAD_REQUEST
+        )
+    else:
+        alerts = alerts[:25]
+
+    serializer = CRMDistanceRecordSerializer(alerts, many=True)
+    return Response(serializer.data)
 
 @swagger_auto_schema(
     operation_description="Send a command to your vehicle",

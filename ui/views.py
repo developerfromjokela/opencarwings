@@ -23,7 +23,7 @@ from rest_framework.response import Response
 from db.models import Car, COMMAND_TYPES, AlertHistory, EVInfo, LocationInfo, TCUConfiguration, PERIODIC_REFRESH, \
     PERIODIC_REFRESH_ACTIVE, CAR_COLOR, CRMLatest, CRMLifetime, CRMTripRecord, CRMMonthlyRecord, CRMChargeHistoryRecord, \
     CRMChargeRecord, CRMABSHistoryRecord, CRMExcessiveIdlingRecord, CRMExcessiveAirconRecord, CRMTroubleRecord, \
-    CRMMSNRecord, DOTFile, ProbeConfig
+    CRMMSNRecord, DOTFile, ProbeConfig, CRMDistanceRecord
 from tculink.carwings_proto.autodj import ICONS
 from tculink.carwings_proto.autodj.channels import get_info_channel_data
 from tculink.carwings_proto.probe_config import PROBE_CONFIGS, PROBE_CONFIG_INFO
@@ -736,6 +736,8 @@ def probeviewer_home(request, vin):
     except CRMLifetime.DoesNotExist:
         lifetime = None
 
+    location_hist = list(CRMDistanceRecord.objects.filter(car=car).order_by('-timestamp')[:25].values('timestamp', 'consumed_wh', 'regenerated_wh', 'latitude', 'longitude', 'road_type'))
+
     trips = CRMTripRecord.objects.filter(car=car).order_by('-start_ts')
     paginator = Paginator(trips, 25)
 
@@ -800,7 +802,7 @@ def probeviewer_home(request, vin):
     return render(request, 'ui/probeviewer/main.html',
                   {'car': car, 'probe_config': probe_config, 'probe_configs': avail_probe_configs, 'latest': latest, "lifetime": lifetime, "abs": abs, "dtc": trouble,
                    "msn": msn, "aircon": aircon, "idl": idling, "trips": trips_paginator, "chargehist": chargehist,
-                   "charge": charge, "dotfiles": dotfiles, "dtc_act": trouble_page != 0, "msn_act": msn_page != 0, "aircon_act": aircon_page != 0,
+                   "charge": charge, "dotfiles": dotfiles, 'locations': location_hist, "dtc_act": trouble_page != 0, "msn_act": msn_page != 0, "aircon_act": aircon_page != 0,
                    "idl_act": idling_page != 0, "abs_act": abs_page != 0, "charge_act": charge_page != 0, "chargehist_act": chargehist_page != 0,
                    "months": months_paginator, "trips_act": trips_page != 0, "months_act": (months_page != 0 and trips_page == 0), "dot_act":  dot_page != 0})
 

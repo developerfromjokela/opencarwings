@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
-from db.models import Car, TCUConfiguration, LocationInfo, EVInfo, AlertHistory, SendToCarLocation, RoutePlan
+from db.models import Car, TCUConfiguration, LocationInfo, EVInfo, AlertHistory, SendToCarLocation, RoutePlan, \
+    CRMDistanceRecord
 from tculink.carwings_proto.autodj import ICONS
 from tculink.carwings_proto.autodj.channels import get_info_channel_data
 
@@ -222,3 +223,8 @@ class MapLinkResolvedLocation(serializers.Serializer):
 
 class MapLinkResolverResponseSerializer(StatusSerializer):
     location = MapLinkResolvedLocation(allow_null=True, required=False)
+
+class CRMDistanceRecordSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CRMDistanceRecord
+        fields = ['timestamp', 'consumed_wh', 'regenerated_wh', 'latitude', 'longitude', 'road_type']

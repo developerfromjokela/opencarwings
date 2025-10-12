@@ -86,4 +86,5 @@ urlpatterns = [
     path('api/maplink/resolve', views.resolve_maps_link, name='resolve_maps_link'),
     path('car/<str:vin>/probeviewer', views.probeviewer_home, name='probeviewer_home'),
     path('car/<str:vin>/probeviewer/trip/<int:trip>', views.probeviewer_trip, name='probeviewer_trip'),
+    path('api/probe/location/<str:vin>/', api_views.probe_location_hist, name='probe_location_api'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

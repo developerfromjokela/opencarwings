@@ -13,6 +13,7 @@ from tculink.carwings_proto.meshutils import read_big_endian_u_int32, unpack_mon
     mesh_point_to_map_point
 from tculink.carwings_proto.utils import encode_utf8, parse_std_location_precise
 from tculink.carwings_proto.xml import carwings_create_xmlfile_content
+from dateutil import parser
 
 logger = logging.getLogger("carwings_cp")
 
@@ -153,7 +154,7 @@ def handle_cp(xml_data, files):
                 'limit': '100'
             }, headers={"User-Agent": "OpenCARWINGS", "Authorization": f"APIKEY {settings.ITERNIO_API_KEY}"}).json().get("result", [])
             parsed_chargers = [{'poi_id': chg['id'], 'latitude': chg['lat'], 'longitude': chg['lon']} for chg in chargers]
-            logger.debug("CHARGERS: %d", parsed_chargers)
+            logger.debug("CHARGERS: %d", len(parsed_chargers))
             files.append(compose_ca_list(parsed_chargers))
         elif req_id == 280:
             count = int.from_bytes(file_content[6:10], byteorder="big")
@@ -204,7 +205,7 @@ def handle_cp(xml_data, files):
                             total_count += 1
                             last_update_ts = station.get("statusLastUpdated", None)
                             if last_update_ts is not None and len(last_update_ts) > 0:
-                                last_status = datetime.datetime.fromisoformat(last_update_ts.split(".")[0])
+                                last_status = parser.parse(last_update_ts)
                             if station.get("status", "") in ["AVAILABLE"]:
                                 availability_count += 1
                             elif station.get("status", "") in ["BLOCKED", "CHARGING"]:
@@ -269,7 +270,7 @@ def handle_cp(xml_data, files):
                             total_count += 1
                             last_update_ts = station.get("statusLastUpdated", None)
                             if last_update_ts is not None and len(last_update_ts) > 0:
-                                last_status = datetime.datetime.fromisoformat(last_update_ts.split(".")[0])
+                                last_status = parser.parse(last_update_ts)
                             if station.get("status", "") in ["AVAILABLE"]:
                                 availability_count += 1
                             elif station.get("status", "") in ["BLOCKED", "CHARGING"]:

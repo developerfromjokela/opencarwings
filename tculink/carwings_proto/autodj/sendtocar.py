@@ -9,7 +9,6 @@ from tculink.carwings_proto.utils import xml_coordinate_to_float, encode_utf8
 
 def handle_send_to_car_adj(xml_data, returning_xml, channel_id, car: Car):
     car_destinations = []
-    # TODO: up to 6 destinations
     for send_location in car.send_to_car_location.all().order_by('-created_at')[:6]:
         point_name = send_location.name
         if send_location.name is None:

@@ -216,8 +216,8 @@ def translate_chan_name(chan, non_unicode=False):
         new_chan['name2'] = unidecode(new_chan['name2'])
     return new_chan
 
-def get_info_channel_data(car):
-    channels = [translate_chan_name(c) for c in STANDARD_AUTODJ_CHANNELS if (c.get('internal', False) == False)]
+def get_info_channel_data(car, internal=False):
+    channels = [translate_chan_name(c) for c in STANDARD_AUTODJ_CHANNELS if (c.get('internal', False) == internal)]
     folders = [translate_chan_name(c) for c in STANDARD_AUTODJ_FOLDERS]
 
     if car is not None:

@@ -1,6 +1,7 @@
 import datetime
 import logging
 from django.utils import timezone
+import struct as structlib
 
 from tculink.carwings_proto.utils import parse_std_location
 
@@ -86,8 +87,8 @@ def parse_dotfile(dotfile_data):
             elif item_type == 16 or item_type == 17:
                 struct[prb_type[0]] = True if int.from_bytes(data, byteorder="big") == 0x31 else False
             elif item_type == 12 or item_type == 10:
-                location = parse_std_location(struct.unpack('>i', data[0:4])[0],
-                                              struct.unpack('>i', data[4:9])[0])
+                location = parse_std_location(structlib.unpack('>i', data[0:4])[0],
+                                              structlib.unpack('>i', data[4:9])[0])
                 struct[prb_type[0]] = '%f,%f' % (location[0], location[1])
             elif item_type == 18:
                 road_type = data[0] & 3

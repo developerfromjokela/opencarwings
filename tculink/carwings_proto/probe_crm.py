@@ -512,7 +512,7 @@ def parse_crmfile(data):
                 location = parse_std_location(struct.unpack('>i',block_data[1:5])[0], struct.unpack('>i',block_data[5:9])[0])
                 parse_result[currentblock].append({
                     "lat": location[0],
-                    "long": location[1],
+                    "lon": location[1],
                     "charge_count": block_data[9],
                     "charge_type": block_data[10],
                     "start_ts": datetime.datetime(2000 + block_data[11], block_data[12], block_data[13], block_data[14],

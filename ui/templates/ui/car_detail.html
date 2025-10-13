@@ -999,12 +999,14 @@
                     'X-CSRFToken': '{{ csrf_token }}'
                 }
             })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status) {
+            .then(resp => {
+                if (resp.status === 204) {
                     window.location.href = "/"
-                } else if (data.error) {
+                } else if (resp.json()) {
+                    let data = resp.json();
                     showNotification({title: '{% translate "Error sending command" %}', message: data.error ?? data, type: 'error'});
+                } else {
+                    showNotification({title: '{% translate "Error sending command" %}', message: resp.statusText, type: 'error'});
                 }
             })
             .catch(error => {

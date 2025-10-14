@@ -36,6 +36,10 @@ def get_car(vin_id):
     return Car.objects.get(vin=vin_id)
 
 @sync_to_async
+def get_commandtimersetting(id):
+    return CommandTimerSetting.objects.get(pk=id)
+
+@sync_to_async
 def get_car_owner_info(car):
     return car.owner
 
@@ -232,16 +236,6 @@ class Command(BaseCommand):
                                 car.command_requested = False
                                 car.command_result = 1
 
-                            try:
-                                timer_command = CommandTimerSetting.objects.get(pk=car.command_id)
-                                timer_command.last_command_execution = timezone.now()
-                                timer_command.last_command_result = car.command_result
-                                if timer_command.timer_type == 0:
-                                    timer_command.enabled = False
-                                timer_command.save()
-                            except CommandTimerSetting.DoesNotExist:
-                                ...
-
                         else:
                             logger.info("No command or another in progress, send success false")
                             writer.write(create_charge_status_response(False))
@@ -370,6 +364,15 @@ class Command(BaseCommand):
                         raise Exception("Invalid message type")
 
                     await sync_to_async(car.save)()
+                    try:
+                        timer_command = await get_commandtimersetting(car.command_id)
+                        timer_command.last_command_execution = timezone.now()
+                        timer_command.last_command_result = car.command_result
+                        if timer_command.timer_type == 0:
+                            timer_command.enabled = False
+                        await sync_to_async(timer_command.save)()
+                    except CommandTimerSetting.DoesNotExist:
+                        ...
                     await writer.drain()
                 except Exception as e:
                     logger.error("Processing packet failed")

@@ -96,6 +96,11 @@ PROBE_CONFIG_RESULTS = (
     (3, _("Rejected")),
 )
 
+TIMER_TYPE = (
+    (0, "One-time"),
+    (1, "Repeating")
+)
+
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
@@ -233,6 +238,24 @@ class AlertHistory(models.Model):
     additional_data = models.TextField(null=True, default=None)
     car = models.ForeignKey('Car', on_delete=models.CASCADE)
 
+class CommandTimerSetting(models.Model):
+    enabled = models.BooleanField(default=False)
+    name = models.CharField(max_length=32)
+    timer_type = models.IntegerField(choices=TIMER_TYPE, default=0)
+    command_type = models.IntegerField(choices=COMMAND_TYPES, default=0)
+    last_command_result = models.IntegerField(default=-1, choices=COMMAND_RESULTS)
+    last_command_execution = models.DateTimeField(null=True, default=None, blank=True)
+    weekday_mon = models.BooleanField(default=False)
+    weekday_tue = models.BooleanField(default=False)
+    weekday_wed = models.BooleanField(default=False)
+    weekday_thu = models.BooleanField(default=False)
+    weekday_fri = models.BooleanField(default=False)
+    weekday_sat = models.BooleanField(default=False)
+    weekday_sun = models.BooleanField(default=False)
+    time = models.TimeField()
+    date = models.DateField(null=True, blank=True)
+
+
 class Car(models.Model):
     vin = models.CharField(max_length=18, unique=True)
     nickname = models.CharField(max_length=64, default="LEAF")
@@ -263,6 +286,7 @@ class Car(models.Model):
     command_type = models.IntegerField(choices=COMMAND_TYPES, default=0)
     command_request_time = models.DateTimeField(null=True, default=None, blank=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    timer_commands = models.ManyToManyField(CommandTimerSetting)
     # CarWings navi
     send_to_car_location = models.ManyToManyField(SendToCarLocation)
     route_plans = models.ManyToManyField(RoutePlan)

@@ -145,6 +145,32 @@
             color: #1f2937; /* Tailwind gray-800 */
         }
 
+        @media (prefers-color-scheme: dark) {
+            .charge-labels {
+                color: #8c8c8c;
+            }
+            .status-box {
+                background-color: #304455 !important; /* Tailwind gray-50 */
+                border: 1px solid #293949 !important; /* Tailwind gray-200 */
+            }
+            .status-card {
+                background-color: #304455 !important; /* Tailwind gray-50 */
+                border: 1px solid #293949 !important; /* Tailwind gray-200 */
+            }
+            .status-box dd {
+                color: #d8d8d8;
+            }
+            .status-box dt {
+                color: #bababa;
+            }
+            .fan-icon {
+                filter: invert(1);
+            }
+            #charge-time-tbl, td {
+                border: 1px solid;
+            }
+        }
+
         /* Spinning Fan Icon for AC Status */
         .fan-icon {
             display: inline-block;
@@ -161,7 +187,7 @@
       border: none; /* Removes the outer border of the table */
     }
     #charge-time-tbl, td {
-      border: 1px solid black; /* Adds borders to cells */
+      border: 1px solid; /* Adds borders to cells */
       padding: 5px; /* Optional: adds spacing inside cells for better appearance */
     }
     /* Remove outer borders by targeting the first and last rows/columns */
@@ -279,6 +305,21 @@
       border-radius: 2px;
       transition: height 0.3s ease, opacity 0.3s ease;
       opacity: 1;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        .bar {
+            background: linear-gradient(180deg, #f3f3f3, #f1f1f1) !important;
+        }
+        .carrier {
+            color: #9a9999;
+        }
+        .collapsing-btn {
+            color: rgb(164, 166, 170) !important;
+        }
+        .collapsing-btn[aria-expanded="true"] {
+            color: white !important;
+        }
     }
 
     .cell-signal {

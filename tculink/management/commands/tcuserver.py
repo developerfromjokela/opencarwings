@@ -8,7 +8,7 @@ from asgiref.sync import sync_to_async
 from django.core.management.base import BaseCommand, CommandError
 from django.utils import timezone
 
-from db.models import Car, AlertHistory
+from db.models import Car, AlertHistory, CommandTimerSetting
 from tculink.gdc_proto import GIDS_NEW_24kWh, WH_PER_GID_GEN1
 from tculink.gdc_proto.parser import parse_gdc_packet
 from tculink.gdc_proto.responses import create_charge_status_response, create_charge_request_response, \
@@ -211,29 +211,19 @@ class Command(BaseCommand):
                             file.write(data)
                         if car.command_requested and car.command_result == -1:
                             logger.info(f"Command found: {car.command_id} {car.command_requested} {car.command_type} {car.command_payload} {car.command_request_time}")
+                            car.command_result = 3
+                            car.command_requested = False
                             if car.command_type == 1:
-                                car.command_requested = False
-                                car.command_result = 3
                                 writer.write(create_charge_status_response(True))
                             elif car.command_type == 2:
-                                car.command_requested = False
-                                car.command_result = 3
                                 writer.write(create_charge_request_response(True))
                             elif car.command_type == 3:
-                                car.command_requested = False
-                                car.command_result = 3
                                 writer.write(create_ac_setting_response(True))
                             elif car.command_type == 4:
-                                car.command_requested = False
-                                car.command_result = 3
                                 writer.write(create_ac_stop_response(True))
                             elif car.command_type == 5:
-                                car.command_requested = False
-                                car.command_result = 3
                                 writer.write(create_config_read())
                             elif car.command_type == 6:
-                                car.command_requested = False
-                                car.command_result = 3
                                 writer.write(auth_common_dest())
                             else:
                                 logger.info(f"Unknown command: {car.command_type}")
@@ -241,6 +231,17 @@ class Command(BaseCommand):
                                 logger.info("Write failure response and change request status")
                                 car.command_requested = False
                                 car.command_result = 1
+
+                            try:
+                                timer_command = CommandTimerSetting.objects.get(pk=car.command_id)
+                                timer_command.last_command_execution = timezone.now()
+                                timer_command.last_command_result = car.command_result
+                                if timer_command.timer_type == 0:
+                                    timer_command.enabled = False
+                                timer_command.save()
+                            except CommandTimerSetting.DoesNotExist:
+                                ...
+
                         else:
                             logger.info("No command or another in progress, send success false")
                             writer.write(create_charge_status_response(False))

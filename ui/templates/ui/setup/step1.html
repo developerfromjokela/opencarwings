@@ -6,8 +6,8 @@
 {% block setup %}
 {% load i18n %}
 
-    <div class="bg-white p-6 rounded-lg shadow-md">
-        <h2 class="text-lg font-semibold text-gray-800 mb-4">{% translate "Telematics Unit in your car" %}</h2>
+    <div class="bg-white dark:bg-gray-600 p-6 rounded-lg shadow-md">
+        <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">{% translate "Telematics Unit in your car" %}</h2>
         <p>{% blocktranslate %}In order to establish communication with your LEAF, TCU (Telematic Control Unit) unit's SIM card needs to be replaced and its settings programmed. Have you done that?{% endblocktranslate %}</p>
         <img src="{% static 'tcu.png' %}" class="pt-4 w-200"/>
         <form method="post" action="{% url 'setup_1' %}">

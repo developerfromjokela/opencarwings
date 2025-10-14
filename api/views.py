@@ -13,7 +13,9 @@ from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status, permissions
 from rest_framework.decorators import api_view
-from rest_framework.generics import get_object_or_404, RetrieveAPIView, UpdateAPIView, DestroyAPIView
+from rest_framework.exceptions import APIException
+from rest_framework.generics import get_object_or_404, RetrieveAPIView, UpdateAPIView, DestroyAPIView, CreateAPIView, \
+    ListAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework_simplejwt.exceptions import TokenError
@@ -24,10 +26,11 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 
 from api.models import TokenMetadata
 from api.serializers import JWTTokenObtainPairSerializer, TokenMetadataUpdateSerializer, TokenMetadataSerializer
-from db.models import Car, AlertHistory, COMMAND_TYPES, CRMDistanceRecord
+from db.models import Car, AlertHistory, COMMAND_TYPES, CRMDistanceRecord, CommandTimerSetting
 from tculink.sms import send_using_provider
 from ui.serializers import CarSerializer, CarSerializerList, AlertHistorySerializer, \
-    CommandResponseSerializer, CommandErrorSerializer, CarUpdatingSerializer, CRMDistanceRecordSerializer
+    CommandResponseSerializer, CommandErrorSerializer, CarUpdatingSerializer, CRMDistanceRecordSerializer, \
+    CommandTimerSettingSerializer
 
 
 class IsCarOwner(permissions.BasePermission):
@@ -72,6 +75,76 @@ class CarAPIView(RetrieveAPIView, UpdateAPIView, DestroyAPIView):
         serializer.is_valid(raise_exception=True)
         self.perform_update(serializer)
         return Response(CarSerializer(instance).data)
+
+
+
+@method_decorator(name='get', decorator=swagger_auto_schema(
+    tags=['cars'],
+    responses={status.HTTP_200_OK: CommandTimerSettingSerializer(many=True)}
+))
+@method_decorator(name='post', decorator=swagger_auto_schema(
+    tags=['cars'],
+    request_body=CommandTimerSettingSerializer(),
+    responses={status.HTTP_200_OK: CommandTimerSettingSerializer()}
+))
+class CommandTimerApiView(ListAPIView, CreateAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = CommandTimerSettingSerializer
+
+    def perform_create(self, serializer):
+        car_vin = self.kwargs['vin']
+        car = Car.objects.get(vin=car_vin)
+        if car.timer_commands.count() > 5:
+            raise APIException(_("Too many timer commands, please delete one and try again"), 400)
+        serializer.save()
+        car.timer_commands.add(serializer.data['id'])
+        car.save()
+
+
+    def get_queryset(self):
+        car_vin = self.kwargs['vin']
+        try:
+            car_timers = Car.objects.get(vin=car_vin, owner=self.request.user).timer_commands.all()
+        except Car.DoesNotExist:
+            car_timers = []
+        return car_timers
+
+
+@method_decorator(name='get', decorator=swagger_auto_schema(
+    tags=['cars'],
+    responses={status.HTTP_200_OK: CommandTimerSettingSerializer()}
+))
+@method_decorator(name='put', decorator=swagger_auto_schema(
+    tags=['cars'],
+    request_body=CommandTimerSettingSerializer(),
+    responses={status.HTTP_200_OK: CommandTimerSettingSerializer()}
+))
+@method_decorator(name='patch', decorator=swagger_auto_schema(
+    tags=['cars'],
+    request_body=CommandTimerSettingSerializer(),
+    responses={status.HTTP_200_OK: CommandTimerSettingSerializer()}
+))
+@method_decorator(name='delete', decorator=swagger_auto_schema(
+    tags=['cars'],
+    responses={status.HTTP_204_NO_CONTENT: "Success"}
+))
+class CommandTimerRetrieveApiView(RetrieveAPIView, UpdateAPIView, DestroyAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = CommandTimerSettingSerializer
+    lookup_field = 'id'
+
+    def get_queryset(self):
+        car_vin = self.kwargs['vin']
+        try:
+            car_timers = Car.objects.get(vin=car_vin, owner=self.request.user).timer_commands.all()
+        except Car.DoesNotExist:
+            car_timers = []
+        return car_timers
+
+    def perform_update(self, serializer):
+        serializer.validated_data['last_command_execution'] = None
+        serializer.save()
+
 
 
 @swagger_auto_schema(

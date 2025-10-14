@@ -25,8 +25,8 @@
                 {% endfor %}
             {% endif %}
         </div>
-    <div class="bg-white p-6 rounded-lg shadow-md">
-        <h2 class="text-lg font-semibold text-gray-800 mb-4">{% blocktranslate %}Let's gather information about your TCU Unit{% endblocktranslate %}</h2>
+    <div class="bg-white dark:bg-gray-600 p-6 rounded-lg shadow-md">
+        <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">{% blocktranslate %}Let's gather information about your TCU Unit{% endblocktranslate %}</h2>
         <p>{% blocktranslate %}It's time to hop in your LEAF and find identifiers that are unique to your car. Start your car and follow steps to get identifiers from navigation system:{% endblocktranslate %}</p>
         <img src="{% static 'unitid.png' %}" class="pt-4 w-200"/>
         <ul class="mt-4">
@@ -38,14 +38,14 @@
         </ul>
         <form method="post" class="mt-5">
             {% csrf_token %}
-            <label class="block text-gray-700">Unit ID</label>
-            <input type="text" placeholder="xxxx-xxxxxxxx" maxlength="32" name="unit_id" class="w-full p-2 border rounded mt-1" required>
-            <label class="block text-gray-700 mt-1 ">TCU ID</label>
-            <input type="text" placeholder="xxxx-xxxxxxxx" maxlength="32" name="tcu_id" class="w-full p-2 border rounded mt-1" required>
-            <label class="block text-gray-700 mt-1 ">SIM ID</label>
-            <input type="text" placeholder="xxxxxxxxxxxxxxxxxxxxxx"  maxlength="32" name="sim_id" class="w-full p-2 border rounded mt-1" required>
-            <label class="block text-gray-700 mt-1">VIN</label>
-            <input type="text" placeholder="xxxxxxxxxxxxxxxxx" maxlength="17" name="vin" class="w-full p-2 border rounded mt-1" required>
+            <label class="block text-gray-700 dark:text-gray-300">Unit ID</label>
+            <input type="text" placeholder="xxxx-xxxxxxxx" maxlength="32" name="unit_id" class="w-full p-2 border dark:bg-gray-800 dark:border-gray-900 rounded mt-1" required>
+            <label class="block text-gray-700  dark:text-gray-300 mt-1 ">TCU ID</label>
+            <input type="text" placeholder="xxxx-xxxxxxxx" maxlength="32" name="tcu_id" class="w-full p-2 border dark:bg-gray-800 dark:border-gray-900 rounded mt-1" required>
+            <label class="block text-gray-700  dark:text-gray-300 mt-1 ">SIM ID</label>
+            <input type="text" placeholder="xxxxxxxxxxxxxxxxxxxxxx"  maxlength="32" name="sim_id" class="w-full p-2 border dark:bg-gray-800 dark:border-gray-900 rounded mt-1" required>
+            <label class="block text-gray-700  dark:text-gray-300 mt-1">VIN</label>
+            <input type="text" placeholder="xxxxxxxxxxxxxxxxx" maxlength="17" name="vin" class="w-full p-2 border dark:bg-gray-800 dark:border-gray-900 rounded mt-1" required>
             <div class="mt-12 w-full flex flex-row align-end items-end justify-end gap-4">
                 <button type="submit" href="/setup/step2" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">{% translate "Save" %}</button>
             </div>

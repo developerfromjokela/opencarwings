@@ -33,18 +33,21 @@
 .red { background-color: #ef4444; } /* Tailwind red-500 */
     </style>
 </head>
-<body class="bg-gray-50 min-h-screen flex flex-col">
+<body class="bg-gray-50 dark:bg-gray-900 dark:text-white min-h-screen flex flex-col">
     <main class="flex-grow">
     <!-- Navigation Bar -->
-    <nav class="bg-white shadow-sm p-4">
+    <nav class="bg-white dark:bg-gray-800 shadow-sm p-4">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <a href="/" class="text-md font-semibold text-gray-800"><img src="{% static 'carwingslogo_color.png' %}" height="45px" style="height: 45px;"/> </a>
+            <a href="/" class="text-md font-semibold text-gray-800 dark:text-gray-200">
+                <img src="{% static 'carwingslogo_color.png' %}" height="45px" style="height: 45px;" class=" relative top-0 left-0 visible dark:hidden"/>
+                <img src="{% static 'carwingslogo_color_white.png' %}" height="45px" style="height: 45px;" class=" relative top-0 left-0 invisible dark:visible"/>
+            </a>
             <div class="space-x-4">
                 {% if user.is_authenticated %}
                 <a href="/account"><span>{{ user.get_username }}</span></a>
-                <a href="/signout" class="text-gray-600 hover:text-gray-800">{% translate "Sign Out" %}</a>
+                <a href="/signout" class="text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-400">{% translate "Sign Out" %}</a>
             {% else %}
-                <a href="/signin" class="text-gray-600 hover:text-gray-800">{% translate "Sign In" %}</a>
+                <a href="/signin" class="text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-400">{% translate "Sign In" %}</a>
             {% endif %}
             </div>
         </div>

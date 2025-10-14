@@ -8,7 +8,7 @@ from .models import (
     AlertHistory,
     Car, User, SendToCarLocation, CRMLatest, CRMLifetime, CRMExcessiveAirconRecord, CRMExcessiveIdlingRecord,
     CRMMonthlyRecord, CRMMSNRecord, CRMChargeRecord, CRMChargeHistoryRecord, CRMABSHistoryRecord, CRMTroubleRecord,
-    CRMTripRecord, RoutePlan, DOTFile, CRMDistanceRecord, ProbeConfig
+    CRMTripRecord, RoutePlan, DOTFile, CRMDistanceRecord, ProbeConfig, CommandTimerSetting
 )
 
 
@@ -52,6 +52,9 @@ class AlertHistoryAdmin(admin.ModelAdmin):
     search_fields = ('additional_data', 'car__vin')
     raw_id_fields = ('car',)  # Improves performance for ForeignKey field
 
+@admin.register(CommandTimerSetting)
+class CommandTimerSettingAdmin(admin.ModelAdmin):
+    list_display = ('id', 'command_type', 'timer_type')
 
 @admin.register(Car)
 class CarAdmin(admin.ModelAdmin):
@@ -81,6 +84,9 @@ class CarAdmin(admin.ModelAdmin):
         ('Vehicle Info', {
             'fields': ('vin', 'sms_config', 'vehicle_code1', 'vehicle_code2',
                        'vehicle_code3', 'vehicle_code4', 'nickname', 'owner', 'odometer', 'signal_level', 'carrier', 'map_version', 'navi_version')
+        }),
+        ('Timer', {
+            'fields': ('timer_commands',)
         }),
         ('TCU Info', {
             'fields': ('tcu_model', 'tcu_serial', 'iccid', 'tcu_ver',

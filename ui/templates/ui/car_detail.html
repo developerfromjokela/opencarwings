@@ -11,11 +11,11 @@
         <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6 space-y-4 sm:space-y-0">
             <div>
                 <a href="/" class="inline-block mt-6 text-blue-500 hover:underline text-sm sm:text-base">{% translate "Back to cars" %}</a>
-                <h1 class="text-2xl sm:text-3xl font-semibold text-gray-800 align-center content-center flex flex-row items-center">
+                <h1 class="text-2xl sm:text-3xl font-semibold text-gray-800 dark:text-gray-200 align-center content-center flex flex-row items-center">
                     {% with 'car/'|add:car.color|add:'.png' as car_static %}
                       <img src="{% static car_static %}" style="padding-right: 15px; max-height: 60px; object-fit: cover"/>
                     {% endwith %}
-                    <div class="cell-signal signal-{{ car.signal_level }} mr-3" style="display: {% if car.signal_level > 0 %}block{% else %}none{% endif %};">
+                    <div class="cell-signal signal-{{ car.signal_level }} mr-3 dark:text-white" style="display: {% if car.signal_level > 0 %}block{% else %}none{% endif %};">
                         <div class="signal-bars">
                           <div class="bar"></div>
                           <div class="bar"></div>
@@ -50,7 +50,7 @@
             <div class="flex flex-col sm:flex-row sm:items-center sm:space-x-3 space-y-3 sm:space-y-0">
                 <div class="flex items-center space-x-3">
                     <div class="spinner" id="command-spinner"></div>
-                    <select id="command-select" class="w-full sm:w-auto border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <select id="command-select" class="w-full sm:w-auto border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600">
                         {% for value, label in command_choices %}
                             <option value="{{ value }}">{{ label }}</option>
                         {% endfor %}
@@ -84,26 +84,27 @@
         </div>
 
         <div class="tab-nav-container relative">
-          <button class="scroll-arrow left-arrow absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-100 hover:bg-gray-200 text-gray-600 p-2 rounded-full hidden">
+          <button class="scroll-arrow left-arrow absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray:700 text-gray-600 dark:text-gray-300 p-2 rounded-full hidden">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
             </svg>
           </button>
 
-          <div class="tab-nav border-b border-gray-200 flex overflow-x-auto whitespace-nowrap scroll-smooth hide-scrollbar">
-            <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none {% if not show_settings %}text-blue-500 border-b-2 border-blue-500{% else %}text-gray-600{% endif %} text-sm sm:text-base" data-tab="overview">{% translate "Overview" %}</button>
-            <button class="tab-btn px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="basic-info">{% translate "Basic Info" %}</button>
-            <a href="/car/{{ car.vin }}/probeviewer" class="px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none text-sm sm:text-base">{% translate "Vehicle journal" %}<span class="ml-2 bg-blue-500 text-white text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm">{% translate "New!" %}</span></a>
-            <button class="tab-btn px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="tcu-config">{% translate "TCU Configuration" %}</button>
-            <button class="tab-btn px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="ev-status">{% translate "EV Status" %}</button>
-            <button class="tab-btn px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="location">{% translate "Location" %}</button>
-            <button class="tab-btn px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="routeplanner">{% translate "Route Planner" %}</button>
-            <button class="tab-btn px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="carwings">CARWINGS</button>
-            <button class="tab-btn px-3 py-2 text-gray-600 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="recent-alerts">{% translate "Recent Alerts" %}</button>
-            <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none {% if show_settings %}text-blue-500 border-b-2 border-blue-500{% else %}text-gray-600{% endif %} text-sm sm:text-base" data-tab="settings">{% translate "Settings" %}</button>
+          <div class="tab-nav border-b border-gray-200 dark:border-gray-700 flex overflow-x-auto whitespace-nowrap scroll-smooth hide-scrollbar">
+            <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none {% if not show_settings %}text-blue-500 border-b-2 border-blue-500{% else %}text-gray-600 dark:text-gray-400{% endif %} text-sm sm:text-base" data-tab="overview">{% translate "Overview" %}</button>
+            <button class="tab-btn px-3 py-2 text-gray-600 dark:text-gray-400 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="ev-status">{% translate "EV Status" %}</button>
+            <button class="tab-btn px-3 py-2 text-gray-600 dark:text-gray-400 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="timers">{% translate "Timers" %}</button>
+            <a href="/car/{{ car.vin }}/probeviewer" class="px-3 py-2 text-gray-600 dark:text-gray-400 hover:text-blue-500 focus:outline-none text-sm sm:text-base">{% translate "Vehicle journal" %}<span class="ml-2 bg-blue-500 text-white text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm">{% translate "New!" %}</span></a>
+            <button class="tab-btn px-3 py-2 text-gray-600 dark:text-gray-400 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="location">{% translate "Location" %}</button>
+            <button class="tab-btn px-3 py-2 text-gray-600 dark:text-gray-400 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="recent-alerts">{% translate "Recent Alerts" %}</button>
+            <button class="tab-btn px-3 py-2 text-gray-600 dark:text-gray-400 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="routeplanner">{% translate "Route Planner" %}</button>
+            <button class="tab-btn px-3 py-2 text-gray-600 dark:text-gray-400 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="carwings">CARWINGS</button>
+            <button class="tab-btn px-3 py-2 text-gray-600 dark:text-gray-400 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="basic-info">{% translate "Basic Info" %}</button>
+            <button class="tab-btn px-3 py-2 text-gray-600 dark:text-gray-400 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="tcu-config">{% translate "TCU Configuration" %}</button>
+            <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none {% if show_settings %}text-blue-500 border-b-2 border-blue-500{% else %}text-gray-600 dark:text-gray-400{% endif %} text-sm sm:text-base" data-tab="settings">{% translate "Settings" %}</button>
           </div>
 
-          <button class="scroll-arrow right-arrow absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-100 hover:bg-gray-200 text-gray-600 p-2 rounded-full hidden">
+          <button class="scroll-arrow right-arrow absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray:700 text-gray-600 dark:text-gray-300 p-2 rounded-full hidden">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
             </svg>
@@ -111,10 +112,10 @@
         </div>
 
         <!-- Tab Content -->
-        <div class="mt-6 bg-white p-4 sm:p-6 rounded-lg shadow-md">
+        <div class="mt-6 bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-lg shadow-md">
             <!-- Overview Tab -->
             <div id="overview" class="tab-content {% if not show_settings %}active{% endif %}">
-                <h2 class="text-lg font-semibold text-gray-800 mb-4">{% translate "Overview" %}</h2>
+                <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-300 mb-4">{% translate "Overview" %}</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
                     <!-- Small Map -->
                     <div id="overview-map" class="map status-box flex flex-col items-center" style="padding: 0;">
@@ -202,13 +203,13 @@
                         <div class="flex flex-row align-center justify-center items-center gap-4">
                             <p id="overview-ac-status">{{ car.ev_info.ac_status|yesno:_("On,Off") }}</p>
                         <div id="fan-icon" class="fan-icon {% if car.ev_info.ac_status %}spinning{% endif %}">
-<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M424-80q-51 0-77.5-30.5T320-180q0-26 11.5-50.5T367-271q22-14 35.5-36t18.5-47l-12-6q-6-3-11-7l-92 33q-17 6-33 10t-33 4q-63 0-111.5-55T80-536q0-51 30.5-77.5T179-640q26 0 51 11.5t41 35.5q14 22 36 35.5t47 18.5l6-12q3-6 7-11l-33-92q-6-17-10-33t-4-32q0-64 55-112.5T536-880q51 0 77.5 30.5T640-781q0 26-11.5 51T593-689q-22 14-35.5 36T539-606l12 6q6 3 11 7l92-34q17-6 32.5-9.5T719-640q81 0 121 67t40 149q0 51-32 77.5T777-320q-25 0-48.5-11.5T689-367q-14-22-36-35.5T606-421l-6 12q-3 6-7 11l33 92q6 16 10 30.5t4 30.5q1 65-54 115T424-80Zm56-340q25 0 42.5-17.5T540-480q0-25-17.5-42.5T480-540q-25 0-42.5 17.5T420-480q0 25 17.5 42.5T480-420Zm-46-192q6-2 12.5-3.5T459-618q8-42 30.5-78t59.5-60q5-4 8-10t3-15q0-8-6-13.5t-18-5.5q-38 0-86 16.5T400-719q0 9 2.5 17t4.5 15l27 75ZM240-400q14 0 33-7l75-27q-2-6-3.5-12.5T342-459q-42-8-78-30.5T204-549q-4-5-10.5-8t-14.5-3q-9 0-14 6t-5 18q0 54 20.5 95t59.5 41Zm184 240q47 0 92.5-19t43.5-66q0-8-2.5-15t-4.5-13l-27-75q-6 2-12.5 3.5T501-342q-8 42-30.5 78T411-204q-5 4-8.5 10.5T400-180q1 8 6 14t18 6Zm353-240q9 0 16-5t7-19q0-38-16-86.5T719-560q-9 0-17 2t-15 4l-75 28q2 6 3.5 12.5T618-501q42 8 78 30.5t60 59.5q3 5 9 8t12 3ZM618-501ZM459-618ZM342-459Zm159 117Z"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M424-80q-51 0-77.5-30.5T320-180q0-26 11.5-50.5T367-271q22-14 35.5-36t18.5-47l-12-6q-6-3-11-7l-92 33q-17 6-33 10t-33 4q-63 0-111.5-55T80-536q0-51 30.5-77.5T179-640q26 0 51 11.5t41 35.5q14 22 36 35.5t47 18.5l6-12q3-6 7-11l-33-92q-6-17-10-33t-4-32q0-64 55-112.5T536-880q51 0 77.5 30.5T640-781q0 26-11.5 51T593-689q-22 14-35.5 36T539-606l12 6q6 3 11 7l92-34q17-6 32.5-9.5T719-640q81 0 121 67t40 149q0 51-32 77.5T777-320q-25 0-48.5-11.5T689-367q-14-22-36-35.5T606-421l-6 12q-3 6-7 11l33 92q6 16 10 30.5t4 30.5q1 65-54 115T424-80Zm56-340q25 0 42.5-17.5T540-480q0-25-17.5-42.5T480-540q-25 0-42.5 17.5T420-480q0 25 17.5 42.5T480-420Zm-46-192q6-2 12.5-3.5T459-618q8-42 30.5-78t59.5-60q5-4 8-10t3-15q0-8-6-13.5t-18-5.5q-38 0-86 16.5T400-719q0 9 2.5 17t4.5 15l27 75ZM240-400q14 0 33-7l75-27q-2-6-3.5-12.5T342-459q-42-8-78-30.5T204-549q-4-5-10.5-8t-14.5-3q-9 0-14 6t-5 18q0 54 20.5 95t59.5 41Zm184 240q47 0 92.5-19t43.5-66q0-8-2.5-15t-4.5-13l-27-75q-6 2-12.5 3.5T501-342q-8 42-30.5 78T411-204q-5 4-8.5 10.5T400-180q1 8 6 14t18 6Zm353-240q9 0 16-5t7-19q0-38-16-86.5T719-560q-9 0-17 2t-15 4l-75 28q2 6 3.5 12.5T618-501q42 8 78 30.5t60 59.5q3 5 9 8t12 3ZM618-501ZM459-618ZM342-459Zm159 117Z"/></svg>
                         </div>
                         </div>
                     </div>
                 </div>
                 <!-- Last Updated -->
-                <div class="mt-4 text-sm text-gray-600">
+                <div class="mt-4 text-sm text-gray-600 dark:text-gray-300">
                     {% translate "Last Updated" %}: <span id="overview-last-updated">{{ car.ev_info.last_updated|default:"N/A"|date:"Y-m-d H:i" }}</span>
                 </div>
             </div>
@@ -216,74 +217,132 @@
             <!-- Basic Info -->
             <div id="basic-info" class="tab-content">
                 <dl class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 text-sm sm:text-base">
-                    <div><dt class="text-gray-700 font-semibold">VIN:</dt><dd class="text-gray-600">{{ car.vin }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "Odometer" %}:</dt><dd class="text-gray-600" id="odometer">{% if car.odometer > 0 %}{% local_dist car.odometer decimals=0 %}{% else %}--{% endif %}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "Navi version" %}:</dt><dd class="text-gray-600" id="navi_version">{{ car.navi_version|default:"--"  }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "Map version" %}:</dt><dd class="text-gray-600" id="map_version">{{ car.map_version|default:"--"  }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "TCU version (from navi)" %}:</dt><dd class="text-gray-600" id="tcu_version">{{ car.tcu_version|default:"--"  }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "TCU version (from TCU)" %}:</dt><dd class="text-gray-600" id="tcu_version2">{{ car.tcu_ver|default:"--" }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "Vehicle Code" %} 1:</dt><dd class="text-gray-600">{{ car.vehicle_code1 }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "Vehicle Code" %} 2:</dt><dd class="text-gray-600">{{ car.vehicle_code2 }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "Vehicle Code" %} 3:</dt><dd class="text-gray-600">{{ car.vehicle_code3 }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "Vehicle Code" %} 4:</dt><dd class="text-gray-600">{{ car.vehicle_code4 }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">TCU ID:</dt><dd class="text-gray-600">{{ car.tcu_model|default:"N/A" }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">Navi ID:</dt><dd class="text-gray-600">{{ car.tcu_serial|default:"N/A" }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">SIM ID:</dt><dd class="text-gray-600">{{ car.iccid|default:"N/A" }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "Last Connection" %}:</dt><dd class="text-gray-600" id="last_connection">{{ car.last_connection|default:"Never"|date:"Y-m-d H:i" }}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">VIN:</dt><dd class="text-gray-600 dark:text-gray-300">{{ car.vin }}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Odometer" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="odometer">{% if car.odometer > 0 %}{% local_dist car.odometer decimals=0 %}{% else %}--{% endif %}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Navi version" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="navi_version">{{ car.navi_version|default:"--"  }}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Map version" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="map_version">{{ car.map_version|default:"--"  }}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "TCU version (from navi)" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="tcu_version">{{ car.tcu_version|default:"--"  }}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "TCU version (from TCU)" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="tcu_version2">{{ car.tcu_ver|default:"--" }}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Vehicle Code" %} 1:</dt><dd class="text-gray-600 dark:text-gray-300">{{ car.vehicle_code1 }}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Vehicle Code" %} 2:</dt><dd class="text-gray-600 dark:text-gray-300">{{ car.vehicle_code2 }}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Vehicle Code" %} 3:</dt><dd class="text-gray-600 dark:text-gray-300">{{ car.vehicle_code3 }}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Vehicle Code" %} 4:</dt><dd class="text-gray-600 dark:text-gray-300">{{ car.vehicle_code4 }}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">TCU ID:</dt><dd class="text-gray-600 dark:text-gray-300">{{ car.tcu_model|default:"N/A" }}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">Navi ID:</dt><dd class="text-gray-600 dark:text-gray-300">{{ car.tcu_serial|default:"N/A" }}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">SIM ID:</dt><dd class="text-gray-600 dark:text-gray-300">{{ car.iccid|default:"N/A" }}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Last Connection" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="last_connection">{{ car.last_connection|default:"Never"|date:"Y-m-d H:i" }}</dd></div>
                 </dl>
+            </div>
+
+            <div id="timers" class="tab-content">
+                <div class="mb-6" style="min-height: 450px; min-width: 350px;">
+                    <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200 flex items-center">{% translate "Timers" %} <button onclick="addNewTimer()" class="ml-2 px-2 py-1 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none">{% translate "Add" %}</button></h2>
+                    <div id="timers-list" class="mt-2 space-y-2">
+                        {% for timer in car.timer_commands.all|dictsort:"enabled" %}
+                            <div class="flex flex-col justify-between p-2 bg-gray-50 dark:bg-gray-700 gap-3 rounded-lg transition">
+                                <span class="text-gray-700 dark:text-gray-300 font-medium"><input type="checkbox" value="checked" onchange="changeTimerState({{ timer.id }}, this.target.checked)" {% if timer.enabled %}checked{% endif %} class="p-2 border rounded mt-1 checkboxinput"> {{ timer.name }}</span>
+                                <span class="text-gray-700 dark:text-gray-400 font-sm">{{ timer.get_command_type_display }} |{% if timer.timer_type == 0 %}
+                                    {{ timer.date }} |
+                                {% elif timer.timer_type == 1 %}
+                                    {% if timer.weekday_mon %}
+                                        {% translate "Mon" %} |
+                                    {% endif %}
+                                    {% if timer.weekday_tue %}
+                                        {% translate "Tue" %} |
+                                    {% endif %}
+                                    {% if timer.weekday_wed %}
+                                        {% translate "Wed" %} |
+                                    {% endif %}
+                                    {% if timer.weekday_thu %}
+                                        {% translate "Thu" %} |
+                                    {% endif %}
+                                    {% if timer.weekday_fri %}
+                                        {% translate "Fri" %} |
+                                    {% endif %}
+                                    {% if timer.weekday_sat %}
+                                        {% translate "Sat" %} |
+                                    {% endif %}
+                                    {% if timer.weekday_sun %}
+                                        {% translate "Sun" %} |
+                                    {% endif %}
+                                {% endif %} {{ timer.time }}</span>
+                                <span class="text-gray-700 dark:text-gray-400 font-sm">{% translate "Last run" %}: {{ timer.last_command_execution|default:"--" }}, {% translate "result" %}: {{ timer.get_last_command_result_display|default:"--" }}</span>
+                                <div class="flex space-x-2">
+                                    <button
+                                        onclick="editTimer({{ timer.id }})"
+                                        class="px-3 py-1 bg-blue-700 text-white rounded-md hover:bg-blue-600 transition text-sm"
+                                    >
+                                        {% translate "Edit" %}
+                                    </button>
+                                    <button
+                                        onclick="deleteTimer({{ timer.id }})"
+                                        class="px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 transition text-sm"
+                                    >
+                                        {% translate "Delete" %}
+                                    </button>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        {% if car.timer_commands.count == 0 %}
+                            {% translate 'No timers added' %}
+                        {% endif %}
+                    </div>
+                </div>
+                <div><dd class="text-gray-600 dark:text-gray-300">{% translate "Note: Times are shown in local local timezone" %}</dd></div>
+
             </div>
 
             <!-- TCU Configuration -->
             <div id="tcu-config" class="tab-content">
                 <dl class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 text-sm sm:text-base">
-                    <div><dt class="text-gray-700 font-semibold">{% translate "PPP Dial Code" %}:</dt><dd class="text-gray-600">{{ car.tcu_configuration.dial_code|default:"N/A" }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">APN:</dt><dd class="text-gray-600">{{ car.tcu_configuration.apn|default:"N/A" }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">PPP {% translate "Username" %}:</dt><dd class="text-gray-600">{{ car.tcu_configuration.apn_user|default:"N/A" }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">PPP {% translate "Password" %}:</dt><dd class="text-gray-600">{{ car.tcu_configuration.apn_password|default:"N/A" }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">DNS1:</dt><dd class="text-gray-600">{{ car.tcu_configuration.dns1|default:"N/A" }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">DNS2:</dt><dd class="text-gray-600">{{ car.tcu_configuration.dns2|default:"N/A" }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "Server" %} URL:</dt><dd class="text-gray-600">{{ car.tcu_configuration.server_url|default:"N/A" }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "Proxy" %} URL:</dt><dd class="text-gray-600">{{ car.tcu_configuration.proxy_url|default:"N/A" }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "Connection Type" %}:</dt><dd class="text-gray-600">{{ car.tcu_configuration.connection_type|default:"N/A" }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "Last Updated" %}:</dt><dd class="text-gray-600">{{ car.tcu_configuration.last_updated|default:"N/A"|date:"Y-m-d H:i" }}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "PPP Dial Code" %}:</dt><dd class="text-gray-600 dark:text-gray-300">{{ car.tcu_configuration.dial_code|default:"N/A" }}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">APN:</dt><dd class="text-gray-600 dark:text-gray-300">{{ car.tcu_configuration.apn|default:"N/A" }}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">PPP {% translate "Username" %}:</dt><dd class="text-gray-600 dark:text-gray-300">{{ car.tcu_configuration.apn_user|default:"N/A" }}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">PPP {% translate "Password" %}:</dt><dd class="text-gray-600 dark:text-gray-300">{{ car.tcu_configuration.apn_password|default:"N/A" }}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">DNS1:</dt><dd class="text-gray-600 dark:text-gray-300">{{ car.tcu_configuration.dns1|default:"N/A" }}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">DNS2:</dt><dd class="text-gray-600 dark:text-gray-300">{{ car.tcu_configuration.dns2|default:"N/A" }}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Server" %} URL:</dt><dd class="text-gray-600 dark:text-gray-300">{{ car.tcu_configuration.server_url|default:"N/A" }}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Proxy" %} URL:</dt><dd class="text-gray-600 dark:text-gray-300">{{ car.tcu_configuration.proxy_url|default:"N/A" }}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Connection Type" %}:</dt><dd class="text-gray-600 dark:text-gray-300">{{ car.tcu_configuration.connection_type|default:"N/A" }}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Last Updated" %}:</dt><dd class="text-gray-600 dark:text-gray-300">{{ car.tcu_configuration.last_updated|default:"N/A"|date:"Y-m-d H:i" }}</dd></div>
                 </dl>
             </div>
 
             <!-- EV Status -->
             <div id="ev-status" class="tab-content">
                 <dl class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 text-sm sm:text-base">
-                    <div><dt class="text-gray-700 font-semibold">{% translate "Car on" %}:</dt><dd class="text-gray-600" id="car_running">{{ car.ev_info.car_running|yesno:_("Yes,No") }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "Gear" %}:</dt><dd class="text-gray-600" id="car_gear">{{ car.ev_info.car_gear }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "Charge time" %} (120V/L1):</dt><dd class="text-gray-600" id="limit_chg_time">{% if car.ev_info.limit_chg_time == 2047 or car.ev_info.limit_chg_time < 1 %}--:--{% else %}{{ car.ev_info.limit_chg_time }}{% endif %}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "Charge time" %} (240V/L2):</dt><dd class="text-gray-600" id="full_chg_time">{% if car.ev_info.full_chg_time == 2047 or car.ev_info.full_chg_time < 1 %}--:--{% else %}{{ car.ev_info.full_chg_time }}{% endif %}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "6kW OBC exists" %}:</dt><dd class="text-gray-600" id="obc_6kw_avail">{{ car.ev_info.obc_6kw_avail|yesno:_("Yes,No") }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "Charge time" %} (6.6KW):</dt><dd class="text-gray-600" id="6kw_time">{% if car.ev_info.obc_6kw == 2047 or car.ev_info.obc_6kw == 4095 or car.ev_info.obc_6kw < 1 %}--:--{% else %}{{ car.ev_info.obc_6kw }}{% endif %}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "Charge bars" %}:</dt><dd class="text-gray-600" id="charge_bars">{{ car.ev_info.charge_bars }} / 12</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "Capacity bars" %}:</dt><dd class="text-gray-600" id="cap_bars">{{ car.ev_info.cap_bars }} %</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "State of Charge" %} ({% translate "Display" %}):</dt><dd class="text-gray-600" id="soc_display">{{ car.ev_info.soc_display|floatformat:3 }}%</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "State of Charge" %} ({% translate "Nominal" %}):</dt><dd class="text-gray-600" id="soc">{{ car.ev_info.soc|floatformat:3 }}%</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "State of Health" %}:</dt><dd class="text-gray-600" id="soh">{{ car.ev_info.soh }}%</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "Remaining kWh" %}:</dt><dd class="text-gray-600" id="remaining_kwh">{{ car.ev_info.wh_content|divide:1000 }} kWh</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "Range (AC On)" %}:</dt><dd class="text-gray-600" id="range_acon">{% local_dist car.ev_info.range_acon decimals=0 %}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "Range (AC Off)" %}:</dt><dd class="text-gray-600" id="range_acoff">{% local_dist car.ev_info.range_acoff decimals=0 %}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "Plugged in" %}:</dt><dd class="text-gray-600" id="plugged_in">{{ car.ev_info.plugged_in|yesno:_("Yes,No") }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "Charging" %}:</dt><dd class="text-gray-600" id="charging">{{ car.ev_info.charging|yesno:_("Yes,No") }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "Quick-charging" %}:</dt><dd class="text-gray-600" id="quick_charging">{{ car.ev_info.quick_charging|yesno:_("Yes,No") }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "Preconditioning (A/C)" %}:</dt><dd class="text-gray-600" id="ac_status">{{ car.ev_info.ac_status|yesno:_("Yes,No") }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "GIDs remaining" %}:</dt><dd class="text-gray-600" id="gids">{{ car.ev_info.gids }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "Battery heater exists" %}:</dt><dd class="text-gray-600" id="batt_heater_avail">{{ car.ev_info.batt_heater_avail|yesno:_("Yes,No") }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "Battery heater active" %}:</dt><dd class="text-gray-600" id="batt_heater_status">{{ car.ev_info.batt_heater_status|yesno:_("Yes,No") }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "Counter" %}:</dt><dd class="text-gray-600" id="counter">{{ car.ev_info.counter }}</dd></div>
-                    <div><dt class="text-gray-700 font-semibold">{% translate "Last Updated" %}:</dt><dd class="text-gray-600" id="ev_last_updated">{{ car.ev_info.last_updated|default:"N/A"|date:"Y-m-d H:i" }}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Car on" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="car_running">{{ car.ev_info.car_running|yesno:_("Yes,No") }}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Gear" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="car_gear">{{ car.ev_info.car_gear }}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Charge time" %} (120V/L1):</dt><dd class="text-gray-600 dark:text-gray-300" id="limit_chg_time">{% if car.ev_info.limit_chg_time == 2047 or car.ev_info.limit_chg_time < 1 %}--:--{% else %}{{ car.ev_info.limit_chg_time }}{% endif %}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Charge time" %} (240V/L2):</dt><dd class="text-gray-600 dark:text-gray-300" id="full_chg_time">{% if car.ev_info.full_chg_time == 2047 or car.ev_info.full_chg_time < 1 %}--:--{% else %}{{ car.ev_info.full_chg_time }}{% endif %}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "6kW OBC exists" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="obc_6kw_avail">{{ car.ev_info.obc_6kw_avail|yesno:_("Yes,No") }}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Charge time" %} (6.6KW):</dt><dd class="text-gray-600 dark:text-gray-300" id="6kw_time">{% if car.ev_info.obc_6kw == 2047 or car.ev_info.obc_6kw == 4095 or car.ev_info.obc_6kw < 1 %}--:--{% else %}{{ car.ev_info.obc_6kw }}{% endif %}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Charge bars" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="charge_bars">{{ car.ev_info.charge_bars }} / 12</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Capacity bars" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="cap_bars">{{ car.ev_info.cap_bars }} %</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "State of Charge" %} ({% translate "Display" %}):</dt><dd class="text-gray-600 dark:text-gray-300" id="soc_display">{{ car.ev_info.soc_display|floatformat:3 }}%</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "State of Charge" %} ({% translate "Nominal" %}):</dt><dd class="text-gray-600 dark:text-gray-300" id="soc">{{ car.ev_info.soc|floatformat:3 }}%</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "State of Health" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="soh">{{ car.ev_info.soh }}%</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Remaining kWh" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="remaining_kwh">{{ car.ev_info.wh_content|divide:1000 }} kWh</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Range (AC On)" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="range_acon">{% local_dist car.ev_info.range_acon decimals=0 %}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Range (AC Off)" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="range_acoff">{% local_dist car.ev_info.range_acoff decimals=0 %}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Plugged in" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="plugged_in">{{ car.ev_info.plugged_in|yesno:_("Yes,No") }}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Charging" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="charging">{{ car.ev_info.charging|yesno:_("Yes,No") }}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Quick-charging" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="quick_charging">{{ car.ev_info.quick_charging|yesno:_("Yes,No") }}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Preconditioning (A/C)" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="ac_status">{{ car.ev_info.ac_status|yesno:_("Yes,No") }}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "GIDs remaining" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="gids">{{ car.ev_info.gids }}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Battery heater exists" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="batt_heater_avail">{{ car.ev_info.batt_heater_avail|yesno:_("Yes,No") }}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Battery heater active" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="batt_heater_status">{{ car.ev_info.batt_heater_status|yesno:_("Yes,No") }}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Counter" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="counter">{{ car.ev_info.counter }}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Last Updated" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="ev_last_updated">{{ car.ev_info.last_updated|default:"N/A"|date:"Y-m-d H:i" }}</dd></div>
                 </dl>
             </div>
 
             <!-- Location -->
             <div id="location" class="tab-content">
                 <div id="map" class="map mb-4"></div>
-                <h2 class="text-lg font-semibold text-gray-800 mt-4 flex items-center">{% translate "Send location to car" %}<div class="spinner ml-2" id="send-to-car-spinner"></div></h2>
+                <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mt-4 flex items-center">{% translate "Send location to car" %}<div class="spinner ml-2" id="send-to-car-spinner"></div></h2>
                 <form id="send-to-car-search-form">
-                    <input type="search" required minlength="2" placeholder="{% translate "Search for locations or enter google/apple maps link" %}" id="send-to-car-search" class="w-full p-2 border rounded mt-1">
+                    <input type="search" required minlength="2" placeholder="{% translate "Search for locations or enter google/apple maps link" %}" id="send-to-car-search" class="w-full p-2 border rounded dark:bg-gray-600 mt-1 dark:bg-gray-700 dark:border-gray-800">
                 </form>
                 <div id="send-to-car-results" class="mt-2">
                     {% if car.send_to_car_location %}
@@ -295,8 +354,8 @@
                 <button class="btn-s-disabled text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 me-2 mb-2 mt-5 " id="send-to-car-submit" disabled="disabled">{% translate "Send" %}</button>
                 <hr class="mt-2 mb-2"/>
                 <dl class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 text-sm sm:text-base">
-                    <div><dt class="text-gray-700">{% translate "At Home" %}:</dt><dd class="text-gray-600" id="home">{{ car.location.home|yesno:_("Yes,No") }}</dd></div>
-                    <div><dt class="text-gray-700">{% translate "Last Updated" %}:</dt><dd class="text-gray-600" id="loc_last_updated">{{ car.location.last_updated|default:"N/A"|date:"Y-m-d H:i" }}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300">{% translate "At Home" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="home">{{ car.location.home|yesno:_("Yes,No") }}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300">{% translate "Last Updated" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="loc_last_updated">{{ car.location.last_updated|default:"N/A"|date:"Y-m-d H:i" }}</dd></div>
                 </dl>
             </div>
 
@@ -304,11 +363,11 @@
             <div id="routeplanner" class="tab-content">
                 <div class="flex flex-col md:flex-row gap-3 sm:gap-4" style="min-height: 500px;">
                     <div id="routeplans" class="mb-6" style="min-width: 350px; max-width: 500px;">
-                        <h2 class="text-lg font-semibold text-gray-800 mt-4 flex items-center">{% translate "Route plans" %} <button onclick="addNewPlan()" class="ml-2 px-2 py-1 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none">{% translate "Add" %}</button></h2>
+                        <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mt-4 flex items-center">{% translate "Route plans" %} <button onclick="addNewPlan()" class="ml-2 px-2 py-1 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none">{% translate "Add" %}</button></h2>
                         <div id="routeplans-list" class="mt-2 space-y-2">
                             {% for plan in car.route_plans.all %}
-                                <div class="flex items-center justify-between p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
-                                    <span class="text-gray-700 font-medium mx-3">{{ plan.name }}</span>
+                                <div class="flex items-center justify-between p-2 bg-gray-50 dark:bg-gray-500 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition">
+                                    <span class="text-gray-700 dark:text-gray-300 font-medium mx-3">{{ plan.name }}</span>
                                     <div class="flex space-x-2">
                                         <button
                                             onclick="editRoutePlan('{{ plan.id }}')"
@@ -331,22 +390,22 @@
                         </div>
                     </div>
                     <div id="routeplan-editdialog" style="display: none;">
-                        <h2 class="text-lg font-semibold text-gray-800 mt-4 flex items-center">{% translate "Add/Edit a route plan" %}<div class="spinner ml-2" id="routeplan-spinner"></div></h2>
+                        <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mt-4 flex items-center">{% translate "Add/Edit a route plan" %}<div class="spinner ml-2" id="routeplan-spinner"></div></h2>
                         <div id="routeplanner-compose" class="mt-2">
-                            <input type="text" maxlength="30" id="routeplan-name" placeholder="{% translate "Name of the plan" %}" class="w-full p-1 border rounded mt-1"/>
+                            <input type="text" maxlength="30" id="routeplan-name" placeholder="{% translate "Name of the plan" %}" class="w-full p-1 border dark:bg-gray-700 dark:border-gray-800 rounded mt-1"/>
                             <hr class="my-2"/>
                             <form id="rp-start-form" class="rp-wp-search mt-2">
                                 <label for="rp-start" class="routeplan-title"><img class="routeplan-icon" src="{% static "chanicons/start.png" %}"/> {% translate "Starting point" %}</label>
-                                <input type="search" required minlength="2" placeholder="{% translate "Search for locations or enter google/apple maps link" %}" id="rp-start" class="rp-searchfield w-full p-1 border rounded mt-1">
+                                <input type="search" required minlength="2" placeholder="{% translate "Search for locations or enter google/apple maps link" %}" id="rp-start" class="rp-searchfield w-full p-1 border dark:bg-gray-700 dark:border-gray-800 rounded mt-1">
                                 <div class="rp-search-results mt-2"></div>
                             </form>
                             <div id="rp-waypoints" class="ml-3">
 
                             </div>
-                            <button class="font-medium text-blue-700 hover:underline" onclick="addWayPoint()">+ {% translate "Add waypoint" %}</button>
+                            <button class="font-medium text-blue-700 dark:text-blue-400 hover:underline" onclick="addWayPoint()">+ {% translate "Add waypoint" %}</button>
                             <form id="rp-finish-form" class="rp-wp-search mt-2">
                                 <label for="rp-finish" class="routeplan-title"><img class="routeplan-icon" src="{% static "chanicons/destination.png" %}"/> {% translate "Destination point" %}</label>
-                                <input type="search" required minlength="2" placeholder="{% translate "Search for locations or enter google/apple maps link" %}" id="rp-finish" class="rp-searchfield w-full p-1 border rounded mt-1">
+                                <input type="search" required minlength="2" placeholder="{% translate "Search for locations or enter google/apple maps link" %}" id="rp-finish" class="rp-searchfield w-full p-1 border dark:bg-gray-700 dark:border-gray-800 rounded mt-1">
                                 <div class="rp-search-results mt-2"></div>
                             </form>
                             <button class="btn-s-disabled text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 me-2 mb-2 mt-5 " id="routeplan-submit" disabled="disabled">{% translate "Save" %}</button>
@@ -368,24 +427,24 @@
                   </h2>
                   <div id="favorite-body" class="hidden px-2 py-4 grid grid-cols-1 md:grid-cols-2 gap-3" aria-labelledby="favorite-heading">
                       <div class="grid gap-3">
-                          <div class="datachannel p-2 rounded-md bg-gray-100 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">1.</b> <img class="inline h-4 mr-2" src="{% static channels.0.channels.0.icon %}"/> {{ channels.0.channels.0.name }}</div></div>
-                          <div class="datachannel p-2 rounded-md bg-gray-100 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">2.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No selected channel" %}</span></div><button onclick="editFvtChn(2)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrFvtChn(2)"><i class="mic material-symbols-outlined">delete</i></button></div>
-                          <div class="datachannel p-2 rounded-md bg-gray-100 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">3.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No selected channel" %}</span></div><button onclick="editFvtChn(3)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrFvtChn(3)"><i class="mic material-symbols-outlined">delete</i></button></div>
-                          <div class="datachannel p-2 rounded-md bg-gray-100 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">4.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No selected channel" %}</span></div><button onclick="editFvtChn(4)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrFvtChn(4)"><i class="mic material-symbols-outlined">delete</i></button></div>
-                          <div class="datachannel p-2 rounded-md bg-gray-100 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">5.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No selected channel" %}</span></div><button onclick="editFvtChn(5)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrFvtChn(5)"><i class="mic material-symbols-outlined">delete</i></button></div>
-                          <div class="datachannel p-2 rounded-md bg-gray-100 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">6.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No selected channel" %}</span></div><button onclick="editFvtChn(6)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrFvtChn(6)"><i class="mic material-symbols-outlined">delete</i></button></div>
-                          <div class="datachannel p-2 rounded-md bg-gray-100 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">7.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No selected channel" %}</span></div><button onclick="editFvtChn(7)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrFvtChn(7)"><i class="mic material-symbols-outlined">delete</i></button></div>
-                          <div class="datachannel p-2 rounded-md bg-gray-100 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">8.</b> <img class="inline h-4 mr-2"><span class="datachannel-name">{% translate "No selected channel" %}</span></div><button onclick="editFvtChn(8)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrFvtChn(8)"><i class="mic material-symbols-outlined">delete</i></button></div>
+                          <div class="datachannel p-2 rounded-md bg-gray-100 dark:bg-gray-600 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">1.</b> <img class="inline h-4 mr-2" src="{% static channels.0.channels.0.icon %}"/> {{ channels.0.channels.0.name }}</div></div>
+                          <div class="datachannel p-2 rounded-md bg-gray-100 dark:bg-gray-600 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">2.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No selected channel" %}</span></div><button onclick="editFvtChn(2)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrFvtChn(2)"><i class="mic material-symbols-outlined">delete</i></button></div>
+                          <div class="datachannel p-2 rounded-md bg-gray-100 dark:bg-gray-600 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">3.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No selected channel" %}</span></div><button onclick="editFvtChn(3)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrFvtChn(3)"><i class="mic material-symbols-outlined">delete</i></button></div>
+                          <div class="datachannel p-2 rounded-md bg-gray-100 dark:bg-gray-600 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">4.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No selected channel" %}</span></div><button onclick="editFvtChn(4)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrFvtChn(4)"><i class="mic material-symbols-outlined">delete</i></button></div>
+                          <div class="datachannel p-2 rounded-md bg-gray-100 dark:bg-gray-600 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">5.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No selected channel" %}</span></div><button onclick="editFvtChn(5)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrFvtChn(5)"><i class="mic material-symbols-outlined">delete</i></button></div>
+                          <div class="datachannel p-2 rounded-md bg-gray-100 dark:bg-gray-600 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">6.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No selected channel" %}</span></div><button onclick="editFvtChn(6)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrFvtChn(6)"><i class="mic material-symbols-outlined">delete</i></button></div>
+                          <div class="datachannel p-2 rounded-md bg-gray-100 dark:bg-gray-600 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">7.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No selected channel" %}</span></div><button onclick="editFvtChn(7)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrFvtChn(7)"><i class="mic material-symbols-outlined">delete</i></button></div>
+                          <div class="datachannel p-2 rounded-md bg-gray-100 dark:bg-gray-600 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">8.</b> <img class="inline h-4 mr-2"><span class="datachannel-name">{% translate "No selected channel" %}</span></div><button onclick="editFvtChn(8)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrFvtChn(8)"><i class="mic material-symbols-outlined">delete</i></button></div>
                       </div>
                       <div class="grid gap-3">
-                          <div class="datachannel p-2 rounded-md bg-gray-100 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">9.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No selected channel" %}</span></div><button onclick="editFvtChn(9)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrFvtChn(9)"><i class="mic material-symbols-outlined">delete</i></button></div>
-                          <div class="datachannel p-2 rounded-md bg-gray-100 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">10.</b> <img class="inline h-4 mr-2"><span class="datachannel-name">{% translate "No selected channel" %}</span></div><button onclick="editFvtChn(10)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrFvtChn(10)"><i class="mic material-symbols-outlined">delete</i></button></div>
-                          <div class="datachannel p-2 rounded-md bg-gray-100 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">11.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No selected channel" %}</span></div><button onclick="editFvtChn(11)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrFvtChn(11)"><i class="mic material-symbols-outlined">delete</i></button></div>
-                          <div class="datachannel p-2 rounded-md bg-gray-100 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">12.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No selected channel" %}</span></div><button onclick="editFvtChn(12)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrFvtChn(12)"><i class="mic material-symbols-outlined">delete</i></button></div>
-                          <div class="datachannel p-2 rounded-md bg-gray-100 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">13.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No selected channel" %}</span></div><button onclick="editFvtChn(13)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrFvtChn(13)"><i class="mic material-symbols-outlined">delete</i></button></div>
-                          <div class="datachannel p-2 rounded-md bg-gray-100 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">14.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No selected channel" %}</span></div><button onclick="editFvtChn(14)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrFvtChn(14)"><i class="mic material-symbols-outlined">delete</i></button></div>
-                          <div class="datachannel p-2 rounded-md bg-gray-100 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">15.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No selected channel" %}</span></div><button onclick="editFvtChn(15)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrFvtChn(15)"><i class="mic material-symbols-outlined">delete</i></button></div>
-                          <div class="datachannel p-2 rounded-md bg-gray-100 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">16.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No selected channel" %}</span></div><button onclick="editFvtChn(16)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrFvtChn(16)"><i class="mic material-symbols-outlined">delete</i></button></div>
+                          <div class="datachannel p-2 rounded-md bg-gray-100 dark:bg-gray-600 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">9.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No selected channel" %}</span></div><button onclick="editFvtChn(9)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrFvtChn(9)"><i class="mic material-symbols-outlined">delete</i></button></div>
+                          <div class="datachannel p-2 rounded-md bg-gray-100 dark:bg-gray-600 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">10.</b> <img class="inline h-4 mr-2"><span class="datachannel-name">{% translate "No selected channel" %}</span></div><button onclick="editFvtChn(10)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrFvtChn(10)"><i class="mic material-symbols-outlined">delete</i></button></div>
+                          <div class="datachannel p-2 rounded-md bg-gray-100 dark:bg-gray-600 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">11.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No selected channel" %}</span></div><button onclick="editFvtChn(11)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrFvtChn(11)"><i class="mic material-symbols-outlined">delete</i></button></div>
+                          <div class="datachannel p-2 rounded-md bg-gray-100 dark:bg-gray-600 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">12.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No selected channel" %}</span></div><button onclick="editFvtChn(12)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrFvtChn(12)"><i class="mic material-symbols-outlined">delete</i></button></div>
+                          <div class="datachannel p-2 rounded-md bg-gray-100 dark:bg-gray-600 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">13.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No selected channel" %}</span></div><button onclick="editFvtChn(13)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrFvtChn(13)"><i class="mic material-symbols-outlined">delete</i></button></div>
+                          <div class="datachannel p-2 rounded-md bg-gray-100 dark:bg-gray-600 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">14.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No selected channel" %}</span></div><button onclick="editFvtChn(14)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrFvtChn(14)"><i class="mic material-symbols-outlined">delete</i></button></div>
+                          <div class="datachannel p-2 rounded-md bg-gray-100 dark:bg-gray-600 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">15.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No selected channel" %}</span></div><button onclick="editFvtChn(15)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrFvtChn(15)"><i class="mic material-symbols-outlined">delete</i></button></div>
+                          <div class="datachannel p-2 rounded-md bg-gray-100 dark:bg-gray-600 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">16.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No selected channel" %}</span></div><button onclick="editFvtChn(16)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrFvtChn(16)"><i class="mic material-symbols-outlined">delete</i></button></div>
                       </div>
                   </div>
 
@@ -399,24 +458,24 @@
                   </h2>
                   <div id="custom-channels-body" class="hidden px-2 py-4 grid grid-cols-1 md:grid-cols-2 gap-3" aria-labelledby="custom-channels-body">
                        <div class="grid gap-3">
-                          <div class="datachannel p-2 rounded-md bg-gray-100 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">1.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No content" %}</span></div><button onclick="editCustomChn(0)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrCustomChn(0)"><i class="mic material-symbols-outlined">delete</i></button></div>
-                          <div class="datachannel p-2 rounded-md bg-gray-100 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">2.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No content" %}</span></div><button onclick="editCustomChn(1)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrCustomChn(1)"><i class="mic material-symbols-outlined">delete</i></button></div>
-                          <div class="datachannel p-2 rounded-md bg-gray-100 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">3.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No content" %}</span></div><button onclick="editCustomChn(2)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrCustomChn(2)"><i class="mic material-symbols-outlined">delete</i></button></div>
-                          <div class="datachannel p-2 rounded-md bg-gray-100 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">4.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No content" %}</span></div><button onclick="editCustomChn(3)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrCustomChn(3)"><i class="mic material-symbols-outlined">delete</i></button></div>
-                          <div class="datachannel p-2 rounded-md bg-gray-100 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">5.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No content" %}</span></div><button onclick="editCustomChn(4)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrCustomChn(4)"><i class="mic material-symbols-outlined">delete</i></button></div>
-                          <div class="datachannel p-2 rounded-md bg-gray-100 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">6.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No content" %}</span></div><button onclick="editCustomChn(5)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrCustomChn(5)"><i class="mic material-symbols-outlined">delete</i></button></div>
-                          <div class="datachannel p-2 rounded-md bg-gray-100 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">7.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No content" %}</span></div><button onclick="editCustomChn(6)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrCustomChn(6)"><i class="mic material-symbols-outlined">delete</i></button></div>
-                          <div class="datachannel p-2 rounded-md bg-gray-100 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">8.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No content" %}</span></div><button onclick="editCustomChn(7)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrCustomChn(7)"><i class="mic material-symbols-outlined">delete</i></button></div>
+                          <div class="datachannel p-2 rounded-md bg-gray-100 dark:bg-gray-600 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">1.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No content" %}</span></div><button onclick="editCustomChn(0)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrCustomChn(0)"><i class="mic material-symbols-outlined">delete</i></button></div>
+                          <div class="datachannel p-2 rounded-md bg-gray-100 dark:bg-gray-600 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">2.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No content" %}</span></div><button onclick="editCustomChn(1)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrCustomChn(1)"><i class="mic material-symbols-outlined">delete</i></button></div>
+                          <div class="datachannel p-2 rounded-md bg-gray-100 dark:bg-gray-600 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">3.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No content" %}</span></div><button onclick="editCustomChn(2)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrCustomChn(2)"><i class="mic material-symbols-outlined">delete</i></button></div>
+                          <div class="datachannel p-2 rounded-md bg-gray-100 dark:bg-gray-600 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">4.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No content" %}</span></div><button onclick="editCustomChn(3)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrCustomChn(3)"><i class="mic material-symbols-outlined">delete</i></button></div>
+                          <div class="datachannel p-2 rounded-md bg-gray-100 dark:bg-gray-600 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">5.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No content" %}</span></div><button onclick="editCustomChn(4)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrCustomChn(4)"><i class="mic material-symbols-outlined">delete</i></button></div>
+                          <div class="datachannel p-2 rounded-md bg-gray-100 dark:bg-gray-600 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">6.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No content" %}</span></div><button onclick="editCustomChn(5)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrCustomChn(5)"><i class="mic material-symbols-outlined">delete</i></button></div>
+                          <div class="datachannel p-2 rounded-md bg-gray-100 dark:bg-gray-600 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">7.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No content" %}</span></div><button onclick="editCustomChn(6)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrCustomChn(6)"><i class="mic material-symbols-outlined">delete</i></button></div>
+                          <div class="datachannel p-2 rounded-md bg-gray-100 dark:bg-gray-600 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">8.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No content" %}</span></div><button onclick="editCustomChn(7)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrCustomChn(7)"><i class="mic material-symbols-outlined">delete</i></button></div>
                       </div>
                       <div class="grid gap-3">
-                          <div class="datachannel p-2 rounded-md bg-gray-100 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">9.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No content" %}</span></div><button onclick="editCustomChn(8)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrCustomChn(8)"><i class="mic material-symbols-outlined">delete</i></button></div>
-                          <div class="datachannel p-2 rounded-md bg-gray-100 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">10.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No content" %}</span></div><button onclick="editCustomChn(9)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrCustomChn(9)"><i class="mic material-symbols-outlined">delete</i></button></div>
-                          <div class="datachannel p-2 rounded-md bg-gray-100 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">11.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No content" %}</span></div><button onclick="editCustomChn(10)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrCustomChn(10)"><i class="mic material-symbols-outlined">delete</i></button></div>
-                          <div class="datachannel p-2 rounded-md bg-gray-100 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">12.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No content" %}</span></div><button onclick="editCustomChn(11)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrCustomChn(11)"><i class="mic material-symbols-outlined">delete</i></button></div>
-                          <div class="datachannel p-2 rounded-md bg-gray-100 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">13.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No content" %}</span></div><button onclick="editCustomChn(12)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrCustomChn(12)"><i class="mic material-symbols-outlined">delete</i></button></div>
-                          <div class="datachannel p-2 rounded-md bg-gray-100 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">14.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No content" %}</span></div><button onclick="editCustomChn(13)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrCustomChn(13)"><i class="mic material-symbols-outlined">delete</i></button></div>
-                          <div class="datachannel p-2 rounded-md bg-gray-100 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">15.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No content" %}</span></div><button onclick="editCustomChn(14)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrCustomChn(14)"><i class="mic material-symbols-outlined">delete</i></button></div>
-                          <div class="datachannel p-2 rounded-md bg-gray-100 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">16.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No content" %}</span></div><button onclick="editCustomChn(15)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrCustomChn(15)"><i class="mic material-symbols-outlined">delete</i></button></div>
+                          <div class="datachannel p-2 rounded-md bg-gray-100 dark:bg-gray-600 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">9.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No content" %}</span></div><button onclick="editCustomChn(8)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrCustomChn(8)"><i class="mic material-symbols-outlined">delete</i></button></div>
+                          <div class="datachannel p-2 rounded-md bg-gray-100 dark:bg-gray-600 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">10.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No content" %}</span></div><button onclick="editCustomChn(9)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrCustomChn(9)"><i class="mic material-symbols-outlined">delete</i></button></div>
+                          <div class="datachannel p-2 rounded-md bg-gray-100 dark:bg-gray-600 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">11.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No content" %}</span></div><button onclick="editCustomChn(10)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrCustomChn(10)"><i class="mic material-symbols-outlined">delete</i></button></div>
+                          <div class="datachannel p-2 rounded-md bg-gray-100 dark:bg-gray-600 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">12.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No content" %}</span></div><button onclick="editCustomChn(11)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrCustomChn(11)"><i class="mic material-symbols-outlined">delete</i></button></div>
+                          <div class="datachannel p-2 rounded-md bg-gray-100 dark:bg-gray-600 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">13.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No content" %}</span></div><button onclick="editCustomChn(12)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrCustomChn(12)"><i class="mic material-symbols-outlined">delete</i></button></div>
+                          <div class="datachannel p-2 rounded-md bg-gray-100 dark:bg-gray-600 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">14.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No content" %}</span></div><button onclick="editCustomChn(13)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrCustomChn(13)"><i class="mic material-symbols-outlined">delete</i></button></div>
+                          <div class="datachannel p-2 rounded-md bg-gray-100 dark:bg-gray-600 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">15.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No content" %}</span></div><button onclick="editCustomChn(14)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrCustomChn(14)"><i class="mic material-symbols-outlined">delete</i></button></div>
+                          <div class="datachannel p-2 rounded-md bg-gray-100 dark:bg-gray-600 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">16.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No content" %}</span></div><button onclick="editCustomChn(15)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrCustomChn(15)"><i class="mic material-symbols-outlined">delete</i></button></div>
                       </div>
                   </div>
                 <button onclick="saveCarwingsSettings()" class="btn-s-disabled text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 me-2 mb-2 mt-5 " id="carwings-save" disabled="disabled">{% translate "Save" %}</button>
@@ -427,7 +486,7 @@
                 <div class="overflow-x-auto">
                     <table class="w-full text-left text-sm sm:text-base">
                         <thead>
-                            <tr class="text-gray-700 border-b">
+                            <tr class="text-gray-700 dark:text-gray-200 border-b">
                                 <th class="py-2">{% translate "Type" %}</th>
                                 <th class="py-2">{% translate "Timestamp" %}</th>
                                 <th class="py-2">{% translate "Additional Data" %}</th>
@@ -435,7 +494,7 @@
                         </thead>
                         <tbody id="alerts-table">
                             {% for alert in alerts %}
-                                <tr data-id="{{ alert.id }}" class="border-b text-gray-600">
+                                <tr data-id="{{ alert.id }}" class="border-b text-gray-600 dark:text-gray-300">
                                     <td class="py-2">{{ alert.get_type_display }}</td>
                                     <td class="py-2">{{ alert.timestamp|date:"Y-m-d H:i" }}</td>
                                     <td class="py-2">{{ alert.additional_data|default:"N/A" }}</td>
@@ -447,30 +506,30 @@
             </div>
 
             <div id="settings" class="tab-content {% if show_settings %}active{% endif %}">
-                <h2 class="text-lg font-semibold text-gray-800 mb-4">{% translate "Settings" %}</h2>
+                <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">{% translate "Settings" %}</h2>
 
                 <form method="post" class="mt-5">
                     {% csrf_token %}
 
-                    <label class="block text-gray-700">{% translate "Nickname" %}</label>
-                    <input type="text" value="{{car.nickname}}" maxlength="64" name="nickname" class="w-full p-2 border rounded mt-1" required>
-                    <label class="block text-gray-700">Navi ID</label>
-                    <input type="text" value="{{car.tcu_serial}}" maxlength="32" name="unit_id" class="w-full p-2 border rounded mt-1" required>
-                    <label class="block text-gray-700 mt-2 ">TCU ID</label>
-                    <input type="text" value="{{car.tcu_model}}" maxlength="32" name="tcu_id" class="w-full p-2 border rounded mt-1" required>
-                    <label class="block text-gray-700 mt-2 ">SIM ID</label>
-                    <input type="text" value="{{car.iccid}}"  maxlength="32" name="sim_id" class="w-full p-2 border rounded mt-1" required>
+                    <label class="block text-gray-700 dark:text-gray-300">{% translate "Nickname" %}</label>
+                    <input type="text" value="{{car.nickname}}" maxlength="64" name="nickname" class="w-full p-2 border rounded dark:bg-gray-600 mt-1" required>
+                    <label class="block text-gray-700 dark:text-gray-300">Navi ID</label>
+                    <input type="text" value="{{car.tcu_serial}}" maxlength="32" name="unit_id" class="w-full p-2 border rounded dark:bg-gray-600 mt-1" required>
+                    <label class="block text-gray-700 dark:text-gray-300 mt-2 ">TCU ID</label>
+                    <input type="text" value="{{car.tcu_model}}" maxlength="32" name="tcu_id" class="w-full p-2 border rounded dark:bg-gray-600 mt-1" required>
+                    <label class="block text-gray-700 dark:text-gray-300 mt-2 ">SIM ID</label>
+                    <input type="text" value="{{car.iccid}}"  maxlength="32" name="sim_id" class="w-full p-2 border rounded dark:bg-gray-600 mt-1" required>
                     <div class="block mt-5">
                         <input type="checkbox" id="disable_auth" value="checked" {% if car.disable_auth %}checked{% endif %} maxlength="22" name="disable_auth" class="p-2 border rounded mt-1 checkboxinput ">
                         <label for="disable_auth">{% translate "Skip authentication from TCU" %}</label>
-                        <span class="block text-sm text-gray-700 mt-1">{% translate "On AZE0 (2013) and newer LEAFs, username and password inserted to navi are not saved due to an error. In this case, check this box to skip the authentication" %}</span>
+                        <span class="block text-sm text-gray-700 dark:text-gray-400 mt-1">{% translate "On AZE0 (2013) and newer LEAFs, username and password inserted to navi are not saved due to an error. In this case, check this box to skip the authentication" %}</span>
                     </div>
 
                     <hr class="my-3"/>
 
                     <div class="block mt-5">
-                        <label class="block text-gray-700 mt-2 ">{% translate "Car color" %}</label>
-                        <select name="color" class="w-full periodic-select sm:w-auto border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <label class="block text-gray-700 dark:text-gray-300 mt-2 ">{% translate "Car color" %}</label>
+                        <select name="color" class="w-full periodic-select sm:w-auto border rounded-md dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
                             {% for value, label in car_color_choices %}
                                 <option value="{{ value }}" {% if car.color == value %}selected{% endif %}>{{ label }}</option>
                             {% endfor %}
@@ -478,22 +537,22 @@
                     </div>
 
                     <div class="block" >
-                        <label class="block text-gray-700 mt-2 ">{% translate "Maximum GIDs value" %}</label>
-                        <input type="text" value="{{car.ev_info.max_gids}}" name="max_gids" class="w-full p-2 border rounded mt-1" required>
-                        <span class="block text-sm text-gray-700 mt-1">{% translate "OpenCARWINGS will try to auto-detect your battery size and fill this field. For cars with swapped/replaced battery, please enter maximum amount of GIDS when battery is new (SoH 100%)." %}</span>
+                        <label class="block text-gray-700 dark:text-gray-300 mt-2 ">{% translate "Maximum GIDs value" %}</label>
+                        <input type="text" value="{{car.ev_info.max_gids}}" name="max_gids" class="w-full p-2 border rounded dark:bg-gray-600 mt-1" required>
+                        <span class="block text-sm text-gray-700 dark:text-gray-400 mt-1">{% translate "OpenCARWINGS will try to auto-detect your battery size and fill this field. For cars with swapped/replaced battery, please enter maximum amount of GIDS when battery is new (SoH 100%)." %}</span>
                     </div>
 
                     <div class="block mt-5{% if car.vehicle_code1 != 2 %} hidden{% endif %}">
                         <input type="checkbox" id="force_soc_display" value="checked" {% if car.ev_info.force_soc_display %}checked{% endif %} maxlength="22" name="force_soc_display" class="p-2 border rounded mt-1 checkboxinput">
                         <label for="force_soc_display">{% translate "Show calculated battery percentage" %}</label>
-                        <span class="block text-sm text-gray-700 mt-1">{% translate "On AZE0 (>2013) generation cars, it is possible to see available battery capacity in percentage. For ZE0, such feature was never implemented. By enabling this option, 'display' percentage value will be calculated, it may be inaccurate." %}</span>
+                        <span class="block text-sm text-gray-700 dark:text-gray-400 mt-1">{% translate "On AZE0 (>2013) generation cars, it is possible to see available battery capacity in percentage. For ZE0, such feature was never implemented. By enabling this option, 'display' percentage value will be calculated, it may be inaccurate." %}</span>
                     </div>
 
                     <hr class="my-3"/>
 
                     <div class="block mt-5">
-                        <label class="block text-gray-700 mt-2 ">{% translate "Periodic data refresh interval" %}</label>
-                        <select name="periodic_refresh" class="w-full periodic-select sm:w-auto border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <label class="block text-gray-700 dark:text-gray-300 mt-2 ">{% translate "Periodic data refresh interval" %}</label>
+                        <select name="periodic_refresh" class="w-full periodic-select sm:w-auto border rounded-md  dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
                             {% for value, label in periodic_refresh_choices %}
                                 <option value="{{ value }}" {% if car.periodic_refresh == value %}selected{% endif %}>{{ label }}</option>
                             {% endfor %}
@@ -501,8 +560,8 @@
                     </div>
 
                     <div class="block mt-5">
-                        <label class="block text-gray-700 mt-2 ">{% translate "Periodic data refresh interval (while driving or charging)" %}</label>
-                        <select name="periodic_refresh_running" class="w-full periodic-select sm:w-auto border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <label class="block text-gray-700 dark:text-gray-300 mt-2 ">{% translate "Periodic data refresh interval (while driving or charging)" %}</label>
+                        <select name="periodic_refresh_running" class="w-full periodic-select sm:w-auto border rounded-md  dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
                             {% for value, label in periodic_refresh_running_choices %}
                                 <option value="{{ value }}" {% if car.periodic_refresh_running == value %}selected{% endif %}>{{ label }}</option>
                             {% endfor %}
@@ -517,7 +576,7 @@
                         <input id="sms-radio-{{provider.id}}"
                                {% if provider.id == car.sms_config.provider %} checked {% endif %}
                                type="radio" value="{{provider.id}}" name="sms-provider" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
-                        <label for="sms-radio-{{provider.id}}" class="ml-2 text-sm font-medium text-gray-900">{% translate provider.name %}</label>
+                        <label for="sms-radio-{{provider.id}}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-200">{% translate provider.name %}</label>
                     </div>
                     {% endfor %}
 
@@ -525,13 +584,13 @@
                     <div id="{{provider.id}}-fields" class="mt-4 space-y-4 hidden provider-fields">
                         {% for field in provider.fields %}
                         <div>
-                            <label for="field-{{ field.0 }}" class="block mb-2 text-sm font-medium text-gray-900">{{ field.1 }}</label>
-                            <input type="text" id="field-{{ field.0 }}" value="{{ car.sms_config|get_item:field.0 }}" maxlength="128" name="{{provider.id}}-{{ field.0 }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                            <label for="field-{{ field.0 }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-200">{{ field.1 }}</label>
+                            <input type="text" id="field-{{ field.0 }}" value="{{ car.sms_config|get_item:field.0 }}" maxlength="128" name="{{provider.id}}-{{ field.0 }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg dark:bg-gray-700 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                         </div>
                         {% endfor %}
                         {% if provider.help %}
                         <div class="mt-4">
-                            <div class="p-4 text-sm text-blue-800 rounded-lg bg-blue-50" role="alert">
+                            <div class="p-4 text-sm text-blue-800 dark:text-blue-200 rounded-lg bg-blue-50 dark:bg-blue-800" role="alert">
                                 {{provider.help}}
                             </div>
                         </div>
@@ -551,7 +610,7 @@
     <button data-modal-target="carpin-modal" data-modal-toggle="carpin-modal" style="display: none;" type="button"></button>
     <div id="carpin-modal" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative p-4 w-full max-w-md max-h-full">
-            <div class="relative bg-white rounded-lg shadow-sm">
+            <div class="relative bg-white dark:bg-gray-600 rounded-lg shadow-sm">
                 <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" data-modal-hide="carpin-modal">
                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
@@ -559,9 +618,9 @@
                     <span class="sr-only">{% translate "Close" %}</span>
                 </button>
                 <div class="p-4 md:p-5 text-center">
-                    <h3 class="mb-5 text-lg font-normal text-gray-700">{% translate "Set car location as" %}</h3>
-                        <button data-modal-hide="carpin-modal" onclick="setCarLocationInPlan(0)" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-500 focus:z-10 focus:ring-4 focus:ring-gray-100">{% translate "Starting point" %}</button>
-                        <button data-modal-hide="carpin-modal" onclick="setCarLocationInPlan(1)" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-500 focus:z-10 focus:ring-4 focus:ring-gray-100">{% translate "Destination point" %}</button>
+                    <h3 class="mb-5 text-lg font-normal text-gray-700 dark:text-gray-300">{% translate "Set car location as" %}</h3>
+                        <button data-modal-hide="carpin-modal" onclick="setCarLocationInPlan(0)" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-500 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:bg-gray-500 dark:hover:bg-gray-700 dark:border-gray-600 dark:text-gray-300">{% translate "Starting point" %}</button>
+                        <button data-modal-hide="carpin-modal" onclick="setCarLocationInPlan(1)" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-500 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:bg-gray-500 dark:hover:bg-gray-700 dark:border-gray-600 dark:text-gray-300">{% translate "Destination point" %}</button>
                 </div>
             </div>
         </div>
@@ -570,7 +629,7 @@
     <button data-modal-target="fvtchn-modal" data-modal-toggle="fvtchn-modal" style="display: none;" type="button"></button>
     <div id="fvtchn-modal" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative p-4 w-full max-w-md max-h-full">
-            <div class="relative bg-white rounded-lg shadow-sm">
+            <div class="relative bg-white dark:bg-gray-600 rounded-lg shadow-sm">
                 <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" data-modal-hide="fvtchn-modal">
                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
@@ -578,7 +637,7 @@
                     <span class="sr-only">{% translate "Close" %}</span>
                 </button>
                 <div class="p-4 md:p-5 text-center" data-accordion="collapse">
-                    <h3 class="mb-5 text-lg font-normal text-gray-700">{% translate "Select data channel" %}</h3>
+                    <h3 class="mb-5 text-lg font-normal text-gray-700 dark:text-gray-300">{% translate "Select data channel" %}</h3>
                     {% for folder in channels %}
                        <h2 id="f-{{ folder.id }}-heading">
                         <button type="button" class="collapsing-btn flex items-center justify-between w-full text-gray-900  p-2 font-medium rtl:text-right border border-gray-200 focus:ring-4 focus:ring-gray-200 gap-3" data-accordion-target="#f-{{ folder.id }}-body" aria-expanded="false" aria-controls="f-{{ folder.id }}-body">
@@ -590,7 +649,7 @@
                       </h2>
                       <div id="f-{{ folder.id }}-body" class="hidden px-2 py-4 grid grid-cols-1 gap-3" aria-labelledby="f-{{ folder.id }}-heading">
                         {% for channel in folder.channels %}
-                            <button onclick="saveFvtChn({{ channel.id }})" type="button" class="flex border-gray-300 border border-t-0 border-x-0 items-center justify-between w-full text-gray-900 text-md font-medium rtl:text-right p-1">
+                            <button onclick="saveFvtChn({{ channel.id }})" type="button" class="flex border-gray-300 border border-t-0 border-x-0 items-center justify-between w-full text-gray-900 dark:text-gray-200 text-md font-medium rtl:text-right p-1">
                                  <span><img src="{% static channel.icon %}" class="inline h-4"/> {{ channel.name }}</span>
                             </button>
                         {% endfor %}
@@ -604,7 +663,7 @@
     <button data-modal-target="customchn-modal" data-modal-toggle="customchn-modal" style="display: none;" type="button"></button>
     <div id="customchn-modal" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative p-4 w-full max-w-md max-h-full">
-            <div class="relative bg-white rounded-lg shadow-sm">
+            <div class="relative bg-white dark:bg-gray-600 rounded-lg shadow-sm">
                 <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" data-modal-hide="customchn-modal">
                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
@@ -613,15 +672,15 @@
                 </button>
                 <div class="p-4 md:p-5" data-accordion="collapse">
                     <form id="edit-customchnform">
-                        <h3 class="mb-5 text-lg font-normal text-gray-700">{% translate "Edit data channel" %}</h3>
-                        <label class="block text-gray-700">{% translate "Channel name" %}</label>
-                        <input type="text" maxlength="30" id="chan-name" class="w-full p-2 border rounded mt-1" required>
+                        <h3 class="mb-5 text-lg font-normal text-gray-700 dark:text-gray-200">{% translate "Edit data channel" %}</h3>
+                        <label class="block text-gray-700 dark:text-gray-300">{% translate "Channel name" %}</label>
+                        <input type="text" maxlength="30" id="chan-name" class="w-full p-2 border rounded dark:bg-gray-600 mt-1" required>
 
                         <div class="block mt-5">
-                            <label class="block text-gray-700 mt-2">{% translate "Channel icon" %}</label>
+                            <label class="block text-gray-700 dark:text-gray-300 mt-2">{% translate "Channel icon" %}</label>
                             <div class="flex flex-row items-center gap-3">
                                 <img class="inline h-6" src="{% static "chanicons/info.png" %}" id="chan-iconpreview"/>
-                                <select id="chan-icon" onchange="document.getElementById('chan-iconpreview').src=staticRes+'chanicons/'+this.value" class="w-full periodic-select border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <select id="chan-icon" onchange="document.getElementById('chan-iconpreview').src=staticRes+'chanicons/'+this.value" class="w-full periodic-select border dark:bg-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                                     {% for icon in chan_icon_choices %}
                                         <option value="{{ icon.0 }}" ><img src="{% static "chanicons/"|add:icon.0 %}" class="inline h-4"/> {{ icon.1 }}</option>
                                     {% endfor %}
@@ -629,16 +688,115 @@
                             </div>
                         </div>
 
-                        <label class="block mt-5 text-gray-700">{% translate "Data URL" %}</label>
-                        <input type="url" maxlength="255" id="chan-url" placeholder="https://example.com/mycustomchannel" class="w-full p-2 border rounded mt-1" required>
+                        <label class="block mt-5 text-gray-700 dark:text-gray-300">{% translate "Data URL" %}</label>
+                        <input type="url" maxlength="255" id="chan-url" placeholder="https://example.com/mycustomchannel" class="w-full p-2 border rounded dark:bg-gray-600 mt-1" required>
                         <a href="{% static "data_guide.html" %}" target="_blank" class="block text-sm underline">{% translate "Data URL format and documentation" %}</a>
 
                         <div class="flex items-center mt-4">
                             <input id="chan-location" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm">
-                            <label for="chan-location" class="ms-2 text-sm font-medium text-gray-900">{% translate "Allow sending current vehicle location" %}</label>
+                            <label for="chan-location" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-100">{% translate "Allow sending current vehicle location" %}</label>
                         </div>
 
                         <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 mt-5" type="submit">{% translate "Save" %}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button data-modal-target="timeredit-modal" data-modal-toggle="timeredit-modal" style="display: none;" type="button"></button>
+    <div id="timeredit-modal" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-md max-h-full">
+            <div class="relative bg-white dark:bg-gray-600 rounded-lg shadow-sm">
+                <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" data-modal-hide="timeredit-modal">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                    </svg>
+                    <span class="sr-only">{% translate "Close" %}</span>
+                </button>
+                <div class="p-4 md:p-5" data-accordion="collapse">
+                    <form id="edit-timeredit-form">
+                        <h3 class="mb-5 text-lg font-normal text-gray-700 dark:text-gray-200" id="timer-edit-name">{% translate "Edit timer" %}</h3>
+                        <label for="timer-name" class="block my-2 text-sm font-medium text-gray-900 dark:text-white">{% translate "Timer name" %}</label>
+                        <input type="text" maxlength="32" id="timer-name" class="w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-700 mt-1" required>
+
+                        <div class="flex items-center my-4">
+                             <input id="timer-enabled" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                             <label for="timer-enabled" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{% translate "Enabled" %}</label>
+                        </div>
+
+                        <label for="timer-time" class="block my-2 text-sm font-medium text-gray-900 dark:text-white">{% translate "Select time" %}</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 end-0 top-0 flex items-center pe-3.5 pointer-events-none">
+                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                    <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+                            <input type="time" step="3600" id="timer-time" class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" min="09:00" max="18:00" value="00:00" required />
+                        </div>
+
+                          <label for="timer-command" class="block my-2 text-sm font-medium text-gray-900 dark:text-white">{% translate "Command" %}</label>
+                          <select id="timer-command" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            {% for value, label in command_choices %}
+                                <option value="{{ value }}">{{ label }}</option>
+                            {% endfor %}
+                          </select>
+
+                        <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
+                            <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="timermode-tab" data-tabs-toggle="#timer-mode-content" role="tablist">
+                                <li class="me-2" role="presentation">
+                                    <button class="inline-block p-4 border-b-2 rounded-t-lg" id="onetime-tab" data-tabs-target="#onetime" type="button" role="tab" aria-controls="onetime" aria-selected="false">{% translate "One-time" %}</button>
+                                </li>
+                                <li class="me-2" role="presentation">
+                                    <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="repeating-tab" data-tabs-target="#repeating" type="button" role="tab" aria-controls="repeating" aria-selected="false">{% translate "Repeating" %}</button>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="timer-mode-content">
+                            <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="onetime" role="tabpanel" aria-labelledby="onetime-tab">
+                                <div class="relative max-w-sm">
+                                  <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                      <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                                    </svg>
+                                  </div>
+                                  <input  id="timer-date" type="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="{% translate "Select date" %}">
+                                </div>
+                            </div>
+                            <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="repeating" role="tabpanel" aria-labelledby="repeating-tab">
+                                <div class="flex items-center mb-4">
+                                    <input id="timer-mon" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="timer-mon" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{% translate "Monday" %}</label>
+                                </div>
+                                <div class="flex items-center mb-4">
+                                    <input id="timer-tue" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="timer-tue" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{% translate "Tuesday" %}</label>
+                                </div>
+                                <div class="flex items-center mb-4">
+                                    <input id="timer-wed" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="timer-wed" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{% translate "Wednesday" %}</label>
+                                </div>
+                                <div class="flex items-center mb-4">
+                                    <input id="timer-thu" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="timer-thu" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{% translate "Thursday" %}</label>
+                                </div>
+                                <div class="flex items-center mb-4">
+                                    <input id="timer-fri" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="timer-fri" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{% translate "Friday" %}</label>
+                                </div>
+                                <div class="flex items-center mb-4">
+                                    <input id="timer-sat" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="timer-sat" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{% translate "Saturday" %}</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input id="timer-sun" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="timer-sun" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{% translate "Sunday" %}</label>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 mt-5" type="button" onclick="saveTimer()">{% translate "Save" %}</button>
                     </form>
                 </div>
             </div>
@@ -695,6 +853,9 @@
 
         let routePlans = [];
         let composingRoutePlan = {id: null};
+
+        let timers = [];
+        let timerId = null;
 
         // Websocket client instance
         const webSockClient = new WebSocketClient("/ws/notif/", ws_connect, ws_msg, ws_err, ws_close, ws_reconnect)
@@ -810,12 +971,15 @@
                 button.addEventListener('click', () => {
                     const tabId = button.getAttribute('data-tab');
 
+
                     tabButtons.forEach(btn => {
                         btn.classList.remove('text-blue-500', 'border-b-2', 'border-blue-500');
                         btn.classList.add('text-gray-600');
+                        btn.classList.add('dark:text-gray-400');
                     });
                     tabContents.forEach(content => content.classList.remove('active'));
                     button.classList.remove('text-gray-600');
+                    button.classList.remove('dark:text-gray-400');
                     button.classList.add('text-blue-500', 'border-b-2', 'border-blue-500');
                     document.getElementById(tabId).classList.add('active');
 
@@ -998,21 +1162,21 @@
                     'Content-Type': 'application/json',
                     'X-CSRFToken': '{{ csrf_token }}'
                 }
-            })
-            .then(resp => {
-                if (resp.status === 204) {
-                    window.location.href = "/"
-                } else if (resp.json()) {
-                    let data = resp.json();
-                    showNotification({title: '{% translate "Error sending command" %}', message: data.error ?? data, type: 'error'});
-                } else {
-                    showNotification({title: '{% translate "Error sending command" %}', message: resp.statusText, type: 'error'});
-                }
-            })
-            .catch(error => {
-                console.error('{% translate "Error sending command" %}:', error);
-                showNotification({title: '{% translate "Error sending command" %}', message: error.error ?? error, type: 'error'});
-            });
+                })
+                    .then(resp => {
+                        if (resp.status === 204) {
+                            window.location.href = "/"
+                        } else if (resp.json()) {
+                            let data = resp.json();
+                            showNotification({title: '{% translate "Error sending command" %}', message: data.error ?? data, type: 'error'});
+                        } else {
+                            showNotification({title: '{% translate "Error sending command" %}', message: resp.statusText, type: 'error'});
+                        }
+                    })
+                    .catch(error => {
+                        console.error('{% translate "Error sending command" %}:', error);
+                        showNotification({title: '{% translate "Error sending command" %}', message: error.error ?? error, type: 'error'});
+                    });
             }
         }
 
@@ -1033,6 +1197,11 @@
             if (data.route_plans) {
                 routePlans = data.route_plans;
                 updateRoutePlans();
+            }
+
+            if (data.timer_commands) {
+                timers = data.timer_commands;
+                updateCommandTimers();
             }
 
             if (data.favorite_channels && fvtChnData == null) {
@@ -1466,10 +1635,10 @@
 
             for (let route of routePlans) {
                 const frame = document.createElement('div');
-                frame.className = 'flex items-center justify-between p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition';
+                frame.className = 'flex items-center justify-between p-2 bg-gray-50 dark:bg-gray-500 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition';
 
                 const planName = document.createElement('span');
-                planName.className = 'text-gray-700 font-medium mx-3';
+                planName.className = 'text-gray-700 dark:text-gray-300 font-medium mx-3';
                 planName.innerText = `${routePlans.indexOf(route)+1}. ${route.name}`;
 
                 const actionsFrame = document.createElement('div');
@@ -1758,10 +1927,10 @@
             inputField.minLength = 2;
             inputField.placeholder = "{% translate "Search for locations or enter google/apple maps link" %}";
             inputField.id = `rp-waypoint-${newWaypointNo}`;
-            inputField.className = 'rp-searchfield w-full p-1 border rounded mt-1';
+            inputField.className = 'rp-searchfield w-full p-1 border dark:bg-gray-700 dark:border-gray-800 rounded mt-1';
 
             const removeBtn = document.createElement('button');
-            removeBtn.className = 'ml-2 mt-1 text-gray-500 hover:text-gray-700 focus:outline-none bg-transparent border-none text-lg font-semibold';
+            removeBtn.className = 'ml-2 mt-1 text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-400 focus:outline-none bg-transparent border-none text-lg font-semibold';
             removeBtn.innerText = 'x';
             removeBtn.type = 'button';
             removeBtn.addEventListener('click', () => {removeWayPoint(newWaypointNo)});
@@ -1878,6 +2047,8 @@
             updateCurrentRoutePlanFromForm();
         }
 
+
+
         function editRoutePlan(id) {
             const routePlanObj = routePlans.find(p => p.id === id);
             if (routePlanObj) {
@@ -1976,17 +2147,21 @@
                             nameElem.textContent = channel.name;
                             iconElem.src = staticRes+"chanicons/"+channel.icon;
                             channelElem.classList.remove('text-gray-500')
+                            channelElem.classList.remove('dark:text-gray-400')
                         }
                     } else if (allChannels.find(i => i['id'] === channelId)) {
                         const channel = allChannels.find(i => i['id'] === channelId);
                         nameElem.textContent = channel.name;
                         iconElem.src = staticRes+channel.icon;
                         channelElem.classList.remove('text-gray-500')
+                        channelElem.classList.remove('dark:text-gray-400')
                     } else {
                         channelElem.classList.add('text-gray-500')
+                        channelElem.classList.add('dark:text-gray-400')
                     }
                 } else {
                     channelElem.classList.add('text-gray-500')
+                    channelElem.classList.add('dark:text-gray-400')
                 }
             }
         }
@@ -2041,11 +2216,13 @@
                 nameElem.textContent = "{% translate 'No content' %}";
                 if (i in customChnData) {
                     channelElem.classList.remove('text-gray-500')
+                    channelElem.classList.remove('dark:text-gray-400')
                     const channel = customChnData[i];
                     nameElem.textContent = channel.name;
                     iconElem.src = `${staticRes}chanicons/${channel.icon}`;
                 } else {
                     channelElem.classList.add('text-gray-500')
+                    channelElem.classList.add('dark:text-gray-400')
                 }
             }
         }
@@ -2110,6 +2287,303 @@
                 updateCarwingsState(true, false);
                 console.error('{% translate "Error saving CARWINGS settings" %}:', error);
                 showNotification({title: '{% translate "Error saving CARWINGS settings" %}', message: error.error ?? error, type: 'error'})
+            });
+        }
+
+        function addNewTimer() {
+            timerId = null;
+            document.getElementById('timer-edit-name').textContent = '{% translate "Add timer" %}';
+            document.getElementById('timer-enabled').checked = true;
+            document.getElementById('timer-name').value = '';
+            document.getElementById('timer-time').value = '';
+            document.getElementById('timer-date').value = '';
+            document.getElementById('timer-mon').checked = false;
+            document.getElementById('timer-tue').checked = false;
+            document.getElementById('timer-wed').checked = false;
+            document.getElementById('timer-thu').checked = false;
+            document.getElementById('timer-fri').checked = false;
+            document.getElementById('timer-sat').checked = false;
+            document.getElementById('timer-sun').checked = false;
+            FlowbiteInstances.getInstance('Modal', 'timeredit-modal').show();
+        }
+
+        function editTimer(id) {
+            timerId = id;
+            let timer = timers.find(i => i.id === id);
+            if (!timer)
+                return;
+            document.getElementById('timer-edit-name').textContent = '{% translate "Edit timer" %}';
+            document.getElementById('timer-enabled').checked = timer.enabled;
+            document.getElementById('timer-name').value = timer.name;
+            document.getElementById('timer-time').value = utcToLocalTime(timer.time).localTime;
+            document.getElementById('timer-date').value = timer.date;
+            document.getElementById('timer-mon').checked = timer.weekday_mon;
+            document.getElementById('timer-tue').checked = timer.weekday_tue;
+            document.getElementById('timer-wed').checked = timer.weekday_wed;
+            document.getElementById('timer-thu').checked = timer.weekday_thu;
+            document.getElementById('timer-fri').checked = timer.weekday_fri;
+            document.getElementById('timer-sat').checked = timer.weekday_sat;
+            document.getElementById('timer-sun').checked = timer.weekday_sun;
+            document.getElementById('timer-command').value = timer.command_type;
+            if (timer.timer_type === 0) {
+                document.getElementById('onetime-tab').click();
+            } else if (timer.timer_type === 1) {
+                document.getElementById('repeating-tab').click();
+            }
+            FlowbiteInstances.getInstance('Modal', 'timeredit-modal').show();
+        }
+
+        function timeToUTCOffset(timeStr) {
+          console.log(timeStr);
+          const now = new Date();
+          const [hours, minutes, seconds] = timeStr.split(':').map(Number);
+          const date = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hours, minutes, 0);
+
+          const offsetMinutes = date.getTimezoneOffset();
+
+          const offsetHours = Math.floor(Math.abs(offsetMinutes) / 60);
+          const offsetMins = Math.abs(offsetMinutes) % 60;
+          const offsetSign = offsetMinutes <= 0 ? '+' : '-';
+
+          const formattedOffset = `${offsetSign}${offsetHours.toString().padStart(2, '0')}:${offsetMins.toString().padStart(2, '0')}`;
+
+          const utcHours = (date.getUTCHours() + 24) % 24; // Ensure hours are 0-23
+          const utcMinutes = date.getUTCMinutes();
+
+          const formattedTime = `${utcHours.toString().padStart(2, '0')}:${utcMinutes.toString().padStart(2, '0')}`;
+
+
+          return {
+            utcTime: formattedTime,
+            offset: formattedOffset
+          };
+        }
+
+        function utcToLocalTime(utcTimeStr) {
+          const [hours, minutes] = utcTimeStr.split(':').map(Number);
+
+          const utcDate = new Date(Date.UTC(new Date().getFullYear(), new Date().getMonth(), new Date().getDate(), hours, minutes, 0));
+
+          const localHours = utcDate.getHours();
+          const localMinutes = utcDate.getMinutes();
+
+          const formattedLocalTime = `${localHours.toString().padStart(2, '0')}:${localMinutes.toString().padStart(2, '0')}`;
+
+          const offsetMinutes = utcDate.getTimezoneOffset();
+          const offsetHours = Math.floor(Math.abs(offsetMinutes) / 60);
+          const offsetMins = Math.abs(offsetMinutes) % 60;
+          const offsetSign = offsetMinutes <= 0 ? '+' : '-';
+
+          const formattedOffset = `${offsetSign}${offsetHours.toString().padStart(2, '0')}:${offsetMins.toString().padStart(2, '0')}`;
+
+          return {
+            localTime: formattedLocalTime,
+            offset: formattedOffset
+          };
+        }
+
+        function saveTimer() {
+            let newTimerObj = {
+                name: document.getElementById('timer-name').value,
+                time: timeToUTCOffset(document.getElementById('timer-time').value).utcTime,
+                timer_type: (FlowbiteInstances.getInstance('Tabs', 'timermode-tab')._activeTab.id === "#repeating") ? 1 : 0,
+                command_type: document.getElementById('timer-command').value,
+                enabled: document.getElementById('timer-enabled').checked,
+            }
+            if (timerId != null)
+                newTimerObj.id = timerId;
+
+            newTimerObj.date = (newTimerObj.timer_type === 0) ? document.getElementById('timer-date').value : null;
+            newTimerObj.weekday_mon = (newTimerObj.timer_type === 1) ? document.getElementById('timer-mon').checked : false;
+            newTimerObj.weekday_tue = (newTimerObj.timer_type === 1) ? document.getElementById('timer-tue').checked : false;
+            newTimerObj.weekday_wed = (newTimerObj.timer_type === 1) ? document.getElementById('timer-wed').checked : false;
+            newTimerObj.weekday_thu = (newTimerObj.timer_type === 1) ? document.getElementById('timer-thu').checked : false;
+            newTimerObj.weekday_fri = (newTimerObj.timer_type === 1) ? document.getElementById('timer-fri').checked : false;
+            newTimerObj.weekday_sat = (newTimerObj.timer_type === 1) ? document.getElementById('timer-sat').checked : false;
+            newTimerObj.weekday_sun = (newTimerObj.timer_type === 1) ? document.getElementById('timer-sun').checked : false;
+
+            if (newTimerObj.timer_type === 0 && !newTimerObj.date) {
+                showNotification({title: '{% translate "Missing field" %}', message: '{% translate 'Please enter valid date for the timer' %}', type: 'warning'});
+                return;
+            } else if (newTimerObj.timer_type === 1 && Object.keys(newTimerObj).filter(i => i.startsWith("weekday_")).filter(i => newTimerObj[i]).length === 0) {
+                showNotification({title: '{% translate "Missing field" %}', message: '{% translate 'Please select at least one weekday' %}', type: 'warning'});
+                return;
+            }
+            FlowbiteInstances.getInstance('Modal', 'timeredit-modal').hide();
+
+            const progressNotBusy = commandSpinner.style.display === 'none';
+            if (progressNotBusy)
+                commandSpinner.style.display = 'inline-block';
+            fetch(newTimerObj.id ? `/api/car/${vin}/timers/${newTimerObj.id}` : `/api/car/${vin}/timers/`, {
+                        method: newTimerObj.id ? 'PATCH' : 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': '{{ csrf_token }}'
+                        },
+                        body: JSON.stringify(newTimerObj)
+                    })
+                    .then(async response => !response.ok ? Object.assign({}, (await response.json()), {status: response.statusText}) : (await response.json()))
+                    .then(data => {
+                        if (progressNotBusy)
+                            commandSpinner.style.display = 'none';
+                        if (data.error || data.detail) {
+                            showNotification({title: '{% translate "Error saving the timer" %}', message: data.error ?? data.detail ?? data.status ?? data, type: 'error'})
+                        } else {
+                            showNotification({message: "{% translate "Timer saved!" %}", type: "success"});
+                        }
+                    })
+                    .catch(error => {
+                        if (progressNotBusy)
+                            commandSpinner.style.display = 'none';
+                        console.error('{% translate "Error saving the timer" %}:', error);
+                        showNotification({title: '{% translate "Error saving the timer" %}', message: error.error ?? error, type: 'error'})
+                    });
+        }
+
+        function changeTimerState(id, enabled) {
+            const progressNotBusy = commandSpinner.style.display === 'none';
+            if (progressNotBusy)
+                commandSpinner.style.display = 'inline-block';
+            fetch(`/api/car/${vin}/timers/${id}`, {
+                        method: 'PATCH',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': '{{ csrf_token }}'
+                        },
+                        body: JSON.stringify({enabled: enabled})
+                    })
+                    .then(async response => !response.ok ? Object.assign({}, (await response.json()), {status: response.statusText}) : (await response.json()))
+                    .then(data => {
+                        if (progressNotBusy)
+                            commandSpinner.style.display = 'none';
+                        if (data.error || data.detail) {
+                            showNotification({title: '{% translate "Error saving the timer" %}', message: data.error ?? data.detail ?? data.status ?? data, type: 'error'})
+                        } else {
+                            showNotification({message: "{% translate "Timer saved!" %}", type: "success"});
+                        }
+                    })
+                    .catch(error => {
+                        if (progressNotBusy)
+                            commandSpinner.style.display = 'none';
+                        console.error('{% translate "Error saving the timer" %}:', error);
+                        showNotification({title: '{% translate "Error saving the timer" %}', message: error.error ?? error, type: 'error'})
+                    });
+        }
+
+        function deleteTimer(id) {
+            const timerObj = timers.find(p => p.id === id);
+            if (timerObj) {
+                if (confirm('{% translate 'Are you sure you want to delete this timer?' %}')) {
+                    fetch(`/api/car/${vin}/timers/${timerObj.id}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'X-CSRFToken': '{{ csrf_token }}'
+                        },
+                    })
+                    .then(resp => {
+                        if (resp.status === 204) {
+                            showNotification({message: "{% translate "Timer removed!" %}", type: "success"});
+                        } else if (resp.json()) {
+                            let data = resp.json();
+                            showNotification({title: '{% translate "Error deleting the timer" %}', message: data.error ?? data.detail ?? data, type: 'error'})
+                        } else {
+                            showNotification({title: '{% translate "Error deleting the timer" %}', message: resp.statusText, type: 'error'});
+                        }
+                    })
+                    .catch(error => {
+                        console.error('{% translate "Error deleting the timer" %}:', error);
+                        showNotification({title: '{% translate "Error deleting the timer" %}', message: error.error ?? error, type: 'error'});
+                    });
+                }
+            }
+        }
+
+        function updateCommandTimers() {
+            const timersList = document.getElementById('timers-list');
+            // Clear existing content
+            timersList.innerHTML = '';
+
+            const formatter = new Intl.DateTimeFormat(navigator.language, { weekday: 'short' });
+            const baseDate = new Date(2025, 0, 6);
+            const weekdays = Array.from({ length: 7 }, (_, i) => {
+                const date = new Date(baseDate);
+                date.setDate(baseDate.getDate() + i);
+                return formatter.format(date);
+            });
+
+            if (timers.length === 0) {
+                timersList.innerText = '{% translate 'No timers added' %}';
+            }
+
+            timers.sort((a,b) => (b.enabled ? 1 : 0)-(a.enabled ? 1 : 0)).forEach(timer => {
+                const timerDiv = document.createElement('div');
+                timerDiv.className = 'flex flex-col justify-between p-2 bg-gray-50 dark:bg-gray-700 gap-3 rounded-lg transition';
+
+                const nameSpan = document.createElement('span');
+                nameSpan.className = 'text-gray-700 dark:text-gray-300 font-medium';
+
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.value = 'checked';
+                checkbox.checked = timer.enabled;
+                checkbox.addEventListener('change', (evt) => {changeTimerState(timer.id, evt.target.checked)});
+                checkbox.className = 'p-2 border rounded mt-1 checkboxinput';
+
+                const nameText = document.createTextNode(` ${timer.name}`);
+                nameSpan.appendChild(checkbox);
+                nameSpan.appendChild(nameText);
+
+                const scheduleSpan = document.createElement('span');
+                scheduleSpan.className = 'text-gray-700 dark:text-gray-400 font-sm';
+
+                let scheduleText = `${timer.command_type_display} | `;
+                if (timer.timer_type === 0) {
+                    const formattedDate = new Date(timer.date);
+                    scheduleText += `${formattedDate.toLocaleDateString()} | `;
+                } else if (timer.timer_type === 1) {
+                    const days = [
+                        timer.weekday_mon ? weekdays[0] : '',
+                        timer.weekday_tue ? weekdays[1] : '',
+                        timer.weekday_wed ? weekdays[2] : '',
+                        timer.weekday_thu ? weekdays[3] : '',
+                        timer.weekday_fri ? weekdays[4] : '',
+                        timer.weekday_sat ? weekdays[5] : '',
+                        timer.weekday_sun ? weekdays[6] : ''
+                    ].filter(day => day).join(' | ');
+                    scheduleText += days ? `${days} | ` : '';
+                }
+                scheduleText += utcToLocalTime(timer.time).localTime;
+                scheduleSpan.textContent = scheduleText;
+
+                const lastDataSpan = document.createElement('span');
+                lastDataSpan.className = 'text-gray-700 dark:text-gray-400 font-sm';
+                lastDataSpan.textContent = `{% translate "Last run" %}: ${timer.last_command_execution ? new Date(timer.last_command_execution).toLocaleString() : '--'}, {% translate "result" %}: ${timer.last_command_result !== -1 ? timer.last_command_result_display : "--"}`
+
+                const buttonsDiv = document.createElement('div');
+                buttonsDiv.className = 'flex space-x-2';
+
+                const editButton = document.createElement('button');
+                editButton.className = 'px-3 py-1 bg-blue-700 text-white rounded-md hover:bg-blue-600 transition text-sm';
+                editButton.textContent = '{% translate "Edit" %}';
+                editButton.onclick = () => editTimer(timer.id);
+
+                const deleteButton = document.createElement('button');
+                deleteButton.className = 'px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 transition text-sm';
+                deleteButton.textContent = '{% translate "Delete" %}';
+                deleteButton.onclick = () => deleteTimer(timer.id);
+
+                // Append buttons to container
+                buttonsDiv.appendChild(editButton);
+                buttonsDiv.appendChild(deleteButton);
+
+                // Append all elements to main container
+                timerDiv.appendChild(nameSpan);
+                timerDiv.appendChild(scheduleSpan);
+                timerDiv.appendChild(lastDataSpan);
+                timerDiv.appendChild(buttonsDiv);
+
+                // Append to timers list
+                timersList.appendChild(timerDiv);
             });
         }
 

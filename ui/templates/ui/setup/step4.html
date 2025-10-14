@@ -25,16 +25,16 @@
                 {% endfor %}
             {% endif %}
         </div>
-    <div class="bg-white p-6 rounded-lg shadow-md">
-        <h2 class="text-lg font-semibold text-gray-800 mb-4">{% blocktranslate %}SMS provider{% endblocktranslate %}</h2>
+    <div class="bg-white dark:bg-gray-600 p-6 rounded-lg shadow-md">
+        <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">{% blocktranslate %}SMS provider{% endblocktranslate %}</h2>
         <p>{% blocktranslate %}LEAF TCU expects to receive an SMS command to establish connection to the server. To deliver the SMS, you have several options regarding which service will be used for this task.{% endblocktranslate %}<br/>{% blocktranslate %}We recommend using{% endblocktranslate %} <a href="https://www.hologram.io/" class="underline" target="_blank">{% translate "Hologram IoT SIM Card" %}</a> {% blocktranslate %}in your TCU, because it offers free SMS messages to the device. Other services may require cost per SMS.{% endblocktranslate %}</p>
         <form method="post" class="mt-5">
             {% csrf_token %}
 
             {% for provider in providers %}
                 <div class="flex items-center mb-4">
-                    <input id="sms-radio-{{provider.id}}" type="radio" value="{{provider.id}}" name="sms-provider" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
-                    <label for="sms-radio-{{provider.id}}" class="ml-2 text-sm font-medium text-gray-900">{% translate provider.name %}</label>
+                    <input id="sms-radio-{{provider.id}}" type="radio" value="{{provider.id}}" name="sms-provider" class="w-4 h-4 text-blue-600 bg-gray-100 dark:bg-gray-800 border-gray-300 focus:ring-blue-500">
+                    <label for="sms-radio-{{provider.id}}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">{% translate provider.name %}</label>
                 </div>
             {% endfor %}
 
@@ -42,13 +42,13 @@
                 <div id="{{provider.id}}-fields" class="mt-4 space-y-4 hidden provider-fields">
                     {% for field in provider.fields %}
                     <div>
-                        <label for="field-{{ field.0 }}" class="block mb-2 text-sm font-medium text-gray-900">{{ field.1 }}</label>
-                        <input type="text" id="field-{{ field.0 }}" maxlength="128" name="{{provider.id}}-{{ field.0 }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <label for="field-{{ field.0 }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-200">{{ field.1 }}</label>
+                        <input type="text" id="field-{{ field.0 }}" maxlength="128" name="{{provider.id}}-{{ field.0 }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg dark:bg-gray-700 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     </div>
                     {% endfor %}
                     {% if provider.help %}
                     <div class="mt-4">
-                        <div class="p-4 text-sm text-blue-800 rounded-lg bg-blue-50" role="alert">
+                        <div class="p-4 text-sm text-blue-800 dark:text-blue-200 rounded-lg bg-blue-50 dark:bg-blue-800" role="alert">
                             {{provider.help}}
                         </div>
                     </div>

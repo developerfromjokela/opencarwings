@@ -5,8 +5,8 @@
 {% block content %}
     <div class="max-w-6xl mx-auto py-10 px-4 flex align-center justify-center items-center">
 
-    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md mt-20">
-        <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">{% translate "Sign In" %}</h2>
+    <div class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-md w-full max-w-md mt-20">
+        <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-6 text-center">{% translate "Sign In" %}</h2>
 
         <!-- Messages -->
         {% if messages %}
@@ -23,16 +23,16 @@
         <form method="POST">
             {% csrf_token %}
             <div class="mb-4">
-                <label for="username" class="block text-gray-700 mb-2">{% translate "Username" %}</label>
-                <input type="text" name="username" id="username" class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="{% blocktranslate %}Enter username{% endblocktranslate %}" required>
+                <label for="username" class="block text-gray-700 dark:text-gray-300 mb-2">{% translate "Username" %}</label>
+                <input type="text" name="username" id="username" class="w-full p-2 border dark:bg-gray-800 dark:border-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="{% blocktranslate %}Enter username{% endblocktranslate %}" required>
             </div>
             <div class="mb-6">
-                <label for="password" class="block text-gray-700 mb-2">{% translate "Password" %}</label>
-                <input type="password" name="password" id="password" class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="{% blocktranslate %}Enter password{% endblocktranslate %}" required>
+                <label for="password" class="block text-gray-700 dark:text-gray-300 mb-2">{% translate "Password" %}</label>
+                <input type="password" name="password" id="password" class="w-full p-2 border dark:bg-gray-800 dark:border-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="{% blocktranslate %}Enter password{% endblocktranslate %}" required>
             </div>
             <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600">{% translate "Sign In" %}</button>
         </form>
-        <p class="text-center text-gray-600 mt-4">Don’t have an account? <a href="/signup" class="text-blue-500 hover:underline">{% translate "Sign Up" %}</a></p>
+        <p class="text-center text-gray-600 dark:text-gray-400 mt-4">Don’t have an account? <a href="/signup" class="text-blue-500 dark:text-blue-400 hover:underline">{% translate "Sign Up" %}</a></p>
         <p class="text-center text-gray-600 mt-4"><a href="{% url 'password_reset' %}" class="text-blue-500 hover:underline">{% translate "Forgot password?" %}</a></p>
     </div>
     </div>

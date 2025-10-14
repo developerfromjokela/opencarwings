@@ -5,18 +5,18 @@
 
 {% block content %}
 <div class="max-w-4xl mx-auto py-10 px-4">
-    <h1 class="text-3xl font-semibold text-gray-800 mb-6">{% translate "Add new car" %}</h1>
+    <h1 class="text-3xl font-semibold text-gray-800 dark:text-gray-100 mb-6">{% translate "Add new car" %}</h1>
 
     <!-- Step Indicator -->
     <div class="flex items-center justify-between mb-6 relative">
-        <div class="absolute top-1/2 left-0 right-0 h-1 bg-gray-300 transform -translate-y-4"></div>
+        <div class="absolute top-1/2 left-0 right-0 h-1 bg-gray-300 dark:bg-gray-600 transform -translate-y-4"></div>
         {% for step in steps %}
             <div class="relative z-10 flex flex-col items-center">
                 <div class="w-10 h-10 flex items-center justify-center rounded-full border-2
-                    {% if step.index == current_step %} bg-blue-500 border-blue-500 text-white {% else %} bg-white border-gray-400 text-gray-600 {% endif %}">
+                    {% if step.index == current_step %} bg-blue-500 dark:bg-blue-500 border-blue-500 text-white {% else %} bg-white border-gray-400 dark:border-gray-800 dark:bg-gray-600 text-gray-600 dark:text-gray-300 {% endif %}">
                     {{ step.index }}
                 </div>
-                <span class="text-sm mt-2 text-gray-700">{{ step.name }}</span>
+                <span class="text-sm mt-2 text-gray-700 dark:text-gray-300">{{ step.name }}</span>
             </div>
         {% endfor %}
     </div>

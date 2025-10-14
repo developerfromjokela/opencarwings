@@ -30,22 +30,20 @@
                 {% endfor %}
             {% endif %}
         </div>
-        <h1 class="text-3xl font-semibold text-gray-800 mb-6 flex items-center">{% translate "My cars" %} <a href="/setup/step1" class="ml-2 px-2 py-1 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">{% translate "Add" %}</a></h1>
+        <h1 class="text-3xl font-semibold text-gray-800 dark:text-gray-200 mb-6 flex items-center">{% translate "My cars" %} <a href="/setup/step1" class="ml-2 px-2 py-1 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">{% translate "Add" %}</a></h1>
         <div class="space-y-4">
             {% for car in cars %}
-                <a href="{% url 'car_detail' car.vin %}" class="flex bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200">
+                <a href="{% url 'car_detail' car.vin %}" class="flex bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200">
                     {% with 'car/'|add:car.color|add:'.png' as car_static %}
                          <img src="{% static car_static %}" style="padding-right: 15px; max-height: 50px; object-fit: cover"/>
                     {% endwith %}
                     <div>
-                        <h5 class="text-lg font-semibold text-gray-800 mb-1 align-center content-center flex flex-row items-center">
+                        <h5 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-1 align-center content-center flex flex-row items-center">
                             {{ car.nickname }}
                             {% now "U" as current_time %}
                             {% if car.last_connection %}
                                 {% with last_connection_time=car.last_connection|date:"U" %}
                                     {% with diff_time=current_time|subtract:last_connection_time %}
-                                        <!-- Debugging: Output the values -->
-                                        <span style="display: none;" id="debug-diff-time">{{ diff_time }}</span>
                                         <span id="connection-status" class="connection-status
                                             {% if diff_time <= 3600 or diff_time < 0 %}
                                                 green
@@ -61,15 +59,15 @@
                                 <span id="connection-status" class="connection-status red"></span>
                             {% endif %}
                         </h5>
-                        <span class="text-sm text-gray-600">VIN: {{ car.vin }}</span>
+                        <span class="text-sm text-gray-600 dark:text-gray-400">VIN: {{ car.vin }}</span>
                         {% if car.last_connection %}
-                        <p class="text-sm text-gray-500">{% translate "Last connected" %}: {{ car.last_connection|date:"Y-m-d H:i" }} (UTC)</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">{% translate "Last connected" %}: {{ car.last_connection|date:"Y-m-d H:i" }} (UTC)</p>
                         {% endif %}
                     </div>
                 </a>
             {% empty %}
-                <div class="bg-white p-4 rounded-lg shadow-md">
-                    <p class="text-gray-600">{% translate "No cars added." %}</p>
+                <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md">
+                    <p class="text-gray-600 dark:text-gray-300">{% translate "No cars added." %}</p>
                 </div>
             {% endfor %}
         </div>

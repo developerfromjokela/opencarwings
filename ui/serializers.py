@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from db.models import Car, TCUConfiguration, LocationInfo, EVInfo, AlertHistory, SendToCarLocation, RoutePlan, \
-    CRMDistanceRecord
+    CRMDistanceRecord, CommandTimerSetting
 from tculink.carwings_proto.autodj import ICONS
 from tculink.carwings_proto.autodj.channels import get_info_channel_data
 
@@ -75,6 +75,20 @@ class AlertHistorySerializer(serializers.ModelSerializer):
         model = AlertHistory
         fields = ['id', 'type', 'type_display', 'timestamp', 'command_id', 'additional_data']
 
+class CommandTimerSettingSerializer(serializers.ModelSerializer):
+    command_type_display = serializers.CharField(source='get_command_type_display', allow_blank=True, required=False)
+    last_command_result_display = serializers.CharField(source='get_last_command_result_display', allow_blank=True, required=False)
+    timer_type_display = serializers.CharField(source='get_timer_type_display', allow_blank=True, required=False)
+
+    class Meta:
+        model = CommandTimerSetting
+        read_only_fields = ('command_type_display', 'last_command_result_display', 'timer_type_display'),
+        fields = '__all__'
+        extra_kwargs = {
+            'command_type_display': {'read_only': True},
+            'last_command_result_display': {'read_only': True},
+            'timer_type_display': {'read_only': True},
+        }
 
 class CarSerializer(serializers.ModelSerializer):
     tcu_configuration = TCUConfigurationSerializer()
@@ -84,6 +98,7 @@ class CarSerializer(serializers.ModelSerializer):
     route_plans = RoutePlanSerializer(many=True)
     command_type_display = serializers.CharField(source='get_command_type_display')
     command_result_display = serializers.CharField(source='get_command_result_display')
+    timer_commands = CommandTimerSettingSerializer(many=True)
 
     def to_representation(self, instance):
         data = super().to_representation(instance)

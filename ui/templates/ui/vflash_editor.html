@@ -6,24 +6,24 @@
 
 {% block content %}
 <div class="max-w-6xl mx-auto py-10 px-4">
-      <h1 class="text-3xl font-semibold text-gray-800 mb-6">{%translate "VFlash Connection Profile Editor" %}</h1>
+      <h1 class="text-3xl font-semibold text-gray-800 dark:text-gray-100 mb-6">{%translate "VFlash Connection Profile Editor" %}</h1>
       <span>{%translate "Choose or drag&drop vflash dump to get started" %} (vflash_xxxxxxxx_xxxxxxxx.bin)</span>
-      <input type="file" id="fileInput" accept=".bin" class="mb-4 w-full p-2 border rounded">
+      <input type="file" id="fileInput" accept=".bin" class="mb-4 w-full p-2 border dark:bg-gray-800 dark:border-gray-900 rounded">
       <div id="errorMessage" class="mt-2 text-red-500 hidden"></div>
       <div class="mb-4">
-          <label class="block text-sm font-medium text-gray-700">Profile version number</label>
-          <input type="text" class="mt-1 block w-full p-2 border rounded disabled bg-gray-200" id="profile_vernum" disabled/>
-          <label class="block text-sm font-medium text-gray-700">Profile code</label>
-          <input type="text" class="mt-1 block w-full p-2 border rounded disabled bg-gray-200" id="profile_code" disabled/>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Profile version number</label>
+          <input type="text" class="mt-1 block w-full p-2 border dark:bg-gray-800 dark:border-gray-900 rounded disabled bg-gray-200" id="profile_vernum" disabled/>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Profile code</label>
+          <input type="text" class="mt-1 block w-full p-2 border dark:bg-gray-800 dark:border-gray-900 rounded disabled bg-gray-200" id="profile_code" disabled/>
           <hr/>
-          <label class="block text-sm font-medium text-gray-700">oprtr_single_tel</label>
-          <input type="text" class="mt-1 block w-full p-2 border rounded" maxlength="36" id="oprtr_single_tel" />
-          <label class="block text-sm font-medium text-gray-700">oprtr_single_tel_dtmf</label>
-          <input type="text" class="mt-1 block w-full p-2 border rounded" maxlength="36" id="oprtr_single_tel_dtmf" />
-          <label class="block text-sm font-medium text-gray-700">oprtr_multi_tel</label>
-          <input type="text" class="mt-1 block w-full p-2 border rounded" maxlength="36" id="oprtr_multi_tel" />
-          <label class="block text-sm font-medium text-gray-700">crd_datum_type</label>
-          <input type="text" class="mt-1 block w-full p-2 border rounded" maxlength="36" id="crd_datum_type" placeholder="wgs84 or tokyo"/>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">oprtr_single_tel</label>
+          <input type="text" class="mt-1 block w-full p-2 border dark:bg-gray-800 dark:border-gray-900 rounded" maxlength="36" id="oprtr_single_tel" />
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">oprtr_single_tel_dtmf</label>
+          <input type="text" class="mt-1 block w-full p-2 border dark:bg-gray-800 dark:border-gray-900 rounded" maxlength="36" id="oprtr_single_tel_dtmf" />
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">oprtr_multi_tel</label>
+          <input type="text" class="mt-1 block w-full p-2 border dark:bg-gray-800 dark:border-gray-900 rounded" maxlength="36" id="oprtr_multi_tel" />
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">crd_datum_type</label>
+          <input type="text" class="mt-1 block w-full p-2 border dark:bg-gray-800 dark:border-gray-900 rounded" maxlength="36" id="crd_datum_type" placeholder="wgs84 or tokyo"/>
       </div>
       <button id="addRowButton" class="mb-4 w-full bg-green-500 text-white py-2 rounded hover:bg-green-600 disabled:bg-gray-400" disabled>{% translate "Add New Connection Profile" %}</button>
       <div id="profileContainer" class="space-y-6"></div>
@@ -340,7 +340,7 @@
 
                         const div = document.createElement('div');
                         div.innerHTML = `
-                <label class="block text-sm font-medium text-gray-700">${field.name}${field.required ? ' *' : ''}</label>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">${field.name}${field.required ? ' *' : ''}</label>
               `;
                         if (field.type === 'boolean') {
                             div.innerHTML += `
@@ -349,7 +349,7 @@
                     data-offset="${fieldOffset}"
                     data-size="${field.size}"
                     data-type="${field.type}"
-                    class="mt-1 block w-full p-2 border rounded"
+                    class="mt-1 block w-full p-2 border dark:bg-gray-800 dark:border-gray-900 rounded"
                   >
                     <option value="off" ${value === 'off' ? 'selected' : ''}>off</option>
                     <option value="on" ${value === 'on' ? 'selected' : ''}>on</option>
@@ -362,7 +362,7 @@
                     data-offset="${fieldOffset}"
                     data-size="${field.size}"
                     data-type="${field.type}"
-                    class="mt-1 block w-full p-2 border rounded"
+                    class="mt-1 block w-full p-2 border dark:bg-gray-800 dark:border-gray-900 rounded"
                   >
                     <option value="off" ${value === 'off' ? 'selected' : ''}>off</option>
                     <option value="on_single" ${value === 'on_single' ? 'selected' : ''}>on_single</option>
@@ -378,7 +378,7 @@
                     data-size="${field.size}"
                     data-type="${field.type}"
                     value="${value || ''}"
-                    class="mt-1 block w-full p-2 border rounded ${field.required ? 'required' : ''}"
+                    class="mt-1 block w-full p-2 border dark:bg-gray-800 dark:border-gray-900 rounded ${field.required ? 'required' : ''}"
                   >
                 `;
                         }
@@ -504,7 +504,7 @@
             const value = field.name === 'num' ? newNum : field.name === 'name' ? 'Default Profile' : (field.type === 'boolean' || field.type === 'mult_func' ? 'off' : '');
             const div = document.createElement('div');
             div.innerHTML = `
-          <label class="block text-sm font-medium text-gray-700">${field.name}${field.required ? ' *' : ''}</label>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">${field.name}${field.required ? ' *' : ''}</label>
         `;
             if (field.type === 'boolean') {
                 div.innerHTML += `
@@ -513,7 +513,7 @@
               data-offset="${fieldOffset}"
               data-size="${field.size}"
               data-type="${field.type}"
-              class="mt-1 block w-full p-2 border rounded"
+              class="mt-1 block w-full p-2 border dark:bg-gray-800 dark:border-gray-900 rounded"
             >
               <option value="off" selected>off</option>
               <option value="on">on</option>
@@ -526,7 +526,7 @@
               data-offset="${fieldOffset}"
               data-size="${field.size}"
               data-type="${field.type}"
-              class="mt-1 block w-full p-2 border rounded"
+              class="mt-1 block w-full p-2 border dark:bg-gray-800 dark:border-gray-900 rounded"
             >
               <option value="off" selected>off</option>
               <option value="on_single">on_single</option>
@@ -542,7 +542,7 @@
               data-size="${field.size}"
               data-type="${field.type}"
               value="${value}"
-              class="mt-1 block w-full p-2 border rounded ${field.required ? 'required' : ''}"
+              class="mt-1 block w-full p-2 border dark:bg-gray-800 dark:border-gray-900 rounded ${field.required ? 'required' : ''}"
             >
           `;
             }

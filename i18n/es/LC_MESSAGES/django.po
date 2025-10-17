@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-14 12:34+0000\n"
-"PO-Revision-Date: 2025-10-14 16:04+0300\n"
+"POT-Creation-Date: 2025-10-17 13:09+0000\n"
+"PO-Revision-Date: 2025-10-17 16:11+0300\n"
 "Last-Translator: \n"
 "Language-Team: Spanish <es@li.org>\n"
 "Language: es\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.7\n"
+"X-Generator: Poedit 3.8\n"
 
 #: api/views.py:98
 msgid "Too many timer commands, please delete one and try again"
@@ -134,11 +134,11 @@ msgstr "Esperando respuesta"
 msgid "Park"
 msgstr "Estacionar"
 
-#: db/models.py:48 ui/templates/ui/car_detail.html:1290
+#: db/models.py:48 ui/templates/ui/car_detail.html:1293
 msgid "Drive"
 msgstr "Conducir"
 
-#: db/models.py:49 ui/templates/ui/car_detail.html:1290
+#: db/models.py:49 ui/templates/ui/car_detail.html:1293
 msgid "Reverse"
 msgstr "Marcha atrás"
 
@@ -828,17 +828,17 @@ msgstr "treinta"
 msgid "thirty-first"
 msgstr "treinta y uno"
 
-#: tculink/management/commands/tcuserver.py:271
+#: tculink/management/commands/tcuserver.py:265
 msgid "Vehicle is unplugged. Please check the situation if necessary."
 msgstr ""
 "El vehículo está desconectado. Por favor, verifica la situación si es "
 "necesario."
 
-#: tculink/management/commands/tcuserver.py:272
+#: tculink/management/commands/tcuserver.py:266
 msgid "Charger unplugged notification"
 msgstr "Recordatorio de enchufar el cargador"
 
-#: tculink/management/commands/tcuserver.py:289
+#: tculink/management/commands/tcuserver.py:283
 msgid ""
 "The A/C preconditioning command could not be executed. One of the reasons "
 "behind such error could be: a) low state of charge b) command already "
@@ -848,27 +848,27 @@ msgstr ""
 "razones de este error podría ser: a) bajo estado de carga b) comando ya "
 "ejecutado c) error de TCU."
 
-#: tculink/management/commands/tcuserver.py:291
+#: tculink/management/commands/tcuserver.py:285
 msgid "A/C preconditioning error"
 msgstr "Error de preacondicionamiento de A/C"
 
-#: tculink/management/commands/tcuserver.py:293
+#: tculink/management/commands/tcuserver.py:287
 msgid "A/C preconditioning started"
 msgstr "Preacondicionamiento de A/C iniciado"
 
-#: tculink/management/commands/tcuserver.py:294
+#: tculink/management/commands/tcuserver.py:288
 msgid "A/C preconditioning has been successfully switched on"
 msgstr "El preacondicionamiento de A/C se ha activado correctamente"
 
-#: tculink/management/commands/tcuserver.py:296
+#: tculink/management/commands/tcuserver.py:290
 msgid "A/C precondition stopped"
 msgstr "Preacondicionamiento de A/C detenido"
 
-#: tculink/management/commands/tcuserver.py:297
+#: tculink/management/commands/tcuserver.py:291
 msgid "A/C preconditioning has been successfully switched off"
 msgstr "El preacondicionamiento de A/C se ha desactivado correctamente"
 
-#: tculink/management/commands/tcuserver.py:299
+#: tculink/management/commands/tcuserver.py:293
 msgid ""
 "The A/C preconditioning is finished and switched off after running certain "
 "amount of time."
@@ -876,35 +876,35 @@ msgstr ""
 "El preacondicionamiento de A/C ha finalizado y se ha desactivado después de "
 "funcionar durante un cierto tiempo."
 
-#: tculink/management/commands/tcuserver.py:301
+#: tculink/management/commands/tcuserver.py:295
 msgid "A/C precondition finished"
 msgstr "Preacondicionamiento de A/C finalizado"
 
-#: tculink/management/commands/tcuserver.py:310
+#: tculink/management/commands/tcuserver.py:304
 msgid "A/C preconditioning is finished"
 msgstr "El preacondicionamiento de A/C ha finalizado"
 
-#: tculink/management/commands/tcuserver.py:311
+#: tculink/management/commands/tcuserver.py:305
 msgid "A/C precondition notification"
 msgstr "Notificación de preacondicionamiento de A/C"
 
-#: tculink/management/commands/tcuserver.py:315
+#: tculink/management/commands/tcuserver.py:309
 msgid "Vehicle has finished charging."
 msgstr "El vehículo ha terminado de cargarse."
 
-#: tculink/management/commands/tcuserver.py:316
+#: tculink/management/commands/tcuserver.py:310
 msgid "Charge finish notification"
 msgstr "Notificación de finalización de carga"
 
-#: tculink/management/commands/tcuserver.py:319
+#: tculink/management/commands/tcuserver.py:313
 msgid "Vehicle has finished quick-charging."
 msgstr "El vehículo ha terminado de cargarse rápidamente."
 
-#: tculink/management/commands/tcuserver.py:320
+#: tculink/management/commands/tcuserver.py:314
 msgid "Quick-charge finish notification"
 msgstr "Notificación de finalización de carga rápida"
 
-#: tculink/management/commands/tcuserver.py:336
+#: tculink/management/commands/tcuserver.py:330
 msgid ""
 "Charging command has been sent successfully. If vehicle did not start "
 "charging, please check that the charging cable is connected and power is "
@@ -914,12 +914,12 @@ msgstr ""
 "cargar, por favor verifica que el cable de carga esté conectado y que haya "
 "energía disponible."
 
-#: tculink/management/commands/tcuserver.py:338
+#: tculink/management/commands/tcuserver.py:332
 msgid "Charge start command executed"
 msgstr "Comando de inicio de carga ejecutado"
 
-#: tculink/management/commands/tcuserver.py:350
-#: tculink/management/commands/tcuserver.py:351
+#: tculink/management/commands/tcuserver.py:344
+#: tculink/management/commands/tcuserver.py:345
 msgid "Battery heater notification"
 msgstr "Notificación del calentador de la batería"
 
@@ -932,6 +932,7 @@ msgid "API Password"
 msgstr "Contraseña de la API"
 
 #: tculink/sms/46elks.py:11 tculink/sms/ondevice.py:9
+#: tculink/sms/smsgateway.py:10
 msgid "TCU Phone Number (international format)"
 msgstr "Número de teléfono del TCU (formato internacional, +34xxxxxxxx)"
 
@@ -943,7 +944,7 @@ msgstr "Las credenciales de la API están disponibles en tu panel de 46elks."
 msgid "API Key"
 msgstr "Clave de la API"
 
-#: tculink/sms/hologram.py:9
+#: tculink/sms/hologram.py:9 tculink/sms/smsgateway.py:8
 msgid "Device ID"
 msgstr "ID del dispositivo"
 
@@ -975,6 +976,20 @@ msgstr ""
 "teléfono. O con la aplicación móvil, lo enviará automáticamente si es "
 "posible. ¡Este método no funcionará a través de la API o automatizaciones, "
 "solo desde el sitio web o la aplicación móvil!"
+
+#: tculink/sms/smsgateway.py:9
+msgid "Encryption Key"
+msgstr "Encryption Key"
+
+#: tculink/sms/smsgateway.py:13
+msgid ""
+"Use your old smartphone as a gateway to send SMS. Once app has been "
+"installed, write values shown in the app to their respective fields. More "
+"information: "
+msgstr ""
+"Usa tu antiguo smartphone como puerta de enlace para enviar SMS. Una vez "
+"instalada la aplicación, escribe los valores que se muestran en sus campos "
+"correspondientes. Más información: "
 
 #: tculink/sms/webhook.py:8
 msgid "Webhook URL"
@@ -1057,8 +1072,8 @@ msgid "Warning"
 msgstr "Advertencia"
 
 #: ui/templates/ui/account.html:22 ui/templates/ui/car_detail.html:77
-#: ui/templates/ui/car_detail.html:618 ui/templates/ui/car_detail.html:637
-#: ui/templates/ui/car_detail.html:671 ui/templates/ui/car_detail.html:715
+#: ui/templates/ui/car_detail.html:621 ui/templates/ui/car_detail.html:640
+#: ui/templates/ui/car_detail.html:674 ui/templates/ui/car_detail.html:718
 #: ui/templates/ui/car_list.html:25
 #: ui/templates/ui/change_carwings_password.html:24
 #: ui/templates/ui/change_password.html:24
@@ -1088,10 +1103,10 @@ msgid "Reset API-key"
 msgstr "Restablecer clave de API"
 
 #: ui/templates/ui/account.html:48 ui/templates/ui/car_detail.html:411
-#: ui/templates/ui/car_detail.html:481 ui/templates/ui/car_detail.html:601
-#: ui/templates/ui/car_detail.html:700 ui/templates/ui/car_detail.html:799
+#: ui/templates/ui/car_detail.html:481 ui/templates/ui/car_detail.html:604
+#: ui/templates/ui/car_detail.html:703 ui/templates/ui/car_detail.html:802
 #: ui/templates/ui/setup/step2.html:50 ui/templates/ui/setup/step3.html:36
-#: ui/templates/ui/setup/step4.html:60
+#: ui/templates/ui/setup/step4.html:63
 msgid "Save"
 msgstr "Guardar"
 
@@ -1232,38 +1247,38 @@ msgid "Car status"
 msgstr "Estado del coche"
 
 #: ui/templates/ui/car_detail.html:183 ui/templates/ui/car_detail.html:185
-#: ui/templates/ui/car_detail.html:1230 ui/templates/ui/car_detail.html:1232
-#: ui/templates/ui/car_detail.html:1248
+#: ui/templates/ui/car_detail.html:1233 ui/templates/ui/car_detail.html:1235
+#: ui/templates/ui/car_detail.html:1251
 msgid "On"
 msgstr "Encendido"
 
-#: ui/templates/ui/car_detail.html:183 ui/templates/ui/car_detail.html:1230
-#: ui/templates/ui/car_detail.html:1290
+#: ui/templates/ui/car_detail.html:183 ui/templates/ui/car_detail.html:1233
+#: ui/templates/ui/car_detail.html:1293
 msgid "Parked"
 msgstr "Estacionado"
 
-#: ui/templates/ui/car_detail.html:185 ui/templates/ui/car_detail.html:1232
+#: ui/templates/ui/car_detail.html:185 ui/templates/ui/car_detail.html:1235
 msgid "Driving"
 msgstr "Conduciendo"
 
-#: ui/templates/ui/car_detail.html:189 ui/templates/ui/car_detail.html:1236
+#: ui/templates/ui/car_detail.html:189 ui/templates/ui/car_detail.html:1239
 #: ui/templates/ui/probeviewer/main.html:437
 #: ui/templates/ui/probeviewer/main.html:507
 msgid "Charging finished"
 msgstr "Carga finalizada"
 
 #: ui/templates/ui/car_detail.html:191 ui/templates/ui/car_detail.html:329
-#: ui/templates/ui/car_detail.html:1238
+#: ui/templates/ui/car_detail.html:1241
 msgid "Charging"
 msgstr "Cargando"
 
 #: ui/templates/ui/car_detail.html:193 ui/templates/ui/car_detail.html:334
-#: ui/templates/ui/car_detail.html:1240
+#: ui/templates/ui/car_detail.html:1243
 msgid "Battery heater active"
 msgstr "Calentador de batería activo"
 
-#: ui/templates/ui/car_detail.html:195 ui/templates/ui/car_detail.html:1242
-#: ui/templates/ui/car_detail.html:1248
+#: ui/templates/ui/car_detail.html:195 ui/templates/ui/car_detail.html:1245
+#: ui/templates/ui/car_detail.html:1251
 msgid "Off"
 msgstr "Apagado"
 
@@ -1345,25 +1360,25 @@ msgstr "Sáb."
 msgid "Sun"
 msgstr "Dom."
 
-#: ui/templates/ui/car_detail.html:269 ui/templates/ui/car_detail.html:2560
+#: ui/templates/ui/car_detail.html:269 ui/templates/ui/car_detail.html:2563
 msgid "Last run"
 msgstr "Último tiempo"
 
-#: ui/templates/ui/car_detail.html:269
+#: ui/templates/ui/car_detail.html:269 ui/templates/ui/car_detail.html:2563
 msgid "result"
 msgstr "resultado"
 
 #: ui/templates/ui/car_detail.html:275 ui/templates/ui/car_detail.html:376
-#: ui/templates/ui/car_detail.html:1650
+#: ui/templates/ui/car_detail.html:1653 ui/templates/ui/car_detail.html:2570
 msgid "Edit"
 msgstr "Edit"
 
 #: ui/templates/ui/car_detail.html:281 ui/templates/ui/car_detail.html:382
-#: ui/templates/ui/car_detail.html:1655
+#: ui/templates/ui/car_detail.html:1658 ui/templates/ui/car_detail.html:2575
 msgid "Delete"
 msgstr "Delete"
 
-#: ui/templates/ui/car_detail.html:287 ui/templates/ui/car_detail.html:2515
+#: ui/templates/ui/car_detail.html:287 ui/templates/ui/car_detail.html:2518
 msgid "No timers added"
 msgstr "No se han añadido temporizadores"
 
@@ -1462,15 +1477,15 @@ msgid "Send location to car"
 msgstr "Enviar punto del mapa al coche"
 
 #: ui/templates/ui/car_detail.html:345 ui/templates/ui/car_detail.html:399
-#: ui/templates/ui/car_detail.html:408 ui/templates/ui/car_detail.html:1928
+#: ui/templates/ui/car_detail.html:408 ui/templates/ui/car_detail.html:1931
 msgid "Search for locations or enter google/apple maps link"
 msgstr "Buscar ubicaciones o ingresar enlace de Google/Apple Maps"
 
-#: ui/templates/ui/car_detail.html:349 ui/templates/ui/car_detail.html:1330
+#: ui/templates/ui/car_detail.html:349 ui/templates/ui/car_detail.html:1333
 msgid "Last shared location"
 msgstr "Último punto del mapa compartido"
 
-#: ui/templates/ui/car_detail.html:351 ui/templates/ui/car_detail.html:1332
+#: ui/templates/ui/car_detail.html:351 ui/templates/ui/car_detail.html:1335
 msgid "No past shared location"
 msgstr "No hay puntos del mapa compartidos anteriormente"
 
@@ -1486,7 +1501,7 @@ msgstr "En casa"
 msgid "Route plans"
 msgstr "Route plans"
 
-#: ui/templates/ui/car_detail.html:388 ui/templates/ui/car_detail.html:1633
+#: ui/templates/ui/car_detail.html:388 ui/templates/ui/car_detail.html:1636
 msgid "No route plans added"
 msgstr "No se agregaron planes de ruta"
 
@@ -1498,7 +1513,7 @@ msgstr "Add/Edit a route plan"
 msgid "Name of the plan"
 msgstr "Nombre del plan"
 
-#: ui/templates/ui/car_detail.html:398 ui/templates/ui/car_detail.html:622
+#: ui/templates/ui/car_detail.html:398 ui/templates/ui/car_detail.html:625
 msgid "Starting point"
 msgstr "Punto de partida"
 
@@ -1506,7 +1521,7 @@ msgstr "Punto de partida"
 msgid "Add waypoint"
 msgstr "Añadir punto de ruta"
 
-#: ui/templates/ui/car_detail.html:407 ui/templates/ui/car_detail.html:623
+#: ui/templates/ui/car_detail.html:407 ui/templates/ui/car_detail.html:626
 msgid "Destination point"
 msgstr "Punto de destino"
 
@@ -1525,7 +1540,7 @@ msgstr "Canales favoritos"
 #: ui/templates/ui/car_detail.html:441 ui/templates/ui/car_detail.html:442
 #: ui/templates/ui/car_detail.html:443 ui/templates/ui/car_detail.html:444
 #: ui/templates/ui/car_detail.html:445 ui/templates/ui/car_detail.html:446
-#: ui/templates/ui/car_detail.html:447 ui/templates/ui/car_detail.html:2140
+#: ui/templates/ui/car_detail.html:447 ui/templates/ui/car_detail.html:2143
 msgid "No selected channel"
 msgstr "Vacía"
 
@@ -1541,7 +1556,7 @@ msgstr "Mis canales"
 #: ui/templates/ui/car_detail.html:473 ui/templates/ui/car_detail.html:474
 #: ui/templates/ui/car_detail.html:475 ui/templates/ui/car_detail.html:476
 #: ui/templates/ui/car_detail.html:477 ui/templates/ui/car_detail.html:478
-#: ui/templates/ui/car_detail.html:2216
+#: ui/templates/ui/car_detail.html:2219
 msgid "No content"
 msgstr "Sin contenido"
 
@@ -1615,267 +1630,263 @@ msgstr ""
 msgid "SMS provider"
 msgstr "Proveedor de SMS"
 
-#: ui/templates/ui/car_detail.html:602
+#: ui/templates/ui/car_detail.html:605
 msgid "Remove car"
 msgstr "Eliminar coche"
 
-#: ui/templates/ui/car_detail.html:621
+#: ui/templates/ui/car_detail.html:624
 msgid "Set car location as"
 msgstr "Establecer la ubicación del vehículo como"
 
-#: ui/templates/ui/car_detail.html:640
+#: ui/templates/ui/car_detail.html:643
 msgid "Select data channel"
 msgstr "Seleccionar canal de datos"
 
-#: ui/templates/ui/car_detail.html:675
+#: ui/templates/ui/car_detail.html:678
 msgid "Edit data channel"
 msgstr "Editar canal de datos"
 
-#: ui/templates/ui/car_detail.html:676
+#: ui/templates/ui/car_detail.html:679
 msgid "Channel name"
 msgstr "Nombre del canal"
 
-#: ui/templates/ui/car_detail.html:680
+#: ui/templates/ui/car_detail.html:683
 msgid "Channel icon"
 msgstr "Icono del canal"
 
-#: ui/templates/ui/car_detail.html:691
+#: ui/templates/ui/car_detail.html:694
 msgid "Data URL"
 msgstr "URL de datos"
 
-#: ui/templates/ui/car_detail.html:693
+#: ui/templates/ui/car_detail.html:696
 msgid "Data URL format and documentation"
 msgstr "Formato y documentación de la URL de datos"
 
-#: ui/templates/ui/car_detail.html:697
+#: ui/templates/ui/car_detail.html:700
 msgid "Allow sending current vehicle location"
 msgstr "Permitir enviar la ubicación actual del vehículo"
 
-#: ui/templates/ui/car_detail.html:719 ui/templates/ui/car_detail.html:2315
+#: ui/templates/ui/car_detail.html:722 ui/templates/ui/car_detail.html:2318
 msgid "Edit timer"
 msgstr "Editar temporizador"
 
-#: ui/templates/ui/car_detail.html:720
+#: ui/templates/ui/car_detail.html:723
 msgid "Timer name"
 msgstr "Nombre del temporizador"
 
-#: ui/templates/ui/car_detail.html:725
+#: ui/templates/ui/car_detail.html:728
 msgid "Enabled"
 msgstr "Activado"
 
-#: ui/templates/ui/car_detail.html:728
+#: ui/templates/ui/car_detail.html:731
 msgid "Select time"
 msgstr "Seleccionar hora"
 
-#: ui/templates/ui/car_detail.html:738
+#: ui/templates/ui/car_detail.html:741
 msgid "Command"
 msgstr "El comando"
 
-#: ui/templates/ui/car_detail.html:748
+#: ui/templates/ui/car_detail.html:751
 msgid "One-time"
 msgstr "Una sola vez"
 
-#: ui/templates/ui/car_detail.html:751
+#: ui/templates/ui/car_detail.html:754
 msgid "Repeating"
 msgstr "Repetición semanal"
 
-#: ui/templates/ui/car_detail.html:763
+#: ui/templates/ui/car_detail.html:766
 msgid "Select date"
 msgstr "Seleccionar fecha"
 
-#: ui/templates/ui/car_detail.html:769
+#: ui/templates/ui/car_detail.html:772
 msgid "Monday"
 msgstr "Lunes"
 
-#: ui/templates/ui/car_detail.html:773
+#: ui/templates/ui/car_detail.html:776
 msgid "Tuesday"
 msgstr "Martes"
 
-#: ui/templates/ui/car_detail.html:777
+#: ui/templates/ui/car_detail.html:780
 msgid "Wednesday"
 msgstr "Miércoles"
 
-#: ui/templates/ui/car_detail.html:781
+#: ui/templates/ui/car_detail.html:784
 msgid "Thursday"
 msgstr "Jueves"
 
-#: ui/templates/ui/car_detail.html:785
+#: ui/templates/ui/car_detail.html:788
 msgid "Friday"
 msgstr "Viernes"
 
-#: ui/templates/ui/car_detail.html:789
+#: ui/templates/ui/car_detail.html:792
 msgid "Saturday"
 msgstr "Sábado"
 
-#: ui/templates/ui/car_detail.html:793
+#: ui/templates/ui/car_detail.html:796
 msgid "Sunday"
 msgstr "Domingo"
 
-#: ui/templates/ui/car_detail.html:818
+#: ui/templates/ui/car_detail.html:821
 msgid "SMS from your device"
 msgstr "Enviar SMS desde tu dispositivo"
 
-#: ui/templates/ui/car_detail.html:1171 ui/templates/ui/car_detail.html:1173
-#: ui/templates/ui/car_detail.html:1177 ui/templates/ui/car_detail.html:1178
-#: ui/templates/ui/car_detail.html:1385 ui/templates/ui/car_detail.html:1393
-#: ui/templates/ui/car_detail.html:1394
+#: ui/templates/ui/car_detail.html:1174 ui/templates/ui/car_detail.html:1176
+#: ui/templates/ui/car_detail.html:1180 ui/templates/ui/car_detail.html:1181
+#: ui/templates/ui/car_detail.html:1388 ui/templates/ui/car_detail.html:1396
+#: ui/templates/ui/car_detail.html:1397
 msgid "Error sending command"
 msgstr "Error al enviar el comando"
 
-#: ui/templates/ui/car_detail.html:1225
+#: ui/templates/ui/car_detail.html:1228
 msgid "Plugged In"
 msgstr "Conectado"
 
-#: ui/templates/ui/car_detail.html:1225
+#: ui/templates/ui/car_detail.html:1228
 msgid "Unplugged"
 msgstr "Desconectado"
 
-#: ui/templates/ui/car_detail.html:1275 ui/templates/ui/car_detail.html:1276
-#: ui/templates/ui/car_detail.html:1277 ui/templates/ui/car_detail.html:1285
-#: ui/templates/ui/car_detail.html:1291 ui/templates/ui/car_detail.html:1292
-#: ui/templates/ui/car_detail.html:1293 ui/templates/ui/car_detail.html:1294
-#: ui/templates/ui/car_detail.html:1299
+#: ui/templates/ui/car_detail.html:1278 ui/templates/ui/car_detail.html:1279
+#: ui/templates/ui/car_detail.html:1280 ui/templates/ui/car_detail.html:1288
+#: ui/templates/ui/car_detail.html:1294 ui/templates/ui/car_detail.html:1295
+#: ui/templates/ui/car_detail.html:1296 ui/templates/ui/car_detail.html:1297
+#: ui/templates/ui/car_detail.html:1302
 msgid "Yes"
 msgstr "Sí"
 
-#: ui/templates/ui/car_detail.html:1275 ui/templates/ui/car_detail.html:1276
-#: ui/templates/ui/car_detail.html:1277 ui/templates/ui/car_detail.html:1285
-#: ui/templates/ui/car_detail.html:1291 ui/templates/ui/car_detail.html:1292
-#: ui/templates/ui/car_detail.html:1293 ui/templates/ui/car_detail.html:1294
-#: ui/templates/ui/car_detail.html:1299
+#: ui/templates/ui/car_detail.html:1278 ui/templates/ui/car_detail.html:1279
+#: ui/templates/ui/car_detail.html:1280 ui/templates/ui/car_detail.html:1288
+#: ui/templates/ui/car_detail.html:1294 ui/templates/ui/car_detail.html:1295
+#: ui/templates/ui/car_detail.html:1296 ui/templates/ui/car_detail.html:1297
+#: ui/templates/ui/car_detail.html:1302
 msgid "No"
 msgstr "No"
 
-#: ui/templates/ui/car_detail.html:1416 ui/templates/ui/car_detail.html:1424
-#: ui/templates/ui/car_detail.html:1425
+#: ui/templates/ui/car_detail.html:1419 ui/templates/ui/car_detail.html:1427
+#: ui/templates/ui/car_detail.html:1428
 msgid "Error sending location to car"
 msgstr "Error al enviar la ubicación al coche"
 
-#: ui/templates/ui/car_detail.html:1418
+#: ui/templates/ui/car_detail.html:1421
 msgid "Location sent!"
 msgstr "¡Punto del mapa enviado!"
 
-#: ui/templates/ui/car_detail.html:1474 ui/templates/ui/car_detail.html:1537
-#: ui/templates/ui/car_detail.html:1808 ui/templates/ui/car_detail.html:1813
-#: ui/templates/ui/car_detail.html:1870 ui/templates/ui/car_detail.html:1883
-#: ui/templates/ui/car_detail.html:1888 ui/templates/ui/car_detail.html:1967
+#: ui/templates/ui/car_detail.html:1477 ui/templates/ui/car_detail.html:1540
+#: ui/templates/ui/car_detail.html:1811 ui/templates/ui/car_detail.html:1816
+#: ui/templates/ui/car_detail.html:1873 ui/templates/ui/car_detail.html:1886
+#: ui/templates/ui/car_detail.html:1891 ui/templates/ui/car_detail.html:1970
 msgid "No address"
 msgstr "Sin dirección"
 
-#: ui/templates/ui/car_detail.html:1484 ui/templates/ui/car_detail.html:1817
+#: ui/templates/ui/car_detail.html:1487 ui/templates/ui/car_detail.html:1820
 msgid "Could not get location from map link"
 msgstr "No se pudo obtener la ubicación desde el enlace"
 
-#: ui/templates/ui/car_detail.html:1490 ui/templates/ui/car_detail.html:1562
-#: ui/templates/ui/car_detail.html:1823 ui/templates/ui/car_detail.html:1904
+#: ui/templates/ui/car_detail.html:1493 ui/templates/ui/car_detail.html:1565
+#: ui/templates/ui/car_detail.html:1826 ui/templates/ui/car_detail.html:1907
 msgid "Error searching locations"
 msgstr "Error al buscar ubicaciones"
 
-#: ui/templates/ui/car_detail.html:1556 ui/templates/ui/car_detail.html:1898
+#: ui/templates/ui/car_detail.html:1559 ui/templates/ui/car_detail.html:1901
 msgid "Search did not find any locations"
 msgstr "La búsqueda no encontró ninguna ubicación"
 
-#: ui/templates/ui/car_detail.html:1581
+#: ui/templates/ui/car_detail.html:1584
 msgid "Connection established!"
 msgstr "¡Conexión establecida!"
 
-#: ui/templates/ui/car_detail.html:1586
+#: ui/templates/ui/car_detail.html:1589
 msgid "Reconnecting..."
 msgstr "Reconectando..."
 
-#: ui/templates/ui/car_detail.html:1912
+#: ui/templates/ui/car_detail.html:1915
 msgid "Cannot add a new waypoint"
 msgstr "No se puede agregar un nuevo punto de ruta"
 
-#: ui/templates/ui/car_detail.html:1912
+#: ui/templates/ui/car_detail.html:1915
 msgid "Maximum number of waypoints reached"
 msgstr "Número máximo de puntos de ruta alcanzados"
 
-#: ui/templates/ui/car_detail.html:1945
+#: ui/templates/ui/car_detail.html:1948
 msgid "Waypoint"
 msgstr "Punto de ruta"
 
-#: ui/templates/ui/car_detail.html:1997 ui/templates/ui/car_detail.html:2006
-#: ui/templates/ui/car_detail.html:2007
+#: ui/templates/ui/car_detail.html:2000 ui/templates/ui/car_detail.html:2009
+#: ui/templates/ui/car_detail.html:2010
 msgid "Error saving the route plan"
 msgstr "Error al guardar el plan de ruta"
 
-#: ui/templates/ui/car_detail.html:1999
+#: ui/templates/ui/car_detail.html:2002
 msgid "Route plan saved!"
 msgstr "¡Plan de ruta guardado!"
 
-#: ui/templates/ui/car_detail.html:2035
+#: ui/templates/ui/car_detail.html:2038
 msgid "Cannot add new route plan"
 msgstr "No se puede agregar un nuevo plan de ruta"
 
-#: ui/templates/ui/car_detail.html:2035
+#: ui/templates/ui/car_detail.html:2038
 msgid "You have too many route plans, please delete one and try again."
 msgstr "Tienes demasiados planes de ruta, elimina uno y vuelve a intentarlo."
 
-#: ui/templates/ui/car_detail.html:2105
+#: ui/templates/ui/car_detail.html:2108
 msgid "Are you sure you want to delete this route plan?"
 msgstr "¿Estás seguro de que deseas eliminar este plan de ruta?"
 
-#: ui/templates/ui/car_detail.html:2118 ui/templates/ui/car_detail.html:2125
-#: ui/templates/ui/car_detail.html:2126
+#: ui/templates/ui/car_detail.html:2121 ui/templates/ui/car_detail.html:2128
+#: ui/templates/ui/car_detail.html:2129
 msgid "Error deleting the route plan"
 msgstr "Error al eliminar el plan de ruta"
 
-#: ui/templates/ui/car_detail.html:2120
+#: ui/templates/ui/car_detail.html:2123
 msgid "Route plan removed!"
 msgstr "¡Plan de ruta eliminado!"
 
-#: ui/templates/ui/car_detail.html:2280 ui/templates/ui/car_detail.html:2288
-#: ui/templates/ui/car_detail.html:2289
+#: ui/templates/ui/car_detail.html:2283 ui/templates/ui/car_detail.html:2291
+#: ui/templates/ui/car_detail.html:2292
 msgid "Error saving CARWINGS settings"
 msgstr "Error al guardar la configuración de CARWINGS"
 
-#: ui/templates/ui/car_detail.html:2282
+#: ui/templates/ui/car_detail.html:2285
 msgid "CARWINGS settings saved!"
 msgstr "¡Configuración de CARWINGS guardada!"
 
-#: ui/templates/ui/car_detail.html:2295
+#: ui/templates/ui/car_detail.html:2298
 msgid "Add timer"
 msgstr "Añadir temporizador"
 
-#: ui/templates/ui/car_detail.html:2406 ui/templates/ui/car_detail.html:2409
+#: ui/templates/ui/car_detail.html:2409 ui/templates/ui/car_detail.html:2412
 msgid "Missing field"
 msgstr "Campo faltante"
 
-#: ui/templates/ui/car_detail.html:2406
+#: ui/templates/ui/car_detail.html:2409
 msgid "Please enter valid date for the timer"
 msgstr "Por favor, introduzca una fecha válida para el temporizador"
 
-#: ui/templates/ui/car_detail.html:2409
+#: ui/templates/ui/car_detail.html:2412
 msgid "Please select at least one weekday"
 msgstr "Por favor seleccione al menos un día de la semana"
 
-#: ui/templates/ui/car_detail.html:2430 ui/templates/ui/car_detail.html:2438
-#: ui/templates/ui/car_detail.html:2439 ui/templates/ui/car_detail.html:2460
-#: ui/templates/ui/car_detail.html:2468 ui/templates/ui/car_detail.html:2469
+#: ui/templates/ui/car_detail.html:2433 ui/templates/ui/car_detail.html:2441
+#: ui/templates/ui/car_detail.html:2442 ui/templates/ui/car_detail.html:2463
+#: ui/templates/ui/car_detail.html:2471 ui/templates/ui/car_detail.html:2472
 msgid "Error saving the timer"
 msgstr "Error al guardar el temporizador"
 
-#: ui/templates/ui/car_detail.html:2432 ui/templates/ui/car_detail.html:2462
+#: ui/templates/ui/car_detail.html:2435 ui/templates/ui/car_detail.html:2465
 msgid "Timer saved!"
 msgstr "¡Temporizador guardado!"
 
-#: ui/templates/ui/car_detail.html:2476
+#: ui/templates/ui/car_detail.html:2479
 msgid "Are you sure you want to delete this timer?"
 msgstr "¿Estás seguro que deseas eliminar este temporizador?"
 
-#: ui/templates/ui/car_detail.html:2485
+#: ui/templates/ui/car_detail.html:2488
 msgid "Timer removed!"
 msgstr "¡Temporizador eliminado!"
 
-#: ui/templates/ui/car_detail.html:2488 ui/templates/ui/car_detail.html:2490
-#: ui/templates/ui/car_detail.html:2494 ui/templates/ui/car_detail.html:2495
+#: ui/templates/ui/car_detail.html:2491 ui/templates/ui/car_detail.html:2493
+#: ui/templates/ui/car_detail.html:2497 ui/templates/ui/car_detail.html:2498
 msgid "Error deleting the timer"
 msgstr "Error al eliminar el temporizador"
-
-#: ui/templates/ui/car_detail.html:2560
-msgid "Result"
-msgstr "Resultado"
 
 #: ui/templates/ui/car_list.html:5 ui/templates/ui/car_list.html:33
 msgid "My cars"
@@ -2842,55 +2853,61 @@ msgstr "Configuración de SMS"
 msgid "Car added"
 msgstr "Coche añadido"
 
-#: ui/views.py:96
+#: ui/views.py:100
 msgid "Account successfully updated!"
 msgstr "¡Cuenta actualizada con éxito!"
 
-#: ui/views.py:99 ui/views.py:720
+#: ui/views.py:103 ui/views.py:724
 msgid "Please fill the form correctly and try again."
 msgstr "Por favor, completa el formulario correctamente y vuelve a intentarlo."
 
-#: ui/views.py:466
+#: ui/views.py:470
 msgid "Successfully saved settings."
 msgstr "Configuraciones guardadas con éxito."
 
-#: ui/views.py:468 ui/views.py:597 ui/views.py:618
+#: ui/views.py:472 ui/views.py:601 ui/views.py:622
 msgid "Please fill the form correctly"
 msgstr "Por favor, completa el formulario correctamente"
 
-#: ui/views.py:471 ui/views.py:653
+#: ui/views.py:475 ui/views.py:657
 msgid "Please fill all necessary fields and try again."
 msgstr "Por favor, completa todos los campos necesarios y vuelve a intentarlo."
 
-#: ui/views.py:475
+#: ui/views.py:479
 msgid "Waiting for first connection.."
 msgstr "Esperando la primera conexión..."
 
-#: ui/views.py:515
+#: ui/views.py:519
 msgid "Sign-up is not enabled on this instance"
 msgstr "El registro no está habilitado en esta instancia"
 
-#: ui/views.py:544
+#: ui/views.py:548
 msgid "Invalid username or password."
 msgstr "Nombre de usuario o contraseña inválidos."
 
-#: ui/views.py:584
+#: ui/views.py:588
 msgid "Car is already added. Please remove and try again."
 msgstr "El coche ya está añadido. Por favor, elimínalo y vuelve a intentarlo."
 
-#: ui/views.py:634
+#: ui/views.py:638
 msgid "Please select a provider for SMS."
 msgstr "Por favor, selecciona un proveedor para SMS."
 
-#: ui/views.py:712
+#: ui/views.py:716
 msgid "Update requested! Update will occur on next boot."
 msgstr ""
 "¡Actualización solicitada! La actualización se realizará la próxima vez que "
 "inicie el sistema."
 
-#: ui/views.py:718
+#: ui/views.py:722
 msgid "Update request cancelled!"
 msgstr "Update request cancelled!"
+
+msgid "Use your old smartphone"
+msgstr "Utilice un teléfono Android antiguo"
+
+msgid "Result"
+msgstr "Resultado"
 
 msgid "Version"
 msgstr "Versión"

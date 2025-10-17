@@ -53,11 +53,15 @@ UI_SMS_PROVIDERS = []
 
 for provider_id, provider in django.conf.settings.SMS_PROVIDERS.items():
     provider_class = get_class(provider[1])
+    link = None
+    if hasattr(provider_class, 'LINK'):
+        link = provider_class.LINK
     UI_SMS_PROVIDERS.append({
         'id': provider_id,
         'name': provider[0],
         'fields': provider_class.CONFIGURATION_FIELDS,
-        'help': provider_class.HELP_TEXT
+        'help': provider_class.HELP_TEXT,
+        'link': link,
     })
 
 

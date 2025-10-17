@@ -585,13 +585,16 @@
                         {% for field in provider.fields %}
                         <div>
                             <label for="field-{{ field.0 }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-200">{{ field.1 }}</label>
-                            <input type="text" id="field-{{ field.0 }}" value="{{ car.sms_config|get_item:field.0 }}" maxlength="128" name="{{provider.id}}-{{ field.0 }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg dark:bg-gray-700 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                            <input type="text" id="field-{{ field.0 }}" value="{{ car.sms_config|get_item:field.0 }}" maxlength="128" name="{{provider.id}}-{{ field.0 }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg dark:bg-gray-700 dark:text-gray-300 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                         </div>
                         {% endfor %}
                         {% if provider.help %}
                         <div class="mt-4">
                             <div class="p-4 text-sm text-blue-800 dark:text-blue-200 rounded-lg bg-blue-50 dark:bg-blue-800" role="alert">
                                 {{provider.help}}
+                                {% if provider.link %}
+                                    <a href="{{ provider.link }}" target="_blank" class="underline">{{ provider.link }}</a>
+                                {% endif %}
                             </div>
                         </div>
                         {% endif %}

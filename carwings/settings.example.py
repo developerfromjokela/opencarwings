@@ -192,6 +192,7 @@ SMS_PROVIDERS = {
     '46elks': ('46elks', 'tculink.sms.46elks.Provider46elks'),
     'webhook': ('Webhook', 'tculink.sms.webhook.ProviderWebhook'),
     'ondevice': ('SMS from your device', 'tculink.sms.ondevice.ProviderOnDevice'),
+    'smsgateway': ('Use your old smartphone', 'tculink.sms.smsgateway.ProviderSMSGateway'),
     'manual': ('Manual', 'tculink.sms.manual.ProviderManual'),
 }
 

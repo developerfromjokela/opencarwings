@@ -50,6 +50,9 @@
                     <div class="mt-4">
                         <div class="p-4 text-sm text-blue-800 dark:text-blue-200 rounded-lg bg-blue-50 dark:bg-blue-800" role="alert">
                             {{provider.help}}
+                            {% if provider.link %}
+                                <a href="{{ provider.link }}" target="_blank" class="underline">{{ provider.link }}</a>
+                            {% endif %}
                         </div>
                     </div>
                     {% endif %}

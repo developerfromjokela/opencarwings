@@ -217,7 +217,10 @@ def translate_chan_name(chan, non_unicode=False):
     return new_chan
 
 def get_info_channel_data(car, internal=False):
-    channels = [translate_chan_name(c) for c in STANDARD_AUTODJ_CHANNELS if (c.get('internal', False) == internal)]
+    if internal:
+        channels = [translate_chan_name(c) for c in STANDARD_AUTODJ_CHANNELS]
+    else:
+        channels = [translate_chan_name(c) for c in STANDARD_AUTODJ_CHANNELS if (c.get('internal', False) == False)]
     folders = [translate_chan_name(c) for c in STANDARD_AUTODJ_FOLDERS]
 
     if car is not None:

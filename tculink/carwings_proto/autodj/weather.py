@@ -254,8 +254,11 @@ def get_weather_forecast(xml_data, returning_xml, channel_id, car):
             temp_color = (11, 114, 212)
             if temp_rounded > 15:
                 temp_color = (235, 48, 35)
-            daily_item_draw.text((22, 75) , str(temp_rounded), temp_color, font=temp_font)
-            if daily['temperature'] <= -0.0:
+            temp_str = str(temp_rounded)
+            if len(temp_str) < 2:
+                temp_str = " " + temp_str
+            daily_item_draw.text((22, 75) , temp_str, temp_color, font=temp_font)
+            if -0.0 >= daily['temperature'] > -1:
                 daily_item_draw.text((10, 75) , "-", temp_color, font=temp_font)
 
             daily_item.paste(droplet_img, (8, 115), droplet_img)
@@ -318,8 +321,11 @@ def get_weather_forecast(xml_data, returning_xml, channel_id, car):
             temp_color = (11, 114, 212)
             if temp_rounded > 15:
                 temp_color = (235, 48, 35)
-            daily_item_draw.text((14, 75) , str(temp_rounded), temp_color, font=temp_font)
-            if weekly['temp_max'] <= -0.0:
+            temp_str = str(temp_rounded)
+            if len(temp_str) < 2:
+                temp_str = " " + temp_str
+            daily_item_draw.text((14, 75) , temp_str, temp_color, font=temp_font)
+            if -0.0 >= weekly['temp_max'] > -1:
                 daily_item_draw.text((8, 75) , "-", temp_color, font=temp_font)
 
             daily_item.paste(droplet_img, (-3, 115), droplet_img)

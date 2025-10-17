@@ -32,7 +32,7 @@ NOT_SIGNEDIN_NOTE = ("To make use of more functions of Open Car Wings, please si
 def get_infochannel(xml_data, returning_xml, channel_id, car):
     resources_dir = os.path.join(
         os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "images")
-    with open(os.path.join(resources_dir, "releasenotes.jpg"), "rb") as f:
+    with open(os.path.join(resources_dir, "releasenotes.png"), "rb") as f:
         releasenotes_img = f.read()
     response_chdata = [
         {

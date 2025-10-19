@@ -359,7 +359,13 @@ def resolve_maps_link(request):
                 return None
 
 
-        if "maps.apple.com" in parsed_map_url.hostname:
+        if "maps.apple" == parsed_map_url.hostname or "maps.apple.com" == parsed_map_url.hostname:
+            if parsed_map_url.hostname == "maps.apple":
+                resp = requests.get(map_url, allow_redirects=False, timeout=3, headers={
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'})
+                redir_location = resp.headers.get('Location', '')
+                parsed_map_url = urlparse(redir_location)
+                map_url_query = parse_qs(parsed_map_url.query)
             if "coordinate" in map_url_query and "name" in map_url_query:
                 location = map_url_query['coordinate'][0]
                 gps_coords = location.split(",")

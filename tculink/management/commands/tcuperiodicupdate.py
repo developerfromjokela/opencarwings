@@ -41,7 +41,7 @@ class Command(BaseCommand):
                         continue
                     period = now - datetime.timedelta(minutes=car.periodic_refresh)
 
-                if car.command_result == 2 and car.last_command_execution is not None and car.last_command_execution > period:
+                if car.command_result == 2 and car.command_request_time is not None and car.command_request_time > period:
                     print("Skip car, last execution timed out.")
                     continue
 

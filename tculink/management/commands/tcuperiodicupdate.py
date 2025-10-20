@@ -221,5 +221,5 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         print("Starting data refresh process")
         self.handle_command_timers()
-        self.handle_timeouts()
         self.handle_datarefresh()
+        self.handle_timeouts()

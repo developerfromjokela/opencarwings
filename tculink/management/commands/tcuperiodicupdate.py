@@ -41,6 +41,10 @@ class Command(BaseCommand):
                         continue
                     period = now - datetime.timedelta(minutes=car.periodic_refresh)
 
+                if car.command_result == 2 and car.last_command_execution is not None and car.last_command_execution > period:
+                    print("Skip car, last execution timed out.")
+                    continue
+
                 # Check if update is actually needed
                 if car.last_connection is not None and car.last_connection < period:
                     print(f"Car {car.vin}: Requesting update")
@@ -220,6 +224,6 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         print("Starting data refresh process")
+        self.handle_timeouts()
         self.handle_command_timers()
         self.handle_datarefresh()
-        self.handle_timeouts()

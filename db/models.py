@@ -405,12 +405,12 @@ class CRMABSHistoryRecord(models.Model):
     car = models.ForeignKey(Car, on_delete=models.CASCADE)
     timestamp = models.DateTimeField()
     operation_time = models.IntegerField(default=0)
-    vehicle_speed_start = models.IntegerField(default=0)
-    vehicle_speed_end = models.IntegerField(default=0)
+    vehicle_speed_start = models.FloatField(default=0)
+    vehicle_speed_end = models.FloatField(default=0)
     latitude = models.DecimalField(default=0, decimal_places=15, max_digits=32)
     longitude = models.DecimalField(default=0, decimal_places=15, max_digits=32)
     road_type = models.IntegerField(default=0)
-    direction = models.IntegerField(default=0)
+    direction = models.FloatField(default=0)
 
 class CRMDistanceRecord(models.Model):
     car = models.ForeignKey(Car, on_delete=models.CASCADE)

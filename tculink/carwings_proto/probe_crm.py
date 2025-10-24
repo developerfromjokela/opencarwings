@@ -3,6 +3,9 @@ from db.models import Car, CRMLatest, CRMLifetime, CRMExcessiveAirconRecord, CRM
     CRMDistanceRecord
 from tculink.carwings_proto.crm_labels import CRM_LABELS
 import logging
+
+from tculink.carwings_proto.probe_dot import road_types
+
 logger = logging.getLogger("probe")
 from tculink.carwings_proto.utils import parse_std_location
 import struct
@@ -516,11 +519,11 @@ def parse_crmfile(data):
                     "charge_count": block_data[9],
                     "charge_type": block_data[10],
                     "start_ts": datetime.datetime(2000 + block_data[11], block_data[12], block_data[13], block_data[14],
-                                                      block_data[15], block_data[16]),
+                                                      int(block_data[15]/60), int(block_data[16]%60)),
                     "end_ts": datetime.datetime(2000 + block_data[17], block_data[18], block_data[19], block_data[20],
-                                                      block_data[21], block_data[22]),
+                                                      int(block_data[21]/60), int(block_data[22]%60)),
                     "other_ts": datetime.datetime(2000 + block_data[24], block_data[25], block_data[26], block_data[27],
-                                                block_data[28], block_data[29]),
+                                                int(block_data[28]/60), int(block_data[29]%60)),
                     "charger_position_flag": block_data[23],
                 })
             continue
@@ -528,9 +531,9 @@ def parse_crmfile(data):
         # charge history
         if crmblock["type"] == 0xDA:
             draft_struct["charging_start"] = datetime.datetime(2000 + block_data[0], block_data[1], block_data[2], block_data[3],
-                                                      block_data[4], block_data[5])
+                                                      block_data[4], int(block_data[5]/60), block_data[5]%60)
             draft_struct["charging_end"] = datetime.datetime(2000 + block_data[6], block_data[7], block_data[8], block_data[9],
-                                                      block_data[10], block_data[11])
+                                                      block_data[10], int(block_data[5]/60), int(block_data[5]%60))
             draft_struct["remaining_charge_bars_at_start"] = block_data[12]
             draft_struct["remaining_charge_bars_at_end"] = block_data[13]
             draft_struct["remaining_gids_at_start"] = int.from_bytes(block_data[14:16], byteorder="big", signed=False)
@@ -555,16 +558,42 @@ def parse_crmfile(data):
 
         # abs
         if crmblock["type"] == 0xCC:
-            draft_struct["abs_operation_start_ts"] = datetime.datetime(2000 + block_data[0], block_data[1], block_data[2], block_data[3],
-                                                      block_data[4], block_data[5])
-            draft_struct["operation_time"] = block_data[6]
-            draft_struct["vehicle_speed_at_start"] = int.from_bytes(block_data[7:9], byteorder="big", signed=False)
-            location = parse_std_location(int.from_bytes(block_data[9:13], "big"), int.from_bytes(block_data[13:17], "big"))
+            draft_struct["timestamp"] = datetime.datetime(2000 + block_data[0], block_data[1], block_data[2], block_data[3],
+                                                      block_data[4], block_data[5], block_data[6])
+            continue
+
+        if crmblock["type"] == 0xCD:
+            draft_struct["operation_time"] = int.from_bytes(block_data, "big")
+            continue
+
+        if crmblock["type"] == 0xCE:
+            draft_struct["speed"] = int.from_bytes(block_data, "big")/10
+            continue
+
+        if crmblock["type"] == 0xCF:
+            location = parse_std_location(struct.unpack('>i',block_data[:4])[0], struct.unpack('>i',block_data[4:])[0])
             draft_struct["navi_pos_lat"] = location[0]
             draft_struct["navi_pos_lon"] = location[1]
-            draft_struct["road_type"] = block_data[17]
-            draft_struct["navi_direction"] = int.from_bytes(block_data[18:20], byteorder="big", signed=False)
-            draft_struct["vehicle_speed_at_end"] = int.from_bytes(block_data[21:], byteorder="big", signed=False)
+            continue
+
+        if crmblock["type"] == 0xD0:
+            road_type = block_data[0] & 3
+            road_collection_status = ((block_data[0] >> 2) & 1)
+            draft_struct["road_collected"] = road_collection_status == 1
+            if road_collection_status == 1:
+                draft_struct["road_type"] = road_types[road_type]
+                draft_struct["road_type_int"] = road_type
+            else:
+                draft_struct["road_type"] = road_types[4]
+                draft_struct["road_type_int"] = 4
+            continue
+
+        if crmblock["type"] == 0xD1:
+            draft_struct["navi_direction"] = int.from_bytes(block_data, "big")/10
+            continue
+
+        if crmblock["type"] == 0xD2:
+            draft_struct["speed_end"] = int.from_bytes(block_data, "big")/10
             continue
 
         # trouble
@@ -750,14 +779,14 @@ def update_crm_to_db(car: Car, crm_pload):
         for absdata in crm_pload["absdata"]:
             abs_db = CRMABSHistoryRecord()
             abs_db.car = car
-            abs_db.timestamp = apply_date_patch(absdata.get("abs_operation_start_ts", datetime.datetime(1970, 1, 1)))
+            abs_db.timestamp = apply_date_patch(absdata.get("timestamp", datetime.datetime(1970, 1, 1)))
             abs_db.operation_time = absdata.get("operation_time", 0)
             abs_db.latitude = absdata.get("navi_pos_lat", 0.0)
             abs_db.longitude = absdata.get("navi_pos_lon", 0.0)
-            abs_db.road_type = absdata.get("road_type", 0)
-            abs_db.direction = absdata.get("navi_direction", 0)
-            abs_db.vehicle_speed_start = absdata.get("vehicle_speed_at_start", 0)
-            abs_db.vehicle_speed_end = absdata.get("vehicle_speed_at_end", 0)
+            abs_db.road_type = absdata.get("road_type_int", 4)
+            abs_db.direction = absdata.get("navi_direction", 0.0)
+            abs_db.vehicle_speed_start = absdata.get("speed", 0.0)
+            abs_db.vehicle_speed_end = absdata.get("speed_end", 0.0)
             abs_db.save()
 
     if "trouble" in crm_pload:

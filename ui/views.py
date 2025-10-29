@@ -19,6 +19,7 @@ from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from dateutil.zoneinfo import get_zonefile_instance
 
 from db.models import Car, COMMAND_TYPES, AlertHistory, EVInfo, LocationInfo, TCUConfiguration, PERIODIC_REFRESH, \
     PERIODIC_REFRESH_ACTIVE, CAR_COLOR, CRMLatest, CRMLifetime, CRMTripRecord, CRMMonthlyRecord, CRMChargeHistoryRecord, \
@@ -89,6 +90,7 @@ def account(request):
     account_form.initial['email'] = request.user.email
     account_form.initial['notifications'] = request.user.email_notifications
     account_form.initial['units_imperial'] = request.user.units_imperial
+    account_form.initial['timezone'] = request.user.timezone
     api_key, __ = Token.objects.get_or_create(user=request.user)
     if request.method == 'POST':
         form = AccountForm(request.POST)
@@ -96,12 +98,14 @@ def account(request):
             request.user.email = form.cleaned_data['email']
             request.user.email_notifications = form.cleaned_data['notifications']
             request.user.units_imperial = form.cleaned_data['units_imperial']
+            request.user.timezone = form.cleaned_data['timezone']
             request.user.save()
             messages.success(request, _("Account successfully updated!"))
             return redirect('account')
         else:
             messages.error(request, _("Please fill the form correctly and try again."))
-    return render(request, 'ui/account.html', {'user': request.user, 'form': account_form, 'api_key': api_key.key})
+    return render(request, 'ui/account.html', {'user': request.user, 'form': account_form,
+                                               'api_key': api_key.key})
 
 @swagger_auto_schema(
     operation_description="Reset API-key. ONLY accessible from web portal!",
@@ -548,7 +552,8 @@ def signin(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            messages.success(request, f'Welcome back, {username}!')
+            if request.user.timezone == "UTC":
+                messages.warning(request, _('Your current timezone is UTC. Please set your local timezone in account settings.'))
             return redirect('/')  # Replace with your dashboard URL
         else:
             messages.error(request, _('Invalid username or password.'))

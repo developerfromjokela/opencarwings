@@ -1,3 +1,4 @@
+import pytz
 import datetime
 import logging
 from django.utils import timezone
@@ -48,8 +49,8 @@ def apply_date_patch(date):
     # apply patch for gps rollover, add 1024 weeks
     rollover_timedelta = datetime.timedelta(days=1024*7)
     if date.year < timezone.now().year-5:
-        return date + rollover_timedelta
-    return date
+        return timezone.make_aware(date + rollover_timedelta, timezone=pytz.utc)
+    return timezone.make_aware(date, timezone=pytz.utc)
 
 def parse_dotfile(dotfile_data):
     pos = 0

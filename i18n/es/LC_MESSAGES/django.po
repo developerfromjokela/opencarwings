@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-17 13:09+0000\n"
-"PO-Revision-Date: 2025-10-17 16:11+0300\n"
+"POT-Creation-Date: 2025-10-29 16:25+0000\n"
+"PO-Revision-Date: 2025-10-29 18:26+0200\n"
 "Last-Translator: \n"
 "Language-Team: Spanish <es@li.org>\n"
 "Language: es\n"
@@ -29,92 +29,92 @@ msgstr ""
 "No se pudo enviar el mensaje SMS al TCU. Por favor, intenta de nuevo en un "
 "momento."
 
-#: db/models.py:13
+#: db/models.py:14
 msgid "Charge stop"
 msgstr "Parada de carga"
 
-#: db/models.py:14 db/models.py:32
+#: db/models.py:15 db/models.py:33
 msgid "Charge start"
 msgstr "Inicio de carga"
 
-#: db/models.py:15
+#: db/models.py:16
 msgid "Charge cable reminder"
 msgstr "Recordatorio de cable de carga"
 
-#: db/models.py:16 db/models.py:33
+#: db/models.py:17 db/models.py:34
 msgid "A/C on"
 msgstr "Aire acondicionado encendido"
 
-#: db/models.py:17 db/models.py:34
+#: db/models.py:18 db/models.py:35
 msgid "A/C off"
 msgstr "Aire acondicionado apagado"
 
-#: db/models.py:18
+#: db/models.py:19
 msgid "Configuration read"
 msgstr "Configuración leída"
 
-#: db/models.py:19
+#: db/models.py:20
 msgid "A/C auto off"
 msgstr "Aire acondicionado apagado automáticamente"
 
-#: db/models.py:20
+#: db/models.py:21
 msgid "Quick charge stop"
 msgstr "Parada de carga rápida"
 
-#: db/models.py:21
+#: db/models.py:22
 msgid "Battery heater start"
 msgstr "Calentador de batería iniciado"
 
-#: db/models.py:22
+#: db/models.py:23
 msgid "Battery heater stop"
 msgstr "Calentador de batería detenido"
 
-#: db/models.py:23
+#: db/models.py:24
 msgid "Charge error"
 msgstr "Error de carga"
 
-#: db/models.py:24
+#: db/models.py:25
 msgid "A/C error"
 msgstr "Error del aire acondicionado"
 
-#: db/models.py:25
+#: db/models.py:26
 msgid "Command timeout"
 msgstr "Tiempo de espera del comando"
 
-#: db/models.py:26 db/models.py:41 ui/templates/ui/account.html:15
+#: db/models.py:27 db/models.py:42 ui/templates/ui/account.html:15
 #: ui/templates/ui/car_detail.html:70 ui/templates/ui/car_list.html:18
 #: ui/templates/ui/change_carwings_password.html:17
 #: ui/templates/ui/change_password.html:17
 #: ui/templates/ui/probeviewer/main.html:49
-#: ui/templates/ui/probeviewer/trip.html:99
+#: ui/templates/ui/probeviewer/trip.html:101
 #: ui/templates/ui/reset_password_confirm.html:34
 #: ui/templates/ui/setup/step2.html:13 ui/templates/ui/setup/step3.html:13
 #: ui/templates/ui/setup/step4.html:13
 msgid "Error"
 msgstr "Error"
 
-#: db/models.py:30 db/models.py:92
+#: db/models.py:31 db/models.py:93
 msgid "No command"
 msgstr "Sin comando"
 
-#: db/models.py:31
+#: db/models.py:32
 msgid "Refresh data"
 msgstr "Actualizar datos"
 
-#: db/models.py:35
+#: db/models.py:36
 msgid "Read configuration"
 msgstr "Leer configuración"
 
-#: db/models.py:39
+#: db/models.py:40
 msgid "Waiting"
 msgstr "Esperando"
 
-#: db/models.py:40 db/models.py:94 ui/templates/ui/account.html:14
+#: db/models.py:41 db/models.py:95 ui/templates/ui/account.html:14
 #: ui/templates/ui/car_detail.html:69 ui/templates/ui/car_list.html:17
 #: ui/templates/ui/change_carwings_password.html:16
 #: ui/templates/ui/change_password.html:16
 #: ui/templates/ui/probeviewer/main.html:48
-#: ui/templates/ui/probeviewer/trip.html:98
+#: ui/templates/ui/probeviewer/trip.html:100
 #: ui/templates/ui/reset_password_complete.html:10
 #: ui/templates/ui/reset_password_confirm.html:33
 #: ui/templates/ui/setup/step2.html:12 ui/templates/ui/setup/step3.html:12
@@ -122,87 +122,87 @@ msgstr "Esperando"
 msgid "Success"
 msgstr "Éxito"
 
-#: db/models.py:42
+#: db/models.py:43
 msgid "Timeout"
 msgstr "Tiempo de espera"
 
-#: db/models.py:43
+#: db/models.py:44
 msgid "Await response"
 msgstr "Esperando respuesta"
 
-#: db/models.py:47
+#: db/models.py:48
 msgid "Park"
 msgstr "Estacionar"
 
-#: db/models.py:48 ui/templates/ui/car_detail.html:1293
+#: db/models.py:49 ui/templates/ui/car_detail.html:1293
 msgid "Drive"
 msgstr "Conducir"
 
-#: db/models.py:49 ui/templates/ui/car_detail.html:1293
+#: db/models.py:50 ui/templates/ui/car_detail.html:1293
 msgid "Reverse"
 msgstr "Marcha atrás"
 
-#: db/models.py:53 db/models.py:63
+#: db/models.py:54 db/models.py:64
 msgid "Never"
 msgstr "Nunca"
 
-#: db/models.py:54 db/models.py:67
+#: db/models.py:55 db/models.py:68
 msgid "Every 30 minutes"
 msgstr "Cada 30 minutos"
 
-#: db/models.py:55 db/models.py:68
+#: db/models.py:56 db/models.py:69
 msgid "Every 45 minutes"
 msgstr "Cada 45 minutos"
 
-#: db/models.py:56 db/models.py:69
+#: db/models.py:57 db/models.py:70
 msgid "Every hour"
 msgstr "Cada hora"
 
-#: db/models.py:57 db/models.py:70
+#: db/models.py:58 db/models.py:71
 msgid "Every three hours"
 msgstr "Cada tres horas"
 
-#: db/models.py:58 db/models.py:71
+#: db/models.py:59 db/models.py:72
 msgid "Every 12 hours"
 msgstr "Cada 12 horas"
 
-#: db/models.py:59 db/models.py:72
+#: db/models.py:60 db/models.py:73
 msgid "Every day"
 msgstr "Cada día"
 
-#: db/models.py:64
+#: db/models.py:65
 msgid "Every 5 minutes"
 msgstr "Cada 5 minutos"
 
-#: db/models.py:65
+#: db/models.py:66
 msgid "Every 10 minutes"
 msgstr "Cada 10 minutos"
 
-#: db/models.py:66
+#: db/models.py:67
 msgid "Every 15 minutes"
 msgstr "Cada 15 minutos"
 
-#: db/models.py:87
+#: db/models.py:88
 msgid "Slow charge"
 msgstr "Estado de carga"
 
-#: db/models.py:88
+#: db/models.py:89
 msgid "Quick charge"
 msgstr "Parada de carga rápida"
 
-#: db/models.py:93
+#: db/models.py:94
 msgid "Pending"
 msgstr "Pendiente"
 
-#: db/models.py:95
+#: db/models.py:96
 msgid "Failure"
 msgstr "Falla"
 
-#: db/models.py:96
+#: db/models.py:97
 msgid "Rejected"
 msgstr "Rechazado por coche"
 
-#: db/models.py:112
+#: db/models.py:113
 msgid ""
 "Enter a valid username. This value may contain only unaccented lowercase a-z "
 "and uppercase A-Z letters, numbers, and /./-/_ characters."
@@ -210,7 +210,7 @@ msgstr ""
 "Ingresa un nombre de usuario válido. Este valor solo puede contener letras "
 "minúsculas y mayúsculas a-z sin acentos, números y los caracteres /./-/_."
 
-#: db/models.py:120
+#: db/models.py:121
 msgid ""
 "Enter a valid TCU Password. This value may contain only unaccented lowercase "
 "a-z and uppercase A-Z letters, numbers, and /=/-/_/+/@/#/?/! characters."
@@ -219,15 +219,15 @@ msgstr ""
 "minúsculas y mayúsculas a-z sin acentos, números y los caracteres /=/-/_/+/@/"
 "#/?/!."
 
-#: db/models.py:132
+#: db/models.py:134
 msgid "username"
 msgstr "nombre de usuario"
 
-#: db/models.py:136
+#: db/models.py:138
 msgid "Required. 16 characters or fewer. Letters, digits and /./-/_ only."
 msgstr "Requerido. 16 caracteres o menos. Solo letras, dígitos y /./-/_."
 
-#: db/models.py:140
+#: db/models.py:142
 msgid "A user with that username already exists."
 msgstr "Ya existe un usuario con ese nombre de usuario."
 
@@ -626,21 +626,21 @@ msgstr "noche"
 msgid "late night"
 msgstr "tarde en la noche"
 
-#: tculink/carwings_proto/autodj/weather.py:352
+#: tculink/carwings_proto/autodj/weather.py:358
 msgid "vehicle location"
 msgstr "ubicación del vehículo"
 
-#: tculink/carwings_proto/autodj/weather.py:353
+#: tculink/carwings_proto/autodj/weather.py:359
 #, python-brace-format
 msgid "Weather Forecast for today, near {location_txt}."
 msgstr "Pronóstico del tiempo para hoy, cerca de {location_txt}."
 
-#: tculink/carwings_proto/autodj/weather.py:356
-#: tculink/carwings_proto/autodj/weather.py:370
+#: tculink/carwings_proto/autodj/weather.py:362
+#: tculink/carwings_proto/autodj/weather.py:376
 msgid "No forecast data available."
 msgstr "No forecast data available."
 
-#: tculink/carwings_proto/autodj/weather.py:359
+#: tculink/carwings_proto/autodj/weather.py:365
 #, python-brace-format
 msgid ""
 "During the {period}, forecasted to {condition}. With temperature of {temp} "
@@ -651,13 +651,13 @@ msgstr ""
 "{temp} grados centígrados, una velocidad del viento de {wind} metros por "
 "segundo y un {rain} por ciento de probabilidad de lluvia. \n"
 
-#: tculink/carwings_proto/autodj/weather.py:367
+#: tculink/carwings_proto/autodj/weather.py:373
 #, python-brace-format
 msgid "Weather Forecast for next seven days, near {location_txt}."
 msgstr ""
 "Pronóstico del tiempo para los próximos siete días, cerca de {location_txt}."
 
-#: tculink/carwings_proto/autodj/weather.py:374
+#: tculink/carwings_proto/autodj/weather.py:380
 #, python-brace-format
 msgid ""
 "On {weekday}, forecasted to {condition}. With highest temperature of "
@@ -667,10 +667,10 @@ msgstr ""
 "{maxtemp} grados Celsius, la temperatura mínima será de {mintemp} grados "
 "Celsius.\n"
 
-#: tculink/carwings_proto/autodj/weather.py:385
-#: tculink/carwings_proto/autodj/weather.py:419
-#: tculink/carwings_proto/autodj/weather.py:461
-#: tculink/carwings_proto/autodj/weather.py:462
+#: tculink/carwings_proto/autodj/weather.py:391
+#: tculink/carwings_proto/autodj/weather.py:425
+#: tculink/carwings_proto/autodj/weather.py:467
+#: tculink/carwings_proto/autodj/weather.py:468
 msgid "Weather forecast"
 msgstr "Weather forecast"
 
@@ -1001,48 +1001,52 @@ msgstr ""
 "Se enviará una solicitud POST a la URL del webhook especificada cuando sea "
 "necesario."
 
-#: ui/forms.py:17 ui/forms.py:28 ui/templates/ui/car_detail.html:514
+#: ui/forms.py:18 ui/forms.py:29 ui/templates/ui/car_detail.html:514
 msgid "Nickname"
 msgstr "Apodo"
 
-#: ui/forms.py:18
+#: ui/forms.py:19
 msgid "Disable TCU authentication"
 msgstr "Desactivar autenticación del TCU"
 
-#: ui/forms.py:19 ui/templates/ui/car_detail.html:547
+#: ui/forms.py:20 ui/templates/ui/car_detail.html:547
 msgid "Show calculated battery percentage"
 msgstr "Mostrar porcentaje de batería calculado"
 
-#: ui/forms.py:40 ui/templates/ui/reset_password.html:26
+#: ui/forms.py:42 ui/templates/ui/reset_password.html:26
 msgid "Email"
 msgstr "Correo electrónico"
 
-#: ui/forms.py:41
+#: ui/forms.py:43
 msgid "Notifications"
 msgstr "Notificaciones"
 
-#: ui/forms.py:42
+#: ui/forms.py:44
 msgid "Imperial Units"
 msgstr "Unidades imperiales"
 
-#: ui/forms.py:52 ui/templates/ui/car_detail.html:301
+#: ui/forms.py:45
+msgid "Timezone"
+msgstr "Zona horaria"
+
+#: ui/forms.py:55 ui/templates/ui/car_detail.html:301
 #: ui/templates/ui/landing.html:19 ui/templates/ui/signin.html:30
 msgid "Password"
 msgstr "Contraseña"
 
-#: ui/forms.py:53
+#: ui/forms.py:56
 msgid "Password Confirmation"
 msgstr "Confirmación de contraseña"
 
-#: ui/forms.py:54
+#: ui/forms.py:57
 msgid "TCU Password"
 msgstr "Contraseña del TCU"
 
-#: ui/forms.py:66
+#: ui/forms.py:69
 msgid "Can include only letters, numbers, dashes, dots and underscores"
 msgstr "Solo puede incluir letras, números, guiones, puntos y guiones bajos"
 
-#: ui/forms.py:67
+#: ui/forms.py:70
 msgid "This password is used for signing in to your account inside the car"
 msgstr ""
 "Esta contraseña se usa para iniciar sesión en tu cuenta dentro del coche"
@@ -1052,7 +1056,7 @@ msgstr ""
 #: ui/templates/ui/change_carwings_password.html:18
 #: ui/templates/ui/change_password.html:18
 #: ui/templates/ui/probeviewer/main.html:50
-#: ui/templates/ui/probeviewer/trip.html:100
+#: ui/templates/ui/probeviewer/trip.html:102
 #: ui/templates/ui/reset_password_confirm.html:35
 #: ui/templates/ui/setup/step2.html:14 ui/templates/ui/setup/step3.html:14
 #: ui/templates/ui/setup/step4.html:14
@@ -1064,7 +1068,7 @@ msgstr "Aviso"
 #: ui/templates/ui/change_carwings_password.html:19
 #: ui/templates/ui/change_password.html:19
 #: ui/templates/ui/probeviewer/main.html:51
-#: ui/templates/ui/probeviewer/trip.html:101
+#: ui/templates/ui/probeviewer/trip.html:103
 #: ui/templates/ui/reset_password_confirm.html:36
 #: ui/templates/ui/setup/step2.html:15 ui/templates/ui/setup/step3.html:15
 #: ui/templates/ui/setup/step4.html:15
@@ -1078,7 +1082,7 @@ msgstr "Advertencia"
 #: ui/templates/ui/change_carwings_password.html:24
 #: ui/templates/ui/change_password.html:24
 #: ui/templates/ui/probeviewer/main.html:56
-#: ui/templates/ui/probeviewer/trip.html:106
+#: ui/templates/ui/probeviewer/trip.html:108
 #: ui/templates/ui/reset_password_confirm.html:20
 #: ui/templates/ui/reset_password_confirm.html:41
 #: ui/templates/ui/setup/step2.html:20 ui/templates/ui/setup/step3.html:20
@@ -1432,7 +1436,7 @@ msgid "Charge bars"
 msgstr "Barras de carga"
 
 #: ui/templates/ui/car_detail.html:321
-#: ui/templates/ui/probeviewer/trip.html:198
+#: ui/templates/ui/probeviewer/trip.html:200
 msgid "Capacity bars"
 msgstr "Barras de capacidad"
 
@@ -2110,7 +2114,7 @@ msgid "Learn more"
 msgstr "Saber más"
 
 #: ui/templates/ui/probeviewer/main.html:153
-#: ui/templates/ui/probeviewer/trip.html:136
+#: ui/templates/ui/probeviewer/trip.html:138
 msgid "A/C usage"
 msgstr "Uso del aire acondicionado"
 
@@ -2189,7 +2193,7 @@ msgid "Driving time"
 msgstr "Tiempo de conducción"
 
 #: ui/templates/ui/probeviewer/main.html:309
-#: ui/templates/ui/probeviewer/trip.html:156
+#: ui/templates/ui/probeviewer/trip.html:158
 msgid "Regenerated energy"
 msgstr "Energía regenerada"
 
@@ -2198,13 +2202,13 @@ msgid "Consumed energy"
 msgstr "Energía consumida"
 
 #: ui/templates/ui/probeviewer/main.html:313
-#: ui/templates/ui/probeviewer/trip.html:75
-#: ui/templates/ui/probeviewer/trip.html:81
+#: ui/templates/ui/probeviewer/trip.html:77
+#: ui/templates/ui/probeviewer/trip.html:83
 msgid "Average consumption"
 msgstr "Average consumption"
 
 #: ui/templates/ui/probeviewer/main.html:320
-#: ui/templates/ui/probeviewer/trip.html:142
+#: ui/templates/ui/probeviewer/trip.html:144
 msgid "Average acceleration"
 msgstr "Aceleración promedio"
 
@@ -2422,187 +2426,187 @@ msgstr "Distancia"
 msgid "Energy consumed"
 msgstr "Energía consumida"
 
-#: ui/templates/ui/probeviewer/trip.html:65
+#: ui/templates/ui/probeviewer/trip.html:67
 msgid "Eco-trees"
 msgstr "Árboles ecológicos"
 
-#: ui/templates/ui/probeviewer/trip.html:70
+#: ui/templates/ui/probeviewer/trip.html:72
 msgid "Regenerated"
 msgstr "Regenerado"
 
-#: ui/templates/ui/probeviewer/trip.html:117
+#: ui/templates/ui/probeviewer/trip.html:119
 msgid "Info"
 msgstr "Información"
 
-#: ui/templates/ui/probeviewer/trip.html:119
+#: ui/templates/ui/probeviewer/trip.html:121
 msgid "Map"
 msgstr "Mapa"
 
-#: ui/templates/ui/probeviewer/trip.html:121
+#: ui/templates/ui/probeviewer/trip.html:123
 msgid "Energy"
 msgstr "Energía"
 
-#: ui/templates/ui/probeviewer/trip.html:122
+#: ui/templates/ui/probeviewer/trip.html:124
 msgid "HV Battery"
 msgstr "Batería de alto voltaje"
 
-#: ui/templates/ui/probeviewer/trip.html:129
+#: ui/templates/ui/probeviewer/trip.html:131
 msgid "Trip end date"
 msgstr "Fecha de finalización del viaje"
 
-#: ui/templates/ui/probeviewer/trip.html:130
+#: ui/templates/ui/probeviewer/trip.html:132
 msgid "Outside temperature at start"
 msgstr "Temperatura exterior al inicio"
 
-#: ui/templates/ui/probeviewer/trip.html:131
+#: ui/templates/ui/probeviewer/trip.html:133
 msgid "Outside temperature at finish"
 msgstr "Temperatura exterior al final"
 
-#: ui/templates/ui/probeviewer/trip.html:132
+#: ui/templates/ui/probeviewer/trip.html:134
 msgid "Max speed"
 msgstr "Velocidad máxima"
 
-#: ui/templates/ui/probeviewer/trip.html:133
+#: ui/templates/ui/probeviewer/trip.html:135
 msgid "Cabin preconditioning before trip"
 msgstr "Preacondicionamiento de la cabina antes del viaje"
 
-#: ui/templates/ui/probeviewer/trip.html:134
+#: ui/templates/ui/probeviewer/trip.html:136
 msgid "Highway driving time"
 msgstr "Tiempo de conducción en autopista"
 
-#: ui/templates/ui/probeviewer/trip.html:135
+#: ui/templates/ui/probeviewer/trip.html:137
 msgid "Optimal highway driving time"
 msgstr "Tiempo óptimo de conducción en autopista"
 
-#: ui/templates/ui/probeviewer/trip.html:137
+#: ui/templates/ui/probeviewer/trip.html:139
 msgid "Idling time"
 msgstr "Tiempo de ralentí"
 
-#: ui/templates/ui/probeviewer/trip.html:138
+#: ui/templates/ui/probeviewer/trip.html:140
 msgid "Headlights usage time"
 msgstr "Tiempo de uso de faros"
 
-#: ui/templates/ui/probeviewer/trip.html:139
+#: ui/templates/ui/probeviewer/trip.html:141
 msgid "Sudden accelerations"
 msgstr "Aceleraciones repentinas"
 
-#: ui/templates/ui/probeviewer/trip.html:140
+#: ui/templates/ui/probeviewer/trip.html:142
 msgid "Sudden decelerations"
 msgstr "Desaceleraciones repentinas"
 
-#: ui/templates/ui/probeviewer/trip.html:141
+#: ui/templates/ui/probeviewer/trip.html:143
 msgid "Odometer at start"
 msgstr "Odómetro al inicio"
 
-#: ui/templates/ui/probeviewer/trip.html:152
+#: ui/templates/ui/probeviewer/trip.html:154
 msgid "A/C consumption"
 msgstr "Consumo de aire acondicionado"
 
-#: ui/templates/ui/probeviewer/trip.html:153
+#: ui/templates/ui/probeviewer/trip.html:155
 msgid "Auxiliary consumption"
 msgstr "Consumo auxiliar"
 
-#: ui/templates/ui/probeviewer/trip.html:154
+#: ui/templates/ui/probeviewer/trip.html:156
 msgid "Motor consumption"
 msgstr "Consumo del motor"
 
-#: ui/templates/ui/probeviewer/trip.html:155
+#: ui/templates/ui/probeviewer/trip.html:157
 msgid "Idle consumption"
 msgstr "Consumo en ralentí"
 
-#: ui/templates/ui/probeviewer/trip.html:157
+#: ui/templates/ui/probeviewer/trip.html:159
 msgid "Sudden acceleration consumption"
 msgstr "Consumo por aceleración repentina"
 
-#: ui/templates/ui/probeviewer/trip.html:158
+#: ui/templates/ui/probeviewer/trip.html:160
 msgid "Sudden acceleration time"
 msgstr "Tiempo de aceleración repentina"
 
-#: ui/templates/ui/probeviewer/trip.html:159
+#: ui/templates/ui/probeviewer/trip.html:161
 msgid "Non-eco deceleration consumption"
 msgstr "Consumo por desaceleración no ecológica"
 
-#: ui/templates/ui/probeviewer/trip.html:160
+#: ui/templates/ui/probeviewer/trip.html:162
 msgid "Non-eco deceleration time"
 msgstr "Tiempo de desaceleración no ecológica"
 
-#: ui/templates/ui/probeviewer/trip.html:161
+#: ui/templates/ui/probeviewer/trip.html:163
 msgid "Sudden start consumption"
 msgstr "Consumo por arranque repentino"
 
-#: ui/templates/ui/probeviewer/trip.html:162
+#: ui/templates/ui/probeviewer/trip.html:164
 msgid "Sudden start time"
 msgstr "Tiempo de arranque repentino"
 
-#: ui/templates/ui/probeviewer/trip.html:168
+#: ui/templates/ui/probeviewer/trip.html:170
 msgid "Trip start"
 msgstr "Inicio del viaje"
 
-#: ui/templates/ui/probeviewer/trip.html:170
-#: ui/templates/ui/probeviewer/trip.html:187
+#: ui/templates/ui/probeviewer/trip.html:172
+#: ui/templates/ui/probeviewer/trip.html:189
 msgid "Battery pack temperature"
 msgstr "Temperatura del paquete de baterías"
 
-#: ui/templates/ui/probeviewer/trip.html:172
-#: ui/templates/ui/probeviewer/trip.html:173
-#: ui/templates/ui/probeviewer/trip.html:189
-#: ui/templates/ui/probeviewer/trip.html:190
+#: ui/templates/ui/probeviewer/trip.html:174
+#: ui/templates/ui/probeviewer/trip.html:175
+#: ui/templates/ui/probeviewer/trip.html:191
+#: ui/templates/ui/probeviewer/trip.html:192
 msgid "Energy content"
 msgstr "Contenido de energía"
 
-#: ui/templates/ui/probeviewer/trip.html:174
-#: ui/templates/ui/probeviewer/trip.html:191
+#: ui/templates/ui/probeviewer/trip.html:176
+#: ui/templates/ui/probeviewer/trip.html:193
 msgid "Average cell temperature"
 msgstr "Temperatura promedio de celda"
 
-#: ui/templates/ui/probeviewer/trip.html:175
-#: ui/templates/ui/probeviewer/trip.html:192
+#: ui/templates/ui/probeviewer/trip.html:177
+#: ui/templates/ui/probeviewer/trip.html:194
 msgid "Max cell temperature"
 msgstr "Temperatura máxima de celda"
 
-#: ui/templates/ui/probeviewer/trip.html:176
-#: ui/templates/ui/probeviewer/trip.html:193
+#: ui/templates/ui/probeviewer/trip.html:178
+#: ui/templates/ui/probeviewer/trip.html:195
 msgid "Min cell temperature"
 msgstr "Temperatura mínima de celda"
 
-#: ui/templates/ui/probeviewer/trip.html:177
+#: ui/templates/ui/probeviewer/trip.html:179
 msgid "Average cell voltage"
 msgstr "Voltaje promedio de celda"
 
-#: ui/templates/ui/probeviewer/trip.html:178
+#: ui/templates/ui/probeviewer/trip.html:180
 msgid "Max cell voltage"
 msgstr "Voltaje máximo de celda"
 
-#: ui/templates/ui/probeviewer/trip.html:179
+#: ui/templates/ui/probeviewer/trip.html:181
 msgid "Min cell voltage"
 msgstr "Voltaje mínimo de celda"
 
-#: ui/templates/ui/probeviewer/trip.html:180
+#: ui/templates/ui/probeviewer/trip.html:182
 msgid "AC charges (total?)"
 msgstr "Cargas de CA (¿total?)"
 
-#: ui/templates/ui/probeviewer/trip.html:181
+#: ui/templates/ui/probeviewer/trip.html:183
 msgid "QC charges (total?)"
 msgstr "Cargas rápidas (¿total?)"
 
-#: ui/templates/ui/probeviewer/trip.html:185
+#: ui/templates/ui/probeviewer/trip.html:187
 msgid "Trip end"
 msgstr "Fin del viaje"
 
-#: ui/templates/ui/probeviewer/trip.html:194
+#: ui/templates/ui/probeviewer/trip.html:196
 msgid "Accumulated current"
 msgstr "Corriente acumulada"
 
-#: ui/templates/ui/probeviewer/trip.html:195
-#: ui/templates/ui/probeviewer/trip.html:199
+#: ui/templates/ui/probeviewer/trip.html:197
+#: ui/templates/ui/probeviewer/trip.html:201
 msgid "SOH"
 msgstr "Estado de salud (SOH)"
 
-#: ui/templates/ui/probeviewer/trip.html:196
+#: ui/templates/ui/probeviewer/trip.html:198
 msgid "Pack resistance"
 msgstr "Resistencia del paquete"
 
-#: ui/templates/ui/probeviewer/trip.html:200
+#: ui/templates/ui/probeviewer/trip.html:202
 msgid "New battery degradation analysis program"
 msgstr "Nuevo programa de análisis de degradación de batería"
 
@@ -2833,73 +2837,81 @@ msgstr "Exportar VFlash"
 msgid "Unknown"
 msgstr "Desconocido"
 
-#: ui/views.py:36
+#: ui/views.py:37
 msgid "TCU setup"
 msgstr "Configuración del TCU"
 
-#: ui/views.py:37
+#: ui/views.py:38
 msgid "TCU identifiers"
 msgstr "Identificadores del TCU"
 
-#: ui/views.py:38
+#: ui/views.py:39
 msgid "Basic information"
 msgstr "Información básica"
 
-#: ui/views.py:39
+#: ui/views.py:40
 msgid "SMS configuration"
 msgstr "Configuración de SMS"
 
-#: ui/views.py:40
+#: ui/views.py:41
 msgid "Car added"
 msgstr "Coche añadido"
 
-#: ui/views.py:100
+#: ui/views.py:103
 msgid "Account successfully updated!"
 msgstr "¡Cuenta actualizada con éxito!"
 
-#: ui/views.py:103 ui/views.py:724
+#: ui/views.py:106 ui/views.py:736
 msgid "Please fill the form correctly and try again."
 msgstr "Por favor, completa el formulario correctamente y vuelve a intentarlo."
 
-#: ui/views.py:470
+#: ui/views.py:480
 msgid "Successfully saved settings."
 msgstr "Configuraciones guardadas con éxito."
 
-#: ui/views.py:472 ui/views.py:601 ui/views.py:622
+#: ui/views.py:482 ui/views.py:613 ui/views.py:634
 msgid "Please fill the form correctly"
 msgstr "Por favor, completa el formulario correctamente"
 
-#: ui/views.py:475 ui/views.py:657
+#: ui/views.py:485 ui/views.py:669
 msgid "Please fill all necessary fields and try again."
 msgstr "Por favor, completa todos los campos necesarios y vuelve a intentarlo."
 
-#: ui/views.py:479
+#: ui/views.py:489
 msgid "Waiting for first connection.."
 msgstr "Esperando la primera conexión..."
 
-#: ui/views.py:519
+#: ui/views.py:529
 msgid "Sign-up is not enabled on this instance"
 msgstr "El registro no está habilitado en esta instancia"
 
-#: ui/views.py:548
+#: ui/views.py:557
+msgid ""
+"Your current timezone is UTC. Please set your local timezone in account "
+"settings."
+msgstr ""
+"Tu zona horaria actual es UTC. Por favor, configura tu zona horaria local en "
+"los ajustes de tu cuenta."
+
+#: ui/views.py:560
 msgid "Invalid username or password."
 msgstr "Nombre de usuario o contraseña inválidos."
 
-#: ui/views.py:588
+#: ui/views.py:600
 msgid "Car is already added. Please remove and try again."
 msgstr "El coche ya está añadido. Por favor, elimínalo y vuelve a intentarlo."
 
-#: ui/views.py:638
+#: ui/views.py:650
 msgid "Please select a provider for SMS."
 msgstr "Por favor, selecciona un proveedor para SMS."
 
-#: ui/views.py:716
+#: ui/views.py:728
 msgid "Update requested! Update will occur on next boot."
 msgstr ""
 "¡Actualización solicitada! La actualización se realizará la próxima vez que "
 "inicie el sistema."
 
-#: ui/views.py:722
+#: ui/views.py:734
 msgid "Update request cancelled!"
 msgstr "Update request cancelled!"
 

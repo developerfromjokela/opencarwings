@@ -1,3 +1,4 @@
+import pytz
 from rest_framework import serializers
 
 from db.models import Car, TCUConfiguration, LocationInfo, EVInfo, AlertHistory, SendToCarLocation, RoutePlan, \
@@ -7,12 +8,14 @@ from tculink.carwings_proto.autodj.channels import get_info_channel_data
 
 
 class TCUConfigurationSerializer(serializers.ModelSerializer):
+    last_updated = serializers.DateTimeField(read_only=True, default_timezone=pytz.utc)
     class Meta:
         model = TCUConfiguration
         fields = '__all__'
 
 
 class LocationInfoSerializer(serializers.ModelSerializer):
+    last_updated = serializers.DateTimeField(read_only=True, default_timezone=pytz.utc)
     class Meta:
         model = LocationInfo
         fields = '__all__'
@@ -21,12 +24,14 @@ class SendToCarLocationSerializer(serializers.ModelSerializer):
     lat = serializers.DecimalField(max_digits=20, decimal_places=10)
     lon = serializers.DecimalField(max_digits=20, decimal_places=10)
     name = serializers.CharField(max_length=32)
+    created_at = serializers.DateTimeField(read_only=True, default_timezone=pytz.utc)
     class Meta:
         model = SendToCarLocation
         fields = '__all__'
 
 class RoutePlanSerializer(serializers.ModelSerializer):
     name = serializers.CharField(max_length=31)
+    created_at = serializers.DateTimeField(read_only=True, default_timezone=pytz.utc)
     start_name = serializers.CharField(max_length=30)
     start_lat = serializers.DecimalField(max_digits=20, decimal_places=10)
     start_lon = serializers.DecimalField(max_digits=20, decimal_places=10)
@@ -59,6 +64,7 @@ class SendToCarLocationGenericSerializer(serializers.Serializer):
     name = serializers.CharField(max_length=32)
 
 class EVInfoSerializer(serializers.ModelSerializer):
+    last_updated = serializers.DateTimeField(read_only=True, default_timezone=pytz.utc)
     class Meta:
         model = EVInfo
         fields = '__all__'
@@ -70,7 +76,7 @@ class EVInfoUpdatingSerializer(serializers.ModelSerializer):
 
 class AlertHistorySerializer(serializers.ModelSerializer):
     type_display = serializers.CharField(source='get_type_display')
-
+    timestamp = serializers.DateTimeField(read_only=True, default_timezone=pytz.utc)
     class Meta:
         model = AlertHistory
         fields = ['id', 'type', 'type_display', 'timestamp', 'command_id', 'additional_data']
@@ -79,6 +85,7 @@ class CommandTimerSettingSerializer(serializers.ModelSerializer):
     command_type_display = serializers.CharField(source='get_command_type_display', allow_blank=True, required=False)
     last_command_result_display = serializers.CharField(source='get_last_command_result_display', allow_blank=True, required=False)
     timer_type_display = serializers.CharField(source='get_timer_type_display', allow_blank=True, required=False)
+    last_command_execution = serializers.DateTimeField(read_only=True, default_timezone=pytz.utc)
 
     class Meta:
         model = CommandTimerSetting
@@ -99,6 +106,8 @@ class CarSerializer(serializers.ModelSerializer):
     command_type_display = serializers.CharField(source='get_command_type_display')
     command_result_display = serializers.CharField(source='get_command_result_display')
     timer_commands = CommandTimerSettingSerializer(many=True)
+    command_request_time = serializers.DateTimeField(read_only=True, default_timezone=pytz.utc)
+    last_connection = serializers.DateTimeField(read_only=True, default_timezone=pytz.utc)
 
     def to_representation(self, instance):
         data = super().to_representation(instance)
@@ -204,6 +213,7 @@ class CarUpdatingSerializer(serializers.ModelSerializer):
 class CarSerializerList(serializers.ModelSerializer):
     ev_info = EVInfoSerializer()
     location = LocationInfoSerializer()
+    last_connection = serializers.DateTimeField(read_only=True, default_timezone=pytz.utc)
     class Meta:
         model = Car
         fields = ('vin', 'last_connection', 'nickname', 'ev_info', 'location')
@@ -222,6 +232,7 @@ class StatusSerializer(serializers.Serializer):
 class AlertHistoryFullSerializer(serializers.ModelSerializer):
     type_display = serializers.CharField(source='get_type_display')
     car = CarSerializer()
+    timestamp = serializers.DateTimeField(read_only=True, default_timezone=pytz.utc)
 
     class Meta:
         model = AlertHistory
@@ -240,6 +251,7 @@ class MapLinkResolverResponseSerializer(StatusSerializer):
     location = MapLinkResolvedLocation(allow_null=True, required=False)
 
 class CRMDistanceRecordSerializer(serializers.ModelSerializer):
+    timestamp = serializers.DateTimeField(read_only=True, default_timezone=pytz.utc)
     class Meta:
         model = CRMDistanceRecord
         fields = ['timestamp', 'consumed_wh', 'regenerated_wh', 'latitude', 'longitude', 'road_type']

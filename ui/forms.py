@@ -1,3 +1,4 @@
+import pytz
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.utils.translation import gettext_lazy as _
@@ -37,9 +38,11 @@ class ChangeCarwingsPasswordForm(forms.Form):
     new_password = forms.CharField(widget=forms.PasswordInput(), max_length=16)
 
 class AccountForm(forms.Form):
+    TIMEZONE_CHOICES = zip(pytz.all_timezones, pytz.all_timezones)
     email = forms.EmailField(label=_("Email"), widget=forms.EmailInput(), max_length=254)
     notifications = forms.BooleanField(label=_("Notifications"), widget=forms.CheckboxInput(), required=False)
     units_imperial = forms.BooleanField(label=_("Imperial Units"), widget=forms.CheckboxInput(), required=False)
+    timezone = forms.ChoiceField(label=_("Timezone"), choices=TIMEZONE_CHOICES, required=False)
 
 class ProbeConfigForm(forms.Form):
     new_config_id = forms.IntegerField(label="New Config ID", required=False)

@@ -8,6 +8,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
 from django.utils.translation import gettext_lazy as _
+from django.utils import timezone
 
 ALERT_TYPES = (
     (1, _('Charge stop')),
@@ -128,6 +129,7 @@ class User(AbstractUser):
     username_validator = CARWINGSUsernameValidator()
     tcu_pass_validator = CARWINGSPasswordValidator()
     tcu_pass_hash = models.CharField(max_length=16, validators=[tcu_pass_validator])
+    timezone = models.CharField(default="UTC", max_length=32)
     username = models.CharField(
         _("username"),
         max_length=16,
@@ -166,11 +168,11 @@ class SendToCarLocation(models.Model):
     lat = models.DecimalField(max_digits=20, decimal_places=10)
     lon = models.DecimalField(max_digits=20, decimal_places=10)
     name = models.CharField(max_length=32)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(default=timezone.now)
 
 class RoutePlan(models.Model):
     name = models.CharField(max_length=31)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(default=timezone.now)
     #start
     start_name = models.CharField(max_length=30)
     start_lat = models.DecimalField(max_digits=20, decimal_places=10)
@@ -233,7 +235,7 @@ class EVInfo(models.Model):
 
 class AlertHistory(models.Model):
     type = models.IntegerField(choices=ALERT_TYPES)
-    timestamp = models.DateTimeField(auto_now_add=True)
+    timestamp = models.DateTimeField(default=timezone.now)
     command_id = models.IntegerField(default=None, null=True)
     additional_data = models.TextField(null=True, default=None)
     car = models.ForeignKey('Car', on_delete=models.CASCADE)
@@ -298,6 +300,9 @@ class Car(models.Model):
     tcu_version = models.CharField(max_length=64, null=True, default=None, blank=True)
     favorite_channels = models.JSONField(default=dict)
     custom_channels = models.JSONField(default=dict)
+
+    def __str__(self):
+        return self.vin
 
 # Probe config
 class ProbeConfig(models.Model):
@@ -503,5 +508,5 @@ class CRMTripRecord(models.Model):
 class DOTFile(models.Model):
     car = models.ForeignKey(Car, on_delete=models.CASCADE)
     capture_ts = models.DateTimeField(null=True, default=None, blank=True)
-    upload_ts = models.DateTimeField(auto_now_add=True)
+    upload_ts = models.DateTimeField(default=timezone.now)
     file = models.FileField(upload_to="probe/dotfiles/%Y/%m/%d/")

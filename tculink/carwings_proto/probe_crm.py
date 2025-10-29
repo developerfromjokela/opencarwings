@@ -1,3 +1,5 @@
+import pytz
+
 from db.models import Car, CRMLatest, CRMLifetime, CRMExcessiveAirconRecord, CRMExcessiveIdlingRecord, CRMMonthlyRecord, \
     CRMMSNRecord, CRMChargeRecord, CRMChargeHistoryRecord, CRMABSHistoryRecord, CRMTroubleRecord, CRMTripRecord, \
     CRMDistanceRecord
@@ -650,8 +652,8 @@ def apply_date_patch(date):
     # apply patch for gps rollover, add 1024 weeks
     rollover_timedelta = datetime.timedelta(days=1024*7)
     if date.year < timezone.now().year-5:
-        return date + rollover_timedelta
-    return date
+        return timezone.make_aware(date + rollover_timedelta, timezone=pytz.utc)
+    return timezone.make_aware(date, timezone=pytz.utc)
 
 
 def update_crm_to_db(car: Car, crm_pload):

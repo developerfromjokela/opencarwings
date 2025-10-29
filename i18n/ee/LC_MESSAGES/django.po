@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-17 13:09+0000\n"
-"PO-Revision-Date: 2025-10-17 16:11+0300\n"
+"POT-Creation-Date: 2025-10-29 16:25+0000\n"
+"PO-Revision-Date: 2025-10-29 18:26+0200\n"
 "Last-Translator: Grok <grok@x.ai>\n"
 "Language-Team: Estonian <et@li.org>\n"
 "Language: et\n"
@@ -26,92 +26,92 @@ msgid "Failed to send SMS message to TCU. Please try again in a moment."
 msgstr ""
 "SMS-sõnumi saatmine TCU-le ebaõnnestus. Palun proovi mõne aja pärast uuesti."
 
-#: db/models.py:13
+#: db/models.py:14
 msgid "Charge stop"
 msgstr "Laadimise lõpetamine"
 
-#: db/models.py:14 db/models.py:32
+#: db/models.py:15 db/models.py:33
 msgid "Charge start"
 msgstr "Laadimise alustamine"
 
-#: db/models.py:15
+#: db/models.py:16
 msgid "Charge cable reminder"
 msgstr "Laadimiskaabli meeldetuletus"
 
-#: db/models.py:16 db/models.py:33
+#: db/models.py:17 db/models.py:34
 msgid "A/C on"
 msgstr "Kliimaseade sisse"
 
-#: db/models.py:17 db/models.py:34
+#: db/models.py:18 db/models.py:35
 msgid "A/C off"
 msgstr "Kliimaseade välja"
 
-#: db/models.py:18
+#: db/models.py:19
 msgid "Configuration read"
 msgstr "Konfiguratsiooni lugemine"
 
-#: db/models.py:19
+#: db/models.py:20
 msgid "A/C auto off"
 msgstr "Kliimaseadme automaatne väljalülitamine"
 
-#: db/models.py:20
+#: db/models.py:21
 msgid "Quick charge stop"
 msgstr "Kiirlaadimise lõpetamine"
 
-#: db/models.py:21
+#: db/models.py:22
 msgid "Battery heater start"
 msgstr "Aku soojendus käivitus"
 
-#: db/models.py:22
+#: db/models.py:23
 msgid "Battery heater stop"
 msgstr "Aku soojendus on seiskunud"
 
-#: db/models.py:23
+#: db/models.py:24
 msgid "Charge error"
 msgstr "Laadimisviga"
 
-#: db/models.py:24
+#: db/models.py:25
 msgid "A/C error"
 msgstr "Kliimaseadme viga"
 
-#: db/models.py:25
+#: db/models.py:26
 msgid "Command timeout"
 msgstr "Käsu aegumine"
 
-#: db/models.py:26 db/models.py:41 ui/templates/ui/account.html:15
+#: db/models.py:27 db/models.py:42 ui/templates/ui/account.html:15
 #: ui/templates/ui/car_detail.html:70 ui/templates/ui/car_list.html:18
 #: ui/templates/ui/change_carwings_password.html:17
 #: ui/templates/ui/change_password.html:17
 #: ui/templates/ui/probeviewer/main.html:49
-#: ui/templates/ui/probeviewer/trip.html:99
+#: ui/templates/ui/probeviewer/trip.html:101
 #: ui/templates/ui/reset_password_confirm.html:34
 #: ui/templates/ui/setup/step2.html:13 ui/templates/ui/setup/step3.html:13
 #: ui/templates/ui/setup/step4.html:13
 msgid "Error"
 msgstr "Viga"
 
-#: db/models.py:30 db/models.py:92
+#: db/models.py:31 db/models.py:93
 msgid "No command"
 msgstr "Käsku pole"
 
-#: db/models.py:31
+#: db/models.py:32
 msgid "Refresh data"
 msgstr "Andmete värskendamine"
 
-#: db/models.py:35
+#: db/models.py:36
 msgid "Read configuration"
 msgstr "Konfiguratsiooni lugemine"
 
-#: db/models.py:39
+#: db/models.py:40
 msgid "Waiting"
 msgstr "Ootel"
 
-#: db/models.py:40 db/models.py:94 ui/templates/ui/account.html:14
+#: db/models.py:41 db/models.py:95 ui/templates/ui/account.html:14
 #: ui/templates/ui/car_detail.html:69 ui/templates/ui/car_list.html:17
 #: ui/templates/ui/change_carwings_password.html:16
 #: ui/templates/ui/change_password.html:16
 #: ui/templates/ui/probeviewer/main.html:48
-#: ui/templates/ui/probeviewer/trip.html:98
+#: ui/templates/ui/probeviewer/trip.html:100
 #: ui/templates/ui/reset_password_complete.html:10
 #: ui/templates/ui/reset_password_confirm.html:33
 #: ui/templates/ui/setup/step2.html:12 ui/templates/ui/setup/step3.html:12
@@ -119,87 +119,87 @@ msgstr "Ootel"
 msgid "Success"
 msgstr "Õnnestus"
 
-#: db/models.py:42
+#: db/models.py:43
 msgid "Timeout"
 msgstr "Aegumine"
 
-#: db/models.py:43
+#: db/models.py:44
 msgid "Await response"
 msgstr "Oota vastust"
 
-#: db/models.py:47
+#: db/models.py:48
 msgid "Park"
 msgstr "Parkimine"
 
-#: db/models.py:48 ui/templates/ui/car_detail.html:1293
+#: db/models.py:49 ui/templates/ui/car_detail.html:1293
 msgid "Drive"
 msgstr "Sõitmine"
 
-#: db/models.py:49 ui/templates/ui/car_detail.html:1293
+#: db/models.py:50 ui/templates/ui/car_detail.html:1293
 msgid "Reverse"
 msgstr "Tagurdamine"
 
-#: db/models.py:53 db/models.py:63
+#: db/models.py:54 db/models.py:64
 msgid "Never"
 msgstr "Mitte kunagi"
 
-#: db/models.py:54 db/models.py:67
+#: db/models.py:55 db/models.py:68
 msgid "Every 30 minutes"
 msgstr "Iga 30 minuti järel"
 
-#: db/models.py:55 db/models.py:68
+#: db/models.py:56 db/models.py:69
 msgid "Every 45 minutes"
 msgstr "Iga 45 minuti järel"
 
-#: db/models.py:56 db/models.py:69
+#: db/models.py:57 db/models.py:70
 msgid "Every hour"
 msgstr "Iga tund"
 
-#: db/models.py:57 db/models.py:70
+#: db/models.py:58 db/models.py:71
 msgid "Every three hours"
 msgstr "Iga kolme tunni järel"
 
-#: db/models.py:58 db/models.py:71
+#: db/models.py:59 db/models.py:72
 msgid "Every 12 hours"
 msgstr "Iga 12 tunni järel"
 
-#: db/models.py:59 db/models.py:72
+#: db/models.py:60 db/models.py:73
 msgid "Every day"
 msgstr "Iga päev"
 
-#: db/models.py:64
+#: db/models.py:65
 msgid "Every 5 minutes"
 msgstr "Iga 5 minuti järel"
 
-#: db/models.py:65
+#: db/models.py:66
 msgid "Every 10 minutes"
 msgstr "Iga 10 minuti järel"
 
-#: db/models.py:66
+#: db/models.py:67
 msgid "Every 15 minutes"
 msgstr "Iga 15 minuti järel"
 
-#: db/models.py:87
+#: db/models.py:88
 msgid "Slow charge"
 msgstr "Aeglane laadimine"
 
-#: db/models.py:88
+#: db/models.py:89
 msgid "Quick charge"
 msgstr "Kiirlaadimine"
 
-#: db/models.py:93
+#: db/models.py:94
 msgid "Pending"
 msgstr "Ootel"
 
-#: db/models.py:95
+#: db/models.py:96
 msgid "Failure"
 msgstr "Ebaõnnestumine"
 
-#: db/models.py:96
+#: db/models.py:97
 msgid "Rejected"
 msgstr "Tagasilükatud"
 
-#: db/models.py:112
+#: db/models.py:113
 msgid ""
 "Enter a valid username. This value may contain only unaccented lowercase a-z "
 "and uppercase A-Z letters, numbers, and /./-/_ characters."
@@ -207,7 +207,7 @@ msgstr ""
 "Sisesta kehtiv kasutajanimi. See väärtus võib sisaldada ainult aktsendita "
 "väiketähti a-z, suurtähti A-Z, numbreid ning märke /./-/_."
 
-#: db/models.py:120
+#: db/models.py:121
 msgid ""
 "Enter a valid TCU Password. This value may contain only unaccented lowercase "
 "a-z and uppercase A-Z letters, numbers, and /=/-/_/+/@/#/?/! characters."
@@ -215,15 +215,15 @@ msgstr ""
 "Sisesta kehtiv TCU parool. See väärtus võib sisaldada ainult aktsendita "
 "väiketähti a-z, suurtähti A-Z, numbreid ning märke /=/-/_/+/@/#/?/!."
 
-#: db/models.py:132
+#: db/models.py:134
 msgid "username"
 msgstr "kasutajanimi"
 
-#: db/models.py:136
+#: db/models.py:138
 msgid "Required. 16 characters or fewer. Letters, digits and /./-/_ only."
 msgstr "Nõutav. Maksimaalselt 16 tähemärki. Ainult tähed, numbrid ja /./-/_."
 
-#: db/models.py:140
+#: db/models.py:142
 msgid "A user with that username already exists."
 msgstr "Sellise kasutajanimega kasutaja on juba olemas."
 
@@ -612,21 +612,21 @@ msgstr "öö"
 msgid "late night"
 msgstr "hilisõhtul"
 
-#: tculink/carwings_proto/autodj/weather.py:352
+#: tculink/carwings_proto/autodj/weather.py:358
 msgid "vehicle location"
 msgstr "sõiduki asukoht"
 
-#: tculink/carwings_proto/autodj/weather.py:353
+#: tculink/carwings_proto/autodj/weather.py:359
 #, python-brace-format
 msgid "Weather Forecast for today, near {location_txt}."
 msgstr "Ilmaprognoos tänaseks asukoha {location_txt} lähedal."
 
-#: tculink/carwings_proto/autodj/weather.py:356
-#: tculink/carwings_proto/autodj/weather.py:370
+#: tculink/carwings_proto/autodj/weather.py:362
+#: tculink/carwings_proto/autodj/weather.py:376
 msgid "No forecast data available."
 msgstr "Prognoosiandmeid pole saadaval."
 
-#: tculink/carwings_proto/autodj/weather.py:359
+#: tculink/carwings_proto/autodj/weather.py:365
 #, python-brace-format
 msgid ""
 "During the {period}, forecasted to {condition}. With temperature of {temp} "
@@ -637,13 +637,13 @@ msgstr ""
 "kraadi Celsiuse järgi, tuule kiirus on {wind} meetrit sekundis ja vihma "
 "tõenäosus on {rain} protsenti. \n"
 
-#: tculink/carwings_proto/autodj/weather.py:367
+#: tculink/carwings_proto/autodj/weather.py:373
 #, python-brace-format
 msgid "Weather Forecast for next seven days, near {location_txt}."
 msgstr ""
 "Ilmaprognoos järgmiseks seitsmeks päevaks asukoha {location_txt} lähedal."
 
-#: tculink/carwings_proto/autodj/weather.py:374
+#: tculink/carwings_proto/autodj/weather.py:380
 #, python-brace-format
 msgid ""
 "On {weekday}, forecasted to {condition}. With highest temperature of "
@@ -653,10 +653,10 @@ msgstr ""
 "{maxtemp} kraadi Celsiuse järgi ja madalaim temperatuur {mintemp} kraadi "
 "Celsiuse järgi.\n"
 
-#: tculink/carwings_proto/autodj/weather.py:385
-#: tculink/carwings_proto/autodj/weather.py:419
-#: tculink/carwings_proto/autodj/weather.py:461
-#: tculink/carwings_proto/autodj/weather.py:462
+#: tculink/carwings_proto/autodj/weather.py:391
+#: tculink/carwings_proto/autodj/weather.py:425
+#: tculink/carwings_proto/autodj/weather.py:467
+#: tculink/carwings_proto/autodj/weather.py:468
 msgid "Weather forecast"
 msgstr "Ilmaprognoos"
 
@@ -950,49 +950,53 @@ msgstr "Veebihaagi URL"
 msgid "POST-request will be sent to specified webhook URL when necessary."
 msgstr "POST-päring saadetakse vajadusel määratud veebihaagi URL-ile."
 
-#: ui/forms.py:17 ui/forms.py:28 ui/templates/ui/car_detail.html:514
+#: ui/forms.py:18 ui/forms.py:29 ui/templates/ui/car_detail.html:514
 msgid "Nickname"
 msgstr "Hüüdnimi"
 
-#: ui/forms.py:18
+#: ui/forms.py:19
 msgid "Disable TCU authentication"
 msgstr "Keela TCU autentimine"
 
-#: ui/forms.py:19 ui/templates/ui/car_detail.html:547
+#: ui/forms.py:20 ui/templates/ui/car_detail.html:547
 msgid "Show calculated battery percentage"
 msgstr "Näita arvutatud aku protsenti"
 
-#: ui/forms.py:40 ui/templates/ui/reset_password.html:26
+#: ui/forms.py:42 ui/templates/ui/reset_password.html:26
 msgid "Email"
 msgstr "E-post"
 
-#: ui/forms.py:41
+#: ui/forms.py:43
 msgid "Notifications"
 msgstr "Teavitused"
 
-#: ui/forms.py:42
+#: ui/forms.py:44
 msgid "Imperial Units"
 msgstr "Keiserlikud ühikud"
 
-#: ui/forms.py:52 ui/templates/ui/car_detail.html:301
+#: ui/forms.py:45
+msgid "Timezone"
+msgstr "Ajavöönd"
+
+#: ui/forms.py:55 ui/templates/ui/car_detail.html:301
 #: ui/templates/ui/landing.html:19 ui/templates/ui/signin.html:30
 msgid "Password"
 msgstr "Parool"
 
-#: ui/forms.py:53
+#: ui/forms.py:56
 msgid "Password Confirmation"
 msgstr "Parooli kinnitamine"
 
-#: ui/forms.py:54
+#: ui/forms.py:57
 msgid "TCU Password"
 msgstr "TCU parool"
 
-#: ui/forms.py:66
+#: ui/forms.py:69
 msgid "Can include only letters, numbers, dashes, dots and underscores"
 msgstr ""
 "Võib sisaldada ainult tähti, numbreid, sidekriipse, punkte ja alakriipse"
 
-#: ui/forms.py:67
+#: ui/forms.py:70
 msgid "This password is used for signing in to your account inside the car"
 msgstr "See parool on vajalik sinu konto sisselogimiseks autos"
 
@@ -1001,7 +1005,7 @@ msgstr "See parool on vajalik sinu konto sisselogimiseks autos"
 #: ui/templates/ui/change_carwings_password.html:18
 #: ui/templates/ui/change_password.html:18
 #: ui/templates/ui/probeviewer/main.html:50
-#: ui/templates/ui/probeviewer/trip.html:100
+#: ui/templates/ui/probeviewer/trip.html:102
 #: ui/templates/ui/reset_password_confirm.html:35
 #: ui/templates/ui/setup/step2.html:14 ui/templates/ui/setup/step3.html:14
 #: ui/templates/ui/setup/step4.html:14
@@ -1013,7 +1017,7 @@ msgstr "Teade"
 #: ui/templates/ui/change_carwings_password.html:19
 #: ui/templates/ui/change_password.html:19
 #: ui/templates/ui/probeviewer/main.html:51
-#: ui/templates/ui/probeviewer/trip.html:101
+#: ui/templates/ui/probeviewer/trip.html:103
 #: ui/templates/ui/reset_password_confirm.html:36
 #: ui/templates/ui/setup/step2.html:15 ui/templates/ui/setup/step3.html:15
 #: ui/templates/ui/setup/step4.html:15
@@ -1027,7 +1031,7 @@ msgstr "Hoiatus"
 #: ui/templates/ui/change_carwings_password.html:24
 #: ui/templates/ui/change_password.html:24
 #: ui/templates/ui/probeviewer/main.html:56
-#: ui/templates/ui/probeviewer/trip.html:106
+#: ui/templates/ui/probeviewer/trip.html:108
 #: ui/templates/ui/reset_password_confirm.html:20
 #: ui/templates/ui/reset_password_confirm.html:41
 #: ui/templates/ui/setup/step2.html:20 ui/templates/ui/setup/step3.html:20
@@ -1381,7 +1385,7 @@ msgid "Charge bars"
 msgstr "Laadimisribad"
 
 #: ui/templates/ui/car_detail.html:321
-#: ui/templates/ui/probeviewer/trip.html:198
+#: ui/templates/ui/probeviewer/trip.html:200
 msgid "Capacity bars"
 msgstr "Mahutavusribad"
 
@@ -2058,7 +2062,7 @@ msgid "Learn more"
 msgstr "Lisateave"
 
 #: ui/templates/ui/probeviewer/main.html:153
-#: ui/templates/ui/probeviewer/trip.html:136
+#: ui/templates/ui/probeviewer/trip.html:138
 msgid "A/C usage"
 msgstr "Kliimaseadme kasutus"
 
@@ -2133,7 +2137,7 @@ msgid "Driving time"
 msgstr "Sõiduaeg"
 
 #: ui/templates/ui/probeviewer/main.html:309
-#: ui/templates/ui/probeviewer/trip.html:156
+#: ui/templates/ui/probeviewer/trip.html:158
 msgid "Regenerated energy"
 msgstr "Taastatud energia"
 
@@ -2142,13 +2146,13 @@ msgid "Consumed energy"
 msgstr "Tarbitud energia"
 
 #: ui/templates/ui/probeviewer/main.html:313
-#: ui/templates/ui/probeviewer/trip.html:75
-#: ui/templates/ui/probeviewer/trip.html:81
+#: ui/templates/ui/probeviewer/trip.html:77
+#: ui/templates/ui/probeviewer/trip.html:83
 msgid "Average consumption"
 msgstr "Keskmine tarbimine"
 
 #: ui/templates/ui/probeviewer/main.html:320
-#: ui/templates/ui/probeviewer/trip.html:142
+#: ui/templates/ui/probeviewer/trip.html:144
 msgid "Average acceleration"
 msgstr "Keskmine kiirendus"
 
@@ -2365,187 +2369,187 @@ msgstr "Kaugus"
 msgid "Energy consumed"
 msgstr "Tarbitud energia"
 
-#: ui/templates/ui/probeviewer/trip.html:65
+#: ui/templates/ui/probeviewer/trip.html:67
 msgid "Eco-trees"
 msgstr "Ökopuud"
 
-#: ui/templates/ui/probeviewer/trip.html:70
+#: ui/templates/ui/probeviewer/trip.html:72
 msgid "Regenerated"
 msgstr "Taastatud"
 
-#: ui/templates/ui/probeviewer/trip.html:117
+#: ui/templates/ui/probeviewer/trip.html:119
 msgid "Info"
 msgstr "Info"
 
-#: ui/templates/ui/probeviewer/trip.html:119
+#: ui/templates/ui/probeviewer/trip.html:121
 msgid "Map"
 msgstr "Map"
 
-#: ui/templates/ui/probeviewer/trip.html:121
+#: ui/templates/ui/probeviewer/trip.html:123
 msgid "Energy"
 msgstr "Energia"
 
-#: ui/templates/ui/probeviewer/trip.html:122
+#: ui/templates/ui/probeviewer/trip.html:124
 msgid "HV Battery"
 msgstr "Kõrgepinge aku"
 
-#: ui/templates/ui/probeviewer/trip.html:129
+#: ui/templates/ui/probeviewer/trip.html:131
 msgid "Trip end date"
 msgstr "Sõidu lõppkuupäev"
 
-#: ui/templates/ui/probeviewer/trip.html:130
+#: ui/templates/ui/probeviewer/trip.html:132
 msgid "Outside temperature at start"
 msgstr "Välistemperatuur alguses"
 
-#: ui/templates/ui/probeviewer/trip.html:131
+#: ui/templates/ui/probeviewer/trip.html:133
 msgid "Outside temperature at finish"
 msgstr "Välistemperatuur lõpus"
 
-#: ui/templates/ui/probeviewer/trip.html:132
+#: ui/templates/ui/probeviewer/trip.html:134
 msgid "Max speed"
 msgstr "Maksimaalne kiirus"
 
-#: ui/templates/ui/probeviewer/trip.html:133
+#: ui/templates/ui/probeviewer/trip.html:135
 msgid "Cabin preconditioning before trip"
 msgstr "Salongi eelkonditsioneerimine enne sõitu"
 
-#: ui/templates/ui/probeviewer/trip.html:134
+#: ui/templates/ui/probeviewer/trip.html:136
 msgid "Highway driving time"
 msgstr "Maanteel sõitmise aeg"
 
-#: ui/templates/ui/probeviewer/trip.html:135
+#: ui/templates/ui/probeviewer/trip.html:137
 msgid "Optimal highway driving time"
 msgstr "Optimaalne maanteel sõitmise aeg"
 
-#: ui/templates/ui/probeviewer/trip.html:137
+#: ui/templates/ui/probeviewer/trip.html:139
 msgid "Idling time"
 msgstr "Tühikäigu aeg"
 
-#: ui/templates/ui/probeviewer/trip.html:138
+#: ui/templates/ui/probeviewer/trip.html:140
 msgid "Headlights usage time"
 msgstr "Esitulede kasutamise aeg"
 
-#: ui/templates/ui/probeviewer/trip.html:139
+#: ui/templates/ui/probeviewer/trip.html:141
 msgid "Sudden accelerations"
 msgstr "Järsud kiirendused"
 
-#: ui/templates/ui/probeviewer/trip.html:140
+#: ui/templates/ui/probeviewer/trip.html:142
 msgid "Sudden decelerations"
 msgstr "Järsud aeglustused"
 
-#: ui/templates/ui/probeviewer/trip.html:141
+#: ui/templates/ui/probeviewer/trip.html:143
 msgid "Odometer at start"
 msgstr "Odomeeter alguses"
 
-#: ui/templates/ui/probeviewer/trip.html:152
+#: ui/templates/ui/probeviewer/trip.html:154
 msgid "A/C consumption"
 msgstr "Kliimaseadme tarbimine"
 
-#: ui/templates/ui/probeviewer/trip.html:153
+#: ui/templates/ui/probeviewer/trip.html:155
 msgid "Auxiliary consumption"
 msgstr "Abiseadmete tarbimine"
 
-#: ui/templates/ui/probeviewer/trip.html:154
+#: ui/templates/ui/probeviewer/trip.html:156
 msgid "Motor consumption"
 msgstr "Mootori tarbimine"
 
-#: ui/templates/ui/probeviewer/trip.html:155
+#: ui/templates/ui/probeviewer/trip.html:157
 msgid "Idle consumption"
 msgstr "Tühikäigu tarbimine"
 
-#: ui/templates/ui/probeviewer/trip.html:157
+#: ui/templates/ui/probeviewer/trip.html:159
 msgid "Sudden acceleration consumption"
 msgstr "Järsku kiirenduse tarbimine"
 
-#: ui/templates/ui/probeviewer/trip.html:158
+#: ui/templates/ui/probeviewer/trip.html:160
 msgid "Sudden acceleration time"
 msgstr "Järsku kiirenduse aeg"
 
-#: ui/templates/ui/probeviewer/trip.html:159
+#: ui/templates/ui/probeviewer/trip.html:161
 msgid "Non-eco deceleration consumption"
 msgstr "Mitte-ökonoomse aeglustuse tarbimine"
 
-#: ui/templates/ui/probeviewer/trip.html:160
+#: ui/templates/ui/probeviewer/trip.html:162
 msgid "Non-eco deceleration time"
 msgstr "Mitte-ökonoomse aeglustuse aeg"
 
-#: ui/templates/ui/probeviewer/trip.html:161
+#: ui/templates/ui/probeviewer/trip.html:163
 msgid "Sudden start consumption"
 msgstr "Järsku käivitamise tarbimine"
 
-#: ui/templates/ui/probeviewer/trip.html:162
+#: ui/templates/ui/probeviewer/trip.html:164
 msgid "Sudden start time"
 msgstr "Järsku käivitamise aeg"
 
-#: ui/templates/ui/probeviewer/trip.html:168
+#: ui/templates/ui/probeviewer/trip.html:170
 msgid "Trip start"
 msgstr "Sõidu algus"
 
-#: ui/templates/ui/probeviewer/trip.html:170
-#: ui/templates/ui/probeviewer/trip.html:187
+#: ui/templates/ui/probeviewer/trip.html:172
+#: ui/templates/ui/probeviewer/trip.html:189
 msgid "Battery pack temperature"
 msgstr "Aku temperatuuri"
 
-#: ui/templates/ui/probeviewer/trip.html:172
-#: ui/templates/ui/probeviewer/trip.html:173
-#: ui/templates/ui/probeviewer/trip.html:189
-#: ui/templates/ui/probeviewer/trip.html:190
+#: ui/templates/ui/probeviewer/trip.html:174
+#: ui/templates/ui/probeviewer/trip.html:175
+#: ui/templates/ui/probeviewer/trip.html:191
+#: ui/templates/ui/probeviewer/trip.html:192
 msgid "Energy content"
 msgstr "Energiasisaldus"
 
-#: ui/templates/ui/probeviewer/trip.html:174
-#: ui/templates/ui/probeviewer/trip.html:191
+#: ui/templates/ui/probeviewer/trip.html:176
+#: ui/templates/ui/probeviewer/trip.html:193
 msgid "Average cell temperature"
 msgstr "Keskmine raku temperatuur"
 
-#: ui/templates/ui/probeviewer/trip.html:175
-#: ui/templates/ui/probeviewer/trip.html:192
+#: ui/templates/ui/probeviewer/trip.html:177
+#: ui/templates/ui/probeviewer/trip.html:194
 msgid "Max cell temperature"
 msgstr "Maksimaalne raku temperatuur"
 
-#: ui/templates/ui/probeviewer/trip.html:176
-#: ui/templates/ui/probeviewer/trip.html:193
+#: ui/templates/ui/probeviewer/trip.html:178
+#: ui/templates/ui/probeviewer/trip.html:195
 msgid "Min cell temperature"
 msgstr "Minimaalne raku temperatuur"
 
-#: ui/templates/ui/probeviewer/trip.html:177
+#: ui/templates/ui/probeviewer/trip.html:179
 msgid "Average cell voltage"
 msgstr "Keskmine raku pinge"
 
-#: ui/templates/ui/probeviewer/trip.html:178
+#: ui/templates/ui/probeviewer/trip.html:180
 msgid "Max cell voltage"
 msgstr "Maksimaalne raku pinge"
 
-#: ui/templates/ui/probeviewer/trip.html:179
+#: ui/templates/ui/probeviewer/trip.html:181
 msgid "Min cell voltage"
 msgstr "Minimaalne raku pinge"
 
-#: ui/templates/ui/probeviewer/trip.html:180
+#: ui/templates/ui/probeviewer/trip.html:182
 msgid "AC charges (total?)"
 msgstr "Vahelduvvoolu laadimised (kokku?)"
 
-#: ui/templates/ui/probeviewer/trip.html:181
+#: ui/templates/ui/probeviewer/trip.html:183
 msgid "QC charges (total?)"
 msgstr "Kiirlaadimised (kokku?)"
 
-#: ui/templates/ui/probeviewer/trip.html:185
+#: ui/templates/ui/probeviewer/trip.html:187
 msgid "Trip end"
 msgstr "Sõidu lõpp"
 
-#: ui/templates/ui/probeviewer/trip.html:194
+#: ui/templates/ui/probeviewer/trip.html:196
 msgid "Accumulated current"
 msgstr "Kogunenud vool"
 
-#: ui/templates/ui/probeviewer/trip.html:195
-#: ui/templates/ui/probeviewer/trip.html:199
+#: ui/templates/ui/probeviewer/trip.html:197
+#: ui/templates/ui/probeviewer/trip.html:201
 msgid "SOH"
 msgstr "Aku seisund"
 
-#: ui/templates/ui/probeviewer/trip.html:196
+#: ui/templates/ui/probeviewer/trip.html:198
 msgid "Pack resistance"
 msgstr "Aku takistus"
 
-#: ui/templates/ui/probeviewer/trip.html:200
+#: ui/templates/ui/probeviewer/trip.html:202
 msgid "New battery degradation analysis program"
 msgstr "Uus aku degradeerumise analüüsi programm"
 
@@ -2768,71 +2772,79 @@ msgstr "Ekspordi VFlash"
 msgid "Unknown"
 msgstr "Tundmatu"
 
-#: ui/views.py:36
+#: ui/views.py:37
 msgid "TCU setup"
 msgstr "TCU seadistamine"
 
-#: ui/views.py:37
+#: ui/views.py:38
 msgid "TCU identifiers"
 msgstr "TCU identifikaatorid"
 
-#: ui/views.py:38
+#: ui/views.py:39
 msgid "Basic information"
 msgstr "Põhiinfo"
 
-#: ui/views.py:39
+#: ui/views.py:40
 msgid "SMS configuration"
 msgstr "SMS konfiguratsioon"
 
-#: ui/views.py:40
+#: ui/views.py:41
 msgid "Car added"
 msgstr "Auto lisatud"
 
-#: ui/views.py:100
+#: ui/views.py:103
 msgid "Account successfully updated!"
 msgstr "Konto edukalt uuendatud!"
 
-#: ui/views.py:103 ui/views.py:724
+#: ui/views.py:106 ui/views.py:736
 msgid "Please fill the form correctly and try again."
 msgstr "Palun täida vorm korrektselt ja proovi uuesti."
 
-#: ui/views.py:470
+#: ui/views.py:480
 msgid "Successfully saved settings."
 msgstr "Seaded edukalt salvestatud."
 
-#: ui/views.py:472 ui/views.py:601 ui/views.py:622
+#: ui/views.py:482 ui/views.py:613 ui/views.py:634
 msgid "Please fill the form correctly"
 msgstr "Palun täida vorm korrektselt"
 
-#: ui/views.py:475 ui/views.py:657
+#: ui/views.py:485 ui/views.py:669
 msgid "Please fill all necessary fields and try again."
 msgstr "Palun täida kõik vajalikud väljad ja proovi uuesti."
 
-#: ui/views.py:479
+#: ui/views.py:489
 msgid "Waiting for first connection.."
 msgstr "Ootan esimest ühendust..."
 
-#: ui/views.py:519
+#: ui/views.py:529
 msgid "Sign-up is not enabled on this instance"
 msgstr "Registreerumine pole selles eksemplaris lubatud"
 
-#: ui/views.py:548
+#: ui/views.py:557
+msgid ""
+"Your current timezone is UTC. Please set your local timezone in account "
+"settings."
+msgstr ""
+"Teie praegune ajavöönd on UTC. Palun määrake oma kohalik ajavöönd konto "
+"seadetes."
+
+#: ui/views.py:560
 msgid "Invalid username or password."
 msgstr "Vale kasutajanimi või parool."
 
-#: ui/views.py:588
+#: ui/views.py:600
 msgid "Car is already added. Please remove and try again."
 msgstr "Auto on juba lisatud. Palun eemalda ja proovi uuesti."
 
-#: ui/views.py:638
+#: ui/views.py:650
 msgid "Please select a provider for SMS."
 msgstr "Palun vali SMS-teenuse pakkuja."
 
-#: ui/views.py:716
+#: ui/views.py:728
 msgid "Update requested! Update will occur on next boot."
 msgstr "Värskendust taotletud! Värskendus toimub järgmisel käivitamisel."
 
-#: ui/views.py:722
+#: ui/views.py:734
 msgid "Update request cancelled!"
 msgstr "Update request cancelled!"
 

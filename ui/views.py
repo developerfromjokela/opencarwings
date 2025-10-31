@@ -1,3 +1,4 @@
+import json
 import re
 from http.cookiejar import CookiePolicy
 from urllib.parse import urlparse, parse_qs, unquote
@@ -13,13 +14,13 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render, redirect
+from django.templatetags.static import static
 from django.utils.translation import gettext_lazy as _
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from dateutil.zoneinfo import get_zonefile_instance
 
 from db.models import Car, COMMAND_TYPES, AlertHistory, EVInfo, LocationInfo, TCUConfiguration, PERIODIC_REFRESH, \
     PERIODIC_REFRESH_ACTIVE, CAR_COLOR, CRMLatest, CRMLifetime, CRMTripRecord, CRMMonthlyRecord, CRMChargeHistoryRecord, \
@@ -427,7 +428,28 @@ def change_carwings_password(request):
 
 def car_list(request):
     if not request.user.is_authenticated:
-        return render(request, 'ui/landing.html')
+        slideshow_images = [
+            {"url": static('slideshow/img0.jpeg')},
+            {"url": static('slideshow/img1.jpeg')},
+            {"url": static('slideshow/img2.jpeg')},
+            {"url": static('slideshow/img3.jpeg')},
+            {"url": static('slideshow/img4.jpeg')},
+            {"url": static('slideshow/img5.jpeg')},
+            {"url": static('slideshow/img6.jpeg')},
+            {"url": static('slideshow/img7.jpeg')},
+            {"url": static('slideshow/img8.jpeg')},
+            {"url": static('slideshow/img9.jpeg')},
+            {"url": static('slideshow/img10.jpeg')},
+            {"url": static('slideshow/img11.jpeg')},
+            {"url": static('slideshow/img12.jpeg')},
+            {"url": static('slideshow/img13.jpeg')},
+            {"url": static('slideshow/img14.jpeg')},
+            {"url": static('slideshow/img15.jpeg')}
+        ]
+
+        return render(request, 'ui/landing.html', {
+            'slideshow_images': json.dumps(slideshow_images)
+        })
     cars = Car.objects.filter(owner=request.user)
     return render(request, 'ui/car_list.html', {'cars': cars})
 

@@ -1,37 +1,118 @@
 {% extends 'ui/base.html' %}
 {% load i18n %}
-{% block title %} {% translate "CARWINGS reborn" %} {% endblock %}
+
+{% block title %}
+  {% translate "CARWINGS reborn" %}
+{% endblock %}
 
 {% block content %}
-    <!-- Main Container -->
-    <section class="max-w-6xl mx-auto py-20 px-4">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                        <!-- Login Section (Right Column) -->
-            <div class="bg-gray-100 dark:bg-gray-700 p-8 rounded-lg shadow-md md:col-span-1">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6 text-center">{% translate "Sign In" %}</h2>
-                <form method="POST" action="/signin" class="space-y-6">
-                    {% csrf_token %}
-                    <div>
-                        <label for="username" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">{% translate "Username" %}</label>
-                        <input type="text" id="username" name="username" class="w-full px-4 py-2 border dark:bg-gray-800 dark:border-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="{% blocktranslate %}Enter your username{% endblocktranslate %}" required>
-                    </div>
-                    <div>
-                        <label for="password" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">{% translate "Password" %}</label>
-                        <input type="password" id="password" name="password" class="w-full px-4 py-2 border  dark:bg-gray-800 dark:border-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="{% blocktranslate %}Enter your password{% endblocktranslate %}" required>
-                    </div>
-                    <button type="submit" class="w-full bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600 transition duration-300 font-semibold">{% translate "Sign In" %}</button>
-                </form>
-                <p class="text-center text-gray-600 mt-4"><a href="{% url 'password_reset' %}" class="text-blue-500 hover:underline">{% translate "Forgot password?" %}</a></p>
-            </div>
-            <!-- Intro Section (Left Column) -->
-            <div class="text-center md:text-left md:col-span-2">
-                <h1 class="text-5xl font-extrabold text-gray-800 dark:text-gray-50 mb-4" style="line-height: 1.2em;">{% translate "Take Back Control of Your Nissan LEAF" %}</h1>
-                <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-lg mx-auto md:mx-0">{% translate "The iconic Nissan LEAF deserves more than abandonment. With the manufacturer's support fading, the community steps up. Sign up now to bring your LEAF back to life!" %}</p>
-                <a href="/signup" class="bg-blue-500 text-white px-8 py-4 rounded-md text-lg font-semibold hover:bg-blue-600 transition duration-300 inline-block">{% translate "Get Started" %}</a>
-            </div>
 
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
+<section class="max-w-6xl mx-auto py-20 px-4">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
+
+    <!-- ==================== LOGIN BOX (TOP-ALIGNED) ==================== -->
+    <div class="bg-gray-100 dark:bg-gray-700 p-8 rounded-lg shadow-md
+                self-start
+                w-full max-w-sm mx-auto md:mx-0">
+      <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6 text-center">
+        {% translate "Sign In" %}
+      </h2>
+
+      <form method="POST" action="/signin" class="space-y-6">
+        {% csrf_token %}
+
+        <div>
+          <label for="username" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">
+            {% translate "Username" %}
+          </label>
+          <input type="text" id="username" name="username"
+                 class="w-full px-4 py-2 border dark:bg-gray-800 dark:border-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                 placeholder="{% blocktranslate %}Enter your username{% endblocktranslate %}" required>
         </div>
-    </section>
 
+        <div>
+          <label for="password" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">
+            {% translate "Password" %}
+          </label>
+          <input type="password" id="password" name="password"
+                 class="w-full px-4 py-2 border dark:bg-gray-800 dark:border-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                 placeholder="{% blocktranslate %}Enter your password{% endblocktranslate %}" required>
+        </div>
+
+        <button type="submit"
+                class="w-full bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600 transition duration-300 font-semibold">
+          {% translate "Sign In" %}
+        </button>
+      </form>
+
+      <p class="text-center text-gray-600 mt-4">
+        <a href="{% url 'password_reset' %}" class="text-blue-500 hover:underline">
+          {% translate "Forgot password?" %}
+        </a>
+      </p>
+    </div>
+
+    <!-- ==================== INTRO + SLIDESHOW ==================== -->
+    <div class="md:col-span-2" x-data="slideshow()" x-init="init()">
+      <!-- Slideshow -->
+      <div class="relative overflow-hidden rounded-lg shadow-xl mb-8 h-8 md:h-[27rem]">
+        <template x-for="(slide, index) in slides" :key="index">
+          <div class="absolute inset-0 transition-opacity duration-1000 ease-in-out"
+               :style="{ opacity: currentIndex === index ? 1 : 0, 'z-index': currentIndex === index ? 10 : 1 }">
+            <img :src="slide.url" :alt="slide.alt"
+                 class="w-full h-full object-cover">
+          </div>
+        </template>
+
+        <!-- Navigation Dots -->
+        <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-40">
+          <template x-for="(slide, index) in slides" :key="index">
+            <button @click="currentIndex = index"
+                    class="w-3 h-3 rounded-full transition-colors z-40"
+                    :class="currentIndex === index ? 'bg-white' : 'bg-white/50'"
+                    :aria-label="'Slide ' + (index + 1)"></button>
+          </template>
+        </div>
+      </div>
+
+      <!-- Text Content -->
+      <div class="text-center md:text-left">
+        <h1 class="text-3xl font-extrabold text-gray-800 dark:text-gray-50 mb-4" style="line-height: 1.2em;">
+          {% translate "Take Back Control of Your Nissan LEAF" %}
+        </h1>
+        <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-lg mx-auto md:mx-0">
+          {% translate "The iconic Nissan LEAF deserves more than abandonment. With the manufacturer's support fading, the community steps up. Sign up now to bring your LEAF back to life!" %}
+        </p>
+        <a href="/signup"
+           class="bg-blue-500 text-white px-8 py-4 rounded-md text-lg font-semibold hover:bg-blue-600 transition duration-300 inline-block">
+          {% translate "Get Started" %}
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+let initDone = false;
+function slideshow() {
+  return {
+    currentIndex: 0,
+    slides: {{ slideshow_images|safe }},
+
+    next() {
+      this.currentIndex = (this.currentIndex+1 >= this.slides.length) ? 0 : (this.currentIndex + 1);
+    },
+
+    init() {
+      if (initDone)
+          return
+      initDone = true;
+      setInterval(() => this.next(), 4000);
+    }
+  };
+}
+</script>
 {% endblock %}

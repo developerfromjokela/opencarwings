@@ -741,7 +741,7 @@ def update_crm_to_db(car: Car, crm_pload):
             charge_db = CRMChargeRecord()
             charge_db.car = car
             charge_db.latitude = charge.get("lat", 0)
-            charge_db.longitude = charge.get("lon", 0)
+            charge_db.longitude = charge.get("long", 0)
             charge_db.charge_count = charge.get("charge_count", 0)
             charge_db.charge_type = charge.get("charge_type", 1)
             charge_db.start_time = apply_date_patch(charge.get("start_ts", datetime.datetime(1970, 1, 1)))

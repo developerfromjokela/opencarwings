@@ -2,6 +2,12 @@ from datetime import datetime
 
 from tculink.carwings_proto.utils import encode_utf8
 
+def int_to_bytes_safe(value, num_bytes, byteorder='big'|'little'):
+    try:
+        return value.to_bytes(num_bytes, byteorder)
+    except OverflowError:
+        max_value = (2 ** (num_bytes * 8)) - 1
+        return max_value.to_bytes(num_bytes, byteorder)
 
 def pad_bytes(data: bytes, length=6, padding=b'\xFF') -> bytes:
     if len(data) > length:
@@ -165,22 +171,24 @@ def create_cpinfo(obj):
     encoded_phone = encode_utf8(obj['phone'])
     payload += len(encoded_phone).to_bytes(1, 'big')
     payload += encoded_phone
-    payload += len(obj['sites']).to_bytes(1, 'big')
-    for site in obj['sites']:
+    sites = obj['sites'][:255]
+    payload += len(sites).to_bytes(1, 'big')
+    for site in sites:
         # 6-byte infoblock
         payload += site
-    payload += len(obj['stations']).to_bytes(1, 'big')
-    for station in obj['stations']:
+    sites = obj['stations'][:255]
+    payload += len(sites).to_bytes(1, 'big')
+    for station in sites:
         payload += b'\x00'*4
         # flag
-        payload += station['flag1'].to_bytes(1, 'big')
-        payload += station['fast_flag'].to_bytes(1, 'big')
-        payload += station['slow_flag'].to_bytes(1, 'big')
-        payload += station['flag2'].to_bytes(1, 'big')
+        payload += int_to_bytes_safe(station['flag1'], 1, 'big')
+        payload += int_to_bytes_safe(station['fast_flag'], 1, 'big')
+        payload += int_to_bytes_safe(station['slow_flag'], 1, 'big')
+        payload += int_to_bytes_safe(station['flag2'], 1, 'big')
         payload += b'\x00'*2
-        payload += station['flag3'].to_bytes(1, 'big')
+        payload += int_to_bytes_safe(station['flag3'], 1, 'big')
         # desc
-        encoded_optdesc = encode_utf8(station['opt_desc'])
+        encoded_optdesc = encode_utf8(station['opt_desc'])[:255]
         payload += len(encoded_optdesc).to_bytes(1, 'big')
         payload += encoded_optdesc
 

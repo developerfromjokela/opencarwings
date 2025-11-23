@@ -83,14 +83,14 @@ def parse_crmfile(data):
                     size += 1
                 size = size+2
             elif meta["type"] == 0x10:
-                size_field = dotfile_data[pos + 7]
+                size_field = dotfile_data[pos + 8]
                 logger.debug("MSN Byte count: %s", size_field)
                 logger.debug("Size: %s", hex(size))
-                size = size+8
+                size = size + 8 + size_field
             elif meta["type"] == 0x11:
                 size_field = dotfile_data[pos + 1]
                 logger.debug("Block count: %d", size_field)
-                size = 30 * size_field
+                size = 22 * size_field
                 logger.debug("Size: %s", hex(size))
                 size = size+2
             elif meta["type"] == 0x12 or meta["type"] == 0x13\
@@ -507,26 +507,25 @@ def parse_crmfile(data):
         if crmblock["type"] == 0xC4:
             draft_struct["aquisition_ts"] = datetime.datetime(2000 + block_data[0], block_data[1], block_data[2], block_data[3],
                                                       block_data[4], block_data[5], block_data[6])
-            draft_struct["data"] = block_data[18:]
+            draft_struct["data"] = block_data[8:]
             continue
 
         # charges
         if crmblock["type"] == 0xC5:
             items_count = block_data[0]
-            for i in range(items_count+1):
-                location = parse_std_location(struct.unpack('>i',block_data[1:5])[0], struct.unpack('>i',block_data[5:9])[0])
+            items_data = block_data[1:]
+            for i in range(items_count):
+                block_data = items_data[(22*i):22+(22*i)]
+                location = parse_std_location(struct.unpack('>i',block_data[:4])[0], struct.unpack('>i',block_data[4:8])[0])
                 parse_result[currentblock].append({
                     "lat": location[0],
-                    "lon": location[1],
-                    "charge_count": block_data[9],
-                    "charge_type": block_data[10],
-                    "start_ts": datetime.datetime(2000 + block_data[11], block_data[12], block_data[13], block_data[14],
-                                                      int(block_data[15]/60), int(block_data[16]%60)),
-                    "end_ts": datetime.datetime(2000 + block_data[17], block_data[18], block_data[19], block_data[20],
-                                                      int(block_data[21]/60), int(block_data[22]%60)),
-                    "other_ts": datetime.datetime(2000 + block_data[24], block_data[25], block_data[26], block_data[27],
-                                                int(block_data[28]/60), int(block_data[29]%60)),
-                    "charger_position_flag": block_data[23],
+                    "long": location[1],
+                    "charge_count": block_data[8],
+                    "charge_type": block_data[9],
+                    "start_ts": datetime.datetime(2000 + block_data[10], block_data[11], block_data[12], block_data[13],
+                                                      int(block_data[14]/60), int(block_data[15]%60)),
+                    "end_ts": datetime.datetime(2000 + block_data[16], block_data[17], block_data[18], block_data[19],
+                                                      int(block_data[20]/60), int(block_data[21]%60)),
                 })
             continue
 
@@ -733,7 +732,7 @@ def update_crm_to_db(car: Car, crm_pload):
             msn_db = CRMMSNRecord()
             msn_db.car = car
             msn_db.timestamp = apply_date_patch(msn.get("aquisition_ts", datetime.datetime(1970, 1, 1)))
-            msn_db.data = {"v": 0, "data": hex(msn.get("data", bytearray()))}
+            msn_db.data = {"v": 1, "data": (msn.get("data", bytearray()) or bytearray()).decode('utf-8')}
             msn_db.save()
 
     if "charge" in crm_pload:

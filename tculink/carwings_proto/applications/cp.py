@@ -109,7 +109,7 @@ def find_containing_mesh_id(lat, lon, bounding_boxes):
     nearest_mesh_id = None
     nearest_bbox = None
 
-    logger.warning("Searching for nearest meshid: %f %f", lat, lon)
+    logger.info("Searching for nearest meshid: %f %f", lat, lon)
 
     for mesh_id, bbox in bounding_boxes.items():
         distance = distance_to_bounding_box(lat, lon, bbox)
@@ -505,7 +505,7 @@ def handle_cp(xml_data, files):
                             # 3 -> no slow, 180 -> New type 20, 179 -> New type 19, 178 -> Mode 3, type 3 socket. 177 -> Mode 3, type 1. 176 -> Blue industrial socket
                             'slow_flag': station_ac_type,
                             # stations count?
-                            'flag2': charger["NumberOfPoints"] or 1,
+                            'flag2': int(charger["NumberOfPoints"] or 1),
                             'flag3': 2,
                             'opt_desc': '',
                         }

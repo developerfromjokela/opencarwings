@@ -2,7 +2,7 @@ from datetime import datetime
 
 from tculink.carwings_proto.utils import encode_utf8
 
-def int_to_bytes_safe(value, num_bytes, byteorder='big'|'little'):
+def int_to_bytes_safe(value, num_bytes, byteorder='big'):
     try:
         return value.to_bytes(num_bytes, byteorder)
     except OverflowError:

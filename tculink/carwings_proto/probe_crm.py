@@ -527,6 +527,7 @@ def parse_crmfile(data):
                     "end_ts": datetime.datetime(2000 + block_data[16], block_data[17], block_data[18], block_data[19],
                                                       int(block_data[20]/60), int(block_data[21]%60)),
                 })
+            currentblock = None
             continue
 
         # charge history

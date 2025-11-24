@@ -10,6 +10,7 @@
 {% block title %} {% translate "Vehicle data viewer" %} - {{car.nickname}} {% endblock %}
 {% block content %}
     <script>
+    const staticRes = "{% get_static_prefix %}";
     let maps = [];
     function initChargeMap(mapId, lat, lon) {
         let latlon = [lat,lon];
@@ -21,6 +22,26 @@
         chargemap.invalidateSize();
         chargemap.setView(latlon, 12);
         maps.push(chargemap);
+    }
+    function initAbsMap(mapId, lat, lon, heading) {
+        let latlon = [lat,lon];
+        let absMap = L.map(mapId, { zoomControl: false });
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: ''
+        }).addTo(absMap);
+        let markerIcn = L.divIcon({
+            className: 'rotatable-marker',
+            html: `<div class="marker-wrapper" style="transform: rotate(${heading}deg);">
+                     <img src="${staticRes}arrow.svg" class="marker-icon">
+                   </div>`,
+            iconSize: [24, 24],
+            iconAnchor: [12, 24],
+            popupAnchor: [0, -24],
+          });
+        L.marker(latlon, {icon: markerIcn}).addTo(absMap)
+        absMap.invalidateSize();
+        absMap.setView(latlon, 16);
+        maps.push(absMap);
     }
     </script>
         <div class="max-w-6xl mx-auto py-6 px-4 sm:px-6">
@@ -509,7 +530,6 @@
                                     <dl class="mt-2 grid grid-cols-2 lg:grid-cols-4 md:grid-cols-3 gap-3 text-sm sm:text-base">
                                         <div><dt class="text-gray-500 dark:text-gray-300 text-sm"><i class="mic material-symbols-outlined">history</i> {% translate "Charge count" %}</dt><dd class="text-gray-600 dark:text-gray-200 font-semibold">{{ history.charge_count|floatformat:0 }}</dd></div>
                                         <div><dt class="text-gray-500 dark:text-gray-300 text-sm"><i class="mic material-symbols-outlined">{% if history.charge_type == 2 %}ev_station{% else %}electrical_services{% endif %}</i> {% translate "Charging type" %}</dt><dd class="text-gray-600 dark:text-gray-200 font-semibold">{{ history.get_charge_type_display }}</dd></div>
-                                        <div><dt class="text-gray-500 dark:text-gray-300 text-sm"><i class="mic material-symbols-outlined">location_on</i> {% translate "Charge position" %}</dt><dd class="text-gray-600 dark:text-gray-200 font-semibold">{{ history.latitude }},{{ history.longitude }}</dd></div>
                                     </dl>
                                 </div>
                             </li>
@@ -562,18 +582,17 @@
                     {% for history in abs %}
                         <div class="flex flex-col md:flex-row gap-2">
                             <div id="abs-map-{{ history.pk }}" class="basis-64 mx-2 my-2" style="min-height:150px; max-height: 300px; border-radius: 8px"></div>
-                            <script>document.addEventListener('DOMContentLoaded', ()=>{initChargeMap("abs-map-{{ history.pk }}", {{ history.latitude|default:"null"|unlocalize }}, {{ history.longitude|default:"null"|unlocalize }})})</script>
+                            <script>document.addEventListener('DOMContentLoaded', ()=>{initAbsMap("abs-map-{{ history.pk }}", {{ history.latitude|default:"null"|unlocalize }}, {{ history.longitude|default:"null"|unlocalize }}, {{ history.direction|default:"null"|unlocalize }})})</script>
                             <li class="py-3 sm:pb-4 basis-128 mx-2">
                                 <div class="flex-1 min-w-0">
                                     <p class="text-lg font-medium text-gray-900 dark:text-gray-100">
                                        {{ history.timestamp }}
                                     </p>
                                     <dl class="mt-2 grid grid-cols-2 lg:grid-cols-4 md:grid-cols-3 gap-3 text-sm sm:text-base">
-                                        <div><dt class="text-gray-500 dark:text-gray-300 text-sm"><i class="mic material-symbols-outlined">timer</i> {% translate "Operation time" %}</dt><dd class="text-gray-600 dark:text-gray-200 font-semibold">{{ history.operation_time|floatformat:2 }} sec</dd></div>
-                                        <div><dt class="text-gray-500 dark:text-gray-300 text-sm"><i class="mic material-symbols-outlined">speed</i> {% translate "Vehicle speed at start" %}</dt><dd class="text-gray-600 dark:text-gray-200 font-semibold">{{ history.vehicle_speed_start|floatformat:2 }}</dd></div>
+                                        <div><dt class="text-gray-500 dark:text-gray-300 text-sm"><i class="mic material-symbols-outlined">timer</i> {% translate "Operation time" %}</dt><dd class="text-gray-600 dark:text-gray-200 font-semibold">{{ history.operation_time|div:10|floatformat:2 }} sec</dd></div>
+                                        <div><dt class="text-gray-500 dark:text-gray-300 text-sm"><i class="mic material-symbols-outlined">speed</i> {% translate "Vehicle speed at start" %}</dt><dd class="text-gray-600 dark:text-gray-200 font-semibold">{% local_spd history.vehicle_speed_start decimals=2 %}</dd></div>
                                         <div><dt class="text-gray-500 dark:text-gray-300 text-sm"><i class="mic material-symbols-outlined">speed</i> {% translate "Vehicle speed at end" %}</dt><dd class="text-gray-600 dark:text-gray-200 font-semibold">{% local_spd history.vehicle_speed_end decimals=2 %}</dd></div>
                                         <div><dt class="text-gray-500 dark:text-gray-300 text-sm"><i class="mic material-symbols-outlined">roundabout_left</i> {% translate "Road type" %}</dt><dd class="text-gray-600 dark:text-gray-200 font-semibold">{{ history.road_type|floatformat:0 }}</dd></div>
-                                        <div><dt class="text-gray-500 dark:text-gray-300 text-sm"><i class="mic material-symbols-outlined">near_me</i> {% translate "Direction" %}</dt><dd class="text-gray-600 dark:text-gray-200 font-semibold">{{ history.direction|floatformat:1 }}</dd></div>
                                     </dl>
                                 </div>
                             </li>

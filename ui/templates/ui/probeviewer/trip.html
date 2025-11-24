@@ -33,7 +33,12 @@
                 </div>
                 <div class="status-box">
                     <dt><i class="mic material-symbols-outlined">charger</i> {% translate "Energy consumed" %}</dt>
-                    <dd id="overview-range-acon">{{ trip.motor_consumption|addition:trip.aircon_consumption|div:10000.0|floatformat:1 }} kWh</dd>
+                    <dd id="overview-range-acon">
+                    {% if trip.motor_consumption != 0 and trip.aircon_consumption != 0 %}
+                        {% with regen=trip.aircon_consumption|div:1000000.0 %}
+                        {{ trip.motor_consumption|div:10000.0|add:regen|floatformat:1 }}
+                        {% endwith %}
+                    {% else %}0{% endif %} kWh</dd>
                 </div>
                 <div class="status-box">
                     <dt><i class="mic material-symbols-outlined">timer</i> {% translate "Duration" %}</dt>
@@ -70,7 +75,7 @@
                 </div>
                 <div class="status-box">
                     <dt><i class="mic material-symbols-outlined">eco</i> {% translate "Regenerated" %}</dt>
-                    <dd id="overview-range-acon">{{ trip.regen|div:100000.0|floatformat:1 }} kWh</dd>
+                    <dd id="overview-range-acon">{{ trip.regen|div:1000000.0|floatformat:1 }} kWh</dd>
                 </div>
                 {% if trip.wh_energy_start != 0 and trip.wh_energy_end != 0 and trip.distance != 0 %}
                     <div class="status-box">
@@ -151,16 +156,16 @@
             {% endif %}
             <div id="energy" class="tab-content">
                 <dl class="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-3 text-sm sm:text-base">
-                    <div><dt class="text-gray-500 dark:text-gray-300 text-sm"><i class="mic material-symbols-outlined">mode_fan</i> {% translate "A/C consumption" %}</dt><dd class="text-gray-600 dark:text-gray-200 font-semibold">{{ trip.aircon_consumption|div:10000|floatformat:2 }} kWh</dd></div>
-                    <div><dt class="text-gray-500 dark:text-gray-300 text-sm"><i class="mic material-symbols-outlined">smart_outlet</i> {% translate "Auxiliary consumption" %}</dt><dd class="text-gray-600 dark:text-gray-200 font-semibold">{{ trip.auxiliary_consumption|div:100000|floatformat:2 }} kWh</dd></div>
+                    <div><dt class="text-gray-500 dark:text-gray-300 text-sm"><i class="mic material-symbols-outlined">mode_fan</i> {% translate "A/C consumption" %}</dt><dd class="text-gray-600 dark:text-gray-200 font-semibold">{{ trip.aircon_consumption|div:1000000|floatformat:2 }} kWh</dd></div>
+                    <div><dt class="text-gray-500 dark:text-gray-300 text-sm"><i class="mic material-symbols-outlined">smart_outlet</i> {% translate "Auxiliary consumption" %}</dt><dd class="text-gray-600 dark:text-gray-200 font-semibold">{{ trip.auxiliary_consumption|div:1000000|floatformat:2 }} kWh</dd></div>
                     <div><dt class="text-gray-500 dark:text-gray-300 text-sm"><i class="mic material-symbols-outlined">directions_car</i> {% translate "Motor consumption" %}</dt><dd class="text-gray-600 dark:text-gray-200 font-semibold">{{ trip.motor_consumption|div:10000|floatformat:2 }} kWh</dd></div>
                     <div><dt class="text-gray-500 dark:text-gray-300 text-sm"><i class="mic material-symbols-outlined">pause_circle</i> {% translate "Idle consumption" %}</dt><dd class="text-gray-600 dark:text-gray-200 font-semibold">{{ trip.idle_consumption|div:100000|floatformat:2 }} kWh</dd></div>
-                    <div><dt class="text-gray-500 dark:text-gray-300 text-sm"><i class="mic material-symbols-outlined">energy_savings_leaf</i> {% translate "Regenerated energy" %}</dt><dd class="text-gray-600 dark:text-gray-200 font-semibold">{{ trip.regen|div:100000|floatformat:2 }} kWh</dd></div>
-                    <div><dt class="text-gray-500 dark:text-gray-300 text-sm"><i class="mic material-symbols-outlined">podiatry</i> {% translate "Sudden acceleration consumption" %}</dt><dd class="text-gray-600 dark:text-gray-200 font-semibold">{{ trip.sudden_acceleration_consumption|div:100000|floatformat:2 }} kWh</dd></div>
+                    <div><dt class="text-gray-500 dark:text-gray-300 text-sm"><i class="mic material-symbols-outlined">energy_savings_leaf</i> {% translate "Regenerated energy" %}</dt><dd class="text-gray-600 dark:text-gray-200 font-semibold">{{ trip.regen|div:1000000|floatformat:2 }} kWh</dd></div>
+                    <div><dt class="text-gray-500 dark:text-gray-300 text-sm"><i class="mic material-symbols-outlined">podiatry</i> {% translate "Sudden acceleration consumption" %}</dt><dd class="text-gray-600 dark:text-gray-200 font-semibold">{{ trip.sudden_acceleration_consumption|div:100000000|floatformat:2 }} kWh</dd></div>
                     <div><dt class="text-gray-500 dark:text-gray-300 text-sm"><i class="mic material-symbols-outlined">podiatry</i> {% translate "Sudden acceleration time" %}</dt><dd class="text-gray-600 dark:text-gray-200 font-semibold">{{ trip.sudden_acceleration_time }}</dd></div>
-                    <div><dt class="text-gray-500 dark:text-gray-300 text-sm"><i class="mic material-symbols-outlined">macro_off</i> {% translate "Non-eco deceleration consumption" %}</dt><dd class="text-gray-600 dark:text-gray-200 font-semibold">{{ trip.non_eco_deceleration_consumption|div:100000|floatformat:2 }} kWh</dd></div>
+                    <div><dt class="text-gray-500 dark:text-gray-300 text-sm"><i class="mic material-symbols-outlined">macro_off</i> {% translate "Non-eco deceleration consumption" %}</dt><dd class="text-gray-600 dark:text-gray-200 font-semibold">{{ trip.non_eco_deceleration_consumption|div:100000000|floatformat:2 }} kWh</dd></div>
                     <div><dt class="text-gray-500 dark:text-gray-300 text-sm"><i class="mic material-symbols-outlined">macro_off</i> {% translate "Non-eco deceleration time" %}</dt><dd class="text-gray-600 dark:text-gray-200 font-semibold">{{ trip.non_eco_deceleration_time }}</dd></div>
-                    <div><dt class="text-gray-500 dark:text-gray-300 text-sm"><i class="mic material-symbols-outlined">sprint</i> {% translate "Sudden start consumption" %}</dt><dd class="text-gray-600 dark:text-gray-200 font-semibold">{{ trip.sudden_start_consumption|div:100000|floatformat:2 }} kWh</dd></div>
+                    <div><dt class="text-gray-500 dark:text-gray-300 text-sm"><i class="mic material-symbols-outlined">sprint</i> {% translate "Sudden start consumption" %}</dt><dd class="text-gray-600 dark:text-gray-200 font-semibold">{{ trip.sudden_start_consumption|div:1000000|floatformat:2 }} kWh</dd></div>
                     <div><dt class="text-gray-500 dark:text-gray-300 text-sm"><i class="mic material-symbols-outlined">sprint</i> {% translate "Sudden start time" %}</dt><dd class="text-gray-600 dark:text-gray-200 font-semibold">{{ trip.sudden_start_time|floatformat }}</dd></div>
                 </dl>
             </div>

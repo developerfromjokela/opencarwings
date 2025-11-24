@@ -216,7 +216,7 @@ class CarSerializerList(serializers.ModelSerializer):
     last_connection = serializers.DateTimeField(read_only=True, default_timezone=pytz.utc)
     class Meta:
         model = Car
-        fields = ('vin', 'last_connection', 'nickname', 'ev_info', 'location')
+        fields = ('vin', 'last_connection', 'nickname', 'ev_info', 'location', 'carrier', 'signal_level')
 
 class CommandResponseSerializer(serializers.Serializer):
     message = serializers.CharField()

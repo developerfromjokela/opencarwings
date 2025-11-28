@@ -31,16 +31,17 @@ def get_car_owner_info(car):
 
 @sync_to_async
 def get_push_tokens(user):
-    tokens = TokenMetadata.objects.filter(user=user)
-    apns_tokens = []
-    fcm_tokens = []
+    tokens = TokenMetadata.objects.filter(user=user).order_by("-created_at")
+    apns_tokens = {}
+    fcm_tokens = {}
     for token in tokens:
         if (token.device_type == 'apple' and len(token.push_notification_key) > 20
                 and token.push_notification_key not in apns_tokens):
-            apns_tokens.append([token.push_notification_key, token.lang])
+            apns_tokens[token.push_notification_key] = token.lang
         if (token.device_type == 'fcm' and len(token.push_notification_key) > 20
                 and token.push_notification_key not in fcm_tokens):
-            fcm_tokens.append([token.push_notification_key, token.lang])
+            fcm_tokens[token.push_notification_key] = token.lang
+
     return {
         "apns": apns_tokens,
         "fcm": fcm_tokens
@@ -111,16 +112,16 @@ async def send_push_notification_for_user(car, car_owner, message, subject):
         )
 
     if apns_client is not None:
-        for apns_token in tokens["apns"]:
+        for apns_token, lang in tokens["apns"].items():
             try:
                 request = NotificationRequest(
-                    device_token=apns_token[0],
+                    device_token=apns_token,
                     message={
                         "aps": {
                             "alert": {
-                                "title": translate_msg(apns_token[1], subject),
+                                "title": translate_msg(lang, subject),
                                 "subtitle": car.nickname,
-                                "body": translate_msg(apns_token[1], message),
+                                "body": translate_msg(lang, message),
                             },
                             "sound": "default"
                         }
@@ -134,10 +135,10 @@ async def send_push_notification_for_user(car, car_owner, message, subject):
                 print("Failed to send APNS notification:", e)
 
     if fcm_client is not None:
-        for fcm_token in tokens["fcm"]:
+        for fcm_token, lang in tokens["fcm"].items():
             try:
-                result = fcm_client.notify(fcm_token=fcm_token[0], notification_title= f"{car.nickname}: {translate_msg(fcm_token[1], subject)}",
-                                    notification_body=translate_msg(fcm_token[1], message))
+                result = fcm_client.notify(fcm_token=fcm_token, notification_title= f"{car.nickname}: {translate_msg(fcm_token[1], subject)}",
+                                    notification_body=translate_msg(lang, message))
                 print(result)
             except Exception as e:
                 print("Failed to send FCM notification:", e)

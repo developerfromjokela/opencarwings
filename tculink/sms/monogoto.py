@@ -56,7 +56,7 @@ class ProviderMonogoto(BaseSMSProvider):
         sms_url = f'https://console.monogoto.io/thing/{thing_id}/sms'
         sms_data = {
             "Message": message,
-            "From": "OpenCarwings Server"
+            "From": "OCW"  # Max 8-character alphanumeric limit for Monogoto
         }
         headers = {
             'Accept': 'application/json',

@@ -476,7 +476,7 @@ def car_detail(request, vin):
             sms_config = {'provider': provider_id}
             for field in fields:
                 field_val = request.POST.get(f"{provider_id}-{field[0]}", "")
-                if len(field_val) < 2:
+                if len(field_val) < 2 or len(field_val) > 512:
                     fields_correct = False
                     break
                 sms_config[field[0]] = field_val.strip()
@@ -676,7 +676,7 @@ def setup_step4(request):
                 sms_config = {'provider': provider_id}
                 for field in fields:
                     field_val = request.POST.get(f"{provider_id}-{field[0]}", "")
-                    if len(field_val) < 2:
+                    if len(field_val) < 2 or len(field_val) > 512:
                         fields_correct = False
                         break
                     sms_config[field[0]] = field_val.strip()

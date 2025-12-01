@@ -21,7 +21,8 @@ Server for running CARWINGS services for Nissan LEAF.
 - [opencarwings.viaaq.eu](https://opencarwings.viaaq.eu)
 
 ## Self-hosting with docker
-Please visit this [Wiki article](https://github.com/developerfromjokela/opencarwings/wiki/Deploying-the-server-using-Docker) regarding self-hosting using docker
+
+Please visit this [Wiki article](https://github.com/developerfromjokela/opencarwings/wiki/Self%E2%80%90hosting-OpenCARWINGS-with-docker%E2%80%90compose) regarding self-hosting using docker
 
 ## TCU protocol and misc info
 Please check out repo: [nissan-leaf-tcu](https://github.com/developerfromjokela/nissan-leaf-tcu/)

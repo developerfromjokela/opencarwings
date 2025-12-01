@@ -476,19 +476,20 @@ def parse_crmfile(data):
             draft_struct["batt_degradation_analysis"] = {
                 "energy_content_start": int.from_bytes(block_data[:2], byteorder="big", signed=False),
                 "energy_content_end": int.from_bytes(block_data[2:4], byteorder="big", signed=False),
-                "avg_temp_start": block_data[5],
-                "max_temp_start": block_data[6],
-                "min_temp_start": block_data[7],
-                "avg_temp_end": block_data[8],
-                "max_temp_end": block_data[9],
-                "min_temp_end": block_data[10],
-                "avg_cell_volt_start": block_data[11],
-                "max_cell_volt_start": block_data[12],
-                "min_cell_volt_end": block_data[13],
-                "regen_end": block_data[14],
-                "number_qc_charges": block_data[15],
-                "number_ac_charges": block_data[16],
-                "soc_end": block_data[16],
+                "avg_temp_start": block_data[4],
+                "max_temp_start": block_data[5],
+                "min_temp_start": block_data[6],
+                "avg_temp_end": block_data[7],
+                "max_temp_end": block_data[8],
+                "min_temp_end": block_data[9],
+                # CAN x5C0: LB_HistData_Cell_Voltage_MIN, MAX and AVG
+                "avg_cell_volt_start": block_data[10],
+                "max_cell_volt_start": block_data[11],
+                "min_cell_volt_start": block_data[12],
+                "regen_end": block_data[13],
+                "number_qc_charges": block_data[14],
+                "number_ac_charges": block_data[15],
+                "soh_end": block_data[16],
                 "resistance_end": block_data[17],
             }
             continue
@@ -500,7 +501,7 @@ def parse_crmfile(data):
                 "capacity_bars_end": block_data[0]
             }
             if len(block_data) > 1:
-                draft_struct["batt_degradation_analysis_new"]["soc_end"] = block_data[1]
+                draft_struct["batt_degradation_analysis_new"]["soh_end"] = block_data[1]
             continue
 
         # msn
@@ -859,7 +860,7 @@ def update_crm_to_db(car: Car, crm_pload):
             trip_db.non_constant_speeds = json.dumps(trip.get("non_constant_speeds", []), default=str)
             if "batt_info" in trip:
                 trip_db.batt_temp_start = trip["batt_info"].get("temp_start", 0)
-                trip_db.batt_temp_stop = trip["batt_info"].get("temp_end", 0)
+                trip_db.batt_temp_end = trip["batt_info"].get("temp_end", 0)
                 trip_db.soh_start = trip["batt_info"].get("soh_start", 0)
                 trip_db.soh_end = trip["batt_info"].get("soh_end", 0)
                 trip_db.wh_energy_start = trip["batt_info"].get("wh_energy_start", 0)
@@ -875,15 +876,15 @@ def update_crm_to_db(car: Car, crm_pload):
                 trip_db.bda_min_temp_end = trip["batt_degradation_analysis"].get("min_temp_end", 0)
                 trip_db.bda_avg_cell_volt_start = trip["batt_degradation_analysis"].get("avg_cell_volt_start", 0)
                 trip_db.bda_max_cell_volt_start = trip["batt_degradation_analysis"].get("max_cell_volt_start", 0)
-                trip_db.bda_min_cell_volt_start = trip["batt_degradation_analysis"].get("min_cell_volt_end", 0)
+                trip_db.bda_min_cell_volt_start = trip["batt_degradation_analysis"].get("min_cell_volt_start", 0)
                 trip_db.bda_regen_end = trip["batt_degradation_analysis"].get("regen_end", 0)
                 trip_db.bda_number_ac_charges = trip["batt_degradation_analysis"].get("number_ac_charges", 0)
                 trip_db.bda_number_qc_charges = trip["batt_degradation_analysis"].get("number_qc_charges", 0)
-                trip_db.bda_soc_end = trip["batt_degradation_analysis"].get("soc_end", 0)
-                trip_db.resistance = trip["batt_degradation_analysis"].get("resistance_end", 0)
+                trip_db.bda_soc_end = trip["batt_degradation_analysis"].get("soh_end", 0)
+                trip_db.bda_resistance_end = trip["batt_degradation_analysis"].get("resistance_end", 0)
             trip_db.eco_tree_count = trip.get("eco_trees", 0)
             if "batt_degradation_analysis_new" in trip:
-                trip_db.bda2_soc_end = trip["batt_degradation_analysis_new"].get("soc_end", 0)
+                trip_db.bda2_soc_end = trip["batt_degradation_analysis_new"].get("soh_end", 0)
                 trip_db.bda2_capacity_bars_end = trip["batt_degradation_analysis_new"].get("capacity_bars_end", 0)
             trip_db.save()
 

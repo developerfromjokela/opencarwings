@@ -18,12 +18,13 @@ from db.models import CRMTripRecord
 from tculink.carwings_proto.dataobjects import build_autodj_payload
 from tculink.carwings_proto.utils import get_word_of_month_i18n, encode_utf8
 
-RELEASE_NOTES = "What's new in OpenCARWINGS?\n1. Charging Stations\n"
+RELEASE_NOTES = "December 2025: What's new in OpenCARWINGS?\n1. Enhanced vehicle data\n2. Bugfixes"
 
-RELEASE_NOTES_SPK = ("What's new in Open CAR WINGS? Last updated 17th of September.\nNumber one. Charging Stations.\n"
-                     "You are now able to search for new charging stations in your area and do automatic updates on startup.\n"
-                     "Charging Stations are loaded from Open Charge Map service. In upcoming releases, in addition to Charging Station Updates, "
-                     "you will also be able to see charging station availability in the area.\n")
+RELEASE_NOTES_SPK = ("What's new in Open CAR WINGS? Last updated first of December.\nHappy holidays to everyone\nNow release notes. Number one. Enhanced vehicle data.\n"
+                     "Vehicle telemetry reported from cars have got enhancements. New telemetry configuration setting found on the web site allows changing the configuration.\n"
+                     "New configuration unlocks all possible data fields that is supported in the system, this is useful for european and american models. "
+                     "\nNumber two. Bugfixes.\nThe vehicle data collection had a bug, which prevented from reading all high voltage battery information transmitted.\n"
+                     "Now, with the bug being fixed, you are able to see cell temperatures and voltages correctly, also previously blank fields like pack resistance and accumulated current.")
 
 NOT_SIGNEDIN_NOTE = ("To make use of more functions of Open Car Wings, please sign in with your User I D and Car Wings "
                      "password inside your car.\n\nGo to Car Wings menu, Settings, Security Settings, to input and send "

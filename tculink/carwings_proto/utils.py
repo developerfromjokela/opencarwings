@@ -202,14 +202,15 @@ def encode_utf8(text, limit=0):
             decoded_char = unidecode(char)
             if decoded_char:
                 replacement_bytes = encode_utf8(decoded_char)
-                result.extend(replacement_bytes)
+                if limit == 0 or len(result) + len(replacement_bytes) <= limit:
+                    result.extend(replacement_bytes)
                 continue
             else:
                 raise ValueError(f"Character U+{code_point:X} exceeds valid Unicode range")
 
         # ascii
         if code_point < 0x80:
-            if limit == 0 or len(result)+1 <= limit:
+            if limit == 0 or len(result) + 1 <= limit:
                 result.append(code_point)
         # 2-byte sequence
         elif code_point < 0x800:
@@ -220,7 +221,7 @@ def encode_utf8(text, limit=0):
             if byte1 < 0xC2:
                 raise ValueError(f"Invalid UTF-8 encoding for U+{code_point:X}")
 
-            if len(result)+2 <= limit:
+            if limit == 0 or len(result) + 2 <= limit:
                 result.append(byte1)
                 result.append(byte2)
         # 3-byte sequence
@@ -229,7 +230,7 @@ def encode_utf8(text, limit=0):
             byte2 = 0x80 | ((code_point >> 6) & 0x3F)
             byte3 = 0x80 | (code_point & 0x3F)
 
-            if limit == 0 or len(result)+3 <= limit:
+            if limit == 0 or len(result) + 3 <= limit:
                 result.append(byte1)
                 result.append(byte2)
                 result.append(byte3)
@@ -243,7 +244,7 @@ def encode_utf8(text, limit=0):
                 ascii_replacement = unidecode(char)
                 if ascii_replacement:
                     replacement_bytes = encode_utf8(ascii_replacement)
-                    if limit == 0 or len(result)+len(replacement_bytes) <= limit:
+                    if limit == 0 or len(result) + len(replacement_bytes) <= limit:
                         result.extend(replacement_bytes)
                     continue
                 else:
@@ -253,7 +254,7 @@ def encode_utf8(text, limit=0):
             byte3 = 0x80 | ((code_point >> 6) & 0x3F)
             byte4 = 0x80 | (code_point & 0x3F)
 
-            if limit == 0 or len(result)+4 <= limit:
+            if limit == 0 or len(result) + 4 <= limit:
                 result.append(byte1)
                 result.append(byte2)
                 result.append(byte3)

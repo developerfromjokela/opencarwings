@@ -23,7 +23,7 @@ def handle_send_to_car_adj(xml_data, returning_xml, channel_id, car: Car):
             {
                 'itemId': send_location.id,
                 'itemFlag1': 0x00,
-                'dynamicDataField1': encode_utf8(point_name, limit=31),
+                'dynamicDataField1': encode_utf8(point_name, limit=0x20),
                 'dynamicDataField2': b'',
                 'dynamicDataField3': b'',
                 "DMSLocation": construct_dms_coordinate(send_location.lat, send_location.lon),

@@ -86,20 +86,20 @@ def handle_custom_channel(xml_data, _, channel_id, car: Car):
                 custom_chdata.append({
                         'itemId': idx+1,
                         'itemFlag1': 0x00,
-                        'dynamicDataField1': encode_utf8(itm.get('title1', '')),
-                        'dynamicDataField2': encode_utf8(itm.get('title2', '')),
-                        'dynamicDataField3': encode_utf8(itm.get('title3', '')),
+                        'dynamicDataField1': encode_utf8(itm.get('title1', ''), limit=0x20),
+                        'dynamicDataField2': encode_utf8(itm.get('title2', ''), limit=0x80),
+                        'dynamicDataField3': encode_utf8(itm.get('title3', ''), limit=0x40),
                         "DMSLocation": construct_dms_coordinate(itm["map_point"]["lat"], itm["map_point"]["lon"]) if "map_point" in itm and itm["map_point"] else b'\xFF' * 10,
                         'flag2': 0,
                         'flag3': 0,
                         'dynamicField4': b'',
                         # phone num field
-                        'dynamicField5': encode_utf8(itm.get('phone_number', '')),
+                        'dynamicField5': encode_utf8(itm.get('phone_number', ''), limit=0x20),
                         'dynamicField6': b'',
                         'unnamed_data': bytearray(),
                         # text shown on bottom
-                        "bigDynamicField7": encode_utf8(itm.get('onscreen', '')),
-                        "bigDynamicField8": encode_utf8(itm.get('tts', '')),
+                        "bigDynamicField7": encode_utf8(itm.get('onscreen', ''), limit=0x400),
+                        "bigDynamicField8": encode_utf8(itm.get('tts', ''), limit=0x400),
                         "iconField": 0x0400,
                         # annoucnement sound, 1=yes,0=no
                         "longField2": 1 if itm.get('bell', True) else 0,

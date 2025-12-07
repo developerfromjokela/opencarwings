@@ -388,8 +388,8 @@ def get_weather_forecast(xml_data, returning_xml, channel_id, car):
             {
                 'itemId': 1,
                 'itemFlag1': 0x00,
-                'dynamicDataField1': encode_utf8(_('Weather forecast')),
-                'dynamicDataField2': encode_utf8(daily_title_text),
+                'dynamicDataField1': encode_utf8(_('Weather forecast'), limit=0x20),
+                'dynamicDataField2': encode_utf8(daily_title_text, limit=0x80),
                 'dynamicDataField3': b'',
                 "DMSLocation": b'\xFF' * 10,
                 'flag2': 0,
@@ -400,8 +400,8 @@ def get_weather_forecast(xml_data, returning_xml, channel_id, car):
                 'dynamicField6': b'',
                 'unnamed_data': bytearray(),
                 # text shown on bottom
-                "bigDynamicField7": encode_utf8(daily_text),
-                "bigDynamicField8": encode_utf8(daily_text),
+                "bigDynamicField7": encode_utf8(daily_text, limit=0x400),
+                "bigDynamicField8": encode_utf8(daily_text, limit=0x400),
                 "iconField": 0x310,
                 # annoucnement sound, 1=yes,0=no
                 "longField2": 1,
@@ -422,8 +422,8 @@ def get_weather_forecast(xml_data, returning_xml, channel_id, car):
             {
                 'itemId': 2,
                 'itemFlag1': 0x00,
-                'dynamicDataField1': encode_utf8(_('Weather forecast')),
-                'dynamicDataField2': encode_utf8(weekly_title_text),
+                'dynamicDataField1': encode_utf8(_('Weather forecast'), limit=0x20),
+                'dynamicDataField2': encode_utf8(weekly_title_text, limit=0x80),
                 'dynamicDataField3': b'',
                 "DMSLocation": b'\xFF' * 10,
                 'flag2': 0,
@@ -434,8 +434,8 @@ def get_weather_forecast(xml_data, returning_xml, channel_id, car):
                 'dynamicField6': b'',
                 'unnamed_data': bytearray(),
                 # text shown on bottom
-                "bigDynamicField7": encode_utf8(weekly_text),
-                "bigDynamicField8": encode_utf8(weekly_text),
+                "bigDynamicField7": encode_utf8(weekly_text, limit=0x400),
+                "bigDynamicField8": encode_utf8(weekly_text, limit=0x400),
                 "iconField": 0x310,
                 # annoucnement sound, 1=yes,0=no
                 "longField2": 1,

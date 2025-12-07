@@ -69,9 +69,9 @@ def handle_routeplanner(unused, returning_xml, channel_id, car: Car):
             {
                 'itemId': 1,
                 'itemFlag1': 1,
-                'dynamicDataField1': encode_utf8(route_plan.finish_name),
-                'dynamicDataField2': encode_utf8(route_plan.finish_name),
-                'dynamicDataField3': encode_utf8(route_plan.finish_name),
+                'dynamicDataField1': encode_utf8(route_plan.finish_name, limit=0x20),
+                'dynamicDataField2': encode_utf8(route_plan.finish_name, limit=0x80),
+                'dynamicDataField3': encode_utf8(route_plan.finish_name, limit=0x40),
                 "DMSLocation": construct_dms_coordinate(route_plan.finish_lat, route_plan.finish_lon),
                 # is charging station flag?
                 'flag2': 1,
@@ -105,9 +105,9 @@ def handle_routeplanner(unused, returning_xml, channel_id, car: Car):
                     {
                         'itemId': wp+1,
                         'itemFlag1': wp+1,
-                        'dynamicDataField1': encode_utf8(point_name),
-                        'dynamicDataField2': encode_utf8(point_name),
-                        'dynamicDataField3': encode_utf8(point_name),
+                        'dynamicDataField1': encode_utf8(point_name, limit=0x20),
+                        'dynamicDataField2': encode_utf8(point_name, limit=0x80),
+                        'dynamicDataField3': encode_utf8(point_name, limit=0x40),
                         "DMSLocation": construct_dms_coordinate(getattr(route_plan, f"point{wp}_lat", None), getattr(route_plan, f"point{wp}_lon", None)),
                         # is charging station flag?
                         'flag2': wp+1,

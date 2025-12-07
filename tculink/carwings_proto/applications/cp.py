@@ -152,7 +152,12 @@ def handle_cp(xml_data, files):
                 'sort_by_distance': 'true',
                 'sort_by_power': 'false',
                 'limit': '100'
-            }, headers={"User-Agent": "OpenCARWINGS", "Authorization": f"APIKEY {settings.ITERNIO_API_KEY}"}).json().get("result", [])
+            }, headers={"User-Agent": "OpenCARWINGS", "Authorization": f"APIKEY {settings.ITERNIO_API_KEY}"})
+            try:
+                chargers = chargers.json().get("result", [])
+            except Exception as e:
+                logger.error("Failed to parse iternio chargers, response: status %d, %s", chargers.status_code, chargers.text)
+                raise e
             parsed_chargers = [{'poi_id': chg['id'], 'latitude': chg['lat'], 'longitude': chg['lon']} for chg in chargers]
             logger.debug("CHARGERS: %d", len(parsed_chargers))
             files.append(compose_ca_list(parsed_chargers))
@@ -172,7 +177,12 @@ def handle_cp(xml_data, files):
             logger.debug("get chargingstation for availability!! %d", count)
             chargers = requests.post('https://api.iternio.com/2/charger/_get/details', json={
                 'chargerIds': charger_ids
-            }, headers={"x-api-key": settings.ITERNIO_API_KEY}).json().get("items", [])
+            }, headers={"x-api-key": settings.ITERNIO_API_KEY})
+            try:
+                chargers = chargers.json().get("items", [])
+            except Exception as e:
+                logger.error("Failed to parse iternio chargers, response: status %d, %s", chargers.status_code, chargers.text)
+                raise e
             logger.info("chargingstations: %d", len(chargers))
             for chg in chargers:
                 if "item" in chg and chg["item"] is not None:
@@ -393,6 +403,11 @@ def handle_cp(xml_data, files):
                 'boundingbox': ",".join([str(boundingbox_tl), str(boundingbox_br)]),
                 'maxresults': "10000",
             }, headers={'X-API-Key': settings.OPENCHARGEMAP_API_KEY}).json()
+            try:
+                chargers_resp = chargers_resp.json()
+            except Exception as e:
+                logger.error("Failed to parse OCM chargers, response: status %d, %s", chargers_resp.status_code, chargers_resp.text)
+                raise e
             logger.info("Charger list query: %d", len(chargers_resp))
 
             chargers_per_meshid = {}
@@ -450,7 +465,13 @@ def handle_cp(xml_data, files):
                     'compact': 'false',
                     'maxresults': "150"
                 }, headers={'X-API-Key': settings.OPENCHARGEMAP_API_KEY})
-                chargers_resp = chargers_resp.json()
+                try:
+                    chargers_resp = chargers_resp.json()
+                except Exception as e:
+                    logger.error("Failed to parse OCM charge chunk, chunk: %s, response: status %d, %s", chunk, chargers_resp.status_code,
+                                 chargers_resp.text)
+                    logger.exception(e)
+                    chargers_resp = []
                 logger.debug((len(chargers_resp)))
                 chargers_info = chargers_info + chargers_resp
 

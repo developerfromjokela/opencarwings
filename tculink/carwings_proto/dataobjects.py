@@ -24,10 +24,10 @@ def construct_fvtchn_payload(channels):
         payload += channel['position'].to_bytes(1, byteorder='big')
         payload += channel['id'].to_bytes(2, byteorder='big')
         payload += channel['channel_id'].to_bytes(2, byteorder='big')
-        encoded_name1 = encode_utf8(channel['name1'])[:32]
+        encoded_name1 = encode_utf8(channel['name1'], limit=32)
         payload += len(encoded_name1).to_bytes(1, byteorder='big')
         payload += encoded_name1
-        encoded_name2 = encode_utf8(channel['name2'])[:128]
+        encoded_name2 = encode_utf8(channel['name2'], limit=128)
         payload += len(encoded_name2).to_bytes(1, byteorder='big')
         payload += encoded_name2
         payload += channel['flag'].to_bytes(1, byteorder='big')
@@ -100,10 +100,10 @@ def construct_chnmst_payload(folders, channels):
     for folder in folders:
         payload += folder['id'].to_bytes(2, byteorder='big')
         payload += folder['internal_id'].to_bytes(2, byteorder='big')
-        encoded_name1 = encode_utf8(folder['name1'])[:32]
+        encoded_name1 = encode_utf8(folder['name1'], limit=32)
         payload += len(encoded_name1).to_bytes(1, byteorder='big')
         payload += encoded_name1
-        encoded_name2 = encode_utf8(folder['name2'])[:128]
+        encoded_name2 = encode_utf8(folder['name2'], limit=128)
         payload += len(encoded_name2).to_bytes(1, byteorder='big')
         payload += encoded_name2
         payload += folder['icon'].to_bytes(2, byteorder='big')
@@ -112,10 +112,10 @@ def construct_chnmst_payload(folders, channels):
     for channel in channels:
         payload += channel['id'].to_bytes(2, byteorder='big')
         payload += channel['internal_id'].to_bytes(2, byteorder='big')
-        encoded_name1 = encode_utf8(channel['name1'])[:32]
+        encoded_name1 = encode_utf8(channel['name1'], limit=32)
         payload += len(encoded_name1).to_bytes(1, byteorder='big')
         payload += encoded_name1
-        encoded_name2 = encode_utf8(channel['name2'])[:128]
+        encoded_name2 = encode_utf8(channel['name2'], limit=128)
         payload += len(encoded_name2).to_bytes(1, byteorder='big')
         payload += encoded_name2
         payload += channel['folder_id'].to_bytes(2, byteorder='big')
@@ -134,41 +134,41 @@ def create_cpinfo(obj):
     payload.extend(b'\x00'*3)
     payload.extend(b'\x01\x14')
     payload += obj['poi_id'].to_bytes(4, 'big')
-    encoded_name = encode_utf8(obj['name'])
+    encoded_name = encode_utf8(obj['name'], limit=30)
     payload += len(encoded_name).to_bytes(1, 'big')
     payload += encoded_name
-    encoded_code = encode_utf8(obj['code'])
+    encoded_code = encode_utf8(obj['code'], limit=30)
     payload += len(encoded_code).to_bytes(1, 'big')
     payload += encoded_code
-    encoded_county = encode_utf8(obj['county'])
+    encoded_county = encode_utf8(obj['county'], limit=30)
     payload += len(encoded_county).to_bytes(1, 'big')
     payload += encoded_county
-    encoded_region = encode_utf8(obj['region'])
+    encoded_region = encode_utf8(obj['region'], limit=30)
     payload += len(encoded_region).to_bytes(1, 'big')
     payload += encoded_region
-    encoded_city = encode_utf8(obj['city'])
+    encoded_city = encode_utf8(obj['city'], limit=30)
     payload += len(encoded_city).to_bytes(1, 'big')
     payload += encoded_city
-    encoded_town = encode_utf8(obj['town'])
+    encoded_town = encode_utf8(obj['town'], limit=30)
     payload += len(encoded_town).to_bytes(1, 'big')
     payload += encoded_town
     # usually meta1-3 empty, holiday or normal opening times?
-    encoded_meta1 = encode_utf8(obj['meta1'])
+    encoded_meta1 = encode_utf8(obj['meta1'], limit=30)
     payload += len(encoded_meta1).to_bytes(1, 'big')
     payload += encoded_meta1
-    encoded_meta2 = encode_utf8(obj['meta2'])
+    encoded_meta2 = encode_utf8(obj['meta2'], limit=30)
     payload += len(encoded_meta2).to_bytes(1, 'big')
     payload += encoded_meta2
-    encoded_meta3 = encode_utf8(obj['meta3'])
+    encoded_meta3 = encode_utf8(obj['meta3'], limit=30)
     payload += len(encoded_meta3).to_bytes(1, 'big')
     payload += encoded_meta3
 
     payload += construct_dms_coordinate(obj['lat'], obj['lon'])
-    encoded_address = encode_utf8(obj['address'])
+    encoded_address = encode_utf8(obj['address'], limit=30)
     payload += len(encoded_address).to_bytes(1, 'big')
     payload += encoded_address
     payload += obj['mesh_id'].to_bytes(4, 'big')
-    encoded_phone = encode_utf8(obj['phone'])
+    encoded_phone = encode_utf8(obj['phone'], limit=30)
     payload += len(encoded_phone).to_bytes(1, 'big')
     payload += encoded_phone
     sites = obj['sites'][:255]
@@ -188,7 +188,7 @@ def create_cpinfo(obj):
         payload += b'\x00'*2
         payload += int_to_bytes_safe(station['flag3'], 1, 'big')
         # desc
-        encoded_optdesc = encode_utf8(station['opt_desc'])[:255]
+        encoded_optdesc = encode_utf8(station['opt_desc'], limit=255)
         payload += len(encoded_optdesc).to_bytes(1, 'big')
         payload += encoded_optdesc
 
@@ -292,12 +292,8 @@ def build_autodj_payload(
     payload += (message_type & 0xFF).to_bytes(1, "big")
 
     if message_type == 0:
-        string_field1 = encode_utf8(extra_fields.get('stringField1', ''))
-        if len(string_field1) > 0x20:
-            raise ValueError("stringField1 too long")
-        string_field2 = encode_utf8(extra_fields.get('stringField2', ''))
-        if len(string_field2) > 0x80:
-            raise ValueError("stringField2 too long")
+        string_field1 = encode_utf8(extra_fields.get('stringField1', ''), limit=0x20)
+        string_field2 = encode_utf8(extra_fields.get('stringField2', ''), limit=0x80)
         flag3 = extra_fields.get('flag3', 0)
         unknown_id = extra_fields.get('unknownId', 0)
         field_len_0xc = extra_fields.get('field_len_0xc', b'\x00' * 12)
@@ -521,7 +517,7 @@ def compose_ca_data(data_dict) -> bytes:
     data += poi_id.to_bytes(4, 'big')
 
     # Charging station name (length byte + string)
-    charging_station_name = encode_utf8(data_dict.get('charging_station_name', ''))[:32]
+    charging_station_name = encode_utf8(data_dict.get('charging_station_name', ''), limit=32)
     data += (len(charging_station_name).to_bytes(1, 'big'))
     data.extend(charging_station_name)
 
@@ -531,32 +527,32 @@ def compose_ca_data(data_dict) -> bytes:
     data.extend(char40_bytes)
 
     # Dynamic string 2 (length byte + string)
-    str2_bytes = encode_utf8(data_dict.get('dynamic_string2', ''))[:32]
+    str2_bytes = encode_utf8(data_dict.get('dynamic_string2', ''), limit=32)
     data += (len(str2_bytes)).to_bytes(1, 'big')
     data.extend(str2_bytes)
 
     # Dynamic string 3 (length byte + string)
-    str3_bytes = encode_utf8(data_dict.get('dynamic_string3', ''))[:32]
+    str3_bytes = encode_utf8(data_dict.get('dynamic_string3', ''), limit=32)
     data += (len(str3_bytes)).to_bytes(1, 'big')
     data.extend(str3_bytes)
 
     # Dynamic string 4 (length byte + string)
-    str4_bytes = encode_utf8(data_dict.get('dynamic_string4', ''))[:32]
+    str4_bytes = encode_utf8(data_dict.get('dynamic_string4', ''), limit=32)
     data += (len(str4_bytes)).to_bytes(1, 'big')
     data.extend(str4_bytes)
 
     # Dynamic string 5 (length byte + string)
-    str5_bytes = encode_utf8(data_dict.get('dynamic_string5', ''))[:32]
+    str5_bytes = encode_utf8(data_dict.get('dynamic_string5', ''), limit=32)
     data += (len(str5_bytes)).to_bytes(1, 'big')
     data.extend(str5_bytes)
 
     # Skip string 1 (length byte + string) - parser skips this
-    skip1_bytes = encode_utf8(data_dict.get('skip_string1', ''))[:32]
+    skip1_bytes = encode_utf8(data_dict.get('skip_string1', ''), limit=32)
     data += (len(skip1_bytes)).to_bytes(1, 'big')
     data.extend(skip1_bytes)
 
     # Skip string 2 (length byte + string) - parser skips this
-    skip2_bytes = encode_utf8(data_dict.get('skip_string2', ''))[:32]
+    skip2_bytes = encode_utf8(data_dict.get('skip_string2', ''), limit=32)
     data += (len(skip2_bytes)).to_bytes(1, 'big')
     data.extend(skip2_bytes)
 
@@ -568,7 +564,7 @@ def compose_ca_data(data_dict) -> bytes:
     data.extend(construct_dms_coordinate(data_dict.get('latitude', 0), data_dict.get('longitude', 0)))
 
     # Dynamic string 6 (length byte + string)
-    str6_bytes = encode_utf8(data_dict.get('dynamic_string6', ''))[:64]
+    str6_bytes = encode_utf8(data_dict.get('dynamic_string6', ''), limit=64)
     data += (len(str6_bytes)).to_bytes(1, 'big')
     data.extend(str6_bytes)
 
@@ -579,7 +575,7 @@ def compose_ca_data(data_dict) -> bytes:
     data += short_id2.to_bytes(2, 'big')
 
     # Dynamic string 7 (length byte + string)
-    str7_bytes = encode_utf8(data_dict.get('dynamic_string7', ''))[:48]
+    str7_bytes = encode_utf8(data_dict.get('dynamic_string7', ''), limit=48)
     data += (len(str7_bytes)).to_bytes(1, 'big')
     data.extend(str7_bytes)
 
@@ -609,7 +605,7 @@ def compose_ca_data(data_dict) -> bytes:
         data.extend(construct_dms_coordinate(item.get('lat', 0), item.get('lon', 0)))
 
         # Dynamic field (length byte + string)
-        dyn_field = encode_utf8(item.get('dynamic_field', ''))[:32]
+        dyn_field = encode_utf8(item.get('dynamic_field', ''), limit=32)
         data += (len(dyn_field)).to_bytes(1, 'big')
         data.extend(dyn_field)
 
@@ -620,7 +616,7 @@ def compose_ca_data(data_dict) -> bytes:
 
     data.append(len(secondary_station_info))
     for info in secondary_station_info:
-        info_bytes = encode_utf8(info[:32])
+        info_bytes = encode_utf8(info, limit=32)
         data += (len(info_bytes)).to_bytes(1, 'big')
         data.extend(info_bytes)
 
@@ -631,7 +627,7 @@ def compose_ca_data(data_dict) -> bytes:
 
     data.append(len(third_station_info))
     for info in third_station_info:
-        info_bytes = encode_utf8(info[:32])
+        info_bytes = encode_utf8(info, limit=32)
         data += (len(info_bytes)).to_bytes(1, 'big')
         data.extend(info_bytes)
 
@@ -681,12 +677,12 @@ def compose_ca_data(data_dict) -> bytes:
         data += datetime_tstamp.second.to_bytes(1, 'big')
 
         # Supplier name (length byte + string)
-        supplier = encode_utf8(meta.get('supplier_name', ''))[:64]
+        supplier = encode_utf8(meta.get('supplier_name', ''), limit=64)
         data += (len(supplier)).to_bytes(1, 'big')
         data.extend(supplier)
 
         # Network name (length byte + string)
-        network = encode_utf8(meta.get('network_name', ''))[:128]
+        network = encode_utf8(meta.get('network_name', ''), limit=128)
         data += (len(network)).to_bytes(1, 'big')
         data.extend(network)
 

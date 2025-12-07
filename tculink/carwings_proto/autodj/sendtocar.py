@@ -13,8 +13,6 @@ def handle_send_to_car_adj(xml_data, returning_xml, channel_id, car: Car):
         point_name = send_location.name
         if send_location.name is None:
             point_name = "Map Point"
-        if len(point_name) > 32:
-            point_name = point_name[:32]
         distance = 0
         if (xml_data.get('base_info', None) is not None
                 and xml_data['base_info'].get('vehicle', None) is not None
@@ -25,7 +23,7 @@ def handle_send_to_car_adj(xml_data, returning_xml, channel_id, car: Car):
             {
                 'itemId': send_location.id,
                 'itemFlag1': 0x00,
-                'dynamicDataField1': encode_utf8(point_name),
+                'dynamicDataField1': encode_utf8(point_name, limit=31),
                 'dynamicDataField2': b'',
                 'dynamicDataField3': b'',
                 "DMSLocation": construct_dms_coordinate(send_location.lat, send_location.lon),
@@ -37,10 +35,10 @@ def handle_send_to_car_adj(xml_data, returning_xml, channel_id, car: Car):
                 'dynamicField6': b'',
                 'unnamed_data': bytearray(),
                 # text shown on bottom
-                "bigDynamicField7": encode_utf8(point_name),
+                "bigDynamicField7": encode_utf8(point_name, limit=0x400),
                 "bigDynamicField8": encode_utf8(format_lazy(_('Location point, "{point_name}", which is {distance} kilometers away. '
                                     f'Set it as destination by pressing pause and setting map point as destination.'),
-                                                    point_name=point_name, distance=distance)),
+                                                    point_name=point_name, distance=distance), limit=0x400),
                 "iconField": 0x0001,
                 # annoucnement sound, 1=yes,0=no
                 "longField2": 1,
@@ -119,13 +117,11 @@ def handle_send_to_car(_, returning_xml, channel_id, car: Car):
             point_name = send_location.name
             if send_location.name is None:
                 point_name = "Map Point"
-            if len(point_name) > 32:
-                point_name = point_name[:32]
             car_destinations.append(
                 {
                     'itemId': 0,
                     'itemFlag1': 0,
-                    'dynamicDataField1': encode_utf8(point_name),
+                    'dynamicDataField1': encode_utf8(point_name, limit=31),
                     'dynamicDataField2': [],
                     'dynamicDataField3': [],
                     "DMSLocation": construct_dms_coordinate(send_location.lat, send_location.lon),

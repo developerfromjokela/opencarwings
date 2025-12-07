@@ -188,7 +188,7 @@ def xml_coordinate_to_float(crd):
     return xml_dms_to_decimal(crd['latitude']), xml_dms_to_decimal(crd['longitude'])
 
 
-def encode_utf8(text):
+def encode_utf8(text, limit=0):
     if not isinstance(text, str):
         text = str(text)
 
@@ -209,7 +209,8 @@ def encode_utf8(text):
 
         # ascii
         if code_point < 0x80:
-            result.append(code_point)
+            if limit == 0 or len(result)+1 <= limit:
+                result.append(code_point)
         # 2-byte sequence
         elif code_point < 0x800:
             byte1 = 0xC0 | (code_point >> 6)
@@ -219,17 +220,19 @@ def encode_utf8(text):
             if byte1 < 0xC2:
                 raise ValueError(f"Invalid UTF-8 encoding for U+{code_point:X}")
 
-            result.append(byte1)
-            result.append(byte2)
+            if len(result)+2 <= limit:
+                result.append(byte1)
+                result.append(byte2)
         # 3-byte sequence
         elif code_point < 0x10000:
             byte1 = 0xE0 | (code_point >> 12)
             byte2 = 0x80 | ((code_point >> 6) & 0x3F)
             byte3 = 0x80 | (code_point & 0x3F)
 
-            result.append(byte1)
-            result.append(byte2)
-            result.append(byte3)
+            if limit == 0 or len(result)+3 <= limit:
+                result.append(byte1)
+                result.append(byte2)
+                result.append(byte3)
 
         # 4-byte sequence
         elif code_point < 0x110000:
@@ -240,7 +243,8 @@ def encode_utf8(text):
                 ascii_replacement = unidecode(char)
                 if ascii_replacement:
                     replacement_bytes = encode_utf8(ascii_replacement)
-                    result.extend(replacement_bytes)
+                    if limit == 0 or len(result)+len(replacement_bytes) <= limit:
+                        result.extend(replacement_bytes)
                     continue
                 else:
                     raise ValueError(f"Invalid UTF-8 encoding for U+{code_point:X}")
@@ -249,9 +253,10 @@ def encode_utf8(text):
             byte3 = 0x80 | ((code_point >> 6) & 0x3F)
             byte4 = 0x80 | (code_point & 0x3F)
 
-            result.append(byte1)
-            result.append(byte2)
-            result.append(byte3)
-            result.append(byte4)
+            if limit == 0 or len(result)+4 <= limit:
+                result.append(byte1)
+                result.append(byte2)
+                result.append(byte3)
+                result.append(byte4)
 
     return bytes(result)

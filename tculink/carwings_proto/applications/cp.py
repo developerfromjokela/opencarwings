@@ -402,7 +402,7 @@ def handle_cp(xml_data, files):
                 'connectiontypeid': '2,1,25',
                 'boundingbox': ",".join([str(boundingbox_tl), str(boundingbox_br)]),
                 'maxresults': "10000",
-            }, headers={'X-API-Key': settings.OPENCHARGEMAP_API_KEY}).json()
+            }, headers={'X-API-Key': settings.OPENCHARGEMAP_API_KEY})
             try:
                 chargers_resp = chargers_resp.json()
             except Exception as e:

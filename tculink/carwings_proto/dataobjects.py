@@ -34,6 +34,7 @@ def construct_fvtchn_payload(channels):
 
     return payload
 
+# codes: 0xb, 0xc
 def construct_gnrlms_payload(code, title, message):
     payload = bytearray()
     payload += b'\x00'*9
@@ -417,6 +418,7 @@ def build_autodj_payload(
             raise ValueError("Footer type 2 data must be 10 bytes")
         payload.extend(footer['data'])
     elif ftype in (3, 8):
+        # reference to itemFlag1 in footer type 3
         payload += (footer['data'] & 0xFF).to_bytes(1, "big")  # uint8
     elif ftype == 4:
         len1 = footer['len1']
@@ -428,6 +430,8 @@ def build_autodj_payload(
         payload += (len2 & 0xFF).to_bytes(1, "big")  # uint8
         payload.extend(data2)
     elif ftype == 6:
+        # data is array of itemFlag1 values, which also have fifth bit as 1 in mapPointFlag.
+        # This sorts AutoDJ items in order you specify them here. using their itemFlag1.
         data = footer['data']
         l = len(data)
         if l > 255:
@@ -445,6 +449,8 @@ def build_autodj_payload(
     elif ftype == 10:
         a = footer['a']
         b = footer['b']
+        # data is array of itemFlag1 values, which also have fifth bit as 1 in mapPointFlag.
+        # This sorts AutoDJ items in order you specify them here. using their itemFlag1.
         data = footer['data']
         l = len(data)
         if l > 255:

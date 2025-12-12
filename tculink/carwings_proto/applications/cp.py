@@ -208,7 +208,7 @@ def handle_cp(xml_data, files):
                                     'lat': chg['coordinates']['lat'],
                                     'lon': chg['coordinates']['long'],
                                     'dynamic_field': 'DC charger'
-                                })
+                        })
                         name_items.append(chg.get('name', 'Charging Station')[:32])
                         secondary_items.append(chg.get('name', 'Charging Station')[:32])
                         for station in [plug for plug in chg["evses"] if plug["connectors"][0]['standard'] == "CHADEMO"]:
@@ -503,18 +503,18 @@ def handle_cp(xml_data, files):
 
                 cpinfo_obj = {
                     'poi_id': charger['ID'],
-                    'name': unidecode(charger['AddressInfo'].get('Title', 'Charging Station') or "Charging Station")[:30],
+                    'name': encode_utf8(charger['AddressInfo'].get('Title', 'Charging Station') or "Charging Station", limit=31),
                     'code': '',
-                    'county': unidecode(charger["AddressInfo"].get("Town", '') or "")[:30],
-                    'region': unidecode(charger["AddressInfo"].get('StateOrProvince', '') or "")[:30],
-                    'city': unidecode(charger["AddressInfo"].get("Town", '') or "")[:30],
-                    'town': unidecode(charger["AddressInfo"].get("Postcode", '') or "")[:30],
+                    'county': encode_utf8(charger["AddressInfo"].get("Town", '') or "", limit=31),
+                    'region': encode_utf8(charger["AddressInfo"].get('StateOrProvince', '') or "", limit=31),
+                    'city': encode_utf8(charger["AddressInfo"].get("Town", '') or "", limit=31),
+                    'town': encode_utf8(charger["AddressInfo"].get("Postcode", '') or "", limit=31),
                     'meta1': '',
                     'meta2': '',
                     'meta3': '',
                     'lat': charger["AddressInfo"]["Latitude"],
                     'lon': charger["AddressInfo"]["Longitude"],
-                    'address': unidecode(charger["AddressInfo"].get("AddressLine1", "") or "")[:30],
+                    'address': encode_utf8(charger["AddressInfo"].get("AddressLine1", "") or "", limit=30),
                     'mesh_id': 65535,
                     'phone': phone_num,
                     'sites': [],

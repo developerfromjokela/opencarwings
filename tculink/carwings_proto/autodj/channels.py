@@ -209,8 +209,8 @@ STANDARD_AUTODJ_CHANNELS = [
 
 def translate_chan_name(chan, non_unicode=False):
     new_chan = chan.copy()
-    new_chan['name1'] = str(_(chan['name1']))[:31]
-    new_chan['name2'] = str(_(chan['name2']))[:127]
+    new_chan['name1'] = str(_(chan['name1']))
+    new_chan['name2'] = str(_(chan['name2']))
     if non_unicode:
         new_chan['name1'] = unidecode(new_chan['name1'])
         new_chan['name2'] = unidecode(new_chan['name2'])

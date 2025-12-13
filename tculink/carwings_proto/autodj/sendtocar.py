@@ -52,7 +52,7 @@ def handle_send_to_car_adj(xml_data, returning_xml, channel_id, car: Car, page):
                 # image name2
                 "12byteField2": b'\x00' * 12,
                 "mapPointFlag": b'\x20',
-                "flag8": 0,
+                "flag8": 0x80,
                 "imageDataField": bytearray()
             }
         )
@@ -142,7 +142,7 @@ def handle_send_to_car(_, returning_xml, channel_id, car: Car, page):
                     "12byteField1": b'\x00' * 12,
                     "12byteField2": b'\x00' * 12,
                     "mapPointFlag": b'\x00',
-                    "flag8": 0,
+                    "flag8": 0x80,
                     "imageDataField": bytearray()
                 }
             )

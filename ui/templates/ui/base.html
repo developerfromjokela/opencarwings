@@ -39,8 +39,8 @@
     <nav class="bg-white dark:bg-gray-800 shadow-sm p-4">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
             <a href="/" class="text-md font-semibold text-gray-800 dark:text-gray-200">
-                <img src="{% static 'carwingslogo_color.png' %}" height="45px" style="height: 45px;" class=" relative top-0 left-0 visible dark:hidden"/>
-                <img src="{% static 'carwingslogo_color_white.png' %}" height="45px" style="height: 45px;" class=" relative top-0 left-0 invisible dark:visible"/>
+                <img src="{% static 'carwingslogo_color.png' %}" height="45px" style="height: 45px;" class=" relative top-0 left-0 block dark:hidden"/>
+                <img src="{% static 'carwingslogo_color_white.png' %}" height="45px" style="height: 45px;" class=" relative top-0 left-0 hidden dark:block"/>
             </a>
             <div class="space-x-4">
                 {% if user.is_authenticated %}

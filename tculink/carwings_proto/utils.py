@@ -1,5 +1,7 @@
 import logging
 from django.utils import timezone
+
+from carwings import settings
 from db.models import Car
 from django.utils.translation import gettext as _
 from unidecode import unidecode
@@ -52,7 +54,7 @@ def update_car_info(xml_data):
                     car_obj.odometer = odometer
                 if signal_level is None:
                     signal_level = -1
-                if type(signal_level) != int:
+                if signal_level == "out":
                     signal_level = 0
                 car_obj.signal_level = signal_level
                 car_obj.carrier = carrier
@@ -133,7 +135,7 @@ LANG_CODES = {
 }
 
 def carwings_lang_to_code(lang):
-    return LANG_CODES.get(lang, 'en')
+    return LANG_CODES.get(lang, settings.LANGUAGE_CODE)
 
 def get_word_of_month_i18n(num):
     ordinal_dict = {

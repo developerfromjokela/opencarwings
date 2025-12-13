@@ -418,7 +418,9 @@ def build_autodj_payload(
             raise ValueError("Footer type 2 data must be 10 bytes")
         payload.extend(footer['data'])
     elif ftype in (3, 8):
-        # reference to itemFlag1 in footer type 3
+        # reference to itemFlag1 in footer type 3, autodial to number via field dynamicField5, dynamicDataField1 popup title,
+        # dynamicDataField2 as TTS message.
+        # type 8 is reserved for operator, not accessible from data channel. phone number has Japan dialing prefix 186 prepended.
         payload += (footer['data'] & 0xFF).to_bytes(1, "big")  # uint8
     elif ftype == 4:
         len1 = footer['len1']

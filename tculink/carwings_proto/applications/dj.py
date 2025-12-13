@@ -52,7 +52,7 @@ def handle_dj(xml_data, files):
                 f.write(file_content)
             return None
 
-        activate(carwings_lang_to_code(xml_data['base_info'].get('navigation_settings', {}).get('language', "uke")))
+        activate(carwings_lang_to_code(xml_data['base_info'].get('navigation_settings', {}).get('language', '')))
 
         logger.info("CWS lang: ")
         logger.info(get_language())

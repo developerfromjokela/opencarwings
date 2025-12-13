@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-28 15:30+0000\n"
-"PO-Revision-Date: 2025-11-28 17:32+0200\n"
+"POT-Creation-Date: 2025-12-13 09:01+0000\n"
+"PO-Revision-Date: 2025-12-13 11:10+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fi\n"
@@ -250,8 +250,8 @@ msgstr "Kanava on lisätty suosikkeihin"
 
 #: tculink/carwings_proto/autodj/handler.py:23
 #: tculink/carwings_proto/autodj/handler.py:24
-#: tculink/carwings_proto/autodj/opencarwings.py:123
-#: tculink/carwings_proto/autodj/opencarwings.py:124
+#: tculink/carwings_proto/autodj/opencarwings.py:127
+#: tculink/carwings_proto/autodj/opencarwings.py:128
 msgid "Info from OpenCARWINGS"
 msgstr "Info from OpenCARWINGS"
 
@@ -265,7 +265,7 @@ msgstr "Tietokanava ei saatavilla"
 msgid "Not authorized"
 msgstr "Ei tunnistauduttu"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:509
+#: tculink/carwings_proto/autodj/opencarwings.py:513
 msgid ""
 "Use remote climate control or the timer so that the cabin will be at a "
 "comfortable temperature before starting.  This allows the car to save energy "
@@ -274,7 +274,7 @@ msgstr ""
 "Käytä etäilmastointia tai ajastinta, jotta auton sisätilat ovat mukavan "
 "lämpöiset ennen lähtöä. Tämä auttaa autoa säästämään energiaa ajon aikana."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:510
+#: tculink/carwings_proto/autodj/opencarwings.py:514
 msgid ""
 "Keep your car in the garage during winter times to keep the battery pack "
 "warm.  This will increase your range a bit, especially in colder climates."
@@ -282,7 +282,7 @@ msgstr ""
 "Pidä auto talvisin autotallissa pitääksesi akuston lämpimänä. Tämä lisää "
 "toimintamatkaa hieman, erityisesti kylmemmissä ilmastoissa."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:511
+#: tculink/carwings_proto/autodj/opencarwings.py:515
 msgid ""
 "Use <phoneme alphabet=\"x-SVOX-sampa_en-GB\" ph=\"'i:-k@@U\">eco</phoneme> "
 "mode or B-mode when possible to increase your regenerative energy."
@@ -290,7 +290,7 @@ msgstr ""
 "Käytä eko-tilaa tai B-ajovaihdetta mahdollisuuksien mukaan lisätäksesi "
 "regeneratiivista energiaa."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:512
+#: tculink/carwings_proto/autodj/opencarwings.py:516
 msgid ""
 "Check your tire pressure at least once a month to ensure they are at optimal "
 "level.  Low tire pressure decreases rolling effect of the car and more "
@@ -300,7 +300,7 @@ msgstr ""
 "ovat optimaalisella tasolla. Alhainen rengaspaine heikentää auton rullausta "
 "ja lisää energiankulutusta liikkumiseen."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:513
+#: tculink/carwings_proto/autodj/opencarwings.py:517
 msgid ""
 "Plan your routes to include charging stations, especially on longer trips, "
 "to avoid range anxiety and ensure smooth travel."
@@ -309,7 +309,7 @@ msgstr ""
 "pitkillä matkoilla, välttääksesi toimintamatka-ahdistusta ja varmistaaksesi "
 "sujuvan matkustamisen."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:514
+#: tculink/carwings_proto/autodj/opencarwings.py:518
 msgid ""
 "Avoid rapid acceleration and maintain a steady speed to maximize battery "
 "efficiency, as aggressive driving can significantly reduce your range."
@@ -318,7 +318,7 @@ msgstr ""
 "tehokkuuden, sillä aggressiivinen ajotapa voi merkittävästi lyhentää "
 "toimintamatkaa."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:515
+#: tculink/carwings_proto/autodj/opencarwings.py:519
 msgid ""
 "Use the Nissan Leaf’s navigation system to find the most energy-efficient "
 "routes, which can help conserve battery power on unfamiliar roads."
@@ -326,7 +326,7 @@ msgstr ""
 "Käytä Nissan Leafin navigointijärjestelmää löytääksesi energiatehokkaimmat "
 "reitit, jotka voivat auttaa säästämään akkuvirtaa tuntemattomilla teillä."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:516
+#: tculink/carwings_proto/autodj/opencarwings.py:520
 msgid ""
 "In colder times, try to use more of seat heating and steering wheel heating "
 "while keeping your air conditioning on lower settings. Auxiliary heating "
@@ -336,7 +336,7 @@ msgstr ""
 "lämmitusta samalla kun pidät ilmastoinnin alhaisemmilla asetuksilla. "
 "Lisälämmityselementit kuluttavat vähemmän kuin auton ilmastointijärjestelmä."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:517
+#: tculink/carwings_proto/autodj/opencarwings.py:521
 msgid ""
 "Park in shaded areas during hot weather to keep the battery cool, as extreme "
 "heat can reduce battery efficiency and longevity."
@@ -344,7 +344,7 @@ msgstr ""
 "Pysäköi varjoisiin paikkoihin kuumalla säällä pitääksesi akun viileänä, "
 "sillä äärimmäinen kuumuus voi heikentää akun tehokkuutta ja käyttöikää."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:518
+#: tculink/carwings_proto/autodj/opencarwings.py:522
 msgid ""
 "Try to charge the battery up to 80 percent for daily usage. Charging to "
 "full, every day, is not recommended for battery longevity."
@@ -352,7 +352,7 @@ msgstr ""
 "Yritä ladata akku 80 prosentin varaukseen päivittäiseen käyttöön. Täyteen "
 "lataaminen joka päivä ei ole suositeltavaa akun käyttöiän kannalta."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:519
+#: tculink/carwings_proto/autodj/opencarwings.py:523
 msgid ""
 "With Open Car Wings, you can review your driving efficiency of each trip, "
 "online. With the data, it is easier to determine which areas of driving "
@@ -362,26 +362,26 @@ msgstr ""
 "matkalta verkossa. Datan avulla on helpompi selvittää, mitkä ajotavan osa-"
 "alueet vaativat parantamista parhaan energiatehokkuuden saavuttamiseksi. "
 
-#: tculink/carwings_proto/autodj/opencarwings.py:548
-#: tculink/carwings_proto/autodj/opencarwings.py:583
+#: tculink/carwings_proto/autodj/opencarwings.py:553
+#: tculink/carwings_proto/autodj/opencarwings.py:588
 msgid "Average"
 msgstr "Keskitaso"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:548
-#: tculink/carwings_proto/autodj/opencarwings.py:572
+#: tculink/carwings_proto/autodj/opencarwings.py:553
+#: tculink/carwings_proto/autodj/opencarwings.py:577
 msgid "Good"
 msgstr "Hyvä"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:548
-#: tculink/carwings_proto/autodj/opencarwings.py:575
+#: tculink/carwings_proto/autodj/opencarwings.py:553
+#: tculink/carwings_proto/autodj/opencarwings.py:580
 msgid "Very good"
 msgstr "Erittäin hyvä"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:549
+#: tculink/carwings_proto/autodj/opencarwings.py:554
 msgid "Check Energy Economy"
 msgstr "Tarkista Energiatalous"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:554
+#: tculink/carwings_proto/autodj/opencarwings.py:559
 msgid ""
 "The energy economy trend compared with the average of the last five trips is "
 "shown above."
@@ -389,27 +389,27 @@ msgstr ""
 "Energiatalouden trendi verrattuna keskiarvoon viimeisen viiden matkan ajalta "
 "näytetään yllä."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:559
+#: tculink/carwings_proto/autodj/opencarwings.py:564
 msgid "Trend of Energy Economy\n"
 msgstr "Energiatalouden trendi\n"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:586
+#: tculink/carwings_proto/autodj/opencarwings.py:591
 msgid "Bad"
 msgstr "Huono"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:591
+#: tculink/carwings_proto/autodj/opencarwings.py:596
 msgid "[Average]\n"
 msgstr "[Keskiarvo]\n"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:593
+#: tculink/carwings_proto/autodj/opencarwings.py:598
 msgid "[Best]\n"
 msgstr "[Paras]\n"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:595
+#: tculink/carwings_proto/autodj/opencarwings.py:600
 msgid "[Worst]\n"
 msgstr "[Huonoin]\n"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:598
+#: tculink/carwings_proto/autodj/opencarwings.py:603
 #, python-brace-format
 msgid ""
 "\n"
@@ -422,7 +422,7 @@ msgstr ""
 "tuntia kilometriä kohden.\n"
 "Viimeisen viiden matkan perusteella, energiataloutesi on {economy_status}. "
 
-#: tculink/carwings_proto/autodj/opencarwings.py:604
+#: tculink/carwings_proto/autodj/opencarwings.py:609
 msgid ""
 "There is no trip records available yet. Try checking in again after your "
 "next trip."
@@ -430,7 +430,7 @@ msgstr ""
 "Matkatiedot eivät ole vielä saatavilla. Palaa uudelleen tarkistamaan "
 "seuraavan matkan jälkeen."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:606
+#: tculink/carwings_proto/autodj/opencarwings.py:611
 #, python-brace-format
 msgid ""
 "\n"
@@ -443,25 +443,25 @@ msgstr ""
 "matkatiedot puuttuvat. Palaa takaisin tälle kanavalle jälleen seuraavan "
 "matkan jälkeen. "
 
-#: tculink/carwings_proto/autodj/opencarwings.py:647
+#: tculink/carwings_proto/autodj/opencarwings.py:653
 msgid "Electric Car Column"
 msgstr "Sähköauto kolumni"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:648
-#: tculink/carwings_proto/autodj/opencarwings.py:652
+#: tculink/carwings_proto/autodj/opencarwings.py:654
+#: tculink/carwings_proto/autodj/opencarwings.py:658
 msgid "Drive Tip"
 msgstr "Ajovinkki"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:701
-#: tculink/carwings_proto/autodj/opencarwings.py:702
+#: tculink/carwings_proto/autodj/opencarwings.py:707
+#: tculink/carwings_proto/autodj/opencarwings.py:708
 msgid "Energy Information"
 msgstr "Energiatiedot"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:751
+#: tculink/carwings_proto/autodj/opencarwings.py:760
 msgid "Eco Tree Record"
 msgstr "Eko-puut"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:761
+#: tculink/carwings_proto/autodj/opencarwings.py:770
 msgid ""
 "Your Eco Tree Record \n"
 "\n"
@@ -469,61 +469,61 @@ msgstr ""
 "Sinun eko-puusi \n"
 "\n"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:767
-#: tculink/carwings_proto/autodj/opencarwings.py:773
+#: tculink/carwings_proto/autodj/opencarwings.py:776
+#: tculink/carwings_proto/autodj/opencarwings.py:782
 msgid "tree"
 msgstr "puu"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:769
-#: tculink/carwings_proto/autodj/opencarwings.py:775
-#: tculink/carwings_proto/autodj/opencarwings.py:788
-#: tculink/carwings_proto/autodj/opencarwings.py:829
+#: tculink/carwings_proto/autodj/opencarwings.py:778
+#: tculink/carwings_proto/autodj/opencarwings.py:784
+#: tculink/carwings_proto/autodj/opencarwings.py:797
+#: tculink/carwings_proto/autodj/opencarwings.py:839
 msgid "trees"
 msgstr "puuta"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:776
+#: tculink/carwings_proto/autodj/opencarwings.py:785
 #, python-brace-format
 msgid "Sum total: {trees} {tree_word}"
 msgstr "Yhteensä: {trees} {tree_word}"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:782
+#: tculink/carwings_proto/autodj/opencarwings.py:791
 #, python-brace-format
 msgid ""
 "On the {day_word} of {month}, you saved {trees} <phoneme alphabet=\"x-SVOX-"
 "sampa_en-GB\" ph=\"'i:-k@@U\">eco</phoneme>trees.\")"
 msgstr "{day_word} {month}, olet pelastanut {trees} eko puuta."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:788
+#: tculink/carwings_proto/autodj/opencarwings.py:797
 msgid "Total:"
 msgstr "Yhteensä:"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:825
+#: tculink/carwings_proto/autodj/opencarwings.py:835
 msgid "World's Eco Forest"
 msgstr "Maailman ekometsä"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:830
+#: tculink/carwings_proto/autodj/opencarwings.py:840
 msgid "tonnes"
 msgstr "tonnia"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:831
+#: tculink/carwings_proto/autodj/opencarwings.py:841
 msgid "Total number of Eco Trees:"
 msgstr "Total number of Eco Trees:"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:833
+#: tculink/carwings_proto/autodj/opencarwings.py:843
 msgid "CO2 Emission Cuts:"
 msgstr "CO2-päästöjen vähennykset:"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:841
+#: tculink/carwings_proto/autodj/opencarwings.py:851
 #, python-brace-format
 msgid "Total number of Eco Trees by {day} / {month}:"
 msgstr "Ekopuiden kokonaismäärä {day} / {month}:"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:843
+#: tculink/carwings_proto/autodj/opencarwings.py:853
 #, python-brace-format
 msgid "CO2 emissions reduced by {day} / {month}:"
 msgstr "CO2-päästöjen väheneminen {day} / {month}:"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:846
+#: tculink/carwings_proto/autodj/opencarwings.py:856
 msgid ""
 "(This calculation is based on an assumption that the CO2 emitted by petrol-"
 "driven cars of equivalent class can be reduced by driving electric cars)"
@@ -532,7 +532,7 @@ msgstr ""
 "bensiinikäyttöisten autojen CO2-päästöjä voidaan vähentää ajamalla "
 "sähköautoilla)"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:851
+#: tculink/carwings_proto/autodj/opencarwings.py:861
 #, python-brace-format
 msgid ""
 "By the {day_word} of {month}, electric cars with Open Car Wings world wide "
@@ -544,8 +544,8 @@ msgstr ""
 "maailmanlaajuisestipelastaneet yhteensä {trees} eko puuta. Ja {tonnes} "
 "tonnia hiilidioksidipäästöjä on vähennetty."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:905
-#: tculink/carwings_proto/autodj/opencarwings.py:906
+#: tculink/carwings_proto/autodj/opencarwings.py:915
+#: tculink/carwings_proto/autodj/opencarwings.py:916
 msgid "ECO Tree"
 msgstr "EKO-puu"
 
@@ -567,7 +567,7 @@ msgstr ""
 msgid "Route Plan {num}"
 msgstr "Suunniteltu reitti {num}"
 
-#: tculink/carwings_proto/autodj/sendtocar.py:41
+#: tculink/carwings_proto/autodj/sendtocar.py:39
 #, python-brace-format
 msgid ""
 "Location point, \"{point_name}\", which is {distance} kilometers away. Set "
@@ -576,11 +576,11 @@ msgstr ""
 "Kohde, \"{point_name}\", mihin on etäisyys {distance} kilometriä. Aseta se "
 "määränpääksi painamalla Paussi ja asettamalla se määränpääksi."
 
-#: tculink/carwings_proto/autodj/sendtocar.py:78
+#: tculink/carwings_proto/autodj/sendtocar.py:76
 msgid "Google Send To Car: No Destinations"
 msgstr "Google Send To Car: No Sijainteja"
 
-#: tculink/carwings_proto/autodj/sendtocar.py:79
+#: tculink/carwings_proto/autodj/sendtocar.py:77
 msgid ""
 "There are no destinations sent to the car. Please send at least one "
 "destination from your computer or mobile device and access this channel "
@@ -618,21 +618,21 @@ msgstr "yöllä"
 msgid "late night"
 msgstr "myöhään yöllä"
 
-#: tculink/carwings_proto/autodj/weather.py:358
+#: tculink/carwings_proto/autodj/weather.py:179
 msgid "vehicle location"
 msgstr "auton sijaintia"
 
-#: tculink/carwings_proto/autodj/weather.py:359
+#: tculink/carwings_proto/autodj/weather.py:274
 #, python-brace-format
 msgid "Weather Forecast for today, near {location_txt}."
 msgstr "Sääennuste tälle päivälle, lähellä {location_txt}."
 
-#: tculink/carwings_proto/autodj/weather.py:362
-#: tculink/carwings_proto/autodj/weather.py:376
+#: tculink/carwings_proto/autodj/weather.py:278
+#: tculink/carwings_proto/autodj/weather.py:415
 msgid "No forecast data available."
 msgstr "Ennustetietoja ei saatavilla."
 
-#: tculink/carwings_proto/autodj/weather.py:365
+#: tculink/carwings_proto/autodj/weather.py:281
 #, python-brace-format
 msgid ""
 "During the {period}, forecasted to {condition}. With temperature of {temp} "
@@ -643,12 +643,19 @@ msgstr ""
 "nopeus {wind} metriä sekunnissa ja {rain} prosenttia mahdollisuutta "
 "vesisateelle.\n"
 
-#: tculink/carwings_proto/autodj/weather.py:373
+#: tculink/carwings_proto/autodj/weather.py:292
+#: tculink/carwings_proto/autodj/weather.py:430
+#: tculink/carwings_proto/autodj/weather.py:472
+#: tculink/carwings_proto/autodj/weather.py:473
+msgid "Weather forecast"
+msgstr "Sääennuste"
+
+#: tculink/carwings_proto/autodj/weather.py:412
 #, python-brace-format
 msgid "Weather Forecast for next seven days, near {location_txt}."
 msgstr "Sääennuste seuraavalle seitsemälle päivälle, lähellä {location_txt}."
 
-#: tculink/carwings_proto/autodj/weather.py:380
+#: tculink/carwings_proto/autodj/weather.py:419
 #, python-brace-format
 msgid ""
 "On {weekday}, forecasted to {condition}. With highest temperature of "
@@ -657,134 +664,127 @@ msgstr ""
 "{weekday}, ennustettu {condition}. Korkein lämpötila {maxtemp} astetta "
 "celsiusta, matalin {mintemp} astetta celsiusta\n"
 
-#: tculink/carwings_proto/autodj/weather.py:391
-#: tculink/carwings_proto/autodj/weather.py:425
-#: tculink/carwings_proto/autodj/weather.py:467
-#: tculink/carwings_proto/autodj/weather.py:468
-msgid "Weather forecast"
-msgstr "Sääennuste"
-
-#: tculink/carwings_proto/utils.py:138
+#: tculink/carwings_proto/utils.py:140
 msgid "first"
 msgstr "ensimmäinen"
 
-#: tculink/carwings_proto/utils.py:138
+#: tculink/carwings_proto/utils.py:140
 msgid "second"
 msgstr "toinen"
 
-#: tculink/carwings_proto/utils.py:138
+#: tculink/carwings_proto/utils.py:140
 msgid "third"
 msgstr "kolmas"
 
-#: tculink/carwings_proto/utils.py:138
+#: tculink/carwings_proto/utils.py:140
 msgid "fourth"
 msgstr "neljännes"
 
-#: tculink/carwings_proto/utils.py:138
+#: tculink/carwings_proto/utils.py:140
 msgid "fifth"
 msgstr "viides"
 
-#: tculink/carwings_proto/utils.py:139
+#: tculink/carwings_proto/utils.py:141
 msgid "sixth"
 msgstr "kuude"
 
-#: tculink/carwings_proto/utils.py:139
+#: tculink/carwings_proto/utils.py:141
 msgid "seventh"
 msgstr "seitsemäs"
 
-#: tculink/carwings_proto/utils.py:139
+#: tculink/carwings_proto/utils.py:141
 msgid "eighth"
 msgstr "kahdeksas"
 
-#: tculink/carwings_proto/utils.py:139
+#: tculink/carwings_proto/utils.py:141
 msgid "ninth"
 msgstr "yhdeksäs"
 
-#: tculink/carwings_proto/utils.py:139
+#: tculink/carwings_proto/utils.py:141
 msgid "tenth"
 msgstr "kymmenes"
 
-#: tculink/carwings_proto/utils.py:140
+#: tculink/carwings_proto/utils.py:142
 msgid "eleventh"
 msgstr "yhtä toista"
 
-#: tculink/carwings_proto/utils.py:140
+#: tculink/carwings_proto/utils.py:142
 msgid "twelfth"
 msgstr "kahdes toista"
 
-#: tculink/carwings_proto/utils.py:140
+#: tculink/carwings_proto/utils.py:142
 msgid "thirteenth"
 msgstr "kolmatta toista"
 
-#: tculink/carwings_proto/utils.py:140
+#: tculink/carwings_proto/utils.py:142
 msgid "fourteenth"
 msgstr "neljättä toista"
 
-#: tculink/carwings_proto/utils.py:140
+#: tculink/carwings_proto/utils.py:142
 msgid "fifteenth"
 msgstr "viittä toista"
 
-#: tculink/carwings_proto/utils.py:141
+#: tculink/carwings_proto/utils.py:143
 msgid "sixteenth"
 msgstr "kuutta toista"
 
-#: tculink/carwings_proto/utils.py:141
+#: tculink/carwings_proto/utils.py:143
 msgid "seventeenth"
 msgstr "seitsemättä toista"
 
-#: tculink/carwings_proto/utils.py:141
+#: tculink/carwings_proto/utils.py:143
 msgid "eighteenth"
 msgstr "kahdeksatta toista"
 
-#: tculink/carwings_proto/utils.py:141
+#: tculink/carwings_proto/utils.py:143
 msgid "nineteenth"
 msgstr "yhdeksättä toista"
 
-#: tculink/carwings_proto/utils.py:141
+#: tculink/carwings_proto/utils.py:143
 msgid "twentieth"
 msgstr "kahdes kymmenettä"
 
-#: tculink/carwings_proto/utils.py:142
+#: tculink/carwings_proto/utils.py:144
 msgid "twenty-first"
 msgstr "kahdes kymmenes ensimmäistä"
 
-#: tculink/carwings_proto/utils.py:142
+#: tculink/carwings_proto/utils.py:144
 msgid "twenty-second"
 msgstr "kahdes kymmenes kahta"
 
-#: tculink/carwings_proto/utils.py:142
+#: tculink/carwings_proto/utils.py:144
 msgid "twenty-third"
 msgstr "kahdes kymmenes kolmatta"
 
-#: tculink/carwings_proto/utils.py:142
+#: tculink/carwings_proto/utils.py:144
 msgid "twenty-fourth"
 msgstr "kahdes kymmenes neljättä"
 
-#: tculink/carwings_proto/utils.py:142
+#: tculink/carwings_proto/utils.py:144
 msgid "twenty-fifth"
 msgstr "kahdes kymmenes viidettä"
 
-#: tculink/carwings_proto/utils.py:143
+#: tculink/carwings_proto/utils.py:145
 msgid "twenty-sixth"
 msgstr "kahdes kymmenes kuudetta"
 
-#: tculink/carwings_proto/utils.py:143
+#: tculink/carwings_proto/utils.py:145
 msgid "twenty-seventh"
 msgstr "kahdes kymmenes seitsemättä"
 
-#: tculink/carwings_proto/utils.py:143
+#: tculink/carwings_proto/utils.py:145
 msgid "twenty-eighth"
 msgstr "kahdes kymmenes kahdeksatta"
 
-#: tculink/carwings_proto/utils.py:143
+#: tculink/carwings_proto/utils.py:145
 msgid "twenty-ninth"
 msgstr "kahdes kymmenes yhdeksättä"
 
-#: tculink/carwings_proto/utils.py:143
+#: tculink/carwings_proto/utils.py:145
 msgid "thirtieth"
 msgstr "kolmaskymmenes"
 
-#: tculink/carwings_proto/utils.py:144
+#: tculink/carwings_proto/utils.py:146
 msgid "thirty-first"
 msgstr "kolmas kymmenes ensimmäistä"
 
@@ -1929,18 +1929,17 @@ msgid "Forgot password?"
 msgstr "Unohtuiko salasana?"
 
 #: ui/templates/ui/landing.html:83
-msgid "Take Back Control of Your Nissan LEAF"
-msgstr "Ota ohjat takaisin Nissan LEAFiisi"
+msgid "Make your car hi-tech again!"
+msgstr "Tee autostasi uudelleen hi-tech!"
 
 #: ui/templates/ui/landing.html:86
 msgid ""
-"The iconic Nissan LEAF deserves more than abandonment. With the "
-"manufacturer's support fading, the community steps up. Sign up now to bring "
-"your LEAF back to life!"
+"OpenCARWINGS restores original CARWINGS functionality of Nissan vehicles, "
+"bringing smart features back, often way better than the original!"
 msgstr ""
-"Ikoninen Nissan LEAF ansaitsee parempaa kohtelua. Valmistajantuki alkaa "
-"hiipua, mutta LEAF-yhteisö tekee työnsä. Rekisteröidy nyt ja tuo LEAFisi "
-"takaisin nettiin!"
+"OpenCARWINGS palauttaa Nissanin ajoneuvojen alkuperäisen CARWINGS-"
+"toiminnallisuuden, tuoden älykkäät ominaisuudet takaisin, usein paljon "
+"paremmin toimivina kuin aiemmin!"
 
 #: ui/templates/ui/landing.html:90
 msgid "Get Started"
@@ -2868,6 +2867,18 @@ msgstr ""
 #: ui/views.py:755
 msgid "Update request cancelled!"
 msgstr "Päivityspyyntö peruttu!"
+
+msgid "Take Back Control of Your Nissan LEAF"
+msgstr "Ota ohjat takaisin Nissan LEAFiisi"
+
+msgid ""
+"The iconic Nissan LEAF deserves more than abandonment. With the "
+"manufacturer's support fading, the community steps up. Sign up now to bring "
+"your LEAF back to life!"
+msgstr ""
+"Ikoninen Nissan LEAF ansaitsee parempaa kohtelua. Valmistajantuki alkaa "
+"hiipua, mutta LEAF-yhteisö tekee työnsä. Rekisteröidy nyt ja tuo LEAFisi "
+"takaisin nettiin!"
 
 msgid "Charge position"
 msgstr "Latauksen sijainti"

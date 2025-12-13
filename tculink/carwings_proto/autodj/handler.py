@@ -8,7 +8,7 @@ from tculink.carwings_proto.utils import get_cws_authenticated_car, carwings_lan
 
 def handle_directory_response(xml_data, returning_xml):
 
-    activate(carwings_lang_to_code(xml_data['base_info'].get('navigation_settings', {}).get('language', "uke")))
+    activate(carwings_lang_to_code(xml_data['base_info'].get('navigation_settings', {}).get('language', '')))
 
     car = get_cws_authenticated_car(xml_data)
     channels, folders = get_info_channel_data(car)

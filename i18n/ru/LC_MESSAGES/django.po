@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-28 15:30+0000\n"
-"PO-Revision-Date: 2025-11-28 17:36+0200\n"
+"POT-Creation-Date: 2025-12-13 09:01+0000\n"
+"PO-Revision-Date: 2025-12-13 11:05+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -254,8 +254,8 @@ msgstr "Канал добавлен в избранное"
 
 #: tculink/carwings_proto/autodj/handler.py:23
 #: tculink/carwings_proto/autodj/handler.py:24
-#: tculink/carwings_proto/autodj/opencarwings.py:123
-#: tculink/carwings_proto/autodj/opencarwings.py:124
+#: tculink/carwings_proto/autodj/opencarwings.py:127
+#: tculink/carwings_proto/autodj/opencarwings.py:128
 msgid "Info from OpenCARWINGS"
 msgstr "Информация от OpenCARWINGS"
 
@@ -269,7 +269,7 @@ msgstr "Канал недоступен"
 msgid "Not authorized"
 msgstr "Не аутентифицировано"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:509
+#: tculink/carwings_proto/autodj/opencarwings.py:513
 msgid ""
 "Use remote climate control or the timer so that the cabin will be at a "
 "comfortable temperature before starting.  This allows the car to save energy "
@@ -279,7 +279,7 @@ msgstr ""
 "началом поездки в салоне была комфортная температура. Это позволяет "
 "автомобилю экономить энергию во время движения."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:510
+#: tculink/carwings_proto/autodj/opencarwings.py:514
 msgid ""
 "Keep your car in the garage during winter times to keep the battery pack "
 "warm.  This will increase your range a bit, especially in colder climates."
@@ -287,7 +287,7 @@ msgstr ""
 "Зимой держите автомобиль в гараже, чтобы аккумулятор оставался тёплым. Это "
 "немного увеличит запас хода, особенно в холодном климате."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:511
+#: tculink/carwings_proto/autodj/opencarwings.py:515
 msgid ""
 "Use <phoneme alphabet=\"x-SVOX-sampa_en-GB\" ph=\"'i:-k@@U\">eco</phoneme> "
 "mode or B-mode when possible to increase your regenerative energy."
@@ -295,7 +295,7 @@ msgstr ""
 "По возможности используйте эко-режим или B-режим, чтобы увеличить "
 "регенеративную энергию."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:512
+#: tculink/carwings_proto/autodj/opencarwings.py:516
 msgid ""
 "Check your tire pressure at least once a month to ensure they are at optimal "
 "level.  Low tire pressure decreases rolling effect of the car and more "
@@ -305,7 +305,7 @@ msgstr ""
 "что оно находится на оптимальном уровне. Низкое давление в шинах ухудшает "
 "качение автомобиля и увеличивает расход энергии на движение."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:513
+#: tculink/carwings_proto/autodj/opencarwings.py:517
 msgid ""
 "Plan your routes to include charging stations, especially on longer trips, "
 "to avoid range anxiety and ensure smooth travel."
@@ -314,7 +314,7 @@ msgstr ""
 "длительных поездках, чтобы избежать беспокойства о запасе хода и обеспечить "
 "комфортное путешествие."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:514
+#: tculink/carwings_proto/autodj/opencarwings.py:518
 msgid ""
 "Avoid rapid acceleration and maintain a steady speed to maximize battery "
 "efficiency, as aggressive driving can significantly reduce your range."
@@ -323,7 +323,7 @@ msgstr ""
 "максимально эффективно использовать аккумулятор, так как агрессивное "
 "вождение может значительно сократить запас хода."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:515
+#: tculink/carwings_proto/autodj/opencarwings.py:519
 msgid ""
 "Use the Nissan Leaf’s navigation system to find the most energy-efficient "
 "routes, which can help conserve battery power on unfamiliar roads."
@@ -332,7 +332,7 @@ msgstr ""
 "энергоэффективных маршрутов, что поможет сэкономить заряд аккумулятора на "
 "незнакомых дорогах."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:516
+#: tculink/carwings_proto/autodj/opencarwings.py:520
 msgid ""
 "In colder times, try to use more of seat heating and steering wheel heating "
 "while keeping your air conditioning on lower settings. Auxiliary heating "
@@ -342,7 +342,7 @@ msgstr ""
 "снижая мощность кондиционера. Дополнительные нагревательные элементы "
 "потребляют меньше энергии, чем система кондиционирования автомобиля."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:517
+#: tculink/carwings_proto/autodj/opencarwings.py:521
 msgid ""
 "Park in shaded areas during hot weather to keep the battery cool, as extreme "
 "heat can reduce battery efficiency and longevity."
@@ -351,7 +351,7 @@ msgstr ""
 "прохладным, так как сильная жара может снизить эффективность и срок службы "
 "аккумулятора."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:518
+#: tculink/carwings_proto/autodj/opencarwings.py:522
 msgid ""
 "Try to charge the battery up to 80 percent for daily usage. Charging to "
 "full, every day, is not recommended for battery longevity."
@@ -359,7 +359,7 @@ msgstr ""
 "Старайтесь заряжать аккумулятор до 80% при ежедневном использовании. Полная "
 "зарядка каждый день не рекомендуется для продления срока службы аккумулятора."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:519
+#: tculink/carwings_proto/autodj/opencarwings.py:523
 msgid ""
 "With Open Car Wings, you can review your driving efficiency of each trip, "
 "online. With the data, it is easier to determine which areas of driving "
@@ -369,26 +369,26 @@ msgstr ""
 "каждой поездки. Эти данные помогут определить, какие аспекты вождения нужно "
 "улучшить для достижения максимальной энергоэффективности."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:548
-#: tculink/carwings_proto/autodj/opencarwings.py:583
+#: tculink/carwings_proto/autodj/opencarwings.py:553
+#: tculink/carwings_proto/autodj/opencarwings.py:588
 msgid "Average"
 msgstr "Среднее"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:548
-#: tculink/carwings_proto/autodj/opencarwings.py:572
+#: tculink/carwings_proto/autodj/opencarwings.py:553
+#: tculink/carwings_proto/autodj/opencarwings.py:577
 msgid "Good"
 msgstr "Хорошо"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:548
-#: tculink/carwings_proto/autodj/opencarwings.py:575
+#: tculink/carwings_proto/autodj/opencarwings.py:553
+#: tculink/carwings_proto/autodj/opencarwings.py:580
 msgid "Very good"
 msgstr "Очень хорошо"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:549
+#: tculink/carwings_proto/autodj/opencarwings.py:554
 msgid "Check Energy Economy"
 msgstr "Проверка энергоэффективности"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:554
+#: tculink/carwings_proto/autodj/opencarwings.py:559
 msgid ""
 "The energy economy trend compared with the average of the last five trips is "
 "shown above."
@@ -396,27 +396,27 @@ msgstr ""
 "Тенденция энергоэффективности по сравнению со средним показателем за "
 "последние пять поездок показана выше."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:559
+#: tculink/carwings_proto/autodj/opencarwings.py:564
 msgid "Trend of Energy Economy\n"
 msgstr "Тенденция энергоэффективности\n"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:586
+#: tculink/carwings_proto/autodj/opencarwings.py:591
 msgid "Bad"
 msgstr "Плохо"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:591
+#: tculink/carwings_proto/autodj/opencarwings.py:596
 msgid "[Average]\n"
 msgstr "[Среднее]\n"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:593
+#: tculink/carwings_proto/autodj/opencarwings.py:598
 msgid "[Best]\n"
 msgstr "[Лучшее]\n"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:595
+#: tculink/carwings_proto/autodj/opencarwings.py:600
 msgid "[Worst]\n"
 msgstr "[Худшее]\n"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:598
+#: tculink/carwings_proto/autodj/opencarwings.py:603
 #, python-brace-format
 msgid ""
 "\n"
@@ -430,7 +430,7 @@ msgstr ""
 "На основе последних 5 поездок ваша энергоэффективность оценивается как "
 "{economy_status}."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:604
+#: tculink/carwings_proto/autodj/opencarwings.py:609
 msgid ""
 "There is no trip records available yet. Try checking in again after your "
 "next trip."
@@ -438,7 +438,7 @@ msgstr ""
 "Записей о поездках пока нет. Попробуйте проверить снова после следующей "
 "поездки."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:606
+#: tculink/carwings_proto/autodj/opencarwings.py:611
 #, python-brace-format
 msgid ""
 "\n"
@@ -451,25 +451,25 @@ msgstr ""
 "рассчитан из-за отсутствия информации о поездках. Попробуйте снова зайти на "
 "этот канал после следующей поездки."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:647
+#: tculink/carwings_proto/autodj/opencarwings.py:653
 msgid "Electric Car Column"
 msgstr "Колонка об электромобилях"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:648
-#: tculink/carwings_proto/autodj/opencarwings.py:652
+#: tculink/carwings_proto/autodj/opencarwings.py:654
+#: tculink/carwings_proto/autodj/opencarwings.py:658
 msgid "Drive Tip"
 msgstr "Совет водителю"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:701
-#: tculink/carwings_proto/autodj/opencarwings.py:702
+#: tculink/carwings_proto/autodj/opencarwings.py:707
+#: tculink/carwings_proto/autodj/opencarwings.py:708
 msgid "Energy Information"
 msgstr "Информация об энергии"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:751
+#: tculink/carwings_proto/autodj/opencarwings.py:760
 msgid "Eco Tree Record"
 msgstr "Запись об экодеревьях"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:761
+#: tculink/carwings_proto/autodj/opencarwings.py:770
 msgid ""
 "Your Eco Tree Record \n"
 "\n"
@@ -477,61 +477,61 @@ msgstr ""
 "Ваши экодеревья\n"
 "\n"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:767
-#: tculink/carwings_proto/autodj/opencarwings.py:773
+#: tculink/carwings_proto/autodj/opencarwings.py:776
+#: tculink/carwings_proto/autodj/opencarwings.py:782
 msgid "tree"
 msgstr "дерево"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:769
-#: tculink/carwings_proto/autodj/opencarwings.py:775
-#: tculink/carwings_proto/autodj/opencarwings.py:788
-#: tculink/carwings_proto/autodj/opencarwings.py:829
+#: tculink/carwings_proto/autodj/opencarwings.py:778
+#: tculink/carwings_proto/autodj/opencarwings.py:784
+#: tculink/carwings_proto/autodj/opencarwings.py:797
+#: tculink/carwings_proto/autodj/opencarwings.py:839
 msgid "trees"
 msgstr "деревья"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:776
+#: tculink/carwings_proto/autodj/opencarwings.py:785
 #, python-brace-format
 msgid "Sum total: {trees} {tree_word}"
 msgstr "Всего: {trees} {tree_word}"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:782
+#: tculink/carwings_proto/autodj/opencarwings.py:791
 #, python-brace-format
 msgid ""
 "On the {day_word} of {month}, you saved {trees} <phoneme alphabet=\"x-SVOX-"
 "sampa_en-GB\" ph=\"'i:-k@@U\">eco</phoneme>trees.\")"
 msgstr "{day_word} {month} вы спасли {trees} экодеревьев."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:788
+#: tculink/carwings_proto/autodj/opencarwings.py:797
 msgid "Total:"
 msgstr "Всего:"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:825
+#: tculink/carwings_proto/autodj/opencarwings.py:835
 msgid "World's Eco Forest"
 msgstr "Мировой экологический лес"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:830
+#: tculink/carwings_proto/autodj/opencarwings.py:840
 msgid "tonnes"
 msgstr "тонн"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:831
+#: tculink/carwings_proto/autodj/opencarwings.py:841
 msgid "Total number of Eco Trees:"
 msgstr "Общее количество экодеревьев:"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:833
+#: tculink/carwings_proto/autodj/opencarwings.py:843
 msgid "CO2 Emission Cuts:"
 msgstr "Сокращение выбросов CO2:"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:841
+#: tculink/carwings_proto/autodj/opencarwings.py:851
 #, python-brace-format
 msgid "Total number of Eco Trees by {day} / {month}:"
 msgstr "Общее количество экодеревьев на {day}/{month}:"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:843
+#: tculink/carwings_proto/autodj/opencarwings.py:853
 #, python-brace-format
 msgid "CO2 emissions reduced by {day} / {month}:"
 msgstr "Снижение выбросов CO2 на {day}/{month}:"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:846
+#: tculink/carwings_proto/autodj/opencarwings.py:856
 msgid ""
 "(This calculation is based on an assumption that the CO2 emitted by petrol-"
 "driven cars of equivalent class can be reduced by driving electric cars)"
@@ -540,7 +540,7 @@ msgstr ""
 "автомобилями с бензиновым двигателем аналогичного класса, можно сократить за "
 "счёт использования электромобилей.)"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:851
+#: tculink/carwings_proto/autodj/opencarwings.py:861
 #, python-brace-format
 msgid ""
 "By the {day_word} of {month}, electric cars with Open Car Wings world wide "
@@ -552,8 +552,8 @@ msgstr ""
 "общей сложности {trees} экодеревьев. Выбросы углекислого газа сократились на "
 "{tonnes} тонн."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:905
-#: tculink/carwings_proto/autodj/opencarwings.py:906
+#: tculink/carwings_proto/autodj/opencarwings.py:915
+#: tculink/carwings_proto/autodj/opencarwings.py:916
 msgid "ECO Tree"
 msgstr "Экодерево"
 
@@ -575,7 +575,7 @@ msgstr ""
 msgid "Route Plan {num}"
 msgstr "План маршрута {num}"
 
-#: tculink/carwings_proto/autodj/sendtocar.py:41
+#: tculink/carwings_proto/autodj/sendtocar.py:39
 #, python-brace-format
 msgid ""
 "Location point, \"{point_name}\", which is {distance} kilometers away. Set "
@@ -585,11 +585,11 @@ msgstr ""
 "Установите её в качестве пункта назначения, нажав на паузу и выбрав точку на "
 "карте в качестве пункта назначения."
 
-#: tculink/carwings_proto/autodj/sendtocar.py:78
+#: tculink/carwings_proto/autodj/sendtocar.py:76
 msgid "Google Send To Car: No Destinations"
 msgstr "Google Send To Car: Пункты назначения отсутствуют"
 
-#: tculink/carwings_proto/autodj/sendtocar.py:79
+#: tculink/carwings_proto/autodj/sendtocar.py:77
 msgid ""
 "There are no destinations sent to the car. Please send at least one "
 "destination from your computer or mobile device and access this channel "
@@ -628,21 +628,21 @@ msgstr "ночь"
 msgid "late night"
 msgstr "поздняя ночь"
 
-#: tculink/carwings_proto/autodj/weather.py:358
+#: tculink/carwings_proto/autodj/weather.py:179
 msgid "vehicle location"
 msgstr "местоположение автомобиля"
 
-#: tculink/carwings_proto/autodj/weather.py:359
+#: tculink/carwings_proto/autodj/weather.py:274
 #, python-brace-format
 msgid "Weather Forecast for today, near {location_txt}."
 msgstr "Прогноз погоды на сегодня в районе {location_txt}."
 
-#: tculink/carwings_proto/autodj/weather.py:362
-#: tculink/carwings_proto/autodj/weather.py:376
+#: tculink/carwings_proto/autodj/weather.py:278
+#: tculink/carwings_proto/autodj/weather.py:415
 msgid "No forecast data available."
 msgstr "Данные прогноза погоды отсутствуют."
 
-#: tculink/carwings_proto/autodj/weather.py:365
+#: tculink/carwings_proto/autodj/weather.py:281
 #, python-brace-format
 msgid ""
 "During the {period}, forecasted to {condition}. With temperature of {temp} "
@@ -653,12 +653,19 @@ msgstr ""
 "градусов Цельсия, скорость ветра — {wind} метров в секунду, вероятность "
 "дождя — {rain} процентов.\n"
 
-#: tculink/carwings_proto/autodj/weather.py:373
+#: tculink/carwings_proto/autodj/weather.py:292
+#: tculink/carwings_proto/autodj/weather.py:430
+#: tculink/carwings_proto/autodj/weather.py:472
+#: tculink/carwings_proto/autodj/weather.py:473
+msgid "Weather forecast"
+msgstr "Прогноз погоды"
+
+#: tculink/carwings_proto/autodj/weather.py:412
 #, python-brace-format
 msgid "Weather Forecast for next seven days, near {location_txt}."
 msgstr "Прогноз погоды на ближайшие семь дней в районе {location_txt}."
 
-#: tculink/carwings_proto/autodj/weather.py:380
+#: tculink/carwings_proto/autodj/weather.py:419
 #, python-brace-format
 msgid ""
 "On {weekday}, forecasted to {condition}. With highest temperature of "
@@ -667,134 +674,127 @@ msgstr ""
 "В {weekday} ожидается {condition}. Максимальная температура — {maxtemp} "
 "градусов Цельсия, минимальная температура — {mintemp} градусов Цельсия.\n"
 
-#: tculink/carwings_proto/autodj/weather.py:391
-#: tculink/carwings_proto/autodj/weather.py:425
-#: tculink/carwings_proto/autodj/weather.py:467
-#: tculink/carwings_proto/autodj/weather.py:468
-msgid "Weather forecast"
-msgstr "Прогноз погоды"
-
-#: tculink/carwings_proto/utils.py:138
+#: tculink/carwings_proto/utils.py:140
 msgid "first"
 msgstr "первый"
 
-#: tculink/carwings_proto/utils.py:138
+#: tculink/carwings_proto/utils.py:140
 msgid "second"
 msgstr "второй"
 
-#: tculink/carwings_proto/utils.py:138
+#: tculink/carwings_proto/utils.py:140
 msgid "third"
 msgstr "третий"
 
-#: tculink/carwings_proto/utils.py:138
+#: tculink/carwings_proto/utils.py:140
 msgid "fourth"
 msgstr "четвёртый"
 
-#: tculink/carwings_proto/utils.py:138
+#: tculink/carwings_proto/utils.py:140
 msgid "fifth"
 msgstr "пятый"
 
-#: tculink/carwings_proto/utils.py:139
+#: tculink/carwings_proto/utils.py:141
 msgid "sixth"
 msgstr "шестой"
 
-#: tculink/carwings_proto/utils.py:139
+#: tculink/carwings_proto/utils.py:141
 msgid "seventh"
 msgstr "седьмой"
 
-#: tculink/carwings_proto/utils.py:139
+#: tculink/carwings_proto/utils.py:141
 msgid "eighth"
 msgstr "восьмой"
 
-#: tculink/carwings_proto/utils.py:139
+#: tculink/carwings_proto/utils.py:141
 msgid "ninth"
 msgstr "девятый"
 
-#: tculink/carwings_proto/utils.py:139
+#: tculink/carwings_proto/utils.py:141
 msgid "tenth"
 msgstr "десятый"
 
-#: tculink/carwings_proto/utils.py:140
+#: tculink/carwings_proto/utils.py:142
 msgid "eleventh"
 msgstr "одиннадцатый"
 
-#: tculink/carwings_proto/utils.py:140
+#: tculink/carwings_proto/utils.py:142
 msgid "twelfth"
 msgstr "двенадцатый"
 
-#: tculink/carwings_proto/utils.py:140
+#: tculink/carwings_proto/utils.py:142
 msgid "thirteenth"
 msgstr "тринадцатый"
 
-#: tculink/carwings_proto/utils.py:140
+#: tculink/carwings_proto/utils.py:142
 msgid "fourteenth"
 msgstr "четырнадцатый"
 
-#: tculink/carwings_proto/utils.py:140
+#: tculink/carwings_proto/utils.py:142
 msgid "fifteenth"
 msgstr "пятнадцатый"
 
-#: tculink/carwings_proto/utils.py:141
+#: tculink/carwings_proto/utils.py:143
 msgid "sixteenth"
 msgstr "шестнадцатый"
 
-#: tculink/carwings_proto/utils.py:141
+#: tculink/carwings_proto/utils.py:143
 msgid "seventeenth"
 msgstr "семнадцатый"
 
-#: tculink/carwings_proto/utils.py:141
+#: tculink/carwings_proto/utils.py:143
 msgid "eighteenth"
 msgstr "восемнадцатый"
 
-#: tculink/carwings_proto/utils.py:141
+#: tculink/carwings_proto/utils.py:143
 msgid "nineteenth"
 msgstr "девятнадцатый"
 
-#: tculink/carwings_proto/utils.py:141
+#: tculink/carwings_proto/utils.py:143
 msgid "twentieth"
 msgstr "двадцатый"
 
-#: tculink/carwings_proto/utils.py:142
+#: tculink/carwings_proto/utils.py:144
 msgid "twenty-first"
 msgstr "двадцать первый"
 
-#: tculink/carwings_proto/utils.py:142
+#: tculink/carwings_proto/utils.py:144
 msgid "twenty-second"
 msgstr "двадцать второй"
 
-#: tculink/carwings_proto/utils.py:142
+#: tculink/carwings_proto/utils.py:144
 msgid "twenty-third"
 msgstr "двадцать третий"
 
-#: tculink/carwings_proto/utils.py:142
+#: tculink/carwings_proto/utils.py:144
 msgid "twenty-fourth"
 msgstr "двадцать четвёртый"
 
-#: tculink/carwings_proto/utils.py:142
+#: tculink/carwings_proto/utils.py:144
 msgid "twenty-fifth"
 msgstr "двадцать пятый"
 
-#: tculink/carwings_proto/utils.py:143
+#: tculink/carwings_proto/utils.py:145
 msgid "twenty-sixth"
 msgstr "двадцать шестой"
 
-#: tculink/carwings_proto/utils.py:143
+#: tculink/carwings_proto/utils.py:145
 msgid "twenty-seventh"
 msgstr "двадцать седьмой"
 
-#: tculink/carwings_proto/utils.py:143
+#: tculink/carwings_proto/utils.py:145
 msgid "twenty-eighth"
 msgstr "двадцать восьмой"
 
-#: tculink/carwings_proto/utils.py:143
+#: tculink/carwings_proto/utils.py:145
 msgid "twenty-ninth"
 msgstr "двадцать девятый"
 
-#: tculink/carwings_proto/utils.py:143
+#: tculink/carwings_proto/utils.py:145
 msgid "thirtieth"
 msgstr "тридцатый"
 
-#: tculink/carwings_proto/utils.py:144
+#: tculink/carwings_proto/utils.py:146
 msgid "thirty-first"
 msgstr "тридцать первый"
 
@@ -1934,18 +1934,17 @@ msgid "Forgot password?"
 msgstr "Забыли пароль?"
 
 #: ui/templates/ui/landing.html:83
-msgid "Take Back Control of Your Nissan LEAF"
-msgstr "Возьмите контроль над своим Nissan LEAF"
+msgid "Make your car hi-tech again!"
+msgstr "Сделай свою машину снова хай-тек!"
 
 #: ui/templates/ui/landing.html:86
 msgid ""
-"The iconic Nissan LEAF deserves more than abandonment. With the "
-"manufacturer's support fading, the community steps up. Sign up now to bring "
-"your LEAF back to life!"
+"OpenCARWINGS restores original CARWINGS functionality of Nissan vehicles, "
+"bringing smart features back, often way better than the original!"
 msgstr ""
-"Легендарный Nissan LEAF заслуживает большего, чем забвение. С угасанием "
-"поддержки производителя сообщество берёт инициативу в свои руки. "
-"Зарегистрируйтесь сейчас, чтобы вернуть ваш LEAF к жизни!"
+"OpenCARWINGS восстанавливает оригинальную функциональность CARWINGS в "
+"автомобилях Nissan, возвращая умные возможности, и часто делает это намного "
+"лучше, чем было изначально!"
 
 #: ui/templates/ui/landing.html:90
 msgid "Get Started"
@@ -2879,6 +2878,18 @@ msgstr ""
 #: ui/views.py:755
 msgid "Update request cancelled!"
 msgstr "Запрос на обновление отменен!"
+
+msgid "Take Back Control of Your Nissan LEAF"
+msgstr "Возьмите контроль над своим Nissan LEAF"
+
+msgid ""
+"The iconic Nissan LEAF deserves more than abandonment. With the "
+"manufacturer's support fading, the community steps up. Sign up now to bring "
+"your LEAF back to life!"
+msgstr ""
+"Легендарный Nissan LEAF заслуживает большего, чем забвение. С угасанием "
+"поддержки производителя сообщество берёт инициативу в свои руки. "
+"Зарегистрируйтесь сейчас, чтобы вернуть ваш LEAF к жизни!"
 
 msgid "Charge position"
 msgstr "Место зарядки"

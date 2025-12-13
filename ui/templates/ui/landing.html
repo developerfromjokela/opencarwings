@@ -57,7 +57,7 @@
     <!-- ==================== INTRO + SLIDESHOW ==================== -->
     <div class="md:col-span-2" x-data="slideshow()" x-init="init()">
       <!-- Slideshow -->
-      <div class="relative overflow-hidden rounded-lg shadow-xl mb-8 h-8 md:h-[27rem]">
+      <div class="relative overflow-hidden rounded-lg shadow-xl mb-8 h-[18rem] md:h-[27rem]">
         <template x-for="(slide, index) in slides" :key="index">
           <div class="absolute inset-0 transition-opacity duration-1000 ease-in-out"
                :style="{ opacity: currentIndex === index ? 1 : 0, 'z-index': currentIndex === index ? 10 : 1 }">
@@ -80,10 +80,10 @@
       <!-- Text Content -->
       <div class="text-center md:text-left">
         <h1 class="text-3xl font-extrabold text-gray-800 dark:text-gray-50 mb-4" style="line-height: 1.2em;">
-          {% translate "Take Back Control of Your Nissan LEAF" %}
+          {% translate "Make your car hi-tech again!" %}
         </h1>
         <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-lg mx-auto md:mx-0">
-          {% translate "The iconic Nissan LEAF deserves more than abandonment. With the manufacturer's support fading, the community steps up. Sign up now to bring your LEAF back to life!" %}
+          {% translate "OpenCARWINGS restores original CARWINGS functionality of Nissan vehicles, bringing smart features back, often way better than the original!" %}
         </p>
         <a href="/signup"
            class="bg-blue-500 text-white px-8 py-4 rounded-md text-lg font-semibold hover:bg-blue-600 transition duration-300 inline-block">

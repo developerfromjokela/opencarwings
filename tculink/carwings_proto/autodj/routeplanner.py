@@ -92,7 +92,7 @@ def handle_routeplanner(unused, returning_xml, channel_id, car: Car, page):
                 "12byteField1": b'\x00' * 12,
                 "12byteField2": b'\x00' * 12,
                 "mapPointFlag": b'\x80',
-                "flag8": 0,
+                "flag8": 0x80,
                 "imageDataField": bytearray()
             }
         ]
@@ -128,7 +128,7 @@ def handle_routeplanner(unused, returning_xml, channel_id, car: Car, page):
                         "12byteField1": b'\x00' * 12,
                         "12byteField2": b'\x00' * 12,
                         "mapPointFlag": b'\x80',
-                        "flag8": 0,
+                        "flag8": 0x80,
                         "imageDataField": bytearray()
                     }
                 )

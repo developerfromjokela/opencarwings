@@ -1,9 +1,8 @@
 import logging
-import math
+from suntime import Sun
 import os
 from datetime import timedelta, datetime
 from io import BytesIO
-
 import geopy.geocoders
 import pngquant
 import requests
@@ -86,25 +85,15 @@ WEATHER_NAMES = {
 
 def is_daylight(lat, lon):
     try:
+        sun = Sun(lat, lon)
         utc_time = timezone.now()
-        lat_rad = math.radians(lat)
-        day_of_year = utc_time.timetuple().tm_yday
-        solar_noon = 12.0 - (lon / 15.0)
-        mean_anomaly = math.radians(357.5291 + 0.98560028 * day_of_year)
-        ecliptic_long = mean_anomaly + 1.9148 * math.sin(mean_anomaly) + 0.0200 * math.sin(2 * mean_anomaly) + 282.634
-        declination = math.asin(math.sin(math.radians(23.44)) * math.sin(math.radians(ecliptic_long)))
-        cos_hour_angle = -math.tan(lat_rad) * math.tan(declination)
-        if abs(cos_hour_angle) > 1:
-            return cos_hour_angle < 0
-        hour_angle = math.degrees(math.acos(cos_hour_angle))
-        sunrise = solar_noon - (hour_angle / 15.0)
-        sunset = solar_noon + (hour_angle / 15.0)+3
-        current_hour = utc_time.hour + utc_time.minute / 60.0 + utc_time.second / 3600.0
-        return sunrise <= current_hour <= sunset
+        sunrise = sun.get_sunrise_time()
+        sunset = sun.get_sunset_time()
+
+        return sunrise <= utc_time <= sunset
     except Exception as e:
         print(f"Error calculating sunlight: {e}")
         return False
-
 
 def get_city(lat, lon):
     geolocator = geopy.geocoders.nominatim.Nominatim(user_agent="OpenCARWINGS", timeout=3)

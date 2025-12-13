@@ -20,3 +20,4 @@ pngquant==3.0.3
 python-dateutil~=2.9.0
 pycryptodome~=3.23.0
 pytz==2025.2
+suntime~=1.3.2

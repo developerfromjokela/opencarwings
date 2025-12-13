@@ -48,7 +48,7 @@ def handle_directory_response(xml_data, returning_xml):
         ("FAVTINF", favt_file)
     ]
 
-def handle_channel_response(xml_data, channel_id, returning_xml):
+def handle_channel_response(xml_data, channel_id, returning_xml, flag):
     car = get_cws_authenticated_car(xml_data)
     channels, folders = get_info_channel_data(car, True)
 
@@ -91,4 +91,4 @@ def handle_channel_response(xml_data, channel_id, returning_xml):
         )
         return [('NOTAUTH', resp_file)]
 
-    return channel['processor'](xml_data, returning_xml, channel_id, car)
+    return channel['processor'](xml_data, returning_xml, channel_id, car, flag)

@@ -134,7 +134,7 @@ def get_weather_data(lat, lon, tz="UTC"):
     else:
         raise Exception("Failed to fetch weather data")
 
-def get_weather_forecast(xml_data, returning_xml, channel_id, car):
+def get_weather_forecast(xml_data, returning_xml, channel_id, car, page):
     response_chdata = NOT_AVAIL_AUTODJ_ITEM
     if (xml_data.get('base_info', None) is not None
             and xml_data['base_info'].get('vehicle', None) is not None
@@ -176,52 +176,8 @@ def get_weather_forecast(xml_data, returning_xml, channel_id, car):
             (str(_('night')), f"{next_date}T21:00"),
         ]
 
-        daily_forecast = []
-        hourly = data['hourly']
-        for (period, local_time_str) in periods:
-            # Find the closest matching time in the hourly data
-            tz_timestamp = datetime.fromisoformat(local_time_str).replace(tzinfo=car_tzinfo)
-            if local_time_str in hourly['time'] and tz_timestamp > local_time.replace(tzinfo=car_tzinfo):
-                idx = hourly['time'].index(local_time_str)
-                condition = WEATHER_CODES.get(hourly['weathercode'][idx], "unknown")
-                condition_txt = _(WEATHER_NAMES.get(hourly['weathercode'][idx], "unknown"))
-                temp = hourly['temperature_2m'][idx]
-                rain_chance = hourly['precipitation_probability'][idx]
-                wind = hourly['windspeed_10m'][idx]
-                if 'night' in period and condition == 'clear':
-                    condition = 'clear_moon'
-                if len(daily_forecast) < 4:
-                    daily_forecast.append({
-                        'period': period,
-                        'local_time': local_time_str.split('T')[1],
-                        'condition': condition,
-                        'condition_txt': condition_txt,
-                        'temperature': temp,
-                        'rain_chance': rain_chance,
-                        'wind_speed': wind
-                    })
+        location_txt = city_name.replace("Weather nearby", str(_("vehicle location")))
 
-        weekly_forecast = []
-        daily = data['daily']
-        for i in range(len(daily['time'])):
-            date = daily['time'][i]
-            if datetime.fromisoformat(date).date() == local_time.date():
-                continue
-            condition = WEATHER_CODES.get(daily['weathercode'][i], "unknown")
-            condition_txt = _(WEATHER_NAMES.get(daily['weathercode'][i], "unknown"))
-            temp_max = daily['temperature_2m_max'][i]
-            temp_min = daily['temperature_2m_min'][i]
-            rain_chance = daily['precipitation_probability_max'][i]
-            wind = daily['windspeed_10m_max'][i]
-            weekly_forecast.append({
-                'date': date,
-                'condition': condition,
-                'condition_txt': condition_txt,
-                'temp_max': temp_max,
-                'temp_min': temp_min,
-                'rain_chance': rain_chance,
-                'wind_speed': wind
-            })
 
         resources_dir = os.path.join(
             os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "images",
@@ -231,161 +187,106 @@ def get_weather_forecast(xml_data, returning_xml, channel_id, car):
         daily_time_font = ImageFont.truetype(font_file, 15)
         temp_font = ImageFont.truetype(font_file, 28)
         detail_font = ImageFont.truetype(font_file, 18)
-        text_color =  (0, 0, 0) if light_theme else (255,255,255)
+        text_color = (0, 0, 0) if light_theme else (255, 255, 255)
 
-        # create current day
-        daily_image = Image.open(os.path.join(resources_dir, f"weather-{'light' if light_theme else 'dark'}.png"))
-        draw = ImageDraw.Draw(daily_image)
-        draw.text((8, 5), f"{city_name}",text_color, font=header_font)
+        if page == 1:
 
-        droplet_img = Image.open(os.path.join(resources_dir, "icons", f"droplet.png"))
+            daily_forecast = []
+            hourly = data['hourly']
+            for (period, local_time_str) in periods:
+                # Find the closest matching time in the hourly data
+                tz_timestamp = datetime.fromisoformat(local_time_str).replace(tzinfo=car_tzinfo)
+                if local_time_str in hourly['time'] and tz_timestamp > local_time.replace(tzinfo=car_tzinfo):
+                    idx = hourly['time'].index(local_time_str)
+                    condition = WEATHER_CODES.get(hourly['weathercode'][idx], "unknown")
+                    condition_txt = _(WEATHER_NAMES.get(hourly['weathercode'][idx], "unknown"))
+                    temp = hourly['temperature_2m'][idx]
+                    rain_chance = hourly['precipitation_probability'][idx]
+                    wind = hourly['windspeed_10m'][idx]
+                    if 'night' in period and condition == 'clear':
+                        condition = 'clear_moon'
+                    if len(daily_forecast) < 4:
+                        daily_forecast.append({
+                            'period': period,
+                            'local_time': local_time_str.split('T')[1],
+                            'condition': condition,
+                            'condition_txt': condition_txt,
+                            'temperature': temp,
+                            'rain_chance': rain_chance,
+                            'wind_speed': wind
+                        })
 
+            # create current day
+            daily_image = Image.open(os.path.join(resources_dir, f"weather-{'light' if light_theme else 'dark'}.png"))
+            draw = ImageDraw.Draw(daily_image)
+            draw.text((8, 5), f"{city_name}",text_color, font=header_font)
 
-        for i, daily in enumerate(daily_forecast):
-            x_offset = 40 + (i*95)
-            daily_item = Image.new("RGBA", (80, 210), (255, 255, 255, 0))
-            daily_item_draw = ImageDraw.Draw(daily_item)
-            daily_item_draw.text((20, 3), daily['local_time'], text_color, font=daily_time_font)
-            icon = Image.open(os.path.join(resources_dir, "icons",  f"{daily['condition']}.png"))
-            daily_item.paste(icon, (15, 18), icon)
-
-            # temp
-            temp_rounded = int(daily['temperature'])
-            temp_color = (11, 114, 212)
-            if temp_rounded > 15:
-                temp_color = (235, 48, 35)
-            temp_str = str(temp_rounded)
-            if len(temp_str) < 2:
-                temp_str = " " + temp_str
-            daily_item_draw.text((22, 75) , temp_str, temp_color, font=temp_font)
-            if -0.0 >= daily['temperature'] > -1:
-                daily_item_draw.text((10, 75) , "-", temp_color, font=temp_font)
-
-            daily_item.paste(droplet_img, (8, 115), droplet_img)
-
-
-            # wind speed
-            wind_speed = f"{str(int(daily['wind_speed'])).rjust(4)}\nm / s"
-            text_bbox = draw.textbbox((0, 0), wind_speed, font=detail_font)
-            text_width = text_bbox[2] - text_bbox[0]
-            text_height = text_bbox[3] - text_bbox[1]
-            x = (80 - text_width) // 2
-            y = (49 - text_height) // 2
-            daily_item_draw.text((x, 160+y),wind_speed , text_color, font=detail_font)
-
-            # rain chance
-            wind_speed = f"{str(int(daily['rain_chance'])).rjust(3)} %"
-            text_bbox = draw.textbbox((0, 0), wind_speed, font=detail_font)
-            text_width = text_bbox[2] - text_bbox[0]
-            text_height = text_bbox[3] - text_bbox[1]
-            x = (80 - text_width) // 2
-            y = (49 - text_height) // 2
-            daily_item_draw.text((x, 123+y),wind_speed , text_color, font=detail_font)
-
-            daily_item = ImageOps.expand(daily_item,border=1,fill='gray')
-            daily_image.paste(daily_item, (x_offset, 43), daily_item)
-        daily_image_quant = BytesIO()
-        daily_image.save(daily_image_quant, format='PNG')
-        daily_image_buffer = pngquant.quant_data(daily_image_quant.getvalue())[1]
+            droplet_img = Image.open(os.path.join(resources_dir, "icons", f"droplet.png"))
 
 
+            for i, daily in enumerate(daily_forecast):
+                x_offset = 40 + (i*95)
+                daily_item = Image.new("RGBA", (80, 210), (255, 255, 255, 0))
+                daily_item_draw = ImageDraw.Draw(daily_item)
+                daily_item_draw.text((20, 3), daily['local_time'], text_color, font=daily_time_font)
+                icon = Image.open(os.path.join(resources_dir, "icons",  f"{daily['condition']}.png"))
+                daily_item.paste(icon, (15, 18), icon)
+
+                # temp
+                temp_rounded = int(daily['temperature'])
+                temp_color = (11, 114, 212)
+                if temp_rounded > 15:
+                    temp_color = (235, 48, 35)
+                temp_str = str(temp_rounded)
+                if len(temp_str) < 2:
+                    temp_str = " " + temp_str
+                daily_item_draw.text((22, 75) , temp_str, temp_color, font=temp_font)
+                if -0.0 >= daily['temperature'] > -1:
+                    daily_item_draw.text((10, 75) , "-", temp_color, font=temp_font)
+
+                daily_item.paste(droplet_img, (8, 115), droplet_img)
 
 
-        weekly_image = Image.open(os.path.join(resources_dir, f"weather-{'light' if light_theme else 'dark'}.png"))
-        draw = ImageDraw.Draw(weekly_image)
-        draw.text((8, 5), f"{city_name}",text_color, font=header_font)
+                # wind speed
+                wind_speed = f"{str(int(daily['wind_speed'])).rjust(4)}\nm / s"
+                text_bbox = draw.textbbox((0, 0), wind_speed, font=detail_font)
+                text_width = text_bbox[2] - text_bbox[0]
+                text_height = text_bbox[3] - text_bbox[1]
+                x = (80 - text_width) // 2
+                y = (49 - text_height) // 2
+                daily_item_draw.text((x, 160+y),wind_speed , text_color, font=detail_font)
 
-        droplet_img = Image.open(os.path.join(resources_dir, "icons", f"droplet.png"))
+                # rain chance
+                wind_speed = f"{str(int(daily['rain_chance'])).rjust(3)} %"
+                text_bbox = draw.textbbox((0, 0), wind_speed, font=detail_font)
+                text_width = text_bbox[2] - text_bbox[0]
+                text_height = text_bbox[3] - text_bbox[1]
+                x = (80 - text_width) // 2
+                y = (49 - text_height) // 2
+                daily_item_draw.text((x, 123+y),wind_speed , text_color, font=detail_font)
 
-        temp_font = ImageFont.truetype(font_file, 24)
-        detail_font = ImageFont.truetype(font_file, 15)
+                daily_item = ImageOps.expand(daily_item,border=1,fill='gray')
+                daily_image.paste(daily_item, (x_offset, 43), daily_item)
+            daily_image_quant = BytesIO()
+            daily_image.save(daily_image_quant, format='PNG')
+            daily_image_buffer = pngquant.quant_data(daily_image_quant.getvalue())[1]
 
-        for i, weekly in enumerate(weekly_forecast[:7]):
-            x_offset = 10 + (i*62)
-            daily_item = Image.new("RGBA", (58, 210), (255, 255, 255, 0))
-            daily_item_draw = ImageDraw.Draw(daily_item)
+            daily_text = format_lazy(_("Weather Forecast for today, near {location_txt}.") + "\n",
+                                     location_txt=location_txt)
+            daily_title_text = daily_text[:-1]
+            if len(daily_forecast) == 0:
+                daily_text += _("No forecast data available.")
+            for daily_item in daily_forecast:
+                daily_text += format_lazy(
+                    _("During the {period}, forecasted to {condition}. With temperature of {temp} degrees celsius, wind speed of {wind} meters per second and {rain} percent chance of rain. \n"),
+                    period=daily_item['period'],
+                    condition=daily_item['condition_txt'],
+                    temp=daily_item['temperature'],
+                    wind=daily_item['wind_speed'],
+                    rain=daily_item['rain_chance']
+                )
 
-            day = datetime.fromisoformat(weekly['date']).strftime("%a")
-            text_bbox = draw.textbbox((0, 0), day, font=detail_font)
-            text_width = text_bbox[2] - text_bbox[0]
-            text_height = text_bbox[3] - text_bbox[1]
-            x = (58 - text_width) // 2
-            y = (15 - text_height) // 2
-            daily_item_draw.text((x, y),day , text_color, font=detail_font)
-
-            icon = Image.open(os.path.join(resources_dir, "icons",  f"{weekly['condition']}.png"))
-            daily_item.paste(icon, (5, 20), icon)
-
-            # temp
-            temp_rounded = int(int(weekly['temp_max']+weekly['temp_min'])/2)
-            temp_color = (11, 114, 212)
-            if temp_rounded > 15:
-                temp_color = (235, 48, 35)
-            temp_str = str(temp_rounded)
-            if len(temp_str) < 2:
-                temp_str = " " + temp_str
-            daily_item_draw.text((14, 75) , temp_str, temp_color, font=temp_font)
-            if -0.0 >= weekly['temp_max'] > -1:
-                daily_item_draw.text((8, 75) , "-", temp_color, font=temp_font)
-
-            daily_item.paste(droplet_img, (-3, 115), droplet_img)
-
-
-            # wind speed
-            wind_speed = f"{str(int(weekly['wind_speed'])).rjust(4)}\nm / s"
-            text_bbox = draw.textbbox((0, 0), wind_speed, font=detail_font)
-            text_width = text_bbox[2] - text_bbox[0]
-            text_height = text_bbox[3] - text_bbox[1]
-            x = (58 - text_width) // 2
-            y = (49 - text_height) // 2
-            daily_item_draw.text((x, 160+y),wind_speed , text_color, font=detail_font)
-
-            # rain chance
-            wind_speed = f"{str(int(weekly['rain_chance'])).rjust(3)} %"
-            text_bbox = draw.textbbox((0, 0), wind_speed, font=detail_font)
-            text_width = text_bbox[2] - text_bbox[0]
-            text_height = text_bbox[3] - text_bbox[1]
-            x = (59 - text_width) // 2
-            y = (49 - text_height) // 2
-            daily_item_draw.text((x, 123+y),wind_speed , text_color, font=detail_font)
-
-            daily_item = ImageOps.expand(daily_item,border=1,fill='gray')
-            weekly_image.paste(daily_item, (x_offset, 43), daily_item)
-        weekly_image_quant = BytesIO()
-        weekly_image.save(weekly_image_quant, format='PNG')
-        weekly_image_buffer = pngquant.quant_data(weekly_image_quant.getvalue())[1]
-
-        location_txt = city_name.replace("Weather nearby", str(_("vehicle location")))
-        daily_text = format_lazy(_("Weather Forecast for today, near {location_txt}.")+"\n", location_txt=location_txt)
-        daily_title_text = daily_text[:-1]
-        if len(daily_forecast) == 0:
-            daily_text += _("No forecast data available.")
-        for daily_item in daily_forecast:
-            daily_text += format_lazy(
-                _("During the {period}, forecasted to {condition}. With temperature of {temp} degrees celsius, wind speed of {wind} meters per second and {rain} percent chance of rain. \n"),
-                period=daily_item['period'],
-                condition=daily_item['condition_txt'],
-                temp=daily_item['temperature'],
-                wind=daily_item['wind_speed'],
-                rain=daily_item['rain_chance']
-            )
-
-        weekly_text = format_lazy(_("Weather Forecast for next seven days, near {location_txt}.")+"\n", location_txt=location_txt)
-        weekly_title_text = weekly_text[:-1]
-        if len(weekly_forecast) == 0:
-            weekly_text += _("No forecast data available.")
-        for weekly_item in weekly_forecast[:7]:
-            weekday = datetime.fromisoformat(weekly_item['date']).strftime("%A")
-            weekly_text += format_lazy(
-                _("On {weekday}, forecasted to {condition}. With highest temperature of {maxtemp} degrees celsius, lowest temperature of {mintemp} degrees celsius\n"),
-                weekday=weekday,
-                condition=weekly_item['condition_txt'],
-                maxtemp=weekly_item['temp_max'],
-                mintemp=weekly_item['temp_min']
-            )
-
-        response_chdata = [
-            {
+            response_chdata = [{
                 'itemId': 1,
                 'itemFlag1': 0x00,
                 'dynamicDataField1': encode_utf8(_('Weather forecast'), limit=0x20),
@@ -418,42 +319,146 @@ def get_weather_forecast(xml_data, returning_xml, channel_id, car):
                 # save flag
                 "flag8": 0x80,
                 "imageDataField": daily_image_buffer,
-            },
-            {
-                'itemId': 2,
-                'itemFlag1': 0x00,
-                'dynamicDataField1': encode_utf8(_('Weather forecast'), limit=0x20),
-                'dynamicDataField2': encode_utf8(weekly_title_text, limit=0x80),
-                'dynamicDataField3': b'',
-                "DMSLocation": b'\xFF' * 10,
-                'flag2': 0,
-                'flag3': 0,
-                'dynamicField4': b'',
-                # phone num field
-                'dynamicField5': b'',
-                'dynamicField6': b'',
-                'unnamed_data': bytearray(),
-                # text shown on bottom
-                "bigDynamicField7": encode_utf8(weekly_text, limit=0x400),
-                "bigDynamicField8": encode_utf8(weekly_text, limit=0x400),
-                "iconField": 0x310,
-                # annoucnement sound, 1=yes,0=no
-                "longField2": 1,
-                "flag4": 1,
-                "unknownLongId4": 0x0000,
-                # feature flag? 0xa0 = dial, 0x0F = Img
-                "flag5": 0x9F,
-                "flag6": 0xBB,
-                # image button title
-                "12byteField1": b'\x00' * 12,
-                # image name2
-                "12byteField2": b'\x00' * 12,
-                "mapPointFlag": b'\x20',
-                # save flag
-                "flag8": 0x80,
-                "imageDataField": weekly_image_buffer,
-            }
-        ]
+            }]
+
+        else:
+            weekly_forecast = []
+            daily = data['daily']
+            for i in range(len(daily['time'])):
+                date = daily['time'][i]
+                if datetime.fromisoformat(date).date() == local_time.date():
+                    continue
+                condition = WEATHER_CODES.get(daily['weathercode'][i], "unknown")
+                condition_txt = _(WEATHER_NAMES.get(daily['weathercode'][i], "unknown"))
+                temp_max = daily['temperature_2m_max'][i]
+                temp_min = daily['temperature_2m_min'][i]
+                rain_chance = daily['precipitation_probability_max'][i]
+                wind = daily['windspeed_10m_max'][i]
+                weekly_forecast.append({
+                    'date': date,
+                    'condition': condition,
+                    'condition_txt': condition_txt,
+                    'temp_max': temp_max,
+                    'temp_min': temp_min,
+                    'rain_chance': rain_chance,
+                    'wind_speed': wind
+                })
+
+            weekly_image = Image.open(os.path.join(resources_dir, f"weather-{'light' if light_theme else 'dark'}.png"))
+            draw = ImageDraw.Draw(weekly_image)
+            draw.text((8, 5), f"{city_name}",text_color, font=header_font)
+
+            droplet_img = Image.open(os.path.join(resources_dir, "icons", f"droplet.png"))
+
+            temp_font = ImageFont.truetype(font_file, 24)
+            detail_font = ImageFont.truetype(font_file, 15)
+
+            for i, weekly in enumerate(weekly_forecast[:7]):
+                x_offset = 10 + (i*62)
+                daily_item = Image.new("RGBA", (58, 210), (255, 255, 255, 0))
+                daily_item_draw = ImageDraw.Draw(daily_item)
+
+                day = datetime.fromisoformat(weekly['date']).strftime("%a")
+                text_bbox = draw.textbbox((0, 0), day, font=detail_font)
+                text_width = text_bbox[2] - text_bbox[0]
+                text_height = text_bbox[3] - text_bbox[1]
+                x = (58 - text_width) // 2
+                y = (15 - text_height) // 2
+                daily_item_draw.text((x, y),day , text_color, font=detail_font)
+
+                icon = Image.open(os.path.join(resources_dir, "icons",  f"{weekly['condition']}.png"))
+                daily_item.paste(icon, (5, 20), icon)
+
+                # temp
+                temp_rounded = int(int(weekly['temp_max']+weekly['temp_min'])/2)
+                temp_color = (11, 114, 212)
+                if temp_rounded > 15:
+                    temp_color = (235, 48, 35)
+                temp_str = str(temp_rounded)
+                if len(temp_str) < 2:
+                    temp_str = " " + temp_str
+                daily_item_draw.text((14, 75) , temp_str, temp_color, font=temp_font)
+                if -0.0 >= weekly['temp_max'] > -1:
+                    daily_item_draw.text((8, 75) , "-", temp_color, font=temp_font)
+
+                daily_item.paste(droplet_img, (-3, 115), droplet_img)
+
+
+                # wind speed
+                wind_speed = f"{str(int(weekly['wind_speed'])).rjust(4)}\nm / s"
+                text_bbox = draw.textbbox((0, 0), wind_speed, font=detail_font)
+                text_width = text_bbox[2] - text_bbox[0]
+                text_height = text_bbox[3] - text_bbox[1]
+                x = (58 - text_width) // 2
+                y = (49 - text_height) // 2
+                daily_item_draw.text((x, 160+y),wind_speed , text_color, font=detail_font)
+
+                # rain chance
+                wind_speed = f"{str(int(weekly['rain_chance'])).rjust(3)} %"
+                text_bbox = draw.textbbox((0, 0), wind_speed, font=detail_font)
+                text_width = text_bbox[2] - text_bbox[0]
+                text_height = text_bbox[3] - text_bbox[1]
+                x = (59 - text_width) // 2
+                y = (49 - text_height) // 2
+                daily_item_draw.text((x, 123+y),wind_speed , text_color, font=detail_font)
+
+                daily_item = ImageOps.expand(daily_item,border=1,fill='gray')
+                weekly_image.paste(daily_item, (x_offset, 43), daily_item)
+            weekly_image_quant = BytesIO()
+            weekly_image.save(weekly_image_quant, format='PNG')
+            weekly_image_buffer = pngquant.quant_data(weekly_image_quant.getvalue())[1]
+
+
+            weekly_text = format_lazy(_("Weather Forecast for next seven days, near {location_txt}.")+"\n", location_txt=location_txt)
+            weekly_title_text = weekly_text[:-1]
+            if len(weekly_forecast) == 0:
+                weekly_text += _("No forecast data available.")
+            for weekly_item in weekly_forecast[:7]:
+                weekday = datetime.fromisoformat(weekly_item['date']).strftime("%A")
+                weekly_text += format_lazy(
+                    _("On {weekday}, forecasted to {condition}. With highest temperature of {maxtemp} degrees celsius, lowest temperature of {mintemp} degrees celsius\n"),
+                    weekday=weekday,
+                    condition=weekly_item['condition_txt'],
+                    maxtemp=weekly_item['temp_max'],
+                    mintemp=weekly_item['temp_min']
+                )
+
+            response_chdata = [
+                {
+                    'itemId': 2,
+                    'itemFlag1': 0x00,
+                    'dynamicDataField1': encode_utf8(_('Weather forecast'), limit=0x20),
+                    'dynamicDataField2': encode_utf8(weekly_title_text, limit=0x80),
+                    'dynamicDataField3': b'',
+                    "DMSLocation": b'\xFF' * 10,
+                    'flag2': 0,
+                    'flag3': 0,
+                    'dynamicField4': b'',
+                    # phone num field
+                    'dynamicField5': b'',
+                    'dynamicField6': b'',
+                    'unnamed_data': bytearray(),
+                    # text shown on bottom
+                    "bigDynamicField7": encode_utf8(weekly_text, limit=0x400),
+                    "bigDynamicField8": encode_utf8(weekly_text, limit=0x400),
+                    "iconField": 0x310,
+                    # annoucnement sound, 1=yes,0=no
+                    "longField2": 1,
+                    "flag4": 1,
+                    "unknownLongId4": 0x0000,
+                    # feature flag? 0xa0 = dial, 0x0F = Img
+                    "flag5": 0x9F,
+                    "flag6": 0xBB,
+                    # image button title
+                    "12byteField1": b'\x00' * 12,
+                    # image name2
+                    "12byteField2": b'\x00' * 12,
+                    "mapPointFlag": b'\x20',
+                    # save flag
+                    "flag8": 0x80,
+                    "imageDataField": weekly_image_buffer,
+                }
+            ]
 
     resp_file = build_autodj_payload(
         0,
@@ -466,8 +471,8 @@ def get_weather_forecast(xml_data, returning_xml, channel_id, car):
         extra_fields={
             'stringField1': _('Weather forecast'),
             'stringField2': _('Weather forecast'),
-            "mode0_processedFieldCntPos": len(response_chdata),
-            "mode0_countOfSomeItems3": len(response_chdata),
+            "mode0_processedFieldCntPos": 2,
+            "mode0_countOfSomeItems3": 2,
             "countOfSomeItems": 1
         }
     )

@@ -7,7 +7,7 @@ from tculink.carwings_proto.dataobjects import build_autodj_payload, construct_d
 from tculink.carwings_proto.utils import xml_coordinate_to_float, encode_utf8
 
 
-def handle_send_to_car_adj(xml_data, returning_xml, channel_id, car: Car):
+def handle_send_to_car_adj(xml_data, returning_xml, channel_id, car: Car, page):
     car_destinations = []
     for send_location in car.send_to_car_location.all().order_by('-created_at')[:6]:
         point_name = send_location.name
@@ -22,7 +22,7 @@ def handle_send_to_car_adj(xml_data, returning_xml, channel_id, car: Car):
         car_destinations.append(
             {
                 'itemId': send_location.id,
-                'itemFlag1': 0x00,
+                'itemFlag1': 0x01,
                 'dynamicDataField1': encode_utf8(point_name, limit=0x20),
                 'dynamicDataField2': b'',
                 'dynamicDataField3': b'',
@@ -110,7 +110,7 @@ def handle_send_to_car_adj(xml_data, returning_xml, channel_id, car: Car):
 
     return [("SENDTOCAR.adj", resp_file)]
 
-def handle_send_to_car(_, returning_xml, channel_id, car: Car):
+def handle_send_to_car(_, returning_xml, channel_id, car: Car, page):
     car_destinations = []
     if car is not None:
         for send_location in car.send_to_car_location.all().order_by('-created_at')[:6]:

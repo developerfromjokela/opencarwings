@@ -7,7 +7,7 @@ from django.utils.text import format_lazy
 from tculink.carwings_proto.utils import encode_utf8
 
 
-def handle_routeplanner(unused, returning_xml, channel_id, car: Car):
+def handle_routeplanner(unused, returning_xml, channel_id, car: Car, page):
     # routeplans, 1,2,3,4,5
     routeplan_num = channel_id - 0x0009
     car_destinations = []

@@ -130,7 +130,7 @@ def handle_custom_channel(xml_data, _, channel_id, car: Car):
         response_chdata,
         {
             "type": 6,
-            "data": b'\x01'
+            "data": b''
         },
         extra_fields={
             'stringField1': chan_info['name'],

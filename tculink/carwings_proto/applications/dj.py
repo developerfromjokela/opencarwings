@@ -113,7 +113,7 @@ def handle_dj(xml_data, files):
                     flag = command_list[datapos + 4]
                     logger.info("  ->Channel ID: %s", hex(channel_id))
                     logger.info("  ->Flag: %s", hex(flag))
-                    for fidx, file in enumerate(handle_channel_response(xml_data, channel_id, app_elm)):
+                    for fidx, file in enumerate(handle_channel_response(xml_data, channel_id, app_elm, flag)):
                         name = file[0]
                         name += f".{fidx+1}.{i+1:03}"
                         ET.SubElement(app_elm, "send_data", {"id_type": "file", "id": name})

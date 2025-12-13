@@ -2,8 +2,10 @@ import datetime
 import io
 import logging
 import math
+import uuid
 import xml.etree.ElementTree as ET
 from urllib.parse import parse_qsl
+from django.core.cache import cache
 
 import requests
 from PIL import Image
@@ -319,9 +321,12 @@ def handle_gls(xml_data, files):
                     logger.info("Photo: %s", photo)
                     if photo.get('width', 0) > 0 and photo.get('height', 0) > 0:
                         xml_photo = ET.SubElement(listing, "Images")
-                        ET.SubElement(xml_photo, "U").text = photo['url']
-                        ET.SubElement(xml_photo, "IMAGE_HEIGHT").text = str(photo['height'])
-                        ET.SubElement(xml_photo, "IMAGE_WIDTH").text = str(photo['width'])
+                        xml_thumb = ET.SubElement(xml_photo, "IMAGE_THUMB")
+                        photo_uuid = uuid.uuid4().__str__()
+                        cache.set(f"GLSPIC_{photo_uuid}", photo["url"], 60*2)
+                        ET.SubElement(xml_thumb, "U").text = f"cache://{photo_uuid}"
+                        ET.SubElement(xml_thumb, "IMAGE_HEIGHT").text = str(photo['height'])
+                        ET.SubElement(xml_thumb, "IMAGE_WIDTH").text = str(photo['width'])
 
                 reviews = ET.SubElement(listing, "Reviews", {'starRating': str(place_info.get('rating', 0.0)), 'start': "1", 'end': str(len(place_info.get('reviews', [])))})
                 for review in place_info.get('reviews', [])[:10]:
@@ -345,6 +350,11 @@ def handle_gls(xml_data, files):
             width = parsed_query["width"]
             height = parsed_query["height"]
 
+            # retrieve photo from cache
+            if url.startswith("cache://"):
+                photo_uuid = url.replace("cache://", "")[:38]
+                url = cache.get(f"GLSPIC_{photo_uuid}")
+                cache.delete(f"GLSPIC_{photo_uuid}")
 
             if url.startswith('https://maps.googleapis.com/maps/api/place/photo?'):
                 url = url + "&maxwidth=" + str(width) + "&maxheight=" + str(height)+"&key="+settings.GOOGLE_API_KEY
@@ -360,7 +370,7 @@ def handle_gls(xml_data, files):
             resp_file += len(jpeg_data).to_bytes(4, byteorder='big')
             resp_file += jpeg_data
         elif parsed_query["type"] == "GLS4":
-            logger.info("Receivec clickinfo, url: %s", parsed_query["url"])
+            logger.info("Received clickinfo, url: %s", parsed_query["url"])
             resp_file += b'\x01'
         else:
             logger.error("Invalid request type: %s", parsed_query["type"])

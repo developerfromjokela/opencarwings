@@ -30,52 +30,55 @@ NOT_SIGNEDIN_NOTE = ("To make use of more functions of Open Car Wings, please si
                      "password inside your car.\n\nGo to Car Wings menu, Settings, Security Settings, to input and send "
                      "your credentials. Unlock even more useful functions and make your life easier with Open Car Wings.")
 
-def get_infochannel(xml_data, returning_xml, channel_id, car):
+def get_infochannel(xml_data, returning_xml, channel_id, car, page):
     resources_dir = os.path.join(
         os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "images")
-    with open(os.path.join(resources_dir, "releasenotes.png"), "rb") as f:
-        releasenotes_img = f.read()
-    response_chdata = [
-        {
-            'itemId': 1,
-            'itemFlag1': 0x00,
-            'dynamicDataField1': encode_utf8('What\'s new?'),
-            'dynamicDataField2': encode_utf8('What\'s new?'),
-            'dynamicDataField3': b'',
-            "DMSLocation": b'\xFF' * 10,
-            'flag2': 0,
-            'flag3': 0,
-            'dynamicField4': b'',
-            # phone num field
-            'dynamicField5': b'',
-            'dynamicField6': b'',
-            'unnamed_data': bytearray(),
-            # text shown on bottom
-            "bigDynamicField7": encode_utf8(RELEASE_NOTES),
-            "bigDynamicField8": encode_utf8(RELEASE_NOTES_SPK),
-            "iconField": 0x400,
-            # annoucnement sound, 1=yes,0=no
-            "longField2": 1,
-            "flag4": 1,
-            "unknownLongId4": 0x0000,
-            # feature flag? 0xa0 = dial, 0x0F = Img
-            "flag5": 0x9F,
-            "flag6": 0xBB,
-            # image button title
-            "12byteField1": b'\x00' * 12,
-            # image name2
-            "12byteField2": b'\x00' * 12,
-            "mapPointFlag": b'\x20',
-            # save flag
-            "flag8": 0x80,
-            "imageDataField": releasenotes_img,
-        }
-    ]
 
-    if car is None:
+    total_pages = 1 if car is not None else 2
+
+    if page == 1:
+        with open(os.path.join(resources_dir, "releasenotes.png"), "rb") as f:
+            releasenotes_img = f.read()
+        response_chdata = [
+            {
+                'itemId': 1,
+                'itemFlag1': 0x00,
+                'dynamicDataField1': encode_utf8('What\'s new?'),
+                'dynamicDataField2': encode_utf8('What\'s new?'),
+                'dynamicDataField3': b'',
+                "DMSLocation": b'\xFF' * 10,
+                'flag2': 0,
+                'flag3': 0,
+                'dynamicField4': b'',
+                # phone num field
+                'dynamicField5': b'',
+                'dynamicField6': b'',
+                'unnamed_data': bytearray(),
+                # text shown on bottom
+                "bigDynamicField7": encode_utf8(RELEASE_NOTES),
+                "bigDynamicField8": encode_utf8(RELEASE_NOTES_SPK),
+                "iconField": 0x400,
+                # annoucnement sound, 1=yes,0=no
+                "longField2": 1,
+                "flag4": 1,
+                "unknownLongId4": 0x0000,
+                # feature flag? 0xa0 = dial, 0x0F = Img
+                "flag5": 0x9F,
+                "flag6": 0xBB,
+                # image button title
+                "12byteField1": b'\x00' * 12,
+                # image name2
+                "12byteField2": b'\x00' * 12,
+                "mapPointFlag": b'\x20',
+                # save flag
+                "flag8": 0x80,
+                "imageDataField": releasenotes_img,
+            }
+        ]
+    else:
         with open(os.path.join(resources_dir, "tipstricks.jpg"), "rb") as f:
             tips_img = f.read()
-        response_chdata.append(
+        response_chdata = [
             {
                 'itemId': 2,
                 'itemFlag1': 0x00,
@@ -110,7 +113,7 @@ def get_infochannel(xml_data, returning_xml, channel_id, car):
                 "flag8": 0x80,
                 "imageDataField": tips_img,
             }
-        )
+        ]
 
     resp_file = build_autodj_payload(
         0,
@@ -118,13 +121,13 @@ def get_infochannel(xml_data, returning_xml, channel_id, car):
         response_chdata,
         {
             "type": 6,
-            "data": b'\x01'
+            "data": b''
         },
         extra_fields={
             'stringField1': _('Info from OpenCARWINGS'),
             'stringField2': _('Info from OpenCARWINGS'),
-            "mode0_processedFieldCntPos": len(response_chdata),
-            "mode0_countOfSomeItems3": len(response_chdata),
+            "mode0_processedFieldCntPos": total_pages,
+            "mode0_countOfSomeItems3": total_pages,
             "countOfSomeItems": 1
         }
     )
@@ -521,173 +524,175 @@ def get_random_drive_tip():
     ]
     return random.choice(tips)
 
-def get_energy_information_channel(xml_data, returning_xml, channel_id, car):
+def get_energy_information_channel(xml_data, returning_xml, channel_id, car, page):
     response_chdata = []
 
-    last_trips = CRMTripRecord.objects.filter(car=car).order_by("-start_ts")[:5]
+    if page == 1:
+        last_trips = CRMTripRecord.objects.filter(car=car).order_by("-start_ts")[:5]
 
-    car_timezone = float(xml_data['base_info'].get('navigation_settings', {}).get('time_zone', "+0.00"))
-    car_tzinfo = timezone.get_fixed_timezone(car_timezone)
-    time_car_now = datetime.now(tz=car_tzinfo)
+        car_timezone = float(xml_data['base_info'].get('navigation_settings', {}).get('time_zone', "+0.00"))
+        car_tzinfo = timezone.get_fixed_timezone(car_timezone)
+        time_car_now = datetime.now(tz=car_tzinfo)
 
-    spent_energy = 0
-    driven_km = 0
-    consumptions = []
-    for trip in last_trips:
-        energy = trip.wh_energy_start-trip.wh_energy_end
-        if energy != 0 and trip.distance >= 1:
-            spent_energy += energy
-            driven_km += trip.distance
-            consumptions.append(energy/trip.distance)
+        spent_energy = 0
+        driven_km = 0
+        consumptions = []
+        for trip in last_trips:
+            energy = trip.wh_energy_start-trip.wh_energy_end
+            if energy != 0 and trip.distance >= 1:
+                spent_energy += energy
+                driven_km += trip.distance
+                consumptions.append(energy/trip.distance)
 
-    wh_per_km = -1
-    if driven_km > 0 and spent_energy > 0:
-        wh_per_km = (spent_energy/driven_km)
+        wh_per_km = -1
+        if driven_km > 0 and spent_energy > 0:
+            wh_per_km = (spent_energy/driven_km)
 
 
-    cons_formatted_str = "{:.1f}".format(wh_per_km)
-    status_labels = [_("Average"), _("Good"), _("Very good")]
-    slide_title = _("Check Energy Economy")
+        cons_formatted_str = "{:.1f}".format(wh_per_km)
+        status_labels = [_("Average"), _("Good"), _("Very good")]
+        slide_title = _("Check Energy Economy")
 
-    day = time_car_now.day
-    month = formats.date_format(time_car_now, format='F')
-    day_word = get_word_of_month_i18n(day)
-    help_text = _("The energy economy trend compared with the average of the last five trips is shown above.")
+        day = time_car_now.day
+        month = formats.date_format(time_car_now, format='F')
+        day_word = get_word_of_month_i18n(day)
+        help_text = _("The energy economy trend compared with the average of the last five trips is shown above.")
 
-    date_txt = formats.date_format(time_car_now, format='j b')+"."
-    day_txt = formats.date_format(time_car_now, format='D').upper()
+        date_txt = formats.date_format(time_car_now, format='j b')+"."
+        day_txt = formats.date_format(time_car_now, format='D').upper()
 
-    display_txt = _("Trend of Energy Economy\n")
-    display_txt += f"{ordinal(day)} / {month}:"
+        display_txt = _("Trend of Energy Economy\n")
+        display_txt += f"{ordinal(day)} / {month}:"
 
-    if wh_per_km != -1:
-        # status
-        """
-        10 -> 5 (very good)
-        12 -> 4 (good)
-        13.8 -> 3 bar (good)
-        16 -> 3 bar (good)
-        20 ->  2 (average)
-        28 -> 1 (average)
-        """
-        economy_status = _("Good")
-        bars = 0
-        if wh_per_km < 110:
-            economy_status = _("Very good")
-            bars = 5
-        elif wh_per_km < 140:
-            bars = 4
-        elif wh_per_km < 180:
-            bars = 3
-        elif wh_per_km < 280:
-            bars = 2
-            economy_status = _("Average")
+        if wh_per_km != -1:
+            # status
+            """
+            10 -> 5 (very good)
+            12 -> 4 (good)
+            13.8 -> 3 bar (good)
+            16 -> 3 bar (good)
+            20 ->  2 (average)
+            28 -> 1 (average)
+            """
+            economy_status = _("Good")
+            bars = 0
+            if wh_per_km < 110:
+                economy_status = _("Very good")
+                bars = 5
+            elif wh_per_km < 140:
+                bars = 4
+            elif wh_per_km < 180:
+                bars = 3
+            elif wh_per_km < 280:
+                bars = 2
+                economy_status = _("Average")
+            else:
+                bars = 1
+                economy_status = _("Bad")
+
+
+            display_txt += "{:.1f} Wh/km".format(wh_per_km)
+            display_txt += "\n\nLast 5 days:\n"
+            display_txt += _("[Average]\n")
+            display_txt += "{:.1f} Wh/km\n".format(wh_per_km)
+            display_txt += _("[Best]\n")
+            display_txt += "{:.1f} Wh/km\n".format(min(consumptions))
+            display_txt += _("[Worst]\n")
+            display_txt += "{:.1f} Wh/km\n".format(max(consumptions))
+
+            read_txt = format_lazy(_("\nAs of the {day_word} of {month}, your energy economy was {cons_formatted_str} watt hours per kilometer.\n"
+                        "Based on the last 5 trips, Your energy economy is {economy_status}. "), day_word=day_word, month=month,
+                                   cons_formatted_str=cons_formatted_str, economy_status=economy_status)
         else:
-            bars = 1
-            economy_status = _("Bad")
+            cons_formatted_str = "0.0"
+            bars = 0
+            display_txt += _("There is no trip records available yet. Try checking in again after your next trip.")
+            read_txt = format_lazy(
+                _("\nAs of the {day_word} of {month}, your energy economy cannot be calculated yet, because of missing trip"
+                  " information. Try checking in to this channel again after your next trip. "), day_word=day_word, month=month)
 
 
-        display_txt += "{:.1f} Wh/km".format(wh_per_km)
-        display_txt += "\n\nLast 5 days:\n"
-        display_txt += _("[Average]\n")
-        display_txt += "{:.1f} Wh/km\n".format(wh_per_km)
-        display_txt += _("[Best]\n")
-        display_txt += "{:.1f} Wh/km\n".format(min(consumptions))
-        display_txt += _("[Worst]\n")
-        display_txt += "{:.1f} Wh/km\n".format(max(consumptions))
+        consumption_slide_img = create_consumption_slide(slide_title, cons_formatted_str, status_labels, bars, help_text, date_txt, day_txt)
 
-        read_txt = format_lazy(_("\nAs of the {day_word} of {month}, your energy economy was {cons_formatted_str} watt hours per kilometer.\n"
-                    "Based on the last 5 trips, Your energy economy is {economy_status}. "), day_word=day_word, month=month,
-                               cons_formatted_str=cons_formatted_str, economy_status=economy_status)
+        response_chdata.append({
+                'itemId': 0,
+                'itemFlag1': 0x01,
+                'dynamicDataField1': encode_utf8(slide_title, limit=0x20),
+                'dynamicDataField2': encode_utf8(slide_title, limit=0x80),
+                'dynamicDataField3': b'',
+                "DMSLocation": b'\xFF' * 10,
+                'flag2': 0,
+                'flag3': 0,
+                'dynamicField4': b'',
+                # phone num field
+                'dynamicField5': b'',
+                'dynamicField6': b'',
+                'unnamed_data': bytearray(),
+                # text shown on bottom
+                "bigDynamicField7": encode_utf8(display_txt, limit=0x400),
+                "bigDynamicField8": encode_utf8(read_txt, limit=0x400),
+                "iconField": 0x400,
+                # annoucnement sound, 1=yes,0=no
+                "longField2": 1,
+                "flag4": 0,
+                "unknownLongId4": 0,
+                # feature flag? 0xa0 = dial, 0x0F = Img
+                "flag5": 0x1C,
+                "flag6": 0xA0,
+                # image button title
+                "12byteField1": b'\x00' * 12,
+                # image name2
+                "12byteField2": b'\x00' * 12,
+                "mapPointFlag": b'\x20',
+                # save flag
+                "flag8": 0x80,
+                "imageDataField": consumption_slide_img,
+            })
+
     else:
-        cons_formatted_str = "0.0"
-        bars = 0
-        display_txt += _("There is no trip records available yet. Try checking in again after your next trip.")
-        read_txt = format_lazy(
-            _("\nAs of the {day_word} of {month}, your energy economy cannot be calculated yet, because of missing trip"
-              " information. Try checking in to this channel again after your next trip. "), day_word=day_word, month=month)
+        tip_title = _("Electric Car Column")
+        tip_slide_img = create_info_slide(tip_title, _("Drive Tip"))
 
+        tip_txt = get_random_drive_tip()
 
-    consumption_slide_img = create_consumption_slide(slide_title, cons_formatted_str, status_labels, bars, help_text, date_txt, day_txt)
+        tip_onscreen = _("Drive Tip")+": "+tip_txt
 
-    response_chdata.append({
-            'itemId': 1,
-            'itemFlag1': 0x00,
-            'dynamicDataField1': encode_utf8(slide_title, limit=0x20),
-            'dynamicDataField2': encode_utf8(slide_title, limit=0x80),
-            'dynamicDataField3': b'',
-            "DMSLocation": b'\xFF' * 10,
-            'flag2': 0,
-            'flag3': 0,
-            'dynamicField4': b'',
-            # phone num field
-            'dynamicField5': b'',
-            'dynamicField6': b'',
-            'unnamed_data': bytearray(),
-            # text shown on bottom
-            "bigDynamicField7": encode_utf8(display_txt, limit=0x400),
-            "bigDynamicField8": encode_utf8(read_txt, limit=0x400),
-            "iconField": 0x400,
-            # annoucnement sound, 1=yes,0=no
-            "longField2": 1,
-            "flag4": 1,
-            "unknownLongId4": 0x0000,
-            # feature flag? 0xa0 = dial, 0x0F = Img
-            "flag5": 0x9F,
-            "flag6": 0xBB,
-            # image button title
-            "12byteField1": b'\x00' * 12,
-            # image name2
-            "12byteField2": b'\x00' * 12,
-            "mapPointFlag": b'\x20',
-            # save flag
-            "flag8": 0x80,
-            "imageDataField": consumption_slide_img,
-        })
-
-    tip_title = _("Electric Car Column")
-    tip_slide_img = create_info_slide(tip_title, _("Drive Tip"))
-
-    tip_txt = get_random_drive_tip()
-
-    tip_onscreen = _("Drive Tip")+": "+tip_txt
-
-    response_chdata.append(
-        {
-            'itemId': 2,
-            'itemFlag1': 0x00,
-            'dynamicDataField1': encode_utf8(tip_title, limit=0x20),
-            'dynamicDataField2': encode_utf8(tip_title, limit=0x80),
-            'dynamicDataField3': b'',
-            "DMSLocation": b'\xFF' * 10,
-            'flag2': 0,
-            'flag3': 0,
-            'dynamicField4': b'',
-            # phone num field
-            'dynamicField5': b'',
-            'dynamicField6': b'',
-            'unnamed_data': bytearray(),
-            # text shown on bottom
-            "bigDynamicField7": encode_utf8(tip_onscreen, limit=0x400),
-            "bigDynamicField8": encode_utf8(tip_txt, limit=0x400),
-            "iconField": 0x400,
-            # annoucnement sound, 1=yes,0=no
-            "longField2": 1,
-            "flag4": 1,
-            "unknownLongId4": 0x0000,
-            # feature flag? 0xa0 = dial, 0x0F = Img
-            "flag5": 0x9F,
-            "flag6": 0xBB,
-            # image button title
-            "12byteField1": b'\x00' * 12,
-            # image name2
-            "12byteField2": b'\x00' * 12,
-            "mapPointFlag": b'\x20',
-            # save flag
-            "flag8": 0x80,
-            "imageDataField": tip_slide_img,
-        }
-    )
+        response_chdata.append(
+            {
+                'itemId': 0,
+                'itemFlag1': 0x02,
+                'dynamicDataField1': encode_utf8(tip_title, limit=0x20),
+                'dynamicDataField2': encode_utf8(tip_title, limit=0x80),
+                'dynamicDataField3': b'',
+                "DMSLocation": b'\xFF' * 10,
+                'flag2': 0,
+                'flag3': 0,
+                'dynamicField4': b'',
+                # phone num field
+                'dynamicField5': b'',
+                'dynamicField6': b'',
+                'unnamed_data': bytearray(),
+                # text shown on bottom
+                "bigDynamicField7": encode_utf8(tip_onscreen, limit=0x400),
+                "bigDynamicField8": encode_utf8(tip_txt, limit=0x400),
+                "iconField": 0x400,
+                # annoucnement sound, 1=yes,0=no
+                "longField2": 1,
+                "flag4": 0,
+                "unknownLongId4": 0,
+                # feature flag? 0xa0 = dial, 0x0F = Img
+                "flag5": 0x1C,
+                "flag6": 0xA0,
+                # image button title
+                "12byteField1": b'\x00' * 12,
+                # image name2
+                "12byteField2": b'\x00' * 12,
+                "mapPointFlag": b'\x20',
+                # save flag
+                "flag8": 0x80,
+                "imageDataField": tip_slide_img,
+            }
+        )
 
 
     resp_file = build_autodj_payload(
@@ -696,13 +701,13 @@ def get_energy_information_channel(xml_data, returning_xml, channel_id, car):
         response_chdata,
         {
             "type": 6,
-            "data": b'\x01'
+            "data": b''
         },
         extra_fields={
             'stringField1': _('Energy Information'),
             'stringField2': _('Energy Information'),
-            "mode0_processedFieldCntPos": len(response_chdata),
-            "mode0_countOfSomeItems3": len(response_chdata),
+            "mode0_processedFieldCntPos": 2,
+            "mode0_countOfSomeItems3": 2,
             "countOfSomeItems": 1
         }
     )
@@ -712,7 +717,7 @@ def get_energy_information_channel(xml_data, returning_xml, channel_id, car):
 
 
 
-def get_eco_tree_channel(xml_data, returning_xml, channel_id, car):
+def get_eco_tree_channel(xml_data, returning_xml, channel_id, car, page):
     response_chdata = []
 
     current_month = timezone.now().month
@@ -723,70 +728,73 @@ def get_eco_tree_channel(xml_data, returning_xml, channel_id, car):
     car_tzinfo = timezone.get_fixed_timezone(car_timezone)
     time_car_now = datetime.now(tz=car_tzinfo)
 
-    trees = 0
-    tree_records = {}
-
-    start_d = time_car_now.day-3
-    if time_car_now.day < 3:
-        start_d = time_car_now.day
-
-    max_days_cal = calendar.monthrange(time_car_now.year, time_car_now.month)[1]
-    if start_d+3 > max_days_cal:
-        start_d -= (start_d-calendar.monthrange(time_car_now.year, time_car_now.month)[1])
 
 
+    if page == 1:
+        trees = 0
+        tree_records = {}
 
-    for trip in month_trips:
-        trip_trees = trip.eco_tree_count/5
-        trees += trip_trees
-        if trip.start_ts.day < time_car_now.day+1:
-            day_idx = trip.start_ts.day
-            if day_idx in tree_records:
-                temp_itm = list(tree_records[day_idx])
-                temp_itm[1] = temp_itm[1]+trip_trees
-                tree_records[day_idx] = tuple(temp_itm)
-            else:
-                tree_records[day_idx] = (formats.date_format(trip.start_ts, format='j b')+".", trip_trees, trip.start_ts)
+        start_d = time_car_now.day - 3
+        if time_car_now.day < 3:
+            start_d = time_car_now.day
 
-    logger.info(tree_records)
-    slide_title = _("Eco Tree Record")
+        max_days_cal = calendar.monthrange(time_car_now.year, time_car_now.month)[1]
+        if start_d + 3 > max_days_cal:
+            start_d -= (start_d - calendar.monthrange(time_car_now.year, time_car_now.month)[1])
 
-    if len(tree_records.keys()) < 3:
-        for d in range(4):
-            day_num = start_d+d
-            if day_num not in tree_records:
-                record_ts = time_car_now.date().replace(day=day_num)
-                tree_records[d] = (formats.date_format(record_ts, format='j b')+".", 0.0, record_ts)
+        for trip in month_trips:
+            trip_trees = trip.eco_tree_count / 5
+            trees += trip_trees
+            if trip.start_ts.day < time_car_now.day + 1:
+                day_idx = trip.start_ts.day
+                if day_idx in tree_records:
+                    temp_itm = list(tree_records[day_idx])
+                    temp_itm[1] = temp_itm[1] + trip_trees
+                    tree_records[day_idx] = tuple(temp_itm)
+                else:
+                    tree_records[day_idx] = (formats.date_format(trip.start_ts, format='j b') + ".", trip_trees,
+                                             trip.start_ts)
+
+        logger.info(tree_records)
+
+        slide_title = _("Eco Tree Record")
+
+        if len(tree_records.keys()) < 3:
+            for d in range(4):
+                day_num = start_d+d
+                if day_num not in tree_records:
+                    record_ts = time_car_now.date().replace(day=day_num)
+                    tree_records[d] = (formats.date_format(record_ts, format='j b')+".", 0.0, record_ts)
 
 
-    display_txt = _("Your Eco Tree Record \n\n")
+        display_txt = _("Your Eco Tree Record \n\n")
 
-    record_keys = list(sorted(tree_records.keys()))
-    record_keys.reverse()
-    tree_records = [tree_records[key] for key in record_keys][:3]
-    for tree_record in tree_records:
+        record_keys = list(sorted(tree_records.keys()))
+        record_keys.reverse()
+        tree_records = [tree_records[key] for key in record_keys][:3]
+        for tree_record in tree_records:
+            tree_word = _("tree")
+            if tree_record[1] > 1 or tree_record[1] == 0:
+                tree_word = _("trees")
+            month = formats.date_format(tree_record[2], format='F')
+            display_txt += f"{ordinal(tree_record[2].day)} / {month}:\n{tree_record[1]:.1f} {tree_word}\n\n"
+
         tree_word = _("tree")
-        if tree_record[1] > 1 or tree_record[1] == 0:
+        if trees > 1 or trees == 0:
             tree_word = _("trees")
-        month = formats.date_format(tree_record[2], format='F')
-        display_txt += f"{ordinal(tree_record[2].day)} / {month}:\n{tree_record[1]:.1f} {tree_word}\n\n"
+        display_txt += format_lazy(_("Sum total: {trees} {tree_word}"), trees=f"{trees:.1f}", tree_word=tree_word)
 
-    tree_word = _("tree")
-    if trees > 1 or trees == 0:
-        tree_word = _("trees")
-    display_txt += format_lazy(_("Sum total: {trees} {tree_word}"), trees=f"{trees:.1f}", tree_word=tree_word)
+        first_record = tree_records[0]
+        month = formats.date_format(first_record[2], format='F')
+        day_word = get_word_of_month_i18n(first_record[2].day)
+        read_txt = format_lazy(
+            _('On the {day_word} of {month}, you saved {trees} <phoneme alphabet="x-SVOX-sampa_en-GB" ph="\'i:-k@@U">eco</phoneme>trees.")'),
+            trees=f"{first_record[1]:.1f}",
+            day_word=day_word,
+            month=month,
+        )
 
-    first_record = tree_records[0]
-    month = formats.date_format(first_record[2], format='F')
-    day_word = get_word_of_month_i18n(first_record[2].day)
-    read_txt = format_lazy(
-        _('On the {day_word} of {month}, you saved {trees} <phoneme alphabet="x-SVOX-sampa_en-GB" ph="\'i:-k@@U">eco</phoneme>trees.")'),
-        trees=f"{first_record[1]:.1f}",
-        day_word=day_word,
-        month=month,
-    )
-
-    eco_record_slide_img = create_ecorecord_slide(str(slide_title), _("Total:"), trees, _("trees"), tree_records[:3])
+        eco_record_slide_img = create_ecorecord_slide(str(slide_title), _("Total:"), trees, _("trees"), tree_records[:3])
 
     response_chdata.append({
             'itemId': 1,
@@ -823,75 +831,76 @@ def get_eco_tree_channel(xml_data, returning_xml, channel_id, car):
             "imageDataField": eco_record_slide_img,
         })
 
-    forest_title = _("World's Eco Forest")
+    if page == 2:
+        forest_title = _("World's Eco Forest")
 
-    total_trees = CRMTripRecord.objects.aggregate(trees=Sum('eco_tree_count'))['trees']/5
-    total_tonnes = round(total_trees*0.00412)
-    tree_word = _("trees")
-    tonnes_words = _("tonnes")
-    ecoforest_slide = create_ecoforest_slide(forest_title, _("Total number of Eco Trees:"),
-                                           f"{round(total_trees):.0f} {tree_word}",
-                                           _("CO2 Emission Cuts:"),
-                                           f"{round(total_tonnes):.0f} {tonnes_words}")
+        total_trees = CRMTripRecord.objects.aggregate(trees=Sum('eco_tree_count'))['trees']/5
+        total_tonnes = round(total_trees*0.00412)
+        tree_word = _("trees")
+        tonnes_words = _("tonnes")
+        ecoforest_slide = create_ecoforest_slide(forest_title, _("Total number of Eco Trees:"),
+                                               f"{round(total_trees):.0f} {tree_word}",
+                                               _("CO2 Emission Cuts:"),
+                                               f"{round(total_tonnes):.0f} {tonnes_words}")
 
 
-    day = time_car_now.day
-    month = formats.date_format(time_car_now, format='F')
-    tip_onscreen = f"{forest_title}\n\n"
+        day = time_car_now.day
+        month = formats.date_format(time_car_now, format='F')
+        tip_onscreen = f"{forest_title}\n\n"
 
-    tip_onscreen += format_lazy(_("Total number of Eco Trees by {day} / {month}:"), month=month, day=ordinal(day))+"\n"
-    tip_onscreen += f"{round(total_trees):.0f} {tree_word}\n\n"
-    tip_onscreen += format_lazy(_("CO2 emissions reduced by {day} / {month}:"), month=month, day=ordinal(day))+"\n"
-    tip_onscreen += f"{round(total_tonnes):.0f} {tonnes_words}\n\n"
+        tip_onscreen += format_lazy(_("Total number of Eco Trees by {day} / {month}:"), month=month, day=ordinal(day))+"\n"
+        tip_onscreen += f"{round(total_trees):.0f} {tree_word}\n\n"
+        tip_onscreen += format_lazy(_("CO2 emissions reduced by {day} / {month}:"), month=month, day=ordinal(day))+"\n"
+        tip_onscreen += f"{round(total_tonnes):.0f} {tonnes_words}\n\n"
 
-    tip_onscreen += format_lazy(_("(This calculation is based on an assumption that the CO2 emitted by petrol-driven cars of equivalent class can be reduced by driving electric cars)"))
-    month = formats.date_format(time_car_now, format='F')
-    day_word = get_word_of_month_i18n(time_car_now.day)
+        tip_onscreen += format_lazy(_("(This calculation is based on an assumption that the CO2 emitted by petrol-driven cars of equivalent class can be reduced by driving electric cars)"))
+        month = formats.date_format(time_car_now, format='F')
+        day_word = get_word_of_month_i18n(time_car_now.day)
 
-    tip_txt = format_lazy(
-        _('By the {day_word} of {month}, electric cars with Open Car Wings world wide saved a total of {trees} <phoneme alphabet="x-SVOX-sampa_en-GB" ph="\'i:-k@@U">eco</phoneme>trees. And {tonnes} tonnes of carbon dioxide has been reduced.'),
-        month=month,
-        day_word=day_word,
-        trees=f"{round(total_trees):.0f}",
-        tonnes=f"{round(total_tonnes):.0f}"
-    )
+        tip_txt = format_lazy(
+            _('By the {day_word} of {month}, electric cars with Open Car Wings world wide saved a total of {trees} <phoneme alphabet="x-SVOX-sampa_en-GB" ph="\'i:-k@@U">eco</phoneme>trees. And {tonnes} tonnes of carbon dioxide has been reduced.'),
+            month=month,
+            day_word=day_word,
+            trees=f"{round(total_trees):.0f}",
+            tonnes=f"{round(total_tonnes):.0f}"
+        )
 
-    response_chdata.append(
-        {
-            'itemId': 2,
-            'itemFlag1': 0x00,
-            'dynamicDataField1': encode_utf8(forest_title, limit=0x20),
-            'dynamicDataField2': encode_utf8(forest_title, limit=0x80),
-            'dynamicDataField3': b'',
-            "DMSLocation": b'\xFF' * 10,
-            'flag2': 0,
-            'flag3': 0,
-            'dynamicField4': b'',
-            # phone num field
-            'dynamicField5': b'',
-            'dynamicField6': b'',
-            'unnamed_data': bytearray(),
-            # text shown on bottom
-            "bigDynamicField7": encode_utf8(tip_onscreen, limit=0x400),
-            "bigDynamicField8": encode_utf8(tip_txt, limit=0x400),
-            "iconField": 0x400,
-            # annoucnement sound, 1=yes,0=no
-            "longField2": 1,
-            "flag4": 1,
-            "unknownLongId4": 0x0000,
-            # feature flag? 0xa0 = dial, 0x0F = Img
-            "flag5": 0x9F,
-            "flag6": 0xBB,
-            # image button title
-            "12byteField1": b'\x00' * 12,
-            # image name2
-            "12byteField2": b'\x00' * 12,
-            "mapPointFlag": b'\x20',
-            # save flag
-            "flag8": 0x80,
-            "imageDataField": ecoforest_slide,
-        }
-    )
+        response_chdata.append(
+            {
+                'itemId': 2,
+                'itemFlag1': 0x00,
+                'dynamicDataField1': encode_utf8(forest_title, limit=0x20),
+                'dynamicDataField2': encode_utf8(forest_title, limit=0x80),
+                'dynamicDataField3': b'',
+                "DMSLocation": b'\xFF' * 10,
+                'flag2': 0,
+                'flag3': 0,
+                'dynamicField4': b'',
+                # phone num field
+                'dynamicField5': b'',
+                'dynamicField6': b'',
+                'unnamed_data': bytearray(),
+                # text shown on bottom
+                "bigDynamicField7": encode_utf8(tip_onscreen, limit=0x400),
+                "bigDynamicField8": encode_utf8(tip_txt, limit=0x400),
+                "iconField": 0x400,
+                # annoucnement sound, 1=yes,0=no
+                "longField2": 1,
+                "flag4": 1,
+                "unknownLongId4": 0x0000,
+                # feature flag? 0xa0 = dial, 0x0F = Img
+                "flag5": 0x9F,
+                "flag6": 0xBB,
+                # image button title
+                "12byteField1": b'\x00' * 12,
+                # image name2
+                "12byteField2": b'\x00' * 12,
+                "mapPointFlag": b'\x20',
+                # save flag
+                "flag8": 0x80,
+                "imageDataField": ecoforest_slide,
+            }
+        )
 
 
     resp_file = build_autodj_payload(
@@ -900,13 +909,13 @@ def get_eco_tree_channel(xml_data, returning_xml, channel_id, car):
         response_chdata,
         {
             "type": 6,
-            "data": b'\x01'
+            "data": b''
         },
         extra_fields={
             'stringField1': _('ECO Tree'),
             'stringField2': _('ECO Tree'),
-            "mode0_processedFieldCntPos": len(response_chdata),
-            "mode0_countOfSomeItems3": len(response_chdata),
+            "mode0_processedFieldCntPos": 2,
+            "mode0_countOfSomeItems3": 2,
             "countOfSomeItems": 1
         }
     )

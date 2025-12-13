@@ -27,7 +27,7 @@ class ChannelData(serializers.Serializer):
     save = serializers.BooleanField(default=True, required=False)
 
 
-def handle_custom_channel(xml_data, _, channel_id, car: Car):
+def handle_custom_channel(xml_data, _, channel_id, car: Car, page):
     custom_chan_num = channel_id - 0x1000
     chan_info = car.custom_channels[str(custom_chan_num)]
 

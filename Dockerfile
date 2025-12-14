@@ -1,4 +1,4 @@
-FROM python:3.10-alpine
+FROM python:3.10-alpine3.23
 
 # Install dependencies
 RUN apk update && apk add python3 python3-dev build-base musl-dev gcc g++ tzdata cargo rust libffi-dev musl-dev

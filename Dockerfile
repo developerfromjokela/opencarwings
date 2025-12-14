@@ -1,8 +1,7 @@
 FROM python:3.10-alpine
 
 # Install dependencies
-RUN apk add --no-cache mariadb-connector-c-dev
-RUN apk update && apk add python3 python3-dev mariadb-dev build-base musl-dev gcc g++ tzdata cargo rust libffi-dev musl-dev && pip3 install mysqlclient && apk del mariadb-dev
+RUN apk update && apk add python3 python3-dev build-base musl-dev gcc g++ tzdata cargo rust libffi-dev musl-dev
 RUN apk add --no-cache freetype-dev \
     fribidi-dev \
     harfbuzz-dev \

@@ -1,7 +1,8 @@
 FROM python:3.10-alpine3.23
 
 # Install dependencies
-RUN apk update && apk add python3 python3-dev build-base musl-dev gcc g++ tzdata cargo rust libffi-dev musl-dev
+RUN apk update && apk upgrade --scripts=no apk-tools
+RUN apk add python3 python3-dev build-base musl-dev gcc g++ tzdata cargo rust libffi-dev musl-dev
 RUN apk add --no-cache freetype-dev \
     fribidi-dev \
     harfbuzz-dev \

@@ -796,45 +796,45 @@ def get_eco_tree_channel(xml_data, returning_xml, channel_id, car, page):
 
         eco_record_slide_img = create_ecorecord_slide(str(slide_title), _("Total:"), trees, _("trees"), tree_records[:3])
 
-    response_chdata.append({
-            'itemId': 1,
-            'itemFlag1': 0x00,
-            'dynamicDataField1': encode_utf8(slide_title, limit=0x20),
-            'dynamicDataField2': encode_utf8(slide_title, limit=0x80),
-            'dynamicDataField3': b'',
-            "DMSLocation": b'\xFF' * 10,
-            'flag2': 0,
-            'flag3': 0,
-            'dynamicField4': b'',
-            # phone num field
-            'dynamicField5': b'',
-            'dynamicField6': b'',
-            'unnamed_data': bytearray(),
-            # text shown on bottom
-            "bigDynamicField7": encode_utf8(display_txt, limit=0x400),
-            "bigDynamicField8": encode_utf8(read_txt, limit=0x400),
-            "iconField": 0x400,
-            # annoucnement sound, 1=yes,0=no
-            "longField2": 1,
-            "flag4": 1,
-            "unknownLongId4": 0x0000,
-            # feature flag? 0xa0 = dial, 0x0F = Img
-            "flag5": 0x9F,
-            "flag6": 0xBB,
-            # image button title
-            "12byteField1": b'\x00' * 12,
-            # image name2
-            "12byteField2": b'\x00' * 12,
-            "mapPointFlag": b'\x20',
-            # save flag
-            "flag8": 0x80,
-            "imageDataField": eco_record_slide_img,
-        })
+        response_chdata.append({
+                'itemId': 1,
+                'itemFlag1': 0x00,
+                'dynamicDataField1': encode_utf8(slide_title, limit=0x20),
+                'dynamicDataField2': encode_utf8(slide_title, limit=0x80),
+                'dynamicDataField3': b'',
+                "DMSLocation": b'\xFF' * 10,
+                'flag2': 0,
+                'flag3': 0,
+                'dynamicField4': b'',
+                # phone num field
+                'dynamicField5': b'',
+                'dynamicField6': b'',
+                'unnamed_data': bytearray(),
+                # text shown on bottom
+                "bigDynamicField7": encode_utf8(display_txt, limit=0x400),
+                "bigDynamicField8": encode_utf8(read_txt, limit=0x400),
+                "iconField": 0x400,
+                # annoucnement sound, 1=yes,0=no
+                "longField2": 1,
+                "flag4": 1,
+                "unknownLongId4": 0x0000,
+                # feature flag? 0xa0 = dial, 0x0F = Img
+                "flag5": 0x9F,
+                "flag6": 0xBB,
+                # image button title
+                "12byteField1": b'\x00' * 12,
+                # image name2
+                "12byteField2": b'\x00' * 12,
+                "mapPointFlag": b'\x20',
+                # save flag
+                "flag8": 0x80,
+                "imageDataField": eco_record_slide_img,
+            })
 
     if page == 2:
         forest_title = _("World's Eco Forest")
 
-        total_trees = CRMTripRecord.objects.aggregate(trees=Sum('eco_tree_count'))['trees']/5
+        total_trees = (CRMTripRecord.objects.aggregate(trees=Sum('eco_tree_count'))['trees'] or 0)/5
         total_tonnes = round(total_trees*0.00412)
         tree_word = _("trees")
         tonnes_words = _("tonnes")

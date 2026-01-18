@@ -24,5 +24,9 @@ Server for running CARWINGS services for Nissan LEAF.
 
 Please visit this [Wiki article](https://github.com/developerfromjokela/opencarwings/wiki/Self%E2%80%90hosting-OpenCARWINGS-with-docker%E2%80%90compose) regarding self-hosting using docker
 
+## Home Assistant Add-on
+Add-on is available in repo [czapeczek/ha_opencarwings](https://github.com/czapeczek/ha_opencarwings).
+Thanks to @czapeczek for making the add-on!
+
 ## TCU protocol and misc info
 Please check out repo: [nissan-leaf-tcu](https://github.com/developerfromjokela/nissan-leaf-tcu/)

@@ -180,42 +180,42 @@ class Command(BaseCommand):
                             new_alert.additional_data = _("Sim ID does not match with specified ID, please double check!")
                             new_alert.car = car
                             new_alert.command_id = car.command_id
+                        else:
+                            # skip auth and set as authenticated if check is disabled
+                            authenticated = car.disable_auth
+                            logger.info(f"TCU Authentication check status: {authenticated}")
+                            # auth before anything
+                            if parsed_data["message_type"][0] != 5 and not authenticated:
+                                auth_data = parsed_data.get("auth", None)
 
-                        # skip auth and set as authenticated if check is disabled
-                        authenticated = car.disable_auth
-                        logger.info(f"TCU Authentication check status: {authenticated}")
-                        # auth before anything
-                        if parsed_data["message_type"][0] != 5 and not authenticated:
-                            auth_data = parsed_data.get("auth", None)
+                                if auth_data is None:
+                                    writer.write(create_charge_status_response(False))
+                                    await writer.drain()
+                                    new_alert = AlertHistory()
+                                    new_alert.type = 99
+                                    new_alert.additional_data = _(
+                                        "Authentication failed, username or password is missing! Please sign in using navigation unit.")
+                                    new_alert.car = car
+                                    new_alert.command_id = car.command_id
+                                    await sync_to_async(new_alert.save)()
 
-                            if auth_data is None:
-                                writer.write(create_charge_status_response(False))
-                                await writer.drain()
-                                new_alert = AlertHistory()
-                                new_alert.type = 99
-                                new_alert.additional_data = _(
-                                    "Authentication failed, username or password is missing! Please sign in using navigation unit.")
-                                new_alert.car = car
-                                new_alert.command_id = car.command_id
-                                await sync_to_async(new_alert.save)()
+                                username = auth_data["user"]
+                                password_hash = auth_data["pass"]
 
-                            username = auth_data["user"]
-                            password_hash = auth_data["pass"]
+                                car_owner = await get_car_owner_info(car)
 
-                            car_owner = await get_car_owner_info(car)
-
-                            if username == car_owner.username or password_hash == car_owner.tcu_pass_hash:
-                                authenticated = True
-                            else:
-                                writer.write(create_charge_status_response(False))
-                                await writer.drain()
-                                new_alert = AlertHistory()
-                                new_alert.type = 99
-                                new_alert.additional_data = _(
-                                    "Authentication failed, username or password is incorrect! Please sign in using navigation unit.")
-                                new_alert.car = car
-                                new_alert.command_id = car.command_id
-                                await sync_to_async(new_alert.save)()
+                                if username == car_owner.username or password_hash == car_owner.tcu_pass_hash:
+                                    authenticated = True
+                                else:
+                                    writer.write(create_charge_status_response(False))
+                                    await writer.drain()
+                                    new_alert = AlertHistory()
+                                    new_alert.type = 99
+                                    new_alert.additional_data = _(
+                                        "Authentication failed, username or password is incorrect! Please sign in using navigation unit.")
+                                    new_alert.car = car
+                                    new_alert.command_id = car.command_id
+                                    await sync_to_async(new_alert.save)()
 
                         car.last_connection = timezone.now()
 

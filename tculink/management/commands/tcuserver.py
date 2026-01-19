@@ -157,15 +157,29 @@ class Command(BaseCommand):
                         if tcu_info.get("tcu_id", None) != car.tcu_model:
                             writer.write(create_charge_status_response(False))
                             await writer.drain()
-                            raise CommandError("TCU ID Mismatch")
-                        if tcu_info.get("unit_id", None) != car.tcu_serial:
+                            new_alert = AlertHistory()
+                            new_alert.type = 99
+                            new_alert.additional_data = _("TCU ID does not match with specified ID, please double check!")
+                            new_alert.car = car
+                            new_alert.command_id = car.command_id
+                            await sync_to_async(new_alert.save)()
+                        elif tcu_info.get("unit_id", None) != car.tcu_serial:
                             writer.write(create_charge_status_response(False))
                             await writer.drain()
-                            raise CommandError("TCU Unit ID Mismatch")
-                        if tcu_info.get("iccid", None) != car.iccid:
+                            new_alert = AlertHistory()
+                            new_alert.type = 99
+                            new_alert.additional_data = _("Navi ID does not match with specified ID, please double check!")
+                            new_alert.car = car
+                            new_alert.command_id = car.command_id
+                            await sync_to_async(new_alert.save)()
+                        elif tcu_info.get("iccid", None) != car.iccid:
                             writer.write(create_charge_status_response(False))
                             await writer.drain()
-                            raise CommandError("TCU ICCID Mismatch")
+                            new_alert = AlertHistory()
+                            new_alert.type = 99
+                            new_alert.additional_data = _("Sim ID does not match with specified ID, please double check!")
+                            new_alert.car = car
+                            new_alert.command_id = car.command_id
 
                         # skip auth and set as authenticated if check is disabled
                         authenticated = car.disable_auth
@@ -175,10 +189,15 @@ class Command(BaseCommand):
                             auth_data = parsed_data.get("auth", None)
 
                             if auth_data is None:
-                                authenticated = False
                                 writer.write(create_charge_status_response(False))
                                 await writer.drain()
-                                raise CommandError("TCU auth missing")
+                                new_alert = AlertHistory()
+                                new_alert.type = 99
+                                new_alert.additional_data = _(
+                                    "Authentication failed, username or password is missing! Please sign in using navigation unit.")
+                                new_alert.car = car
+                                new_alert.command_id = car.command_id
+                                await sync_to_async(new_alert.save)()
 
                             username = auth_data["user"]
                             password_hash = auth_data["pass"]
@@ -188,10 +207,15 @@ class Command(BaseCommand):
                             if username == car_owner.username or password_hash == car_owner.tcu_pass_hash:
                                 authenticated = True
                             else:
-                                authenticated = False
                                 writer.write(create_charge_status_response(False))
                                 await writer.drain()
-                                raise CommandError("TCU auth mismatch")
+                                new_alert = AlertHistory()
+                                new_alert.type = 99
+                                new_alert.additional_data = _(
+                                    "Authentication failed, username or password is incorrect! Please sign in using navigation unit.")
+                                new_alert.car = car
+                                new_alert.command_id = car.command_id
+                                await sync_to_async(new_alert.save)()
 
                         car.last_connection = timezone.now()
 
@@ -205,14 +229,19 @@ class Command(BaseCommand):
                         await writer.drain()
                         raise CommandError("No car found")
 
+                    if not authenticated:
+                        car.command_result = 1
+                        car.command_requested = False
+                        await sync_to_async(car.save)()
+                        await writer.drain()
+                        return
+
                     if parsed_data.get("gps", None) is not None:
                         logger.info(f"GPS Data: {parsed_data['gps']}")
                         await set_gpsinfo(car, parsed_data["gps"])
 
                     if parsed_data["message_type"][0] == 1:
                         logger.info(f"Auth Data: {parsed_data['auth']}")
-                        with open(f"datalog-msgtype1-{car.command_id}.bin", "wb") as file:
-                            file.write(data)
                         if car.command_requested and car.command_result == -1:
                             logger.info(f"Command found: {car.command_id} {car.command_requested} {car.command_type} {car.command_payload} {car.command_request_time}")
                             car.command_result = 3
@@ -241,9 +270,6 @@ class Command(BaseCommand):
                             writer.write(create_charge_status_response(False))
                     elif parsed_data["message_type"][0] == 3:
                         logger.info(f"Auth Data: {parsed_data['auth']}")
-                        dtnow = timezone.now().strftime("%Y-%m-%dT%H:%M:%S")
-                        with open(f"datalog-msgtype3-{car.command_id}-{dtnow}.bin", "wb") as file:
-                            file.write(data)
                         body_type = parsed_data["body_type"]
                         logger.info(f"Body Type: {body_type}")
 
@@ -335,20 +361,16 @@ class Command(BaseCommand):
                                 # TODO: capture resultstate to determine battery heater status
                                 logger.warning("Battery heat! Resultstate: %d, alertstate: %d", req_body["resultstate"], req_body["alertstate"])
                                 new_alert = AlertHistory()
-                                new_alert.type = 9
+                                new_alert.type = 9 if req_body.get('batt_heat_active', False) else 10
                                 new_alert.car = car
                                 new_alert.command_id = car.command_id
                                 await sync_to_async(new_alert.save)()
                                 await send_vehicle_alert_notification(
                                     car,
                                     _("Battery heater notification"),
-                                    _("Battery heater notification")
+                                    _("Battery heater has turned on") if req_body.get('batt_heat_active', False) else _("Battery heater has turned off")
                                 )
                     elif parsed_data["message_type"][0] == 5:
-                        if not authenticated:
-                            break
-                        with open(f"datalog-msgtype5-{car.command_id}.bin", "wb") as file:
-                            file.write(data)
                         car.command_result = 0
 
                         new_alert = AlertHistory()

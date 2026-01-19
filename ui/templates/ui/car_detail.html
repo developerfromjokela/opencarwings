@@ -1260,10 +1260,13 @@
             // Update Charge Bar
             updateChargeBar(data.ev_info.charge_bars, data.ev_info.soc, data.ev_info.charging, data.ev_info.quick_charging);
 
-            updateChargingTimeTbl([
+            updateChargingTimeTbl(data.ev_info.obc_6kw_avail ? [
                 {power: '1.4kW/120V', time: data.ev_info.limit_chg_time},
                 {power: '3kW/240V', time: data.ev_info.full_chg_time},
                 {power: '6.6kW', time: data.ev_info.obc_6kw},
+            ] : [
+                {power: '1.4kW/120V', time: data.ev_info.limit_chg_time},
+                {power: '3kW/240V', time: data.ev_info.full_chg_time}
             ])
 
             // Update Maps

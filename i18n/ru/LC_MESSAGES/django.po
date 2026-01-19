@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-13 09:01+0000\n"
-"PO-Revision-Date: 2025-12-13 11:05+0200\n"
+"POT-Creation-Date: 2026-01-19 06:28+0000\n"
+"PO-Revision-Date: 2026-01-19 08:37+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -135,11 +135,11 @@ msgstr "Ожидание ответа"
 msgid "Park"
 msgstr "Парковка"
 
-#: db/models.py:49 ui/templates/ui/car_detail.html:1293
+#: db/models.py:49 ui/templates/ui/car_detail.html:1296
 msgid "Drive"
 msgstr "Движение"
 
-#: db/models.py:50 ui/templates/ui/car_detail.html:1293
+#: db/models.py:50 ui/templates/ui/car_detail.html:1296
 msgid "Reverse"
 msgstr "Задний ход"
 
@@ -252,20 +252,20 @@ msgstr "Добавлен в список избранных"
 msgid "The channel has been added to favorites"
 msgstr "Канал добавлен в избранное"
 
-#: tculink/carwings_proto/autodj/handler.py:23
-#: tculink/carwings_proto/autodj/handler.py:24
+#: tculink/carwings_proto/autodj/handler.py:26
+#: tculink/carwings_proto/autodj/handler.py:27
 #: tculink/carwings_proto/autodj/opencarwings.py:127
 #: tculink/carwings_proto/autodj/opencarwings.py:128
 msgid "Info from OpenCARWINGS"
 msgstr "Информация от OpenCARWINGS"
 
-#: tculink/carwings_proto/autodj/handler.py:66
-#: tculink/carwings_proto/autodj/handler.py:67
+#: tculink/carwings_proto/autodj/handler.py:75
+#: tculink/carwings_proto/autodj/handler.py:76
 msgid "Data Channel not available"
 msgstr "Канал недоступен"
 
-#: tculink/carwings_proto/autodj/handler.py:85
-#: tculink/carwings_proto/autodj/handler.py:86
+#: tculink/carwings_proto/autodj/handler.py:94
+#: tculink/carwings_proto/autodj/handler.py:95
 msgid "Not authorized"
 msgstr "Не аутентифицировано"
 
@@ -599,50 +599,50 @@ msgstr ""
 "отправьте хотя бы один пункт назначения с компьютера или мобильного "
 "устройства и снова зайдите на этот канал."
 
-#: tculink/carwings_proto/autodj/weather.py:166
-#: tculink/carwings_proto/autodj/weather.py:172
+#: tculink/carwings_proto/autodj/weather.py:155
+#: tculink/carwings_proto/autodj/weather.py:161
 msgid "early morning"
 msgstr "ранее утро"
 
-#: tculink/carwings_proto/autodj/weather.py:167
-#: tculink/carwings_proto/autodj/weather.py:173
+#: tculink/carwings_proto/autodj/weather.py:156
+#: tculink/carwings_proto/autodj/weather.py:162
 msgid "morning"
 msgstr "утро"
 
-#: tculink/carwings_proto/autodj/weather.py:168
-#: tculink/carwings_proto/autodj/weather.py:174
+#: tculink/carwings_proto/autodj/weather.py:157
+#: tculink/carwings_proto/autodj/weather.py:163
 msgid "day"
 msgstr "день"
 
-#: tculink/carwings_proto/autodj/weather.py:169
-#: tculink/carwings_proto/autodj/weather.py:175
+#: tculink/carwings_proto/autodj/weather.py:158
+#: tculink/carwings_proto/autodj/weather.py:164
 msgid "evening"
 msgstr "вечер"
 
-#: tculink/carwings_proto/autodj/weather.py:170
-#: tculink/carwings_proto/autodj/weather.py:176
+#: tculink/carwings_proto/autodj/weather.py:159
+#: tculink/carwings_proto/autodj/weather.py:165
 msgid "night"
 msgstr "ночь"
 
-#: tculink/carwings_proto/autodj/weather.py:171
+#: tculink/carwings_proto/autodj/weather.py:160
 msgid "late night"
 msgstr "поздняя ночь"
 
-#: tculink/carwings_proto/autodj/weather.py:179
+#: tculink/carwings_proto/autodj/weather.py:168
 msgid "vehicle location"
 msgstr "местоположение автомобиля"
 
-#: tculink/carwings_proto/autodj/weather.py:274
+#: tculink/carwings_proto/autodj/weather.py:263
 #, python-brace-format
 msgid "Weather Forecast for today, near {location_txt}."
 msgstr "Прогноз погоды на сегодня в районе {location_txt}."
 
-#: tculink/carwings_proto/autodj/weather.py:278
-#: tculink/carwings_proto/autodj/weather.py:415
+#: tculink/carwings_proto/autodj/weather.py:267
+#: tculink/carwings_proto/autodj/weather.py:404
 msgid "No forecast data available."
 msgstr "Данные прогноза погоды отсутствуют."
 
-#: tculink/carwings_proto/autodj/weather.py:281
+#: tculink/carwings_proto/autodj/weather.py:270
 #, python-brace-format
 msgid ""
 "During the {period}, forecasted to {condition}. With temperature of {temp} "
@@ -653,19 +653,19 @@ msgstr ""
 "градусов Цельсия, скорость ветра — {wind} метров в секунду, вероятность "
 "дождя — {rain} процентов.\n"
 
-#: tculink/carwings_proto/autodj/weather.py:292
-#: tculink/carwings_proto/autodj/weather.py:430
-#: tculink/carwings_proto/autodj/weather.py:472
-#: tculink/carwings_proto/autodj/weather.py:473
+#: tculink/carwings_proto/autodj/weather.py:281
+#: tculink/carwings_proto/autodj/weather.py:419
+#: tculink/carwings_proto/autodj/weather.py:461
+#: tculink/carwings_proto/autodj/weather.py:462
 msgid "Weather forecast"
 msgstr "Прогноз погоды"
 
-#: tculink/carwings_proto/autodj/weather.py:412
+#: tculink/carwings_proto/autodj/weather.py:401
 #, python-brace-format
 msgid "Weather Forecast for next seven days, near {location_txt}."
 msgstr "Прогноз погоды на ближайшие семь дней в районе {location_txt}."
 
-#: tculink/carwings_proto/autodj/weather.py:419
+#: tculink/carwings_proto/autodj/weather.py:408
 #, python-brace-format
 msgid ""
 "On {weekday}, forecasted to {condition}. With highest temperature of "
@@ -674,140 +674,171 @@ msgstr ""
 "В {weekday} ожидается {condition}. Максимальная температура — {maxtemp} "
 "градусов Цельсия, минимальная температура — {mintemp} градусов Цельсия.\n"
 
-#: tculink/carwings_proto/utils.py:140
+#: tculink/carwings_proto/utils.py:142
 msgid "first"
 msgstr "первый"
 
-#: tculink/carwings_proto/utils.py:140
+#: tculink/carwings_proto/utils.py:142
 msgid "second"
 msgstr "второй"
 
-#: tculink/carwings_proto/utils.py:140
+#: tculink/carwings_proto/utils.py:142
 msgid "third"
 msgstr "третий"
 
-#: tculink/carwings_proto/utils.py:140
+#: tculink/carwings_proto/utils.py:142
 msgid "fourth"
 msgstr "четвёртый"
 
-#: tculink/carwings_proto/utils.py:140
+#: tculink/carwings_proto/utils.py:142
 msgid "fifth"
 msgstr "пятый"
 
-#: tculink/carwings_proto/utils.py:141
+#: tculink/carwings_proto/utils.py:143
 msgid "sixth"
 msgstr "шестой"
 
-#: tculink/carwings_proto/utils.py:141
+#: tculink/carwings_proto/utils.py:143
 msgid "seventh"
 msgstr "седьмой"
 
-#: tculink/carwings_proto/utils.py:141
+#: tculink/carwings_proto/utils.py:143
 msgid "eighth"
 msgstr "восьмой"
 
-#: tculink/carwings_proto/utils.py:141
+#: tculink/carwings_proto/utils.py:143
 msgid "ninth"
 msgstr "девятый"
 
-#: tculink/carwings_proto/utils.py:141
+#: tculink/carwings_proto/utils.py:143
 msgid "tenth"
 msgstr "десятый"
 
-#: tculink/carwings_proto/utils.py:142
+#: tculink/carwings_proto/utils.py:144
 msgid "eleventh"
 msgstr "одиннадцатый"
 
-#: tculink/carwings_proto/utils.py:142
+#: tculink/carwings_proto/utils.py:144
 msgid "twelfth"
 msgstr "двенадцатый"
 
-#: tculink/carwings_proto/utils.py:142
+#: tculink/carwings_proto/utils.py:144
 msgid "thirteenth"
 msgstr "тринадцатый"
 
-#: tculink/carwings_proto/utils.py:142
+#: tculink/carwings_proto/utils.py:144
 msgid "fourteenth"
 msgstr "четырнадцатый"
 
-#: tculink/carwings_proto/utils.py:142
+#: tculink/carwings_proto/utils.py:144
 msgid "fifteenth"
 msgstr "пятнадцатый"
 
-#: tculink/carwings_proto/utils.py:143
+#: tculink/carwings_proto/utils.py:145
 msgid "sixteenth"
 msgstr "шестнадцатый"
 
-#: tculink/carwings_proto/utils.py:143
+#: tculink/carwings_proto/utils.py:145
 msgid "seventeenth"
 msgstr "семнадцатый"
 
-#: tculink/carwings_proto/utils.py:143
+#: tculink/carwings_proto/utils.py:145
 msgid "eighteenth"
 msgstr "восемнадцатый"
 
-#: tculink/carwings_proto/utils.py:143
+#: tculink/carwings_proto/utils.py:145
 msgid "nineteenth"
 msgstr "девятнадцатый"
 
-#: tculink/carwings_proto/utils.py:143
+#: tculink/carwings_proto/utils.py:145
 msgid "twentieth"
 msgstr "двадцатый"
 
-#: tculink/carwings_proto/utils.py:144
+#: tculink/carwings_proto/utils.py:146
 msgid "twenty-first"
 msgstr "двадцать первый"
 
-#: tculink/carwings_proto/utils.py:144
+#: tculink/carwings_proto/utils.py:146
 msgid "twenty-second"
 msgstr "двадцать второй"
 
-#: tculink/carwings_proto/utils.py:144
+#: tculink/carwings_proto/utils.py:146
 msgid "twenty-third"
 msgstr "двадцать третий"
 
-#: tculink/carwings_proto/utils.py:144
+#: tculink/carwings_proto/utils.py:146
 msgid "twenty-fourth"
 msgstr "двадцать четвёртый"
 
-#: tculink/carwings_proto/utils.py:144
+#: tculink/carwings_proto/utils.py:146
 msgid "twenty-fifth"
 msgstr "двадцать пятый"
 
-#: tculink/carwings_proto/utils.py:145
+#: tculink/carwings_proto/utils.py:147
 msgid "twenty-sixth"
 msgstr "двадцать шестой"
 
-#: tculink/carwings_proto/utils.py:145
+#: tculink/carwings_proto/utils.py:147
 msgid "twenty-seventh"
 msgstr "двадцать седьмой"
 
-#: tculink/carwings_proto/utils.py:145
+#: tculink/carwings_proto/utils.py:147
 msgid "twenty-eighth"
 msgstr "двадцать восьмой"
 
-#: tculink/carwings_proto/utils.py:145
+#: tculink/carwings_proto/utils.py:147
 msgid "twenty-ninth"
 msgstr "двадцать девятый"
 
-#: tculink/carwings_proto/utils.py:145
+#: tculink/carwings_proto/utils.py:147
 msgid "thirtieth"
 msgstr "тридцатый"
 
-#: tculink/carwings_proto/utils.py:146
+#: tculink/carwings_proto/utils.py:148
 msgid "thirty-first"
 msgstr "тридцать первый"
 
-#: tculink/management/commands/tcuserver.py:265
+#: tculink/management/commands/tcuserver.py:162
+msgid "TCU ID does not match with specified ID, please double check!"
+msgstr ""
+"TCU ID не совпадает с указанным идентификатором, пожалуйста, перепроверьте!"
+
+#: tculink/management/commands/tcuserver.py:171
+msgid "Navi ID does not match with specified ID, please double check!"
+msgstr ""
+"Navi ID не совпадает с указанным идентификатором, пожалуйста, перепроверьте!"
+
+#: tculink/management/commands/tcuserver.py:180
+msgid "Sim ID does not match with specified ID, please double check!"
+msgstr ""
+"SIM ID не совпадает с указанным идентификатором, пожалуйста, перепроверьте!"
+
+#: tculink/management/commands/tcuserver.py:197
+msgid ""
+"Authentication failed, username or password is missing! Please sign in using "
+"navigation unit."
+msgstr ""
+"Аутентификация не удалась, отсутствует имя пользователя или пароль! "
+"Пожалуйста, войдите в систему, используя навигационное устройство."
+
+#: tculink/management/commands/tcuserver.py:215
+msgid ""
+"Authentication failed, username or password is incorrect! Please sign in "
+"using navigation unit."
+msgstr ""
+"Аутентификация не удалась, имя пользователя или пароль неверны! Пожалуйста, "
+"войдите в систему, используя навигационное устройство."
+
+#: tculink/management/commands/tcuserver.py:291
 msgid "Vehicle is unplugged. Please check the situation if necessary."
 msgstr ""
 "Автомобиль не подключён к зарядке. При необходимости проверьте ситуацию."
 
-#: tculink/management/commands/tcuserver.py:266
+#: tculink/management/commands/tcuserver.py:292
 msgid "Charger unplugged notification"
 msgstr "Уведомление о неподключённом зарядном кабеле"
 
-#: tculink/management/commands/tcuserver.py:283
+#: tculink/management/commands/tcuserver.py:309
 msgid ""
 "The A/C preconditioning command could not be executed. One of the reasons "
 "behind such error could be: a) low state of charge b) command already "
@@ -816,27 +847,27 @@ msgstr ""
 "Команда предварительного кондиционирования не выполнена. Возможные причины: "
 "a) низкий уровень заряда, b) команда уже выполнена, c) ошибка TCU."
 
-#: tculink/management/commands/tcuserver.py:285
+#: tculink/management/commands/tcuserver.py:311
 msgid "A/C preconditioning error"
 msgstr "Ошибка предварительного кондиционирования"
 
-#: tculink/management/commands/tcuserver.py:287
+#: tculink/management/commands/tcuserver.py:313
 msgid "A/C preconditioning started"
 msgstr "Предварительное кондиционирование начато"
 
-#: tculink/management/commands/tcuserver.py:288
+#: tculink/management/commands/tcuserver.py:314
 msgid "A/C preconditioning has been successfully switched on"
 msgstr "Предварительное кондиционирование успешно включено"
 
-#: tculink/management/commands/tcuserver.py:290
+#: tculink/management/commands/tcuserver.py:316
 msgid "A/C precondition stopped"
 msgstr "Предварительное кондиционирование остановлено"
 
-#: tculink/management/commands/tcuserver.py:291
+#: tculink/management/commands/tcuserver.py:317
 msgid "A/C preconditioning has been successfully switched off"
 msgstr "Предварительное кондиционирование успешно выключено"
 
-#: tculink/management/commands/tcuserver.py:293
+#: tculink/management/commands/tcuserver.py:319
 msgid ""
 "The A/C preconditioning is finished and switched off after running certain "
 "amount of time."
@@ -844,35 +875,35 @@ msgstr ""
 "Предварительное кондиционирование завершено и выключено после определённого "
 "времени работы."
 
-#: tculink/management/commands/tcuserver.py:295
+#: tculink/management/commands/tcuserver.py:321
 msgid "A/C precondition finished"
 msgstr "Предварительное кондиционирование завершено"
 
-#: tculink/management/commands/tcuserver.py:304
+#: tculink/management/commands/tcuserver.py:330
 msgid "A/C preconditioning is finished"
 msgstr "Предварительное кондиционирование завершено"
 
-#: tculink/management/commands/tcuserver.py:305
+#: tculink/management/commands/tcuserver.py:331
 msgid "A/C precondition notification"
 msgstr "Уведомление о предварительном кондиционировании"
 
-#: tculink/management/commands/tcuserver.py:309
+#: tculink/management/commands/tcuserver.py:335
 msgid "Vehicle has finished charging."
 msgstr "Автомобиль завершил зарядку."
 
-#: tculink/management/commands/tcuserver.py:310
+#: tculink/management/commands/tcuserver.py:336
 msgid "Charge finish notification"
 msgstr "Уведомление о завершении зарядки"
 
-#: tculink/management/commands/tcuserver.py:313
+#: tculink/management/commands/tcuserver.py:339
 msgid "Vehicle has finished quick-charging."
 msgstr "Автомобиль завершил быструю зарядку."
 
-#: tculink/management/commands/tcuserver.py:314
+#: tculink/management/commands/tcuserver.py:340
 msgid "Quick-charge finish notification"
 msgstr "Уведомление о завершении быстрой зарядки"
 
-#: tculink/management/commands/tcuserver.py:330
+#: tculink/management/commands/tcuserver.py:356
 msgid ""
 "Charging command has been sent successfully. If vehicle did not start "
 "charging, please check that the charging cable is connected and power is "
@@ -881,14 +912,21 @@ msgstr ""
 "Команда зарядки успешно отправлена. Если автомобиль не начал заряжаться, "
 "проверьте подключение зарядного кабеля и наличие питания."
 
-#: tculink/management/commands/tcuserver.py:332
+#: tculink/management/commands/tcuserver.py:358
 msgid "Charge start command executed"
 msgstr "Команда начала зарядки выполнена"
 
-#: tculink/management/commands/tcuserver.py:344
-#: tculink/management/commands/tcuserver.py:345
+#: tculink/management/commands/tcuserver.py:370
 msgid "Battery heater notification"
 msgstr "Уведомление о нагревателе батареи"
+
+#: tculink/management/commands/tcuserver.py:371
+msgid "Battery heater has turned on"
+msgstr "Нагреватель батареи включился и нагревает батарею."
+
+#: tculink/management/commands/tcuserver.py:371
+msgid "Battery heater has turned off"
+msgstr "Нагреватель батареи выключен."
 
 #: tculink/sms/46elks.py:9
 msgid "API Username"
@@ -1242,7 +1280,7 @@ msgid "On"
 msgstr "Включён"
 
 #: ui/templates/ui/car_detail.html:183 ui/templates/ui/car_detail.html:1233
-#: ui/templates/ui/car_detail.html:1293
+#: ui/templates/ui/car_detail.html:1296
 msgid "Parked"
 msgstr "На парковке"
 
@@ -1349,25 +1387,25 @@ msgstr "Сб."
 msgid "Sun"
 msgstr "Вс."
 
-#: ui/templates/ui/car_detail.html:269 ui/templates/ui/car_detail.html:2563
+#: ui/templates/ui/car_detail.html:269 ui/templates/ui/car_detail.html:2566
 msgid "Last run"
 msgstr "Последняя команда"
 
-#: ui/templates/ui/car_detail.html:269 ui/templates/ui/car_detail.html:2563
+#: ui/templates/ui/car_detail.html:269 ui/templates/ui/car_detail.html:2566
 msgid "result"
 msgstr "результат"
 
 #: ui/templates/ui/car_detail.html:275 ui/templates/ui/car_detail.html:376
-#: ui/templates/ui/car_detail.html:1653 ui/templates/ui/car_detail.html:2570
+#: ui/templates/ui/car_detail.html:1656 ui/templates/ui/car_detail.html:2573
 msgid "Edit"
 msgstr "Редактировать"
 
 #: ui/templates/ui/car_detail.html:281 ui/templates/ui/car_detail.html:382
-#: ui/templates/ui/car_detail.html:1658 ui/templates/ui/car_detail.html:2575
+#: ui/templates/ui/car_detail.html:1661 ui/templates/ui/car_detail.html:2578
 msgid "Delete"
 msgstr "Удалить"
 
-#: ui/templates/ui/car_detail.html:287 ui/templates/ui/car_detail.html:2518
+#: ui/templates/ui/car_detail.html:287 ui/templates/ui/car_detail.html:2521
 msgid "No timers added"
 msgstr "Таймеры не добавлены"
 
@@ -1461,15 +1499,15 @@ msgid "Send location to car"
 msgstr "Отправить местоположение в автомобиль"
 
 #: ui/templates/ui/car_detail.html:345 ui/templates/ui/car_detail.html:399
-#: ui/templates/ui/car_detail.html:408 ui/templates/ui/car_detail.html:1931
+#: ui/templates/ui/car_detail.html:408 ui/templates/ui/car_detail.html:1934
 msgid "Search for locations or enter google/apple maps link"
 msgstr "Поиск местоположения или ввод ссылки на Google/Apple Maps"
 
-#: ui/templates/ui/car_detail.html:349 ui/templates/ui/car_detail.html:1333
+#: ui/templates/ui/car_detail.html:349 ui/templates/ui/car_detail.html:1336
 msgid "Last shared location"
 msgstr "Последнее отправленное местоположение"
 
-#: ui/templates/ui/car_detail.html:351 ui/templates/ui/car_detail.html:1335
+#: ui/templates/ui/car_detail.html:351 ui/templates/ui/car_detail.html:1338
 msgid "No past shared location"
 msgstr "Нет ранее отправленных местоположений"
 
@@ -1485,7 +1523,7 @@ msgstr "Дома"
 msgid "Route plans"
 msgstr "Планы маршрутов"
 
-#: ui/templates/ui/car_detail.html:388 ui/templates/ui/car_detail.html:1636
+#: ui/templates/ui/car_detail.html:388 ui/templates/ui/car_detail.html:1639
 msgid "No route plans added"
 msgstr "Планы маршрутов не добавлены"
 
@@ -1524,7 +1562,7 @@ msgstr "Избранное"
 #: ui/templates/ui/car_detail.html:441 ui/templates/ui/car_detail.html:442
 #: ui/templates/ui/car_detail.html:443 ui/templates/ui/car_detail.html:444
 #: ui/templates/ui/car_detail.html:445 ui/templates/ui/car_detail.html:446
-#: ui/templates/ui/car_detail.html:447 ui/templates/ui/car_detail.html:2143
+#: ui/templates/ui/car_detail.html:447 ui/templates/ui/car_detail.html:2146
 msgid "No selected channel"
 msgstr "Канал не выбран"
 
@@ -1540,7 +1578,7 @@ msgstr "Мои каналы"
 #: ui/templates/ui/car_detail.html:473 ui/templates/ui/car_detail.html:474
 #: ui/templates/ui/car_detail.html:475 ui/templates/ui/car_detail.html:476
 #: ui/templates/ui/car_detail.html:477 ui/templates/ui/car_detail.html:478
-#: ui/templates/ui/car_detail.html:2219
+#: ui/templates/ui/car_detail.html:2222
 msgid "No content"
 msgstr "Нет контента"
 
@@ -1650,7 +1688,7 @@ msgstr "Формат URL-адреса данных и документация"
 msgid "Allow sending current vehicle location"
 msgstr "Разрешить отправку текущего местоположения автомобиля"
 
-#: ui/templates/ui/car_detail.html:722 ui/templates/ui/car_detail.html:2318
+#: ui/templates/ui/car_detail.html:722 ui/templates/ui/car_detail.html:2321
 msgid "Edit timer"
 msgstr "Редактировать таймер"
 
@@ -1716,8 +1754,8 @@ msgstr "SMS с вашего устройства"
 
 #: ui/templates/ui/car_detail.html:1174 ui/templates/ui/car_detail.html:1176
 #: ui/templates/ui/car_detail.html:1180 ui/templates/ui/car_detail.html:1181
-#: ui/templates/ui/car_detail.html:1388 ui/templates/ui/car_detail.html:1396
-#: ui/templates/ui/car_detail.html:1397
+#: ui/templates/ui/car_detail.html:1391 ui/templates/ui/car_detail.html:1399
+#: ui/templates/ui/car_detail.html:1400
 msgid "Error sending command"
 msgstr "Ошибка при отправке команды"
 
@@ -1729,146 +1767,146 @@ msgstr "Подключён"
 msgid "Unplugged"
 msgstr "Отключён"
 
-#: ui/templates/ui/car_detail.html:1278 ui/templates/ui/car_detail.html:1279
-#: ui/templates/ui/car_detail.html:1280 ui/templates/ui/car_detail.html:1288
-#: ui/templates/ui/car_detail.html:1294 ui/templates/ui/car_detail.html:1295
-#: ui/templates/ui/car_detail.html:1296 ui/templates/ui/car_detail.html:1297
-#: ui/templates/ui/car_detail.html:1302
+#: ui/templates/ui/car_detail.html:1281 ui/templates/ui/car_detail.html:1282
+#: ui/templates/ui/car_detail.html:1283 ui/templates/ui/car_detail.html:1291
+#: ui/templates/ui/car_detail.html:1297 ui/templates/ui/car_detail.html:1298
+#: ui/templates/ui/car_detail.html:1299 ui/templates/ui/car_detail.html:1300
+#: ui/templates/ui/car_detail.html:1305
 msgid "Yes"
 msgstr "Да"
 
-#: ui/templates/ui/car_detail.html:1278 ui/templates/ui/car_detail.html:1279
-#: ui/templates/ui/car_detail.html:1280 ui/templates/ui/car_detail.html:1288
-#: ui/templates/ui/car_detail.html:1294 ui/templates/ui/car_detail.html:1295
-#: ui/templates/ui/car_detail.html:1296 ui/templates/ui/car_detail.html:1297
-#: ui/templates/ui/car_detail.html:1302
+#: ui/templates/ui/car_detail.html:1281 ui/templates/ui/car_detail.html:1282
+#: ui/templates/ui/car_detail.html:1283 ui/templates/ui/car_detail.html:1291
+#: ui/templates/ui/car_detail.html:1297 ui/templates/ui/car_detail.html:1298
+#: ui/templates/ui/car_detail.html:1299 ui/templates/ui/car_detail.html:1300
+#: ui/templates/ui/car_detail.html:1305
 msgid "No"
 msgstr "Нет"
 
-#: ui/templates/ui/car_detail.html:1419 ui/templates/ui/car_detail.html:1427
-#: ui/templates/ui/car_detail.html:1428
+#: ui/templates/ui/car_detail.html:1422 ui/templates/ui/car_detail.html:1430
+#: ui/templates/ui/car_detail.html:1431
 msgid "Error sending location to car"
 msgstr "Ошибка при отправке местоположения в автомобиль"
 
-#: ui/templates/ui/car_detail.html:1421
+#: ui/templates/ui/car_detail.html:1424
 msgid "Location sent!"
 msgstr "Местоположение отправлено!"
 
-#: ui/templates/ui/car_detail.html:1477 ui/templates/ui/car_detail.html:1540
-#: ui/templates/ui/car_detail.html:1811 ui/templates/ui/car_detail.html:1816
-#: ui/templates/ui/car_detail.html:1873 ui/templates/ui/car_detail.html:1886
-#: ui/templates/ui/car_detail.html:1891 ui/templates/ui/car_detail.html:1970
+#: ui/templates/ui/car_detail.html:1480 ui/templates/ui/car_detail.html:1543
+#: ui/templates/ui/car_detail.html:1814 ui/templates/ui/car_detail.html:1819
+#: ui/templates/ui/car_detail.html:1876 ui/templates/ui/car_detail.html:1889
+#: ui/templates/ui/car_detail.html:1894 ui/templates/ui/car_detail.html:1973
 msgid "No address"
 msgstr "Адрес отсутствует"
 
-#: ui/templates/ui/car_detail.html:1487 ui/templates/ui/car_detail.html:1820
+#: ui/templates/ui/car_detail.html:1490 ui/templates/ui/car_detail.html:1823
 msgid "Could not get location from map link"
 msgstr "Не удалось получить местоположение по ссылке на карту"
 
-#: ui/templates/ui/car_detail.html:1493 ui/templates/ui/car_detail.html:1565
-#: ui/templates/ui/car_detail.html:1826 ui/templates/ui/car_detail.html:1907
+#: ui/templates/ui/car_detail.html:1496 ui/templates/ui/car_detail.html:1568
+#: ui/templates/ui/car_detail.html:1829 ui/templates/ui/car_detail.html:1910
 msgid "Error searching locations"
 msgstr "Ошибка при поиске местоположений"
 
-#: ui/templates/ui/car_detail.html:1559 ui/templates/ui/car_detail.html:1901
+#: ui/templates/ui/car_detail.html:1562 ui/templates/ui/car_detail.html:1904
 msgid "Search did not find any locations"
 msgstr "Поиск не нашёл местоположений"
 
-#: ui/templates/ui/car_detail.html:1584
+#: ui/templates/ui/car_detail.html:1587
 msgid "Connection established!"
 msgstr "Соединение установлено!"
 
-#: ui/templates/ui/car_detail.html:1589
+#: ui/templates/ui/car_detail.html:1592
 msgid "Reconnecting..."
 msgstr "Переподключение…"
 
-#: ui/templates/ui/car_detail.html:1915
+#: ui/templates/ui/car_detail.html:1918
 msgid "Cannot add a new waypoint"
 msgstr "Невозможно добавить новую промежуточную точку"
 
-#: ui/templates/ui/car_detail.html:1915
+#: ui/templates/ui/car_detail.html:1918
 msgid "Maximum number of waypoints reached"
 msgstr "Достигнуто максимальное количество промежуточных точек"
 
-#: ui/templates/ui/car_detail.html:1948
+#: ui/templates/ui/car_detail.html:1951
 msgid "Waypoint"
 msgstr "Промежуточная точка"
 
-#: ui/templates/ui/car_detail.html:2000 ui/templates/ui/car_detail.html:2009
-#: ui/templates/ui/car_detail.html:2010
+#: ui/templates/ui/car_detail.html:2003 ui/templates/ui/car_detail.html:2012
+#: ui/templates/ui/car_detail.html:2013
 msgid "Error saving the route plan"
 msgstr "Ошибка при сохранении плана маршрута"
 
-#: ui/templates/ui/car_detail.html:2002
+#: ui/templates/ui/car_detail.html:2005
 msgid "Route plan saved!"
 msgstr "План маршрута сохранён!"
 
-#: ui/templates/ui/car_detail.html:2038
+#: ui/templates/ui/car_detail.html:2041
 msgid "Cannot add new route plan"
 msgstr "Невозможно добавить новый план маршрута"
 
-#: ui/templates/ui/car_detail.html:2038
+#: ui/templates/ui/car_detail.html:2041
 msgid "You have too many route plans, please delete one and try again."
 msgstr "У вас слишком много планов маршрутов, удалите один и попробуйте снова."
 
-#: ui/templates/ui/car_detail.html:2108
+#: ui/templates/ui/car_detail.html:2111
 msgid "Are you sure you want to delete this route plan?"
 msgstr "Вы уверены, что хотите удалить этот план маршрута?"
 
-#: ui/templates/ui/car_detail.html:2121 ui/templates/ui/car_detail.html:2128
-#: ui/templates/ui/car_detail.html:2129
+#: ui/templates/ui/car_detail.html:2124 ui/templates/ui/car_detail.html:2131
+#: ui/templates/ui/car_detail.html:2132
 msgid "Error deleting the route plan"
 msgstr "Ошибка при удалении плана маршрута"
 
-#: ui/templates/ui/car_detail.html:2123
+#: ui/templates/ui/car_detail.html:2126
 msgid "Route plan removed!"
 msgstr "План маршрута удалён!"
 
-#: ui/templates/ui/car_detail.html:2283 ui/templates/ui/car_detail.html:2291
-#: ui/templates/ui/car_detail.html:2292
+#: ui/templates/ui/car_detail.html:2286 ui/templates/ui/car_detail.html:2294
+#: ui/templates/ui/car_detail.html:2295
 msgid "Error saving CARWINGS settings"
 msgstr "Ошибка сохранения настроек CARWINGS"
 
-#: ui/templates/ui/car_detail.html:2285
+#: ui/templates/ui/car_detail.html:2288
 msgid "CARWINGS settings saved!"
 msgstr "Настройки CARWINGS сохранены!"
 
-#: ui/templates/ui/car_detail.html:2298
+#: ui/templates/ui/car_detail.html:2301
 msgid "Add timer"
 msgstr "Добавить таймер"
 
-#: ui/templates/ui/car_detail.html:2409 ui/templates/ui/car_detail.html:2412
+#: ui/templates/ui/car_detail.html:2412 ui/templates/ui/car_detail.html:2415
 msgid "Missing field"
 msgstr "Отсутствует пункт"
 
-#: ui/templates/ui/car_detail.html:2409
+#: ui/templates/ui/car_detail.html:2412
 msgid "Please enter valid date for the timer"
 msgstr "Пожалуйста, введите действительную дату для таймера."
 
-#: ui/templates/ui/car_detail.html:2412
+#: ui/templates/ui/car_detail.html:2415
 msgid "Please select at least one weekday"
 msgstr "Пожалуйста, выберите хотя бы один день недели"
 
-#: ui/templates/ui/car_detail.html:2433 ui/templates/ui/car_detail.html:2441
-#: ui/templates/ui/car_detail.html:2442 ui/templates/ui/car_detail.html:2463
-#: ui/templates/ui/car_detail.html:2471 ui/templates/ui/car_detail.html:2472
+#: ui/templates/ui/car_detail.html:2436 ui/templates/ui/car_detail.html:2444
+#: ui/templates/ui/car_detail.html:2445 ui/templates/ui/car_detail.html:2466
+#: ui/templates/ui/car_detail.html:2474 ui/templates/ui/car_detail.html:2475
 msgid "Error saving the timer"
 msgstr "Ошибка сохранения таймера"
 
-#: ui/templates/ui/car_detail.html:2435 ui/templates/ui/car_detail.html:2465
+#: ui/templates/ui/car_detail.html:2438 ui/templates/ui/car_detail.html:2468
 msgid "Timer saved!"
 msgstr "Таймер сохранен!"
 
-#: ui/templates/ui/car_detail.html:2479
+#: ui/templates/ui/car_detail.html:2482
 msgid "Are you sure you want to delete this timer?"
 msgstr "Вы уверены, что хотите удалить этот таймер?"
 
-#: ui/templates/ui/car_detail.html:2488
+#: ui/templates/ui/car_detail.html:2491
 msgid "Timer removed!"
 msgstr "Таймер удален!"
 
-#: ui/templates/ui/car_detail.html:2491 ui/templates/ui/car_detail.html:2493
-#: ui/templates/ui/car_detail.html:2497 ui/templates/ui/car_detail.html:2498
+#: ui/templates/ui/car_detail.html:2494 ui/templates/ui/car_detail.html:2496
+#: ui/templates/ui/car_detail.html:2500 ui/templates/ui/car_detail.html:2501
 msgid "Error deleting the timer"
 msgstr "Ошибка при удалении таймера"
 
@@ -2879,140 +2917,141 @@ msgstr ""
 msgid "Update request cancelled!"
 msgstr "Запрос на обновление отменен!"
 
-msgid "Take Back Control of Your Nissan LEAF"
-msgstr "Возьмите контроль над своим Nissan LEAF"
+#~ msgid "Take Back Control of Your Nissan LEAF"
+#~ msgstr "Возьмите контроль над своим Nissan LEAF"
 
-msgid ""
-"The iconic Nissan LEAF deserves more than abandonment. With the "
-"manufacturer's support fading, the community steps up. Sign up now to bring "
-"your LEAF back to life!"
-msgstr ""
-"Легендарный Nissan LEAF заслуживает большего, чем забвение. С угасанием "
-"поддержки производителя сообщество берёт инициативу в свои руки. "
-"Зарегистрируйтесь сейчас, чтобы вернуть ваш LEAF к жизни!"
+#~ msgid ""
+#~ "The iconic Nissan LEAF deserves more than abandonment. With the "
+#~ "manufacturer's support fading, the community steps up. Sign up now to "
+#~ "bring your LEAF back to life!"
+#~ msgstr ""
+#~ "Легендарный Nissan LEAF заслуживает большего, чем забвение. С угасанием "
+#~ "поддержки производителя сообщество берёт инициативу в свои руки. "
+#~ "Зарегистрируйтесь сейчас, чтобы вернуть ваш LEAF к жизни!"
 
-msgid "Charge position"
-msgstr "Место зарядки"
+#~ msgid "Charge position"
+#~ msgstr "Место зарядки"
 
-msgid "Direction"
-msgstr "Направление"
+#~ msgid "Direction"
+#~ msgstr "Направление"
 
-msgid "Use your old smartphone"
-msgstr "Используйте свой старый Android-смартфон"
+#~ msgid "Use your old smartphone"
+#~ msgstr "Используйте свой старый Android-смартфон"
 
-msgid "Result"
-msgstr "Результат"
+#~ msgid "Result"
+#~ msgstr "Результат"
 
-msgid "Version"
-msgstr "Версия"
+#~ msgid "Version"
+#~ msgstr "Версия"
 
-msgid "OpenCARWINGS"
-msgstr "OpenCARWINGS"
+#~ msgid "OpenCARWINGS"
+#~ msgstr "OpenCARWINGS"
 
-msgid "Route Planning & Navigation"
-msgstr "Планирование маршрута и навигация"
+#~ msgid "Route Planning & Navigation"
+#~ msgstr "Планирование маршрута и навигация"
 
-msgid "Online Services"
-msgstr "Онлайн-сервисы"
+#~ msgid "Online Services"
+#~ msgstr "Онлайн-сервисы"
 
-msgid "Any new announcements or features can be shown here"
-msgstr "Здесь могут быть показаны любые новые объявления или функции"
+#~ msgid "Any new announcements or features can be shown here"
+#~ msgstr "Здесь могут быть показаны любые новые объявления или функции"
 
-msgid "Energy Economy"
-msgstr "Энергоэффективность"
+#~ msgid "Energy Economy"
+#~ msgstr "Энергоэффективность"
 
-msgid "Get latest energy economy information"
-msgstr "Получите актуальную информацию об энергоэффективности"
+#~ msgid "Get latest energy economy information"
+#~ msgstr "Получите актуальную информацию об энергоэффективности"
 
-msgid "Eco Trees"
-msgstr "Экодеревья"
+#~ msgid "Eco Trees"
+#~ msgstr "Экодеревья"
 
-msgid "Get latest eco tree information"
-msgstr "Получите актуальную информацию об экодеревьях"
+#~ msgid "Get latest eco tree information"
+#~ msgstr "Получите актуальную информацию об экодеревьях"
 
-msgid "Weather Forecast"
-msgstr "Прогноз погоды"
+#~ msgid "Weather Forecast"
+#~ msgstr "Прогноз погоды"
 
-msgid "Download Weather Forecast for your area"
-msgstr "Загрузите прогноз погоды для вашего региона"
+#~ msgid "Download Weather Forecast for your area"
+#~ msgstr "Загрузите прогноз погоды для вашего региона"
 
-msgid "clear"
-msgstr "ясно"
+#~ msgid "clear"
+#~ msgstr "ясно"
 
-msgid "mainly clear"
-msgstr "в основном ясно"
+#~ msgid "mainly clear"
+#~ msgstr "в основном ясно"
 
-msgid "partly cloudy"
-msgstr "переменная облачность"
+#~ msgid "partly cloudy"
+#~ msgstr "переменная облачность"
 
-msgid "cloudy"
-msgstr "облачно"
+#~ msgid "cloudy"
+#~ msgstr "облачно"
 
-msgid "foggy"
-msgstr "туманно"
+#~ msgid "foggy"
+#~ msgstr "туманно"
 
-msgid "foggy with rime ice"
-msgstr "туман с изморозью"
+#~ msgid "foggy with rime ice"
+#~ msgstr "туман с изморозью"
 
-msgid "drizzling lightly"
-msgstr "лёгкая морось"
+#~ msgid "drizzling lightly"
+#~ msgstr "лёгкая морось"
 
-msgid "drizzling moderately"
-msgstr "умеренная морось"
+#~ msgid "drizzling moderately"
+#~ msgstr "умеренная морось"
 
-msgid "heavy drizzling"
-msgstr "сильная морось"
+#~ msgid "heavy drizzling"
+#~ msgstr "сильная морось"
 
-msgid "drizzling lightly freezed"
-msgstr "лёгкая замороженная морось"
+#~ msgid "drizzling lightly freezed"
+#~ msgstr "лёгкая замороженная морось"
 
-msgid "drizzling moderately freezed"
-msgstr "умеренная замороженная морось"
+#~ msgid "drizzling moderately freezed"
+#~ msgstr "умеренная замороженная морось"
 
-msgid "raining slightly"
-msgstr "небольшой дождь"
+#~ msgid "raining slightly"
+#~ msgstr "небольшой дождь"
 
-msgid "raining moderately"
-msgstr "умеренный дождь"
+#~ msgid "raining moderately"
+#~ msgstr "умеренный дождь"
 
-msgid "raining heavily"
-msgstr "сильный дождь"
+#~ msgid "raining heavily"
+#~ msgstr "сильный дождь"
 
-msgid "freeze raining lightly"
-msgstr "лёгкий ледяной дождь"
+#~ msgid "freeze raining lightly"
+#~ msgstr "лёгкий ледяной дождь"
 
-msgid "freeze raining moderately"
-msgstr "умеренный ледяной дождь"
+#~ msgid "freeze raining moderately"
+#~ msgstr "умеренный ледяной дождь"
 
-msgid "snowing slightly"
-msgstr "небольшой снег"
+#~ msgid "snowing slightly"
+#~ msgstr "небольшой снег"
 
-msgid "moderate snowing"
-msgstr "умеренный снег"
+#~ msgid "moderate snowing"
+#~ msgstr "умеренный снег"
 
-msgid "snowing heavily"
-msgstr "сильный снег"
+#~ msgid "snowing heavily"
+#~ msgstr "сильный снег"
 
-msgid "snowing grain"
-msgstr "снежные крупинки"
+#~ msgid "snowing grain"
+#~ msgstr "снежные крупинки"
 
-msgid "slight rain shower"
-msgstr "небольшой ливень"
+#~ msgid "slight rain shower"
+#~ msgstr "небольшой ливень"
 
-msgid "moderate rain shower"
-msgstr "умеренный ливень"
+#~ msgid "moderate rain shower"
+#~ msgstr "умеренный ливень"
 
-msgid "violent rain shower"
-msgstr "сильный ливень"
+#~ msgid "violent rain shower"
+#~ msgstr "сильный ливень"
 
-msgid "slight snow shower"
-msgstr "небольшой снегопад"
+#~ msgid "slight snow shower"
+#~ msgstr "небольшой снегопад"
 
-msgid "heavy snow shower"
-msgstr "сильный снегопад"
+#~ msgid "heavy snow shower"
+#~ msgstr "сильный снегопад"
 
-msgid "thunderstorm"
-msgstr "гроза"
+#~ msgid "thunderstorm"
+#~ msgstr "гроза"
 
-msgid "This channel does not exist and cannot be added to favorites list"
-msgstr "Этот канал не существует и не может быть добавлен в список избранных."
+#~ msgid "This channel does not exist and cannot be added to favorites list"
+#~ msgstr ""
+#~ "Этот канал не существует и не может быть добавлен в список избранных."

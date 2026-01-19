@@ -52,9 +52,9 @@ def handle_directory_response(xml_data, returning_xml):
     ]
 
 def handle_channel_response(xml_data, channel_id, returning_xml, flag):
-    # Channel 0x270f is intended for channel directory refreshes (?), just provide directory and avoid the popup-
-    # This channel is accessed once per week.
-    if channel_id == 0x270f:
+    # Channel 0x270f/0x2328 is intended for channel directory refreshes (?), just provide directory and avoid the popup-
+    # This channel is accessed 1-2 times per week.
+    if channel_id == 0x270f or channel_id == 0x2328:
         return handle_directory_response(xml_data, returning_xml)
 
     car = get_cws_authenticated_car(xml_data)

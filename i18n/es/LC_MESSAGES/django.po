@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-13 09:01+0000\n"
-"PO-Revision-Date: 2025-12-13 11:06+0200\n"
+"POT-Creation-Date: 2026-01-19 06:28+0000\n"
+"PO-Revision-Date: 2026-01-19 08:35+0200\n"
 "Last-Translator: \n"
 "Language-Team: Spanish <es@li.org>\n"
 "Language: es\n"
@@ -134,11 +134,11 @@ msgstr "Esperando respuesta"
 msgid "Park"
 msgstr "Estacionar"
 
-#: db/models.py:49 ui/templates/ui/car_detail.html:1293
+#: db/models.py:49 ui/templates/ui/car_detail.html:1296
 msgid "Drive"
 msgstr "Conducir"
 
-#: db/models.py:50 ui/templates/ui/car_detail.html:1293
+#: db/models.py:50 ui/templates/ui/car_detail.html:1296
 msgid "Reverse"
 msgstr "Marcha atrás"
 
@@ -248,20 +248,20 @@ msgstr "Canal favorito añadido"
 msgid "The channel has been added to favorites"
 msgstr "El canal ha sido añadido a favoritos"
 
-#: tculink/carwings_proto/autodj/handler.py:23
-#: tculink/carwings_proto/autodj/handler.py:24
+#: tculink/carwings_proto/autodj/handler.py:26
+#: tculink/carwings_proto/autodj/handler.py:27
 #: tculink/carwings_proto/autodj/opencarwings.py:127
 #: tculink/carwings_proto/autodj/opencarwings.py:128
 msgid "Info from OpenCARWINGS"
 msgstr "Información de OpenCARWINGS"
 
-#: tculink/carwings_proto/autodj/handler.py:66
-#: tculink/carwings_proto/autodj/handler.py:67
+#: tculink/carwings_proto/autodj/handler.py:75
+#: tculink/carwings_proto/autodj/handler.py:76
 msgid "Data Channel not available"
 msgstr "Canal de datos no disponible"
 
-#: tculink/carwings_proto/autodj/handler.py:85
-#: tculink/carwings_proto/autodj/handler.py:86
+#: tculink/carwings_proto/autodj/handler.py:94
+#: tculink/carwings_proto/autodj/handler.py:95
 msgid "Not authorized"
 msgstr "No autorizado"
 
@@ -595,52 +595,52 @@ msgstr ""
 "No hay destinos enviados al coche. Por favor, envíe al menos un destino "
 "desde su ordenador o dispositivo móvil y acceda a este canal de nuevo."
 
-#: tculink/carwings_proto/autodj/weather.py:166
-#: tculink/carwings_proto/autodj/weather.py:172
+#: tculink/carwings_proto/autodj/weather.py:155
+#: tculink/carwings_proto/autodj/weather.py:161
 msgid "early morning"
 msgstr "madrugada"
 
-#: tculink/carwings_proto/autodj/weather.py:167
-#: tculink/carwings_proto/autodj/weather.py:173
+#: tculink/carwings_proto/autodj/weather.py:156
+#: tculink/carwings_proto/autodj/weather.py:162
 msgid "morning"
 msgstr "mañana"
 
-#: tculink/carwings_proto/autodj/weather.py:168
-#: tculink/carwings_proto/autodj/weather.py:174
+#: tculink/carwings_proto/autodj/weather.py:157
+#: tculink/carwings_proto/autodj/weather.py:163
 msgid "day"
 msgstr "día"
 
-#: tculink/carwings_proto/autodj/weather.py:169
-#: tculink/carwings_proto/autodj/weather.py:175
+#: tculink/carwings_proto/autodj/weather.py:158
+#: tculink/carwings_proto/autodj/weather.py:164
 msgid "evening"
 msgstr "tarde"
 
 # e.g., "el siete de noviembre"
-#: tculink/carwings_proto/autodj/weather.py:170
-#: tculink/carwings_proto/autodj/weather.py:176
+#: tculink/carwings_proto/autodj/weather.py:159
+#: tculink/carwings_proto/autodj/weather.py:165
 msgid "night"
 msgstr "noche"
 
 # e.g., "el siete de noviembre"
-#: tculink/carwings_proto/autodj/weather.py:171
+#: tculink/carwings_proto/autodj/weather.py:160
 msgid "late night"
 msgstr "tarde en la noche"
 
-#: tculink/carwings_proto/autodj/weather.py:179
+#: tculink/carwings_proto/autodj/weather.py:168
 msgid "vehicle location"
 msgstr "ubicación del vehículo"
 
-#: tculink/carwings_proto/autodj/weather.py:274
+#: tculink/carwings_proto/autodj/weather.py:263
 #, python-brace-format
 msgid "Weather Forecast for today, near {location_txt}."
 msgstr "Pronóstico del tiempo para hoy, cerca de {location_txt}."
 
-#: tculink/carwings_proto/autodj/weather.py:278
-#: tculink/carwings_proto/autodj/weather.py:415
+#: tculink/carwings_proto/autodj/weather.py:267
+#: tculink/carwings_proto/autodj/weather.py:404
 msgid "No forecast data available."
 msgstr "No forecast data available."
 
-#: tculink/carwings_proto/autodj/weather.py:281
+#: tculink/carwings_proto/autodj/weather.py:270
 #, python-brace-format
 msgid ""
 "During the {period}, forecasted to {condition}. With temperature of {temp} "
@@ -651,20 +651,20 @@ msgstr ""
 "{temp} grados centígrados, una velocidad del viento de {wind} metros por "
 "segundo y un {rain} por ciento de probabilidad de lluvia. \n"
 
-#: tculink/carwings_proto/autodj/weather.py:292
-#: tculink/carwings_proto/autodj/weather.py:430
-#: tculink/carwings_proto/autodj/weather.py:472
-#: tculink/carwings_proto/autodj/weather.py:473
+#: tculink/carwings_proto/autodj/weather.py:281
+#: tculink/carwings_proto/autodj/weather.py:419
+#: tculink/carwings_proto/autodj/weather.py:461
+#: tculink/carwings_proto/autodj/weather.py:462
 msgid "Weather forecast"
 msgstr "Weather forecast"
 
-#: tculink/carwings_proto/autodj/weather.py:412
+#: tculink/carwings_proto/autodj/weather.py:401
 #, python-brace-format
 msgid "Weather Forecast for next seven days, near {location_txt}."
 msgstr ""
 "Pronóstico del tiempo para los próximos siete días, cerca de {location_txt}."
 
-#: tculink/carwings_proto/autodj/weather.py:419
+#: tculink/carwings_proto/autodj/weather.py:408
 #, python-brace-format
 msgid ""
 "On {weekday}, forecasted to {condition}. With highest temperature of "
@@ -674,171 +674,202 @@ msgstr ""
 "{maxtemp} grados Celsius, la temperatura mínima será de {mintemp} grados "
 "Celsius.\n"
 
-#: tculink/carwings_proto/utils.py:140
+#: tculink/carwings_proto/utils.py:142
 msgid "first"
 msgstr "primero"
 
 # Standard for the first day of the month, e.g., "el primero de noviembre"
-#: tculink/carwings_proto/utils.py:140
+#: tculink/carwings_proto/utils.py:142
 msgid "second"
 msgstr "dos"
 
 # e.g., "el dos de noviembre"
-#: tculink/carwings_proto/utils.py:140
+#: tculink/carwings_proto/utils.py:142
 msgid "third"
 msgstr "tres"
 
 # e.g., "el tres de noviembre"
-#: tculink/carwings_proto/utils.py:140
+#: tculink/carwings_proto/utils.py:142
 msgid "fourth"
 msgstr "cuatro"
 
 # e.g., "el cuatro de noviembre"
-#: tculink/carwings_proto/utils.py:140
+#: tculink/carwings_proto/utils.py:142
 msgid "fifth"
 msgstr "cinco"
 
 # e.g., "el cinco de noviembre"
-#: tculink/carwings_proto/utils.py:141
+#: tculink/carwings_proto/utils.py:143
 msgid "sixth"
 msgstr "seis"
 
 # e.g., "el seis de noviembre"
-#: tculink/carwings_proto/utils.py:141
+#: tculink/carwings_proto/utils.py:143
 msgid "seventh"
 msgstr "siete"
 
 # e.g., "el siete de noviembre"
-#: tculink/carwings_proto/utils.py:141
+#: tculink/carwings_proto/utils.py:143
 msgid "eighth"
 msgstr "ocho"
 
 # e.g., "el ocho de noviembre"
-#: tculink/carwings_proto/utils.py:141
+#: tculink/carwings_proto/utils.py:143
 msgid "ninth"
 msgstr "nueve"
 
 # e.g., "el nueve de noviembre"
-#: tculink/carwings_proto/utils.py:141
+#: tculink/carwings_proto/utils.py:143
 msgid "tenth"
 msgstr "diez"
 
 # e.g., "el diez de noviembre"
-#: tculink/carwings_proto/utils.py:142
+#: tculink/carwings_proto/utils.py:144
 msgid "eleventh"
 msgstr "once"
 
 # e.g., "el once de noviembre"
-#: tculink/carwings_proto/utils.py:142
+#: tculink/carwings_proto/utils.py:144
 msgid "twelfth"
 msgstr "doce"
 
 # e.g., "el doce de noviembre"
-#: tculink/carwings_proto/utils.py:142
+#: tculink/carwings_proto/utils.py:144
 msgid "thirteenth"
 msgstr "trece"
 
 # e.g., "el trece de noviembre"
-#: tculink/carwings_proto/utils.py:142
+#: tculink/carwings_proto/utils.py:144
 msgid "fourteenth"
 msgstr "catorce"
 
 # e.g., "el catorce de noviembre"
-#: tculink/carwings_proto/utils.py:142
+#: tculink/carwings_proto/utils.py:144
 msgid "fifteenth"
 msgstr "quince"
 
 # e.g., "el quince de noviembre"
-#: tculink/carwings_proto/utils.py:143
+#: tculink/carwings_proto/utils.py:145
 msgid "sixteenth"
 msgstr "dieciséis"
 
 # e.g., "el dieciséis de noviembre"
-#: tculink/carwings_proto/utils.py:143
+#: tculink/carwings_proto/utils.py:145
 msgid "seventeenth"
 msgstr "diecisiete"
 
 # e.g., "el diecisiete de noviembre"
-#: tculink/carwings_proto/utils.py:143
+#: tculink/carwings_proto/utils.py:145
 msgid "eighteenth"
 msgstr "dieciocho"
 
 # e.g., "el dieciocho de noviembre"
-#: tculink/carwings_proto/utils.py:143
+#: tculink/carwings_proto/utils.py:145
 msgid "nineteenth"
 msgstr "diecinueve"
 
 # e.g., "el diecinueve de noviembre"
-#: tculink/carwings_proto/utils.py:143
+#: tculink/carwings_proto/utils.py:145
 msgid "twentieth"
 msgstr "veinte"
 
 # e.g., "el veinte de noviembre"
-#: tculink/carwings_proto/utils.py:144
+#: tculink/carwings_proto/utils.py:146
 msgid "twenty-first"
 msgstr "veintiuno"
 
 # e.g., "el veintiuno de noviembre"
-#: tculink/carwings_proto/utils.py:144
+#: tculink/carwings_proto/utils.py:146
 msgid "twenty-second"
 msgstr "veintidós"
 
 # e.g., "el veintidós de noviembre"
-#: tculink/carwings_proto/utils.py:144
+#: tculink/carwings_proto/utils.py:146
 msgid "twenty-third"
 msgstr "veintitrés"
 
 # e.g., "el veintitrés de noviembre"
-#: tculink/carwings_proto/utils.py:144
+#: tculink/carwings_proto/utils.py:146
 msgid "twenty-fourth"
 msgstr "veinticuatro"
 
 # e.g., "el veinticuatro de noviembre"
-#: tculink/carwings_proto/utils.py:144
+#: tculink/carwings_proto/utils.py:146
 msgid "twenty-fifth"
 msgstr "veinticinco"
 
 # e.g., "el veinticinco de noviembre"
-#: tculink/carwings_proto/utils.py:145
+#: tculink/carwings_proto/utils.py:147
 msgid "twenty-sixth"
 msgstr "veintiséis"
 
 # e.g., "el veintiséis de noviembre"
-#: tculink/carwings_proto/utils.py:145
+#: tculink/carwings_proto/utils.py:147
 msgid "twenty-seventh"
 msgstr "veintisiete"
 
 # e.g., "el veintisiete de noviembre"
-#: tculink/carwings_proto/utils.py:145
+#: tculink/carwings_proto/utils.py:147
 msgid "twenty-eighth"
 msgstr "veintiocho"
 
 # e.g., "el veintiocho de noviembre"
-#: tculink/carwings_proto/utils.py:145
+#: tculink/carwings_proto/utils.py:147
 msgid "twenty-ninth"
 msgstr "veintinueve"
 
 # e.g., "el veintinueve de noviembre"
-#: tculink/carwings_proto/utils.py:145
+#: tculink/carwings_proto/utils.py:147
 msgid "thirtieth"
 msgstr "treinta"
 
 # e.g., "el treinta de noviembre"
-#: tculink/carwings_proto/utils.py:146
+#: tculink/carwings_proto/utils.py:148
 msgid "thirty-first"
 msgstr "treinta y uno"
 
-#: tculink/management/commands/tcuserver.py:265
+#: tculink/management/commands/tcuserver.py:162
+msgid "TCU ID does not match with specified ID, please double check!"
+msgstr ""
+"El ID de TCU no coincide con el ID especificado, ¡verifique nuevamente!"
+
+#: tculink/management/commands/tcuserver.py:171
+msgid "Navi ID does not match with specified ID, please double check!"
+msgstr ""
+"El ID de Navi no coincide con el ID especificado, ¡verifique nuevamente!"
+
+#: tculink/management/commands/tcuserver.py:180
+msgid "Sim ID does not match with specified ID, please double check!"
+msgstr ""
+"El ID de Sim no coincide con el ID especificado, ¡verifique nuevamente!"
+
+#: tculink/management/commands/tcuserver.py:197
+msgid ""
+"Authentication failed, username or password is missing! Please sign in using "
+"navigation unit."
+msgstr ""
+"Error de autenticación. Falta el nombre de usuario o la contraseña. Inicie "
+"sesión con la unidad de navegación."
+
+#: tculink/management/commands/tcuserver.py:215
+msgid ""
+"Authentication failed, username or password is incorrect! Please sign in "
+"using navigation unit."
+msgstr ""
+"Error de autenticación. ¡El nombre de usuario o la contraseña son "
+"incorrectos! Inicie sesión con la unidad de navegación."
+
+#: tculink/management/commands/tcuserver.py:291
 msgid "Vehicle is unplugged. Please check the situation if necessary."
 msgstr ""
 "El vehículo está desconectado. Por favor, verifica la situación si es "
 "necesario."
 
-#: tculink/management/commands/tcuserver.py:266
+#: tculink/management/commands/tcuserver.py:292
 msgid "Charger unplugged notification"
 msgstr "Recordatorio de enchufar el cargador"
 
-#: tculink/management/commands/tcuserver.py:283
+#: tculink/management/commands/tcuserver.py:309
 msgid ""
 "The A/C preconditioning command could not be executed. One of the reasons "
 "behind such error could be: a) low state of charge b) command already "
@@ -848,27 +879,27 @@ msgstr ""
 "razones de este error podría ser: a) bajo estado de carga b) comando ya "
 "ejecutado c) error de TCU."
 
-#: tculink/management/commands/tcuserver.py:285
+#: tculink/management/commands/tcuserver.py:311
 msgid "A/C preconditioning error"
 msgstr "Error de preacondicionamiento de A/C"
 
-#: tculink/management/commands/tcuserver.py:287
+#: tculink/management/commands/tcuserver.py:313
 msgid "A/C preconditioning started"
 msgstr "Preacondicionamiento de A/C iniciado"
 
-#: tculink/management/commands/tcuserver.py:288
+#: tculink/management/commands/tcuserver.py:314
 msgid "A/C preconditioning has been successfully switched on"
 msgstr "El preacondicionamiento de A/C se ha activado correctamente"
 
-#: tculink/management/commands/tcuserver.py:290
+#: tculink/management/commands/tcuserver.py:316
 msgid "A/C precondition stopped"
 msgstr "Preacondicionamiento de A/C detenido"
 
-#: tculink/management/commands/tcuserver.py:291
+#: tculink/management/commands/tcuserver.py:317
 msgid "A/C preconditioning has been successfully switched off"
 msgstr "El preacondicionamiento de A/C se ha desactivado correctamente"
 
-#: tculink/management/commands/tcuserver.py:293
+#: tculink/management/commands/tcuserver.py:319
 msgid ""
 "The A/C preconditioning is finished and switched off after running certain "
 "amount of time."
@@ -876,35 +907,35 @@ msgstr ""
 "El preacondicionamiento de A/C ha finalizado y se ha desactivado después de "
 "funcionar durante un cierto tiempo."
 
-#: tculink/management/commands/tcuserver.py:295
+#: tculink/management/commands/tcuserver.py:321
 msgid "A/C precondition finished"
 msgstr "Preacondicionamiento de A/C finalizado"
 
-#: tculink/management/commands/tcuserver.py:304
+#: tculink/management/commands/tcuserver.py:330
 msgid "A/C preconditioning is finished"
 msgstr "El preacondicionamiento de A/C ha finalizado"
 
-#: tculink/management/commands/tcuserver.py:305
+#: tculink/management/commands/tcuserver.py:331
 msgid "A/C precondition notification"
 msgstr "Notificación de preacondicionamiento de A/C"
 
-#: tculink/management/commands/tcuserver.py:309
+#: tculink/management/commands/tcuserver.py:335
 msgid "Vehicle has finished charging."
 msgstr "El vehículo ha terminado de cargarse."
 
-#: tculink/management/commands/tcuserver.py:310
+#: tculink/management/commands/tcuserver.py:336
 msgid "Charge finish notification"
 msgstr "Notificación de finalización de carga"
 
-#: tculink/management/commands/tcuserver.py:313
+#: tculink/management/commands/tcuserver.py:339
 msgid "Vehicle has finished quick-charging."
 msgstr "El vehículo ha terminado de cargarse rápidamente."
 
-#: tculink/management/commands/tcuserver.py:314
+#: tculink/management/commands/tcuserver.py:340
 msgid "Quick-charge finish notification"
 msgstr "Notificación de finalización de carga rápida"
 
-#: tculink/management/commands/tcuserver.py:330
+#: tculink/management/commands/tcuserver.py:356
 msgid ""
 "Charging command has been sent successfully. If vehicle did not start "
 "charging, please check that the charging cable is connected and power is "
@@ -914,14 +945,21 @@ msgstr ""
 "cargar, por favor verifica que el cable de carga esté conectado y que haya "
 "energía disponible."
 
-#: tculink/management/commands/tcuserver.py:332
+#: tculink/management/commands/tcuserver.py:358
 msgid "Charge start command executed"
 msgstr "Comando de inicio de carga ejecutado"
 
-#: tculink/management/commands/tcuserver.py:344
-#: tculink/management/commands/tcuserver.py:345
+#: tculink/management/commands/tcuserver.py:370
 msgid "Battery heater notification"
 msgstr "Notificación del calentador de la batería"
+
+#: tculink/management/commands/tcuserver.py:371
+msgid "Battery heater has turned on"
+msgstr "El calentador de la batería se ha encendido"
+
+#: tculink/management/commands/tcuserver.py:371
+msgid "Battery heater has turned off"
+msgstr "El calentador de la batería se ha apagado"
 
 #: tculink/sms/46elks.py:9
 msgid "API Username"
@@ -1277,7 +1315,7 @@ msgid "On"
 msgstr "Encendido"
 
 #: ui/templates/ui/car_detail.html:183 ui/templates/ui/car_detail.html:1233
-#: ui/templates/ui/car_detail.html:1293
+#: ui/templates/ui/car_detail.html:1296
 msgid "Parked"
 msgstr "Estacionado"
 
@@ -1384,25 +1422,25 @@ msgstr "Sáb"
 msgid "Sun"
 msgstr "Dom"
 
-#: ui/templates/ui/car_detail.html:269 ui/templates/ui/car_detail.html:2563
+#: ui/templates/ui/car_detail.html:269 ui/templates/ui/car_detail.html:2566
 msgid "Last run"
 msgstr "Último tiempo"
 
-#: ui/templates/ui/car_detail.html:269 ui/templates/ui/car_detail.html:2563
+#: ui/templates/ui/car_detail.html:269 ui/templates/ui/car_detail.html:2566
 msgid "result"
 msgstr "resultado"
 
 #: ui/templates/ui/car_detail.html:275 ui/templates/ui/car_detail.html:376
-#: ui/templates/ui/car_detail.html:1653 ui/templates/ui/car_detail.html:2570
+#: ui/templates/ui/car_detail.html:1656 ui/templates/ui/car_detail.html:2573
 msgid "Edit"
 msgstr "Edit"
 
 #: ui/templates/ui/car_detail.html:281 ui/templates/ui/car_detail.html:382
-#: ui/templates/ui/car_detail.html:1658 ui/templates/ui/car_detail.html:2575
+#: ui/templates/ui/car_detail.html:1661 ui/templates/ui/car_detail.html:2578
 msgid "Delete"
 msgstr "Delete"
 
-#: ui/templates/ui/car_detail.html:287 ui/templates/ui/car_detail.html:2518
+#: ui/templates/ui/car_detail.html:287 ui/templates/ui/car_detail.html:2521
 msgid "No timers added"
 msgstr "No se han añadido temporizadores"
 
@@ -1496,15 +1534,15 @@ msgid "Send location to car"
 msgstr "Enviar punto del mapa al coche"
 
 #: ui/templates/ui/car_detail.html:345 ui/templates/ui/car_detail.html:399
-#: ui/templates/ui/car_detail.html:408 ui/templates/ui/car_detail.html:1931
+#: ui/templates/ui/car_detail.html:408 ui/templates/ui/car_detail.html:1934
 msgid "Search for locations or enter google/apple maps link"
 msgstr "Buscar ubicaciones o ingresar enlace de Google/Apple Maps"
 
-#: ui/templates/ui/car_detail.html:349 ui/templates/ui/car_detail.html:1333
+#: ui/templates/ui/car_detail.html:349 ui/templates/ui/car_detail.html:1336
 msgid "Last shared location"
 msgstr "Último punto del mapa compartido"
 
-#: ui/templates/ui/car_detail.html:351 ui/templates/ui/car_detail.html:1335
+#: ui/templates/ui/car_detail.html:351 ui/templates/ui/car_detail.html:1338
 msgid "No past shared location"
 msgstr "No hay puntos del mapa compartidos anteriormente"
 
@@ -1520,7 +1558,7 @@ msgstr "En casa"
 msgid "Route plans"
 msgstr "Route plans"
 
-#: ui/templates/ui/car_detail.html:388 ui/templates/ui/car_detail.html:1636
+#: ui/templates/ui/car_detail.html:388 ui/templates/ui/car_detail.html:1639
 msgid "No route plans added"
 msgstr "No se agregaron planes de ruta"
 
@@ -1559,7 +1597,7 @@ msgstr "Canales favoritos"
 #: ui/templates/ui/car_detail.html:441 ui/templates/ui/car_detail.html:442
 #: ui/templates/ui/car_detail.html:443 ui/templates/ui/car_detail.html:444
 #: ui/templates/ui/car_detail.html:445 ui/templates/ui/car_detail.html:446
-#: ui/templates/ui/car_detail.html:447 ui/templates/ui/car_detail.html:2143
+#: ui/templates/ui/car_detail.html:447 ui/templates/ui/car_detail.html:2146
 msgid "No selected channel"
 msgstr "Vacía"
 
@@ -1575,7 +1613,7 @@ msgstr "Mis canales"
 #: ui/templates/ui/car_detail.html:473 ui/templates/ui/car_detail.html:474
 #: ui/templates/ui/car_detail.html:475 ui/templates/ui/car_detail.html:476
 #: ui/templates/ui/car_detail.html:477 ui/templates/ui/car_detail.html:478
-#: ui/templates/ui/car_detail.html:2219
+#: ui/templates/ui/car_detail.html:2222
 msgid "No content"
 msgstr "Sin contenido"
 
@@ -1685,7 +1723,7 @@ msgstr "Formato y documentación de la URL de datos"
 msgid "Allow sending current vehicle location"
 msgstr "Permitir enviar la ubicación actual del vehículo"
 
-#: ui/templates/ui/car_detail.html:722 ui/templates/ui/car_detail.html:2318
+#: ui/templates/ui/car_detail.html:722 ui/templates/ui/car_detail.html:2321
 msgid "Edit timer"
 msgstr "Editar temporizador"
 
@@ -1751,8 +1789,8 @@ msgstr "Enviar SMS desde tu dispositivo"
 
 #: ui/templates/ui/car_detail.html:1174 ui/templates/ui/car_detail.html:1176
 #: ui/templates/ui/car_detail.html:1180 ui/templates/ui/car_detail.html:1181
-#: ui/templates/ui/car_detail.html:1388 ui/templates/ui/car_detail.html:1396
-#: ui/templates/ui/car_detail.html:1397
+#: ui/templates/ui/car_detail.html:1391 ui/templates/ui/car_detail.html:1399
+#: ui/templates/ui/car_detail.html:1400
 msgid "Error sending command"
 msgstr "Error al enviar el comando"
 
@@ -1764,146 +1802,146 @@ msgstr "Conectado"
 msgid "Unplugged"
 msgstr "Desconectado"
 
-#: ui/templates/ui/car_detail.html:1278 ui/templates/ui/car_detail.html:1279
-#: ui/templates/ui/car_detail.html:1280 ui/templates/ui/car_detail.html:1288
-#: ui/templates/ui/car_detail.html:1294 ui/templates/ui/car_detail.html:1295
-#: ui/templates/ui/car_detail.html:1296 ui/templates/ui/car_detail.html:1297
-#: ui/templates/ui/car_detail.html:1302
+#: ui/templates/ui/car_detail.html:1281 ui/templates/ui/car_detail.html:1282
+#: ui/templates/ui/car_detail.html:1283 ui/templates/ui/car_detail.html:1291
+#: ui/templates/ui/car_detail.html:1297 ui/templates/ui/car_detail.html:1298
+#: ui/templates/ui/car_detail.html:1299 ui/templates/ui/car_detail.html:1300
+#: ui/templates/ui/car_detail.html:1305
 msgid "Yes"
 msgstr "Sí"
 
-#: ui/templates/ui/car_detail.html:1278 ui/templates/ui/car_detail.html:1279
-#: ui/templates/ui/car_detail.html:1280 ui/templates/ui/car_detail.html:1288
-#: ui/templates/ui/car_detail.html:1294 ui/templates/ui/car_detail.html:1295
-#: ui/templates/ui/car_detail.html:1296 ui/templates/ui/car_detail.html:1297
-#: ui/templates/ui/car_detail.html:1302
+#: ui/templates/ui/car_detail.html:1281 ui/templates/ui/car_detail.html:1282
+#: ui/templates/ui/car_detail.html:1283 ui/templates/ui/car_detail.html:1291
+#: ui/templates/ui/car_detail.html:1297 ui/templates/ui/car_detail.html:1298
+#: ui/templates/ui/car_detail.html:1299 ui/templates/ui/car_detail.html:1300
+#: ui/templates/ui/car_detail.html:1305
 msgid "No"
 msgstr "No"
 
-#: ui/templates/ui/car_detail.html:1419 ui/templates/ui/car_detail.html:1427
-#: ui/templates/ui/car_detail.html:1428
+#: ui/templates/ui/car_detail.html:1422 ui/templates/ui/car_detail.html:1430
+#: ui/templates/ui/car_detail.html:1431
 msgid "Error sending location to car"
 msgstr "Error al enviar la ubicación al coche"
 
-#: ui/templates/ui/car_detail.html:1421
+#: ui/templates/ui/car_detail.html:1424
 msgid "Location sent!"
 msgstr "¡Punto del mapa enviado!"
 
-#: ui/templates/ui/car_detail.html:1477 ui/templates/ui/car_detail.html:1540
-#: ui/templates/ui/car_detail.html:1811 ui/templates/ui/car_detail.html:1816
-#: ui/templates/ui/car_detail.html:1873 ui/templates/ui/car_detail.html:1886
-#: ui/templates/ui/car_detail.html:1891 ui/templates/ui/car_detail.html:1970
+#: ui/templates/ui/car_detail.html:1480 ui/templates/ui/car_detail.html:1543
+#: ui/templates/ui/car_detail.html:1814 ui/templates/ui/car_detail.html:1819
+#: ui/templates/ui/car_detail.html:1876 ui/templates/ui/car_detail.html:1889
+#: ui/templates/ui/car_detail.html:1894 ui/templates/ui/car_detail.html:1973
 msgid "No address"
 msgstr "Sin dirección"
 
-#: ui/templates/ui/car_detail.html:1487 ui/templates/ui/car_detail.html:1820
+#: ui/templates/ui/car_detail.html:1490 ui/templates/ui/car_detail.html:1823
 msgid "Could not get location from map link"
 msgstr "No se pudo obtener la ubicación desde el enlace"
 
-#: ui/templates/ui/car_detail.html:1493 ui/templates/ui/car_detail.html:1565
-#: ui/templates/ui/car_detail.html:1826 ui/templates/ui/car_detail.html:1907
+#: ui/templates/ui/car_detail.html:1496 ui/templates/ui/car_detail.html:1568
+#: ui/templates/ui/car_detail.html:1829 ui/templates/ui/car_detail.html:1910
 msgid "Error searching locations"
 msgstr "Error al buscar ubicaciones"
 
-#: ui/templates/ui/car_detail.html:1559 ui/templates/ui/car_detail.html:1901
+#: ui/templates/ui/car_detail.html:1562 ui/templates/ui/car_detail.html:1904
 msgid "Search did not find any locations"
 msgstr "La búsqueda no encontró ninguna ubicación"
 
-#: ui/templates/ui/car_detail.html:1584
+#: ui/templates/ui/car_detail.html:1587
 msgid "Connection established!"
 msgstr "¡Conexión establecida!"
 
-#: ui/templates/ui/car_detail.html:1589
+#: ui/templates/ui/car_detail.html:1592
 msgid "Reconnecting..."
 msgstr "Reconectando..."
 
-#: ui/templates/ui/car_detail.html:1915
+#: ui/templates/ui/car_detail.html:1918
 msgid "Cannot add a new waypoint"
 msgstr "No se puede agregar un nuevo punto de ruta"
 
-#: ui/templates/ui/car_detail.html:1915
+#: ui/templates/ui/car_detail.html:1918
 msgid "Maximum number of waypoints reached"
 msgstr "Número máximo de puntos de ruta alcanzados"
 
-#: ui/templates/ui/car_detail.html:1948
+#: ui/templates/ui/car_detail.html:1951
 msgid "Waypoint"
 msgstr "Punto de ruta"
 
-#: ui/templates/ui/car_detail.html:2000 ui/templates/ui/car_detail.html:2009
-#: ui/templates/ui/car_detail.html:2010
+#: ui/templates/ui/car_detail.html:2003 ui/templates/ui/car_detail.html:2012
+#: ui/templates/ui/car_detail.html:2013
 msgid "Error saving the route plan"
 msgstr "Error al guardar el plan de ruta"
 
-#: ui/templates/ui/car_detail.html:2002
+#: ui/templates/ui/car_detail.html:2005
 msgid "Route plan saved!"
 msgstr "¡Plan de ruta guardado!"
 
-#: ui/templates/ui/car_detail.html:2038
+#: ui/templates/ui/car_detail.html:2041
 msgid "Cannot add new route plan"
 msgstr "No se puede agregar un nuevo plan de ruta"
 
-#: ui/templates/ui/car_detail.html:2038
+#: ui/templates/ui/car_detail.html:2041
 msgid "You have too many route plans, please delete one and try again."
 msgstr "Tienes demasiados planes de ruta, elimina uno y vuelve a intentarlo."
 
-#: ui/templates/ui/car_detail.html:2108
+#: ui/templates/ui/car_detail.html:2111
 msgid "Are you sure you want to delete this route plan?"
 msgstr "¿Estás seguro de que deseas eliminar este plan de ruta?"
 
-#: ui/templates/ui/car_detail.html:2121 ui/templates/ui/car_detail.html:2128
-#: ui/templates/ui/car_detail.html:2129
+#: ui/templates/ui/car_detail.html:2124 ui/templates/ui/car_detail.html:2131
+#: ui/templates/ui/car_detail.html:2132
 msgid "Error deleting the route plan"
 msgstr "Error al eliminar el plan de ruta"
 
-#: ui/templates/ui/car_detail.html:2123
+#: ui/templates/ui/car_detail.html:2126
 msgid "Route plan removed!"
 msgstr "¡Plan de ruta eliminado!"
 
-#: ui/templates/ui/car_detail.html:2283 ui/templates/ui/car_detail.html:2291
-#: ui/templates/ui/car_detail.html:2292
+#: ui/templates/ui/car_detail.html:2286 ui/templates/ui/car_detail.html:2294
+#: ui/templates/ui/car_detail.html:2295
 msgid "Error saving CARWINGS settings"
 msgstr "Error al guardar la configuración de CARWINGS"
 
-#: ui/templates/ui/car_detail.html:2285
+#: ui/templates/ui/car_detail.html:2288
 msgid "CARWINGS settings saved!"
 msgstr "¡Configuración de CARWINGS guardada!"
 
-#: ui/templates/ui/car_detail.html:2298
+#: ui/templates/ui/car_detail.html:2301
 msgid "Add timer"
 msgstr "Añadir temporizador"
 
-#: ui/templates/ui/car_detail.html:2409 ui/templates/ui/car_detail.html:2412
+#: ui/templates/ui/car_detail.html:2412 ui/templates/ui/car_detail.html:2415
 msgid "Missing field"
 msgstr "Campo faltante"
 
-#: ui/templates/ui/car_detail.html:2409
+#: ui/templates/ui/car_detail.html:2412
 msgid "Please enter valid date for the timer"
 msgstr "Por favor, introduzca una fecha válida para el temporizador"
 
-#: ui/templates/ui/car_detail.html:2412
+#: ui/templates/ui/car_detail.html:2415
 msgid "Please select at least one weekday"
 msgstr "Por favor seleccione al menos un día de la semana"
 
-#: ui/templates/ui/car_detail.html:2433 ui/templates/ui/car_detail.html:2441
-#: ui/templates/ui/car_detail.html:2442 ui/templates/ui/car_detail.html:2463
-#: ui/templates/ui/car_detail.html:2471 ui/templates/ui/car_detail.html:2472
+#: ui/templates/ui/car_detail.html:2436 ui/templates/ui/car_detail.html:2444
+#: ui/templates/ui/car_detail.html:2445 ui/templates/ui/car_detail.html:2466
+#: ui/templates/ui/car_detail.html:2474 ui/templates/ui/car_detail.html:2475
 msgid "Error saving the timer"
 msgstr "Error al guardar el temporizador"
 
-#: ui/templates/ui/car_detail.html:2435 ui/templates/ui/car_detail.html:2465
+#: ui/templates/ui/car_detail.html:2438 ui/templates/ui/car_detail.html:2468
 msgid "Timer saved!"
 msgstr "¡Temporizador guardado!"
 
-#: ui/templates/ui/car_detail.html:2479
+#: ui/templates/ui/car_detail.html:2482
 msgid "Are you sure you want to delete this timer?"
 msgstr "¿Estás seguro que deseas eliminar este temporizador?"
 
-#: ui/templates/ui/car_detail.html:2488
+#: ui/templates/ui/car_detail.html:2491
 msgid "Timer removed!"
 msgstr "¡Temporizador eliminado!"
 
-#: ui/templates/ui/car_detail.html:2491 ui/templates/ui/car_detail.html:2493
-#: ui/templates/ui/car_detail.html:2497 ui/templates/ui/car_detail.html:2498
+#: ui/templates/ui/car_detail.html:2494 ui/templates/ui/car_detail.html:2496
+#: ui/templates/ui/car_detail.html:2500 ui/templates/ui/car_detail.html:2501
 msgid "Error deleting the timer"
 msgstr "Error al eliminar el temporizador"
 
@@ -2921,156 +2959,156 @@ msgstr ""
 msgid "Update request cancelled!"
 msgstr "Update request cancelled!"
 
-msgid "Take Back Control of Your Nissan LEAF"
-msgstr "Recupera el control de tu Nissan LEAF"
+#~ msgid "Take Back Control of Your Nissan LEAF"
+#~ msgstr "Recupera el control de tu Nissan LEAF"
 
-msgid ""
-"The iconic Nissan LEAF deserves more than abandonment. With the "
-"manufacturer's support fading, the community steps up. Sign up now to bring "
-"your LEAF back to life!"
-msgstr ""
-"El icónico Nissan LEAF merece más que el abandono. Con el soporte del "
-"fabricante desvaneciéndose, la comunidad da un paso adelante. ¡Regístrate "
-"ahora para devolverle la vida a tu LEAF!"
+#~ msgid ""
+#~ "The iconic Nissan LEAF deserves more than abandonment. With the "
+#~ "manufacturer's support fading, the community steps up. Sign up now to "
+#~ "bring your LEAF back to life!"
+#~ msgstr ""
+#~ "El icónico Nissan LEAF merece más que el abandono. Con el soporte del "
+#~ "fabricante desvaneciéndose, la comunidad da un paso adelante. ¡Regístrate "
+#~ "ahora para devolverle la vida a tu LEAF!"
 
-msgid "Charge position"
-msgstr "Posición de carga"
+#~ msgid "Charge position"
+#~ msgstr "Posición de carga"
 
-msgid "Direction"
-msgstr "Dirección"
+#~ msgid "Direction"
+#~ msgstr "Dirección"
 
-msgid "Use your old smartphone"
-msgstr "Utilice un teléfono Android antiguo"
+#~ msgid "Use your old smartphone"
+#~ msgstr "Utilice un teléfono Android antiguo"
 
-msgid "Result"
-msgstr "Resultado"
+#~ msgid "Result"
+#~ msgstr "Resultado"
 
-msgid "Version"
-msgstr "Versión"
+#~ msgid "Version"
+#~ msgstr "Versión"
 
-msgid "OpenCARWINGS"
-msgstr "OpenCARWINGS"
+#~ msgid "OpenCARWINGS"
+#~ msgstr "OpenCARWINGS"
 
-msgid "Route Planning & Navigation"
-msgstr "Plan de rutas y navegación"
+#~ msgid "Route Planning & Navigation"
+#~ msgstr "Plan de rutas y navegación"
 
-msgid "Online Services"
-msgstr "Servicios en línea"
+#~ msgid "Online Services"
+#~ msgstr "Servicios en línea"
 
-msgid "Any new announcements or features can be shown here"
-msgstr "Cualquier anuncio o característica nueva se puede mostrar aquí"
+#~ msgid "Any new announcements or features can be shown here"
+#~ msgstr "Cualquier anuncio o característica nueva se puede mostrar aquí"
 
-msgid "Energy Economy"
-msgstr "Ahorro Energético"
+#~ msgid "Energy Economy"
+#~ msgstr "Ahorro Energético"
 
-msgid "Get latest energy economy information"
-msgstr "Obtenga la información más reciente sobre economía energética"
+#~ msgid "Get latest energy economy information"
+#~ msgstr "Obtenga la información más reciente sobre economía energética"
 
-msgid "Eco Trees"
-msgstr "Árboles ecológicos"
+#~ msgid "Eco Trees"
+#~ msgstr "Árboles ecológicos"
 
-msgid "Get latest eco tree information"
-msgstr "Obtenga la información más reciente sobre árboles ecológicos"
+#~ msgid "Get latest eco tree information"
+#~ msgstr "Obtenga la información más reciente sobre árboles ecológicos"
 
-msgid "Weather Forecast"
-msgstr "Pronóstico del tiempo"
+#~ msgid "Weather Forecast"
+#~ msgstr "Pronóstico del tiempo"
 
-msgid "Download Weather Forecast for your area"
-msgstr "Descargue el pronóstico del tiempo para su zona"
+#~ msgid "Download Weather Forecast for your area"
+#~ msgstr "Descargue el pronóstico del tiempo para su zona"
 
-msgid "clear"
-msgstr "despejado"
+#~ msgid "clear"
+#~ msgstr "despejado"
 
-msgid "mainly clear"
-msgstr "mayormente despejado"
+#~ msgid "mainly clear"
+#~ msgstr "mayormente despejado"
 
-msgid "partly cloudy"
-msgstr "parcialmente nublado"
+#~ msgid "partly cloudy"
+#~ msgstr "parcialmente nublado"
 
-msgid "cloudy"
-msgstr "nublado"
+#~ msgid "cloudy"
+#~ msgstr "nublado"
 
-msgid "foggy"
-msgstr "con niebla"
+#~ msgid "foggy"
+#~ msgstr "con niebla"
 
-msgid "foggy with rime ice"
-msgstr "con niebla y escarcha"
+#~ msgid "foggy with rime ice"
+#~ msgstr "con niebla y escarcha"
 
-msgid "drizzling lightly"
-msgstr "llovizna ligera"
+#~ msgid "drizzling lightly"
+#~ msgstr "llovizna ligera"
 
-msgid "drizzling moderately"
-msgstr "llovizna moderada"
+#~ msgid "drizzling moderately"
+#~ msgstr "llovizna moderada"
 
-msgid "heavy drizzling"
-msgstr "llovizna intensa"
+#~ msgid "heavy drizzling"
+#~ msgstr "llovizna intensa"
 
-msgid "drizzling lightly freezed"
-msgstr "llovizna ligera helada"
+#~ msgid "drizzling lightly freezed"
+#~ msgstr "llovizna ligera helada"
 
-msgid "drizzling moderately freezed"
-msgstr "llovizna moderada helada"
+#~ msgid "drizzling moderately freezed"
+#~ msgstr "llovizna moderada helada"
 
-msgid "raining slightly"
-msgstr "lluvia ligera"
+#~ msgid "raining slightly"
+#~ msgstr "lluvia ligera"
 
-msgid "raining moderately"
-msgstr "lluvia moderada"
+#~ msgid "raining moderately"
+#~ msgstr "lluvia moderada"
 
-msgid "raining heavily"
-msgstr "lluvia intensa"
+#~ msgid "raining heavily"
+#~ msgstr "lluvia intensa"
 
-msgid "freeze raining lightly"
-msgstr "lluvia helada ligera"
+#~ msgid "freeze raining lightly"
+#~ msgstr "lluvia helada ligera"
 
-msgid "freeze raining moderately"
-msgstr "lluvia helada moderada"
+#~ msgid "freeze raining moderately"
+#~ msgstr "lluvia helada moderada"
 
-msgid "snowing slightly"
-msgstr "nevada ligera"
+#~ msgid "snowing slightly"
+#~ msgstr "nevada ligera"
 
-msgid "moderate snowing"
-msgstr "nevada moderada"
+#~ msgid "moderate snowing"
+#~ msgstr "nevada moderada"
 
-msgid "snowing heavily"
-msgstr "nevada intensa"
+#~ msgid "snowing heavily"
+#~ msgstr "nevada intensa"
 
-msgid "snowing grain"
-msgstr "nieve granulada"
+#~ msgid "snowing grain"
+#~ msgstr "nieve granulada"
 
-msgid "slight rain shower"
-msgstr "chubasco ligero"
+#~ msgid "slight rain shower"
+#~ msgstr "chubasco ligero"
 
-msgid "moderate rain shower"
-msgstr "chubasco moderado"
+#~ msgid "moderate rain shower"
+#~ msgstr "chubasco moderado"
 
-msgid "violent rain shower"
-msgstr "chubasco violento"
+#~ msgid "violent rain shower"
+#~ msgstr "chubasco violento"
 
-msgid "slight snow shower"
-msgstr "chubasco de nieve ligero"
+#~ msgid "slight snow shower"
+#~ msgstr "chubasco de nieve ligero"
 
-msgid "heavy snow shower"
-msgstr "chubasco de nieve intenso"
+#~ msgid "heavy snow shower"
+#~ msgstr "chubasco de nieve intenso"
 
-msgid "thunderstorm"
-msgstr "tormenta"
+#~ msgid "thunderstorm"
+#~ msgstr "tormenta"
 
-msgid "This channel does not exist and cannot be added to favorites list"
-msgstr "Este canal no existe y no se puede agregar a la lista de favoritos."
+#~ msgid "This channel does not exist and cannot be added to favorites list"
+#~ msgstr "Este canal no existe y no se puede agregar a la lista de favoritos."
 
-msgid ""
-"You may sign in with your username and CARWINGS password in navigation unit "
-"like showed below."
-msgstr ""
-"Puedes iniciar sesión con tu nombre de usuario y contraseña de CARWINGS en "
-"la unidad de navegación como se muestra a continuación."
+#~ msgid ""
+#~ "You may sign in with your username and CARWINGS password in navigation "
+#~ "unit like showed below."
+#~ msgstr ""
+#~ "Puedes iniciar sesión con tu nombre de usuario y contraseña de CARWINGS "
+#~ "en la unidad de navegación como se muestra a continuación."
 
-msgid "International Phone number of TCU (+xxxxxxxxxxxx)"
-msgstr "Número de teléfono internacional de TCU (+xxxxxxxxxxxx)"
+#~ msgid "International Phone number of TCU (+xxxxxxxxxxxx)"
+#~ msgstr "Número de teléfono internacional de TCU (+xxxxxxxxxxxx)"
 
-msgid "Latitude"
-msgstr "Latitud"
+#~ msgid "Latitude"
+#~ msgstr "Latitud"
 
-msgid "Longitude"
-msgstr "Longitud"
+#~ msgid "Longitude"
+#~ msgstr "Longitud"

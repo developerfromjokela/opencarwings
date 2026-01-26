@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-19 06:28+0000\n"
+"POT-Creation-Date: 2026-01-26 18:56+0000\n"
 "PO-Revision-Date: 2026-01-19 08:33+0200\n"
 "Last-Translator: Grok <grok@x.ai>\n"
 "Language-Team: Estonian <et@li.org>\n"
@@ -2794,20 +2794,29 @@ msgid "Sign in"
 msgstr "Logi sisse"
 
 #: ui/templates/ui/vflash_editor.html:9
-msgid "VFlash Connection Profile Editor"
-msgstr "VFlash ühendusprofiili redaktor"
+msgid "Connection Profile Editor"
+msgstr "Ühenduse profiili redaktor"
 
-#: ui/templates/ui/vflash_editor.html:10
+#: ui/templates/ui/vflash_editor.html:18
 msgid "Choose or drag&drop vflash dump to get started"
 msgstr "Vali või lohista VFlash dump alustamiseks"
 
-#: ui/templates/ui/vflash_editor.html:28
+#: ui/templates/ui/vflash_editor.html:19
+msgid ""
+"Choose or drag&drop CWS_SYS file from hidden SD partition to get started"
+msgstr "Alustamiseks vali või lohista CWS_SYS fail peidetud SD partitsioonilt"
+
+#: ui/templates/ui/vflash_editor.html:19
+msgid "make hidden partition visible using"
+msgstr "tee peidetud partitsioon nähtavaks, kasutades"
+
+#: ui/templates/ui/vflash_editor.html:37
 msgid "Add New Connection Profile"
 msgstr "Lisa uus ühendusprofiil"
 
-#: ui/templates/ui/vflash_editor.html:30
-msgid "Export VFlash"
-msgstr "Ekspordi VFlash"
+#: ui/templates/ui/vflash_editor.html:39
+msgid "Export"
+msgstr "Ekspordi"
 
 #: ui/templatetags/probeconfig.py:12
 msgid "Unknown"
@@ -2861,6 +2870,11 @@ msgstr "Ootan esimest ühendust..."
 msgid "Sign-up is not enabled on this instance"
 msgstr "Registreerumine pole selles eksemplaris lubatud"
 
+#: ui/views.py:557
+#, python-brace-format
+msgid "Account created for {username}! Please sign in."
+msgstr "Konto on loodud kasutajale {username}! Palun logige sisse."
+
 #: ui/views.py:578
 msgid ""
 "Your current timezone is UTC. Please set your local timezone in account "
@@ -2889,148 +2903,151 @@ msgstr "Värskendust taotletud! Värskendus toimub järgmisel käivitamisel."
 msgid "Update request cancelled!"
 msgstr "Update request cancelled!"
 
-#~ msgid "Take Back Control of Your Nissan LEAF"
-#~ msgstr "Võta oma Nissan LEAFi juhtimine tagasi"
+msgid "Export VFlash"
+msgstr "Ekspordi VFlash"
 
-#~ msgid ""
-#~ "The iconic Nissan LEAF deserves more than abandonment. With the "
-#~ "manufacturer's support fading, the community steps up. Sign up now to "
-#~ "bring your LEAF back to life!"
-#~ msgstr ""
-#~ "Ikooniline Nissan LEAF väärib enamat kui hülgamine. Kuna tootja tugi "
-#~ "väheneb, astub kogukond esile. Registreeru nüüd, et tuua oma LEAF tagasi "
-#~ "ellu!"
+msgid "Take Back Control of Your Nissan LEAF"
+msgstr "Võta oma Nissan LEAFi juhtimine tagasi"
 
-#~ msgid "Charge position"
-#~ msgstr "Laadimise asukoht"
+msgid ""
+"The iconic Nissan LEAF deserves more than abandonment. With the "
+"manufacturer's support fading, the community steps up. Sign up now to "
+"bring your LEAF back to life!"
+msgstr ""
+"Ikooniline Nissan LEAF väärib enamat kui hülgamine. Kuna tootja tugi "
+"väheneb, astub kogukond esile. Registreeru nüüd, et tuua oma LEAF tagasi "
+"ellu!"
 
-#~ msgid "Direction"
-#~ msgstr "Suund"
+msgid "Charge position"
+msgstr "Laadimise asukoht"
 
-#~ msgid "Use your old smartphone"
-#~ msgstr "Kasutage oma vana Android-telefoni"
+msgid "Direction"
+msgstr "Suund"
 
-#~ msgid "Result"
-#~ msgstr "Tulemus"
+msgid "Use your old smartphone"
+msgstr "Kasutage oma vana Android-telefoni"
 
-#~ msgid "Version"
-#~ msgstr "Versioon"
+msgid "Result"
+msgstr "Tulemus"
 
-#~ msgid "OpenCARWINGS"
-#~ msgstr "OpenCARWINGS"
+msgid "Version"
+msgstr "Versioon"
 
-#~ msgid "Route Planning & Navigation"
-#~ msgstr "Marsruudi planeerimine ja navigeerimine"
+msgid "OpenCARWINGS"
+msgstr "OpenCARWINGS"
 
-#~ msgid "Online Services"
-#~ msgstr "Veebitteenused"
+msgid "Route Planning & Navigation"
+msgstr "Marsruudi planeerimine ja navigeerimine"
 
-#~ msgid "Any new announcements or features can be shown here"
-#~ msgstr "Siin saab kuvada kõiki uusi teateid või funktsioone"
+msgid "Online Services"
+msgstr "Veebitteenused"
 
-#~ msgid "Energy Economy"
-#~ msgstr "Energiatõhusus"
+msgid "Any new announcements or features can be shown here"
+msgstr "Siin saab kuvada kõiki uusi teateid või funktsioone"
 
-#~ msgid "Get latest energy economy information"
-#~ msgstr "Hangi uusimat energiatõhususe teavet"
+msgid "Energy Economy"
+msgstr "Energiatõhusus"
 
-#~ msgid "Eco Trees"
-#~ msgstr "Ökopuud"
+msgid "Get latest energy economy information"
+msgstr "Hangi uusimat energiatõhususe teavet"
 
-#~ msgid "Get latest eco tree information"
-#~ msgstr "Hankige uusimat teavet ökopuude kohta"
+msgid "Eco Trees"
+msgstr "Ökopuud"
 
-#~ msgid "Weather Forecast"
-#~ msgstr "Ilmaennustus"
+msgid "Get latest eco tree information"
+msgstr "Hankige uusimat teavet ökopuude kohta"
 
-#~ msgid "Download Weather Forecast for your area"
-#~ msgstr "Laadi alla oma piirkonna ilmaennustus"
+msgid "Weather Forecast"
+msgstr "Ilmaennustus"
 
-#~ msgid "clear"
-#~ msgstr "selge"
+msgid "Download Weather Forecast for your area"
+msgstr "Laadi alla oma piirkonna ilmaennustus"
 
-#~ msgid "mainly clear"
-#~ msgstr "valdavalt selge"
+msgid "clear"
+msgstr "selge"
 
-#~ msgid "partly cloudy"
-#~ msgstr "osaliselt pilvine"
+msgid "mainly clear"
+msgstr "valdavalt selge"
 
-#~ msgid "cloudy"
-#~ msgstr "pilvine"
+msgid "partly cloudy"
+msgstr "osaliselt pilvine"
 
-#~ msgid "foggy"
-#~ msgstr "udune"
+msgid "cloudy"
+msgstr "pilvine"
 
-#~ msgid "foggy with rime ice"
-#~ msgstr "udune ja jääkülm"
+msgid "foggy"
+msgstr "udune"
 
-#~ msgid "drizzling lightly"
-#~ msgstr "uduvihma"
+msgid "foggy with rime ice"
+msgstr "udune ja jääkülm"
 
-#~ msgid "drizzling moderately"
-#~ msgstr "mõõdukalt uduvihma"
+msgid "drizzling lightly"
+msgstr "uduvihma"
 
-#~ msgid "heavy drizzling"
-#~ msgstr "tugev uduvihm"
+msgid "drizzling moderately"
+msgstr "mõõdukalt uduvihma"
 
-#~ msgid "drizzling lightly freezed"
-#~ msgstr "uduvihm kergelt jäätunud"
+msgid "heavy drizzling"
+msgstr "tugev uduvihm"
 
-#~ msgid "drizzling moderately freezed"
-#~ msgstr "uduvihm, mõõdukalt külm"
+msgid "drizzling lightly freezed"
+msgstr "uduvihm kergelt jäätunud"
 
-#~ msgid "raining slightly"
-#~ msgstr "sajab kergelt vihma"
+msgid "drizzling moderately freezed"
+msgstr "uduvihm, mõõdukalt külm"
 
-#~ msgid "raining moderately"
-#~ msgstr "mõõdukalt vihma"
+msgid "raining slightly"
+msgstr "sajab kergelt vihma"
 
-#~ msgid "raining heavily"
-#~ msgstr "tugevalt vihma sajab"
+msgid "raining moderately"
+msgstr "mõõdukalt vihma"
 
-#~ msgid "freeze raining lightly"
-#~ msgstr "sajab kergelt külma vihma"
+msgid "raining heavily"
+msgstr "tugevalt vihma sajab"
 
-#~ msgid "freeze raining moderately"
-#~ msgstr "mõõdukalt jäävihma"
+msgid "freeze raining lightly"
+msgstr "sajab kergelt külma vihma"
 
-#~ msgid "snowing slightly"
-#~ msgstr "sajab kergelt lund"
+msgid "freeze raining moderately"
+msgstr "mõõdukalt jäävihma"
 
-#~ msgid "moderate snowing"
-#~ msgstr "mõõdukas lumesadu"
+msgid "snowing slightly"
+msgstr "sajab kergelt lund"
 
-#~ msgid "snowing heavily"
-#~ msgstr "tugevalt lund sadas"
+msgid "moderate snowing"
+msgstr "mõõdukas lumesadu"
 
-#~ msgid "snowing grain"
-#~ msgstr "lumesadu"
+msgid "snowing heavily"
+msgstr "tugevalt lund sadas"
 
-#~ msgid "slight rain shower"
-#~ msgstr "kerge vihmahoog"
+msgid "snowing grain"
+msgstr "lumesadu"
 
-#~ msgid "moderate rain shower"
-#~ msgstr "mõõdukas vihmahoog"
+msgid "slight rain shower"
+msgstr "kerge vihmahoog"
 
-#~ msgid "violent rain shower"
-#~ msgstr "äge vihmasadu"
+msgid "moderate rain shower"
+msgstr "mõõdukas vihmahoog"
 
-#~ msgid "slight snow shower"
-#~ msgstr "kerge lumesadu"
+msgid "violent rain shower"
+msgstr "äge vihmasadu"
 
-#~ msgid "heavy snow shower"
-#~ msgstr "tugev lumesadu"
+msgid "slight snow shower"
+msgstr "kerge lumesadu"
 
-#~ msgid "thunderstorm"
-#~ msgstr "äikesetorm"
+msgid "heavy snow shower"
+msgstr "tugev lumesadu"
 
-#~ msgid "This channel does not exist and cannot be added to favorites list"
-#~ msgstr ""
-#~ "Seda kanalit ei eksisteeri ja seda ei saa lemmikute nimekirja lisada"
+msgid "thunderstorm"
+msgstr "äikesetorm"
 
-#~ msgid ""
-#~ "You may sign in with your username and CARWINGS password in navigation "
-#~ "unit like showed below."
-#~ msgstr ""
-#~ "Võid naviseadmes sisse logida oma kasutajanime ja CARWINGS parooliga, "
-#~ "nagu allpool näidatud."
+msgid "This channel does not exist and cannot be added to favorites list"
+msgstr ""
+"Seda kanalit ei eksisteeri ja seda ei saa lemmikute nimekirja lisada"
+
+msgid ""
+"You may sign in with your username and CARWINGS password in navigation "
+"unit like showed below."
+msgstr ""
+"Võid naviseadmes sisse logida oma kasutajanime ja CARWINGS parooliga, "
+"nagu allpool näidatud."

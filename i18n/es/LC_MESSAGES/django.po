@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-19 06:28+0000\n"
+"POT-Creation-Date: 2026-01-26 18:56+0000\n"
 "PO-Revision-Date: 2026-01-19 08:35+0200\n"
 "Last-Translator: \n"
 "Language-Team: Spanish <es@li.org>\n"
@@ -2862,20 +2862,29 @@ msgid "Sign in"
 msgstr "Iniciar sesión"
 
 #: ui/templates/ui/vflash_editor.html:9
-msgid "VFlash Connection Profile Editor"
-msgstr "Editor de perfiles de conexión VFlash"
+msgid "Connection Profile Editor"
+msgstr "Editor de perfiles de conexión"
 
-#: ui/templates/ui/vflash_editor.html:10
+#: ui/templates/ui/vflash_editor.html:18
 msgid "Choose or drag&drop vflash dump to get started"
 msgstr "Elija o arrastre y suelte el archivo vflash para comenzar"
 
-#: ui/templates/ui/vflash_editor.html:28
+#: ui/templates/ui/vflash_editor.html:19
+msgid ""
+"Choose or drag&drop CWS_SYS file from hidden SD partition to get started"
+msgstr "Elija o arrastre y suelte el archivo CWS_SYS desde la partición SD oculta para comenzar"
+
+#: ui/templates/ui/vflash_editor.html:19
+msgid "make hidden partition visible using"
+msgstr "Hacer visible la partición oculta usando"
+
+#: ui/templates/ui/vflash_editor.html:37
 msgid "Add New Connection Profile"
 msgstr "Agregar nuevo perfil de conexión"
 
-#: ui/templates/ui/vflash_editor.html:30
-msgid "Export VFlash"
-msgstr "Exportar VFlash"
+#: ui/templates/ui/vflash_editor.html:39
+msgid "Export"
+msgstr "Exportar"
 
 #: ui/templatetags/probeconfig.py:12
 msgid "Unknown"
@@ -2929,6 +2938,11 @@ msgstr "Esperando la primera conexión..."
 msgid "Sign-up is not enabled on this instance"
 msgstr "El registro no está habilitado en esta instancia"
 
+#: ui/views.py:557
+#, python-brace-format
+msgid "Account created for {username}! Please sign in."
+msgstr "¡Cuenta creada para {username}! Inicia sesión."
+
 #: ui/views.py:578
 msgid ""
 "Your current timezone is UTC. Please set your local timezone in account "
@@ -2959,156 +2973,159 @@ msgstr ""
 msgid "Update request cancelled!"
 msgstr "Update request cancelled!"
 
-#~ msgid "Take Back Control of Your Nissan LEAF"
-#~ msgstr "Recupera el control de tu Nissan LEAF"
+msgid "Export VFlash"
+msgstr "Exportar VFlash"
 
-#~ msgid ""
-#~ "The iconic Nissan LEAF deserves more than abandonment. With the "
-#~ "manufacturer's support fading, the community steps up. Sign up now to "
-#~ "bring your LEAF back to life!"
-#~ msgstr ""
-#~ "El icónico Nissan LEAF merece más que el abandono. Con el soporte del "
-#~ "fabricante desvaneciéndose, la comunidad da un paso adelante. ¡Regístrate "
-#~ "ahora para devolverle la vida a tu LEAF!"
+msgid "Take Back Control of Your Nissan LEAF"
+msgstr "Recupera el control de tu Nissan LEAF"
 
-#~ msgid "Charge position"
-#~ msgstr "Posición de carga"
+msgid ""
+"The iconic Nissan LEAF deserves more than abandonment. With the "
+"manufacturer's support fading, the community steps up. Sign up now to "
+"bring your LEAF back to life!"
+msgstr ""
+"El icónico Nissan LEAF merece más que el abandono. Con el soporte del "
+"fabricante desvaneciéndose, la comunidad da un paso adelante. ¡Regístrate "
+"ahora para devolverle la vida a tu LEAF!"
 
-#~ msgid "Direction"
-#~ msgstr "Dirección"
+msgid "Charge position"
+msgstr "Posición de carga"
 
-#~ msgid "Use your old smartphone"
-#~ msgstr "Utilice un teléfono Android antiguo"
+msgid "Direction"
+msgstr "Dirección"
 
-#~ msgid "Result"
-#~ msgstr "Resultado"
+msgid "Use your old smartphone"
+msgstr "Utilice un teléfono Android antiguo"
 
-#~ msgid "Version"
-#~ msgstr "Versión"
+msgid "Result"
+msgstr "Resultado"
 
-#~ msgid "OpenCARWINGS"
-#~ msgstr "OpenCARWINGS"
+msgid "Version"
+msgstr "Versión"
 
-#~ msgid "Route Planning & Navigation"
-#~ msgstr "Plan de rutas y navegación"
+msgid "OpenCARWINGS"
+msgstr "OpenCARWINGS"
 
-#~ msgid "Online Services"
-#~ msgstr "Servicios en línea"
+msgid "Route Planning & Navigation"
+msgstr "Plan de rutas y navegación"
 
-#~ msgid "Any new announcements or features can be shown here"
-#~ msgstr "Cualquier anuncio o característica nueva se puede mostrar aquí"
+msgid "Online Services"
+msgstr "Servicios en línea"
 
-#~ msgid "Energy Economy"
-#~ msgstr "Ahorro Energético"
+msgid "Any new announcements or features can be shown here"
+msgstr "Cualquier anuncio o característica nueva se puede mostrar aquí"
 
-#~ msgid "Get latest energy economy information"
-#~ msgstr "Obtenga la información más reciente sobre economía energética"
+msgid "Energy Economy"
+msgstr "Ahorro Energético"
 
-#~ msgid "Eco Trees"
-#~ msgstr "Árboles ecológicos"
+msgid "Get latest energy economy information"
+msgstr "Obtenga la información más reciente sobre economía energética"
 
-#~ msgid "Get latest eco tree information"
-#~ msgstr "Obtenga la información más reciente sobre árboles ecológicos"
+msgid "Eco Trees"
+msgstr "Árboles ecológicos"
 
-#~ msgid "Weather Forecast"
-#~ msgstr "Pronóstico del tiempo"
+msgid "Get latest eco tree information"
+msgstr "Obtenga la información más reciente sobre árboles ecológicos"
 
-#~ msgid "Download Weather Forecast for your area"
-#~ msgstr "Descargue el pronóstico del tiempo para su zona"
+msgid "Weather Forecast"
+msgstr "Pronóstico del tiempo"
 
-#~ msgid "clear"
-#~ msgstr "despejado"
+msgid "Download Weather Forecast for your area"
+msgstr "Descargue el pronóstico del tiempo para su zona"
 
-#~ msgid "mainly clear"
-#~ msgstr "mayormente despejado"
+msgid "clear"
+msgstr "despejado"
 
-#~ msgid "partly cloudy"
-#~ msgstr "parcialmente nublado"
+msgid "mainly clear"
+msgstr "mayormente despejado"
 
-#~ msgid "cloudy"
-#~ msgstr "nublado"
+msgid "partly cloudy"
+msgstr "parcialmente nublado"
 
-#~ msgid "foggy"
-#~ msgstr "con niebla"
+msgid "cloudy"
+msgstr "nublado"
 
-#~ msgid "foggy with rime ice"
-#~ msgstr "con niebla y escarcha"
+msgid "foggy"
+msgstr "con niebla"
 
-#~ msgid "drizzling lightly"
-#~ msgstr "llovizna ligera"
+msgid "foggy with rime ice"
+msgstr "con niebla y escarcha"
 
-#~ msgid "drizzling moderately"
-#~ msgstr "llovizna moderada"
+msgid "drizzling lightly"
+msgstr "llovizna ligera"
 
-#~ msgid "heavy drizzling"
-#~ msgstr "llovizna intensa"
+msgid "drizzling moderately"
+msgstr "llovizna moderada"
 
-#~ msgid "drizzling lightly freezed"
-#~ msgstr "llovizna ligera helada"
+msgid "heavy drizzling"
+msgstr "llovizna intensa"
 
-#~ msgid "drizzling moderately freezed"
-#~ msgstr "llovizna moderada helada"
+msgid "drizzling lightly freezed"
+msgstr "llovizna ligera helada"
 
-#~ msgid "raining slightly"
-#~ msgstr "lluvia ligera"
+msgid "drizzling moderately freezed"
+msgstr "llovizna moderada helada"
 
-#~ msgid "raining moderately"
-#~ msgstr "lluvia moderada"
+msgid "raining slightly"
+msgstr "lluvia ligera"
 
-#~ msgid "raining heavily"
-#~ msgstr "lluvia intensa"
+msgid "raining moderately"
+msgstr "lluvia moderada"
 
-#~ msgid "freeze raining lightly"
-#~ msgstr "lluvia helada ligera"
+msgid "raining heavily"
+msgstr "lluvia intensa"
 
-#~ msgid "freeze raining moderately"
-#~ msgstr "lluvia helada moderada"
+msgid "freeze raining lightly"
+msgstr "lluvia helada ligera"
 
-#~ msgid "snowing slightly"
-#~ msgstr "nevada ligera"
+msgid "freeze raining moderately"
+msgstr "lluvia helada moderada"
 
-#~ msgid "moderate snowing"
-#~ msgstr "nevada moderada"
+msgid "snowing slightly"
+msgstr "nevada ligera"
 
-#~ msgid "snowing heavily"
-#~ msgstr "nevada intensa"
+msgid "moderate snowing"
+msgstr "nevada moderada"
 
-#~ msgid "snowing grain"
-#~ msgstr "nieve granulada"
+msgid "snowing heavily"
+msgstr "nevada intensa"
 
-#~ msgid "slight rain shower"
-#~ msgstr "chubasco ligero"
+msgid "snowing grain"
+msgstr "nieve granulada"
 
-#~ msgid "moderate rain shower"
-#~ msgstr "chubasco moderado"
+msgid "slight rain shower"
+msgstr "chubasco ligero"
 
-#~ msgid "violent rain shower"
-#~ msgstr "chubasco violento"
+msgid "moderate rain shower"
+msgstr "chubasco moderado"
 
-#~ msgid "slight snow shower"
-#~ msgstr "chubasco de nieve ligero"
+msgid "violent rain shower"
+msgstr "chubasco violento"
 
-#~ msgid "heavy snow shower"
-#~ msgstr "chubasco de nieve intenso"
+msgid "slight snow shower"
+msgstr "chubasco de nieve ligero"
 
-#~ msgid "thunderstorm"
-#~ msgstr "tormenta"
+msgid "heavy snow shower"
+msgstr "chubasco de nieve intenso"
 
-#~ msgid "This channel does not exist and cannot be added to favorites list"
-#~ msgstr "Este canal no existe y no se puede agregar a la lista de favoritos."
+msgid "thunderstorm"
+msgstr "tormenta"
 
-#~ msgid ""
-#~ "You may sign in with your username and CARWINGS password in navigation "
-#~ "unit like showed below."
-#~ msgstr ""
-#~ "Puedes iniciar sesión con tu nombre de usuario y contraseña de CARWINGS "
-#~ "en la unidad de navegación como se muestra a continuación."
+msgid "This channel does not exist and cannot be added to favorites list"
+msgstr "Este canal no existe y no se puede agregar a la lista de favoritos."
 
-#~ msgid "International Phone number of TCU (+xxxxxxxxxxxx)"
-#~ msgstr "Número de teléfono internacional de TCU (+xxxxxxxxxxxx)"
+msgid ""
+"You may sign in with your username and CARWINGS password in navigation "
+"unit like showed below."
+msgstr ""
+"Puedes iniciar sesión con tu nombre de usuario y contraseña de CARWINGS "
+"en la unidad de navegación como se muestra a continuación."
 
-#~ msgid "Latitude"
-#~ msgstr "Latitud"
+msgid "International Phone number of TCU (+xxxxxxxxxxxx)"
+msgstr "Número de teléfono internacional de TCU (+xxxxxxxxxxxx)"
 
-#~ msgid "Longitude"
-#~ msgstr "Longitud"
+msgid "Latitude"
+msgstr "Latitud"
+
+msgid "Longitude"
+msgstr "Longitud"

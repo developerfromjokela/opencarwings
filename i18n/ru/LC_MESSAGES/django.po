@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-19 06:28+0000\n"
+"POT-Creation-Date: 2026-01-26 18:56+0000\n"
 "PO-Revision-Date: 2026-01-19 08:37+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -2821,20 +2821,29 @@ msgid "Sign in"
 msgstr "Войти"
 
 #: ui/templates/ui/vflash_editor.html:9
-msgid "VFlash Connection Profile Editor"
-msgstr "Редактор профиля подключения VFlash"
+msgid "Connection Profile Editor"
+msgstr "Редактор профиля подключения"
 
-#: ui/templates/ui/vflash_editor.html:10
+#: ui/templates/ui/vflash_editor.html:18
 msgid "Choose or drag&drop vflash dump to get started"
 msgstr "Выберите или перетащите дамп vflash, чтобы начать"
 
-#: ui/templates/ui/vflash_editor.html:28
+#: ui/templates/ui/vflash_editor.html:19
+msgid ""
+"Choose or drag&drop CWS_SYS file from hidden SD partition to get started"
+msgstr "Для начала выберите или перетащите файл CWS_SYS из скрытого раздела SD-карты"
+
+#: ui/templates/ui/vflash_editor.html:19
+msgid "make hidden partition visible using"
+msgstr "сделать скрытый раздел видимым с помощью"
+
+#: ui/templates/ui/vflash_editor.html:37
 msgid "Add New Connection Profile"
 msgstr "Добавить новый профиль подключения"
 
-#: ui/templates/ui/vflash_editor.html:30
-msgid "Export VFlash"
-msgstr "Экспортировать VFlash"
+#: ui/templates/ui/vflash_editor.html:39
+msgid "Export"
+msgstr "Экспорт"
 
 #: ui/templatetags/probeconfig.py:12
 msgid "Unknown"
@@ -2888,6 +2897,11 @@ msgstr "Ждем первого подключения.."
 msgid "Sign-up is not enabled on this instance"
 msgstr "Регистрация не включена на этом экземпляре"
 
+#: ui/views.py:557
+#, python-brace-format
+msgid "Account created for {username}! Please sign in."
+msgstr "Для пользователя {username} создана учетная запись! Пожалуйста, войдите в систему."
+
 #: ui/views.py:578
 msgid ""
 "Your current timezone is UTC. Please set your local timezone in account "
@@ -2917,141 +2931,141 @@ msgstr ""
 msgid "Update request cancelled!"
 msgstr "Запрос на обновление отменен!"
 
-#~ msgid "Take Back Control of Your Nissan LEAF"
-#~ msgstr "Возьмите контроль над своим Nissan LEAF"
+msgid "Take Back Control of Your Nissan LEAF"
+msgstr "Возьмите контроль над своим Nissan LEAF"
 
-#~ msgid ""
-#~ "The iconic Nissan LEAF deserves more than abandonment. With the "
-#~ "manufacturer's support fading, the community steps up. Sign up now to "
-#~ "bring your LEAF back to life!"
-#~ msgstr ""
-#~ "Легендарный Nissan LEAF заслуживает большего, чем забвение. С угасанием "
-#~ "поддержки производителя сообщество берёт инициативу в свои руки. "
-#~ "Зарегистрируйтесь сейчас, чтобы вернуть ваш LEAF к жизни!"
+msgid ""
+"The iconic Nissan LEAF deserves more than abandonment. With the "
+"manufacturer's support fading, the community steps up. Sign up now to "
+"bring your LEAF back to life!"
+msgstr ""
+"Легендарный Nissan LEAF заслуживает большего, чем забвение. С угасанием "
+"поддержки производителя сообщество берёт инициативу в свои руки. "
+"Зарегистрируйтесь сейчас, чтобы вернуть ваш LEAF к жизни!"
 
-#~ msgid "Charge position"
-#~ msgstr "Место зарядки"
+msgid "Charge position"
+msgstr "Место зарядки"
 
-#~ msgid "Direction"
-#~ msgstr "Направление"
+msgid "Direction"
+msgstr "Направление"
 
-#~ msgid "Use your old smartphone"
-#~ msgstr "Используйте свой старый Android-смартфон"
+msgid "Use your old smartphone"
+msgstr "Используйте свой старый Android-смартфон"
 
-#~ msgid "Result"
-#~ msgstr "Результат"
+msgid "Result"
+msgstr "Результат"
 
-#~ msgid "Version"
-#~ msgstr "Версия"
+msgid "Version"
+msgstr "Версия"
 
-#~ msgid "OpenCARWINGS"
-#~ msgstr "OpenCARWINGS"
+msgid "OpenCARWINGS"
+msgstr "OpenCARWINGS"
 
-#~ msgid "Route Planning & Navigation"
-#~ msgstr "Планирование маршрута и навигация"
+msgid "Route Planning & Navigation"
+msgstr "Планирование маршрута и навигация"
 
-#~ msgid "Online Services"
-#~ msgstr "Онлайн-сервисы"
+msgid "Online Services"
+msgstr "Онлайн-сервисы"
 
-#~ msgid "Any new announcements or features can be shown here"
-#~ msgstr "Здесь могут быть показаны любые новые объявления или функции"
+msgid "Any new announcements or features can be shown here"
+msgstr "Здесь могут быть показаны любые новые объявления или функции"
 
-#~ msgid "Energy Economy"
-#~ msgstr "Энергоэффективность"
+msgid "Energy Economy"
+msgstr "Энергоэффективность"
 
-#~ msgid "Get latest energy economy information"
-#~ msgstr "Получите актуальную информацию об энергоэффективности"
+msgid "Get latest energy economy information"
+msgstr "Получите актуальную информацию об энергоэффективности"
 
-#~ msgid "Eco Trees"
-#~ msgstr "Экодеревья"
+msgid "Eco Trees"
+msgstr "Экодеревья"
 
-#~ msgid "Get latest eco tree information"
-#~ msgstr "Получите актуальную информацию об экодеревьях"
+msgid "Get latest eco tree information"
+msgstr "Получите актуальную информацию об экодеревьях"
 
-#~ msgid "Weather Forecast"
-#~ msgstr "Прогноз погоды"
+msgid "Weather Forecast"
+msgstr "Прогноз погоды"
 
-#~ msgid "Download Weather Forecast for your area"
-#~ msgstr "Загрузите прогноз погоды для вашего региона"
+msgid "Download Weather Forecast for your area"
+msgstr "Загрузите прогноз погоды для вашего региона"
 
-#~ msgid "clear"
-#~ msgstr "ясно"
+msgid "clear"
+msgstr "ясно"
 
-#~ msgid "mainly clear"
-#~ msgstr "в основном ясно"
+msgid "mainly clear"
+msgstr "в основном ясно"
 
-#~ msgid "partly cloudy"
-#~ msgstr "переменная облачность"
+msgid "partly cloudy"
+msgstr "переменная облачность"
 
-#~ msgid "cloudy"
-#~ msgstr "облачно"
+msgid "cloudy"
+msgstr "облачно"
 
-#~ msgid "foggy"
-#~ msgstr "туманно"
+msgid "foggy"
+msgstr "туманно"
 
-#~ msgid "foggy with rime ice"
-#~ msgstr "туман с изморозью"
+msgid "foggy with rime ice"
+msgstr "туман с изморозью"
 
-#~ msgid "drizzling lightly"
-#~ msgstr "лёгкая морось"
+msgid "drizzling lightly"
+msgstr "лёгкая морось"
 
-#~ msgid "drizzling moderately"
-#~ msgstr "умеренная морось"
+msgid "drizzling moderately"
+msgstr "умеренная морось"
 
-#~ msgid "heavy drizzling"
-#~ msgstr "сильная морось"
+msgid "heavy drizzling"
+msgstr "сильная морось"
 
-#~ msgid "drizzling lightly freezed"
-#~ msgstr "лёгкая замороженная морось"
+msgid "drizzling lightly freezed"
+msgstr "лёгкая замороженная морось"
 
-#~ msgid "drizzling moderately freezed"
-#~ msgstr "умеренная замороженная морось"
+msgid "drizzling moderately freezed"
+msgstr "умеренная замороженная морось"
 
-#~ msgid "raining slightly"
-#~ msgstr "небольшой дождь"
+msgid "raining slightly"
+msgstr "небольшой дождь"
 
-#~ msgid "raining moderately"
-#~ msgstr "умеренный дождь"
+msgid "raining moderately"
+msgstr "умеренный дождь"
 
-#~ msgid "raining heavily"
-#~ msgstr "сильный дождь"
+msgid "raining heavily"
+msgstr "сильный дождь"
 
-#~ msgid "freeze raining lightly"
-#~ msgstr "лёгкий ледяной дождь"
+msgid "freeze raining lightly"
+msgstr "лёгкий ледяной дождь"
 
-#~ msgid "freeze raining moderately"
-#~ msgstr "умеренный ледяной дождь"
+msgid "freeze raining moderately"
+msgstr "умеренный ледяной дождь"
 
-#~ msgid "snowing slightly"
-#~ msgstr "небольшой снег"
+msgid "snowing slightly"
+msgstr "небольшой снег"
 
-#~ msgid "moderate snowing"
-#~ msgstr "умеренный снег"
+msgid "moderate snowing"
+msgstr "умеренный снег"
 
-#~ msgid "snowing heavily"
-#~ msgstr "сильный снег"
+msgid "snowing heavily"
+msgstr "сильный снег"
 
-#~ msgid "snowing grain"
-#~ msgstr "снежные крупинки"
+msgid "snowing grain"
+msgstr "снежные крупинки"
 
-#~ msgid "slight rain shower"
-#~ msgstr "небольшой ливень"
+msgid "slight rain shower"
+msgstr "небольшой ливень"
 
-#~ msgid "moderate rain shower"
-#~ msgstr "умеренный ливень"
+msgid "moderate rain shower"
+msgstr "умеренный ливень"
 
-#~ msgid "violent rain shower"
-#~ msgstr "сильный ливень"
+msgid "violent rain shower"
+msgstr "сильный ливень"
 
-#~ msgid "slight snow shower"
-#~ msgstr "небольшой снегопад"
+msgid "slight snow shower"
+msgstr "небольшой снегопад"
 
-#~ msgid "heavy snow shower"
-#~ msgstr "сильный снегопад"
+msgid "heavy snow shower"
+msgstr "сильный снегопад"
 
-#~ msgid "thunderstorm"
-#~ msgstr "гроза"
+msgid "thunderstorm"
+msgstr "гроза"
 
-#~ msgid "This channel does not exist and cannot be added to favorites list"
-#~ msgstr ""
-#~ "Этот канал не существует и не может быть добавлен в список избранных."
+msgid "This channel does not exist and cannot be added to favorites list"
+msgstr ""
+"Этот канал не существует и не может быть добавлен в список избранных."

@@ -30,6 +30,12 @@ def get_cws_authenticated_car(xml_data, check_user=True) -> Car|None:
             if car.iccid != sim_id:
                 return None
 
+            # authenticate without user&pass for QY8XXX by detecting rss format
+            if 'base_info' in xml_data and 'vehicle' in xml_data['base_info']:
+                signal_level = xml_data['base_info']['vehicle'].get('rss', '')
+                if signal_level == "out" or signal_level == "in":
+                    return car
+
             # confirm user&pass
             if check_user and (car.owner.username != username or car.owner.tcu_pass_hash != password):
                 return None
@@ -56,6 +62,8 @@ def update_car_info(xml_data):
                     signal_level = -1
                 if signal_level == "out":
                     signal_level = 0
+                if signal_level == "in":
+                    signal_level = 5
                 car_obj.signal_level = signal_level
                 car_obj.carrier = carrier
                 if status is not None:

@@ -375,6 +375,43 @@ def command_api(request, vin):
         return Response({'error': 'Command type must be an integer'}, status=status.HTTP_400_BAD_REQUEST)
 
 
+@swagger_auto_schema(
+    operation_description="Retrieve debug logs for a vehicle",
+    method='get',
+    tags=['cars'],
+    responses={
+        200: 'List of log entries',
+        401: 'Not authorized',
+        404: 'Car not found',
+    }
+)
+@api_view(['GET'])
+def debug_logs_api(request, vin):
+    """Return last N log entries from tcuserver.log filtered by VIN"""
+    if not request.user.is_authenticated:
+        return Response(status=status.HTTP_401_UNAUTHORIZED)
+    
+    # Verify the car belongs to the user
+    car = get_object_or_404(Car, vin=vin, owner=request.user)
+    
+    log_file_path = 'logs/tcuserver.log'
+    logs = []
+    
+    try:
+        import os
+        if os.path.exists(log_file_path):
+            with open(log_file_path, 'r', encoding='utf-8', errors='ignore') as f:
+                # Read all lines and filter by VIN
+                all_lines = f.readlines()
+                matching_lines = [line.strip() for line in all_lines if vin in line]
+                # Return last 100 matching entries
+                logs = matching_lines[-100:]
+    except Exception as e:
+        logs = [f"Error reading log file: {str(e)}"]
+    
+    return Response({'logs': logs, 'vin': vin})
+
+
 class CustomTokenObtainPairView(TokenObtainPairView):
 
     @swagger_auto_schema(tags=['token'], request_body=JWTTokenObtainPairSerializer())

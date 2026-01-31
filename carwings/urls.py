@@ -80,6 +80,7 @@ urlpatterns = [
     path('api/car/<str:vin>/timers/<int:id>', api_views.CommandTimerRetrieveApiView.as_view(), name='car_timers_api'),
     path('api/car/', api_views.cars_api, name='car_api_list'),
     path('api/alerts/<str:vin>/', api_views.alerts_api, name='alerts_api'),
+    path('api/debug-logs/<str:vin>/', api_views.debug_logs_api, name='debug_logs_api'),
     path('api/command/<str:vin>/', api_views.command_api, name='command_api'),
     path('api/token/obtain/', CustomTokenObtainPairView.as_view(), name='token_refresh'),
     path('api/token/refresh/', decorated_token_view, name='token_refresh'),

@@ -101,6 +101,7 @@
             <button class="tab-btn px-3 py-2 text-gray-600 dark:text-gray-400 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="carwings">CARWINGS</button>
             <button class="tab-btn px-3 py-2 text-gray-600 dark:text-gray-400 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="basic-info">{% translate "Basic Info" %}</button>
             <button class="tab-btn px-3 py-2 text-gray-600 dark:text-gray-400 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="tcu-config">{% translate "TCU Configuration" %}</button>
+            <button class="tab-btn px-3 py-2 text-gray-600 dark:text-gray-400 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="debug-logs">{% translate "Debug Logs" %}</button>
             <button class="tab-btn px-3 py-2 hover:text-blue-500 focus:outline-none {% if show_settings %}text-blue-500 border-b-2 border-blue-500{% else %}text-gray-600 dark:text-gray-400{% endif %} text-sm sm:text-base" data-tab="settings">{% translate "Settings" %}</button>
           </div>
 
@@ -502,6 +503,21 @@
                             {% endfor %}
                         </tbody>
                     </table>
+                </div>
+            </div>
+
+            <!-- Debug Logs -->
+            <div id="debug-logs" class="tab-content">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200">{% translate "Debug Logs" %}</h2>
+                    <div class="flex items-center gap-2">
+                        <span id="debug-logs-status" class="text-sm text-gray-500 dark:text-gray-400"></span>
+                        <button onclick="refreshDebugLogs()" class="px-3 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600 text-sm">{% translate "Refresh" %}</button>
+                    </div>
+                </div>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">{% translate "Server logs filtered by VIN. Useful for debugging connection issues." %}</p>
+                <div class="overflow-x-auto bg-gray-900 rounded-lg p-4" style="max-height: 500px; overflow-y: auto;">
+                    <pre id="debug-logs-content" class="text-xs text-green-400 font-mono whitespace-pre-wrap">{% translate "Loading..." %}</pre>
                 </div>
             </div>
 
@@ -2595,6 +2611,61 @@
 
         updateCarData();
         updateAlerts();
+
+        // Debug Logs functionality
+        let debugLogsInterval = null;
+        const carVin = '{{ car.vin }}';
+
+        async function refreshDebugLogs() {
+            const statusEl = document.getElementById('debug-logs-status');
+            const contentEl = document.getElementById('debug-logs-content');
+            
+            statusEl.textContent = '{% translate "Loading..." %}';
+            
+            try {
+                const response = await fetch(`/api/debug-logs/${carVin}/`, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    credentials: 'same-origin'
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.logs && data.logs.length > 0) {
+                        contentEl.textContent = data.logs.join('\n');
+                    } else {
+                        contentEl.textContent = '{% translate "No log entries found for this VIN." %}';
+                    }
+                    statusEl.textContent = `{% translate "Updated" %}: ${new Date().toLocaleTimeString()}`;
+                } else {
+                    contentEl.textContent = `{% translate "Error loading logs" %}: ${response.status}`;
+                    statusEl.textContent = '';
+                }
+            } catch (error) {
+                contentEl.textContent = `{% translate "Error" %}: ${error.message}`;
+                statusEl.textContent = '';
+            }
+        }
+
+        // Auto-refresh when debug-logs tab is active
+        document.querySelector('[data-tab="debug-logs"]').addEventListener('click', () => {
+            refreshDebugLogs();
+            if (debugLogsInterval) clearInterval(debugLogsInterval);
+            debugLogsInterval = setInterval(refreshDebugLogs, 10000);
+        });
+
+        // Stop auto-refresh when switching away from debug-logs tab
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            if (btn.getAttribute('data-tab') !== 'debug-logs') {
+                btn.addEventListener('click', () => {
+                    if (debugLogsInterval) {
+                        clearInterval(debugLogsInterval);
+                        debugLogsInterval = null;
+                    }
+                });
+            }
+        });
 
     </script>
 {% endblock %}

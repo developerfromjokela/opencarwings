@@ -180,6 +180,7 @@ class Command(BaseCommand):
                             new_alert.additional_data = _("Sim ID does not match with specified ID, please double check!")
                             new_alert.car = car
                             new_alert.command_id = car.command_id
+                            await sync_to_async(new_alert.save)()
                         else:
                             # skip auth and set as authenticated if check is disabled
                             authenticated = car.disable_auth

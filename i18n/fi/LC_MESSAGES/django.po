@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-19 06:28+0000\n"
+"POT-Creation-Date: 2026-01-26 18:56+0000\n"
 "PO-Revision-Date: 2026-01-19 08:34+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -2810,20 +2810,29 @@ msgid "Sign in"
 msgstr "Kirjaudu"
 
 #: ui/templates/ui/vflash_editor.html:9
-msgid "VFlash Connection Profile Editor"
-msgstr "VFlash Yhteysprofiilien muokkaustyökalu"
+msgid "Connection Profile Editor"
+msgstr "Yhteysprofiilien muokkaustyökalu"
 
-#: ui/templates/ui/vflash_editor.html:10
+#: ui/templates/ui/vflash_editor.html:18
 msgid "Choose or drag&drop vflash dump to get started"
 msgstr "Valitse tai raahaa VFlash-otos"
 
-#: ui/templates/ui/vflash_editor.html:28
+#: ui/templates/ui/vflash_editor.html:19
+msgid ""
+"Choose or drag&drop CWS_SYS file from hidden SD partition to get started"
+msgstr "Valitse tai raahaa CWS_SYS tiedosto piilotetusta osiosta navigoinnin SD-kortilta"
+
+#: ui/templates/ui/vflash_editor.html:19
+msgid "make hidden partition visible using"
+msgstr "tee piilotetusta osiosta näkyvä käyttäen työkalua"
+
+#: ui/templates/ui/vflash_editor.html:37
 msgid "Add New Connection Profile"
 msgstr "Lisää uusi yhteysprofiili"
 
-#: ui/templates/ui/vflash_editor.html:30
-msgid "Export VFlash"
-msgstr "Tallenna VFlash"
+#: ui/templates/ui/vflash_editor.html:39
+msgid "Export"
+msgstr "Vie"
 
 #: ui/templatetags/probeconfig.py:12
 msgid "Unknown"
@@ -2877,6 +2886,11 @@ msgstr "Odotetaan ensimmäistä yhteyttä.."
 msgid "Sign-up is not enabled on this instance"
 msgstr "Tällä instanssilla ei sallita tilien luomista"
 
+#: ui/views.py:557
+#, python-brace-format
+msgid "Account created for {username}! Please sign in."
+msgstr "Tili {username} on luotu! Kirjaudu sisään."
+
 #: ui/views.py:578
 msgid ""
 "Your current timezone is UTC. Please set your local timezone in account "
@@ -2906,160 +2920,163 @@ msgstr ""
 msgid "Update request cancelled!"
 msgstr "Päivityspyyntö peruttu!"
 
-#~ msgid "Take Back Control of Your Nissan LEAF"
-#~ msgstr "Ota ohjat takaisin Nissan LEAFiisi"
+msgid "Export VFlash"
+msgstr "Tallenna VFlash"
 
-#~ msgid ""
-#~ "The iconic Nissan LEAF deserves more than abandonment. With the "
-#~ "manufacturer's support fading, the community steps up. Sign up now to "
-#~ "bring your LEAF back to life!"
-#~ msgstr ""
-#~ "Ikoninen Nissan LEAF ansaitsee parempaa kohtelua. Valmistajantuki alkaa "
-#~ "hiipua, mutta LEAF-yhteisö tekee työnsä. Rekisteröidy nyt ja tuo LEAFisi "
-#~ "takaisin nettiin!"
+msgid "Take Back Control of Your Nissan LEAF"
+msgstr "Ota ohjat takaisin Nissan LEAFiisi"
 
-#~ msgid "Charge position"
-#~ msgstr "Latauksen sijainti"
+msgid ""
+"The iconic Nissan LEAF deserves more than abandonment. With the "
+"manufacturer's support fading, the community steps up. Sign up now to "
+"bring your LEAF back to life!"
+msgstr ""
+"Ikoninen Nissan LEAF ansaitsee parempaa kohtelua. Valmistajantuki alkaa "
+"hiipua, mutta LEAF-yhteisö tekee työnsä. Rekisteröidy nyt ja tuo LEAFisi "
+"takaisin nettiin!"
 
-#~ msgid "Direction"
-#~ msgstr "Suunta"
+msgid "Charge position"
+msgstr "Latauksen sijainti"
 
-#~ msgid "Use your old smartphone"
-#~ msgstr "Käytä vanhaa älypuhelintasi"
+msgid "Direction"
+msgstr "Suunta"
 
-#~ msgid "Result"
-#~ msgstr "Tulos"
+msgid "Use your old smartphone"
+msgstr "Käytä vanhaa älypuhelintasi"
 
-#~ msgid "Version"
-#~ msgstr "Versio"
+msgid "Result"
+msgstr "Tulos"
 
-#~ msgid "OpenCARWINGS"
-#~ msgstr "OpenCARWINGS"
+msgid "Version"
+msgstr "Versio"
 
-#~ msgid "Route Planning & Navigation"
-#~ msgstr "Reittisuunnittelu ja navigointi"
+msgid "OpenCARWINGS"
+msgstr "OpenCARWINGS"
 
-#~ msgid "Online Services"
-#~ msgstr "Online-palvelut"
+msgid "Route Planning & Navigation"
+msgstr "Reittisuunnittelu ja navigointi"
 
-#~ msgid "Any new announcements or features can be shown here"
-#~ msgstr "Uudet ilmoitukset tai ominaisuudet voidaan näyttää täällä"
+msgid "Online Services"
+msgstr "Online-palvelut"
 
-#~ msgid "Energy Economy"
-#~ msgstr "Energiatalous"
+msgid "Any new announcements or features can be shown here"
+msgstr "Uudet ilmoitukset tai ominaisuudet voidaan näyttää täällä"
 
-#~ msgid "Get latest energy economy information"
-#~ msgstr "Hanki uusimmat tiedot energiataloudesta"
+msgid "Energy Economy"
+msgstr "Energiatalous"
 
-#~ msgid "Eco Trees"
-#~ msgstr "Eko-puut"
+msgid "Get latest energy economy information"
+msgstr "Hanki uusimmat tiedot energiataloudesta"
 
-#~ msgid "Get latest eco tree information"
-#~ msgstr "Hanki uusimmat tiedot ekopuista"
+msgid "Eco Trees"
+msgstr "Eko-puut"
 
-#~ msgid "Weather Forecast"
-#~ msgstr "Sääennuste"
+msgid "Get latest eco tree information"
+msgstr "Hanki uusimmat tiedot ekopuista"
 
-#~ msgid "Download Weather Forecast for your area"
-#~ msgstr "Lataa lähialueesi kattava sääennuste"
+msgid "Weather Forecast"
+msgstr "Sääennuste"
 
-#~ msgid "clear"
-#~ msgstr "selkeää"
+msgid "Download Weather Forecast for your area"
+msgstr "Lataa lähialueesi kattava sääennuste"
 
-#~ msgid "mainly clear"
-#~ msgstr "pääosin selkeää"
+msgid "clear"
+msgstr "selkeää"
 
-#~ msgid "partly cloudy"
-#~ msgstr "osittain pilvistä"
+msgid "mainly clear"
+msgstr "pääosin selkeää"
 
-#~ msgid "cloudy"
-#~ msgstr "pilvistä"
+msgid "partly cloudy"
+msgstr "osittain pilvistä"
 
-#~ msgid "foggy"
-#~ msgstr "sumuista"
+msgid "cloudy"
+msgstr "pilvistä"
 
-#~ msgid "foggy with rime ice"
-#~ msgstr "sumuista ja huurteista"
+msgid "foggy"
+msgstr "sumuista"
 
-#~ msgid "drizzling lightly"
-#~ msgstr "kevyesti tihkusadetta"
+msgid "foggy with rime ice"
+msgstr "sumuista ja huurteista"
 
-#~ msgid "drizzling moderately"
-#~ msgstr "kohtalaisesti tihkusadetta"
+msgid "drizzling lightly"
+msgstr "kevyesti tihkusadetta"
 
-#~ msgid "heavy drizzling"
-#~ msgstr "voimakasta tihkusadetta"
+msgid "drizzling moderately"
+msgstr "kohtalaisesti tihkusadetta"
 
-#~ msgid "drizzling lightly freezed"
-#~ msgstr "kevyesti jäätävää tihkusadetta"
+msgid "heavy drizzling"
+msgstr "voimakasta tihkusadetta"
 
-#~ msgid "drizzling moderately freezed"
-#~ msgstr "kohtalaisesti jäätävää tihkusadetta"
+msgid "drizzling lightly freezed"
+msgstr "kevyesti jäätävää tihkusadetta"
 
-#~ msgid "raining slightly"
-#~ msgstr "kevyesti sadetta"
+msgid "drizzling moderately freezed"
+msgstr "kohtalaisesti jäätävää tihkusadetta"
 
-#~ msgid "raining moderately"
-#~ msgstr "kohtalaisesti sadetta"
+msgid "raining slightly"
+msgstr "kevyesti sadetta"
 
-#~ msgid "raining heavily"
-#~ msgstr "voimakasta sadetta"
+msgid "raining moderately"
+msgstr "kohtalaisesti sadetta"
 
-#~ msgid "freeze raining lightly"
-#~ msgstr "kevyesti jäätävää sadetta"
+msgid "raining heavily"
+msgstr "voimakasta sadetta"
 
-#~ msgid "freeze raining moderately"
-#~ msgstr "kohtalaisesti jäätävää sadetta"
+msgid "freeze raining lightly"
+msgstr "kevyesti jäätävää sadetta"
 
-#~ msgid "snowing slightly"
-#~ msgstr "kevyesti lumisadetta"
+msgid "freeze raining moderately"
+msgstr "kohtalaisesti jäätävää sadetta"
 
-#~ msgid "moderate snowing"
-#~ msgstr "kohtalaisesti lumisadetta"
+msgid "snowing slightly"
+msgstr "kevyesti lumisadetta"
 
-#~ msgid "snowing heavily"
-#~ msgstr "voimakasta lumisadetta"
+msgid "moderate snowing"
+msgstr "kohtalaisesti lumisadetta"
 
-#~ msgid "snowing grain"
-#~ msgstr "rae lumisadetta"
+msgid "snowing heavily"
+msgstr "voimakasta lumisadetta"
 
-#~ msgid "slight rain shower"
-#~ msgstr "kevyitä sadekuuroja"
+msgid "snowing grain"
+msgstr "rae lumisadetta"
 
-#~ msgid "moderate rain shower"
-#~ msgstr "kohtalaisia sadekuuroja"
+msgid "slight rain shower"
+msgstr "kevyitä sadekuuroja"
 
-#~ msgid "violent rain shower"
-#~ msgstr "voimakkaita sadekuuroja"
+msgid "moderate rain shower"
+msgstr "kohtalaisia sadekuuroja"
 
-#~ msgid "slight snow shower"
-#~ msgstr "kevyitä lumikuuroja"
+msgid "violent rain shower"
+msgstr "voimakkaita sadekuuroja"
 
-#~ msgid "heavy snow shower"
-#~ msgstr "voimakkaita lumikuuroja"
+msgid "slight snow shower"
+msgstr "kevyitä lumikuuroja"
 
-#~ msgid "thunderstorm"
-#~ msgstr "ukkosmyrsky"
+msgid "heavy snow shower"
+msgstr "voimakkaita lumikuuroja"
 
-#~ msgid "This channel does not exist and cannot be added to favorites list"
-#~ msgstr ""
-#~ "Tätä kanavaa ei ole olemassa, eikä sitä voida lisätä suosikkiluetteloon."
+msgid "thunderstorm"
+msgstr "ukkosmyrsky"
 
-#~ msgid ""
-#~ "You may sign in with your username and CARWINGS password in navigation "
-#~ "unit like showed below."
-#~ msgstr ""
-#~ "Voit halutessasi kokeilla kirjautua tunnuksillasi auton CARWINGS-"
-#~ "asetuksissa, alla olevan ohjeen mukaisesti."
+msgid "This channel does not exist and cannot be added to favorites list"
+msgstr ""
+"Tätä kanavaa ei ole olemassa, eikä sitä voida lisätä suosikkiluetteloon."
 
-#~ msgid "Latitude"
-#~ msgstr "Leveysaste"
+msgid ""
+"You may sign in with your username and CARWINGS password in navigation "
+"unit like showed below."
+msgstr ""
+"Voit halutessasi kokeilla kirjautua tunnuksillasi auton CARWINGS-"
+"asetuksissa, alla olevan ohjeen mukaisesti."
 
-#~ msgid "Longitude"
-#~ msgstr "Pituusaste"
+msgid "Latitude"
+msgstr "Leveysaste"
 
-#~ msgid "VFlash editor"
-#~ msgstr "VFlash-muokkaustyökalu"
+msgid "Longitude"
+msgstr "Pituusaste"
 
-#~ msgid "GIDs remaining (relative)"
-#~ msgstr "Jäljellä olevat GID:t (relatiivi)"
+msgid "VFlash editor"
+msgstr "VFlash-muokkaustyökalu"
+
+msgid "GIDs remaining (relative)"
+msgstr "Jäljellä olevat GID:t (relatiivi)"

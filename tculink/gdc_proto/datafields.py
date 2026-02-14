@@ -216,7 +216,14 @@ def parse_evinfo(byte_data, aze0=False):
         "capacity_bars": capacity_bars,
         "full_chg": chg_time_1,
         "limit_chg": chg_time_2,
-        "6kw_chg": chg_time_3
+        "6kw_chg": chg_time_3,
+        "pri_ac_req_result": (resultstate >> 6) & 3,
+        "pri_ac_stop_result": (resultstate >> 4) & 3,
+        "batt_start_stop": (resultstate >> 2) & 3,
+        "charge_request_result": alertstate & 0b00000011,
+        "charge_stop": (alertstate >> 2) & 0b00000011,
+        "not_plugin_alert": ((alertstate >> 4) & 0b00000001) == 1,
+        "error_notification": (alertstate >> 5) & 0b00000111,
     }
 
 def parse_config_data(byte_data):

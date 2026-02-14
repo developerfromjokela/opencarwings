@@ -151,6 +151,7 @@ class Command(BaseCommand):
                     if tcu_info["vin"] is None:
                         raise CommandError("No VIN received")
 
+                    logger.info(f"TCU Payload hex: {data.hex()}")
                     logger.info(f"TCU Info: {tcu_info}")
                     try:
                         car = await get_car(tcu_info["vin"])
@@ -282,6 +283,7 @@ class Command(BaseCommand):
 
                             if body_type == "cp_remind":
                                 new_alert = AlertHistory()
+                                new_alert.additional_data = f"{req_body['resultstate']},{req_body['alertstate']}"
                                 new_alert.type = 3
                                 new_alert.car = car
                                 new_alert.command_id = car.command_id
@@ -294,6 +296,7 @@ class Command(BaseCommand):
 
                             if body_type == "ac_result":
                                 new_alert = AlertHistory()
+                                new_alert.additional_data = f"{req_body['resultstate']},{req_body['alertstate']}"
                                 alert_type = 97
                                 if req_body["resultstate"] == 0x40:
                                     alert_type = 4
@@ -327,6 +330,7 @@ class Command(BaseCommand):
 
                             if body_type == "remote_stop":
                                 new_alert = AlertHistory()
+                                new_alert.additional_data = f"{req_body['resultstate']},{req_body['alertstate']}"
                                 alert_message = _("A/C preconditioning is finished")
                                 subject = _("A/C precondition notification")
 
@@ -347,6 +351,7 @@ class Command(BaseCommand):
 
                             if body_type == "charge_result":
                                 new_alert = AlertHistory()
+                                new_alert.additional_data = f"{req_body['resultstate']},{req_body['alertstate']}"
                                 new_alert.type = 2
                                 new_alert.car = car
                                 new_alert.command_id = car.command_id
@@ -361,6 +366,7 @@ class Command(BaseCommand):
                                 # TODO: capture resultstate to determine battery heater status
                                 logger.warning("Battery heat! Resultstate: %d, alertstate: %d", req_body["resultstate"], req_body["alertstate"])
                                 new_alert = AlertHistory()
+                                new_alert.additional_data = f"{req_body['resultstate']},{req_body['alertstate']}"
                                 new_alert.type = 9 if req_body.get('batt_heat_active', False) else 10
                                 new_alert.car = car
                                 new_alert.command_id = car.command_id

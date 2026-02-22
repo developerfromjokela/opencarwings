@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide to Bringing Navigation Back Online (AZE0 & ZE1 2016-2019)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+    h2 {
+      color: #555;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 5px;
+    }
+    .step {
+      background-color: #fff;
+      padding: 20px;
+      margin: 10px 0;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .step-number {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #007BFF;
+    }
+    a {
+      color: #007BFF;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      height: 0;
+      overflow: hidden;
+      max-width: 100%;
+      background: #000;
+      margin: 20px 0;
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .warning {
+      color: #D9534F;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+<h1>Guide to Bringing Your Navigator Back Online<br/>(AZE0&ZE1 30/40kWh, ONLY ONE SD SLOT)</h1>
+<p style="text-align: center"><span class="warning">NOTE: </span> This guide is for navigation units with ONLY ONE SD SLOT! If you have two, please follow the guide <a href="/static/navi_guide.html">here</a> <br/> This detailed guide will walk you through the process of changing your navigator's APN settings. Follow each step carefully to ensure successful setup.</p>
+<div class="step">
+  <h2><span class="step-number">Step 1:</span> Make a clone of your SD Card</h2>
+  <p>You’ll need to make a clone of your navigation SD, so you will need new SD card that you will use in the navi. Keep the original safe in case something happens. Here’s how to proceed:</p>
+  <ul>
+    <li><strong>0:</strong> Get yourself an SD card with same or larger capacity to fit the original SD card clone image.</li>
+    <li><strong>1:</strong> Use Win32 disk imager, HDD Raw Copy tool or other tool depending on your system to make a disk image of your original SD Card</li>
+    <li><strong>2:</strong> Before writing the disk image, we need to fix its partition table. Use <a href="https://github.com/developerfromjokela/leafsdtools_companion/releases/">LeafSDTools companion</a>.</li>
+    <li><strong>3:</strong> Select the disk image inside LeafSDTools companion and wait for the fix to be applied.</li>
+    <li><strong>4:</strong> Write fixed disk image to your new SD card and confirm it works with the navigation unit.</li>
+    <img style="width: 100%; max-width: 800px" src="lst_companion.jpg">
+  </ul>
+</div>
+
+<div class="step">
+  <h2><span class="step-number">Step 2:</span> Edit navigation unit settings </h2>
+  <p>With the SD card plugged in to your computer, on one of the partitions you should find a file at path "PRIVATE/CWS/AP/CWS_SYS"</p>
+  <ul>
+    <li><strong>1.</strong> Copy the file from SD card somewhere else, for example into Desktop folder or Documents.</li>
+    <li><strong>2.</strong> Navigate to <a target="_blank" href="https://opencarwings.viaaq.eu/navi">https://opencarwings.viaaq.eu/navi</a> in your browser</li>
+    <li><strong>3.</strong> Select option "SD Card" and select the file CWS_SYS. You should see information be filled into fields and Connection Profile 1 appear. If not, please contact the developer</li>
+    <img style="width: 100%; max-width: 800px;" src="img10_sd.jpg" />
+    <li><strong>4.</strong> Start by naming your connection profile with your operator name.</li>
+    <img style="width: 100%; max-width: 800px;" src="img11.jpg" />
+    <li><strong>5.</strong> Next, you will need to modify APN name: apn [cws]. Depending on your SIM provider, you may also need to modify APN user and password, usr [cws] and psswrd [cws]. </li>
+    <img style="width: 100%; max-width: 800px;" src="img12.jpg" />
+    <img style="width: 100%; max-width: 800px;" src="img13.jpg" />
+    <img style="width: 100%; max-width: 800px;" src="img14.jpg" />
+    <li><strong>6.</strong> Last but not least, server URL needs to be modified. Field "url [cws]". Standard URL should be "http://biz.nissan-gev.com/WARCondelivbas/it-m_gw10/". Modify it to be "http://biz.viaaq.eu/WARCondelivbas/it-m_gw10/"</li>
+    ORIGINAL: <br/><img style="width: 100%; max-width: 800px;" src="img15.jpg" /><br>
+    MODIFIED: <br/><img style="width: 100%; max-width: 800px;" src="img16.jpg" />
+    <li><strong>7.</strong> After all settings are modified, scroll to bottom and click export. New settings file will be downloaded.<br/><b>Copy downloaded file on to the SD card (/PRIVATE/CWS/AP/CWS_SYS) (if asked to overwrite file, press yes)</b></li>
+    <img style="width: 100%; max-width: 800px;" src="img17.jpg" />
+  </ul>
+  <p><span class="warning">NOTE: </span> Make sure when you copy new settings file to SD card, it has exactly same file name and path as original!</p>
+
+</div>
+
+<div class="step">
+  <h2><span class="step-number">Step 3:</span> Try NissanConnect services</h2>
+  <p>Final step is to try and see if any of data channels are accessible.</p>
+  <ul>
+    <img style="width: 100%; max-width: 800px;" src="datachannel.png" />
+  </ul>
+</div>
+
+<p><strong>Congratulations!</strong> If all steps are completed successfully, your navigation unit should now be back online, restoring many functions like send location to car, telemetry data and more.</p>
+</body>
+</html></title>
+</head>
+<body>
+
+</body>
+</html>

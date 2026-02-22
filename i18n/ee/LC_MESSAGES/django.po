@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-26 18:56+0000\n"
-"PO-Revision-Date: 2026-01-19 08:33+0200\n"
+"POT-Creation-Date: 2026-02-22 11:07+0000\n"
+"PO-Revision-Date: 2026-02-22 13:53+0200\n"
 "Last-Translator: Grok <grok@x.ai>\n"
 "Language-Team: Estonian <et@li.org>\n"
 "Language: et\n"
@@ -660,143 +660,143 @@ msgstr ""
 "{maxtemp} kraadi Celsiuse järgi ja madalaim temperatuur {mintemp} kraadi "
 "Celsiuse järgi.\n"
 
-#: tculink/carwings_proto/utils.py:142
+#: tculink/carwings_proto/utils.py:150
 msgid "first"
 msgstr "esimene"
 
-#: tculink/carwings_proto/utils.py:142
+#: tculink/carwings_proto/utils.py:150
 msgid "second"
 msgstr "teine"
 
-#: tculink/carwings_proto/utils.py:142
+#: tculink/carwings_proto/utils.py:150
 msgid "third"
 msgstr "kolmas"
 
-#: tculink/carwings_proto/utils.py:142
+#: tculink/carwings_proto/utils.py:150
 msgid "fourth"
 msgstr "neljas"
 
-#: tculink/carwings_proto/utils.py:142
+#: tculink/carwings_proto/utils.py:150
 msgid "fifth"
 msgstr "viies"
 
-#: tculink/carwings_proto/utils.py:143
+#: tculink/carwings_proto/utils.py:151
 msgid "sixth"
 msgstr "kuues"
 
-#: tculink/carwings_proto/utils.py:143
+#: tculink/carwings_proto/utils.py:151
 msgid "seventh"
 msgstr "seitsmes"
 
-#: tculink/carwings_proto/utils.py:143
+#: tculink/carwings_proto/utils.py:151
 msgid "eighth"
 msgstr "kaheksas"
 
-#: tculink/carwings_proto/utils.py:143
+#: tculink/carwings_proto/utils.py:151
 msgid "ninth"
 msgstr "üheksas"
 
-#: tculink/carwings_proto/utils.py:143
+#: tculink/carwings_proto/utils.py:151
 msgid "tenth"
 msgstr "kümnes"
 
-#: tculink/carwings_proto/utils.py:144
+#: tculink/carwings_proto/utils.py:152
 msgid "eleventh"
 msgstr "üheteistkümnes"
 
-#: tculink/carwings_proto/utils.py:144
+#: tculink/carwings_proto/utils.py:152
 msgid "twelfth"
 msgstr "kaheteistkümnes"
 
-#: tculink/carwings_proto/utils.py:144
+#: tculink/carwings_proto/utils.py:152
 msgid "thirteenth"
 msgstr "kolmeteistkümnes"
 
-#: tculink/carwings_proto/utils.py:144
+#: tculink/carwings_proto/utils.py:152
 msgid "fourteenth"
 msgstr "neljateistkümnes"
 
-#: tculink/carwings_proto/utils.py:144
+#: tculink/carwings_proto/utils.py:152
 msgid "fifteenth"
 msgstr "viieteistkümnes"
 
-#: tculink/carwings_proto/utils.py:145
+#: tculink/carwings_proto/utils.py:153
 msgid "sixteenth"
 msgstr "kuueteistkümnes"
 
-#: tculink/carwings_proto/utils.py:145
+#: tculink/carwings_proto/utils.py:153
 msgid "seventeenth"
 msgstr "seitsmeteistkümnes"
 
-#: tculink/carwings_proto/utils.py:145
+#: tculink/carwings_proto/utils.py:153
 msgid "eighteenth"
 msgstr "kaheksateistkümnes"
 
-#: tculink/carwings_proto/utils.py:145
+#: tculink/carwings_proto/utils.py:153
 msgid "nineteenth"
 msgstr "üheksateistkümnes"
 
-#: tculink/carwings_proto/utils.py:145
+#: tculink/carwings_proto/utils.py:153
 msgid "twentieth"
 msgstr "kahekümnes"
 
-#: tculink/carwings_proto/utils.py:146
+#: tculink/carwings_proto/utils.py:154
 msgid "twenty-first"
 msgstr "kahekümne esimene"
 
-#: tculink/carwings_proto/utils.py:146
+#: tculink/carwings_proto/utils.py:154
 msgid "twenty-second"
 msgstr "kahekümne teine"
 
-#: tculink/carwings_proto/utils.py:146
+#: tculink/carwings_proto/utils.py:154
 msgid "twenty-third"
 msgstr "kahekümne kolmas"
 
-#: tculink/carwings_proto/utils.py:146
+#: tculink/carwings_proto/utils.py:154
 msgid "twenty-fourth"
 msgstr "kahekümne neljas"
 
-#: tculink/carwings_proto/utils.py:146
+#: tculink/carwings_proto/utils.py:154
 msgid "twenty-fifth"
 msgstr "kahekümne viies"
 
-#: tculink/carwings_proto/utils.py:147
+#: tculink/carwings_proto/utils.py:155
 msgid "twenty-sixth"
 msgstr "kahekümne kuues"
 
-#: tculink/carwings_proto/utils.py:147
+#: tculink/carwings_proto/utils.py:155
 msgid "twenty-seventh"
 msgstr "kahekümne seitsmes"
 
-#: tculink/carwings_proto/utils.py:147
+#: tculink/carwings_proto/utils.py:155
 msgid "twenty-eighth"
 msgstr "kahekümne kaheksas"
 
-#: tculink/carwings_proto/utils.py:147
+#: tculink/carwings_proto/utils.py:155
 msgid "twenty-ninth"
 msgstr "kahekümne üheksas"
 
-#: tculink/carwings_proto/utils.py:147
+#: tculink/carwings_proto/utils.py:155
 msgid "thirtieth"
 msgstr "kolmekümnes"
 
-#: tculink/carwings_proto/utils.py:148
+#: tculink/carwings_proto/utils.py:156
 msgid "thirty-first"
 msgstr "kolmekümne esimene"
 
-#: tculink/management/commands/tcuserver.py:162
+#: tculink/management/commands/tcuserver.py:163
 msgid "TCU ID does not match with specified ID, please double check!"
 msgstr "TCU ID ei vasta määratud ID-le, palun kontrollige üle!"
 
-#: tculink/management/commands/tcuserver.py:171
+#: tculink/management/commands/tcuserver.py:172
 msgid "Navi ID does not match with specified ID, please double check!"
 msgstr "Navi ID ei vasta määratud ID-le, palun kontrollige üle!"
 
-#: tculink/management/commands/tcuserver.py:180
+#: tculink/management/commands/tcuserver.py:181
 msgid "Sim ID does not match with specified ID, please double check!"
 msgstr "SIM-kaardi ID ei vasta määratud ID-le, palun kontrollige üle!"
 
-#: tculink/management/commands/tcuserver.py:197
+#: tculink/management/commands/tcuserver.py:199
 msgid ""
 "Authentication failed, username or password is missing! Please sign in using "
 "navigation unit."
@@ -804,7 +804,7 @@ msgstr ""
 "Autentimine ebaõnnestus, kasutajanimi või parool puudub! Palun logige uuesti "
 "sisse navigeerimisüksuse abil."
 
-#: tculink/management/commands/tcuserver.py:215
+#: tculink/management/commands/tcuserver.py:217
 msgid ""
 "Authentication failed, username or password is incorrect! Please sign in "
 "using navigation unit."
@@ -812,16 +812,16 @@ msgstr ""
 "Autentimine ebaõnnestus, kasutajanimi või parool on vale! Palun logige "
 "uuesti sisse navigeerimisüksuse abil."
 
-#: tculink/management/commands/tcuserver.py:291
+#: tculink/management/commands/tcuserver.py:294
 msgid "Vehicle is unplugged. Please check the situation if necessary."
 msgstr ""
 "Sõiduk on lahti ühendatud. Palun kontrolli olukorda, kui see on vajalik."
 
-#: tculink/management/commands/tcuserver.py:292
+#: tculink/management/commands/tcuserver.py:295
 msgid "Charger unplugged notification"
 msgstr "Laadija lahtiühendamise teavitus"
 
-#: tculink/management/commands/tcuserver.py:309
+#: tculink/management/commands/tcuserver.py:302
 msgid ""
 "The A/C preconditioning command could not be executed. One of the reasons "
 "behind such error could be: a) low state of charge b) command already "
@@ -830,27 +830,29 @@ msgstr ""
 "Kliimaseadme eelkonditsioneerimise käsku ei õnnestunud täita. Võimalikud "
 "põhjused: a) madal aku laetuse tase b) käsk juba täidetud c) TCU viga."
 
-#: tculink/management/commands/tcuserver.py:311
+#: tculink/management/commands/tcuserver.py:304
 msgid "A/C preconditioning error"
 msgstr "Kliimaseadme eelkonditsioneerimise viga"
 
-#: tculink/management/commands/tcuserver.py:313
+#: tculink/management/commands/tcuserver.py:310
 msgid "A/C preconditioning started"
 msgstr "Kliimaseadme eelkonditsioneerimine alustatud"
 
-#: tculink/management/commands/tcuserver.py:314
+#: tculink/management/commands/tcuserver.py:311
 msgid "A/C preconditioning has been successfully switched on"
 msgstr "Kliimaseadme eelkonditsioneerimine on edukalt sisse lülitatud"
 
+#: tculink/management/commands/tcuserver.py:315
+msgid "The A/C preconditioning has finished unexpectedly"
+msgstr "Kliimaseadme eelkonditsioneerimine lõppes ootamatult"
+
 #: tculink/management/commands/tcuserver.py:316
+#: tculink/management/commands/tcuserver.py:329
 msgid "A/C precondition stopped"
 msgstr "Kliimaseadme eelkonditsioneerimine peatatud"
 
-#: tculink/management/commands/tcuserver.py:317
-msgid "A/C preconditioning has been successfully switched off"
-msgstr "Kliimaseadme eelkonditsioneerimine on edukalt välja lülitatud"
-
-#: tculink/management/commands/tcuserver.py:319
+#: tculink/management/commands/tcuserver.py:321
+#: tculink/management/commands/tcuserver.py:408
 msgid ""
 "The A/C preconditioning is finished and switched off after running certain "
 "amount of time."
@@ -858,35 +860,86 @@ msgstr ""
 "Kliimaseadme eelkonditsioneerimine on lõppenud ja välja lülitatud pärast "
 "teatud aja möödumist."
 
-#: tculink/management/commands/tcuserver.py:321
+#: tculink/management/commands/tcuserver.py:323
+#: tculink/management/commands/tcuserver.py:410
 msgid "A/C precondition finished"
 msgstr "Kliimaseadme eelkonditsioneerimine lõpetatud"
 
 #: tculink/management/commands/tcuserver.py:330
-msgid "A/C preconditioning is finished"
-msgstr "Kliimaseadme eelkonditsioneerimine on lõpetatud"
+msgid "A/C preconditioning has been successfully switched off"
+msgstr "Kliimaseadme eelkonditsioneerimine on edukalt välja lülitatud"
 
-#: tculink/management/commands/tcuserver.py:331
+#: tculink/management/commands/tcuserver.py:334
+#: tculink/management/commands/tcuserver.py:403
 msgid "A/C precondition notification"
 msgstr "Kliimaseadme eelkonditsioneerimise teavitus"
 
 #: tculink/management/commands/tcuserver.py:335
+#: tculink/management/commands/tcuserver.py:357
+msgid "A/C preconditioning already switched off"
+msgstr "Kliimaseadme eelkonditsioneerimine on juba välja lülitatud"
+
+#: tculink/management/commands/tcuserver.py:341
+#: tculink/management/commands/tcuserver.py:414
+msgid "A/C preconditioning fault"
+msgstr "Kliimaseadme eelkonditsioneerimise viga"
+
+#: tculink/management/commands/tcuserver.py:344
+msgid "The vehicle failed to start A/C preconditioning"
+msgstr "Sõidukil ei õnnestunud käivitada kliimaseadme eelkonditsioneerimist"
+
+#: tculink/management/commands/tcuserver.py:347
+msgid "The A/C preconditioning has finished with error"
+msgstr "Kliimaseadme eelkonditsioneerimine lõppes veaga"
+
+#: tculink/management/commands/tcuserver.py:350
+#: tculink/management/commands/tcuserver.py:417
+msgid ""
+"The A/C preconditioning is finished and switched off because of an error"
+msgstr ""
+"Kliimaseadme eelkonditsioneerimine on lõppenud ja välja lülitatud vea tõttu"
+
+#: tculink/management/commands/tcuserver.py:354
+msgid "A/C preconditioning could not be switched off"
+msgstr "Kliimaseadme eelkonditsioneerimist ei saanud välja lülitada"
+
+#: tculink/management/commands/tcuserver.py:378
+msgid "Charging notification"
+msgstr "Laadimise teatis"
+
+#: tculink/management/commands/tcuserver.py:384
 msgid "Vehicle has finished charging."
 msgstr "Sõiduk on laadimise lõpetanud."
 
-#: tculink/management/commands/tcuserver.py:336
+#: tculink/management/commands/tcuserver.py:385
 msgid "Charge finish notification"
 msgstr "Laadimise lõpetamise teavitus"
 
-#: tculink/management/commands/tcuserver.py:339
+#: tculink/management/commands/tcuserver.py:388
 msgid "Vehicle has finished quick-charging."
 msgstr "Sõiduk on kiirlaadimise lõpetanud."
 
-#: tculink/management/commands/tcuserver.py:340
+#: tculink/management/commands/tcuserver.py:389
 msgid "Quick-charge finish notification"
 msgstr "Kiirlaadimise lõpetamise teavitus"
 
-#: tculink/management/commands/tcuserver.py:356
+#: tculink/management/commands/tcuserver.py:392
+msgid "Charge interruption notification"
+msgstr "Laadimise katkestuse teatis"
+
+#: tculink/management/commands/tcuserver.py:395
+msgid "Charging has been stopped due to an interruption"
+msgstr "Laadimine peatati katkestuse tõttu"
+
+#: tculink/management/commands/tcuserver.py:397
+msgid "Quick-charging has been stopped due to an interruption"
+msgstr "Kiirlaadimine on peatatud katkestuse tõttu"
+
+#: tculink/management/commands/tcuserver.py:438
+msgid "Charge start command executed"
+msgstr "Laadimise alustamise käsk täidetud"
+
+#: tculink/management/commands/tcuserver.py:439
 msgid ""
 "Charging command has been sent successfully. If vehicle did not start "
 "charging, please check that the charging cable is connected and power is "
@@ -895,19 +948,33 @@ msgstr ""
 "Laadimiskäsk on edukalt saadetud. Kui sõiduk ei alustanud laadimist, "
 "kontrolli, kas laadimiskaabel on ühendatud ja toide on saadaval."
 
-#: tculink/management/commands/tcuserver.py:358
-msgid "Charge start command executed"
-msgstr "Laadimise alustamise käsk täidetud"
+#: tculink/management/commands/tcuserver.py:442
+msgid "Charge start command executed with failure"
+msgstr "Laadimise käivitamise käsk täideti vea tõttu ebaõnnestunult"
 
-#: tculink/management/commands/tcuserver.py:370
+#: tculink/management/commands/tcuserver.py:443
+msgid ""
+"Charging command has been sent successfully, but the vehicle did not start "
+"charging."
+msgstr "Laadimise käsk saadeti edukalt, kuid sõiduk ei alustanud laadimist."
+
+#: tculink/management/commands/tcuserver.py:446
+msgid "Charge start failure"
+msgstr "Laadimise alustamine ebaõnnestus"
+
+#: tculink/management/commands/tcuserver.py:447
+msgid "Charge start command failed to execute."
+msgstr "Laadimise käivitamise käsk ebaõnnestus täitmisel"
+
+#: tculink/management/commands/tcuserver.py:469
 msgid "Battery heater notification"
 msgstr "Aku soojendi teavitus"
 
-#: tculink/management/commands/tcuserver.py:371
+#: tculink/management/commands/tcuserver.py:470
 msgid "Battery heater has turned on"
 msgstr "Aku soojendus on sisse lülitatud"
 
-#: tculink/management/commands/tcuserver.py:371
+#: tculink/management/commands/tcuserver.py:470
 msgid "Battery heater has turned off"
 msgstr "Aku soojendus on välja lülitatud"
 
@@ -2870,11 +2937,6 @@ msgstr "Ootan esimest ühendust..."
 msgid "Sign-up is not enabled on this instance"
 msgstr "Registreerumine pole selles eksemplaris lubatud"
 
-#: ui/views.py:557
-#, python-brace-format
-msgid "Account created for {username}! Please sign in."
-msgstr "Konto on loodud kasutajale {username}! Palun logige sisse."
-
 #: ui/views.py:578
 msgid ""
 "Your current timezone is UTC. Please set your local timezone in account "
@@ -2902,6 +2964,13 @@ msgstr "Värskendust taotletud! Värskendus toimub järgmisel käivitamisel."
 #: ui/views.py:755
 msgid "Update request cancelled!"
 msgstr "Update request cancelled!"
+
+msgid "A/C precondition notice"
+msgstr "Kliimaseadme eelkonditsioneerimise teavitus"
+
+#, python-brace-format
+msgid "Account created for {username}! Please sign in."
+msgstr "Konto on loodud kasutajale {username}! Palun logige sisse."
 
 msgid "Export VFlash"
 msgstr "Ekspordi VFlash"

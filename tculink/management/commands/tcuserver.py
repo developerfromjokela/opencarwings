@@ -284,7 +284,6 @@ class Command(BaseCommand):
 
                             if body_type == "cp_remind":
                                 new_alert = AlertHistory()
-                                new_alert.additional_data = f"{req_body['resultstate']},{req_body['alertstate']}"
                                 new_alert.type = 3
                                 new_alert.car = car
                                 new_alert.command_id = car.command_id
@@ -297,32 +296,73 @@ class Command(BaseCommand):
 
                             if body_type == "ac_result":
                                 new_alert = AlertHistory()
-                                new_alert.additional_data = f"{req_body['resultstate']},{req_body['alertstate']}"
-                                alert_type = 97
-                                if req_body["resultstate"] == 0x40:
-                                    alert_type = 4
-                                elif req_body["resultstate"] == 0x20:
-                                    alert_type = 5
-                                elif req_body["resultstate"] == 192:
-                                    alert_type = 7
-                                new_alert.type = alert_type
-                                new_alert.car = car
-                                new_alert.command_id = car.command_id
-                                await sync_to_async(new_alert.save)()
+                                new_alert.type = 97
 
                                 alert_msg = _("The A/C preconditioning command could not be executed. One of the "
                                              "reasons behind such error could be: a) low state of charge b) command already executed c) TCU error.")
                                 alert_subject = _("A/C preconditioning error")
-                                if alert_type == 4:
+
+                                error_present = req_body["error_notification"] > 0
+
+                                # ac on
+                                if req_body["pri_ac_req_result"] == 1:
                                     alert_subject = _("A/C preconditioning started")
                                     alert_msg = _("A/C preconditioning has been successfully switched on")
-                                if alert_type == 5:
+                                    new_alert.type = 4
+                                # unknown
+                                elif req_body["pri_ac_req_result"] == 2:
+                                    alert_msg = _("The A/C preconditioning has finished unexpectedly")
                                     alert_subject = _("A/C precondition stopped")
-                                    alert_msg = _("A/C preconditioning has been successfully switched off")
-                                if alert_type == 7:
+                                    new_alert.type = 7
+                                    new_alert.additional_data = alert_msg
+                                # timer off
+                                elif req_body["pri_ac_req_result"] == 3:
                                     alert_msg = _("The A/C preconditioning is finished and switched off"
                                                  " after running certain amount of time.")
                                     alert_subject = _("A/C precondition finished")
+                                    new_alert.type = 7
+
+
+                                # ac off
+                                if req_body["pri_ac_stop_result"] == 2:
+                                    alert_subject = _("A/C precondition stopped")
+                                    alert_msg = _("A/C preconditioning has been successfully switched off")
+                                    new_alert.type = 5
+                                # ac off, already off state
+                                elif req_body["pri_ac_stop_result"] == 1:
+                                    alert_subject = _("A/C precondition notification")
+                                    alert_msg = _("A/C preconditioning already switched off")
+                                    new_alert.additional_data = alert_msg
+                                    new_alert.type = 5
+
+
+                                if error_present:
+                                    alert_subject = _("A/C preconditioning fault")
+                                    # ac on failure
+                                    if req_body["pri_ac_req_result"] == 1:
+                                        alert_msg = _("The vehicle failed to start A/C preconditioning")
+                                    # unknown failure
+                                    elif req_body["pri_ac_req_result"] == 2:
+                                        alert_msg = _("The A/C preconditioning has finished with error")
+                                    # timer off
+                                    elif req_body["pri_ac_req_result"] == 3:
+                                        alert_msg = _("The A/C preconditioning is finished and switched off"
+                                                      " because of an error")
+                                    # ac off
+                                    elif req_body["pri_ac_stop_result"] == 2:
+                                        alert_msg = _("A/C preconditioning could not be switched off")
+                                    # ac off, already off state
+                                    elif req_body["pri_ac_stop_result"] == 1:
+                                        alert_msg = _("A/C preconditioning already switched off")
+
+                                    alert_msg += f" (ECODE {req_body['error_notification']})"
+                                    new_alert.additional_data = alert_msg
+                                    new_alert.type = 97
+
+                                new_alert.car = car
+                                new_alert.command_id = car.command_id
+                                await sync_to_async(new_alert.save)()
+
                                 await send_vehicle_alert_notification(
                                     car,
                                     alert_msg,
@@ -331,20 +371,56 @@ class Command(BaseCommand):
 
                             if body_type == "remote_stop":
                                 new_alert = AlertHistory()
-                                new_alert.additional_data = f"{req_body['resultstate']},{req_body['alertstate']}"
-                                alert_message = _("A/C preconditioning is finished")
-                                subject = _("A/C precondition notification")
+                                error_present = req_body["error_notification"] > 0
 
-                                if req_body["alertstate"] == 4 or req_body["alertstate"] == 0x44:
-                                    new_alert.type = 1
-                                    alert_message = _("Vehicle has finished charging.")
-                                    subject = _("Charge finish notification")
-                                elif req_body["alertstate"] == 8:
-                                    new_alert.type = 8
-                                    alert_message = _("Vehicle has finished quick-charging.")
-                                    subject = _("Quick-charge finish notification")
+                                if req_body["charge_stop"] != 0:
+                                    subject = _("Charging notification")
+                                    new_alert.type = 96
+                                    alert_message = f"charge_stop {req_body['charge_stop']}"
+
+                                    if req_body["charge_stop"] == 1:
+                                        new_alert.type = 1
+                                        alert_message = _("Vehicle has finished charging.")
+                                        subject = _("Charge finish notification")
+                                    elif req_body["charge_stop"] == 2:
+                                        new_alert.type = 8
+                                        alert_message = _("Vehicle has finished quick-charging.")
+                                        subject = _("Quick-charge finish notification")
+
+                                    if error_present:
+                                        subject = _("Charge interruption notification")
+
+                                        if req_body["charge_stop"] == 1:
+                                            alert_message = _("Charging has been stopped due to an interruption")
+                                        elif req_body["charge_stop"] == 2:
+                                            alert_message = _("Quick-charging has been stopped due to an interruption")
+
+                                        alert_message += f" (ECODE {req_body['error_notification']})"
+                                        new_alert.additional_data = alert_message
+                                        new_alert.type = 96
                                 else:
-                                    new_alert.type = 7
+                                    subject = _("A/C precondition notification")
+                                    new_alert.type = 97
+                                    alert_message = f"pri_ac_req_result {req_body['pri_ac_req_result']}"
+
+                                    if req_body["pri_ac_req_result"] == 3:
+                                        alert_message = _("The A/C preconditioning is finished and switched off"
+                                                      " after running certain amount of time.")
+                                        subject = _("A/C precondition finished")
+                                        new_alert.type = 7
+
+                                    if error_present:
+                                        subject = _("A/C preconditioning fault")
+
+                                        if req_body["pri_ac_req_result"] == 3:
+                                            alert_message = _("The A/C preconditioning is finished and switched off"
+                                                          " because of an error")
+
+                                        alert_message += f" (ECODE {req_body['error_notification']})"
+                                        new_alert.additional_data = alert_message
+                                        new_alert.type = 97
+
+
                                 new_alert.car = car
                                 new_alert.command_id = car.command_id
                                 await sync_to_async(new_alert.save)()
@@ -352,16 +428,32 @@ class Command(BaseCommand):
 
                             if body_type == "charge_result":
                                 new_alert = AlertHistory()
-                                new_alert.additional_data = f"{req_body['resultstate']},{req_body['alertstate']}"
                                 new_alert.type = 2
                                 new_alert.car = car
                                 new_alert.command_id = car.command_id
+
+                                if req_body["charge_request_result"] == 1:
+                                    subject = _("Charge start command executed")
+                                    message = _("Charging command has been sent successfully. If vehicle did not start charging, "
+                                         "please check that the charging cable is connected and power is available.")
+                                else:
+                                    subject = _("Charge start command executed with failure")
+                                    message = _("Charging command has been sent successfully, but the vehicle did not start charging.")
+                                    new_alert.type = 96
+                                    new_alert.additional_data = message
+
+                                if req_body["error_notification"] > 0:
+                                    subject = _("Charge start failure")
+                                    message = _("Charge start command failed to execute.")
+                                    message += f" (ECODE {req_body['error_notification']})"
+                                    new_alert.type = 96
+                                    new_alert.additional_data = message
+
                                 await sync_to_async(new_alert.save)()
                                 await send_vehicle_alert_notification(
                                     car,
-                                    _("Charging command has been sent successfully. If vehicle did not start charging, "
-                                     "please check that the charging cable is connected and power is available."),
-                                    _("Charge start command executed"))
+                                    message,
+                                    subject)
 
                             if body_type == "battery_heat":
                                 # TODO: capture resultstate to determine battery heater status

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-26 18:56+0000\n"
-"PO-Revision-Date: 2026-01-19 08:37+0200\n"
+"POT-Creation-Date: 2026-02-22 11:07+0000\n"
+"PO-Revision-Date: 2026-02-22 13:21+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -674,146 +674,146 @@ msgstr ""
 "В {weekday} ожидается {condition}. Максимальная температура — {maxtemp} "
 "градусов Цельсия, минимальная температура — {mintemp} градусов Цельсия.\n"
 
-#: tculink/carwings_proto/utils.py:142
+#: tculink/carwings_proto/utils.py:150
 msgid "first"
 msgstr "первый"
 
-#: tculink/carwings_proto/utils.py:142
+#: tculink/carwings_proto/utils.py:150
 msgid "second"
 msgstr "второй"
 
-#: tculink/carwings_proto/utils.py:142
+#: tculink/carwings_proto/utils.py:150
 msgid "third"
 msgstr "третий"
 
-#: tculink/carwings_proto/utils.py:142
+#: tculink/carwings_proto/utils.py:150
 msgid "fourth"
 msgstr "четвёртый"
 
-#: tculink/carwings_proto/utils.py:142
+#: tculink/carwings_proto/utils.py:150
 msgid "fifth"
 msgstr "пятый"
 
-#: tculink/carwings_proto/utils.py:143
+#: tculink/carwings_proto/utils.py:151
 msgid "sixth"
 msgstr "шестой"
 
-#: tculink/carwings_proto/utils.py:143
+#: tculink/carwings_proto/utils.py:151
 msgid "seventh"
 msgstr "седьмой"
 
-#: tculink/carwings_proto/utils.py:143
+#: tculink/carwings_proto/utils.py:151
 msgid "eighth"
 msgstr "восьмой"
 
-#: tculink/carwings_proto/utils.py:143
+#: tculink/carwings_proto/utils.py:151
 msgid "ninth"
 msgstr "девятый"
 
-#: tculink/carwings_proto/utils.py:143
+#: tculink/carwings_proto/utils.py:151
 msgid "tenth"
 msgstr "десятый"
 
-#: tculink/carwings_proto/utils.py:144
+#: tculink/carwings_proto/utils.py:152
 msgid "eleventh"
 msgstr "одиннадцатый"
 
-#: tculink/carwings_proto/utils.py:144
+#: tculink/carwings_proto/utils.py:152
 msgid "twelfth"
 msgstr "двенадцатый"
 
-#: tculink/carwings_proto/utils.py:144
+#: tculink/carwings_proto/utils.py:152
 msgid "thirteenth"
 msgstr "тринадцатый"
 
-#: tculink/carwings_proto/utils.py:144
+#: tculink/carwings_proto/utils.py:152
 msgid "fourteenth"
 msgstr "четырнадцатый"
 
-#: tculink/carwings_proto/utils.py:144
+#: tculink/carwings_proto/utils.py:152
 msgid "fifteenth"
 msgstr "пятнадцатый"
 
-#: tculink/carwings_proto/utils.py:145
+#: tculink/carwings_proto/utils.py:153
 msgid "sixteenth"
 msgstr "шестнадцатый"
 
-#: tculink/carwings_proto/utils.py:145
+#: tculink/carwings_proto/utils.py:153
 msgid "seventeenth"
 msgstr "семнадцатый"
 
-#: tculink/carwings_proto/utils.py:145
+#: tculink/carwings_proto/utils.py:153
 msgid "eighteenth"
 msgstr "восемнадцатый"
 
-#: tculink/carwings_proto/utils.py:145
+#: tculink/carwings_proto/utils.py:153
 msgid "nineteenth"
 msgstr "девятнадцатый"
 
-#: tculink/carwings_proto/utils.py:145
+#: tculink/carwings_proto/utils.py:153
 msgid "twentieth"
 msgstr "двадцатый"
 
-#: tculink/carwings_proto/utils.py:146
+#: tculink/carwings_proto/utils.py:154
 msgid "twenty-first"
 msgstr "двадцать первый"
 
-#: tculink/carwings_proto/utils.py:146
+#: tculink/carwings_proto/utils.py:154
 msgid "twenty-second"
 msgstr "двадцать второй"
 
-#: tculink/carwings_proto/utils.py:146
+#: tculink/carwings_proto/utils.py:154
 msgid "twenty-third"
 msgstr "двадцать третий"
 
-#: tculink/carwings_proto/utils.py:146
+#: tculink/carwings_proto/utils.py:154
 msgid "twenty-fourth"
 msgstr "двадцать четвёртый"
 
-#: tculink/carwings_proto/utils.py:146
+#: tculink/carwings_proto/utils.py:154
 msgid "twenty-fifth"
 msgstr "двадцать пятый"
 
-#: tculink/carwings_proto/utils.py:147
+#: tculink/carwings_proto/utils.py:155
 msgid "twenty-sixth"
 msgstr "двадцать шестой"
 
-#: tculink/carwings_proto/utils.py:147
+#: tculink/carwings_proto/utils.py:155
 msgid "twenty-seventh"
 msgstr "двадцать седьмой"
 
-#: tculink/carwings_proto/utils.py:147
+#: tculink/carwings_proto/utils.py:155
 msgid "twenty-eighth"
 msgstr "двадцать восьмой"
 
-#: tculink/carwings_proto/utils.py:147
+#: tculink/carwings_proto/utils.py:155
 msgid "twenty-ninth"
 msgstr "двадцать девятый"
 
-#: tculink/carwings_proto/utils.py:147
+#: tculink/carwings_proto/utils.py:155
 msgid "thirtieth"
 msgstr "тридцатый"
 
-#: tculink/carwings_proto/utils.py:148
+#: tculink/carwings_proto/utils.py:156
 msgid "thirty-first"
 msgstr "тридцать первый"
 
-#: tculink/management/commands/tcuserver.py:162
+#: tculink/management/commands/tcuserver.py:163
 msgid "TCU ID does not match with specified ID, please double check!"
 msgstr ""
 "TCU ID не совпадает с указанным идентификатором, пожалуйста, перепроверьте!"
 
-#: tculink/management/commands/tcuserver.py:171
+#: tculink/management/commands/tcuserver.py:172
 msgid "Navi ID does not match with specified ID, please double check!"
 msgstr ""
 "Navi ID не совпадает с указанным идентификатором, пожалуйста, перепроверьте!"
 
-#: tculink/management/commands/tcuserver.py:180
+#: tculink/management/commands/tcuserver.py:181
 msgid "Sim ID does not match with specified ID, please double check!"
 msgstr ""
 "SIM ID не совпадает с указанным идентификатором, пожалуйста, перепроверьте!"
 
-#: tculink/management/commands/tcuserver.py:197
+#: tculink/management/commands/tcuserver.py:199
 msgid ""
 "Authentication failed, username or password is missing! Please sign in using "
 "navigation unit."
@@ -821,7 +821,7 @@ msgstr ""
 "Аутентификация не удалась, отсутствует имя пользователя или пароль! "
 "Пожалуйста, войдите в систему, используя навигационное устройство."
 
-#: tculink/management/commands/tcuserver.py:215
+#: tculink/management/commands/tcuserver.py:217
 msgid ""
 "Authentication failed, username or password is incorrect! Please sign in "
 "using navigation unit."
@@ -829,16 +829,16 @@ msgstr ""
 "Аутентификация не удалась, имя пользователя или пароль неверны! Пожалуйста, "
 "войдите в систему, используя навигационное устройство."
 
-#: tculink/management/commands/tcuserver.py:291
+#: tculink/management/commands/tcuserver.py:294
 msgid "Vehicle is unplugged. Please check the situation if necessary."
 msgstr ""
 "Автомобиль не подключён к зарядке. При необходимости проверьте ситуацию."
 
-#: tculink/management/commands/tcuserver.py:292
+#: tculink/management/commands/tcuserver.py:295
 msgid "Charger unplugged notification"
 msgstr "Уведомление о неподключённом зарядном кабеле"
 
-#: tculink/management/commands/tcuserver.py:309
+#: tculink/management/commands/tcuserver.py:302
 msgid ""
 "The A/C preconditioning command could not be executed. One of the reasons "
 "behind such error could be: a) low state of charge b) command already "
@@ -847,27 +847,29 @@ msgstr ""
 "Команда предварительного кондиционирования не выполнена. Возможные причины: "
 "a) низкий уровень заряда, b) команда уже выполнена, c) ошибка TCU."
 
-#: tculink/management/commands/tcuserver.py:311
+#: tculink/management/commands/tcuserver.py:304
 msgid "A/C preconditioning error"
 msgstr "Ошибка предварительного кондиционирования"
 
-#: tculink/management/commands/tcuserver.py:313
+#: tculink/management/commands/tcuserver.py:310
 msgid "A/C preconditioning started"
 msgstr "Предварительное кондиционирование начато"
 
-#: tculink/management/commands/tcuserver.py:314
+#: tculink/management/commands/tcuserver.py:311
 msgid "A/C preconditioning has been successfully switched on"
 msgstr "Предварительное кондиционирование успешно включено"
 
+#: tculink/management/commands/tcuserver.py:315
+msgid "The A/C preconditioning has finished unexpectedly"
+msgstr "Предварительное кондиционирование неожиданно завершилась."
+
 #: tculink/management/commands/tcuserver.py:316
+#: tculink/management/commands/tcuserver.py:329
 msgid "A/C precondition stopped"
 msgstr "Предварительное кондиционирование остановлено"
 
-#: tculink/management/commands/tcuserver.py:317
-msgid "A/C preconditioning has been successfully switched off"
-msgstr "Предварительное кондиционирование успешно выключено"
-
-#: tculink/management/commands/tcuserver.py:319
+#: tculink/management/commands/tcuserver.py:321
+#: tculink/management/commands/tcuserver.py:408
 msgid ""
 "The A/C preconditioning is finished and switched off after running certain "
 "amount of time."
@@ -875,35 +877,85 @@ msgstr ""
 "Предварительное кондиционирование завершено и выключено после определённого "
 "времени работы."
 
-#: tculink/management/commands/tcuserver.py:321
+#: tculink/management/commands/tcuserver.py:323
+#: tculink/management/commands/tcuserver.py:410
 msgid "A/C precondition finished"
 msgstr "Предварительное кондиционирование завершено"
 
 #: tculink/management/commands/tcuserver.py:330
-msgid "A/C preconditioning is finished"
-msgstr "Предварительное кондиционирование завершено"
+msgid "A/C preconditioning has been successfully switched off"
+msgstr "Предварительное кондиционирование успешно выключено"
 
-#: tculink/management/commands/tcuserver.py:331
+#: tculink/management/commands/tcuserver.py:334
+#: tculink/management/commands/tcuserver.py:403
 msgid "A/C precondition notification"
 msgstr "Уведомление о предварительном кондиционировании"
 
 #: tculink/management/commands/tcuserver.py:335
+#: tculink/management/commands/tcuserver.py:357
+msgid "A/C preconditioning already switched off"
+msgstr "Предварительное кондиционирование уже выключено"
+
+#: tculink/management/commands/tcuserver.py:341
+#: tculink/management/commands/tcuserver.py:414
+msgid "A/C preconditioning fault"
+msgstr "Неисправность предварительного кондиционирования"
+
+#: tculink/management/commands/tcuserver.py:344
+msgid "The vehicle failed to start A/C preconditioning"
+msgstr "Автомобиль не смог запустить кондиционер."
+
+#: tculink/management/commands/tcuserver.py:347
+msgid "The A/C preconditioning has finished with error"
+msgstr "Предварительное кондиционирование завершено с ошибкой."
+
+#: tculink/management/commands/tcuserver.py:350
+#: tculink/management/commands/tcuserver.py:417
+msgid ""
+"The A/C preconditioning is finished and switched off because of an error"
+msgstr "Предварительное кондиционирование завершена и отключена из-за ошибки."
+
+#: tculink/management/commands/tcuserver.py:354
+msgid "A/C preconditioning could not be switched off"
+msgstr "Предварительное кондиционирование не удалось выключить"
+
+#: tculink/management/commands/tcuserver.py:378
+msgid "Charging notification"
+msgstr "Уведомление о зарядки"
+
+#: tculink/management/commands/tcuserver.py:384
 msgid "Vehicle has finished charging."
 msgstr "Автомобиль завершил зарядку."
 
-#: tculink/management/commands/tcuserver.py:336
+#: tculink/management/commands/tcuserver.py:385
 msgid "Charge finish notification"
 msgstr "Уведомление о завершении зарядки"
 
-#: tculink/management/commands/tcuserver.py:339
+#: tculink/management/commands/tcuserver.py:388
 msgid "Vehicle has finished quick-charging."
 msgstr "Автомобиль завершил быструю зарядку."
 
-#: tculink/management/commands/tcuserver.py:340
+#: tculink/management/commands/tcuserver.py:389
 msgid "Quick-charge finish notification"
 msgstr "Уведомление о завершении быстрой зарядки"
 
-#: tculink/management/commands/tcuserver.py:356
+#: tculink/management/commands/tcuserver.py:392
+msgid "Charge interruption notification"
+msgstr "Уведомление о прерывании зарядки"
+
+#: tculink/management/commands/tcuserver.py:395
+msgid "Charging has been stopped due to an interruption"
+msgstr "Зарядка приостановлена ​​из-за перебоя."
+
+#: tculink/management/commands/tcuserver.py:397
+msgid "Quick-charging has been stopped due to an interruption"
+msgstr "Быстрая зарядка приостановлена ​​из-за сбоя."
+
+#: tculink/management/commands/tcuserver.py:438
+msgid "Charge start command executed"
+msgstr "Команда начала зарядки выполнена"
+
+#: tculink/management/commands/tcuserver.py:439
 msgid ""
 "Charging command has been sent successfully. If vehicle did not start "
 "charging, please check that the charging cable is connected and power is "
@@ -912,19 +964,33 @@ msgstr ""
 "Команда зарядки успешно отправлена. Если автомобиль не начал заряжаться, "
 "проверьте подключение зарядного кабеля и наличие питания."
 
-#: tculink/management/commands/tcuserver.py:358
-msgid "Charge start command executed"
-msgstr "Команда начала зарядки выполнена"
+#: tculink/management/commands/tcuserver.py:442
+msgid "Charge start command executed with failure"
+msgstr "Команда начала зарядки выполнена с ошибкой."
 
-#: tculink/management/commands/tcuserver.py:370
+#: tculink/management/commands/tcuserver.py:443
+msgid ""
+"Charging command has been sent successfully, but the vehicle did not start "
+"charging."
+msgstr "Команда зарядки успешно отправлена, но зарядка не началась."
+
+#: tculink/management/commands/tcuserver.py:446
+msgid "Charge start failure"
+msgstr "Сбой запуска зарядки"
+
+#: tculink/management/commands/tcuserver.py:447
+msgid "Charge start command failed to execute."
+msgstr "Команда начала зарядки не была выполнена."
+
+#: tculink/management/commands/tcuserver.py:469
 msgid "Battery heater notification"
 msgstr "Уведомление о нагревателе батареи"
 
-#: tculink/management/commands/tcuserver.py:371
+#: tculink/management/commands/tcuserver.py:470
 msgid "Battery heater has turned on"
 msgstr "Нагреватель батареи включился и нагревает батарею."
 
-#: tculink/management/commands/tcuserver.py:371
+#: tculink/management/commands/tcuserver.py:470
 msgid "Battery heater has turned off"
 msgstr "Нагреватель батареи выключен."
 
@@ -2831,7 +2897,8 @@ msgstr "Выберите или перетащите дамп vflash, чтобы
 #: ui/templates/ui/vflash_editor.html:19
 msgid ""
 "Choose or drag&drop CWS_SYS file from hidden SD partition to get started"
-msgstr "Для начала выберите или перетащите файл CWS_SYS из скрытого раздела SD-карты"
+msgstr ""
+"Для начала выберите или перетащите файл CWS_SYS из скрытого раздела SD-карты"
 
 #: ui/templates/ui/vflash_editor.html:19
 msgid "make hidden partition visible using"
@@ -2897,11 +2964,6 @@ msgstr "Ждем первого подключения.."
 msgid "Sign-up is not enabled on this instance"
 msgstr "Регистрация не включена на этом экземпляре"
 
-#: ui/views.py:557
-#, python-brace-format
-msgid "Account created for {username}! Please sign in."
-msgstr "Для пользователя {username} создана учетная запись! Пожалуйста, войдите в систему."
-
 #: ui/views.py:578
 msgid ""
 "Your current timezone is UTC. Please set your local timezone in account "
@@ -2930,6 +2992,15 @@ msgstr ""
 #: ui/views.py:755
 msgid "Update request cancelled!"
 msgstr "Запрос на обновление отменен!"
+
+msgid "A/C precondition notice"
+msgstr "Уведомление о предварительном кондиционировании"
+
+#, python-brace-format
+msgid "Account created for {username}! Please sign in."
+msgstr ""
+"Для пользователя {username} создана учетная запись! Пожалуйста, войдите в "
+"систему."
 
 msgid "Take Back Control of Your Nissan LEAF"
 msgstr "Возьмите контроль над своим Nissan LEAF"

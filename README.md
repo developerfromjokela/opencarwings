@@ -6,6 +6,13 @@
 <img src="https://raw.githubusercontent.com/developerfromjokela/opencarwings/refs/heads/main/ui/static/slideshow/img0.jpeg" height="700px">
 Server for running CARWINGS services for Nissan LEAF.
 
+<a href="https://play.google.com/store/apps/details?id=com.developerfromjokela.opencarwings">
+<img src="https://cdn.rawgit.com/steverichey/google-play-badge-svg/master/img/en_get.svg" width="50%">
+</a>
+<a href="https://apps.apple.com/fi/app/opencarwings/id6745239364">
+<img src="https://cdn.rawgit.com/ziadsarour/stores-badges/master/appstore/black/en.svg" width="50%">
+</a>
+
 ## Implemented features
 
 - [x] Remote control A/C

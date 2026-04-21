@@ -10,7 +10,7 @@ Server for running CARWINGS services for Nissan LEAF.
 <img src="https://cdn.rawgit.com/steverichey/google-play-badge-svg/master/img/en_get.svg" width="50%">
 </a>
 <a href="https://apps.apple.com/fi/app/opencarwings/id6745239364">
-<img src="https://cdn.rawgit.com/ziadsarour/stores-badges/master/appstore/black/en.svg" width="50%">
+<img src="https://cdn.rawgit.com/ziadsarour/stores-badges/master/appstore/black/en.svg" width="40%">
 </a>
 
 ## Implemented features

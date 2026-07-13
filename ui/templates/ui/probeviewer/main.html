@@ -14,7 +14,7 @@
     let maps = [];
     function initChargeMap(mapId, lat, lon) {
         let latlon = [lat,lon];
-        L.TileLayer.prototype.options.referrerPolicy = 'strict-origin-when-cross-origin';
+        L.TileLayer.prototype.options.referrerPolicy = 'origin-when-cross-origin';
         let chargemap = L.map(mapId, { zoomControl: false });
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '',
@@ -26,7 +26,7 @@
     }
     function initAbsMap(mapId, lat, lon, heading) {
         let latlon = [lat,lon];
-        L.TileLayer.prototype.options.referrerPolicy = 'strict-origin-when-cross-origin';
+        L.TileLayer.prototype.options.referrerPolicy = 'origin-when-cross-origin';
         let absMap = L.map(mapId, { zoomControl: false });
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: ''

@@ -217,7 +217,7 @@ CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [(os.environ["REDIS_HOST"], os.environ["REDIS_PORT"])],
+            "hosts": [{"address": os.environ["REDIS_HOST"], "socket_timeout": 10}],
         },
     },
 }

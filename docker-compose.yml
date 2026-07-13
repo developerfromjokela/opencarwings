@@ -11,8 +11,7 @@ services:
       PSQL_PASSWORD: ${PSQL_PASSWORD}
       PSQL_DATABASE_HOST: db
       PSQL_DATABASE_PORT: 5432
-      REDIS_HOST: redis
-      REDIS_PORT: 6379
+      REDIS_HOST: "redis://redis:6379/0"
       TZ: ${TZ}
     restart: always
     volumes:

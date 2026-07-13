@@ -122,10 +122,10 @@ def decompress_body(body):
 
    compressed_size =  int.from_bytes(req_metadata[4:8], 'big')
 
-   checksum = body[compressed_size+8:]
+   checksum = body[compressed_size+8:compressed_size+12]
    calculated_checksum = crc32_carwings(body[:-4])
    if calculated_checksum != checksum:
-       raise Exception("Checksum mismatch! Expected %s, got %s" % (checksum, calculated_checksum))
+       raise Exception("Checksum mismatch! Expected %s, got %s" % (checksum.hex(), calculated_checksum.hex()))
 
    zobj = zlib.decompressobj()
    comp_data = body[8:compressed_size+8]

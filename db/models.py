@@ -288,10 +288,10 @@ class Car(models.Model):
     command_type = models.IntegerField(choices=COMMAND_TYPES, default=0)
     command_request_time = models.DateTimeField(null=True, default=None, blank=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    timer_commands = models.ManyToManyField(CommandTimerSetting)
+    timer_commands = models.ManyToManyField(CommandTimerSetting, blank=True)
     # CarWings navi
-    send_to_car_location = models.ManyToManyField(SendToCarLocation)
-    route_plans = models.ManyToManyField(RoutePlan)
+    send_to_car_location = models.ManyToManyField(SendToCarLocation, blank=True)
+    route_plans = models.ManyToManyField(RoutePlan, blank=True)
     carrier = models.CharField(max_length=64, null=True, default=None)
     signal_level = models.IntegerField(default=-1)
     odometer = models.IntegerField(default=-1)

@@ -922,17 +922,21 @@
         // Tab Switching with Map Fix
         document.addEventListener('DOMContentLoaded', () => {
             // map init
+            L.TileLayer.prototype.options.referrerPolicy = 'strict-origin-when-cross-origin';
             map = L.map('map', { zoomControl: true });
             overviewMap = L.map('overview-map', { zoomControl: false });
             routeplanMap = L.map('routeplanmap', { zoomControl: true });
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                referrerPolicy: 'strict-origin-when-cross-origin'
             }).addTo(map);
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                referrerPolicy: 'strict-origin-when-cross-origin'
             }).addTo(overviewMap);
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                referrerPolicy: 'strict-origin-when-cross-origin'
             }).addTo(routeplanMap);
 
             const tabNav = document.querySelector('.tab-nav');

@@ -334,6 +334,7 @@
                 });
             });
             {% if trip.start_latitude != 0 or trip.end_latitude != 0 %}
+            L.TileLayer.prototype.options.referrerPolicy = 'strict-origin-when-cross-origin';
             mainMap = L.map('mainMap', { zoomControl: true });
             updateMap();
             {% endif %}

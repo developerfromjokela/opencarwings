@@ -14,9 +14,10 @@
     let maps = [];
     function initChargeMap(mapId, lat, lon) {
         let latlon = [lat,lon];
+        L.TileLayer.prototype.options.referrerPolicy = 'strict-origin-when-cross-origin';
         let chargemap = L.map(mapId, { zoomControl: false });
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: ''
+            attribution: '',
         }).addTo(chargemap);
         L.marker(latlon).addTo(chargemap)
         chargemap.invalidateSize();
@@ -25,6 +26,7 @@
     }
     function initAbsMap(mapId, lat, lon, heading) {
         let latlon = [lat,lon];
+        L.TileLayer.prototype.options.referrerPolicy = 'strict-origin-when-cross-origin';
         let absMap = L.map(mapId, { zoomControl: false });
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: ''
@@ -1074,7 +1076,7 @@
     </script>
     {% if locations %}
     <script>
-        document.addEventListener('DOMContentLoaded', () => {mainMap = L.map('locationmap', { zoomControl: true })})
+        document.addEventListener('DOMContentLoaded', () => {L.TileLayer.prototype.options.referrerPolicy = 'strict-origin-when-cross-origin';mainMap = L.map('locationmap', { zoomControl: true })})
 
         var currentMonth = new Date();
         var periodType = 'day';

@@ -196,7 +196,7 @@ def parse_ev_info(data: bytes, offset: int) -> Tuple[dict, int]:
     gids = (d[5] << 2) | ((d[6] & 0b11000000) >> 6)
 
     acon = (d[19] << 2) | ((d[20] & 0b11000000) >> 6)
-    acoff = ((d[21] & 0b00111111) << 4) | ((d[22] & 0b11110000) >> 4)
+    acoff = ((d[20] & 0b00111111) << 4) | ((d[21] & 0b11110000) >> 4)
 
     # not sure if this is cap bars, zero out if its OOB
     capacity_bars = (d[13] & 0b11110000) >> 4

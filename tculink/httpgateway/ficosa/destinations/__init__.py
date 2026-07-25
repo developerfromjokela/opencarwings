@@ -9,6 +9,7 @@ DESTINATIONS = {
     0x2a: evinfo.handle, # ChargeFinish
     0x2b: evinfo.handle, # ChargeStart
     0x2c: evinfo.handle, # A/C
+    0xd8: evinfo.handle, # A/C autostop
     0x3e: evinfo.handle, # ChargeStart80%
     # Car
     0x31: door.handle,

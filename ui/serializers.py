@@ -5,6 +5,7 @@ from db.models import Car, TCUConfiguration, LocationInfo, EVInfo, AlertHistory,
     CRMDistanceRecord, CommandTimerSetting
 from tculink.carwings_proto.autodj import ICONS
 from tculink.carwings_proto.autodj.channels import get_info_channel_data
+from tculink.coordinators import get_supported_commands
 
 
 class TCUConfigurationSerializer(serializers.ModelSerializer):
@@ -108,6 +109,7 @@ class CarSerializer(serializers.ModelSerializer):
     timer_commands = CommandTimerSettingSerializer(many=True)
     command_request_time = serializers.DateTimeField(read_only=True, default_timezone=pytz.utc)
     last_connection = serializers.DateTimeField(read_only=True, default_timezone=pytz.utc)
+    supported_commands = serializers.ListField(child=serializers.IntegerField(), required=False)
 
     def to_representation(self, instance):
         data = super().to_representation(instance)
@@ -117,11 +119,20 @@ class CarSerializer(serializers.ModelSerializer):
                 instance.send_to_car_location.order_by('-created_at').first())
         else:
             data["send_to_car_location"] = None
+        data['supported_commands'] = get_supported_commands(instance.tcu_type)
         return data
 
     class Meta:
         model = Car
-        fields = '__all__'
+        fields = [
+            'vin', 'nickname', 'sms_config', 'color', 'vehicle_code1', 'vehicle_code2', 'vehicle_code3',
+            'vehicle_code4', 'tcu_type', 'tcu_model', 'tcu_serial', 'iccid', 'tcu_ver', 'tcu_user', 'tcu_pass',
+            'disable_auth', 'last_connection', 'tcu_configuration', 'location', 'ev_info', 'periodic_refresh',
+            'periodic_refresh_running', 'command_id', 'command_result', 'command_result_display', 'command_type_display',
+            'command_requested', 'command_payload', 'command_type', 'command_request_time', 'timer_commands',
+            'send_to_car_location', 'route_plans', 'carrier', 'signal_level', 'odometer', 'navi_version', 'map_version',
+            'tcu_version', 'favorite_channels', 'custom_channels', 'supported_commands']
+
 
 class CarUpdatingSerializer(serializers.ModelSerializer):
     send_to_car_location = SendToCarLocationSerializer(required=False, allow_null=True)
@@ -132,7 +143,7 @@ class CarUpdatingSerializer(serializers.ModelSerializer):
     custom_channels = serializers.JSONField(required=False)
     class Meta:
         model = Car
-        fields = [ 'send_to_car_location', 'send_to_car_location_all', 'ev_info', 'route_plans', 'favorite_channels', 'custom_channels' ]
+        fields = [ 'send_to_car_location', 'send_to_car_location_all', 'ev_info', 'route_plans', 'favorite_channels', 'custom_channels']
 
     def update(self, instance, validated_data):
         if 'send_to_car_location' in validated_data:
@@ -216,7 +227,7 @@ class CarSerializerList(serializers.ModelSerializer):
     last_connection = serializers.DateTimeField(read_only=True, default_timezone=pytz.utc)
     class Meta:
         model = Car
-        fields = ('vin', 'last_connection', 'nickname', 'ev_info', 'location', 'carrier', 'signal_level')
+        fields = ('vin', 'last_connection', 'nickname', 'ev_info', 'location', 'carrier', 'signal_level', 'tcu_type')
 
 class CommandResponseSerializer(serializers.Serializer):
     message = serializers.CharField()

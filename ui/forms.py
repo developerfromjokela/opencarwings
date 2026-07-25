@@ -3,7 +3,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.utils.translation import gettext_lazy as _
 
-from db.models import User, CAR_COLOR
+from db.models import User, CAR_COLOR, TCU_TYPE
 from tculink.utils.password_hash import password_hash
 
 
@@ -18,6 +18,10 @@ class SettingsForm(forms.Form):
     nickname = forms.CharField(label=_("Nickname"), max_length=64, required=True, strip=True, min_length=2)
     disable_auth = forms.BooleanField(label=_("Disable TCU authentication"), required=False)
     force_soc_display = forms.BooleanField(label=_("Show calculated battery percentage"), required=False)
+
+class Step0Form(forms.Form):
+    tcu_type = forms.ChoiceField(label="TCU Type", choices=TCU_TYPE)
+    default_color = forms.ChoiceField(label="Default Color", required=False, choices=CAR_COLOR)
 
 class Step2Form(forms.Form):
     unit_id = forms.CharField(label="Unit ID", max_length=32, required=True, strip=True, min_length=5)

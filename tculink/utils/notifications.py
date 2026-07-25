@@ -2,7 +2,7 @@ import asyncio
 from uuid import uuid4
 
 from aioapns import NotificationRequest, PushType, APNs
-from asgiref.sync import sync_to_async
+from asgiref.sync import sync_to_async, async_to_sync
 from django.conf import settings
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
@@ -51,6 +51,7 @@ def translate_msg(lang, msg):
     with translation.override(lang):
         return translation.gettext(msg)
 
+@async_to_sync
 async def send_vehicle_alert_notification(car, alert_message, subject):
     car_owner = await get_car_owner_info(car)
     ev_info = await get_evinfo(car)

@@ -1,6 +1,6 @@
 import requests
 from datetime import datetime, timedelta
-from tculink.sms import BaseSMSProvider
+from tculink.sms import BaseSMSProvider, SMSType
 from django.utils.translation import gettext_lazy as _
 
 
@@ -11,6 +11,7 @@ class ProviderMonogoto(BaseSMSProvider):
         ('thing_id', _("Thing ID")),
     ]
     HELP_TEXT = _("Credentials are available in Monogoto dashboard. Thing ID can be found in the URL when viewing your SIM. It has this structure: ThingId_ICCID_9999999999999999999")
+    SUPPORTED_TYPES = [SMSType.TEXT]
 
     def __init__(self):
         self.token = None

@@ -3,6 +3,7 @@ import logging
 
 from tculink.carwings_proto.applications.cp import handle_cp
 from tculink.carwings_proto.utils import update_car_info
+from tculink.httpgateway import ficosa
 
 logger = logging.getLogger("carwings")
 
@@ -88,3 +89,13 @@ def carwings_http_gateway(request):
 
     # Return binary response
     return HttpResponse(io.BytesIO(resp_buffer), content_type="application/x-carwings-nz")
+
+@authentication_classes([])
+@permission_classes([])
+@csrf_exempt
+def ficosa_http_gateway(request):
+    """Handle FICOSA TCU POST request."""
+    if request.method != 'POST' or request.headers.get('Content-Type') != 'application/octet-stream'\
+            or ('User-Agent' not in request.headers or 'BREW-Applet' not in request.headers['User-Agent']):
+        return redirect('/')
+    return ficosa.handle_request(request)

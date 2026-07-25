@@ -1,6 +1,3 @@
-from datetime import datetime
-from random import randint
-
 import django
 from dateutil import parser
 from dateutil.parser import ParserError
@@ -26,8 +23,9 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 
 from api.models import TokenMetadata
 from api.serializers import JWTTokenObtainPairSerializer, TokenMetadataUpdateSerializer, TokenMetadataSerializer
-from db.models import Car, AlertHistory, COMMAND_TYPES, CRMDistanceRecord, CommandTimerSetting
-from tculink.sms import send_using_provider
+from db.models import Car, AlertHistory, COMMAND_TYPES, CRMDistanceRecord
+from tculink.coordinators import TCUCoordinatorError
+from tculink.coordinators.stub import send_command_using_provider
 from ui.serializers import CarSerializer, CarSerializerList, AlertHistorySerializer, \
     CommandResponseSerializer, CommandErrorSerializer, CarUpdatingSerializer, CRMDistanceRecordSerializer, \
     CommandTimerSettingSerializer
@@ -353,18 +351,12 @@ def command_api(request, vin):
         command_type = int(command_type)
         if command_type in dict(COMMAND_TYPES):
             try:
-                sms_result = send_using_provider(django.conf.settings.ACTIVATION_SMS_MESSAGE, car.sms_config)
-                if not sms_result:
-                    raise Exception("Could not send SMS message")
-            except Exception as e:
-                print(e)
+                car = send_command_using_provider(command_type, car)
+            except TCUCoordinatorError as e:
+                return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            except Exception:
                 return Response({'error': _('Failed to send SMS message to TCU. Please try again in a moment.')}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-            car.command_type = command_type
-            car.command_id = randint(10000, 99999)
-            car.command_requested = True
-            car.command_result = -1
-            car.command_request_time = timezone.now()
-            car.save()
+
             return Response({
                 'message': f"Command '{dict(COMMAND_TYPES)[command_type]}' requested successfully",
                 'car': CarSerializer(car).data

@@ -1,4 +1,5 @@
 import json
+import logging
 import re
 from http.cookiejar import CookiePolicy
 from urllib.parse import urlparse, parse_qs, unquote
@@ -29,9 +30,10 @@ from db.models import Car, COMMAND_TYPES, AlertHistory, EVInfo, LocationInfo, TC
 from tculink.carwings_proto.autodj import ICONS
 from tculink.carwings_proto.autodj.channels import get_info_channel_data
 from tculink.carwings_proto.probe_config import PROBE_CONFIGS, PROBE_CONFIG_INFO
+from tculink.coordinators import get_required_sms_types, get_supported_commands
 from tculink.utils.password_hash import check_password_validity, password_hash
 from .forms import Step2Form, Step3Form, SettingsForm, ChangeCarwingsPasswordForm, AccountForm, SignUpForm, \
-    ProbeConfigForm
+    ProbeConfigForm, Step0Form
 from .serializers import MapLinkResolverResponseSerializer, MapLinkResolverInputSerializer
 
 SETUP_STEPS = [
@@ -63,6 +65,7 @@ for provider_id, provider in django.conf.settings.SMS_PROVIDERS.items():
         'name': provider[0],
         'fields': provider_class.CONFIGURATION_FIELDS,
         'help': provider_class.HELP_TEXT,
+        'supported_types': provider_class.SUPPORTED_TYPES,
         'link': link,
     })
 
@@ -460,14 +463,18 @@ def car_detail(request, vin):
     if not request.user.is_authenticated:
         return redirect('signin')
     car = get_object_or_404(Car, vin=vin, owner=request.user)
-    FILTERED_COMMANDTYPES = COMMAND_TYPES[1:]
+    supported_commands = get_supported_commands(car.tcu_type)
+    FILTERED_COMMANDTYPES = [x for x in COMMAND_TYPES if x[0] in supported_commands]
 
     show_settings = False
+
+    sms_types = get_required_sms_types(car.tcu_type)
+    filtered_providers = [x for x in UI_SMS_PROVIDERS if set(sms_types).issubset(x['supported_types'])]
 
     if request.method == 'POST':
         show_settings = True
         provider_id = request.POST.get('sms-provider', None)
-        sms_provider = next((i for i in UI_SMS_PROVIDERS if i['id'] == provider_id), None)
+        sms_provider = next((i for i in filtered_providers if i['id'] == provider_id), None)
         if sms_provider is None:
             messages.error(request, 'Please select a provider for SMS.')
         else:
@@ -526,7 +533,7 @@ def car_detail(request, vin):
         'car': car,
         'alerts': alerts,
         'command_choices': FILTERED_COMMANDTYPES,
-        "providers": UI_SMS_PROVIDERS,
+        "providers": filtered_providers,
         "show_settings": show_settings,
         "periodic_refresh_choices": PERIODIC_REFRESH,
         "periodic_refresh_running_choices": PERIODIC_REFRESH_ACTIVE,
@@ -589,24 +596,70 @@ def signout(request):
 
 # SETUP
 
+CAR_MODELS = [
+    {"code": "continental2012", "name": "Nissan Leaf (24kWh)", "image": static("car/l_pearlwhite.png"),
+     "device_image": static("tcu.png"),
+     'default_color': 'l_pearlwhite',
+     "year_start": 2012,
+     "year_end": 2015},
+    {"code": "ficosa2016", "name": "Nissan Leaf (24/30 kWh)", "image": static("car/l_pearlwhite.png"),
+     'default_color': 'l_pearlwhite',
+     "device_image": static("tcu2.png"),
+     "year_start": 2016,
+     "year_end": 2017},
+    {"code": "ficosa2016", "name": "Nissan Leaf (ZE1)", "image": static("car/l2_pearlwhite.png"), "year_start": 2018,
+     "device_image": static("tcu2.png"),
+     'default_color': 'l2_pearlwhite',
+     "year_end": 2020},
+    {"code": "continental2012", "name": "Nissan e-NV200", "image": static("car/env200_white.png"),
+     "device_image": static("tcu.png"),
+     'default_color': 'env200_white',
+     "year_start": 2014,
+     "year_end": 2017},
+    {"code": "continental2012", "name": "Nissan e-NV200", "image": static("car/env200_white.png"),
+     "device_image": static("tcu2.png"),
+     'default_color': 'env200_white',
+     "year_start": 2018,
+     "year_end": 2022},
+]
+
+def setup_step0(request):
+    if not request.user.is_authenticated:
+        return redirect('/')
+    if 'step' not in request.session:
+        request.session['step'] = {"current_step": 0}
+    elif request.session['step']['current_step'] != 0:
+        return redirect('/setup/step'+str(request.session['step']['current_step']))
+    else:
+        if request.method == 'POST':
+            form = Step0Form(request.POST)
+            # check whether it's valid:
+            if form.is_valid():
+                request.session['step'] = {"current_step": 1}
+                request.session['type'] = form.cleaned_data['tcu_type']
+                request.session['default_color'] = form.cleaned_data['default_color']
+                return redirect('/setup/step1')
+    return render(request, 'ui/setup/step0.html', {'steps': SETUP_STEPS, "current_step": request.session['step']['current_step'], 'car_models': CAR_MODELS})
+
+
 def setup_step1(request):
     if not request.user.is_authenticated:
         return redirect('/')
     if 'step' not in request.session:
-        request.session['step'] = {"current_step": 1}
+        return redirect('/setup/step0')
     elif request.session['step']['current_step'] != 1:
         return redirect('/setup/step'+str(request.session['step']['current_step']))
     else:
         if request.method == 'POST':
             request.session['step'] = {"current_step": 2}
             return redirect('/setup/step2')
-    return render(request, 'ui/setup/step1.html', {'steps': SETUP_STEPS, "current_step": request.session['step']['current_step']})
+    return render(request, 'ui/setup/step1.html', {'steps': SETUP_STEPS, "current_step": request.session['step']['current_step'], 'tcu_type': request.session['type']})
 
 def setup_step2(request):
     if not request.user.is_authenticated:
         return redirect('/signin')
     if 'step' not in request.session:
-        return redirect('/setup/step1')
+        return redirect('/setup/step0')
     elif request.session['step']['current_step'] != 2:
         return redirect('/setup/step'+str(request.session['step']['current_step']))
     else:
@@ -638,7 +691,7 @@ def setup_step3(request):
     if not request.user.is_authenticated:
         return redirect('/signin')
     if 'step' not in request.session:
-        return redirect('/setup/step3')
+        return redirect('/setup/step0')
     elif request.session['step']['current_step'] != 3:
         return redirect('/setup/step'+str(request.session['step']['current_step']))
     else:
@@ -660,13 +713,16 @@ def setup_step4(request):
     if not request.user.is_authenticated:
         return redirect('/signin')
     if 'step' not in request.session:
-        return redirect('/setup/step1')
+        return redirect('/setup/step0')
     elif request.session['step']['current_step'] != 4:
         return redirect('/setup/step'+str(request.session['step']['current_step']))
     else:
+        sms_types = get_required_sms_types(request.session['type'])
+        filtered_providers = [x for x in UI_SMS_PROVIDERS if set(sms_types).issubset(x['supported_types'])]
+
         if request.method == 'POST':
             provider_id = request.POST.get('sms-provider', None)
-            sms_provider = next((i for i in UI_SMS_PROVIDERS if i['id'] == provider_id), None)
+            sms_provider = next((i for i in filtered_providers if i['id'] == provider_id), None)
             if sms_provider is None:
                 messages.error(request, _('Please select a provider for SMS.'))
             else:
@@ -689,13 +745,14 @@ def setup_step4(request):
                 else:
                     messages.error(request, _('Please fill all necessary fields and try again.'))
 
-    return render(request, 'ui/setup/step4.html', {'steps': SETUP_STEPS, 'providers': UI_SMS_PROVIDERS, "current_step": request.session['step']['current_step']})
+
+    return render(request, 'ui/setup/step4.html', {'steps': SETUP_STEPS, 'providers': filtered_providers, "current_step": request.session['step']['current_step']})
 
 def setup_step5(request):
     if not request.user.is_authenticated:
         return redirect('/signin')
     if 'step' not in request.session:
-        return redirect('/setup/step1')
+        return redirect('/setup/step0')
     elif request.session['step']['current_step'] != 5:
         return redirect('/setup/step'+str(request.session['step']['current_step']))
     else:
@@ -708,6 +765,8 @@ def setup_step5(request):
             new_car.tcu_model=composed_car['tcu_id']
             new_car.sms_config=composed_car['sms']
             new_car.nickname=composed_car['nickname']
+            new_car.color = request.session['default_color']
+            new_car.tcu_type = request.session['type']
             ev_info = EVInfo()
             tcu_config = TCUConfiguration()
             location_info = LocationInfo()

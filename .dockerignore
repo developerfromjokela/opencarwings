@@ -3,3 +3,4 @@ logs
 staticfiles
 mediafiles
 .env
+docs

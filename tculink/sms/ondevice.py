@@ -1,6 +1,6 @@
 from django.conf import settings
 
-from tculink.sms import BaseSMSProvider
+from tculink.sms import BaseSMSProvider, SMSType
 from django.utils.translation import gettext_lazy as _
 
 
@@ -10,6 +10,7 @@ class ProviderOnDevice(BaseSMSProvider):
     ]
 
     HELP_TEXT = _("With this option, the website will redirect you to send the SMS on your phone. Or with the mobile app, it will send it automatically if possible. This method won't work via API or automations, only from the website or mobile app!")
+    SUPPORTED_TYPES = [SMSType.TEXT]
 
     def send(self, message, configuration):
         return True

@@ -218,6 +218,7 @@
             <div id="basic-info" class="tab-content">
                 <dl class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 text-sm sm:text-base">
                     <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">VIN:</dt><dd class="text-gray-600 dark:text-gray-300">{{ car.vin }}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">TCU:</dt><dd class="text-gray-600 dark:text-gray-300">{{ car.get_tcu_type_display }}</dd></div>
                     <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Odometer" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="odometer">{% if car.odometer > 0 %}{% local_dist car.odometer decimals=0 %}{% else %}--{% endif %}</dd></div>
                     <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Navi version" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="navi_version">{{ car.navi_version|default:"--"  }}</dd></div>
                     <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Map version" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="map_version">{{ car.map_version|default:"--"  }}</dd></div>
@@ -266,7 +267,7 @@
                                         {% translate "Sun" %} |
                                     {% endif %}
                                 {% endif %} {{ timer.time }}</span>
-                                <span class="text-gray-700 dark:text-gray-400 font-sm">{% translate "Last run" %}: {{ timer.last_command_execution|default:"--" }}, {% translate "result" %}: {{ timer.get_last_command_result_display|default:"--" }}</span>
+                                <span class="text-gray-700 dark:text-gray-400 font-sm">{% translate "Last run" %}: {{ timer.last_command_execution|default:"--" }}, {% translate "result" %}: {{ timer.get_last_command_resultfy|default:"--" }}</span>
                                 <div class="flex space-x-2">
                                     <button
                                         onclick="editTimer({{ timer.id }})"

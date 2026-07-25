@@ -1,4 +1,4 @@
-from tculink.sms import BaseSMSProvider
+from tculink.sms import BaseSMSProvider, SMSType
 from django.utils.translation import gettext_lazy as _
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
@@ -12,6 +12,7 @@ class ProviderSMSGateway(BaseSMSProvider):
 
     HELP_TEXT = _("Use your old smartphone as a gateway to send SMS. Once app has been installed, write values shown in the app to their respective fields. More information: ")
     LINK = "https://github.com/developerfromjokela/opencarwings-sms"
+    SUPPORTED_TYPES = [SMSType.TEXT]
 
     def send(self, message, configuration):
         if "device_id" not in configuration or "phone" not in configuration:

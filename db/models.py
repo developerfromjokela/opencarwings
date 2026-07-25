@@ -10,6 +10,8 @@ from rest_framework.authtoken.models import Token
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
 
+from tculink.coordinators import COORDINATORS
+
 ALERT_TYPES = (
     (1, _('Charge stop')),
     (2, _('Charge start')),
@@ -21,6 +23,7 @@ ALERT_TYPES = (
     (8, _("Quick charge stop")),
     (9, _('Battery heater start')),
     (10, _('Battery heater stop')),
+    (11, _('Charge start') + ' 80%'),
     (96, _('Charge error')),
     (97, _('A/C error')),
     (98, _('Command timeout')),
@@ -31,9 +34,14 @@ COMMAND_TYPES = (
     (0, _('No command')),
     (1, _('Refresh data')),
     (2, _('Charge start')),
+    (6, _('Charge start')+' 80%'),
     (3, _('A/C on')),
     (4, _('A/C off')),
-    (5, _('Read configuration'))
+    (5, _('Read configuration')),
+    (7, _('Door unlock')),
+    (8, _('Door lock')),
+    (9, _('Horn & light')),
+    (10, _('Stop Horn & light')),
 )
 
 COMMAND_RESULTS = (
@@ -79,6 +87,7 @@ CAR_COLOR = (
     ("l_forgedbronze", "LEAF Forged Bronze"),
     ("l_gunmetallic", "LEAF Gun Metallic"),
     ("l_pearlwhite", "LEAF Pearl White"),
+    ("l2_pearlwhite", "LEAF ZE1 Pearl White"),
     ("l_planetblue", "LEAF Planet Blue"),
     ("l_superblack", "LEAF Super Black"),
     ("env200_white", "e-NV200 White"),
@@ -100,6 +109,12 @@ PROBE_CONFIG_RESULTS = (
 TIMER_TYPE = (
     (0, "One-time"),
     (1, "Repeating")
+)
+
+coordinator_keys = list(COORDINATORS.keys())
+TCU_TYPE = (
+    (coordinator_keys[0], _("Continental 2012-2015")),
+    (coordinator_keys[1], _("Ficosa 2016-2019"))
 )
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
@@ -300,6 +315,9 @@ class Car(models.Model):
     tcu_version = models.CharField(max_length=64, null=True, default=None, blank=True)
     favorite_channels = models.JSONField(default=dict)
     custom_channels = models.JSONField(default=dict)
+    # Ficosa
+    hmac_key = models.CharField(max_length=32, null=True, default=None, blank=True)
+    tcu_type = models.CharField(max_length=32, default='continental2012', choices=TCU_TYPE)
 
     def __str__(self):
         return self.vin

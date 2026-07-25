@@ -130,6 +130,10 @@ def parse_probe_request(acp_encoded_data: bytes) -> Tuple[dict, int]:
     result["app_header"] = app_header
     offset += consumed
 
+    version, consumed = parser.parse_version_ficosa(acp_encoded_data, offset)
+    result["version"] = version
+    offset += consumed
+
     veh_desc, consumed = parser.decode_veh_desc(acp_encoded_data, offset)
     result["veh_desc"] = veh_desc
     offset += consumed

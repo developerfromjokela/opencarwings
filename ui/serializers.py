@@ -131,7 +131,7 @@ class CarSerializer(serializers.ModelSerializer):
             'periodic_refresh_running', 'command_id', 'command_result', 'command_result_display', 'command_type_display',
             'command_requested', 'command_payload', 'command_type', 'command_request_time', 'timer_commands',
             'send_to_car_location', 'route_plans', 'carrier', 'signal_level', 'odometer', 'navi_version', 'map_version',
-            'tcu_version', 'favorite_channels', 'custom_channels', 'supported_commands']
+            'tcu_version', 'favorite_channels', 'custom_channels', 'supported_commands', 'id']
 
 
 class CarUpdatingSerializer(serializers.ModelSerializer):

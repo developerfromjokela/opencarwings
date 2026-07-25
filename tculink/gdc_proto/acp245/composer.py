@@ -213,7 +213,7 @@ class EVCommandTail:
 class HornRequest:
     def __init__(self, cmd_type: int, duration: int):
         # divide by 5, TCU multiplies by 5. input is seconds
-        duration = duration/5
+        duration = int(duration/5)
         if not (1 <= cmd_type <= 4):
             raise ACPComposeError(f"bad cmd_type={cmd_type}")
         if not (0 <= duration <= 0xF):

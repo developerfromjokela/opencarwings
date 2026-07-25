@@ -1,6 +1,8 @@
 import logging
 
 from asgiref.sync import sync_to_async
+from django.utils import timezone
+
 from db.models import Car, AlertHistory
 from tculink.gdc_proto import GIDS_NEW_30kWh, GIDS_NEW_40kWh
 from tculink.gdc_proto.ficosa.utils import command_to_destination_id
@@ -55,6 +57,7 @@ def handle(bin_data: bytes, acp_data: dict, car: Car, source_id: int, destinatio
     c_ev_info.soc_display = ev_info["soc_display"]
     c_ev_info.gids = ev_info["gids"]
     c_ev_info.soh = ev_info["soh"]
+    c_ev_info.last_updated = timezone.now()
 
     if c_ev_info.max_gids < 1:
         dcm_ver = acp_data["veh_desc"].get("dcm_ver", "")

@@ -9,7 +9,10 @@ COMMAND_MAP = {
     8: 0x31,
     9: 0x38,
     10: 0x38,
-    11: 0x38
+    11: 0x38,
+    12: 0x38,
+    13: 0x39,
+    14: 0x39
 }
 
 def command_to_destination_id(cmd: int) -> int|None:

@@ -28,6 +28,9 @@ ALERT_TYPES = (
     (13, _('Door lock')),
     (14, _('Horn & Light')),
     (15, _('Stop Horn & Light')),
+    (16, _('Remote Start')),
+    (17, _('Remote Stop')),
+    (93, _('Remote Start/Stop error')),
     (94, _('Horn & Light error')),
     (95, _('Door Lock/Unlock error')),
     (96, _('Charge error')),
@@ -50,6 +53,8 @@ COMMAND_TYPES = (
     (10, _('Lights')),
     (11, _('Horn & Lights')),
     (12, _('Stop Horn & light')),
+    (13, _('Remote Start')),
+    (14, _('Remote Stop')),
 )
 
 COMMAND_RESULTS = (

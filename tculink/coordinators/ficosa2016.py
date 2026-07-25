@@ -13,7 +13,7 @@ from django.utils.translation import gettext_lazy as _
 
 class Ficosa2016(TCULink):
     CODE = 'ficosa2016'
-    SUPPORTED_COMMANDS = [1,2,3,4,6,7,8,9,10,11,12]
+    SUPPORTED_COMMANDS = [1,2,3,4,6,7,8,9,10,11,12,13,14]
     REQUIRED_SMS_TYPES = [SMSType.BINARY]
 
 

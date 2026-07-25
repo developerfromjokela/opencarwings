@@ -227,6 +227,43 @@ class HornRequest:
                   ((self.duration & 0xF) << 1)
         ), ie_id=0)
 
+class RemoteStartRequest:
+    def __init__(self, flag1: int = 0, flag2: int = 0, flag3: int = 0, flag4: int = 0, flag5: int = 0, flag6: int = 0, flag7: int = 0):
+        if not (0 <= flag1 <= 0x1):
+            raise ACPComposeError(f"bad flag1={flag1}")
+
+
+        # flag2
+        if not (0 <= flag2 <= 0x1F):
+            raise ACPComposeError(f"bad flag2={flag2}")
+
+        # flag3, flag4, flag5, flag6, flag7
+        for name, val in (("flag3", flag3), ("flag4", flag4),
+                          ("flag5", flag5), ("flag6", flag6),
+                          ("flag7", flag7)):
+            if not (0 <= val <= 0x1):
+                raise ACPComposeError(f"bad {name}={val}")
+
+        self.flag1 = flag1
+        self.flag2 = flag2
+        self.flag3 = flag3
+        self.flag4 = flag4
+        self.flag5 = flag5
+        self.flag6 = flag6
+        self.flag7 = flag7
+
+    def encode(self) -> bytes:
+        byte1 = ((self.flag1 & 0x1) << 7) | \
+                ((self.flag2 & 0x1F) << 2)
+
+        byte2 = ((self.flag3 & 0x1) << 7) | \
+                ((self.flag4 & 0x1) << 6) | \
+                ((self.flag5 & 0x1) << 5) | \
+                ((self.flag6 & 0x1) << 3) | \
+                ((self.flag7 & 0x1) << 2)
+
+        return _encode_ie(bytes([byte1, byte2]), ie_id=0)
+
 class EVTemperatureDummy:
 
     def encode(self) -> bytes:

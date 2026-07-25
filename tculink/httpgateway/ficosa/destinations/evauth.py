@@ -40,7 +40,7 @@ def handle(_, acp_data: dict, car: Car, source_id: int, __) -> bytes:
         acp_msg += composer.EVCommandTail(command=6 if car.command_type == 7 else 5).encode()
         acp_msg += composer.TimeSync().encode()
     elif dest_id == 0x38: # Horn & Light
-        acp_msg += composer.EVCommandTail(command=0xe if car.command_type == 12 else 5).encode()
+        acp_msg += composer.EVCommandTail(command=0xe if car.command_type == 12 else 0xd).encode()
         acp_msg += composer.TimeSync().encode()
         if car.command_type == 12: # stop horn&light
             acp_msg += composer.HornRequest(cmd_type=4, duration=0).encode()
@@ -52,6 +52,10 @@ def handle(_, acp_data: dict, car: Car, source_id: int, __) -> bytes:
             if car.command_type == 10:
                 cmd_type = 1
             acp_msg += composer.HornRequest(cmd_type=cmd_type, duration=30).encode()
+    elif dest_id == 0x39:
+        acp_msg += composer.EVCommandTail(command=0x10 if car.command_type == 13 else 0x11).encode()
+        acp_msg += composer.TimeSync().encode()
+        acp_msg += composer.RemoteStartRequest().encode()
     else:
         car.command_result = 1
         car.save()

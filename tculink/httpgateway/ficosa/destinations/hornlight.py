@@ -13,7 +13,7 @@ logger = logging.getLogger("ficosa")
 
 def handle(bin_data: bytes, acp_data: dict, car: Car, source_id: int, destination_id: int) -> bytes:
     """
-    Process door lock&unlock results
+    Process horn & light (find car) results
     """
 
     dest_id = command_to_destination_id(car.command_type)
@@ -41,8 +41,8 @@ def handle(bin_data: bytes, acp_data: dict, car: Car, source_id: int, destinatio
     if result_code == 1 and data_type == 1:
         logger.debug("Function disabled")
         new_alert = AlertHistory()
-        new_alert.type = 95
-        new_alert.additional_data = _("{name} function is disabled in TCU").format(name=car.get_command_type_display()),
+        new_alert.type = 94
+        new_alert.additional_data = _("{name} function is disabled in TCU").format(name=car.get_command_type_display())
         new_alert.car = car
         new_alert.command_id = source_id
         new_alert.save()
@@ -56,11 +56,11 @@ def handle(bin_data: bytes, acp_data: dict, car: Car, source_id: int, destinatio
     elif data_type == 0x13:
         logger.debug("Failure, code: %d", result_code)
         new_alert = AlertHistory()
-        new_alert.type = 95
+        new_alert.type = 94
         message = _("Could not execute {name}, please try again later").format(name=car.get_command_type_display())
         if result_code == 0x82 or result_code == 0x83:
             logger.debug("Conditions not met for command execution")
-            message = _("Vehicle conditions not met for command execution. Make sure car is not running and key is not inside.")
+            message = _("Vehicle conditions not met for command execution.")
 
         new_alert.additional_data = message
         new_alert.car = car
@@ -76,7 +76,7 @@ def handle(bin_data: bytes, acp_data: dict, car: Car, source_id: int, destinatio
     elif data_type == 0xc:
         logger.debug("CAN Failure, code: %d", result_code)
         new_alert = AlertHistory()
-        new_alert.type = 95
+        new_alert.type = 94
         new_alert.additional_data = _("CANBUS failure when executing lock/unlock")
         new_alert.car = car
         new_alert.command_id = source_id
@@ -91,17 +91,20 @@ def handle(bin_data: bytes, acp_data: dict, car: Car, source_id: int, destinatio
     elif data_type == 0:
         logger.debug("Success, code: %d", result_code)
         new_alert = AlertHistory()
-        new_alert.type = 12 if result_code == 3 else 13
+        new_alert.type = 15 if result_code == 3 else 14
         new_alert.car = car
         new_alert.command_id = source_id
         new_alert.save()
         sync_to_async(
             send_vehicle_alert_notification(
                 car,
-                _("Door unlocked successfully!") if result_code == 3 else _("Door locked successfully!"),
-                _("Door Lock/Unlock")
+                _("Horn & Light started successfully!") if result_code == 3 else _("Horn & Light stopped successfully!"),
+                _("Horn & Light")
             )
             , thread_sensitive=False)
+
+
+
 
     return b'ACK'
 

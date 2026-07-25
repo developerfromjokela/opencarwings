@@ -40,7 +40,18 @@ def handle(_, acp_data: dict, car: Car, source_id: int, __) -> bytes:
         acp_msg += composer.EVCommandTail(command=6 if car.command_type == 7 else 5).encode()
         acp_msg += composer.TimeSync().encode()
     elif dest_id == 0x38: # Horn & Light
-        ... # TODO
+        acp_msg += composer.EVCommandTail(command=0xe if car.command_type == 12 else 5).encode()
+        acp_msg += composer.TimeSync().encode()
+        if car.command_type == 12: # stop horn&light
+            acp_msg += composer.HornRequest(cmd_type=4, duration=0).encode()
+        else:
+            # hard code duration 30 seconds for now
+            cmd_type = 3
+            if car.command_type == 9:
+                cmd_type = 2
+            if car.command_type == 10:
+                cmd_type = 1
+            acp_msg += composer.HornRequest(cmd_type=cmd_type, duration=30).encode()
     else:
         car.command_result = 1
         car.save()

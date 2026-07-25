@@ -26,6 +26,9 @@ ALERT_TYPES = (
     (11, _('Charge start') + ' 80%'),
     (12, _('Door unlock')),
     (13, _('Door lock')),
+    (14, _('Horn & Light')),
+    (15, _('Stop Horn & Light')),
+    (94, _('Horn & Light error')),
     (95, _('Door Lock/Unlock error')),
     (96, _('Charge error')),
     (97, _('A/C error')),
@@ -43,8 +46,10 @@ COMMAND_TYPES = (
     (5, _('Read configuration')),
     (7, _('Door unlock')),
     (8, _('Door lock')),
-    (9, _('Horn & light')),
-    (10, _('Stop Horn & light')),
+    (9, _('Horn')),
+    (10, _('Lights')),
+    (11, _('Horn & Lights')),
+    (12, _('Stop Horn & light')),
 )
 
 COMMAND_RESULTS = (

@@ -210,6 +210,23 @@ class EVCommandTail:
         b1 = ((int(self.command_flag) & 1) << 7) | (self.command & 0x7f)
         return _encode_ie(bytes([b1]), ie_id=0)
 
+class HornRequest:
+    def __init__(self, cmd_type: int, duration: int):
+        # divide by 5, TCU multiplies by 5. input is seconds
+        duration = duration/5
+        if not (1 <= cmd_type <= 4):
+            raise ACPComposeError(f"bad cmd_type={cmd_type}")
+        if not (0 <= duration <= 0xF):
+            raise ACPComposeError(f"bad duration={duration}")
+        self.cmd_type = cmd_type
+        self.duration = duration
+
+    def encode(self) -> bytes:
+        return _encode_ie(bytes(
+            ((self.cmd_type & 0x7) << 5) | \
+                  ((self.duration & 0xF) << 1)
+        ), ie_id=0)
+
 class EVTemperatureDummy:
 
     def encode(self) -> bytes:

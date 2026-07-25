@@ -68,7 +68,7 @@ def handle(bin_data: bytes, acp_data: dict, car: Car, source_id: int, destinatio
 
     c_ev_info.save()
 
-    if destination_id not in NON_AUTHABLE:
+    if destination_id not in NON_AUTHABLE or source_id == car.command_id:
         car.command_requested = False
         car.command_result = 0
         car.save()

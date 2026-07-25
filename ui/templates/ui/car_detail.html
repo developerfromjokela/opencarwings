@@ -267,7 +267,7 @@
                                         {% translate "Sun" %} |
                                     {% endif %}
                                 {% endif %} {{ timer.time }}</span>
-                                <span class="text-gray-700 dark:text-gray-400 font-sm">{% translate "Last run" %}: {{ timer.last_command_execution|default:"--" }}, {% translate "result" %}: {{ timer.get_last_command_resultfy|default:"--" }}</span>
+                                <span class="text-gray-700 dark:text-gray-400 font-sm">{% translate "Last run" %}: {{ timer.last_command_execution|default:"--" }}, {% translate "result" %}: {{ timer.get_last_command_result_display|default:"--" }}</span>
                                 <div class="flex space-x-2">
                                     <button
                                         onclick="editTimer({{ timer.id }})"

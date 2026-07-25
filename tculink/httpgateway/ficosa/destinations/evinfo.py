@@ -56,7 +56,7 @@ def handle(bin_data: bytes, acp_data: dict, car: Car, source_id: int, destinatio
     c_ev_info.gids = ev_info["gids"]
     c_ev_info.soh = ev_info["soh"]
 
-    if c_ev_info.max_gids == 0:
+    if c_ev_info.max_gids < 1:
         dcm_ver = acp_data["veh_desc"].get("dcm_ver", "")
         if dcm_ver == "TCU032":
             c_ev_info.max_gids = GIDS_NEW_30kWh
@@ -65,9 +65,10 @@ def handle(bin_data: bytes, acp_data: dict, car: Car, source_id: int, destinatio
 
     c_ev_info.save()
 
-    car.command_requested = False
-    car.command_result = 0
-    car.save()
+    if destination_id not in NON_AUTHABLE:
+        car.command_requested = False
+        car.command_result = 0
+        car.save()
 
     # Notification handling
     if destination_id == 0x29:

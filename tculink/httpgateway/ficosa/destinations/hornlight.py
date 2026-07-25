@@ -104,7 +104,9 @@ def handle(bin_data: bytes, acp_data: dict, car: Car, source_id: int, destinatio
             , thread_sensitive=False)
 
 
-
+    car.command_requested = False
+    car.command_result = 0
+    car.save()
 
     return b'ACK'
 

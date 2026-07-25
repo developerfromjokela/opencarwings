@@ -502,6 +502,7 @@ def car_detail(request, vin):
                     car.periodic_refresh = form.cleaned_data['periodic_refresh']
                     car.periodic_refresh_running = form.cleaned_data['periodic_refresh_running']
                     car.disable_auth = form.cleaned_data['disable_auth']
+                    car.hmac_key = form.cleaned_data['hmac_key']
                     if form.cleaned_data['max_gids'] != car.ev_info.max_gids or form.cleaned_data['force_soc_display'] != car.ev_info.force_soc_display:
                         car.ev_info.max_gids = form.cleaned_data['max_gids']
                         car.ev_info.force_soc_display = form.cleaned_data['force_soc_display']

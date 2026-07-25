@@ -24,6 +24,9 @@ ALERT_TYPES = (
     (9, _('Battery heater start')),
     (10, _('Battery heater stop')),
     (11, _('Charge start') + ' 80%'),
+    (12, _('Door unlock')),
+    (13, _('Door lock')),
+    (95, _('Door Lock/Unlock error')),
     (96, _('Charge error')),
     (97, _('A/C error')),
     (98, _('Command timeout')),
@@ -316,7 +319,7 @@ class Car(models.Model):
     favorite_channels = models.JSONField(default=dict)
     custom_channels = models.JSONField(default=dict)
     # Ficosa
-    hmac_key = models.CharField(max_length=32, null=True, default=None, blank=True)
+    hmac_key = models.CharField(max_length=32, default="", blank=True)
     tcu_type = models.CharField(max_length=32, default='continental2012', choices=TCU_TYPE)
 
     def __str__(self):

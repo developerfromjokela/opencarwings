@@ -37,7 +37,8 @@ def handle(_, acp_data: dict, car: Car, source_id: int, __) -> bytes:
             acp_msg += composer.EVTemperatureDummy().encode()
         acp_msg += composer.TimeSync().encode()
     elif dest_id == 0x31: # Door Lock Unlock
-        ... # TODO
+        acp_msg += composer.EVCommandTail(command=6 if car.command_type == 7 else 5).encode()
+        acp_msg += composer.TimeSync().encode()
     elif dest_id == 0x38: # Horn & Light
         ... # TODO
     else:

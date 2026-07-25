@@ -72,6 +72,9 @@ def handle_request(request: WSGIRequest | Any) -> HttpResponse:
     # EV Request
     elif app_id == 3:
         acp_body, offset = ficosa_acp.parse_ev_request(bin_data)
+    # Car Request
+    elif app_id == 7:
+        acp_body, offset = ficosa_acp.parse_car_request(bin_data)
     # Probe V2
     elif app_id == 30:
         acp_body, offset = ficosa_acp.parse_probe_request(bin_data)

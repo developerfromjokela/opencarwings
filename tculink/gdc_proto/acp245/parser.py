@@ -166,7 +166,7 @@ def _decode_ie_element(data: bytes, p: int, li: int, ie_element: IE_Element, onl
         length = ((b & 0x1f) << 7) | (b1 & 0x7f)
 
     if length != ie_element.length and ie_element.length > 0:
-        raise ACPParseError("VehDesc: Invalid Length", code=1022)
+        raise ACPParseError(f"VehDesc: Invalid Length, expected {ie_element.length}, got {length}", code=1022)
 
     _need(data, p + li + 1+more_flag, length, "VehDesc")
     raw = data[p + li + 1+more_flag: p + li + 1+more_flag + length]
@@ -455,8 +455,28 @@ def parse_ficosa_app_info(data: bytes, offset: int) -> Tuple[dict, int]:
         "raw": data
     }, all_li
 
+def decode_ficosa_vehicle_security_header(data: bytes, offset: int) -> Tuple[dict, int]:
+    return {
+        "ver": int.from_bytes(data[offset:offset + 1], byteorder='big'),
+        "p2": data[offset+2]
+    }, 3
 
+def decode_ficosa_vehicle_security_data(data: bytes, offset: int) -> Tuple[dict, int]:
+    d, all_li = _decode_ie_element(data, offset, 0, IE_Element(length=7))
+    data = d["value"]
 
+    p3_mid = data[4]  # (p3 >> 8) & 0xFF
+    p3_low = data[5]  # p3 & 0xFF
+    opCode = data[6]  # (p3 >> 16) & 0xFF
+
+    p3 = (opCode << 16) | (p3_mid << 8) | p3_low
+
+    return {
+        "code":  data[0],
+        "type": data[2],
+        "p5": data[3],
+        "p3": p3
+    }, all_li
 
 
 

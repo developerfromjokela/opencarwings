@@ -18,6 +18,7 @@ class SettingsForm(forms.Form):
     nickname = forms.CharField(label=_("Nickname"), max_length=64, required=True, strip=True, min_length=2)
     disable_auth = forms.BooleanField(label=_("Disable TCU authentication"), required=False)
     force_soc_display = forms.BooleanField(label=_("Show calculated battery percentage"), required=False)
+    hmac_key = forms.RegexField(label=_("HMAC Key"), max_length=32, required=False, regex=r"^([0-9a-fA-F])+")
 
 class Step0Form(forms.Form):
     tcu_type = forms.ChoiceField(label="TCU Type", choices=TCU_TYPE)

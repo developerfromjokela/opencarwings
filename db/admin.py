@@ -82,7 +82,7 @@ class CarAdmin(admin.ModelAdmin):
 
     fieldsets = (
         ('Vehicle Info', {
-            'fields': ('tcu_type', 'vin', 'sms_config', 'vehicle_code1', 'vehicle_code2',
+            'fields': ('tcu_type', 'vin', 'sms_config', 'hmac_key', 'vehicle_code1', 'vehicle_code2',
                        'vehicle_code3', 'vehicle_code4', 'nickname', 'owner', 'odometer', 'signal_level', 'carrier', 'map_version', 'navi_version')
         }),
         ('Timer', {

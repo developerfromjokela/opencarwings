@@ -223,7 +223,7 @@ class HornRequest:
 
     def encode(self) -> bytes:
         return _encode_ie(bytes(
-            ((self.cmd_type << 5) | (self.duration << 1))
+            [((self.cmd_type << 5) | (self.duration << 1))]
         ), ie_id=0)
 
 class RemoteStartRequest:

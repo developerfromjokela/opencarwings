@@ -54,7 +54,7 @@ def handle(_, acp_data: dict, car: Car, source_id: int, __) -> bytes:
                     cmd_type = 2
                 if car.command_type == 10:
                     cmd_type = 1
-                acp_msg += composer.HornRequest(cmd_type=cmd_type, duration=5).encode()
+                acp_msg += composer.HornRequest(cmd_type=cmd_type, duration=20).encode()
         elif dest_id == 0x39:
             acp_msg += composer.EVCommandTail(command=0x10 if car.command_type == 13 else 0x11).encode()
             acp_msg += composer.TimeSync().encode()

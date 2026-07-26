@@ -51,7 +51,6 @@ def translate_msg(lang, msg):
     with translation.override(lang):
         return translation.gettext(msg)
 
-@async_to_sync
 async def send_vehicle_alert_notification(car, alert_message, subject):
     car_owner = await get_car_owner_info(car)
     ev_info = await get_evinfo(car)
@@ -59,6 +58,10 @@ async def send_vehicle_alert_notification(car, alert_message, subject):
 
     await send_email_for_user(car, car_owner, ev_info, location, alert_message, subject)
     await send_push_notification_for_user(car, car_owner, alert_message, subject)
+
+@async_to_sync
+async def send_vehicle_alert_notification_sync(car, alert_message, subject):
+    await send_vehicle_alert_notification(car, alert_message, subject)
 
 async def send_email_for_user(car, car_owner, ev_info, location, alert_message, subject):
     if not car_owner.email_notifications:

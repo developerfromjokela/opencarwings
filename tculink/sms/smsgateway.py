@@ -22,9 +22,9 @@ class ProviderSMSGateway(BaseSMSProvider):
         pdu_data = None
         pdu_len = 0
         if isinstance(message, str):
-            msg_type = SMSType.TEXT.value
+            msg_type = SMSType.TEXT
         else:
-            msg_type = SMSType.BINARY.value
+            msg_type = SMSType.BINARY
             pdu_data, pdu_len = pdu.data_pdu(configuration["phone"], message)
             pdu_data = pdu_data.hex()
             message = message.hex()

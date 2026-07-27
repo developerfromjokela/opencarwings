@@ -88,6 +88,15 @@ class SMSGatewayConsumer(AsyncWebsocketConsumer):
             'phone': message['phone'],
         }))
 
+    async def relay_pdu(self, message):
+        await self.send_encrypted_parcel(text_data=json.dumps({
+            'type': 'pdu',
+            'data': message['data'],
+            'pdu': message['pdu'],
+            'length': message['length'],
+            'phone': message['phone'],
+        }))
+
 class NotificationConsumer(AsyncWebsocketConsumer):
     async def connect(self):
 

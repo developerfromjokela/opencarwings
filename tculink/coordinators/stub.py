@@ -13,7 +13,7 @@ def send_command_using_provider(command: int, payload: dict | None, car: Car):
         m = getattr(m, comp)
 
     coordinator = m()
-    return coordinator.send_command(command, car, payload)
+    return coordinator.send_command(command, payload, car)
 
 # TCU command coordinator for different models
 class TCULink:

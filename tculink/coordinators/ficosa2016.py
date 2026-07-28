@@ -17,7 +17,7 @@ class Ficosa2016(TCULink):
     REQUIRED_SMS_TYPES = [SMSType.BINARY]
 
 
-    def send_command(self, command: int, car: Car):
+    def send_command(self, command: int, payload, car: Car):
         if command in dict(COMMAND_TYPES) and command in self.SUPPORTED_COMMANDS:
             destination_id = command_to_destination_id(command)
             source_id = randint(200, 255)
@@ -51,6 +51,7 @@ class Ficosa2016(TCULink):
             car.command_id = source_id
             car.command_requested = True
             car.command_result = -1
+            car.command_payload = None
             car.command_request_time = timezone.now()
             car.save()
             return car

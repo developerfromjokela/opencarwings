@@ -6,7 +6,7 @@ from django.utils import timezone
 from db.models import Car, AlertHistory, CommandTimerSetting
 import datetime
 
-from tculink.sms import send_using_provider
+from tculink.coordinators.stub import send_command_using_provider
 
 
 class Command(BaseCommand):
@@ -49,21 +49,10 @@ class Command(BaseCommand):
                 if car.last_connection is not None and car.last_connection < period:
                     print(f"Car {car.vin}: Requesting update")
                     try:
-                        sms_result = send_using_provider(settings.ACTIVATION_SMS_MESSAGE,
-                                                         car.sms_config)
-                        if not sms_result:
-                            raise Exception("Could not send SMS message")
+                        car = send_command_using_provider(1, None, car)
                     except Exception as e:
                         print(f"Could not send SMS message: {e}")
                         print(e)
-
-                    # Update car status
-                    car.command_type = 1
-                    car.command_id = randint(10000, 99999)
-                    car.command_requested = True
-                    car.command_result = -1
-                    car.command_request_time = timezone.now()
-                    car.save()
 
             except Exception as e:
                 self.stdout.write(
@@ -186,20 +175,10 @@ class Command(BaseCommand):
                         try:
                             print(f"Car {car.vin}: Requesting timer {timer.id}, cmd type: {timer.command_type}")
                             try:
-                                sms_result = send_using_provider(settings.ACTIVATION_SMS_MESSAGE,
-                                                                 car.sms_config)
-                                if not sms_result:
-                                    raise Exception("Could not send SMS message")
+                                car = send_command_using_provider(timer.command_type, {"timer": timer.id}, car)
                             except Exception as e:
                                 print(f"Could not send SMS message: {e}")
                                 print(e)
-
-                            car.command_type = timer.command_type
-                            car.command_id = timer.id
-                            car.command_requested = True
-                            car.command_result = -1
-                            car.command_request_time = timezone.now()
-                            car.save()
 
                             timer.last_command_execution = now
                             timer.last_command_result = -1

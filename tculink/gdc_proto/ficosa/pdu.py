@@ -36,4 +36,4 @@ def data_pdu(number: str, data: bytes|bytearray) -> Tuple[bytes, int]:
         len(data).to_bytes(1, 'big'),  # TP-User-Data-Length. Length of the message
         data
     ))
-    return hdr, len(hdr)
+    return hdr, len(hdr) - 1

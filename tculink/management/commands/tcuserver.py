@@ -484,14 +484,21 @@ class Command(BaseCommand):
                     else:
                         raise Exception("Invalid message type")
 
+
+                    timer_id = None
+                    if car.command_payload is not None and car.command_payload.get("timer"):
+                        timer_id = car.command_payload.get("timer")
+                        car.command_payload = None
+
                     await sync_to_async(car.save)()
                     try:
-                        timer_command = await get_commandtimersetting(car.command_id)
-                        timer_command.last_command_execution = timezone.now()
-                        timer_command.last_command_result = car.command_result
-                        if timer_command.timer_type == 0:
-                            timer_command.enabled = False
-                        await sync_to_async(timer_command.save)()
+                        if timer_id is not None:
+                            timer_command = await get_commandtimersetting(timer_id)
+                            timer_command.last_command_execution = timezone.now()
+                            timer_command.last_command_result = car.command_result
+                            if timer_command.timer_type == 0:
+                                timer_command.enabled = False
+                            await sync_to_async(timer_command.save)()
                     except CommandTimerSetting.DoesNotExist:
                         ...
                     await writer.drain()

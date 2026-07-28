@@ -6,7 +6,7 @@ from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse
 from django.utils import timezone
 
-from db.models import Car
+from db.models import Car, CommandTimerSetting
 from tculink.gdc_proto.ficosa import acp as ficosa_acp
 from tculink.httpgateway.ficosa.destinations import DESTINATIONS
 
@@ -25,7 +25,7 @@ def authenticate_car(veh_desc: dict, app_id: int) -> Car|None:
     except Car.DoesNotExist:
         return None
 
-def update_basic_car_info(acp_body: dict, car: Car):
+def update_basic_car_info(acp_body: dict, car: Car) -> int|None:
     if "position" in acp_body and acp_body.get("position"):
         position = acp_body.get("position", {})
         car.location.lat = position.get("latitude", None)
@@ -46,7 +46,12 @@ def update_basic_car_info(acp_body: dict, car: Car):
             car.tcu_ver = acp_body["veh_desc"].get("dcm_ver")
 
     car.last_connection = timezone.now()
+    timer_id = None
+    if car.command_payload is not None and car.command_payload.get("timer"):
+        timer_id = car.command_payload.get("timer")
+        car.command_payload = None
     car.save()
+    return timer_id
 
 
 def handle_request(request: WSGIRequest | Any) -> HttpResponse:
@@ -88,7 +93,7 @@ def handle_request(request: WSGIRequest | Any) -> HttpResponse:
         logger.debug(f"auth failed")
         return HttpResponse(status=401)
 
-    update_basic_car_info(acp_body, car)
+    timer_id = update_basic_car_info(acp_body, car)
 
     # just ACK probe data, analyze later
     if app_id == 30:
@@ -103,4 +108,16 @@ def handle_request(request: WSGIRequest | Any) -> HttpResponse:
 
     bin_data = bin_data[offset:]
     resp_bin = DESTINATIONS[destination_id](bin_data, acp_body, car, source_id, destination_id)
+
+    if timer_id is not None:
+        try:
+            timer_command = CommandTimerSetting.objects.get(pk=timer_id)
+            timer_command.last_command_execution = timezone.now()
+            timer_command.last_command_result = car.command_result
+            if timer_command.timer_type == 0:
+                timer_command.enabled = False
+            timer_command.save()
+        except CommandTimerSetting.DoesNotExist:
+            logger.warning(f"timer {timer_id} does not exist")
+
     return HttpResponse(status=200, content=io.BytesIO(resp_bin), content_type="application/octet-stream")

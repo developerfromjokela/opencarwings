@@ -15,7 +15,7 @@ class Continental2012(TCULink):
     REQUIRED_SMS_TYPES = [SMSType.TEXT]
 
 
-    def send_command(self, command: int, car: Car):
+    def send_command(self, command: int, payload, car: Car):
         if command in dict(COMMAND_TYPES) and command in self.SUPPORTED_COMMANDS:
             try:
                 sms_result = send_using_provider(settings.ACTIVATION_SMS_MESSAGE, car.sms_config)
@@ -27,6 +27,7 @@ class Continental2012(TCULink):
             car.command_id = randint(10000, 99999)
             car.command_requested = True
             car.command_result = -1
+            car.command_payload = payload
             car.command_request_time = timezone.now()
             car.save()
             return car

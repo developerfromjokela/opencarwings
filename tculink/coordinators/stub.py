@@ -5,7 +5,7 @@ from tculink.sms import SMSType
 from db.models import Car
 
 
-def send_command_using_provider(command: int, car: Car):
+def send_command_using_provider(command: int, payload: dict | None, car: Car):
     parts = COORDINATORS.get(car.tcu_type).split('.')
     module = ".".join(parts[:-1])
     m = __import__( module )
@@ -13,7 +13,7 @@ def send_command_using_provider(command: int, car: Car):
         m = getattr(m, comp)
 
     coordinator = m()
-    return coordinator.send_command(command, car)
+    return coordinator.send_command(command, car, payload)
 
 # TCU command coordinator for different models
 class TCULink:
@@ -24,5 +24,5 @@ class TCULink:
     def __init__(self):
         pass
 
-    def send_command(self, command: int, car: Car):
+    def send_command(self, command: int, payload: dict | None, car: Car):
         raise NotImplementedError()

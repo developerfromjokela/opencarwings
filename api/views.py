@@ -351,7 +351,7 @@ def command_api(request, vin):
         command_type = int(command_type)
         if command_type in dict(COMMAND_TYPES):
             try:
-                car = send_command_using_provider(command_type, car)
+                car = send_command_using_provider(command_type, None, car)
             except TCUCoordinatorError as e:
                 return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
             except Exception:

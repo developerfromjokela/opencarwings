@@ -95,7 +95,6 @@ def carwings_http_gateway(request):
 @csrf_exempt
 def ficosa_http_gateway(request):
     """Handle FICOSA TCU POST request."""
-    if request.method != 'POST' or request.headers.get('Content-Type') != 'application/octet-stream'\
-            or ('User-Agent' not in request.headers or 'BREW-Applet' not in request.headers['User-Agent']):
+    if request.method != 'POST' or request.headers.get('Content-Type') != 'application/octet-stream':
         return redirect('/')
     return ficosa.handle_request(request)

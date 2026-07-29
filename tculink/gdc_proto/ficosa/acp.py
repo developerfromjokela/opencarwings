@@ -160,24 +160,14 @@ def parse_probe_request(acp_encoded_data: bytes) -> Tuple[dict, int]:
     offset += consumed
     result["auth"] = auth
 
-    probe_header, consumed = parser.decode_probe_header(acp_encoded_data, offset)
-    offset += consumed
-    result["probe_header"] = probe_header
-
-    timestamp, consumed = parser.decode_timestamp(acp_encoded_data, offset)
-    result["probe_timestamp"] = timestamp
-    offset += consumed
-
-    probe_data, consumed = parser.decode_probe_data(acp_encoded_data, offset)
-    offset += consumed
-    result["probe_data"] = probe_data
-
     return result, offset
 
 
 def parse_ev_info(data: bytes, offset: int) -> Tuple[dict, int]:
-    d, all_li = parser._decode_ie_element(data, offset, 0, parser.IE_Element(length=0x17))
+    d, all_li = parser._decode_ie_element(data, offset, 0, parser.IE_Element())
     d = d["value"]
+    if len(d) < 0x16:
+        raise Exception("Not enough bytes in EV data")
     # Format Doc: EVInfo.ods @ nissan-leaf-tcu repo
 
     pluggedin = (d[0] & 0b00001001) == 9

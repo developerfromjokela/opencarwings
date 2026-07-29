@@ -1,4 +1,6 @@
 import requests
+
+from tculink import VERSION
 from tculink.sms import BaseSMSProvider, SMSType
 from django.utils.translation import gettext_lazy as _
 
@@ -21,7 +23,7 @@ class ProviderHologram(BaseSMSProvider):
                 json={
                     'deviceid': configuration['device_id'],
                     'body': message
-                }, headers={"User-Agent": "OpenCarWings/1.0", "Content-Type": "application/json"}
+                }, headers={'User-Agent': f"OpenCarWings/{VERSION}", "Content-Type": "application/json"}
         )
 
         return request.status_code == 200

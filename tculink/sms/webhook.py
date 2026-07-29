@@ -1,5 +1,6 @@
 import requests
 
+from tculink import VERSION
 from tculink.gdc_proto.ficosa import pdu
 from tculink.sms import BaseSMSProvider, SMSType
 from django.utils.translation import gettext_lazy as _
@@ -30,5 +31,5 @@ class ProviderWebhook(BaseSMSProvider):
             message = message.hex()
 
         request = requests.post(configuration['url'], json={'message': message, "type": msg_type, "pdu": pdu_data, "pdu_length": pdu_len}, timeout=10,
-                                headers={"User-Agent": "OpenCarWings/1.0", "Content-Type": "application/json"})
+                                headers={"User-Agent": f"OpenCarWings/{VERSION}", "Content-Type": "application/json"})
         return request.status_code == 200

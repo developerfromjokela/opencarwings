@@ -1,5 +1,7 @@
 import requests
 from datetime import datetime, timedelta
+
+from tculink import VERSION
 from tculink.sms import BaseSMSProvider, SMSType
 from django.utils.translation import gettext_lazy as _
 
@@ -29,7 +31,8 @@ class ProviderMonogoto(BaseSMSProvider):
             "Password": password
         }
         headers = {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'User-Agent': f"OpenCarWings/{VERSION}"
         }
 
         response = requests.post(auth_url, json=auth_data, headers=headers, timeout=10)

@@ -1,5 +1,7 @@
 import re
 import requests
+
+from tculink import VERSION
 from tculink.sms import BaseSMSProvider, SMSType
 from django.utils.translation import gettext_lazy as _
 
@@ -25,7 +27,7 @@ class Provider46elks(BaseSMSProvider):
                     'from': 'CarWings',
                     'to': f'+{msn}',
                     'message': message
-                }, headers={"User-Agent": "OpenCarWings/1.0"}
+                }, headers={"User-Agent": f"OpenCarWings/{VERSION}"}
 
         )
 

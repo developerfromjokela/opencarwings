@@ -478,5 +478,27 @@ def decode_ficosa_vehicle_security_data(data: bytes, offset: int) -> Tuple[dict,
         "p3": p3
     }, all_li
 
+def decode_probe_header(data: bytes, offset: int) -> Tuple[dict, int]:
+    li = 0
+
+    conversion_type, li = _decode_ie_element(data, offset, li, IE_Element())
+    reason, li = _decode_ie_element(data, offset, li, IE_Element())
+
+    return {
+        "conversion_type": conversion_type.get("value"),
+        "reason": reason.get("value"),
+    }, li
 
 
+def decode_probe_data(data: bytes, offset: int) -> Tuple[dict, int]:
+    probe_data, li = _decode_ie_element(data, offset, 0, IE_Element())
+
+    probe_data = probe_data.get("value")
+
+    if probe_data is None or len(probe_data) == 0:
+        raise ACPParseError("Probe Data: Invalid Length")
+
+    return {
+        "type": probe_data[0],
+        "data": probe_data[1:],
+    }, li

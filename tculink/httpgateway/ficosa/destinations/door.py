@@ -23,7 +23,7 @@ def handle(bin_data: bytes, acp_data: dict, car: Car, source_id: int, destinatio
         logger.debug(f"Destination {destination_id} not authorized, details: {dest_id}, sid {source_id}, {car.command_id}, {car.command_requested}")
         # Acknowledge the command, but do not execute.
         # If ACK is not sent, the request will be repeated
-        return b'ACK'
+        return acp.make_ack_response(car.vin, car.tcu_model, destination_id, source_id, 0, 0, 0)
 
     security_hdr, offset = acp.parser.decode_ficosa_vehicle_security_header(bin_data, 0)
 
@@ -107,5 +107,5 @@ def handle(bin_data: bytes, acp_data: dict, car: Car, source_id: int, destinatio
     car.command_result = 0
     car.save()
 
-    return b'ACK'
+    return acp.make_ack_response(car.vin, car.tcu_model, destination_id, source_id, 0, 0, 1)
 

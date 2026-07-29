@@ -2,7 +2,7 @@ import decimal
 from typing import Dict, Any, Tuple
 
 from tculink.gdc_proto import WH_PER_GID_GEN1
-from tculink.gdc_proto.acp245 import parser
+from tculink.gdc_proto.acp245 import parser, composer
 
 
 def parse_auth_ev_pload(acp_encoded_data: bytes) -> Tuple[dict, int]:
@@ -160,6 +160,18 @@ def parse_probe_request(acp_encoded_data: bytes) -> Tuple[dict, int]:
     offset += consumed
     result["auth"] = auth
 
+    probe_header, consumed = parser.decode_probe_header(acp_encoded_data, offset)
+    offset += consumed
+    result["probe_header"] = probe_header
+
+    timestamp, consumed = parser.decode_timestamp(acp_encoded_data, offset)
+    result["probe_timestamp"] = timestamp
+    offset += consumed
+
+    probe_data, consumed = parser.decode_probe_data(acp_encoded_data, offset)
+    offset += consumed
+    result["probe_data"] = probe_data
+
     return result, offset
 
 
@@ -242,3 +254,17 @@ def parse_ev_info(data: bytes, offset: int) -> Tuple[dict, int]:
         "3kw_chg": chg_time_2,
         "6kw_chg": chg_time_3
     }, all_li
+
+
+def make_ack_response(vin: str, dcm_id: str, dest_id: int, src_id: int, prov_type: int, flag: int, value: int) -> bytes:
+    acp_msg = bytearray()
+    acp_msg += composer.VehDesc(vin=vin, dcm=dcm_id).encode()
+    acp_msg += dest_id.to_bytes(1, "little")  # dest ID
+    acp_msg += src_id.to_bytes(1, "little")  # src ID
+    acp_msg += composer.EVCommandTail(command=0).encode()
+    acp_msg += composer.ServProv().add_entry(composer.ServProvEntry(prov_type, flag, value)).encode()
+
+    msg = bytearray()
+    msg += composer.AppHeader(app_id=0x1d, mcf=3, length=len(acp_msg), special_flag=1).encode()
+    msg += acp_msg
+    return msg

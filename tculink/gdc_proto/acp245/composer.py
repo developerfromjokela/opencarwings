@@ -267,3 +267,40 @@ class EVTemperatureDummy:
 
     def encode(self) -> bytes:
         return _encode_ie(bytes([]), ie_id=0)
+
+
+class ServProvEntry:
+    def __init__(self, prov_type: int, flag: int, value: int):
+        assert 0 <= prov_type <= 0xFF, "prov_type must fit in a byte"
+        assert flag in (0, 1), "flag is a single bit"
+        assert 0 <= value <= 7, "value is a 3-bit value"
+        self.prov_type = prov_type
+        self.flag = flag
+        self.value = value
+
+    def second_byte(self) -> int:
+        return ((self.flag & 1) << 7) | ((self.value & 0x7) << 4)
+
+
+
+class ServProv:
+    def __init__(self, entries: list[ServProvEntry] = []):
+        self.entries = entries
+
+    def add_entry(self, entry: ServProvEntry) -> "ServProv":
+        self.entries.append(entry)
+        return self
+
+    def encode(self) -> bytes:
+        count = len(self.entries)
+        if count == 0:
+            raise ValueError("need at least 1 entry")
+        if count > 255:
+            raise ValueError("max 255 entries")
+
+        data = bytearray()
+        for e in self.entries:
+            data.append(e.prov_type)
+            data.append(e.second_byte())
+
+        return _encode_ie(data, ie_id=0)

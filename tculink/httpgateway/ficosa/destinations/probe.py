@@ -63,11 +63,12 @@ def handle(bin_data: bytes, acp_data: dict, car: Car, source_id: int, destinatio
         binary_data = probe_data["data"]
         datablocks = []
         i = 0
+        print(len(binary_data), probe_data)
         while i < len(binary_data):
             new_itm, li = decode_probe_form_item(binary_data, i)
             block_length = new_itm["length"]
             block_id = new_itm["id"]
-
+            print(new_itm)
             if block_length > 0:
                 block_data = new_itm["data"]
                 if block_data[0] not in crm_labelmap:
@@ -78,14 +79,13 @@ def handle(bin_data: bytes, acp_data: dict, car: Car, source_id: int, destinatio
                         pass
                 else:
                     # skip element 0xb9, it is somewhat different and not parsing right
-                    if block_data[0] == 0xb9:
-                        continue
-                    meta = crm_labelmap[block_data[0]]
-                    datablocks.append({
-                        "type": block_data[0],
-                        "struct": sections[meta["structure"]],
-                        "data": block_data[1:]
-                    })
+                    if block_data[0] != 0xb9:
+                        meta = crm_labelmap[block_data[0]]
+                        datablocks.append({
+                            "type": block_data[0],
+                            "struct": sections[meta["structure"]],
+                            "data": block_data[1:]
+                        })
 
             i += li
 

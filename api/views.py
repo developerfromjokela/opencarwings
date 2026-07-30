@@ -1,3 +1,5 @@
+import logging
+
 import django
 from dateutil import parser
 from dateutil.parser import ParserError
@@ -29,6 +31,8 @@ from tculink.coordinators.stub import send_command_using_provider
 from ui.serializers import CarSerializer, CarSerializerList, AlertHistorySerializer, \
     CommandResponseSerializer, CommandErrorSerializer, CarUpdatingSerializer, CRMDistanceRecordSerializer, \
     CommandTimerSettingSerializer
+
+logger = logging.getLogger("ficosa")
 
 
 class IsCarOwner(permissions.BasePermission):
@@ -353,8 +357,10 @@ def command_api(request, vin):
             try:
                 car = send_command_using_provider(command_type, None, car)
             except TCUCoordinatorError as e:
+                logger.exception(e)
                 return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-            except Exception:
+            except Exception as e:
+                logger.exception(e)
                 return Response({'error': _('Failed to send SMS message to TCU. Please try again in a moment.')}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
             return Response({

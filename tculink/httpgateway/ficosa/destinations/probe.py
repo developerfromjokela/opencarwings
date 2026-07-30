@@ -52,7 +52,7 @@ def handle(bin_data: bytes, acp_data: dict, car: Car, source_id: int, destinatio
         car.ev_info.plugged_in = False
         car.ev_info.save()
 
-    probe_service = probe_data["data_type"]
+    probe_service = probe_data["type"]
 
     # Service types, 0x50 = latest, 0x51 = trip info, charging etc. 0x52 = unknown, new fields
 

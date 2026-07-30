@@ -740,7 +740,7 @@ def update_crm_to_db(car: Car, crm_pload):
             msn_db = CRMMSNRecord()
             msn_db.car = car
             msn_db.timestamp = apply_date_patch(msn.get("aquisition_ts", datetime.datetime(1970, 1, 1)))
-            msn_db.data = {"v": 1, "data": (msn.get("data", bytearray()) or bytearray()).decode('utf-8')}
+            msn_db.data = {"v": 1, "data": (msn.get("data", bytearray()) or bytearray()).decode("ascii", errors="replace").rstrip('\x00').strip()}
             msn_db.save()
 
     if "charge" in crm_pload:

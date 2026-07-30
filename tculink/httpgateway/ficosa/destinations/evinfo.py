@@ -4,7 +4,7 @@ from asgiref.sync import sync_to_async
 from django.utils import timezone
 
 from db.models import Car, AlertHistory
-from tculink.gdc_proto import GIDS_NEW_30kWh, GIDS_NEW_40kWh
+from tculink.gdc_proto import GIDS_NEW_30kWh, GIDS_NEW_40kWh, WH_PER_GID_GEN1
 from tculink.gdc_proto.ficosa.utils import command_to_destination_id
 import tculink.gdc_proto.ficosa.acp as acp
 from tculink.utils.notifications import send_vehicle_alert_notification_sync as send_vehicle_alert_notification
@@ -46,6 +46,7 @@ def handle(bin_data: bytes, acp_data: dict, car: Car, source_id: int, destinatio
     c_ev_info.limit_chg_time = ev_info["1kw_chg"]
     c_ev_info.full_chg_time = ev_info["3kw_chg"]
     c_ev_info.obc_6kw = ev_info["6kw_chg"]
+    c_ev_info.wh_content = ev_info["gids"]*WH_PER_GID_GEN1
     c_ev_info.obc_6kw_avail = True
 
     if ev_info.get("parked", False):

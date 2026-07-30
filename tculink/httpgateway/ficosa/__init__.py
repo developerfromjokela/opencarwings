@@ -87,6 +87,10 @@ def handle_request(request: WSGIRequest | Any) -> HttpResponse:
         logger.debug(f"unknown, app_id: {app_id}")
         return HttpResponse(status=400)
 
+    vin = acp_body["veh_desc"].get("vin", None)
+    dcm_id = acp_body["veh_desc"].get("dcm", None)
+
+
     car = authenticate_car(acp_body["veh_desc"], app_id)
 
     if car is None:
@@ -95,19 +99,20 @@ def handle_request(request: WSGIRequest | Any) -> HttpResponse:
 
     timer_id = update_basic_car_info(acp_body, car)
 
-    # just ACK probe data, analyze later
-    if app_id == 30:
-        return HttpResponse(status=200, content=io.BytesIO(b'ACK'), content_type="application/octet-stream")
-
     source_id = acp_body["source_id"]
     destination_id = acp_body["dest_id"]
 
     if destination_id not in DESTINATIONS:
         logger.debug(f"destination_id {destination_id} not in DESTINATIONS")
-        return HttpResponse(status=400)
+        return HttpResponse(status=200, content=io.BytesIO(ficosa_acp.make_ack_response(
+            vin, dcm_id, destination_id, source_id, 0, 0, 0)), content_type="application/octet-stream")
 
-    bin_data = bin_data[offset:]
-    resp_bin = DESTINATIONS[destination_id](bin_data, acp_body, car, source_id, destination_id)
+    try:
+        bin_data = bin_data[offset:]
+        resp_bin = DESTINATIONS[destination_id](bin_data, acp_body, car, source_id, destination_id)
+    except Exception as e:
+        logger.exception(e)
+        return HttpResponse(status=500)
 
     if timer_id is not None:
         try:

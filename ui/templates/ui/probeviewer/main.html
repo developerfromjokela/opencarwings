@@ -164,8 +164,11 @@
                 {% else %}
                 <div class="flex flex-col text-center items-center justify-center">
                     <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">{% translate "No vehicle data available" %}</h3>
-                    <p class="max-w-md">{% translate "In order to receive vehicle data, CARWINGS navigation unit must have correct connection settings." %}</p>
-                    <a href="/static/navi_guide.html" class="text-blue-600 hover:underline" target="_blank">{% translate "Learn more" %}</a>
+                    {% if car.tcu_type == 'ficosa2016' %}
+                        {% include "ui/probeviewer/nodata_ficosa.html" %}
+                    {% else %}
+                        {% include "ui/probeviewer/nodata.html" %}
+                    {% endif %}
                 </div>
                 {% endif %}
             </div>
@@ -189,8 +192,11 @@
                 {% else %}
                 <div class="flex flex-col text-center items-center justify-center">
                     <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">{% translate "No vehicle data available" %}</h3>
-                    <p class="max-w-md">{% translate "In order to receive vehicle data, CARWINGS navigation unit must have correct connection settings." %}</p>
-                    <a href="/static/navi_guide.html" class="text-blue-600 hover:underline" target="_blank">{% translate "Learn more" %}</a>
+                    {% if car.tcu_type == 'ficosa2016' %}
+                        {% include "ui/probeviewer/nodata_ficosa.html" %}
+                    {% else %}
+                        {% include "ui/probeviewer/nodata.html" %}
+                    {% endif %}
                 </div>
                 {% endif %}
             </div>
@@ -248,8 +254,12 @@
                 {% else %}
                 <div class="flex flex-col text-center items-center justify-center">
                     <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">{% translate "No DOT data available" %}</h3>
-                    <p class="max-w-md">{% translate "DOT data comes available on next startup after a trip." %}<br><br/><span class="text-yellow-700"><i class="mic material-symbols-outlined">warning</i> {% translate "In order to receive data, CARWINGS navigation unit must have correct connection settings." %}</span></p>
-                    <a href="/static/navi_guide.html" class="text-blue-600 hover:underline" target="_blank">{% translate "Learn more" %}</a>
+                    <p class="max-w-md">{% translate "DOT data comes available on next startup after a trip." %}<br><br/>
+                    {% if car.tcu_type == 'ficosa2016' %}
+                        {% include "ui/probeviewer/nodata_ficosa.html" %}
+                    {% else %}
+                        {% include "ui/probeviewer/nodata.html" %}
+                    {% endif %}
                 </div>
                 {% endif %}
             </div>
@@ -306,8 +316,11 @@
                 {% else %}
                 <div class="flex flex-col text-center items-center justify-center">
                     <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">{% translate "No trip data available" %}</h3>
-                    <p class="max-w-md">{% translate "Trip information comes available on next startup after the trip." %}<br><br/><span class="text-yellow-700"><i class="mic material-symbols-outlined">warning</i> {% translate "In order to receive data, CARWINGS navigation unit must have correct connection settings." %}</span></p>
-                    <a href="/static/navi_guide.html" class="text-blue-600 hover:underline" target="_blank">{% translate "Learn more" %}</a>
+                    {% if car.tcu_type == 'ficosa2016' %}
+                        {% include "ui/probeviewer/nodata_ficosa.html" %}
+                    {% else %}
+                        {% include "ui/probeviewer/nodata.html" %}
+                    {% endif %}
                 </div>
                 {% endif %}
             </div>
@@ -380,8 +393,12 @@
                 {% else %}
                 <div class="flex flex-col text-center items-center justify-center">
                     <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">{% translate "No monthly analytics available" %}</h3>
-                    <p class="max-w-md">{% translate "Monthly analytics information comes available at the end of the month." %}<br><br/><span class="text-yellow-700"><i class="mic material-symbols-outlined">warning</i> {% translate "In order to receive data, CARWINGS navigation unit must have correct connection settings." %}</span></p>
-                    <a href="/static/navi_guide.html" class="text-blue-600 hover:underline" target="_blank">{% translate "Learn more" %}</a>
+                    <p class="max-w-md">{% translate "Monthly analytics information comes available at the end of the month." %}<br><br/>
+                    {% if car.tcu_type == 'ficosa2016' %}
+                        {% include "ui/probeviewer/nodata_ficosa.html" %}
+                    {% else %}
+                        {% include "ui/probeviewer/nodata.html" %}
+                    {% endif %}
                 </div>
                 {% endif %}
             </div>
@@ -438,8 +455,12 @@
                 {% else %}
                 <div class="flex flex-col text-center items-center justify-center">
                     <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">{% translate "No location available" %}</h3>
-                    <p class="max-w-md">{% translate "Location information comes available on next startup, if your current configuration allows it." %}<br><br/><span class="text-yellow-700"><i class="mic material-symbols-outlined">warning</i> {% translate "In order to receive data, CARWINGS navigation unit must have correct connection settings." %}</span></p>
-                    <a href="/static/navi_guide.html" class="text-blue-600 hover:underline" target="_blank">{% translate "Learn more" %}</a>
+                    <p class="max-w-md">{% translate "Location information comes available on next startup, if your current configuration allows it." %}<br><br/>
+                    {% if car.tcu_type == 'ficosa2016' %}
+                        {% include "ui/probeviewer/nodata_ficosa.html" %}
+                    {% else %}
+                        {% include "ui/probeviewer/nodata.html" %}
+                    {% endif %}
                 </div>
                 {% endif %}
             </div>
@@ -508,8 +529,12 @@
                 {% else %}
                 <div class="flex flex-col text-center items-center justify-center">
                     <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">{% translate "No charging history available" %}</h3>
-                    <p class="max-w-md">{% translate "Charging history may become available on next startup after the charging." %}<br><br/><span class="text-yellow-700"><i class="mic material-symbols-outlined">warning</i> {% translate "In order to receive data, CARWINGS navigation unit must have correct connection settings." %}</span></p>
-                    <a href="/static/navi_guide.html" class="text-blue-600 hover:underline" target="_blank">{% translate "Learn more" %}</a>
+                    <p class="max-w-md">{% translate "Charging history may become available on next startup after the charging." %}<br><br/>
+                    {% if car.tcu_type == 'ficosa2016' %}
+                        {% include "ui/probeviewer/nodata_ficosa.html" %}
+                    {% else %}
+                        {% include "ui/probeviewer/nodata.html" %}
+                    {% endif %}
                 </div>
                 {% endif %}
             </div>
@@ -572,8 +597,12 @@
                 {% else %}
                 <div class="flex flex-col text-center items-center justify-center">
                     <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">{% translate "No charge data available" %}</h3>
-                    <p class="max-w-md">{% translate "Charging data may become available on next startup after the charging." %}<br><br/><span class="text-yellow-700"><i class="mic material-symbols-outlined">warning</i> {% translate "In order to receive data, CARWINGS navigation unit must have correct connection settings." %}</span></p>
-                    <a href="/static/navi_guide.html" class="text-blue-600 hover:underline" target="_blank">{% translate "Learn more" %}</a>
+                    <p class="max-w-md">{% translate "Charging data may become available on next startup after the charging." %}<br><br/>
+                    {% if car.tcu_type == 'ficosa2016' %}
+                        {% include "ui/probeviewer/nodata_ficosa.html" %}
+                    {% else %}
+                        {% include "ui/probeviewer/nodata.html" %}
+                    {% endif %}
                 </div>
                 {% endif %}
             </div>
@@ -635,8 +664,12 @@
                 {% else %}
                 <div class="flex flex-col text-center items-center justify-center">
                     <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">{% translate "No ABS data available" %}</h3>
-                    <p class="max-w-md">{% translate "ABS data may become available on next startup if your vehicle configuration allows it." %}<br><br/><span class="text-yellow-700"><i class="mic material-symbols-outlined">warning</i> {% translate "In order to receive data, CARWINGS navigation unit must have correct connection settings." %}</span></p>
-                    <a href="/static/navi_guide.html" class="text-blue-600 hover:underline" target="_blank">{% translate "Learn more" %}</a>
+                    <p class="max-w-md">{% translate "ABS data may become available on next startup if your vehicle configuration allows it." %}<br><br/>
+                    {% if car.tcu_type == 'ficosa2016' %}
+                        {% include "ui/probeviewer/nodata_ficosa.html" %}
+                    {% else %}
+                        {% include "ui/probeviewer/nodata.html" %}
+                    {% endif %}
                 </div>
                 {% endif %}
             </div>
@@ -704,8 +737,12 @@
                 {% else %}
                 <div class="flex flex-col text-center items-center justify-center">
                     <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">{% translate "No idling data available" %}</h3>
-                    <p class="max-w-md">{% translate "Idling data may become available on next startup if your vehicle configuration allows it." %}<br><br/><span class="text-yellow-700"><i class="mic material-symbols-outlined">warning</i> {% translate "In order to receive data, CARWINGS navigation unit must have correct connection settings." %}</span></p>
-                    <a href="/static/navi_guide.html" class="text-blue-600 hover:underline" target="_blank">{% translate "Learn more" %}</a>
+                    <p class="max-w-md">{% translate "Idling data may become available on next startup if your vehicle configuration allows it." %}<br><br/>
+                    {% if car.tcu_type == 'ficosa2016' %}
+                        {% include "ui/probeviewer/nodata_ficosa.html" %}
+                    {% else %}
+                        {% include "ui/probeviewer/nodata.html" %}
+                    {% endif %}
                 </div>
                 {% endif %}
             </div>
@@ -772,8 +809,12 @@
                 {% else %}
                 <div class="flex flex-col text-center items-center justify-center">
                     <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">{% translate "No idling data available" %}</h3>
-                    <p class="max-w-md">{% translate "Idling data may become available on next startup if your vehicle configuration allows it." %}<br><br/><span class="text-yellow-700"><i class="mic material-symbols-outlined">warning</i> {% translate "In order to receive data, CARWINGS navigation unit must have correct connection settings." %}</span></p>
-                    <a href="/static/navi_guide.html" class="text-blue-600 hover:underline" target="_blank">{% translate "Learn more" %}</a>
+                    <p class="max-w-md">{% translate "Idling data may become available on next startup if your vehicle configuration allows it." %}<br><br/>
+                    {% if car.tcu_type == 'ficosa2016' %}
+                        {% include "ui/probeviewer/nodata_ficosa.html" %}
+                    {% else %}
+                        {% include "ui/probeviewer/nodata.html" %}
+                    {% endif %}
                 </div>
                 {% endif %}
             </div>
@@ -840,8 +881,12 @@
                 {% else %}
                 <div class="flex flex-col text-center items-center justify-center">
                     <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">{% translate "No idling data available" %}</h3>
-                    <p class="max-w-md">{% translate "Idling data may become available on next startup if your vehicle configuration allows it." %}<br><br/><span class="text-yellow-700"><i class="mic material-symbols-outlined">warning</i> {% translate "In order to receive data, CARWINGS navigation unit must have correct connection settings." %}</span></p>
-                    <a href="/static/navi_guide.html" class="text-blue-600 hover:underline" target="_blank">{% translate "Learn more" %}</a>
+                    <p class="max-w-md">{% translate "Idling data may become available on next startup if your vehicle configuration allows it." %}<br><br/>
+                    {% if car.tcu_type == 'ficosa2016' %}
+                        {% include "ui/probeviewer/nodata_ficosa.html" %}
+                    {% else %}
+                        {% include "ui/probeviewer/nodata.html" %}
+                    {% endif %}
                 </div>
                 {% endif %}
             </div>
@@ -908,8 +953,12 @@
                 {% else %}
                 <div class="flex flex-col text-center items-center justify-center">
                     <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">{% translate "No DTC data available" %}</h3>
-                    <p class="max-w-md">{% translate "DTC data may become available on next startup if your vehicle has active DTC trouble code." %}<br><br/><span class="text-yellow-700"><i class="mic material-symbols-outlined">warning</i> {% translate "In order to receive data, CARWINGS navigation unit must have correct connection settings." %}</span></p>
-                    <a href="/static/navi_guide.html" class="text-blue-600 hover:underline" target="_blank">{% translate "Learn more" %}</a>
+                    <p class="max-w-md">{% translate "DTC data may become available on next startup if your vehicle has active DTC trouble code." %}<br><br/>
+                    {% if car.tcu_type == 'ficosa2016' %}
+                        {% include "ui/probeviewer/nodata_ficosa.html" %}
+                    {% else %}
+                        {% include "ui/probeviewer/nodata.html" %}
+                    {% endif %}
                 </div>
                 {% endif %}
             </div>
@@ -976,8 +1025,12 @@
                 {% else %}
                 <div class="flex flex-col text-center items-center justify-center">
                     <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">{% translate "No MSN data available" %}</h3>
-                    <p class="max-w-md">{% translate "MSN data may become available on next startup." %}<br><br/><span class="text-yellow-700"><i class="mic material-symbols-outlined">warning</i> {% translate "In order to receive data, CARWINGS navigation unit must have correct connection settings." %}</span></p>
-                    <a href="/static/navi_guide.html" class="text-blue-600 hover:underline" target="_blank">{% translate "Learn more" %}</a>
+                    <p class="max-w-md">{% translate "MSN data may become available on next startup." %}<br><br/>
+                    {% if car.tcu_type == 'ficosa2016' %}
+                        {% include "ui/probeviewer/nodata_ficosa.html" %}
+                    {% else %}
+                        {% include "ui/probeviewer/nodata.html" %}
+                    {% endif %}
                 </div>
                 {% endif %}
             </div>

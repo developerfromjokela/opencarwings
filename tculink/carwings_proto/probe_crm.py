@@ -121,6 +121,12 @@ def parse_crmfile(data):
         else:
             raise Exception("UNKNOWN TYPE: ",item_type,"HEX", hex(item_type), "pos:",pos)
 
+
+    parse_result = parse_crm_datablocks(parsingblocks)
+
+    return parse_result
+
+def parse_crm_datablocks(parsingblocks):
     logger.info("-- Start parsing crmblocks --")
 
     parse_result = {
@@ -640,13 +646,13 @@ def parse_crmfile(data):
         logger.warning("  -> Unknown")
         draft_struct[hex(crmblock["type"])] = crmblock["data"].hex()
 
+
     # insert last block if available
     if len(draft_struct.keys()) > 0:
         if isinstance(parse_result[currentblock], dict):
             parse_result[currentblock] = draft_struct
         else:
             parse_result[currentblock].append(draft_struct)
-
     return parse_result
 
 def apply_date_patch(date):

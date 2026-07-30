@@ -5,6 +5,8 @@ import xml.etree.ElementTree as ET
 from datetime import datetime
 import random
 import uuid
+
+from django.conf import settings
 from django.core.files.base import ContentFile
 
 from db.models import DOTFile, ProbeConfig
@@ -18,6 +20,8 @@ from tculink.carwings_proto.xml import carwings_create_xmlfile_content
 import logging
 logger = logging.getLogger("probe")
 
+DEBUG_ENABLED = hasattr(settings, "PROBE1_DEBUG") and settings.PROBE1_DEBUG
+
 def handle_pi(xml_data, files):
     if 'send_data' in xml_data['service_info']['application']:
         outgoing_files = []
@@ -27,8 +31,9 @@ def handle_pi(xml_data, files):
         carwings_xml_root = ET.Element("carwings", version="2.2")
         ET.SubElement(carwings_xml_root, "aut_inf", {"sts": "ok"})
 
-        log_dir = os.path.join("logs", "probe", xml_data['authentication']['navi_id'], datetime.now().strftime('%Y%m%d%H%M'))
-        os.makedirs(log_dir, exist_ok=True)
+        if DEBUG_ENABLED:
+            log_dir = os.path.join("logs", "probe", xml_data['authentication']['navi_id'], datetime.now().strftime('%Y%m%d%H%M'))
+            os.makedirs(log_dir, exist_ok=True)
 
         for send_data in xml_data['service_info']['application']['send_data']:
             id_type = send_data['id_type']
@@ -156,24 +161,26 @@ def handle_pi(xml_data, files):
                         checksum = calculate_prb_data_checksum(probe_data[2:], len(probe_data) - 2)
                         if checksum != checksum_byte:
                             logger.info("Probe file checksum error!")
-                            file_path = os.path.join(log_dir, f"CHKSUMERR-{hex(checksum_byte)}-{hex(checksum)}-{filename}")
-                            if os.path.exists(file_path):
-                                file_path = os.path.join(log_dir,
-                                                         f"dupl-{random.randrange(111111, 999999, 6)}-CHKSUMERR-{hex(checksum_byte)}-{hex(checksum)}-{filename}")
-                            with open(file_path, 'wb') as f:
-                                f.write(probe_data)
+                            if DEBUG_ENABLED:
+                                file_path = os.path.join(log_dir, f"CHKSUMERR-{hex(checksum_byte)}-{hex(checksum)}-{filename}")
+                                if os.path.exists(file_path):
+                                    file_path = os.path.join(log_dir,
+                                                             f"dupl-{random.randrange(111111, 999999, 6)}-CHKSUMERR-{hex(checksum_byte)}-{hex(checksum)}-{filename}")
+                                with open(file_path, 'wb') as f:
+                                    f.write(probe_data)
                         else:
                             decrypted_data_for_log = bytearray(probe_data[:10])
                             decrypted_data = probe_xor_data(probe_data[10:(len(probe_data)-1)], xor_key)
                             decrypted_data_for_log += decrypted_data
 
-                            file_path = os.path.join(log_dir,filename)
+                            if DEBUG_ENABLED:
+                                file_path = os.path.join(log_dir,filename)
 
-                            if os.path.exists(file_path):
-                                file_path = os.path.join(log_dir, f"dupl-{random.randrange(111111, 999999, 6)}-{filename}")
+                                if os.path.exists(file_path):
+                                    file_path = os.path.join(log_dir, f"dupl-{random.randrange(111111, 999999, 6)}-{filename}")
 
-                            with open(file_path, 'wb') as f:
-                                f.write(decrypted_data_for_log)
+                                with open(file_path, 'wb') as f:
+                                    f.write(decrypted_data_for_log)
 
                             if len(decrypted_data) > 38:
                                 data = decrypted_data[38:]
@@ -227,19 +234,23 @@ def handle_pi(xml_data, files):
                             filenames.append(f"PICONFIRM{file_number}.003")
                 else:
                     logger.error("Invalid Probe file signature! Got: %s,%s", hex(probe_data[0]), hex(probe_data[1]))
-                    file_path = os.path.join(log_dir, f"UNKNOWN-{filename}")
+                    if DEBUG_ENABLED:
+                        file_path = os.path.join(log_dir, f"UNKNOWN-{filename}")
 
-                    if os.path.exists(file_path):
-                        file_path = os.path.join(log_dir, f"dupl-{random.randrange(111111, 999999, 6)}-UNKNOWN-{filename}")
+                        if os.path.exists(file_path):
+                            file_path = os.path.join(log_dir, f"dupl-{random.randrange(111111, 999999, 6)}-UNKNOWN-{filename}")
 
-                    with open(file_path, 'wb') as f:
-                        f.write(probe_data)
+                        with open(file_path, 'wb') as f:
+                            f.write(probe_data)
             else:
                 # Unknown request, write to log
+                log_dir = os.path.join("logs", "probe", xml_data['authentication']['navi_id'],
+                                       datetime.now().strftime('%Y%m%d%H%M'))
+                os.makedirs(log_dir, exist_ok=True)
                 file_path = os.path.join(log_dir, id_value)
 
                 if os.path.exists(file_path):
-                    file_path = os.path.join(log_dir, f"dupl-{random.randrange(111111, 999999, 6)}-{id_value}")
+                    file_path = os.path.join(log_dir, f"unkreq-{random.randrange(111111, 999999, 6)}-{id_value}")
 
                 with open(file_path, 'wb') as f:
                     f.write(file_content)

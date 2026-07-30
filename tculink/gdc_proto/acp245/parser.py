@@ -482,11 +482,11 @@ def decode_probe_header(data: bytes, offset: int) -> Tuple[dict, int]:
     li = 0
 
     conversion_type, li = _decode_ie_element(data, offset, li, IE_Element())
-    reason, li = _decode_ie_element(data, offset, li, IE_Element())
+    data_type, li = _decode_ie_element(data, offset, li, IE_Element())
 
     return {
         "conversion_type": conversion_type.get("value"),
-        "reason": reason.get("value"),
+        "data_type": data_type.get("value"),
     }, li
 
 
@@ -502,3 +502,29 @@ def decode_probe_data(data: bytes, offset: int) -> Tuple[dict, int]:
         "type": probe_data[0],
         "data": probe_data[1:],
     }, li
+
+def decode_probe_form_item(data: bytes, offset: int) -> Tuple[dict, int]:
+    first_byte = data[offset] >> 7
+    if first_byte != 1:
+        raise ACPParseError("Probe Form: Invalid First Byte")
+
+    li = 0
+
+    element_id = data[offset + 1]
+    length = data[offset + 2]
+    li += 3
+    if (length >> 7) == 1:
+        # Extended length
+        length_1 = data[offset + 2] & 0x7F
+        length_2 = data[offset + 3]
+        length = (length_1 << 8) | length_2
+        li += 1
+    element_data = data[offset + li:offset + li + length]
+    li += length
+
+    return {
+        "id": element_id,
+        "length": length,
+        "data": element_data,
+    }, li
+

@@ -57,6 +57,18 @@ for item in CRM_LABELS:
         "judgement": int(item["judgementType"], 16),
     }
 
+def datetime_safe_parse(year, month, day, hour=0, minute=0, second=0, microsecond=0):
+    try:
+        return datetime.datetime(int(year), int(month), int(day), int(hour), int(minute), int(second), int(microsecond))
+    except ValueError:
+        return datetime.datetime.now()
+
+def time_safe_parse(hour=0, minute=0, second=0, microsecond=0):
+    try:
+        return datetime.time(int(hour), int(minute), int(second), int(microsecond))
+    except ValueError:
+        return datetime.time(0,0,0)
+
 def parse_crmfile(data):
     # skip header
     dotfile_data = bytearray(data[38:])
@@ -206,12 +218,12 @@ def parse_crm_datablocks(parsingblocks):
 
         # aircon and idling
         if crmblock["type"] == 0xBE:
-            draft_struct["start"] = datetime.datetime(2000+block_data[0], block_data[1],block_data[2], block_data[3],
+            draft_struct["start"] = datetime_safe_parse(2000+block_data[0], block_data[1],block_data[2], block_data[3],
                                                      block_data[4], block_data[5], block_data[6])
             draft_struct["consumption"] = int.from_bytes(bytearray(block_data[8:9]), byteorder="big", signed=False)
             continue
         if crmblock["type"] == 0xBD:
-            draft_struct["start"] = datetime.datetime(2000 + block_data[0], block_data[1], block_data[2], block_data[3],
+            draft_struct["start"] = datetime_safe_parse(2000 + block_data[0], block_data[1], block_data[2], block_data[3],
                                                       block_data[4], block_data[5], block_data[6])
             draft_struct["duration"] = int.from_bytes(bytearray(block_data[8:9]), byteorder="big", signed=False)
             continue
@@ -222,14 +234,14 @@ def parse_crm_datablocks(parsingblocks):
                 block_data[1] = 1
             if block_data[2] < 1:
                 block_data[2] = 1
-            draft_struct["start"] = datetime.datetime(2000 + block_data[0], block_data[1], block_data[2])
+            draft_struct["start"] = datetime_safe_parse(2000 + block_data[0], block_data[1], block_data[2])
             continue
         if crmblock["type"] == 0xA1:
             if block_data[1] < 1:
                 block_data[1] = 1
             if block_data[2] < 1:
                 block_data[2] = 1
-            draft_struct["end"] = datetime.datetime(2000 + block_data[0], block_data[1], block_data[2])
+            draft_struct["end"] = datetime_safe_parse(2000 + block_data[0], block_data[1], block_data[2])
             continue
         if crmblock["type"] == 0xA3:
             draft_struct["distance"] = int.from_bytes(block_data, byteorder="big", signed=False)
@@ -313,11 +325,11 @@ def parse_crm_datablocks(parsingblocks):
 
         # trip
         if crmblock["type"] == 0x80:
-            draft_struct["start"] = datetime.datetime(2000 + block_data[0], block_data[1], block_data[2], block_data[3],
+            draft_struct["start"] = datetime_safe_parse(2000 + block_data[0], block_data[1], block_data[2], block_data[3],
                                                       block_data[4], block_data[5])
             continue
         if crmblock["type"] == 0x81:
-            draft_struct["stop"] = datetime.datetime(2000 + block_data[0], block_data[1], block_data[2], block_data[3],
+            draft_struct["stop"] = datetime_safe_parse(2000 + block_data[0], block_data[1], block_data[2], block_data[3],
                                                       block_data[4], block_data[5])
             continue
         if crmblock["type"] == 0x82:
@@ -382,7 +394,7 @@ def parse_crm_datablocks(parsingblocks):
         if crmblock["type"] == 0xB8:
             location = parse_std_location(struct.unpack('>i',block_data[15:19])[0], struct.unpack('>i',block_data[19:23])[0])
             draft_struct = {
-                'timestamp': datetime.datetime(2000 + block_data[0], block_data[1], block_data[2], block_data[3],
+                'timestamp': datetime_safe_parse(2000 + block_data[0], block_data[1], block_data[2], block_data[3],
                                                       block_data[4], block_data[5], block_data[6]),
                 'consumed_wh': int.from_bytes(block_data[7:11], "big"),
                 'regenerated_wh': int.from_bytes(block_data[11:15], "big"),
@@ -394,11 +406,11 @@ def parse_crm_datablocks(parsingblocks):
         if crmblock["type"] == 0xB9:
             draft_struct["accelerator_work"] = {
                 "sudden_start_consumption": int.from_bytes(block_data[:4], byteorder="big", signed=False),
-                "sudden_start_timestamp": datetime.time(block_data[4], block_data[5], block_data[6], block_data[7]),
+                "sudden_start_timestamp": time_safe_parse(block_data[4], block_data[5], block_data[6], block_data[7]),
                 "sudden_acceleration_consumption": int.from_bytes(block_data[8:12], byteorder="big", signed=False),
-                "sudden_acceleration_timestamp": datetime.time(block_data[12], block_data[13], block_data[14], block_data[15]),
+                "sudden_acceleration_timestamp": time_safe_parse(block_data[12], block_data[13], block_data[14], block_data[15]),
                 "non_eco_deceleration_consumption": int.from_bytes(block_data[16:20], byteorder="big", signed=False),
-                "non_eco_deceleration_timestamp": datetime.time(block_data[16], block_data[17], block_data[18], block_data[19]),
+                "non_eco_deceleration_timestamp": time_safe_parse(block_data[16], block_data[17], block_data[18], block_data[19]),
             }
             continue
         if crmblock["type"] == 0xBA:
@@ -415,7 +427,7 @@ def parse_crm_datablocks(parsingblocks):
                 logger.debug(item_data.hex())
                 location = parse_std_location(struct.unpack('>i',item_data[10:14])[0], struct.unpack('>i',item_data[14:18])[0])
                 sudden_starts.append({
-                    "timestamp": datetime.time(item_data[0], item_data[1], item_data[2], item_data[3]),
+                    "timestamp": time_safe_parse(item_data[0], item_data[1], item_data[2], item_data[3]),
                     "power_consumption": item_data[4:8],
                     "elapsed_time": item_data[8:12],
                     "latitude": location[0],
@@ -430,7 +442,7 @@ def parse_crm_datablocks(parsingblocks):
                 item_data = block_data[(i*18)+1:((i+1)*18)+1]
                 location = parse_std_location(struct.unpack('>i',item_data[10:14])[0], struct.unpack('>i',item_data[14:18])[0])
                 sudden_accels.append({
-                    "timestamp": datetime.time(item_data[0], item_data[1], item_data[2], item_data[3]),
+                    "timestamp": time_safe_parse(item_data[0], item_data[1], item_data[2], item_data[3]),
                     "power_consumption": int.from_bytes(item_data[4:8], "big"),
                     "elapsed_time": int.from_bytes(item_data[9:13], "big"),
                     "latitude": location[0],
@@ -445,7 +457,7 @@ def parse_crm_datablocks(parsingblocks):
                 item_data = block_data[(i*18)+1:((i+1)*18)+1]
                 location = parse_std_location(struct.unpack('>i',item_data[10:14])[0], struct.unpack('>i',item_data[14:18])[0])
                 non_eco_decelerations.append({
-                    "timestamp": datetime.time(item_data[0], item_data[1], item_data[2], item_data[3]),
+                    "timestamp": time_safe_parse(item_data[0], item_data[1], item_data[2], item_data[3]),
                     "power_consumption": int.from_bytes(item_data[4:8], "big"),
                     "elapsed_time": int.from_bytes(item_data[8:12], "big"),
                     "latitude": location[0],
@@ -460,7 +472,7 @@ def parse_crm_datablocks(parsingblocks):
                 item_data = block_data[(i*18)+1:((i+1)*18)+1]
                 location = parse_std_location(struct.unpack('>i',item_data[10:14])[0], struct.unpack('>i',item_data[14:18])[0])
                 non_constant_speeds.append({
-                    "timestamp": datetime.time(item_data[0], item_data[1], item_data[2], item_data[3]),
+                    "timestamp": time_safe_parse(item_data[0], item_data[1], item_data[2], item_data[3]),
                     "power_consumption": int.from_bytes(item_data[4:8], "big"),
                     "elapsed_time": int.from_bytes(item_data[8:12], "big"),
                     "latitude": location[0],
@@ -512,7 +524,7 @@ def parse_crm_datablocks(parsingblocks):
 
         # msn
         if crmblock["type"] == 0xC4:
-            draft_struct["aquisition_ts"] = datetime.datetime(2000 + block_data[0], block_data[1], block_data[2], block_data[3],
+            draft_struct["aquisition_ts"] = datetime_safe_parse(2000 + block_data[0], block_data[1], block_data[2], block_data[3],
                                                       block_data[4], block_data[5], block_data[6])
             draft_struct["data"] = block_data[8:]
             continue
@@ -529,9 +541,9 @@ def parse_crm_datablocks(parsingblocks):
                     "long": location[1],
                     "charge_count": block_data[8],
                     "charge_type": block_data[9],
-                    "start_ts": datetime.datetime(2000 + block_data[10], block_data[11], block_data[12], block_data[13],
+                    "start_ts": datetime_safe_parse(2000 + block_data[10], block_data[11], block_data[12], block_data[13],
                                                       int(block_data[14]/60), int(block_data[15]%60)),
-                    "end_ts": datetime.datetime(2000 + block_data[16], block_data[17], block_data[18], block_data[19],
+                    "end_ts": datetime_safe_parse(2000 + block_data[16], block_data[17], block_data[18], block_data[19],
                                                       int(block_data[20]/60), int(block_data[21]%60)),
                 })
             currentblock = None
@@ -539,9 +551,9 @@ def parse_crm_datablocks(parsingblocks):
 
         # charge history
         if crmblock["type"] == 0xDA:
-            draft_struct["charging_start"] = datetime.datetime(2000 + block_data[0], block_data[1], block_data[2], block_data[3],
+            draft_struct["charging_start"] = datetime_safe_parse(2000 + block_data[0], block_data[1], block_data[2], block_data[3],
                                                       block_data[4], int(block_data[5]/60), block_data[5]%60)
-            draft_struct["charging_end"] = datetime.datetime(2000 + block_data[6], block_data[7], block_data[8], block_data[9],
+            draft_struct["charging_end"] = datetime_safe_parse(2000 + block_data[6], block_data[7], block_data[8], block_data[9],
                                                       block_data[10], int(block_data[5]/60), int(block_data[5]%60))
             draft_struct["remaining_charge_bars_at_start"] = block_data[12]
             draft_struct["remaining_charge_bars_at_end"] = block_data[13]

@@ -1,4 +1,5 @@
 import pytz
+from drf_yasg.utils import swagger_serializer_method
 from rest_framework import serializers
 
 from db.models import Car, TCUConfiguration, LocationInfo, EVInfo, AlertHistory, SendToCarLocation, RoutePlan, \
@@ -102,7 +103,8 @@ class CarSerializer(serializers.ModelSerializer):
     tcu_configuration = TCUConfigurationSerializer()
     location = LocationInfoSerializer()
     ev_info = EVInfoSerializer()
-    send_to_car_location = SendToCarLocationSerializer(many=True)
+    send_to_car_location_all = SendToCarLocationSerializer(many=True, source='send_to_car_location')
+    send_to_car_location = serializers.SerializerMethodField()
     route_plans = RoutePlanSerializer(many=True)
     command_type_display = serializers.CharField(source='get_command_type_display')
     command_result_display = serializers.CharField(source='get_command_result_display')
@@ -113,14 +115,13 @@ class CarSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         data = super().to_representation(instance)
-        data['send_to_car_location_all'] = SendToCarLocationSerializer(many=True).to_representation(instance.send_to_car_location)
-        if instance.send_to_car_location.count() > 0:
-            data['send_to_car_location'] = SendToCarLocationSerializer().to_representation(
-                instance.send_to_car_location.order_by('-created_at').first())
-        else:
-            data["send_to_car_location"] = None
         data['supported_commands'] = get_supported_commands(instance.tcu_type)
         return data
+
+    @swagger_serializer_method(serializer_or_field=SendToCarLocationSerializer(read_only=True, allow_null=True, many=False))
+    def get_send_to_car_location(self, obj):
+        location = obj.send_to_car_location.order_by('-created_at').first()
+        return SendToCarLocationSerializer(location, many=False, read_only=True).data if location else None
 
     class Meta:
         model = Car
@@ -235,7 +236,7 @@ class StatusSerializer(serializers.Serializer):
 
 class AlertHistoryFullSerializer(serializers.ModelSerializer):
     type_display = serializers.CharField(source='get_type_display')
-    car = CarSerializer()
+    car = CarSerializer(required=False)
     timestamp = serializers.DateTimeField(read_only=True, default_timezone=pytz.utc)
 
     class Meta:

@@ -75,9 +75,10 @@ def set_evinfo(car, ev_info, tcu_info):
 
     # Calc "display" SOC
     if car.ev_info.max_gids > 0 and car.ev_info.soh > 0 and (tcu_info['vehicle_descriptor'] != 0x02 or car.ev_info.force_soc_display):
-        car.ev_info.soc_display = (
+        soc_disp = (
             ev_info.get("gids", 0) / (car.ev_info.max_gids * (car.ev_info.soh/100))
         ) * 100.0
+        car.ev_info.soc_display = min(soc_disp, 100)
 
     car.ev_info.full_chg_time = ev_info.get("full_chg", 0)
     car.ev_info.limit_chg_time = ev_info.get("limit_chg", 0)

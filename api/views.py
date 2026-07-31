@@ -24,13 +24,14 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.views import TokenObtainPairView
 
 from api.models import TokenMetadata
-from api.serializers import JWTTokenObtainPairSerializer, TokenMetadataUpdateSerializer, TokenMetadataSerializer
+from api.serializers import JWTTokenObtainPairSerializer, TokenMetadataUpdateSerializer, TokenMetadataSerializer, \
+    JWTTokenLoginSerializer
 from db.models import Car, AlertHistory, COMMAND_TYPES, CRMDistanceRecord
 from tculink.coordinators import TCUCoordinatorError
 from tculink.coordinators.stub import send_command_using_provider
 from ui.serializers import CarSerializer, CarSerializerList, AlertHistorySerializer, \
     CommandResponseSerializer, CommandErrorSerializer, CarUpdatingSerializer, CRMDistanceRecordSerializer, \
-    CommandTimerSettingSerializer
+    CommandTimerSettingSerializer, AlertHistoryFullSerializer
 
 logger = logging.getLogger("ficosa")
 
@@ -272,7 +273,7 @@ def cars_api(request):
     method='get',
     tags=['alerts'],
     responses={
-        200: AlertHistorySerializer(many=True),
+        200: AlertHistoryFullSerializer(many=True),
         401: 'Not authorized',
         404: 'Car not found',
     }
@@ -375,7 +376,9 @@ def command_api(request, vin):
 
 class CustomTokenObtainPairView(TokenObtainPairView):
 
-    @swagger_auto_schema(tags=['token'], request_body=JWTTokenObtainPairSerializer())
+    @swagger_auto_schema(tags=['token'], request_body=JWTTokenObtainPairSerializer(), responses={
+        200: JWTTokenLoginSerializer()
+    })
     def post(self, request, *args, **kwargs):
         # Call the parent class's post method to get the token response
         response = super().post(request, *args, **kwargs)

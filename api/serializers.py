@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer, TokenRefreshSerializer
 
 from api.models import TokenMetadata
 
@@ -10,6 +10,10 @@ class JWTTokenObtainPairSerializer(TokenObtainPairSerializer):
     app_version = serializers.CharField(required=False, allow_blank=True, max_length=50)
     push_notification_key = serializers.CharField(required=False, allow_blank=True, max_length=500)
 
+
+class JWTTokenLoginSerializer(TokenRefreshSerializer):
+    user_id = serializers.IntegerField(read_only=True, required=False)
+    username = serializers.CharField(required=False, allow_blank=True, max_length=16)
 
 
 class TokenMetadataUpdateSerializer(serializers.Serializer):

@@ -28,7 +28,7 @@ def data_pdu(number: str, data: bytes|bytearray) -> Tuple[bytes, int]:
         # period present and relative
         b'\x00',  # Message reference
         len(number).to_bytes(1, 'big'),  # Length of the phone number (11)
-        b'\x81',  # Type of number (0x81 = international)
+        b'\x91',  # Type of number (0x91 = international)
         semi_num,  # Telephone number
         b'\x00',  # TP-PID Protocol ID.
         b'\x04',  # TP-DCS data coding scheme. 0x4=8 bit data

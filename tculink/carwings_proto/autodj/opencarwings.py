@@ -176,7 +176,7 @@ def create_consumption_slide(title, consumption, bar_labels, bars=0, helptext=""
 
     info_font = ImageFont.truetype(font_file, 13)
 
-    main_frame = Image.open(os.path.join(resources_dir, f"zeroemission_2_{unit}.png"))
+    main_frame = Image.open(os.path.join(resources_dir, f"zeroemission_2_{unit}.png")).convert('RGBA')
     mainframe_draw = ImageDraw.Draw(main_frame)
     # 57,87: dat
     # 330, 118: unit
@@ -241,31 +241,32 @@ def create_consumption_slide(title, consumption, bar_labels, bars=0, helptext=""
     for idx, i in enumerate(cons_first):
         pos = -85 + (42 * idx)
         if i != " ":
-            segment = Image.open(os.path.join(resources_dir, f"seg{i}.png"))
+            segment = Image.open(os.path.join(resources_dir, f"seg{i}.png")).convert("RGBA")
             main_frame.paste(segment, (pos, 0), segment)
 
     if len(cons_fullnum.split(".")) > 1:
         cons_first = cons_fullnum.split(".")[1][0]
-        segment = Image.open(os.path.join(resources_dir, f"seg{cons_first}.png"))
+        segment = Image.open(os.path.join(resources_dir, f"seg{cons_first}.png")).convert("RGBA")
     else:
-        segment = Image.open(os.path.join(resources_dir, f"seg0.png"))
+        segment = Image.open(os.path.join(resources_dir, f"seg0.png")).convert("RGBA")
     main_frame.paste(segment, (55, 0), segment)
 
     wrappedtxt = wrap_text(helptext, 390, info_font)
     mainframe_draw.text((32, 235), "\n".join(wrappedtxt), fill=(255, 189, 49), stroke_width=0.0, font=info_font)
 
     if bars > 0:
-        bars_img = Image.open(os.path.join(resources_dir, f"bar{bars}.png"))
+        bars_img = Image.open(os.path.join(resources_dir, f"bar{bars}.png")).convert("RGBA")
         main_frame.paste(bars_img, (0, 0), bars_img)
 
-    indicator = Image.open(os.path.join(resources_dir, f"pin1.png"))
+    indicator = Image.open(os.path.join(resources_dir, f"pin1.png")).convert("RGBA")
     base_ind_pos = -195
     if bars > 0:
         base_ind_pos += 35
         base_ind_pos += (bars - 1) * 79
     main_frame.paste(indicator, (base_ind_pos, 0), indicator)
     frame_data = BytesIO()
-    main_frame.save(frame_data, format="PNG")
+    main_frame = main_frame.convert("RGB")
+    main_frame.save(frame_data, format="PNG", quality=100)
     return pngquant.quant_data(frame_data.getvalue())[1]
 
 def create_info_slide(title, info_title):
@@ -277,9 +278,9 @@ def create_info_slide(title, info_title):
 
     info_font = ImageFont.truetype(font_file, 26)
 
-    main_frame = Image.open(os.path.join(resources_dir, f"zeroemission_0.png"))
-    header_info = Image.open(os.path.join(resources_dir, "header_info.png"))
-    body_info = Image.open(os.path.join(resources_dir, "body_info.png"))
+    main_frame = Image.open(os.path.join(resources_dir, f"zeroemission_0.png")).convert("RGBA")
+    header_info = Image.open(os.path.join(resources_dir, "header_info.png")).convert("RGBA")
+    body_info = Image.open(os.path.join(resources_dir, "body_info.png")).convert("RGBA")
     main_frame.paste(header_info, (0, 0), header_info)
     main_frame.paste(body_info, (0, 0), body_info)
     mainframe_draw = ImageDraw.Draw(main_frame)
@@ -302,7 +303,6 @@ def create_info_slide(title, info_title):
                 end_x += char_width + letter_spacing
 
         if end_x > 360:
-            print(header_font.size)
             end_x = 60
             header_font = ImageFont.truetype(font_file, header_font.size - 1)
             title_stroke_width -= 0.005
@@ -327,9 +327,9 @@ def create_info_slide(title, info_title):
         y += 25
 
     frame_data = BytesIO()
-    main_frame_jpg = main_frame.convert("RGB")
-    main_frame_jpg.save(frame_data, 'JPEG', optimize=True, quality=80,compress_level=9)
-    return frame_data.getvalue()
+    main_frame = main_frame.convert("RGB")
+    main_frame.save(frame_data, format="PNG", quality=100)
+    return pngquant.quant_data(frame_data.getvalue())[1]
 
 def create_ecorecord_slide(title, total, total_count, trees, records):
     resources_dir = os.path.join(
@@ -346,9 +346,9 @@ def create_ecorecord_slide(title, total, total_count, trees, records):
 
     bignum = ImageFont.truetype(font_file, 35)
 
-    main_frame = Image.open(os.path.join(resources_dir, f"zeroemission_w.png"))
-    forest = Image.open(os.path.join(resources_dir, f"forest.png"))
-    table = Image.open(os.path.join(resources_dir, f"ecodata.png"))
+    main_frame = Image.open(os.path.join(resources_dir, f"zeroemission_w.png")).convert("RGB")
+    forest = Image.open(os.path.join(resources_dir, f"forest.png")).convert("RGBA")
+    table = Image.open(os.path.join(resources_dir, f"ecodata.png")).convert("RGBA")
     main_frame.paste(forest, (0, 0), forest)
     main_frame.paste(table, (0, 0), table)
     mainframe_draw = ImageDraw.Draw(main_frame)
@@ -371,7 +371,6 @@ def create_ecorecord_slide(title, total, total_count, trees, records):
                 end_x += char_width + letter_spacing
 
         if end_x > 360:
-            print(header_font.size)
             end_x = 60
             header_font = ImageFont.truetype(font_file, header_font.size - 1)
             title_stroke_width -= 0.005
@@ -409,20 +408,19 @@ def create_ecorecord_slide(title, total, total_count, trees, records):
 
         halftrees = row[1] % 1
         fulltrees = int(row[1] - halftrees)
-        print(halftrees, fulltrees)
         tree_x = 0
         for i in range(fulltrees):
-            tree = Image.open(os.path.join(resources_dir, f"t5.png")).resize((30, 42))
+            tree = Image.open(os.path.join(resources_dir, f"t5.png")).convert("RGBA").resize((30, 42))
             main_frame.paste(tree, (234 + (36 * tree_x), 89 + y_offset), tree)
             tree_x += 1
 
         if halftrees > 0:
-            print(round(halftrees * 5))
-            tree = Image.open(os.path.join(resources_dir, f"t{int(round(halftrees * 5))}.png")).resize((30, 42))
+            tree = Image.open(os.path.join(resources_dir, f"t{int(round(halftrees * 5))}.png")).convert("RGBA").resize((30, 42))
             main_frame.paste(tree, (234 + (36 * tree_x), 89 + y_offset), tree)
 
     frame_data = BytesIO()
-    main_frame.save(frame_data, format="PNG")
+    main_frame = main_frame.convert("RGB")
+    main_frame.save(frame_data, format="PNG", quality=100)
     return pngquant.quant_data(frame_data.getvalue())[1]
 
 def create_ecoforest_slide(title, total_title, total_value, emission_title, emission_value):
@@ -435,12 +433,12 @@ def create_ecoforest_slide(title, total_title, total_value, emission_title, emis
     total_info = ImageFont.truetype(font_file, 16)
     total_data_info = ImageFont.truetype(font_file, 19)
 
-    main_frame = Image.open(os.path.join(resources_dir, f"zeroemission_w.png"))
-    forest = Image.open(os.path.join(resources_dir, f"forest.png"))
+    main_frame = Image.open(os.path.join(resources_dir, f"zeroemission_w.png")).convert("RGBA")
+    forest = Image.open(os.path.join(resources_dir, f"forest.png")).convert("RGBA")
     main_frame.paste(forest, (0, 0), forest)
 
-    globe = Image.open(os.path.join(resources_dir, f"globe.png"))
-    maptree = Image.open(os.path.join(resources_dir, f"maptree.png"))
+    globe = Image.open(os.path.join(resources_dir, f"globe.png")).convert("RGBA")
+    maptree = Image.open(os.path.join(resources_dir, f"maptree.png")).convert("RGBA")
     main_frame.paste(globe, (0, 0), globe)
     main_frame.paste(maptree, (0, 0), maptree)
 
@@ -496,9 +494,9 @@ def create_ecoforest_slide(title, total_title, total_value, emission_title, emis
                         font=total_data_info)
 
     frame_data = BytesIO()
-    main_frame_jpg = main_frame.convert("RGB")
-    main_frame_jpg.save(frame_data, 'JPEG', optimize=True, quality=70,compress_level=9)
-    return frame_data.getvalue()
+    main_frame = main_frame.convert("RGB")
+    main_frame.save(frame_data, format="PNG", quality=100)
+    return pngquant.quant_data(frame_data.getvalue())[1]
 
 
 def get_ordinal_suffix(day):

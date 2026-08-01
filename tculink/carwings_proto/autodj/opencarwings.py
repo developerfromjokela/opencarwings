@@ -4,6 +4,9 @@ import os
 import random
 from datetime import datetime
 from io import BytesIO
+
+from django.core.cache import cache
+
 logger = logging.getLogger("carwings_apj")
 
 import pngquant
@@ -832,7 +835,11 @@ def get_eco_tree_channel(xml_data, returning_xml, channel_id, car, page):
     if page == 2:
         forest_title = _("World's Eco Forest")
 
-        total_trees = (CRMTripRecord.objects.aggregate(trees=Sum('eco_tree_count'))['trees'] or 0)/5
+        total_trees = cache.get("eco_forest_result")
+        if total_trees is None:
+            total_trees = (CRMTripRecord.objects.aggregate(trees=Sum('eco_tree_count'))['trees'] or 0) / 5
+            cache.set("eco_forest_result", total_trees, timeout=60*60*12)
+
         total_tonnes = round(total_trees*0.00412)
         tree_word = _("trees")
         tonnes_words = _("tonnes")

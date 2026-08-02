@@ -333,7 +333,7 @@
                     <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "GIDs remaining" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="gids">{{ car.ev_info.gids }}</dd></div>
                     <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Battery heater exists" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="batt_heater_avail">{{ car.ev_info.batt_heater_avail|yesno:_("Yes,No") }}</dd></div>
                     <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Battery heater active" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="batt_heater_status">{{ car.ev_info.batt_heater_status|yesno:_("Yes,No") }}</dd></div>
-                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Cabin Temperature" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="counter">{{ car.ev_info.cabin_temp }} °C</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Cabin Temperature" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="cabin_temp">{{ car.ev_info.cabin_temp }} °C</dd></div>
                     <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Counter" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="counter">{{ car.ev_info.counter }}</dd></div>
                     <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Last Updated" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="ev_last_updated">{{ car.ev_info.last_updated|default:"N/A"|date:"Y-m-d H:i" }}</dd></div>
                 </dl>
@@ -1295,6 +1295,7 @@
             document.getElementById('quick_charging').textContent = data.ev_info.quick_charging ? '{% translate "Yes" %}' : '{% translate "No" %}';
             document.getElementById('gids').textContent = data.ev_info.gids;
             document.getElementById('counter').textContent = data.ev_info.counter;
+            document.getElementById('cabin_temp').textContent = data.ev_info.cabin_temp+" °C";
             document.getElementById('soh').textContent = data.ev_info.soh+"%";
             document.getElementById('remaining_kwh').textContent = (data.ev_info.wh_content/1000).toFixed(2)+" kWh";
             document.getElementById('full_chg_time').textContent = (data.ev_info.full_chg_time === 2047 || data.ev_info.full_chg_time == 0) ? '--:--' : convertMinsToHrsMins(data.ev_info.full_chg_time);

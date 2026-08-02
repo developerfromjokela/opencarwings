@@ -220,6 +220,14 @@ def parse_ev_info(data: bytes, offset: int) -> Tuple[dict, int]:
         charging = False
         quick_charging = False
 
+    cabin_temp = 0.0
+
+    # ZE1!
+    if len(d) == 24:
+        temp_data = d[23]
+        if temp_data > 0:
+            cabin_temp = float(temp_data/2) - 40.0
+
     return {
         "acon": range_acon,
         "acoff": range_acoff,
@@ -234,6 +242,8 @@ def parse_ev_info(data: bytes, offset: int) -> Tuple[dict, int]:
         "direction_forward": drive_status == 4,
         "soc": soc,
         "soc_display": soc_display,
+        "soc_display_int": soc_display_int,
+        "cabin_temp": cabin_temp,
         "gids": gids,
         "soh": soh,
         "obc_6kw_exist": False,

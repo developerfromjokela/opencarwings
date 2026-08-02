@@ -259,6 +259,7 @@ class EVInfo(models.Model):
     limit_chg_time = models.IntegerField(default=0)
     obc_6kw = models.IntegerField(default=0)
     param21 = models.IntegerField(default=0)
+    cabin_temp = models.FloatField(default=0)
     force_soc_display = models.BooleanField(default=False)
     obc_6kw_avail = models.BooleanField(default=False)
     batt_heater_avail = models.BooleanField(default=False)

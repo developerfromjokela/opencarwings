@@ -56,6 +56,8 @@ def handle(bin_data: bytes, acp_data: dict, car: Car, source_id: int, destinatio
 
     c_ev_info.soc = ev_info["soc"]
     c_ev_info.soc_display = min(ev_info["soc_display"], 100)
+    c_ev_info.counter = min(ev_info["soc_display_int"], 100)
+    c_ev_info.cabin_temp = ev_info["cabin_temp"]
     c_ev_info.gids = ev_info["gids"]
     c_ev_info.soh = ev_info["soh"]
     c_ev_info.last_updated = timezone.now()

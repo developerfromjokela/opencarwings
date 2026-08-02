@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Optional
+from typing import Optional, Tuple
 
 
 def _encode_ie(value: str | bytes, ie_id=-1) -> bytes:
@@ -268,6 +268,107 @@ class EVTemperatureDummy:
     def encode(self) -> bytes:
         return _encode_ie(bytes([]), ie_id=0)
 
+class ACPEVCalendarChargeSchedule:
+    header_field1: int = 0          # 2 bits
+    header_field2: int = 0          # 2 bits
+    monday: Tuple[int, int] = (0, 0)     # (time, cmd)
+    tuesday: Tuple[int, int] = (0, 0)    # (time, cmd)
+    wednesday: Tuple[int, int] = (0, 0)  # (time, cmd)
+    thursday: Tuple[int, int] = (0, 0)   # (time, cmd)
+    friday: Tuple[int, int] = (0, 0)     # (time, cmd)
+    saturday: Tuple[int, int] = (0, 0)   # (time, cmd)
+    sunday: Tuple[int, int] = (0, 0)     # (time, cmd)
+
+    def __init__(self, header_field1: int = 0, header_field2: int = 0, monday: Tuple[int, int] = (0, 0),
+                 tuesday: Tuple[int, int] = (0, 0), wednesday: Tuple[int, int] = (0, 0), thursday: Tuple[int, int] = (0, 0),
+                 friday: Tuple[int, int] = (0, 0), saturday: Tuple[int, int] = (0, 0), sunday: Tuple[int, int] = (0, 0)):
+        self.header_field1 = header_field1
+        self.header_field2 = header_field2
+        self.monday = monday
+        self.tuesday = tuesday
+        self.wednesday = wednesday
+        self.thursday = thursday
+        self.friday = friday
+        self.saturday = saturday
+        self.sunday = sunday
+
+    def encode(self) -> bytes:
+        out = bytearray()
+        b1 = ((self.header_field1 & 0x3) << 6) | ((self.header_field2 & 0x3) << 4)
+        out.append(b1)
+
+        for time_val, cmd_val in (
+            self.monday, self.tuesday, self.wednesday, self.thursday,
+            self.friday, self.saturday, self.sunday,
+        ):
+            out.append(time_val & 0xFF)
+            out.append(cmd_val & 0xFF)
+
+        out.extend(Timestamp().encode())
+        return _encode_ie(bytes(out), ie_id=0)
+
+
+
+class EVTemperaturePayload:
+    units: int = 0        # 1 bit
+    temp_val: int = 0     # 5 bits
+    enum_mode: int = 0    # 2 bits
+    state1: int = 0       # 2 bits
+    state2: int = 0       # 2 bits
+    state3: int = 0       # 2 bits
+    flag1: int = 0        # 2 bits
+    state5: int = 0       # 2 bits
+    state6: int = 0       # 2 bits
+    state7: int = 0       # 2 bits
+    calendar1: ACPEVCalendarChargeSchedule = ACPEVCalendarChargeSchedule()
+    calendar2: ACPEVCalendarChargeSchedule = ACPEVCalendarChargeSchedule()
+    calendar3: ACPEVCalendarChargeSchedule = ACPEVCalendarChargeSchedule()
+
+    def __init__(self, units: int = 0, temp_val: int = 0, enum_mode: int = 0, state1: int = 0, state2: int = 0,
+                 state3: int = 0, flag1: int = 0, state5: int = 0, state6: int = 0, state7: int = 0,
+                 calendar1: ACPEVCalendarChargeSchedule = ACPEVCalendarChargeSchedule(),
+                 calendar2: ACPEVCalendarChargeSchedule = ACPEVCalendarChargeSchedule(),
+                 calendar3: ACPEVCalendarChargeSchedule = ACPEVCalendarChargeSchedule()):
+        self.units = units
+        self.temp_val = temp_val
+        self.enum_mode = enum_mode
+        self.state1 = state1
+        self.state2 = state2
+        self.state3 = state3
+        self.flag1 = flag1
+        self.state5 = state5
+        self.state6 = state6
+        self.state7 = state7
+        self.calendar1 = calendar1
+        self.calendar2 = calendar2
+        self.calendar3 = calendar3
+
+    def encode(self) -> bytes:
+        out = bytearray()
+
+        b1 = ((self.units & 0x1) << 7) | ((self.temp_val & 0x1F) << 2)
+        out.append(b1)
+
+        b2 = (
+            ((self.enum_mode & 0x3) << 6)
+            | ((self.state1 & 0x3) << 4)
+            | ((self.state2 & 0x3) << 2)
+            | (self.state3 & 0x3)
+        )
+        out.append(b2)
+
+        b3 = (
+            ((self.flag1 & 0x3) << 6)
+            | ((self.state5 & 0x3) << 4)
+            | ((self.state6 & 0x3) << 2)
+            | (self.state7 & 0x3)
+        )
+        out.append(b3)
+
+        out.extend(self.calendar1.encode())
+        out.extend(self.calendar2.encode())
+        out.extend(self.calendar3.encode())
+        return _encode_ie(bytes(out), ie_id=0)
 
 class ServProvEntry:
     def __init__(self, prov_type: int, flag: int, value: int):

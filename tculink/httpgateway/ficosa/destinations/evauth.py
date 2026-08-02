@@ -40,7 +40,13 @@ def handle(_, acp_data: dict, car: Car, source_id: int, __) -> bytes:
             ).encode()
 
             if car.command_type == 3:
-                acp_msg += composer.EVTemperatureDummy().encode()
+                # Check for A/C temp setting
+                if car.command_payload is not None and "unit" in car.command_payload and "temp" in car.command_payload:
+                    acp_msg += composer.EVTemperaturePayload(units=car.command_payload.get("unit", 0),
+                                                             temp_val=car.command_payload.get("temp", 0)).encode()
+                    car.command_payload = None
+                else:
+                    acp_msg += composer.EVTemperatureDummy().encode()
             acp_msg += composer.TimeSync().encode()
         elif dest_id == 0x31: # Door Lock Unlock
             acp_msg += composer.EVCommandTail(command=6 if car.command_type == 7 else 5).encode()

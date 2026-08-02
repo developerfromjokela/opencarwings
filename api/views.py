@@ -333,6 +333,7 @@ def probe_location_hist(request, vin):
         type=openapi.TYPE_OBJECT,
         properties={
             'command_type': openapi.Schema(type=openapi.TYPE_NUMBER, title="Command type", enum=COMMAND_TYPES),
+            'command_payload': openapi.Schema(type=openapi.TYPE_OBJECT, default=None)
         },
         required=['vin', 'command_type']
     ),
@@ -351,12 +352,13 @@ def command_api(request, vin):
         return Response(status=status.HTTP_401_UNAUTHORIZED)
     car = get_object_or_404(Car, vin=vin, owner=request.user)
     command_type = request.data.get('command_type')
+    command_payload = request.data.get('command_payload', None)
 
     try:
         command_type = int(command_type)
         if command_type in dict(COMMAND_TYPES):
             try:
-                car = send_command_using_provider(command_type, None, car)
+                car = send_command_using_provider(command_type, command_payload, car)
             except TCUCoordinatorError as e:
                 logger.exception(e)
                 return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

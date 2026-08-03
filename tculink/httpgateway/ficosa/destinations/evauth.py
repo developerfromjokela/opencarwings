@@ -29,7 +29,7 @@ def handle(_, acp_data: dict, car: Car, source_id: int, __) -> bytes:
     elif car.command_type == 15 and car.command_payload is not None:
         app_id = 0x1f
         config_template = CONFIGURATION_MAP[car.command_payload["config_type"]]
-        config_payload = car.command_payload["data"]
+        config_payload = car.command_payload
         acp_msg += dest_id.to_bytes(1, "little")
         acp_msg += source_id.to_bytes(1, "little")
 
@@ -39,6 +39,7 @@ def handle(_, acp_data: dict, car: Car, source_id: int, __) -> bytes:
         service_type = config_template["service_type"]
         # add data
         if config_payload["type"] == "send":
+            config_payload = config_payload["data"]
             for field, info in config_template["fields"].items():
                 value = config_payload[field]
                 field_type = info["type"]

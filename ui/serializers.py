@@ -260,3 +260,9 @@ class CRMDistanceRecordSerializer(serializers.ModelSerializer):
     class Meta:
         model = CRMDistanceRecord
         fields = ['timestamp', 'consumed_wh', 'regenerated_wh', 'latitude', 'longitude', 'road_type']
+
+
+class FicosaConfigSerializer(serializers.Serializer):
+    type = serializers.CharField(max_length=8, required=True)
+    config_type = serializers.CharField(max_length=16, required=True)
+    data = serializers.JSONField(required=False, default={})

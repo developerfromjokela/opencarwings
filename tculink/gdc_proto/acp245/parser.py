@@ -528,3 +528,42 @@ def decode_probe_form_item(data: bytes, offset: int) -> Tuple[dict, int]:
         "data": element_data,
     }, li
 
+def decode_record(record: bytes) -> dict:
+    if len(record) != 3:
+        raise ValueError(f"record must be exactly 3 bytes, got {record!r}")
+    return {
+        "tag": record[0],
+        "status": record[1],
+        "req_type": record[2],
+    }
+
+
+def decode_acp_config_results(buf: bytes) -> Tuple[dict, int]:
+    if len(buf) < 5:
+        raise ValueError("buffer too short for header (need at least 5 bytes)")
+
+    tag = buf[0]
+    flag = buf[1]
+
+    length_field = buf[2] | (buf[3] << 8)
+
+    if length_field % 2 != 0:
+        raise ValueError(f"length field {length_field} is not even; can't derive count")
+    count = length_field // 2
+
+    records = []
+    offset = 5
+    for i in range(count):
+        rec = buf[offset:offset + 3]
+        if len(rec) != 3:
+            raise ValueError(f"buffer truncated at record {i}, offset {offset}")
+        records.append(decode_record(rec))
+        offset += 3
+
+    return {
+        "tag": tag,
+        "flag": flag,
+        "length_field": length_field,
+        "count": count,
+        "records": records,
+    }, offset

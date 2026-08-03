@@ -31,6 +31,8 @@ from tculink.carwings_proto.autodj import ICONS
 from tculink.carwings_proto.autodj.channels import get_info_channel_data
 from tculink.carwings_proto.probe_config import PROBE_CONFIGS, PROBE_CONFIG_INFO
 from tculink.coordinators import get_required_sms_types, get_supported_commands
+from tculink.coordinators.ficosa2016 import Ficosa2016
+from tculink.gdc_proto.ficosa.utils import CONFIGURATION_MAP, get_config_map_translated
 from tculink.utils.password_hash import check_password_validity, password_hash
 from .forms import Step2Form, Step3Form, SettingsForm, ChangeCarwingsPasswordForm, AccountForm, SignUpForm, \
     ProbeConfigForm, Step0Form
@@ -525,11 +527,15 @@ def car_detail(request, vin):
     for folder in folders:
         new_folder = {'id': folder['id'], 'name': folder['name1'], 'icon': "chanicons/"+ICONS[0xFFFE][0]}
         folder_chans = [{'id': x['id'], 'name': x['name1'], 'icon': "chanicons/"+ICONS[x['icon']][0]} for x in channels if x['folder_id'] == new_folder['id']]
-        if folder['id'] != 4:
+        if folder['id'] != 5:
             new_folder["channels"] = folder_chans
         channel_map.append(new_folder)
 
     alerts = AlertHistory.objects.filter(car=car).order_by('-timestamp')[:30]
+    tcu_config_template = {}
+    if car.tcu_type == Ficosa2016.CODE:
+        tcu_config_template = get_config_map_translated()
+
     context = {
         'car': car,
         'alerts': alerts,
@@ -542,6 +548,7 @@ def car_detail(request, vin):
         'sms_message': django.conf.settings.ACTIVATION_SMS_MESSAGE,
         'channels': channel_map,
         'chan_icon_choices': list(ICONS.values()),
+        'tcu_config_template': tcu_config_template,
         'imperial': 'true' if request.user.units_imperial else 'false'
     }
     return render(request, 'ui/car_detail.html', context)

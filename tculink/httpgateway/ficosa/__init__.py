@@ -8,7 +8,7 @@ from django.utils import timezone
 
 from db.models import Car, CommandTimerSetting
 from tculink.gdc_proto.ficosa import acp as ficosa_acp
-from tculink.httpgateway.ficosa.destinations import DESTINATIONS
+from tculink.httpgateway.ficosa.destinations import DESTINATIONS, config
 
 logger = logging.getLogger("ficosa")
 
@@ -83,6 +83,9 @@ def handle_request(request: WSGIRequest | Any) -> HttpResponse:
     # Probe V2
     elif app_id == 30:
         acp_body, offset = ficosa_acp.parse_probe_request(bin_data)
+    # Configuration request
+    elif app_id == 0x1d:
+        acp_body, offset = ficosa_acp.parse_config_request(bin_data)
     else:
         logger.debug(f"unknown, app_id: {app_id}")
         return HttpResponse(status=400)
@@ -109,7 +112,10 @@ def handle_request(request: WSGIRequest | Any) -> HttpResponse:
 
     try:
         bin_data = bin_data[offset:]
-        resp_bin = DESTINATIONS[destination_id](bin_data, acp_body, car, source_id, destination_id)
+        if app_id == 0x1d:
+            resp_bin = config.handle(bin_data, acp_body, car, source_id, destination_id)
+        else:
+            resp_bin = DESTINATIONS[destination_id](bin_data, acp_body, car, source_id, destination_id)
     except Exception as e:
         logger.exception(e)
         return HttpResponse(status=500)

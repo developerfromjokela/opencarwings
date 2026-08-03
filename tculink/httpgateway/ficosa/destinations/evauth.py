@@ -1,6 +1,6 @@
 from db.models import Car
 from tculink.gdc_proto.acp245 import composer
-from tculink.gdc_proto.ficosa.utils import command_to_destination_id
+from tculink.gdc_proto.ficosa.utils import command_to_destination_id, CONFIGURATION_MAP, ConfigurationFieldType
 import logging
 logger = logging.getLogger("ficosa")
 
@@ -9,7 +9,10 @@ def handle(_, acp_data: dict, car: Car, source_id: int, __) -> bytes:
     Checks for any pending actions and sends necessary data to execute the command.
     """
 
-    dest_id = command_to_destination_id(car.command_type)
+    if car.command_type == 15 and car.command_payload is not None:
+        dest_id = CONFIGURATION_MAP[car.command_payload["config_type"]]["destination"]
+    else:
+        dest_id = command_to_destination_id(car.command_type)
     app_id = 2
 
     acp_msg = bytearray()
@@ -23,6 +26,32 @@ def handle(_, acp_data: dict, car: Car, source_id: int, __) -> bytes:
         acp_msg += b'\x27'  # dest ID, auth
         acp_msg += source_id.to_bytes(1, "little")  # src ID
         acp_msg += composer.EVCommandTail(command=0).encode()
+    elif car.command_type == 15 and car.command_payload is not None:
+        app_id = 0x1f
+        config_template = CONFIGURATION_MAP[car.command_payload["config_type"]]
+        config_payload = car.command_payload["data"]
+        acp_msg += dest_id.to_bytes(1, "little")
+        acp_msg += source_id.to_bytes(1, "little")
+
+        acp_msg += composer.EVCommandTail().encode()
+        acp_msg += composer.TimeSync().encode()
+        config_encoder = composer.ACPConfigEncoder()
+        service_type = config_template["service_type"]
+        # add data
+        if config_payload["type"] == "send":
+            for field, info in config_template["fields"].items():
+                value = config_payload[field]
+                field_type = info["type"]
+                if field_type == ConfigurationFieldType.NUMBER:
+                    config_encoder.add_element(service_type, info["info_id"], value.to_bytes(info["length"], "little"))
+                elif field_type == ConfigurationFieldType.BOOLEAN:
+                    config_encoder.add_element(service_type, info["info_id"], b"\x01" if value else b"\x00")
+                elif field_type == ConfigurationFieldType.ASCII:
+                    config_encoder.add_element(service_type, info["info_id"], value.encode("ascii"))
+                elif field_type == ConfigurationFieldType.UNICODE:
+                    config_encoder.add_element(service_type, info["info_id"], value.encode("utf-8"))
+
+        acp_msg += config_encoder.encode()
     else:
         acp_msg += dest_id.to_bytes(1, "little")  # dest ID
         acp_msg += source_id.to_bytes(1, "little")  # src ID

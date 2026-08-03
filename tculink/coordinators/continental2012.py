@@ -3,7 +3,7 @@ from random import randint
 from django.utils import timezone
 
 from db.models import Car, COMMAND_TYPES
-from tculink.coordinators import InvalidCommandError, SMSError
+from tculink.coordinators import InvalidCommandError, SMSError, CommandArgumentError
 from tculink.coordinators.stub import TCULink
 from tculink.sms import send_using_provider, SMSType
 from django.conf import settings
@@ -17,6 +17,8 @@ class Continental2012(TCULink):
 
     def send_command(self, command: int, payload, car: Car):
         if command in dict(COMMAND_TYPES) and command in self.SUPPORTED_COMMANDS:
+            if payload is not None:
+                raise CommandArgumentError("Command does not support payload field")
             try:
                 sms_result = send_using_provider(settings.ACTIVATION_SMS_MESSAGE, car.sms_config)
                 if not sms_result:
@@ -27,7 +29,7 @@ class Continental2012(TCULink):
             car.command_id = randint(10000, 99999)
             car.command_requested = True
             car.command_result = -1
-            car.command_payload = payload
+            car.command_payload = None
             car.command_request_time = timezone.now()
             car.save()
             return car

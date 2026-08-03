@@ -1,5 +1,6 @@
+from dataclasses import dataclass
 from datetime import datetime
-from typing import Optional, Tuple
+from typing import Optional, Tuple, List
 
 
 def _encode_ie(value: str | bytes, ie_id=-1) -> bytes:
@@ -405,3 +406,35 @@ class ServProv:
             data.append(e.second_byte())
 
         return _encode_ie(data, ie_id=0)
+
+@dataclass
+class Element:
+    service_type: int
+    info_id: int
+    value: bytes
+
+    def encode(self) -> bytes:
+        value_len = len(self.value)
+        if value_len < 0x80:
+            len_field = bytes([value_len])
+        else:
+            len_field = bytes([0x80 | (value_len >> 8), value_len & 0xFF])
+
+        info_id_bytes = bytes([(self.info_id >> 8) & 0xFF, self.info_id & 0xFF])
+        body = bytes([self.service_type]) + info_id_bytes + len_field + self.value
+        return _encode_ie(body, ie_id=0)
+
+
+class ACPConfigEncoder:
+    def __init__(self):
+        self.elements: List[Element] = []
+
+    def add_element(self, service_type: int, info_id: int, value: bytes) -> "ACPConfigEncoder":
+        self.elements.append(Element(service_type, info_id, bytes(value)))
+        return self
+
+    def encode(self) -> bytes:
+        body = b"".join(e.encode() for e in self.elements)
+        return _encode_ie(body, ie_id=0)
+
+

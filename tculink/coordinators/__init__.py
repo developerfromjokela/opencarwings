@@ -4,6 +4,9 @@ class TCUCoordinatorError(Exception):
 class InvalidCommandError(TCUCoordinatorError):
     pass
 
+class CommandArgumentError(TCUCoordinatorError):
+    pass
+
 class UnsupportedCommandError(TCUCoordinatorError):
     pass
 

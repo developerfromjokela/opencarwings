@@ -21,7 +21,6 @@ def get_cws_authenticated_car(xml_data, check_user=True) -> Car|None:
         try:
             car = Car.objects.get(vin=car_vin)
 
-            # confirm TCU ID
             if navi_id != car.tcu_serial:
                 return None
 

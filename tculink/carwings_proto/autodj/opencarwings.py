@@ -21,13 +21,15 @@ from db.models import CRMTripRecord
 from tculink.carwings_proto.dataobjects import build_autodj_payload
 from tculink.carwings_proto.utils import get_word_of_month_i18n, encode_utf8
 
-RELEASE_NOTES = "December 2025: What's new in OpenCARWINGS?\n1. Enhanced vehicle data\n2. Bugfixes"
+RELEASE_NOTES = "August 2026: What's new in OpenCARWINGS?\n1. Z E 1 LEAF Vehicle support\n2. 30 kWh LEAF support"
 
-RELEASE_NOTES_SPK = ("What's new in Open CAR WINGS? Last updated first of December.\nHappy holidays to everyone\nNow release notes. Number one. Enhanced vehicle data.\n"
-                     "Vehicle telemetry reported from cars have got enhancements. New telemetry configuration setting found on the web site allows changing the configuration.\n"
-                     "New configuration unlocks all possible data fields that is supported in the system, this is useful for european and american models. "
-                     "\nNumber two. Bugfixes.\nThe vehicle data collection had a bug, which prevented from reading all high voltage battery information transmitted.\n"
-                     "Now, with the bug being fixed, you are able to see cell temperatures and voltages correctly, also previously blank fields like pack resistance and accumulated current.")
+RELEASE_NOTES_SPK = ("What's new in Open CAR WINGS? Last updated fourth of August.\n\nWe welcome to the family of OpenCARWINGS vehicles, two new vehicles. \n\nFirst and most anticipated vehicle. Nissan LEAF Z E 1.\n"
+                     "\nModel years 2018 to 2020 are compatible, those equipped with Ficosa Telematics Control Units\nFicosa Units feature richer functionality support like, remotely locking and unlocking the car, turning on the horn and lights to find your car on a parking lot and more.")
+
+RELEASE_NOTES_SPK_2 = _(
+    "Second vehicle. Nissan LEAF 30 kWh.\n\nThe vehicle is also equipped with similar family of Ficosa Telematics Control Units. Only difference is with supported network generations, limited to 3 G.\n\n"
+                     "Learn more about them on Git Hub and Open Car Wings website."
+)
 
 NOT_SIGNEDIN_NOTE = ("To make use of more functions of Open Car Wings, please sign in with your User I D and Car Wings "
                      "password inside your car.\n\nGo to Car Wings menu, Settings, Security Settings, to input and send "
@@ -37,7 +39,7 @@ def get_infochannel(xml_data, returning_xml, channel_id, car, page):
     resources_dir = os.path.join(
         os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "images")
 
-    total_pages = 1 if car is not None else 2
+    total_pages = 2 if car is not None else 3
 
     if page == 1:
         with open(os.path.join(resources_dir, "releasenotes.png"), "rb") as f:
@@ -78,12 +80,51 @@ def get_infochannel(xml_data, returning_xml, channel_id, car, page):
                 "imageDataField": releasenotes_img,
             }
         ]
+    elif page == 2:
+        with open(os.path.join(resources_dir, "releasenotes2.png"), "rb") as f:
+            releasenotes_img2 = f.read()
+        response_chdata = [
+            {
+                'itemId': 2,
+                'itemFlag1': 0x00,
+                'dynamicDataField1': encode_utf8('What\'s new?'),
+                'dynamicDataField2': encode_utf8('What\'s new?'),
+                'dynamicDataField3': b'',
+                "DMSLocation": b'\xFF' * 10,
+                'flag2': 0,
+                'flag3': 0,
+                'dynamicField4': b'',
+                # phone num field
+                'dynamicField5': b'',
+                'dynamicField6': b'',
+                'unnamed_data': bytearray(),
+                # text shown on bottom
+                "bigDynamicField7": encode_utf8(RELEASE_NOTES_SPK_2),
+                "bigDynamicField8": encode_utf8(RELEASE_NOTES_SPK_2),
+                "iconField": 0x400,
+                # annoucnement sound, 1=yes,0=no
+                "longField2": 1,
+                "flag4": 1,
+                "unknownLongId4": 0x0000,
+                # feature flag? 0xa0 = dial, 0x0F = Img
+                "flag5": 0x9F,
+                "flag6": 0xBB,
+                # image button title
+                "12byteField1": b'\x00' * 12,
+                # image name2
+                "12byteField2": b'\x00' * 12,
+                "mapPointFlag": b'\x20',
+                # save flag
+                "flag8": 0x80,
+                "imageDataField": releasenotes_img2,
+            }
+        ]
     else:
         with open(os.path.join(resources_dir, "tipstricks.jpg"), "rb") as f:
             tips_img = f.read()
         response_chdata = [
             {
-                'itemId': 2,
+                'itemId': 3,
                 'itemFlag1': 0x00,
                 'dynamicDataField1': encode_utf8('Tips & Tricks'),
                 'dynamicDataField2': encode_utf8("Tips & Tricks"),

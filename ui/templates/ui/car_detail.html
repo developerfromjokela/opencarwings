@@ -294,6 +294,9 @@
             </div>
 
             <!-- TCU Configuration -->
+            {% if car.tcu_type != 'continental2012' %}
+            {% include "ui/ficosa/configuration.html" %}
+            {% else %}
             <div id="tcu-config" class="tab-content">
                 <dl class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 text-sm sm:text-base">
                     <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "PPP Dial Code" %}:</dt><dd class="text-gray-600 dark:text-gray-300">{{ car.tcu_configuration.dial_code|default:"N/A" }}</dd></div>
@@ -308,6 +311,7 @@
                     <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Last Updated" %}:</dt><dd class="text-gray-600 dark:text-gray-300">{{ car.tcu_configuration.last_updated|default:"N/A"|date:"Y-m-d H:i" }}</dd></div>
                 </dl>
             </div>
+            {% endif %}
 
             <!-- EV Status -->
             <div id="ev-status" class="tab-content">
@@ -1227,6 +1231,14 @@
                 customChnData = data.custom_channels;
             }
 
+            if (data.tcu_configuration && window.updateFicosaConfigStatus) {
+                try {
+                    updateFicosaConfigStatus(data);
+                } catch (e) {
+                    console.error(e);
+                }
+            }
+
             updateFvtChnItems();
             updateCustomChnItems();
 
@@ -1386,17 +1398,14 @@
                 .catch(error => console.error('Error fetching alerts:', error));
         }
 
-        sendCommandButton.addEventListener('click', () => {
-            if (sendCommandButton.disabled) return;
-
-            const commandType = commandSelect.value;
+        function sendCommand(commandType, payload = null) {
             fetch(`/api/command/${vin}/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'X-CSRFToken': '{{ csrf_token }}'
                 },
-                body: JSON.stringify({ command_type: commandType })
+                body: JSON.stringify({ command_type: commandType, command_payload: payload })
             })
             .then(response => response.json())
             .then(data => {
@@ -1412,6 +1421,13 @@
                 console.error('{% translate "Error sending command" %}:', error);
                 showNotification({title: '{% translate "Error sending command" %}', message: error.error ?? error, type: 'error'})
             });
+        }
+
+        sendCommandButton.addEventListener('click', () => {
+            if (sendCommandButton.disabled) return;
+
+            const commandType = commandSelect.value;
+            sendCommand(commandType)
         });
 
 
@@ -2187,7 +2203,7 @@
 
         function editFvtChn(pos) {
             editFvtChnPos = pos;
-            let customChanItems = document.getElementById('f-4-body');
+            let customChanItems = document.getElementById('f-5-body');
             customChanItems.innerHTML = '';
             for (let id in Object.keys(customChnData)) {
                 let chanData = customChnData[id];

@@ -30,6 +30,8 @@ ALERT_TYPES = (
     (15, _('Stop Horn & Light')),
     (16, _('Remote Start')),
     (17, _('Remote Stop')),
+    (18, _('Configuration Updated')),
+    (92, _('TCU Configuration error')),
     (93, _('Remote Start/Stop error')),
     (94, _('Horn & Light error')),
     (95, _('Door Lock/Unlock error')),
@@ -55,6 +57,7 @@ COMMAND_TYPES = (
     (12, _('Stop Horn & light')),
     (13, _('Remote Start')),
     (14, _('Remote Stop')),
+    (15, _("Configuration Request"))
 )
 
 COMMAND_RESULTS = (
@@ -188,6 +191,7 @@ class TCUConfiguration(models.Model):
     server_url = models.CharField(max_length=128, default=None, null=True, blank=True)
     proxy_url = models.CharField(max_length=128, default=None, null=True, blank=True)
     connection_type = models.CharField(max_length=3, default=None, null=True, blank=True)
+    ficosa_config = models.JSONField(default=dict)
     last_updated = models.DateTimeField(null=True, default=None, blank=True)
 
 class LocationInfo(models.Model):

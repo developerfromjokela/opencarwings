@@ -538,32 +538,22 @@ def decode_record(record: bytes) -> dict:
     }
 
 
-def decode_acp_config_results(buf: bytes) -> Tuple[dict, int]:
-    if len(buf) < 5:
-        raise ValueError("buffer too short for header (need at least 5 bytes)")
+def decode_acp_config_results(buf, offset=0):
+    data_val, offset = _decode_ie_element(buf, offset, 0, IE_Element())
+    count2 = data_val["length"]
+    data_buf = data_val["value"]
 
-    tag = buf[0]
-    flag = buf[1]
-
-    length_field = buf[2] | (buf[3] << 8)
-
-    if length_field % 2 != 0:
-        raise ValueError(f"length field {length_field} is not even; can't derive count")
-    count = length_field // 2
-
-    records = []
-    offset = 5
-    for i in range(count):
-        rec = buf[offset:offset + 3]
-        if len(rec) != 3:
-            raise ValueError(f"buffer truncated at record {i}, offset {offset}")
-        records.append(decode_record(rec))
-        offset += 3
-
+    count = count2 >> 1
+    values, triples = [], []
+    pos = 0
+    for _ in range(count):
+        lo, hi = data_buf[pos], data_buf[pos + 1]
+        pos += 2
+        v = lo | ((hi >> 7 & 1) << 8) | ((hi >> 4 & 7) << 9)
+        values.append(v)
+        triples.append((v & 0xFF, (v >> 8) & 1, (v >> 9) & 7))
     return {
-        "tag": tag,
-        "flag": flag,
-        "length_field": length_field,
         "count": count,
-        "records": records,
+        "configs": values,
+        "triples": triples
     }, offset

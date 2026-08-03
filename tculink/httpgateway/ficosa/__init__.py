@@ -105,7 +105,7 @@ def handle_request(request: WSGIRequest | Any) -> HttpResponse:
     source_id = acp_body["source_id"]
     destination_id = acp_body["dest_id"]
 
-    if destination_id not in DESTINATIONS:
+    if destination_id not in DESTINATIONS and app_id != 0x1d:
         logger.debug(f"destination_id {destination_id} not in DESTINATIONS")
         return HttpResponse(status=200, content=io.BytesIO(ficosa_acp.make_ack_response(
             vin, dcm_id, destination_id, source_id, 0, 0, 0)), content_type="application/octet-stream")

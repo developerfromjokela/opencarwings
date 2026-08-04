@@ -379,10 +379,10 @@ class ServiceProvisioningService:
         self.enabled = 1 if enabled else 0
         self.value = value
 
-    def encode(self) -> bytes:
+    def encode(self) -> bytearray:
         svc_id = self.service_id.to_bytes(1, "little")
         pload = (((self.enabled & 1) << 7) | ((self.value & 0x7) << 4)).to_bytes(1, "little")
-        return bytes([svc_id, pload])
+        return bytearray(svc_id+pload)
 
 class ServiceProvisioning:
     def __init__(self, entries: list[ServiceProvisioningService] = []):
@@ -399,7 +399,7 @@ class ServiceProvisioning:
         if count > 255:
             raise ValueError("max 255 entries")
 
-        data = bytearray()
+        data = bytes()
         for e in self.entries:
             data += e.encode()
 

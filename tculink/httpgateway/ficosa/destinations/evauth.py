@@ -47,7 +47,7 @@ def handle(_, acp_data: dict, car: Car, source_id: int, __) -> bytes:
                         field_type = info["type"]
                         service_id = info["info_id"]
                         if field_type == ConfigurationFieldType.PROVISIONING and value > 0:
-                            config_encoder.add_entry(composer.ServiceProvisioningService(service_id, value == 1, 0))
+                            config_encoder.add_entry(composer.ServiceProvisioningService(service_id, value == 2, 0))
 
             acp_msg += config_encoder.encode()
             logger.debug(f"<< ServProv Message: {acp_msg.hex()}")

@@ -66,6 +66,7 @@
     </script>
     <script>
         let tcuConfigTemplate = {};
+        let currentValues = {};
         const CONFIG_REQ_ID = 15;
         const tcuConfigFrames = document.getElementById("config-screen-frames");
         const tcuConfigButtons = document.getElementById("config-screen-btns");
@@ -82,9 +83,6 @@
         function makeFieldElement(config_code, code, field) {
             let holder = document.createElement("div");
             holder.className = "flex mb-4";
-            const currentValues =
-                (window.car && window.car.config && window.car.config.ficosa_tcu
-                    && window.car.config.ficosa_config[code]) ? window.car.config.ficosa_config[code] : {};
             switch (field.type) {
                 case 0: {
                     holder.classList.add("flex-col")
@@ -167,10 +165,11 @@
 
                     let inputLabel = document.createElement("label");
                     inputLabel.htmlFor = input.id;
+                    inputLabel.id = `l-${input.id}`
                     inputLabel.className = inputStyle[1];
                     inputLabel.textContent = field.label
                     if (currentValues[config_code])
-                        inputLabel.inputLabel = inputLabel.inputLabel+` (${provisioningOpts[currentValues[config_code]+1]})`
+                        inputLabel.textContent = `${field.label} ({% translate "Last value:" %} ${provisioningOpts[currentValues[config_code]+1][1]})`
                     holder.appendChild(inputLabel)
                     holder.appendChild(input)
                     break
@@ -268,6 +267,7 @@
         }
 
         function updateFicosaConfigStatus(car) {
+            currentValues = car.tcu_configuration.ficosa_config
             Array.from(document.getElementsByClassName("config-screen-request")).forEach(i => {i.disabled = car.command_requested})
             Array.from(document.getElementsByClassName("config-screen-save")).forEach(i => {i.disabled = car.command_requested})
             for (let key of Object.keys(car.tcu_configuration.ficosa_config)) {
@@ -278,6 +278,11 @@
                     let configElem = document.getElementById(`${key}-${configKey}`);
                     if (configElem.type === "checkbox") {
                         configElem.checked = configVal === 1 ? "checked" : ""
+                    } else if (configElem.tagName.toLowerCase() === "select") {
+                        const labelItm = document.getElementById(`l-${key}-${configKey}`)
+                        console.log(key, configKey);
+                        let fieldLabel = tcuConfigTemplate[key]["fields"][configKey]["label"];
+                        labelItm.textContent = `${fieldLabel} ({% translate "Last value:" %} ${provisioningOpts[configVal+1][1]})`
                     } else {
                         configElem.value = configVal.toString();
                     }

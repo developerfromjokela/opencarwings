@@ -35,7 +35,7 @@ def handle(bin_data: bytes, acp_data: dict, car: Car, source_id: int, destinatio
 
     triplet = (0, 0, 0)
 
-    for itm in config_results["triplets"]:
+    for itm in config_results["triples"]:
         if itm[0] == config_template["service_type"]:
             triplet = itm
             break

@@ -32,6 +32,8 @@ ALERT_TYPES = (
     (17, _('Remote Stop')),
     (18, _('Configuration Updated')),
     (19, _('Received new data')),
+    (20, _('Burglar alert')),
+    (21, _('Tow Notification')),
     (92, _('TCU Configuration error')),
     (93, _('Remote Start/Stop error')),
     (94, _('Horn & Light error')),

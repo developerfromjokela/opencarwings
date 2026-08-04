@@ -194,7 +194,7 @@ SIGNUP_ENABLED = True
 ACTIVATION_SMS_MESSAGE = "NISSAN_EVIT_TELEMATICS_CENTER"
 
 SMS_PROVIDERS = {
-    'hologram': ('Hologram SIM (recommended)', 'tculink.sms.hologram.ProviderHologram'),
+    'hologram': ('Hologram SIM', 'tculink.sms.hologram.ProviderHologram'),
     'monogoto': ('Monogoto', 'tculink.sms.monogoto.ProviderMonogoto'),
     'gatewayapi': ('gatewayapi.com', 'tculink.sms.gatewayapi.ProviderGatewayAPI'),
     '46elks': ('46elks', 'tculink.sms.46elks.Provider46elks'),

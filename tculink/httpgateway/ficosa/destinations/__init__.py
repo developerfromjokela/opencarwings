@@ -1,4 +1,5 @@
-from tculink.httpgateway.ficosa.destinations import evauth, evinfo, door, hornlight, remotestart, probe, veh_health
+from tculink.httpgateway.ficosa.destinations import evauth, evinfo, door, hornlight, remotestart, probe, veh_health, \
+    tow, burglar
 
 # ACP Destinations map (Destination ID -> handler function)
 DESTINATIONS = {
@@ -13,6 +14,8 @@ DESTINATIONS = {
     0x3e: evinfo.handle, # ChargeStart80%
     # Car
     0x31: door.handle,
+    0x32: burglar.handle,
+    0x33: tow.handle,
     0x38: hornlight.handle,
     0x39: remotestart.handle,
     0x5a: veh_health.handle,

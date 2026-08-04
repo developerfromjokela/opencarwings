@@ -12,23 +12,28 @@ logger = logging.getLogger("ficosa")
 
 def handle(bin_data: bytes, acp_data: dict, car: Car, source_id: int, destination_id: int) -> bytes:
     """
-    Process vehicle health data
+    Process vehicle theft alarm
     """
+    logger.info("Received new theft alarm!")
+    security_hdr, offset = acp.parser.decode_ficosa_vehicle_security_header(bin_data, 0)
 
-    logger.info("Received new health report!")
-    logger.info("VehHealth %s", bin_data.hex())
-    logger.info("VehHealth acp %s", acp_data)
+    logger.debug("Security HDR: %s", security_hdr)
+    __, ts = acp.parser.decode_timestamp(bin_data, offset)
+    offset += ts
+    security_data, __ = acp.parser.decode_ficosa_vehicle_security_data(bin_data, offset)
+
+    logger.debug("Security DATA: %s", security_data)
+
     new_alert = AlertHistory()
-    new_alert.type = 19
-    new_alert.additional_data = _("Vehicle Health Report")
+    new_alert.type = 20
     new_alert.car = car
     new_alert.command_id = source_id
     new_alert.save()
     sync_to_async(
         send_vehicle_alert_notification(
             car,
-            _("Received new health report!"),
-            _("Vehicle Health Report")
+            _("Burglar alarm has been triggered"),
+            _("Burglar Alarm")
         )
         , thread_sensitive=False)
 

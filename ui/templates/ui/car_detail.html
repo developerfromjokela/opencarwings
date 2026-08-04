@@ -52,7 +52,9 @@
                     <div class="spinner" id="command-spinner"></div>
                     <select id="command-select" class="w-full sm:w-auto border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600">
                         {% for value, label in command_choices %}
+                            {% if value != 15 %}
                             <option value="{{ value }}">{{ label }}</option>
+                            {% endif %}
                         {% endfor %}
                     </select>
                 </div>

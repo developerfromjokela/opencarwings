@@ -5,7 +5,7 @@ from asgiref.sync import sync_to_async
 import tculink.gdc_proto.ficosa.acp as acp
 from db.models import Car, AlertHistory
 from tculink.gdc_proto.ficosa.utils import CONFIGURATION_MAP
-from tculink.utils.notifications import send_vehicle_alert_notification
+from tculink.utils.notifications import send_vehicle_alert_notification_sync as send_vehicle_alert_notification
 from django.utils.translation import gettext as _
 
 logger = logging.getLogger("ficosa")

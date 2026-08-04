@@ -57,6 +57,10 @@ CONFIGURATION_MAP = {
             "ev_plugin_remind": {"info_id": 0x47, "length": 1, "type": ConfigurationFieldType.PROVISIONING, "label": "EV Plug Reminder"},
             "ev_batt_heat": {"info_id": 0x4e, "length": 1, "type": ConfigurationFieldType.PROVISIONING, "label": "EV Battery Heating Notification"},
             "veh_health": {"info_id": 0x5b, "length": 1, "type": ConfigurationFieldType.PROVISIONING, "label": "Vehicle Health Report"},
+            "burglar_alarm": {"info_id": 0x63, "length": 1, "type": ConfigurationFieldType.PROVISIONING, "label": "Burglar Alarm"},
+            "remote_door": {"info_id": 0x64, "length": 1, "type": ConfigurationFieldType.PROVISIONING, "label": "Door Lock & Unlock"},
+            "tow_notif": {"info_id": 0x6d, "length": 1, "type": ConfigurationFieldType.PROVISIONING, "label": "Tow Notification"},
+            "remote_horn": {"info_id": 0x70, "length": 1, "type": ConfigurationFieldType.PROVISIONING, "label": "Horn & Lights"},
         }
     }
 }

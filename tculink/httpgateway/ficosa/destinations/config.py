@@ -6,6 +6,7 @@ import tculink.gdc_proto.ficosa.acp as acp
 from db.models import Car, AlertHistory
 from tculink.gdc_proto.ficosa.utils import CONFIGURATION_MAP
 from tculink.utils.notifications import send_vehicle_alert_notification
+from django.utils.translation import gettext as _
 
 logger = logging.getLogger("ficosa")
 
@@ -28,7 +29,7 @@ def handle(bin_data: bytes, acp_data: dict, car: Car, source_id: int, destinatio
         return acp.make_ack_response(car.vin, car.tcu_model, destination_id, source_id, 0, 0, 0)
 
     config_template = CONFIGURATION_MAP[car.command_payload["config_type"]]
-    config_results, _ = acp.parser.decode_acp_config_results(bin_data)
+    config_results, __ = acp.parser.decode_acp_config_results(bin_data)
 
     logger.debug(f"ConfigResults: {config_results}")
     logger.debug(f"ConfigData: {bin_data.hex()}")

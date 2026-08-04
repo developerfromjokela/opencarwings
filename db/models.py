@@ -31,6 +31,7 @@ ALERT_TYPES = (
     (16, _('Remote Start')),
     (17, _('Remote Stop')),
     (18, _('Configuration Updated')),
+    (19, _('Received new data')),
     (92, _('TCU Configuration error')),
     (93, _('Remote Start/Stop error')),
     (94, _('Horn & Light error')),

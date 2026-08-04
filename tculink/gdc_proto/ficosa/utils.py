@@ -37,7 +37,7 @@ CONFIGURATION_MAP = {
         "label": "Vehicle Health Report",
         "destination": 0x43,
         "service_type": 0x5b,
-        "query_support": True,
+        "query_support": False,
         "fields": {
             "enabled": {"info_id": 1, "length": 1, "type": ConfigurationFieldType.BOOLEAN, "label": "Service Enabled"},
             "frequency": {"info_id": 3, "length": 1, "type": ConfigurationFieldType.NUMBER, "max": 30, "min": 1, "label": "Send frequency (days)"}

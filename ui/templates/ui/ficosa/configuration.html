@@ -153,7 +153,7 @@
             return holder
         }
 
-        function addTcuConfigMenu(code, name, fields) {
+        function addTcuConfigMenu(code, name, fields, query) {
             const button = document.getElementById("tcuConfigMenuBtn").content.children[0].cloneNode(true);
             button.dataset.config = code
             button.getElementsByClassName('config-btn-label')[0].textContent = name;
@@ -165,6 +165,8 @@
                 configItems.appendChild(makeFieldElement(code, fieldKey, fields[fieldKey]));
             }
             const requestBtn = frame.getElementsByClassName("config-screen-request")[0];
+            if (!query)
+                requestBtn.className = 'hidden'
             const sendBtn = frame.getElementsByClassName("config-screen-save")[0];
             requestBtn.addEventListener('click', () => {requestCurrentConfig(code)});
             sendBtn.addEventListener('click', () => {sendCurrentConfig(code)});
@@ -248,7 +250,7 @@
             tcuConfigTemplate = JSON.parse(document.getElementById('config_template').textContent);
             for (let key of Object.keys(tcuConfigTemplate)) {
                 let template = tcuConfigTemplate[key];
-                addTcuConfigMenu(key, template["label"], template["fields"]);
+                addTcuConfigMenu(key, template["label"], template["fields"], template["query_support"]);
             }
             configureConfigButtons();
         });

@@ -53,6 +53,7 @@ def handle(_, acp_data: dict, car: Car, source_id: int, __) -> bytes:
                     config_encoder.add_element(service_type, info["info_id"], value.encode("utf-8"))
 
         acp_msg += config_encoder.encode()
+        logger.debug(f"<< Config ACP Message: {acp_msg.hex()}")
     else:
         acp_msg += dest_id.to_bytes(1, "little")  # dest ID
         acp_msg += source_id.to_bytes(1, "little")  # src ID

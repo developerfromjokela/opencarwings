@@ -20,6 +20,7 @@ class ConfigurationFieldType:
     BOOLEAN = 1
     ASCII = 2
     UNICODE = 3
+    PROVISIONING = 4
 
 def get_config_map_translated():
     from django.utils.translation import gettext_lazy
@@ -41,6 +42,21 @@ CONFIGURATION_MAP = {
         "fields": {
             "enabled": {"info_id": 1, "length": 1, "type": ConfigurationFieldType.BOOLEAN, "label": "Service Enabled"},
             "frequency": {"info_id": 3, "length": 1, "type": ConfigurationFieldType.NUMBER, "max": 30, "min": 1, "label": "Send frequency (days)"}
+        }
+    },
+    "svc_provision": {
+        "label": "Service Provisioning",
+        "destination": 0xf5,
+        "service_type": 0,
+        "query_support": False,
+        "fields": {
+            "ev_batt_chg_stat": {"info_id": 0x42, "length": 1, "type": ConfigurationFieldType.PROVISIONING, "label": "EV Battery Charging Status"},
+            "ev_batt_chg_hist": {"info_id": 0x43, "length": 1, "type": ConfigurationFieldType.PROVISIONING, "label": "EV Battery Charging History"},
+            "ev_batt_chg_act_rem": {"info_id": 0x44, "length": 1, "type": ConfigurationFieldType.PROVISIONING, "label": "EV Battery Charging Remote Activation"},
+            "ev_hmac_rem": {"info_id": 0x46, "length": 1, "type": ConfigurationFieldType.PROVISIONING, "label": "EV Remote HVAC Activation"},
+            "ev_plugin_remind": {"info_id": 0x47, "length": 1, "type": ConfigurationFieldType.PROVISIONING, "label": "EV Plug Reminder"},
+            "ev_batt_heat": {"info_id": 0x4e, "length": 1, "type": ConfigurationFieldType.PROVISIONING, "label": "EV Battery Heating Notification"},
+            "veh_health": {"info_id": 0x5b, "length": 1, "type": ConfigurationFieldType.PROVISIONING, "label": "Vehicle Health Report"},
         }
     }
 }

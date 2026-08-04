@@ -371,25 +371,24 @@ class EVTemperaturePayload:
         out.extend(self.calendar3.encode())
         return _encode_ie(bytes(out), ie_id=0)
 
-class ServProvEntry:
-    def __init__(self, prov_type: int, flag: int, value: int):
-        assert 0 <= prov_type <= 0xFF, "prov_type must fit in a byte"
-        assert flag in (0, 1), "flag is a single bit"
+class ServiceProvisioningService:
+    def __init__(self, service_id: int, enabled: bool, value: int):
+        assert 0 <= service_id <= 0xFF, "service_id must fit in a byte"
         assert 0 <= value <= 7, "value is a 3-bit value"
-        self.prov_type = prov_type
-        self.flag = flag
+        self.service_id = service_id
+        self.enabled = 1 if enabled else 0
         self.value = value
 
-    def second_byte(self) -> int:
-        return ((self.flag & 1) << 7) | ((self.value & 0x7) << 4)
+    def encode(self) -> bytes:
+        svc_id = self.service_id.to_bytes(1, "little")
+        pload = (((self.enabled & 1) << 7) | ((self.value & 0x7) << 4)).to_bytes(1, "little")
+        return bytes([svc_id, pload])
 
-
-
-class ServProv:
-    def __init__(self, entries: list[ServProvEntry] = []):
+class ServiceProvisioning:
+    def __init__(self, entries: list[ServiceProvisioningService] = []):
         self.entries = entries
 
-    def add_entry(self, entry: ServProvEntry) -> "ServProv":
+    def add_entry(self, entry: ServiceProvisioningService) -> "ServiceProvisioning":
         self.entries.append(entry)
         return self
 
@@ -402,8 +401,7 @@ class ServProv:
 
         data = bytearray()
         for e in self.entries:
-            data.append(e.prov_type)
-            data.append(e.second_byte())
+            data += e.encode()
 
         return _encode_ie(data, ie_id=0)
 

@@ -35,25 +35,42 @@ def handle(_, acp_data: dict, car: Car, source_id: int, __) -> bytes:
 
         acp_msg += composer.EVCommandTail().encode()
         acp_msg += composer.TimeSync().encode()
-        config_encoder = composer.ACPConfigEncoder()
-        service_type = config_template["service_type"]
-        # add data
-        if config_payload["type"] == "send":
-            config_payload = config_payload["data"]
-            for field, info in config_template["fields"].items():
-                value = config_payload[field]
-                field_type = info["type"]
-                if field_type == ConfigurationFieldType.NUMBER:
-                    config_encoder.add_element(service_type, info["info_id"], value.to_bytes(info["length"], "little"))
-                elif field_type == ConfigurationFieldType.BOOLEAN:
-                    config_encoder.add_element(service_type, info["info_id"], b"\x01" if value else b"\x00")
-                elif field_type == ConfigurationFieldType.ASCII:
-                    config_encoder.add_element(service_type, info["info_id"], value.encode("ascii"))
-                elif field_type == ConfigurationFieldType.UNICODE:
-                    config_encoder.add_element(service_type, info["info_id"], value.encode("utf-8"))
+        # service provisioning
+        if dest_id == 0xf5:
+            config_encoder = composer.ServiceProvisioning()
+            # add services
+            if config_payload["type"] == "send":
+                config_payload = config_payload["data"]
+                for field, info in config_template["fields"].items():
+                    if field in config_payload:
+                        value = config_payload[field]
+                        field_type = info["type"]
+                        service_id = info["info_id"]
+                        if field_type == ConfigurationFieldType.PROVISIONING and value > 0:
+                            config_encoder.add_entry(composer.ServiceProvisioningService(service_id, value == 1, 0))
 
-        acp_msg += config_encoder.encode()
-        logger.debug(f"<< Config ACP Message: {acp_msg.hex()}")
+            acp_msg += config_encoder.encode()
+            logger.debug(f"<< ServProv Message: {acp_msg.hex()}")
+        else:
+            config_encoder = composer.ACPConfigEncoder()
+            service_type = config_template["service_type"]
+            # add data
+            if config_payload["type"] == "send":
+                config_payload = config_payload["data"]
+                for field, info in config_template["fields"].items():
+                    value = config_payload[field]
+                    field_type = info["type"]
+                    if field_type == ConfigurationFieldType.NUMBER:
+                        config_encoder.add_element(service_type, info["info_id"], value.to_bytes(info["length"], "little"))
+                    elif field_type == ConfigurationFieldType.BOOLEAN:
+                        config_encoder.add_element(service_type, info["info_id"], b"\x01" if value else b"\x00")
+                    elif field_type == ConfigurationFieldType.ASCII:
+                        config_encoder.add_element(service_type, info["info_id"], value.encode("ascii"))
+                    elif field_type == ConfigurationFieldType.UNICODE:
+                        config_encoder.add_element(service_type, info["info_id"], value.encode("utf-8"))
+
+            acp_msg += config_encoder.encode()
+            logger.debug(f"<< Config ACP Message: {acp_msg.hex()}")
     else:
         acp_msg += dest_id.to_bytes(1, "little")  # dest ID
         acp_msg += source_id.to_bytes(1, "little")  # src ID
@@ -105,7 +122,7 @@ def handle(_, acp_data: dict, car: Car, source_id: int, __) -> bytes:
             acp_msg += dest_id.to_bytes(1, "little")  # dest ID
             acp_msg += source_id.to_bytes(1, "little")  # src ID
             acp_msg += composer.EVCommandTail(command=0).encode()
-            acp_msg += composer.ServProv().add_entry(composer.ServProvEntry(0, 0, 0)).encode()
+            acp_msg += composer.ServiceProvisioning().add_entry(composer.ServiceProvisioningService(0, 0, 0)).encode()
 
         car.save()
 

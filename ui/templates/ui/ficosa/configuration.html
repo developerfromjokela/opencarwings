@@ -76,6 +76,8 @@
             "w-full p-2 rounded border invalid:bg-red-700 dark:bg-gray-700 dark:border-gray-700 mt-1",
             "block my-2 text-sm font-medium text-gray-900 dark:text-white",
         ]
+        const provisioningOpts = [["0","{% translate 'Unmodified' %}"],["1", "{% translate 'Deactivate' %}"],["2","{% translate 'Activate' %}"]]
+
 
         function makeFieldElement(config_code, code, field) {
             let holder = document.createElement("div");
@@ -149,6 +151,30 @@
                     holder.appendChild(input)
                     break
                 }
+                case 4: {
+                    holder.classList.add("flex-col")
+                    let input = document.createElement("select");
+                    input.id = `${config_code}-${code}`;
+                    input.className = inputStyle[0];
+                    input.required = true;
+
+                    for (let itm of provisioningOpts) {
+                        let option = document.createElement("option");
+                        option.value = itm[0]
+                        option.textContent = itm[1]
+                        input.appendChild(option);
+                    }
+
+                    let inputLabel = document.createElement("label");
+                    inputLabel.htmlFor = input.id;
+                    inputLabel.className = inputStyle[1];
+                    inputLabel.textContent = field.label
+                    if (currentValues[config_code])
+                        inputLabel.inputLabel = inputLabel.inputLabel+` (${provisioningOpts[currentValues[config_code]+1]})`
+                    holder.appendChild(inputLabel)
+                    holder.appendChild(input)
+                    break
+                }
             }
             return holder
         }
@@ -215,11 +241,24 @@
                             newConfig[fieldKey] = value
                             break
                         }
+                        case 4: {
+                            const value = Number.parseInt(fieldInput.value);
+                            if (value < 0 || value > 2) {
+                                throw new Error(`${fieldInfo.label} value is out of range`)
+                            }
+                            if (value > 0)
+                                newConfig[fieldKey] = value
+                            break
+                        }
                     }
                 }
             }  catch (e) {
                 showNotification({title: '{% translate "Error sending command" %}', message: e.message ?? e, type: 'error'})
-                return
+                return;
+            }
+            if (Object.keys(newConfig).length < 1) {
+                showNotification({title: '{% translate "Error sending command" %}', message: "{% translate "No changes to send!" %}", type: 'error'})
+                return;
             }
             sendCommand(CONFIG_REQ_ID, {
                 "type": "send",

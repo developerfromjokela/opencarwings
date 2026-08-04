@@ -55,8 +55,9 @@ def handle(bin_data: bytes, acp_data: dict, car: Car, source_id: int, destinatio
         c_ev_info.car_gear = 1 if ev_info.get("direction_forward", False) else 2
 
     c_ev_info.soc = ev_info["soc"]
-    c_ev_info.soc_display = min(ev_info["soc_display"], 100)
-    c_ev_info.counter = min(ev_info["soc_display_int"], 100)
+    # switch to one without decimals, it seems to be always accurate. keep other one as counter for debug
+    c_ev_info.counter = min(ev_info["soc_display"], 100)
+    c_ev_info.soc_display = ev_info["soc_display_int"]
     c_ev_info.cabin_temp = ev_info["cabin_temp"]
     c_ev_info.gids = ev_info["gids"]
     c_ev_info.soh = ev_info["soh"]

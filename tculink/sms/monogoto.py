@@ -66,7 +66,7 @@ class ProviderMonogoto(BaseSMSProvider):
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Authorization': f'Bearer {token}',
-            'User-Agent': 'OpenCarWings/1.0'
+            'User-Agent': f"OpenCarWings/{VERSION}"
         }
 
         response = requests.post(sms_url, json=sms_data, headers=headers, timeout=10)

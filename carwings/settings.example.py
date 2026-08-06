@@ -192,6 +192,7 @@ SMS_PROVIDERS = {
     'hologram': ('Hologram SIM', 'tculink.sms.hologram.ProviderHologram'),
     'monogoto': ('Monogoto', 'tculink.sms.monogoto.ProviderMonogoto'),
     'gatewayapi': ('gatewayapi.com', 'tculink.sms.gatewayapi.ProviderGatewayAPI'),
+    'sevenio': ('seven.io', 'tculink.sms.seven.ProviderSevenIO'),
     '46elks': ('46elks', 'tculink.sms.46elks.Provider46elks'),
     'webhook': ('Webhook', 'tculink.sms.webhook.ProviderWebhook'),
     'ondevice': ('SMS from your device', 'tculink.sms.ondevice.ProviderOnDevice'),

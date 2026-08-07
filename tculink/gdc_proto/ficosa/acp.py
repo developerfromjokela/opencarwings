@@ -285,7 +285,7 @@ def make_ack_response(vin: str, dcm_id: str, dest_id: int, src_id: int, prov_typ
     acp_msg += dest_id.to_bytes(1, "little")  # dest ID
     acp_msg += src_id.to_bytes(1, "little")  # src ID
     acp_msg += composer.EVCommandTail(command=0).encode()
-    acp_msg += composer.ServiceProvisioning().add_entry(composer.ServiceProvisioningService(prov_type, flag == 1, value)).encode()
+    acp_msg += composer.ServiceProvisioning(entries=[composer.ServiceProvisioningService(prov_type, flag == 1, value)]).encode()
 
     msg = bytearray()
     msg += composer.AppHeader(app_id=0x1d, mcf=3, length=len(acp_msg), special_flag=1).encode()

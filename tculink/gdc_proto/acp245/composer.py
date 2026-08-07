@@ -385,8 +385,8 @@ class ServiceProvisioningService:
         return bytearray(svc_id+pload)
 
 class ServiceProvisioning:
-    def __init__(self, entries: list[ServiceProvisioningService] = []):
-        self.entries = entries
+    def __init__(self, entries: list[ServiceProvisioningService]|None = None):
+        self.entries = entries or []
 
     def add_entry(self, entry: ServiceProvisioningService) -> "ServiceProvisioning":
         self.entries.append(entry)

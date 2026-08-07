@@ -1,5 +1,4 @@
 import json
-import logging
 import re
 from http.cookiejar import CookiePolicy
 from urllib.parse import urlparse, parse_qs, unquote
@@ -435,6 +434,8 @@ def car_list(request):
     if not request.user.is_authenticated:
         slideshow_images = [
             {"url": static('slideshow/img0.jpeg')},
+            {"url": static('slideshow/img16.jpeg')},
+            {"url": static('slideshow/img17.jpeg')},
             {"url": static('slideshow/img1.jpeg')},
             {"url": static('slideshow/img2.jpeg')},
             {"url": static('slideshow/img3.jpeg')},

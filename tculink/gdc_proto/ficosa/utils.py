@@ -61,6 +61,16 @@ CONFIGURATION_MAP = {
             "remote_door": {"info_id": 0x64, "length": 1, "type": ConfigurationFieldType.PROVISIONING, "label": "Door Lock & Unlock"},
             "tow_notif": {"info_id": 0x6d, "length": 1, "type": ConfigurationFieldType.PROVISIONING, "label": "Tow Notification"},
             "remote_horn": {"info_id": 0x70, "length": 1, "type": ConfigurationFieldType.PROVISIONING, "label": "Horn & Lights"},
+            "probe_1": {"info_id": 0x50, "length": 1, "type": ConfigurationFieldType.PROVISIONING, "label": "Probe Service 1"},
+            "probe_2": {"info_id": 0x51, "length": 1, "type": ConfigurationFieldType.PROVISIONING, "label": "Probe Service 2"},
+            "probe_3": {"info_id": 0x52, "length": 1, "type": ConfigurationFieldType.PROVISIONING, "label": "Probe Service 3"},
+            "probe_4": {"info_id": 0x53, "length": 1, "type": ConfigurationFieldType.PROVISIONING, "label": "Probe Service 4"},
+            "probe_5": {"info_id": 0x54, "length": 1, "type": ConfigurationFieldType.PROVISIONING, "label": "Probe Service 5"},
+            "probe_6": {"info_id": 0x55, "length": 1, "type": ConfigurationFieldType.PROVISIONING, "label": "Probe Service 6"},
+            "probe_7": {"info_id": 0x56, "length": 1, "type": ConfigurationFieldType.PROVISIONING, "label": "Probe Service 7"},
+            "probe_8": {"info_id": 0x57, "length": 1, "type": ConfigurationFieldType.PROVISIONING, "label": "Probe Service 8"},
+            "probe_9": {"info_id": 0x58, "length": 1, "type": ConfigurationFieldType.PROVISIONING, "label": "Probe Service 9"},
+            "probe_10": {"info_id": 0x59, "length": 1, "type": ConfigurationFieldType.PROVISIONING, "label": "Probe Service 10"},
         }
     }
 }

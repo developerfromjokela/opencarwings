@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide: Bringing 2016-2020 TCU Back Online</title>
+    <style>
+        html {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            max-width: 800px;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        h2 {
+            color: #555;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
+        }
+        .step {
+            background-color: #fff;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .step-number {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #007BFF;
+        }
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+            margin: 20px 0;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .warning {
+            color: #D9534F;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Guide: Bringing Your TCU Back Online (2016-2020)</h1>
+    <p style="text-align: center"><span class="warning">NOTE: This guide is for 24/30 kWh 2016-17 MY and ZE1 40 kWh 2018-20 MY. For ZE0 and AZE0 before 2016, please refer to <a href="/static/tcu_guide.html">this guide</a>.</span> <br/>
+    <div class="step">
+        <h2 style="color: red">Don't have the tools or the skill? Our partners can do the repair for you!</h2>
+        <p>Starting from 39 €, our repair partners offer a ready-to-go repair solution for LEAF TCUs, at an affordable price, with a 3-year warranty. No need to follow this guide. Each TCU is repaired, tested, and verified before dispatch. <br/>Check out our partners:
+            <ul>
+                <li><a href="https://shop.viaaq.eu/product/nissan-leaf-tcu-repair-sim-holder-installation-sim-plan-and-configuration/">viaaq workshop (mail-in repair and repaired TCUs in stock)</a></li>
+            </ul>
+        </p>
+    </div>
+    <p><b>Difficulty:</b> <span style="color: red">Difficult</span></p>
+    <div class="step">
+        <h2><span class="step-number">Step 1:</span> Obtain a SIM Card (or two)</h2>
+        <p>You’ll need a SIM card to enable cellular connectivity for the TCU. Here’s how to proceed:</p>
+        <ul>
+            <li><strong>Recommended Provider:</strong> SIM card from provider <a href="https://mobile.viaaq.eu/" target="_blank">viaaq mobile</a>, out-of-the-box integration with OpenCARWINGS, an affordable data plan, and support for Binary SMS</li>
+            <li><strong>SIM Type:</strong> Ensure it’s a standard Mini SIM (2FF) or compatible with an adapter.</li>
+            <li><strong>Data Plan:</strong> Select a plan with at least 1-5 MB of monthly data without a navigation unit, or 5-10 MB of monthly data with a navigation unit (the navigation unit does periodic updates of nearby charging stations).</li>
+            <li><strong>Alternative Providers:</strong> If viaaq mobile isn’t available or isn't suitable for you, use a provider with affordable data and SMS support (e.g., AT&T, T-Mobile prepaid SIMs), but you will need a way to send Binary SMS via the internet, such as Seven.io, gatewaysms, the OpenCARWINGS SMS gateway, or a similar solution or your own webhook-based setup.</li>
+            <li><strong>Why a second SIM card may be necessary:</strong> A second SIM may be required for sending SMS. This usually involves using a USB modem, as explained below.</li>
+        </ul>
+        <p><span class="warning">IMPORTANT REQUIREMENT:</span> Your SIM in the TCU needs to be able to receive Binary SMS (no UDH)! However, not all SMS providers support binary SMS messages, especially when sent from abroad, which are sometimes marked as spam. Be prepared to use the <a href="https://github.com/developerfromjokela/opencarwings-sms">OpenCARWINGS SMS Gateway</a> with a modem, in case your provider blocks incoming SMS from online SMS gateways.</p>
+    </div>
+
+    <div class="step">
+        <h2><span class="step-number">Step 2:</span> Access the TCU</h2>
+        <p>The TCU is typically located behind the glovebox on RHD models (the physical location is the same on LHD cars) in the Nissan LEAF. Follow these steps:</p>
+        <ul>
+            <li><strong>Tools Needed:</strong> Phillips screwdriver, plastic trim removal tool (to avoid scratching), flashlight.</li>
+            <li><strong>Preparation:</strong> Turn off the vehicle and remove the key from the ignition to avoid electrical issues.</li>
+            <li><strong>Glovebox Removal:</strong>
+                <ol>
+                    <li>Open the glovebox and empty its contents.</li>
+                    <li>Locate and remove the screws (usually 2-4) along the edges or inside the glovebox.</li>
+                    <li>Gently pull the glovebox forward; it may be held by clips—use the trim tool to pry it loose if needed.</li>
+                    <li>Disconnect any wiring (e.g., glovebox light) by pressing the connector tabs and pulling.</li>
+                </ol>
+            </li>
+            <li><strong>Locate the TCU:</strong> Behind the glovebox, you’ll see a rectangular metal or plastic unit (about the size of a small book) with wiring harnesses and an antenna connection—this is the TCU.</li>
+            <li><strong>Visual Guide:</strong> Watch this YouTube video for a step-by-step disassembly:</li>
+        </ul>
+        <p>Disassembly (1:50 - 7:50)</p>
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/wHmqdXGBdrg?start=109" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <p><span class="warning">Note:</span> Work carefully to avoid damaging clips or wiring. Take photos of the setup before proceeding, for reference.</p>
+    </div>
+
+    <div class="step">
+        <h2><span class="step-number">Step 3:</span> Disassemble TCU, desolder eUICC chip and solder SIM Slot</h2>
+        <p>The TCU is easily disassembled; it's held together with a few plastic clips accessible from the outside.</p>
+        <hr/>
+        <p>Tools required: Microsoldering station (heat gun), soldering iron, SIM card holder, and (ideally) flux for soldering</p>
+        <p>Full Step-By-Step Soldering Guide Available <a href="https://github.com/developerfromjokela/nissan-leaf-tcu/blob/master/gen2/SIMSLOT.md" target="_blank">on Github</a></p>
+    </div>
+
+    <div class="step">
+        <h2><span class="step-number">Step 4:</span> Program the settings</h2>
+        <p>The Access Point Name (APN) and server information must be configured for the TCU to connect to the cellular network. Use an Android app:</p>
+        <ul>
+            <li><strong>Download the App:</strong> Get the TCU Configurator app from GitHub: <a href="https://github.com/developerfromjokela/nissan-leaf-tcu/releases/latest" target="_blank">tcu-configurator-xx.apk</a>.</li>
+            <li><strong>Install the App:</strong>
+                <ol>
+                    <li>Transfer the .apk file to your Android device (via USB, email, etc.).</li>
+                    <li>Enable “Install from Unknown Sources” in Settings > Security.</li>
+                    <li>Open the file and install the app.</li>
+                </ol>
+            </li>
+            <li><strong>Connect to TCU:</strong> Power on the vehicle to ACC mode (important). Use the app to connect to the TCU via Bluetooth OBD.</li>
+            <li><strong>Set APN (also the TSP APN):</strong>
+                <ol>
+                    <li>Open the app and locate the APN settings.</li>
+                    <li>Enter the APN for your SIM provider (e.g., almost all Finnish operators use “internet”; viaaq mobile shows the APN in the subscription details; check your provider’s website for specifics).</li>
+                    <li>Save and apply the settings.</li>
+                </ol>
+            </li>
+            <li><strong>Set Server Hostname (GDC and APN):</strong>
+                <ol>
+                    <li>Enter the server URL in the TCU Configurator app.</li>
+                    <li>Server information:
+                        <ul>
+                            <li>URL: <b>http://biz-tcu.viaaq.eu</b></li>
+                            <li>Port: <b>80</b></li>
+                        </ul>
+                    </li>
+                    <li>Save and apply the settings.</li>
+                </ol>
+            </li>
+        </ul>
+        <p><span class="warning">Note:</span> Ensure your Android device has Bluetooth enabled and the car ignition is turned to ACC during configuration.</p>
+        <p><span class="warning">Note:</span> If you have trouble reading the configuration of the TCU, turn off the Data Integrity Check in the TCU Configurator app.</p>
+    </div>
+
+    <div class="step">
+        <h2><span class="step-number">Step 5:</span> Complete Setup on Website</h2>
+        <p>Complete the TCU setup via a web portal: sign in to OpenCARWINGS and follow the "Add Car" process.</p>
+    </div>
+
+    <div class="step">
+        <h2><span class="step-number">Step 6:</span> Configure your preferred SMS provider</h2>
+        <p>Finalize the TCU activation by setting up an SMS provider in OpenCARWINGS settings:</p>
+        <ul>
+            <li><strong>Binary SMS:</strong> The providers shown in settings are limited to those capable of sending Binary SMS.</li>
+            <li><strong>For OpenCARWINGS SMS:</strong> Set up your Raspberry Pi/computer/server to act as a relay; the latest releases are available at <a href="https://github.com/developerfromjokela/opencarwings-sms">https://github.com/developerfromjokela/opencarwings-sms</a>. (Android is not supported.)</li>
+            <li><strong>Verify:</strong> Do a data refresh to confirm the TCU is receiving SMS.</li>
+        </ul>
+        <p><span class="warning">Note:</span> Please clear all DTC codes before trying to send SMS! Active DTC codes may put the TCU into fault mode, causing it to refuse any commands.</p>
+        <p><span class="warning">Be aware:</span> In rare cases, TCU services have been remotely disabled by Nissan, for unknown reasons. In this case, sending refresh commands won't do anything. You may need to send the "Service Provisioning" configuration command from the "TCU Configuration" tab, with all services set to "Active." Then try sending the refresh command again.</p>
+    </div>
+
+
+
+    <p><strong>Congratulations!</strong> If all steps are completed successfully, your TCU should now be back online, restoring telematics functionality to your vehicle. <a href="/static/navi_guide2.html">The next step would be programming APN settings for the navigation unit.</a> </p>
+</body>
+</html>

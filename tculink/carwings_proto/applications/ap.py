@@ -22,11 +22,6 @@ def handle_ap(xml_data, _):
         # find car
         try:
             car = Car.objects.get(vin=car_vin)
-            if car is None:
-                logger.info("Car not found")
-                auth_result = False
-                reason_title = 'Car not registered with OpenCARWINGS'
-                reason_desc = 'The car has not been registered with Open Carwings. Visit Open Carwings website to register your vehicle.'
 
             # confirm TCU ID
             if auth_result and dcm_id != car.tcu_model:
@@ -37,14 +32,14 @@ def handle_ap(xml_data, _):
                                'Open Carwings portal. You can find the ID under Menu, Carwings, '
                                'Carwings settings and press Unit ID Information.')
 
-            # confirm SIM ID
-            if auth_result and car.iccid != sim_id:
-                logger.info("ICCID mismatch")
-                auth_result = False
-                reason_title = 'Sim ID Mismatch'
-                reason_desc = ('The SIM ID is incorrect. Please correct your SIM ID by visiting '
-                               'Open Carwings portal. You can find the ID under Menu, Carwings, '
-                               'Carwings settings and press Unit ID Information.')
+            # do not check ICCID, on JDM models ICCID is partially cut out and cannot be read.
+            #if auth_result and car.iccid != sim_id:
+            #    logger.info("ICCID mismatch")
+            #    auth_result = False
+            #    reason_title = 'Sim ID Mismatch'
+            #    reason_desc = ('The SIM ID is incorrect. Please correct your SIM ID by visiting '
+            #                   'Open Carwings portal. You can find the ID under Menu, Carwings, '
+            #                   'Carwings settings and press Unit ID Information.')
 
             # confirm user&pass
             if auth_result and car.owner.username != username or car.owner.tcu_pass_hash != password:

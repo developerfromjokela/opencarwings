@@ -19,7 +19,7 @@ def handle(_, acp_data: dict, car: Car, source_id: int, __) -> bytes:
     acp_msg += composer.VehDesc(vin=acp_data["veh_desc"]["vin"], dcm=acp_data["veh_desc"]["dcm"]).encode()
 
     if (not dest_id
-            or not car.command_requested):
+            or not car.command_requested or car.command_id != source_id):
         logger.warning(f"Destination {dest_id} not authorized, details: {source_id}, {car.command_id}, {car.command_requested} {car.command_type}")
         # return ACK with negative auth result
         app_id = 0x1d

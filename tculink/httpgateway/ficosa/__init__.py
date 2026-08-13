@@ -59,7 +59,7 @@ def handle_request(request: WSGIRequest | Any) -> HttpResponse:
     if not bin_data:
         return HttpResponse(status=400)
 
-    logger.debug(f"bin_data: {bin_data.hex()}")
+    logger.debug(f">> bin_data: {bin_data.hex()}")
 
 
     app_header, consumed = ficosa_acp.parser.decode_app_header(bin_data, 0)
@@ -131,4 +131,5 @@ def handle_request(request: WSGIRequest | Any) -> HttpResponse:
         except CommandTimerSetting.DoesNotExist:
             logger.warning(f"timer {timer_id} does not exist")
 
+    logger.debug(f"<< bin_data: {resp_bin.hex()}")
     return HttpResponse(status=200, content=io.BytesIO(resp_bin), content_type="application/octet-stream")

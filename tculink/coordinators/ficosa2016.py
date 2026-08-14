@@ -87,6 +87,12 @@ class Ficosa2016(TCULink):
 
     def send_command(self, command: int, payload, car: Car):
         if command in dict(COMMAND_TYPES) and command in self.SUPPORTED_COMMANDS:
+            # check if this is timer command
+            timer_id = -1
+            if payload is not None and set(payload) == {"timer_id"}:
+                timer_id = payload["timer_id"]
+                payload = None
+
             # check if command needs payload
             if payload is not None and command not in [3,15]:
                 raise CommandArgumentError("Command does not support payload field")
@@ -118,7 +124,7 @@ class Ficosa2016(TCULink):
             msg_hmac = smshmac.sms_acp_rn_hmac(msg, hmac_key)
 
             try:
-                sms_result = send_using_provider(msg_hmac, car.sms_config)
+                sms_result = send_using_provider(msg_hmac, car.sms_config, car.tcu_model)
                 if not sms_result:
                     raise SMSError(_('Failed to send SMS message to TCU. Please try again in a moment.'))
             except Exception as e:
@@ -128,6 +134,10 @@ class Ficosa2016(TCULink):
             car.command_id = source_id
             car.command_requested = True
             car.command_result = -1
+
+            if payload is None and timer_id != -1:
+                payload = {"timer_id": timer_id}
+
             car.command_payload = payload
             car.command_request_time = timezone.now()
             car.save()

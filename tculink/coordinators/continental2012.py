@@ -17,10 +17,10 @@ class Continental2012(TCULink):
 
     def send_command(self, command: int, payload, car: Car):
         if command in dict(COMMAND_TYPES) and command in self.SUPPORTED_COMMANDS:
-            if payload is not None:
+            if payload is not None and set(payload.keys()) != {"timer_id"}:
                 raise CommandArgumentError("Command does not support payload field")
             try:
-                sms_result = send_using_provider(settings.ACTIVATION_SMS_MESSAGE, car.sms_config)
+                sms_result = send_using_provider(settings.ACTIVATION_SMS_MESSAGE, car.sms_config, car.tcu_model)
                 if not sms_result:
                     raise SMSError(_('Failed to send SMS message to TCU. Please try again in a moment.'))
             except Exception as e:
@@ -29,7 +29,7 @@ class Continental2012(TCULink):
             car.command_id = randint(10000, 99999)
             car.command_requested = True
             car.command_result = -1
-            car.command_payload = None
+            car.command_payload = payload
             car.command_request_time = timezone.now()
             car.save()
             return car

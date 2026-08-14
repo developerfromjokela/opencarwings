@@ -189,6 +189,8 @@ SIGNUP_ENABLED = True
 ACTIVATION_SMS_MESSAGE = "NISSAN_EVIT_TELEMATICS_CENTER"
 
 SMS_PROVIDERS = {
+    # 'viaaqmobile': ('viaaq mobile', 'tculink.sms.viaaqmobile.ProviderViaaqMobileGlobal'),   # for larger instances
+    'viaaqmobile': ('viaaq mobile', 'tculink.sms.viaaqmobile.ProviderViaaqMobileAPIToken'),  # for self-hosting
     'hologram': ('Hologram SIM', 'tculink.sms.hologram.ProviderHologram'),
     'monogoto': ('Monogoto', 'tculink.sms.monogoto.ProviderMonogoto'),
     'gatewayapi': ('gatewayapi.com', 'tculink.sms.gatewayapi.ProviderGatewayAPI'),

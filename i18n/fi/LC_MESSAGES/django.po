@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-04 22:12+0000\n"
-"PO-Revision-Date: 2026-08-05 01:38+0300\n"
+"POT-Creation-Date: 2026-08-14 21:02+0000\n"
+"PO-Revision-Date: 2026-08-15 00:04+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fi\n"
@@ -140,7 +140,7 @@ msgid "Command timeout"
 msgstr "Komennon aikakatkaisu"
 
 #: db/models.py:44 db/models.py:69 ui/templates/ui/account.html:15
-#: ui/templates/ui/car_detail.html:70 ui/templates/ui/car_list.html:18
+#: ui/templates/ui/car_detail.html:72 ui/templates/ui/car_list.html:18
 #: ui/templates/ui/change_carwings_password.html:17
 #: ui/templates/ui/change_password.html:17
 #: ui/templates/ui/probeviewer/main.html:72
@@ -188,7 +188,7 @@ msgid "Waiting"
 msgstr "Odotetaan"
 
 #: db/models.py:68 db/models.py:127 ui/templates/ui/account.html:14
-#: ui/templates/ui/car_detail.html:69 ui/templates/ui/car_list.html:17
+#: ui/templates/ui/car_detail.html:71 ui/templates/ui/car_list.html:17
 #: ui/templates/ui/change_carwings_password.html:16
 #: ui/templates/ui/change_password.html:16
 #: ui/templates/ui/probeviewer/main.html:71
@@ -212,11 +212,11 @@ msgstr "Odotetaan vastausta"
 msgid "Park"
 msgstr "Pysäköity"
 
-#: db/models.py:76 ui/templates/ui/car_detail.html:1321
+#: db/models.py:76 ui/templates/ui/car_detail.html:1323
 msgid "Drive"
 msgstr "Ajovaihde"
 
-#: db/models.py:77 ui/templates/ui/car_detail.html:1321
+#: db/models.py:77 ui/templates/ui/car_detail.html:1323
 msgid "Reverse"
 msgstr "Peruutusvaihde"
 
@@ -1248,8 +1248,8 @@ msgid "API Password"
 msgstr "API-salasana"
 
 #: tculink/sms/46elks.py:13 tculink/sms/gatewayapi.py:14
-#: tculink/sms/ondevice.py:9 tculink/sms/smsgateway.py:11
-#: tculink/sms/webhook.py:12
+#: tculink/sms/ondevice.py:9 tculink/sms/seven.py:13
+#: tculink/sms/smsgateway.py:11 tculink/sms/webhook.py:12
 msgid "TCU Phone Number (international format)"
 msgstr "TCU:n puhelinnumero (sisältäen maakoodin, esim: +358412345678)"
 
@@ -1258,6 +1258,7 @@ msgid "API credentials are available in your 46elks dashboard."
 msgstr "API-tunnukset löytyvät 46elks:n hallintapaneelista."
 
 #: tculink/sms/gatewayapi.py:13 tculink/sms/hologram.py:10
+#: tculink/sms/seven.py:12 tculink/sms/viaaqmobile.py:47
 msgid "API Key"
 msgstr "API-avain"
 
@@ -1286,13 +1287,13 @@ msgstr ""
 "autollesi mahdollisimman pian sen jälkeen, kun olet lähettänyt komennon "
 "sivustolta: {sms}"
 
-#: tculink/sms/monogoto.py:11 ui/templates/ui/car_detail.html:304
+#: tculink/sms/monogoto.py:11 ui/templates/ui/car_detail.html:306
 #: ui/templates/ui/landing.html:28 ui/templates/ui/signin.html:26
 msgid "Username"
 msgstr "Käyttäjänimi"
 
 #: tculink/sms/monogoto.py:12 ui/forms.py:60
-#: ui/templates/ui/car_detail.html:305 ui/templates/ui/landing.html:37
+#: ui/templates/ui/car_detail.html:307 ui/templates/ui/landing.html:37
 #: ui/templates/ui/signin.html:30
 msgid "Password"
 msgstr "Salasana"
@@ -1323,6 +1324,14 @@ msgstr ""
 "jos mahdollista. Tämä menetelmä ei toimi API:n tai automaatioiden kautta, "
 "vaan ainoastaan verkkosivuston tai mobiilisovelluksen kautta!"
 
+#: tculink/sms/seven.py:15
+msgid ""
+"API credentials are available in dashboard.seven.io Developer section. "
+"Remember to add 'OCW' as Sender ID under account settings!"
+msgstr ""
+"API-tunnukset löytyvät dashboard.seven.io:n kehittäjäosiosta. Muista lisätä "
+"'OCW' lähettäjän tunnukseksi tilin asetuksissa!"
+
 #: tculink/sms/smsgateway.py:10
 msgid "Encryption Key"
 msgstr "Salausavain"
@@ -1337,6 +1346,29 @@ msgstr ""
 "lähettämiseen. Kun sovellus on asennettu, kirjoita sovelluksessa näkyvät "
 "arvot vastaaviin kenttiin. Lisätietoja:"
 
+#: tculink/sms/viaaqmobile.py:14
+msgid ""
+"Your subscription is automatically linked with OpenCARWINGS, using TCU ID "
+"shown in mobile.viaaq.eu/dashboard"
+msgstr ""
+"Liittymäsi linkitetään automaattisesti OpenCARWINGSiin käyttämällä TCU-"
+"tunnusta, joka näkyy osoitteessa mobile.viaaq.eu/dashboard."
+
+#: tculink/sms/viaaqmobile.py:32
+msgid ""
+"Could not find mobile subscription in viaaq mobile. Are you sure it's active?"
+msgstr ""
+"Viaq Mobilesta ei löytynyt mobiililiittymää. Oletko varma, että se on "
+"aktiivinen?"
+
+#: tculink/sms/viaaqmobile.py:34
+msgid "You do not have permission to send SMS messages to this subscription"
+msgstr "Sinulla ei ole lupaa lähettää tekstiviestejä tähän liittymään"
+
+#: tculink/sms/viaaqmobile.py:36
+msgid "Invalid API Key"
+msgstr "Väärä API-avain"
+
 #: tculink/sms/webhook.py:11
 msgid "Webhook URL"
 msgstr "Webhookin URL-osoite"
@@ -1347,7 +1379,7 @@ msgstr ""
 "POST-pyyntö lähetetään syöttämääsi URL-osoitteeseen, kun halutaan ottaa "
 "yhteyttä autoon."
 
-#: ui/forms.py:18 ui/forms.py:34 ui/templates/ui/car_detail.html:520
+#: ui/forms.py:18 ui/forms.py:34 ui/templates/ui/car_detail.html:522
 msgid "Nickname"
 msgstr "Lempinimi"
 
@@ -1355,7 +1387,7 @@ msgstr "Lempinimi"
 msgid "Disable TCU authentication"
 msgstr "Kytke pois TCU:n tunnistautuminen"
 
-#: ui/forms.py:20 ui/templates/ui/car_detail.html:559
+#: ui/forms.py:20 ui/templates/ui/car_detail.html:561
 msgid "Show calculated battery percentage"
 msgstr "Näytä laskettu akun varausprosentti"
 
@@ -1395,7 +1427,7 @@ msgstr "Voi sisälää vain kirjaimia, numeroita, viivoja, pisteitä ja alaviivo
 msgid "This password is used for signing in to your account inside the car"
 msgstr "Tämä salasana käytetään auton ja palvelimen väliseen tunnistautumiseen"
 
-#: ui/templates/ui/account.html:16 ui/templates/ui/car_detail.html:71
+#: ui/templates/ui/account.html:16 ui/templates/ui/car_detail.html:73
 #: ui/templates/ui/car_list.html:19
 #: ui/templates/ui/change_carwings_password.html:18
 #: ui/templates/ui/change_password.html:18
@@ -1407,7 +1439,7 @@ msgstr "Tämä salasana käytetään auton ja palvelimen väliseen tunnistautumi
 msgid "Notice"
 msgstr "Tiedoksi"
 
-#: ui/templates/ui/account.html:17 ui/templates/ui/car_detail.html:72
+#: ui/templates/ui/account.html:17 ui/templates/ui/car_detail.html:74
 #: ui/templates/ui/car_list.html:20
 #: ui/templates/ui/change_carwings_password.html:19
 #: ui/templates/ui/change_password.html:19
@@ -1419,9 +1451,9 @@ msgstr "Tiedoksi"
 msgid "Warning"
 msgstr "Huomio"
 
-#: ui/templates/ui/account.html:22 ui/templates/ui/car_detail.html:77
-#: ui/templates/ui/car_detail.html:633 ui/templates/ui/car_detail.html:652
-#: ui/templates/ui/car_detail.html:686 ui/templates/ui/car_detail.html:730
+#: ui/templates/ui/account.html:22 ui/templates/ui/car_detail.html:79
+#: ui/templates/ui/car_detail.html:635 ui/templates/ui/car_detail.html:654
+#: ui/templates/ui/car_detail.html:688 ui/templates/ui/car_detail.html:732
 #: ui/templates/ui/car_list.html:25
 #: ui/templates/ui/change_carwings_password.html:24
 #: ui/templates/ui/change_password.html:24
@@ -1450,9 +1482,9 @@ msgstr "API-dokumentaatio"
 msgid "Reset API-key"
 msgstr "Nollaa API-avain"
 
-#: ui/templates/ui/account.html:48 ui/templates/ui/car_detail.html:417
-#: ui/templates/ui/car_detail.html:487 ui/templates/ui/car_detail.html:616
-#: ui/templates/ui/car_detail.html:715 ui/templates/ui/car_detail.html:814
+#: ui/templates/ui/account.html:48 ui/templates/ui/car_detail.html:419
+#: ui/templates/ui/car_detail.html:489 ui/templates/ui/car_detail.html:618
+#: ui/templates/ui/car_detail.html:717 ui/templates/ui/car_detail.html:816
 #: ui/templates/ui/setup/step2.html:50 ui/templates/ui/setup/step3.html:36
 #: ui/templates/ui/setup/step4.html:63
 msgid "Save"
@@ -1504,428 +1536,428 @@ msgstr "VFlash-muokkaustyökalu"
 msgid "Back to cars"
 msgstr "Palaa etusivulle"
 
-#: ui/templates/ui/car_detail.html:59
+#: ui/templates/ui/car_detail.html:61
 msgid "Send command"
 msgstr "Lähetä komento"
 
-#: ui/templates/ui/car_detail.html:94 ui/templates/ui/car_detail.html:118
+#: ui/templates/ui/car_detail.html:96 ui/templates/ui/car_detail.html:120
 msgid "Overview"
 msgstr "Yleinen"
 
-#: ui/templates/ui/car_detail.html:95
+#: ui/templates/ui/car_detail.html:97
 msgid "EV Status"
 msgstr "EV-tiedot"
 
-#: ui/templates/ui/car_detail.html:96 ui/templates/ui/car_detail.html:240
+#: ui/templates/ui/car_detail.html:98 ui/templates/ui/car_detail.html:242
 msgid "Timers"
 msgstr "Ajastimet"
 
-#: ui/templates/ui/car_detail.html:97
+#: ui/templates/ui/car_detail.html:99
 msgid "Vehicle journal"
 msgstr "Auton tilastot"
 
-#: ui/templates/ui/car_detail.html:98
+#: ui/templates/ui/car_detail.html:100
 msgid "Location"
 msgstr "Sijainti"
 
-#: ui/templates/ui/car_detail.html:99
+#: ui/templates/ui/car_detail.html:101
 msgid "Recent Alerts"
 msgstr "Viimeisimmät ilmoitukset"
 
-#: ui/templates/ui/car_detail.html:100
+#: ui/templates/ui/car_detail.html:102
 msgid "Route Planner"
 msgstr "Reittisuunnittelija"
 
-#: ui/templates/ui/car_detail.html:102
+#: ui/templates/ui/car_detail.html:104
 msgid "Basic Info"
 msgstr "Tiedot"
 
-#: ui/templates/ui/car_detail.html:103
+#: ui/templates/ui/car_detail.html:105
 #: ui/templates/ui/ficosa/configuration.html:5
 msgid "TCU Configuration"
 msgstr "TCU-asetukset"
 
-#: ui/templates/ui/car_detail.html:104 ui/templates/ui/car_detail.html:515
+#: ui/templates/ui/car_detail.html:106 ui/templates/ui/car_detail.html:517
 msgid "Settings"
 msgstr "Asetukset"
 
-#: ui/templates/ui/car_detail.html:125 ui/templates/ui/car_detail.html:331
+#: ui/templates/ui/car_detail.html:127 ui/templates/ui/car_detail.html:333
 msgid "Range (AC On)"
 msgstr "Ajokantama (ilmastointi)"
 
-#: ui/templates/ui/car_detail.html:130 ui/templates/ui/car_detail.html:332
+#: ui/templates/ui/car_detail.html:132 ui/templates/ui/car_detail.html:334
 msgid "Range (AC Off)"
 msgstr "Ajokantama (ilmastointi pois)"
 
-#: ui/templates/ui/car_detail.html:136 ui/templates/ui/car_detail.html:139
-#: ui/templates/ui/car_detail.html:327 ui/templates/ui/car_detail.html:328
+#: ui/templates/ui/car_detail.html:138 ui/templates/ui/car_detail.html:141
+#: ui/templates/ui/car_detail.html:329 ui/templates/ui/car_detail.html:330
 msgid "State of Charge"
 msgstr "Akun varaustila"
 
-#: ui/templates/ui/car_detail.html:139 ui/templates/ui/car_detail.html:328
+#: ui/templates/ui/car_detail.html:141 ui/templates/ui/car_detail.html:330
 msgid "Nominal"
 msgstr "arvioitu"
 
-#: ui/templates/ui/car_detail.html:156
+#: ui/templates/ui/car_detail.html:158
 msgid "EMPTY"
 msgstr "TYHJÄ"
 
-#: ui/templates/ui/car_detail.html:157
+#: ui/templates/ui/car_detail.html:159
 msgid "FULL"
 msgstr "TÄYNNÄ"
 
-#: ui/templates/ui/car_detail.html:162 ui/templates/ui/car_detail.html:321
-#: ui/templates/ui/car_detail.html:322 ui/templates/ui/car_detail.html:324
+#: ui/templates/ui/car_detail.html:164 ui/templates/ui/car_detail.html:323
+#: ui/templates/ui/car_detail.html:324 ui/templates/ui/car_detail.html:326
 msgid "Charge time"
 msgstr "Latausaika"
 
-#: ui/templates/ui/car_detail.html:170
+#: ui/templates/ui/car_detail.html:172
 msgid "Charge Cable"
 msgstr "Latauskaapeli"
 
-#: ui/templates/ui/car_detail.html:174
+#: ui/templates/ui/car_detail.html:176
 msgid "Plugged In,Unplugged"
 msgstr "Liitetty,Ei liitetty"
 
-#: ui/templates/ui/car_detail.html:179
+#: ui/templates/ui/car_detail.html:181
 msgid "Car status"
 msgstr "Auton tila"
 
-#: ui/templates/ui/car_detail.html:183 ui/templates/ui/car_detail.html:185
-#: ui/templates/ui/car_detail.html:1257 ui/templates/ui/car_detail.html:1259
-#: ui/templates/ui/car_detail.html:1275
+#: ui/templates/ui/car_detail.html:185 ui/templates/ui/car_detail.html:187
+#: ui/templates/ui/car_detail.html:1259 ui/templates/ui/car_detail.html:1261
+#: ui/templates/ui/car_detail.html:1277
 msgid "On"
 msgstr "Päällä"
 
-#: ui/templates/ui/car_detail.html:183 ui/templates/ui/car_detail.html:1257
-#: ui/templates/ui/car_detail.html:1321
+#: ui/templates/ui/car_detail.html:185 ui/templates/ui/car_detail.html:1259
+#: ui/templates/ui/car_detail.html:1323
 msgid "Parked"
 msgstr "Pysäköity"
 
-#: ui/templates/ui/car_detail.html:185 ui/templates/ui/car_detail.html:1259
+#: ui/templates/ui/car_detail.html:187 ui/templates/ui/car_detail.html:1261
 msgid "Driving"
 msgstr "Ajossa"
 
-#: ui/templates/ui/car_detail.html:189 ui/templates/ui/car_detail.html:1263
+#: ui/templates/ui/car_detail.html:191 ui/templates/ui/car_detail.html:1265
 #: ui/templates/ui/probeviewer/main.html:481
 #: ui/templates/ui/probeviewer/main.html:555
 msgid "Charging finished"
 msgstr "Lataus valmis"
 
-#: ui/templates/ui/car_detail.html:191 ui/templates/ui/car_detail.html:334
-#: ui/templates/ui/car_detail.html:1265
+#: ui/templates/ui/car_detail.html:193 ui/templates/ui/car_detail.html:336
+#: ui/templates/ui/car_detail.html:1267
 msgid "Charging"
 msgstr "Ladataan"
 
-#: ui/templates/ui/car_detail.html:193 ui/templates/ui/car_detail.html:339
-#: ui/templates/ui/car_detail.html:1267
+#: ui/templates/ui/car_detail.html:195 ui/templates/ui/car_detail.html:341
+#: ui/templates/ui/car_detail.html:1269
 msgid "Battery heater active"
 msgstr "Akun lämmitys aktiivinen"
 
-#: ui/templates/ui/car_detail.html:195 ui/templates/ui/car_detail.html:1269
-#: ui/templates/ui/car_detail.html:1275
+#: ui/templates/ui/car_detail.html:197 ui/templates/ui/car_detail.html:1271
+#: ui/templates/ui/car_detail.html:1277
 msgid "Off"
 msgstr "Pois päältä"
 
-#: ui/templates/ui/car_detail.html:202
+#: ui/templates/ui/car_detail.html:204
 msgid "AC Status"
 msgstr "Ilmastoinnin tila"
 
-#: ui/templates/ui/car_detail.html:204
+#: ui/templates/ui/car_detail.html:206
 msgid "On,Off"
 msgstr "Päällä,Pois"
 
-#: ui/templates/ui/car_detail.html:213 ui/templates/ui/car_detail.html:311
-#: ui/templates/ui/car_detail.html:342 ui/templates/ui/car_detail.html:364
+#: ui/templates/ui/car_detail.html:215 ui/templates/ui/car_detail.html:313
+#: ui/templates/ui/car_detail.html:344 ui/templates/ui/car_detail.html:366
 #: ui/templates/ui/probeviewer/main.html:162
 #: ui/templates/ui/probeviewer/main.html:190
 msgid "Last Updated"
 msgstr "Viimeksi päivitetty"
 
-#: ui/templates/ui/car_detail.html:222
+#: ui/templates/ui/car_detail.html:224
 #: ui/templates/ui/probeviewer/main.html:124
 msgid "Odometer"
 msgstr "Matkamittari"
 
-#: ui/templates/ui/car_detail.html:223
+#: ui/templates/ui/car_detail.html:225
 msgid "Navi version"
 msgstr "Navigointiohjelmiston versio"
 
-#: ui/templates/ui/car_detail.html:224
+#: ui/templates/ui/car_detail.html:226
 msgid "Map version"
 msgstr "Karttaversio"
 
-#: ui/templates/ui/car_detail.html:225
+#: ui/templates/ui/car_detail.html:227
 msgid "TCU version (from navi)"
 msgstr "TCU ohjelmistoversio (navista)"
 
-#: ui/templates/ui/car_detail.html:226
+#: ui/templates/ui/car_detail.html:228
 msgid "TCU version (from TCU)"
 msgstr "TCU ohjelmistoversio (TCUsta)"
 
-#: ui/templates/ui/car_detail.html:227 ui/templates/ui/car_detail.html:228
 #: ui/templates/ui/car_detail.html:229 ui/templates/ui/car_detail.html:230
+#: ui/templates/ui/car_detail.html:231 ui/templates/ui/car_detail.html:232
 msgid "Vehicle Code"
 msgstr "Auton tunniste"
 
-#: ui/templates/ui/car_detail.html:234
+#: ui/templates/ui/car_detail.html:236
 msgid "Last Connection"
 msgstr "Viimeksi yhdistetty"
 
-#: ui/templates/ui/car_detail.html:240 ui/templates/ui/car_detail.html:372
+#: ui/templates/ui/car_detail.html:242 ui/templates/ui/car_detail.html:374
 #: ui/templates/ui/car_list.html:33
 msgid "Add"
 msgstr "Lisää"
 
-#: ui/templates/ui/car_detail.html:249
+#: ui/templates/ui/car_detail.html:251
 msgid "Mon"
 msgstr "ma"
 
-#: ui/templates/ui/car_detail.html:252
+#: ui/templates/ui/car_detail.html:254
 msgid "Tue"
 msgstr "ti"
 
-#: ui/templates/ui/car_detail.html:255
+#: ui/templates/ui/car_detail.html:257
 msgid "Wed"
 msgstr "ke"
 
-#: ui/templates/ui/car_detail.html:258
+#: ui/templates/ui/car_detail.html:260
 msgid "Thu"
 msgstr "to"
 
-#: ui/templates/ui/car_detail.html:261
+#: ui/templates/ui/car_detail.html:263
 msgid "Fri"
 msgstr "pe"
 
-#: ui/templates/ui/car_detail.html:264
+#: ui/templates/ui/car_detail.html:266
 msgid "Sat"
 msgstr "la"
 
-#: ui/templates/ui/car_detail.html:267
+#: ui/templates/ui/car_detail.html:269
 msgid "Sun"
 msgstr "su"
 
-#: ui/templates/ui/car_detail.html:270 ui/templates/ui/car_detail.html:2595
+#: ui/templates/ui/car_detail.html:272 ui/templates/ui/car_detail.html:2597
 msgid "Last run"
 msgstr "Suoritettu viimeksi"
 
-#: ui/templates/ui/car_detail.html:270 ui/templates/ui/car_detail.html:2595
+#: ui/templates/ui/car_detail.html:272 ui/templates/ui/car_detail.html:2597
 msgid "result"
 msgstr "tulos"
 
-#: ui/templates/ui/car_detail.html:276 ui/templates/ui/car_detail.html:382
-#: ui/templates/ui/car_detail.html:1685 ui/templates/ui/car_detail.html:2602
+#: ui/templates/ui/car_detail.html:278 ui/templates/ui/car_detail.html:384
+#: ui/templates/ui/car_detail.html:1687 ui/templates/ui/car_detail.html:2604
 msgid "Edit"
 msgstr "Muokkaa"
 
-#: ui/templates/ui/car_detail.html:282 ui/templates/ui/car_detail.html:388
-#: ui/templates/ui/car_detail.html:1690 ui/templates/ui/car_detail.html:2607
+#: ui/templates/ui/car_detail.html:284 ui/templates/ui/car_detail.html:390
+#: ui/templates/ui/car_detail.html:1692 ui/templates/ui/car_detail.html:2609
 msgid "Delete"
 msgstr "Poista"
 
-#: ui/templates/ui/car_detail.html:288 ui/templates/ui/car_detail.html:2550
+#: ui/templates/ui/car_detail.html:290 ui/templates/ui/car_detail.html:2552
 msgid "No timers added"
 msgstr "Ei ajastimia lisättynä"
 
-#: ui/templates/ui/car_detail.html:292
+#: ui/templates/ui/car_detail.html:294
 msgid "Note: Times are shown in local local timezone"
 msgstr "Huomio: Kellonajat näkyvät paikallisen aikavyöhykkeen mukaan"
 
-#: ui/templates/ui/car_detail.html:302
+#: ui/templates/ui/car_detail.html:304
 msgid "PPP Dial Code"
 msgstr "PPP numero"
 
-#: ui/templates/ui/car_detail.html:308
+#: ui/templates/ui/car_detail.html:310
 msgid "Server"
 msgstr "Palvelin"
 
-#: ui/templates/ui/car_detail.html:309
+#: ui/templates/ui/car_detail.html:311
 msgid "Proxy"
 msgstr "Välityspalvelin"
 
-#: ui/templates/ui/car_detail.html:310
+#: ui/templates/ui/car_detail.html:312
 msgid "Connection Type"
 msgstr "Yhteyksen tyyppi"
 
-#: ui/templates/ui/car_detail.html:319
+#: ui/templates/ui/car_detail.html:321
 msgid "Car on"
 msgstr "Auto päällä"
 
-#: ui/templates/ui/car_detail.html:319 ui/templates/ui/car_detail.html:323
-#: ui/templates/ui/car_detail.html:333 ui/templates/ui/car_detail.html:334
+#: ui/templates/ui/car_detail.html:321 ui/templates/ui/car_detail.html:325
 #: ui/templates/ui/car_detail.html:335 ui/templates/ui/car_detail.html:336
-#: ui/templates/ui/car_detail.html:338 ui/templates/ui/car_detail.html:339
-#: ui/templates/ui/car_detail.html:363
+#: ui/templates/ui/car_detail.html:337 ui/templates/ui/car_detail.html:338
+#: ui/templates/ui/car_detail.html:340 ui/templates/ui/car_detail.html:341
+#: ui/templates/ui/car_detail.html:365
 msgid "Yes,No"
 msgstr "Kyllä,Ei"
 
-#: ui/templates/ui/car_detail.html:320
+#: ui/templates/ui/car_detail.html:322
 msgid "Gear"
 msgstr "Vaihde"
 
-#: ui/templates/ui/car_detail.html:323
+#: ui/templates/ui/car_detail.html:325
 msgid "6kW OBC exists"
 msgstr "6.6 kW hidas laturi olemassa"
 
-#: ui/templates/ui/car_detail.html:325
+#: ui/templates/ui/car_detail.html:327
 msgid "Charge bars"
 msgstr "Lataustason palkit"
 
-#: ui/templates/ui/car_detail.html:326
+#: ui/templates/ui/car_detail.html:328
 #: ui/templates/ui/probeviewer/trip.html:205
 msgid "Capacity bars"
 msgstr "Kapasiteetin palkit"
 
-#: ui/templates/ui/car_detail.html:327
+#: ui/templates/ui/car_detail.html:329
 msgid "Display"
 msgstr "mittaristo"
 
-#: ui/templates/ui/car_detail.html:329
+#: ui/templates/ui/car_detail.html:331
 msgid "State of Health"
 msgstr "Akun kunto"
 
-#: ui/templates/ui/car_detail.html:330
+#: ui/templates/ui/car_detail.html:332
 msgid "Remaining kWh"
 msgstr "Jäljellä oleva varaus"
 
-#: ui/templates/ui/car_detail.html:333
+#: ui/templates/ui/car_detail.html:335
 msgid "Plugged in"
 msgstr "Liitetty laturiin"
 
-#: ui/templates/ui/car_detail.html:335
+#: ui/templates/ui/car_detail.html:337
 msgid "Quick-charging"
 msgstr "Pikaladataan"
 
-#: ui/templates/ui/car_detail.html:336
+#: ui/templates/ui/car_detail.html:338
 msgid "Preconditioning (A/C)"
 msgstr "Esilämmitys/jäähdytys"
 
-#: ui/templates/ui/car_detail.html:337
+#: ui/templates/ui/car_detail.html:339
 msgid "GIDs remaining"
 msgstr "Jäljellä olevat GID:t"
 
-#: ui/templates/ui/car_detail.html:338
+#: ui/templates/ui/car_detail.html:340
 msgid "Battery heater exists"
 msgstr "Akun lämmitin olemassa"
 
-#: ui/templates/ui/car_detail.html:340
+#: ui/templates/ui/car_detail.html:342
 msgid "Cabin Temperature"
 msgstr "Matkustamon lämpötila"
 
-#: ui/templates/ui/car_detail.html:341
+#: ui/templates/ui/car_detail.html:343
 msgid "Counter"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:349
+#: ui/templates/ui/car_detail.html:351
 msgid "Send location to car"
 msgstr "Lähetä määränpää autoon"
 
-#: ui/templates/ui/car_detail.html:351 ui/templates/ui/car_detail.html:405
-#: ui/templates/ui/car_detail.html:414 ui/templates/ui/car_detail.html:1963
+#: ui/templates/ui/car_detail.html:353 ui/templates/ui/car_detail.html:407
+#: ui/templates/ui/car_detail.html:416 ui/templates/ui/car_detail.html:1965
 msgid "Search for locations or enter google/apple maps link"
 msgstr "Hae kohteita tai syötä Google/Apple maps-linkki"
 
-#: ui/templates/ui/car_detail.html:355 ui/templates/ui/car_detail.html:1361
+#: ui/templates/ui/car_detail.html:357 ui/templates/ui/car_detail.html:1363
 msgid "Last shared location"
 msgstr "Viimeksi jaettu kohde"
 
-#: ui/templates/ui/car_detail.html:357 ui/templates/ui/car_detail.html:1363
+#: ui/templates/ui/car_detail.html:359 ui/templates/ui/car_detail.html:1365
 msgid "No past shared location"
 msgstr "Ei aikaisemmin jaettuja kohteita"
 
-#: ui/templates/ui/car_detail.html:360
+#: ui/templates/ui/car_detail.html:362
 #: ui/templates/ui/ficosa/configuration.html:27
 msgid "Send"
 msgstr "Lähetä"
 
-#: ui/templates/ui/car_detail.html:363
+#: ui/templates/ui/car_detail.html:365
 msgid "At Home"
 msgstr "Kotona"
 
-#: ui/templates/ui/car_detail.html:372
+#: ui/templates/ui/car_detail.html:374
 msgid "Route plans"
 msgstr "Reittisuunnitelmat"
 
-#: ui/templates/ui/car_detail.html:394 ui/templates/ui/car_detail.html:1668
+#: ui/templates/ui/car_detail.html:396 ui/templates/ui/car_detail.html:1670
 msgid "No route plans added"
 msgstr "Ei lisättyjä reittisuunnitelmia"
 
-#: ui/templates/ui/car_detail.html:399
+#: ui/templates/ui/car_detail.html:401
 msgid "Add/Edit a route plan"
 msgstr "Lisää/Muokkaa reittisuunnitelma"
 
-#: ui/templates/ui/car_detail.html:401
+#: ui/templates/ui/car_detail.html:403
 msgid "Name of the plan"
 msgstr "Reittisuunnitelman nimi"
 
-#: ui/templates/ui/car_detail.html:404 ui/templates/ui/car_detail.html:637
+#: ui/templates/ui/car_detail.html:406 ui/templates/ui/car_detail.html:639
 msgid "Starting point"
 msgstr "Lähtöpiste"
 
-#: ui/templates/ui/car_detail.html:411
+#: ui/templates/ui/car_detail.html:413
 msgid "Add waypoint"
 msgstr "Lisää reittipiste"
 
-#: ui/templates/ui/car_detail.html:413 ui/templates/ui/car_detail.html:638
+#: ui/templates/ui/car_detail.html:415 ui/templates/ui/car_detail.html:640
 msgid "Destination point"
 msgstr "Määränpää"
 
-#: ui/templates/ui/car_detail.html:418
+#: ui/templates/ui/car_detail.html:420
 msgid "Cancel"
 msgstr "Peruuta"
 
-#: ui/templates/ui/car_detail.html:428
+#: ui/templates/ui/car_detail.html:430
 msgid "Favorite channels"
 msgstr "Suosikkikanavat"
 
-#: ui/templates/ui/car_detail.html:437 ui/templates/ui/car_detail.html:438
 #: ui/templates/ui/car_detail.html:439 ui/templates/ui/car_detail.html:440
 #: ui/templates/ui/car_detail.html:441 ui/templates/ui/car_detail.html:442
-#: ui/templates/ui/car_detail.html:443 ui/templates/ui/car_detail.html:446
-#: ui/templates/ui/car_detail.html:447 ui/templates/ui/car_detail.html:448
+#: ui/templates/ui/car_detail.html:443 ui/templates/ui/car_detail.html:444
+#: ui/templates/ui/car_detail.html:445 ui/templates/ui/car_detail.html:448
 #: ui/templates/ui/car_detail.html:449 ui/templates/ui/car_detail.html:450
 #: ui/templates/ui/car_detail.html:451 ui/templates/ui/car_detail.html:452
-#: ui/templates/ui/car_detail.html:453 ui/templates/ui/car_detail.html:2175
+#: ui/templates/ui/car_detail.html:453 ui/templates/ui/car_detail.html:454
+#: ui/templates/ui/car_detail.html:455 ui/templates/ui/car_detail.html:2177
 msgid "No selected channel"
 msgstr "Ei kanavaa valittuna"
 
-#: ui/templates/ui/car_detail.html:459
+#: ui/templates/ui/car_detail.html:461
 msgid "Custom channels"
 msgstr "Omat kanavat"
 
-#: ui/templates/ui/car_detail.html:467 ui/templates/ui/car_detail.html:468
 #: ui/templates/ui/car_detail.html:469 ui/templates/ui/car_detail.html:470
 #: ui/templates/ui/car_detail.html:471 ui/templates/ui/car_detail.html:472
 #: ui/templates/ui/car_detail.html:473 ui/templates/ui/car_detail.html:474
-#: ui/templates/ui/car_detail.html:477 ui/templates/ui/car_detail.html:478
+#: ui/templates/ui/car_detail.html:475 ui/templates/ui/car_detail.html:476
 #: ui/templates/ui/car_detail.html:479 ui/templates/ui/car_detail.html:480
 #: ui/templates/ui/car_detail.html:481 ui/templates/ui/car_detail.html:482
 #: ui/templates/ui/car_detail.html:483 ui/templates/ui/car_detail.html:484
-#: ui/templates/ui/car_detail.html:2251
+#: ui/templates/ui/car_detail.html:485 ui/templates/ui/car_detail.html:486
+#: ui/templates/ui/car_detail.html:2253
 msgid "No content"
 msgstr "Ei sisältöä"
 
-#: ui/templates/ui/car_detail.html:496
+#: ui/templates/ui/car_detail.html:498
 msgid "Type"
 msgstr "Tyyppi"
 
-#: ui/templates/ui/car_detail.html:497
+#: ui/templates/ui/car_detail.html:499
 msgid "Timestamp"
 msgstr "Päivämäärä"
 
-#: ui/templates/ui/car_detail.html:498
+#: ui/templates/ui/car_detail.html:500
 msgid "Additional Data"
 msgstr "Lisätiedot"
 
-#: ui/templates/ui/car_detail.html:530
+#: ui/templates/ui/car_detail.html:532
 msgid "Leave empty to use default key"
 msgstr "Jätä tyhjäksi käyttääksesi oletusavainta"
 
-#: ui/templates/ui/car_detail.html:536
+#: ui/templates/ui/car_detail.html:538
 msgid "Skip authentication from TCU"
 msgstr "Ohita tunnistautuminen TCU:lta"
 
-#: ui/templates/ui/car_detail.html:537
+#: ui/templates/ui/car_detail.html:539
 msgid ""
 "On AZE0 (2013) and newer LEAFs, username and password inserted to navi are "
 "not saved due to an error. In this case, check this box to skip the "
@@ -1935,15 +1967,15 @@ msgstr ""
 "eivättallennu autoon virheen takia. Tässä tapauksessa kytke ruutu "
 "aktiiviseksi,niin auto saa yhteyden ja ei tarkista kirjautumistietoja"
 
-#: ui/templates/ui/car_detail.html:543
+#: ui/templates/ui/car_detail.html:545
 msgid "Car color"
 msgstr "Auton väri"
 
-#: ui/templates/ui/car_detail.html:552
+#: ui/templates/ui/car_detail.html:554
 msgid "Maximum GIDs value"
 msgstr "Suurin GIDien määrä"
 
-#: ui/templates/ui/car_detail.html:554
+#: ui/templates/ui/car_detail.html:556
 #, python-format
 msgid ""
 "OpenCARWINGS will try to auto-detect your battery size and fill this field. "
@@ -1955,7 +1987,7 @@ msgstr ""
 "hyvä ja kirjoita akkupakettisi suurin GID:ien arvo kun akku on uusi (SoH "
 "100%%)"
 
-#: ui/templates/ui/car_detail.html:560
+#: ui/templates/ui/car_detail.html:562
 msgid ""
 "On AZE0 (>2013) generation cars, it is possible to see available battery "
 "capacity in percentage. For ZE0, such feature was never implemented. By "
@@ -1967,279 +1999,279 @@ msgstr ""
 "tämän toiminnon päälle, näet samanlaisen 'käyttäjälle' näytettävän "
 "varausprosentin, mutta arvo voi olla väärä."
 
-#: ui/templates/ui/car_detail.html:566
+#: ui/templates/ui/car_detail.html:568
 msgid "Periodic data refresh interval"
 msgstr "Aikaväli tietojen automaattiselle päivitykselle"
 
-#: ui/templates/ui/car_detail.html:575
+#: ui/templates/ui/car_detail.html:577
 msgid "Periodic data refresh interval (while driving or charging)"
 msgstr ""
 "Aikaväli tietojen automaattiselle päivitykselle (latauksen tai ajon aikana)"
 
-#: ui/templates/ui/car_detail.html:584 ui/templates/ui/setup/step4.html:29
+#: ui/templates/ui/car_detail.html:586 ui/templates/ui/setup/step4.html:29
 msgid "SMS provider"
 msgstr "SMS-palvelu"
 
-#: ui/templates/ui/car_detail.html:617
+#: ui/templates/ui/car_detail.html:619
 msgid "Remove car"
 msgstr "Poista auto"
 
-#: ui/templates/ui/car_detail.html:636
+#: ui/templates/ui/car_detail.html:638
 msgid "Set car location as"
 msgstr "Aseta auton sijainti kohteeseen"
 
-#: ui/templates/ui/car_detail.html:655
+#: ui/templates/ui/car_detail.html:657
 msgid "Select data channel"
 msgstr "Valitse tietokanava"
 
-#: ui/templates/ui/car_detail.html:690
+#: ui/templates/ui/car_detail.html:692
 msgid "Edit data channel"
 msgstr "Muokkaa tietokanava"
 
-#: ui/templates/ui/car_detail.html:691
+#: ui/templates/ui/car_detail.html:693
 msgid "Channel name"
 msgstr "Kanavan nimi"
 
-#: ui/templates/ui/car_detail.html:695
+#: ui/templates/ui/car_detail.html:697
 msgid "Channel icon"
 msgstr "Kanavan kuvake"
 
-#: ui/templates/ui/car_detail.html:706
+#: ui/templates/ui/car_detail.html:708
 msgid "Data URL"
 msgstr "Tiedonlähteen URL-osoite"
 
-#: ui/templates/ui/car_detail.html:708
+#: ui/templates/ui/car_detail.html:710
 msgid "Data URL format and documentation"
 msgstr "Dokumentaatio ja ohje tiedonlähteelle"
 
-#: ui/templates/ui/car_detail.html:712
+#: ui/templates/ui/car_detail.html:714
 msgid "Allow sending current vehicle location"
 msgstr "Salli sijainnin välittäminen tiedonlähteelle"
 
-#: ui/templates/ui/car_detail.html:734 ui/templates/ui/car_detail.html:2350
+#: ui/templates/ui/car_detail.html:736 ui/templates/ui/car_detail.html:2352
 msgid "Edit timer"
 msgstr "Muokkaa ajastinta"
 
-#: ui/templates/ui/car_detail.html:735
+#: ui/templates/ui/car_detail.html:737
 msgid "Timer name"
 msgstr "Ajastimen nimi"
 
-#: ui/templates/ui/car_detail.html:740
+#: ui/templates/ui/car_detail.html:742
 msgid "Enabled"
 msgstr "Käytössä"
 
-#: ui/templates/ui/car_detail.html:743
+#: ui/templates/ui/car_detail.html:745
 msgid "Select time"
 msgstr "Valitse kellonaika"
 
-#: ui/templates/ui/car_detail.html:753
+#: ui/templates/ui/car_detail.html:755
 msgid "Command"
 msgstr "Komento"
 
-#: ui/templates/ui/car_detail.html:763
+#: ui/templates/ui/car_detail.html:765
 msgid "One-time"
 msgstr "Vain kerran"
 
-#: ui/templates/ui/car_detail.html:766
+#: ui/templates/ui/car_detail.html:768
 msgid "Repeating"
 msgstr "Toistuva"
 
-#: ui/templates/ui/car_detail.html:778
+#: ui/templates/ui/car_detail.html:780
 msgid "Select date"
 msgstr "Valitse päivämäärä"
 
-#: ui/templates/ui/car_detail.html:784
+#: ui/templates/ui/car_detail.html:786
 #: ui/templates/ui/ficosa/configuration.html:35
 msgid "Monday"
 msgstr "maanantai"
 
-#: ui/templates/ui/car_detail.html:788
+#: ui/templates/ui/car_detail.html:790
 msgid "Tuesday"
 msgstr "tiistai"
 
-#: ui/templates/ui/car_detail.html:792
+#: ui/templates/ui/car_detail.html:794
 msgid "Wednesday"
 msgstr "keskiviikko"
 
-#: ui/templates/ui/car_detail.html:796
+#: ui/templates/ui/car_detail.html:798
 msgid "Thursday"
 msgstr "torstai"
 
-#: ui/templates/ui/car_detail.html:800
+#: ui/templates/ui/car_detail.html:802
 msgid "Friday"
 msgstr "perjantai"
 
-#: ui/templates/ui/car_detail.html:804
+#: ui/templates/ui/car_detail.html:806
 msgid "Saturday"
 msgstr "lauantai"
 
-#: ui/templates/ui/car_detail.html:808
+#: ui/templates/ui/car_detail.html:810
 msgid "Sunday"
 msgstr "sunnuntai"
 
-#: ui/templates/ui/car_detail.html:833
+#: ui/templates/ui/car_detail.html:835
 msgid "SMS from your device"
 msgstr "SMS-viestin lähetys laitteestasi"
 
-#: ui/templates/ui/car_detail.html:1190 ui/templates/ui/car_detail.html:1192
-#: ui/templates/ui/car_detail.html:1196 ui/templates/ui/car_detail.html:1197
-#: ui/templates/ui/car_detail.html:1413 ui/templates/ui/car_detail.html:1421
-#: ui/templates/ui/car_detail.html:1422
+#: ui/templates/ui/car_detail.html:1192 ui/templates/ui/car_detail.html:1194
+#: ui/templates/ui/car_detail.html:1198 ui/templates/ui/car_detail.html:1199
+#: ui/templates/ui/car_detail.html:1415 ui/templates/ui/car_detail.html:1423
+#: ui/templates/ui/car_detail.html:1424
 #: ui/templates/ui/ficosa/configuration.html:255
 #: ui/templates/ui/ficosa/configuration.html:259
 msgid "Error sending command"
 msgstr "Komennon lähetys epäonnistui"
 
-#: ui/templates/ui/car_detail.html:1252
+#: ui/templates/ui/car_detail.html:1254
 msgid "Plugged In"
 msgstr "Liitetty"
 
-#: ui/templates/ui/car_detail.html:1252
+#: ui/templates/ui/car_detail.html:1254
 msgid "Unplugged"
 msgstr "Ei liitettynä"
 
-#: ui/templates/ui/car_detail.html:1305 ui/templates/ui/car_detail.html:1306
-#: ui/templates/ui/car_detail.html:1307 ui/templates/ui/car_detail.html:1316
-#: ui/templates/ui/car_detail.html:1322 ui/templates/ui/car_detail.html:1323
+#: ui/templates/ui/car_detail.html:1307 ui/templates/ui/car_detail.html:1308
+#: ui/templates/ui/car_detail.html:1309 ui/templates/ui/car_detail.html:1318
 #: ui/templates/ui/car_detail.html:1324 ui/templates/ui/car_detail.html:1325
-#: ui/templates/ui/car_detail.html:1330
+#: ui/templates/ui/car_detail.html:1326 ui/templates/ui/car_detail.html:1327
+#: ui/templates/ui/car_detail.html:1332
 msgid "Yes"
 msgstr "Kyllä"
 
-#: ui/templates/ui/car_detail.html:1305 ui/templates/ui/car_detail.html:1306
-#: ui/templates/ui/car_detail.html:1307 ui/templates/ui/car_detail.html:1316
-#: ui/templates/ui/car_detail.html:1322 ui/templates/ui/car_detail.html:1323
+#: ui/templates/ui/car_detail.html:1307 ui/templates/ui/car_detail.html:1308
+#: ui/templates/ui/car_detail.html:1309 ui/templates/ui/car_detail.html:1318
 #: ui/templates/ui/car_detail.html:1324 ui/templates/ui/car_detail.html:1325
-#: ui/templates/ui/car_detail.html:1330
+#: ui/templates/ui/car_detail.html:1326 ui/templates/ui/car_detail.html:1327
+#: ui/templates/ui/car_detail.html:1332
 msgid "No"
 msgstr "Ei"
 
-#: ui/templates/ui/car_detail.html:1451 ui/templates/ui/car_detail.html:1459
-#: ui/templates/ui/car_detail.html:1460
+#: ui/templates/ui/car_detail.html:1453 ui/templates/ui/car_detail.html:1461
+#: ui/templates/ui/car_detail.html:1462
 msgid "Error sending location to car"
 msgstr "Sijainnin lähetys autoon epäonnistui"
 
-#: ui/templates/ui/car_detail.html:1453
+#: ui/templates/ui/car_detail.html:1455
 msgid "Location sent!"
 msgstr "Määränpää lähetetty!"
 
-#: ui/templates/ui/car_detail.html:1509 ui/templates/ui/car_detail.html:1572
-#: ui/templates/ui/car_detail.html:1843 ui/templates/ui/car_detail.html:1848
-#: ui/templates/ui/car_detail.html:1905 ui/templates/ui/car_detail.html:1918
-#: ui/templates/ui/car_detail.html:1923 ui/templates/ui/car_detail.html:2002
+#: ui/templates/ui/car_detail.html:1511 ui/templates/ui/car_detail.html:1574
+#: ui/templates/ui/car_detail.html:1845 ui/templates/ui/car_detail.html:1850
+#: ui/templates/ui/car_detail.html:1907 ui/templates/ui/car_detail.html:1920
+#: ui/templates/ui/car_detail.html:1925 ui/templates/ui/car_detail.html:2004
 msgid "No address"
 msgstr "Ei osoitetta"
 
-#: ui/templates/ui/car_detail.html:1519 ui/templates/ui/car_detail.html:1852
+#: ui/templates/ui/car_detail.html:1521 ui/templates/ui/car_detail.html:1854
 msgid "Could not get location from map link"
 msgstr "Ei saatu sijaintia linkistä"
 
-#: ui/templates/ui/car_detail.html:1525 ui/templates/ui/car_detail.html:1597
-#: ui/templates/ui/car_detail.html:1858 ui/templates/ui/car_detail.html:1939
+#: ui/templates/ui/car_detail.html:1527 ui/templates/ui/car_detail.html:1599
+#: ui/templates/ui/car_detail.html:1860 ui/templates/ui/car_detail.html:1941
 msgid "Error searching locations"
 msgstr "Kohteiden haku epäonnistui"
 
-#: ui/templates/ui/car_detail.html:1591 ui/templates/ui/car_detail.html:1933
+#: ui/templates/ui/car_detail.html:1593 ui/templates/ui/car_detail.html:1935
 msgid "Search did not find any locations"
 msgstr "Haku ei tuottanut tulosta"
 
-#: ui/templates/ui/car_detail.html:1616
+#: ui/templates/ui/car_detail.html:1618
 msgid "Connection established!"
 msgstr "Yhdistetty!"
 
-#: ui/templates/ui/car_detail.html:1621
+#: ui/templates/ui/car_detail.html:1623
 msgid "Reconnecting..."
 msgstr "Yhdistetään uudelleen..."
 
-#: ui/templates/ui/car_detail.html:1947
+#: ui/templates/ui/car_detail.html:1949
 msgid "Cannot add a new waypoint"
 msgstr "Ei voitu lisätä reittipistettä"
 
-#: ui/templates/ui/car_detail.html:1947
+#: ui/templates/ui/car_detail.html:1949
 msgid "Maximum number of waypoints reached"
 msgstr "Maksimimäärä reittipisteitä saavutettu"
 
-#: ui/templates/ui/car_detail.html:1980
+#: ui/templates/ui/car_detail.html:1982
 msgid "Waypoint"
 msgstr "Reittipiste"
 
-#: ui/templates/ui/car_detail.html:2032 ui/templates/ui/car_detail.html:2041
-#: ui/templates/ui/car_detail.html:2042
+#: ui/templates/ui/car_detail.html:2034 ui/templates/ui/car_detail.html:2043
+#: ui/templates/ui/car_detail.html:2044
 msgid "Error saving the route plan"
 msgstr "Reittisuunnitelmaa ei voitu tallentaa"
 
-#: ui/templates/ui/car_detail.html:2034
+#: ui/templates/ui/car_detail.html:2036
 msgid "Route plan saved!"
 msgstr "Reittisuunnitelma tallennettu!"
 
-#: ui/templates/ui/car_detail.html:2070
+#: ui/templates/ui/car_detail.html:2072
 msgid "Cannot add new route plan"
 msgstr "Reittisuunnitelmaa ei voitu lisätä"
 
-#: ui/templates/ui/car_detail.html:2070
+#: ui/templates/ui/car_detail.html:2072
 msgid "You have too many route plans, please delete one and try again."
 msgstr ""
 "Sinulla on liian monta reittisuunnitelmaa tallennettuna, poista ainakin yksi "
 "ja yritä uudelleen."
 
-#: ui/templates/ui/car_detail.html:2140
+#: ui/templates/ui/car_detail.html:2142
 msgid "Are you sure you want to delete this route plan?"
 msgstr "Haluatko varmasti poistaa tämän reittisuunnitelman?"
 
-#: ui/templates/ui/car_detail.html:2153 ui/templates/ui/car_detail.html:2160
-#: ui/templates/ui/car_detail.html:2161
+#: ui/templates/ui/car_detail.html:2155 ui/templates/ui/car_detail.html:2162
+#: ui/templates/ui/car_detail.html:2163
 msgid "Error deleting the route plan"
 msgstr "Reittisuunnitelmaa ei voitu poistaa"
 
-#: ui/templates/ui/car_detail.html:2155
+#: ui/templates/ui/car_detail.html:2157
 msgid "Route plan removed!"
 msgstr "Reittisuunnitelma tallennettu!"
 
-#: ui/templates/ui/car_detail.html:2315 ui/templates/ui/car_detail.html:2323
-#: ui/templates/ui/car_detail.html:2324
+#: ui/templates/ui/car_detail.html:2317 ui/templates/ui/car_detail.html:2325
+#: ui/templates/ui/car_detail.html:2326
 msgid "Error saving CARWINGS settings"
 msgstr "Tapahtui virhe CARWINGS asetusten tallentamisessa"
 
-#: ui/templates/ui/car_detail.html:2317
+#: ui/templates/ui/car_detail.html:2319
 msgid "CARWINGS settings saved!"
 msgstr "CARWINGS asetukset tallennettu!"
 
-#: ui/templates/ui/car_detail.html:2330
+#: ui/templates/ui/car_detail.html:2332
 msgid "Add timer"
 msgstr "Lisää ajastin"
 
-#: ui/templates/ui/car_detail.html:2441 ui/templates/ui/car_detail.html:2444
+#: ui/templates/ui/car_detail.html:2443 ui/templates/ui/car_detail.html:2446
 msgid "Missing field"
 msgstr "Puuttuva tieto"
 
-#: ui/templates/ui/car_detail.html:2441
+#: ui/templates/ui/car_detail.html:2443
 msgid "Please enter valid date for the timer"
 msgstr "Valitse päivämäärä"
 
-#: ui/templates/ui/car_detail.html:2444
+#: ui/templates/ui/car_detail.html:2446
 msgid "Please select at least one weekday"
 msgstr "Valitse ainakin yksi viikonpäivä"
 
-#: ui/templates/ui/car_detail.html:2465 ui/templates/ui/car_detail.html:2473
-#: ui/templates/ui/car_detail.html:2474 ui/templates/ui/car_detail.html:2495
-#: ui/templates/ui/car_detail.html:2503 ui/templates/ui/car_detail.html:2504
+#: ui/templates/ui/car_detail.html:2467 ui/templates/ui/car_detail.html:2475
+#: ui/templates/ui/car_detail.html:2476 ui/templates/ui/car_detail.html:2497
+#: ui/templates/ui/car_detail.html:2505 ui/templates/ui/car_detail.html:2506
 msgid "Error saving the timer"
 msgstr "Virhe ajastimen tallennuksessa"
 
-#: ui/templates/ui/car_detail.html:2467 ui/templates/ui/car_detail.html:2497
+#: ui/templates/ui/car_detail.html:2469 ui/templates/ui/car_detail.html:2499
 msgid "Timer saved!"
 msgstr "Ajastin tallennettu!"
 
-#: ui/templates/ui/car_detail.html:2511
+#: ui/templates/ui/car_detail.html:2513
 msgid "Are you sure you want to delete this timer?"
 msgstr "Haluatko varmasti poistaa tämän ajastimen?"
 
-#: ui/templates/ui/car_detail.html:2520
+#: ui/templates/ui/car_detail.html:2522
 msgid "Timer removed!"
 msgstr "Ajastin poistettu!"
 
-#: ui/templates/ui/car_detail.html:2523 ui/templates/ui/car_detail.html:2525
-#: ui/templates/ui/car_detail.html:2529 ui/templates/ui/car_detail.html:2530
+#: ui/templates/ui/car_detail.html:2525 ui/templates/ui/car_detail.html:2527
+#: ui/templates/ui/car_detail.html:2531 ui/templates/ui/car_detail.html:2532
 msgid "Error deleting the timer"
 msgstr "Virhe ajastimen poistossa"
 
@@ -3203,55 +3235,55 @@ msgstr "Vie"
 msgid "Unknown"
 msgstr "Tuntematon"
 
-#: ui/views.py:42
+#: ui/views.py:41
 msgid "TCU setup"
 msgstr "TCU:n valmistelu"
 
-#: ui/views.py:43
+#: ui/views.py:42
 msgid "TCU identifiers"
 msgstr "TCU-tiedot"
 
-#: ui/views.py:44
+#: ui/views.py:43
 msgid "Basic information"
 msgstr "Perustiedot"
 
-#: ui/views.py:45
+#: ui/views.py:44
 msgid "SMS configuration"
 msgstr "SMS-asetukset"
 
-#: ui/views.py:46
+#: ui/views.py:45
 msgid "Car added"
 msgstr "Kaikki valmista!"
 
-#: ui/views.py:109
+#: ui/views.py:108
 msgid "Account successfully updated!"
 msgstr "Tilitiedot päivitetty!"
 
-#: ui/views.py:112 ui/views.py:824
+#: ui/views.py:111 ui/views.py:825
 msgid "Please fill the form correctly and try again."
 msgstr "Täytä lomake oikein ja yritä uudelleen."
 
-#: ui/views.py:512
+#: ui/views.py:513
 msgid "Successfully saved settings."
 msgstr "Asetukset päivitetty."
 
-#: ui/views.py:514 ui/views.py:695 ui/views.py:716
+#: ui/views.py:515 ui/views.py:696 ui/views.py:717
 msgid "Please fill the form correctly"
 msgstr "Täytäthän lomakkeen oikein"
 
-#: ui/views.py:517 ui/views.py:754
+#: ui/views.py:518 ui/views.py:755
 msgid "Please fill all necessary fields and try again."
 msgstr "Täytäthän kaikki kentät ja yritä uudelleen."
 
-#: ui/views.py:521
+#: ui/views.py:522
 msgid "Waiting for first connection.."
 msgstr "Odotetaan ensimmäistä yhteyttä.."
 
-#: ui/views.py:566
+#: ui/views.py:567
 msgid "Sign-up is not enabled on this instance"
 msgstr "Tällä instanssilla ei sallita tilien luomista"
 
-#: ui/views.py:593
+#: ui/views.py:594
 msgid ""
 "Your current timezone is UTC. Please set your local timezone in account "
 "settings."
@@ -3259,24 +3291,24 @@ msgstr ""
 "Nykyinen aikavyöhykkeesi on UTC. Aseta paikallinen aikavyöhykkeesi tilin "
 "asetuksissa."
 
-#: ui/views.py:596
+#: ui/views.py:597
 msgid "Invalid username or password."
 msgstr "Virheellinen käyttäjänimi tai salasana."
 
-#: ui/views.py:682
+#: ui/views.py:683
 msgid "Car is already added. Please remove and try again."
 msgstr "Auto on jo lisätty. Poista auto ja yritä uudelleen."
 
-#: ui/views.py:735
+#: ui/views.py:736
 msgid "Please select a provider for SMS."
 msgstr "Ole hyvä ja valitse SMS-palvelun tarjoaja."
 
-#: ui/views.py:816
+#: ui/views.py:817
 msgid "Update requested! Update will occur on next boot."
 msgstr ""
 "Päivitys pyydetty! Päivitys tapahtuu seuraavan käynnistyksen yhteydessä."
 
-#: ui/views.py:822
+#: ui/views.py:823
 msgid "Update request cancelled!"
 msgstr "Päivityspyyntö peruttu!"
 

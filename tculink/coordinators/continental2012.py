@@ -17,7 +17,7 @@ class Continental2012(TCULink):
 
     def send_command(self, command: int, payload, car: Car):
         if command in dict(COMMAND_TYPES) and command in self.SUPPORTED_COMMANDS:
-            if payload is not None and set(payload.keys()) != {"timer_id"}:
+            if payload is not None and set(payload.keys()) != {"timer"}:
                 raise CommandArgumentError("Command does not support payload field")
             try:
                 sms_result = send_using_provider(settings.ACTIVATION_SMS_MESSAGE, car.sms_config, car.tcu_model)

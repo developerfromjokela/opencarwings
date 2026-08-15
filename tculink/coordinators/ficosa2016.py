@@ -89,7 +89,7 @@ class Ficosa2016(TCULink):
         if command in dict(COMMAND_TYPES) and command in self.SUPPORTED_COMMANDS:
             # check if this is timer command
             timer_id = -1
-            if payload is not None and set(payload) == {"timer_id"}:
+            if payload is not None and set(payload) == {"timer"}:
                 timer_id = payload["timer_id"]
                 payload = None
 

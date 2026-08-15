@@ -90,7 +90,7 @@ class Ficosa2016(TCULink):
             # check if this is timer command
             timer_id = -1
             if payload is not None and set(payload) == {"timer"}:
-                timer_id = payload["timer_id"]
+                timer_id = payload["timer"]
                 payload = None
 
             # check if command needs payload
@@ -136,7 +136,7 @@ class Ficosa2016(TCULink):
             car.command_result = -1
 
             if payload is None and timer_id != -1:
-                payload = {"timer_id": timer_id}
+                payload = {"timer": timer_id}
 
             car.command_payload = payload
             car.command_request_time = timezone.now()

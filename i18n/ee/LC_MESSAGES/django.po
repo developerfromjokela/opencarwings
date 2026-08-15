@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-14 21:02+0000\n"
-"PO-Revision-Date: 2026-08-15 00:06+0300\n"
+"POT-Creation-Date: 2026-08-15 20:58+0000\n"
+"PO-Revision-Date: 2026-08-16 00:09+0300\n"
 "Last-Translator: \n"
 "Language-Team: Estonian <et@li.org>\n"
 "Language: et\n"
@@ -22,7 +22,7 @@ msgid "Too many timer commands, please delete one and try again"
 msgstr "Liiga palju taimereid, kustutage üks ja proovige uuesti"
 
 #: api/views.py:369 tculink/coordinators/continental2012.py:25
-#: tculink/coordinators/ficosa2016.py:123
+#: tculink/coordinators/ficosa2016.py:129
 msgid "Failed to send SMS message to TCU. Please try again in a moment."
 msgstr ""
 "SMS-sõnumi saatmine TCU-le ebaõnnestus. Palun proovi mõne aja pärast uuesti."
@@ -104,7 +104,8 @@ msgstr "Uued andmed vastu võetud"
 msgid "Burglar alert"
 msgstr "Sissemurdmise hoiatus"
 
-#: db/models.py:36 tculink/httpgateway/ficosa/destinations/tow.py:36
+#: db/models.py:36 tculink/gdc_proto/ficosa/utils.py:62
+#: tculink/httpgateway/ficosa/destinations/tow.py:36
 msgid "Tow Notification"
 msgstr "Puksiirteade"
 
@@ -168,7 +169,7 @@ msgstr "Sõiduki signaal"
 msgid "Lights"
 msgstr "Tuled"
 
-#: db/models.py:59
+#: db/models.py:59 tculink/gdc_proto/ficosa/utils.py:63
 msgid "Horn & Lights"
 msgstr "Signaal ja tuled"
 
@@ -887,13 +888,71 @@ msgstr "kolmekümnes"
 msgid "thirty-first"
 msgstr "kolmekümne esimene"
 
-#: tculink/httpgateway/ficosa/destinations/burglar.py:35
-msgid "Burglar alarm has been triggered"
-msgstr "Sissemurdmishäire on käivitunud"
+#: tculink/gdc_proto/ficosa/utils.py:38 tculink/gdc_proto/ficosa/utils.py:59
+#: tculink/httpgateway/ficosa/destinations/veh_health.py:23
+#: tculink/httpgateway/ficosa/destinations/veh_health.py:31
+msgid "Vehicle Health Report"
+msgstr "Sõiduki tervisearuanne"
 
+#: tculink/gdc_proto/ficosa/utils.py:43
+msgid "Service Enabled"
+msgstr "Teenus lubatud"
+
+#: tculink/gdc_proto/ficosa/utils.py:44
+msgid "Send frequency (days)"
+msgstr "Saatmissagedus (päevad)"
+
+#: tculink/gdc_proto/ficosa/utils.py:48
+#, fuzzy
+#| msgid "Service Provisioning performed successfully!"
+msgid "Service Provisioning"
+msgstr "Teenuse seadistus edukalt tehtud!"
+
+#: tculink/gdc_proto/ficosa/utils.py:53
+msgid "EV Battery Charging Status"
+msgstr "EV aku laadimise olek"
+
+#: tculink/gdc_proto/ficosa/utils.py:54
+msgid "EV Battery Charging History"
+msgstr "EV aku laadimise ajalugu"
+
+#: tculink/gdc_proto/ficosa/utils.py:55
+msgid "EV Battery Charging Remote Activation"
+msgstr "EV aku laadimise kaugkäivitus"
+
+#: tculink/gdc_proto/ficosa/utils.py:56
+msgid "EV Remote HVAC Activation"
+msgstr "EV kliimaseadme kaugkäivitus"
+
+#: tculink/gdc_proto/ficosa/utils.py:57
+msgid "EV Plug Reminder"
+msgstr "EV pistiku meeldetuletus"
+
+#: tculink/gdc_proto/ficosa/utils.py:58
+msgid "EV Battery Heating Notification"
+msgstr "EV aku soojendamise teavitus"
+
+#: tculink/gdc_proto/ficosa/utils.py:60
 #: tculink/httpgateway/ficosa/destinations/burglar.py:36
 msgid "Burglar Alarm"
 msgstr "Sissemurdmishäire"
+
+#: tculink/gdc_proto/ficosa/utils.py:61
+msgid "Door Lock & Unlock"
+msgstr "Ukse lukustamine ja avamine"
+
+#: tculink/gdc_proto/ficosa/utils.py:64 tculink/gdc_proto/ficosa/utils.py:65
+#: tculink/gdc_proto/ficosa/utils.py:66 tculink/gdc_proto/ficosa/utils.py:67
+#: tculink/gdc_proto/ficosa/utils.py:68 tculink/gdc_proto/ficosa/utils.py:69
+#: tculink/gdc_proto/ficosa/utils.py:70 tculink/gdc_proto/ficosa/utils.py:71
+#: tculink/gdc_proto/ficosa/utils.py:72 tculink/gdc_proto/ficosa/utils.py:73
+#, python-brace-format
+msgid "Probe Service {num}"
+msgstr "Probe teenus {num}"
+
+#: tculink/httpgateway/ficosa/destinations/burglar.py:35
+msgid "Burglar alarm has been triggered"
+msgstr "Sissemurdmishäire on käivitunud"
 
 #: tculink/httpgateway/ficosa/destinations/config.py:71
 msgid "One or more service provisionings failed to apply"
@@ -1171,11 +1230,6 @@ msgstr "Auto signaal ja tuled peatati edukalt!"
 msgid "Your vehicle is being towed. Please check the situation if necessary."
 msgstr ""
 "Sõiduk on lahti ühendatud. Palun kontrolli olukorda, kui see on vajalik."
-
-#: tculink/httpgateway/ficosa/destinations/veh_health.py:23
-#: tculink/httpgateway/ficosa/destinations/veh_health.py:31
-msgid "Vehicle Health Report"
-msgstr "Sõiduki tervisearuanne"
 
 #: tculink/httpgateway/ficosa/destinations/veh_health.py:30
 msgid "Received new health report!"
@@ -2065,7 +2119,6 @@ msgid "Select date"
 msgstr "Valige kuupäev"
 
 #: ui/templates/ui/car_detail.html:786
-#: ui/templates/ui/ficosa/configuration.html:35
 msgid "Monday"
 msgstr "Esmaspäev"
 
@@ -2302,6 +2355,10 @@ msgstr "Muuda parooli"
 msgid "Change password"
 msgstr "Muuda parooli"
 
+#: ui/templates/ui/ficosa/configuration.html:11
+msgid "Select a menu to get started"
+msgstr "Alustamiseks valige menüü"
+
 #: ui/templates/ui/ficosa/configuration.html:26
 msgid "Request current configuration"
 msgstr "Taotle praegust konfiguratsiooni"
@@ -2322,6 +2379,20 @@ msgstr "Aktiveeri"
 #: ui/templates/ui/ficosa/configuration.html:285
 msgid "Last value:"
 msgstr "Viimane väärtus:"
+
+#: ui/templates/ui/ficosa/configuration.html:220
+#: ui/templates/ui/ficosa/configuration.html:235
+msgid "is more than"
+msgstr "on suurem kui"
+
+#: ui/templates/ui/ficosa/configuration.html:223
+#: ui/templates/ui/ficosa/configuration.html:238
+msgid "is less than"
+msgstr "on väiksem kui"
+
+#: ui/templates/ui/ficosa/configuration.html:246
+msgid "value is out of range"
+msgstr "väärtus on vahemikust väljas"
 
 #: ui/templates/ui/ficosa/configuration.html:259
 msgid "No changes to send!"

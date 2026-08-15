@@ -8,7 +8,7 @@
     <div id="config-screen-frames" class="flex-1" style="min-height: 300px">
         <div class="config-screen active">
             <div class="h-100 mb-4 rounded-md flex items-center justify-center">
-                <p>Select a menu to get started</p>
+                <p>{% translate "Select a menu to get started" %}</p>
             </div>
         </div>
     </div>
@@ -32,7 +32,7 @@
     <template id="tcuConfigFieldBool">
         <div class="flex items-center mb-4">
             <input type="checkbox" value="" class="">
-            <label for="timer-mon" class="">{% translate "Monday" %}</label>
+            <label for="" class=""></label>
         </div>
     </template>
     <template id="tcuConfigFieldInt">
@@ -217,10 +217,10 @@
                         case 0: {
                             const value = fieldInput.value;
                             if (fieldInfo.max && value > fieldInfo.max) {
-                                throw new Error(`${fieldInfo.label} is more than ${fieldInfo.max}`);
+                                throw new Error(`${fieldInfo.label} {% translate "is more than" %} ${fieldInfo.max}`);
                             }
                             if (fieldInfo.min && value < fieldInfo.min) {
-                                throw new Error(`${fieldInfo.label} is less than ${fieldInfo.min}`);
+                                throw new Error(`${fieldInfo.label} {% translate "is less than" %} ${fieldInfo.min}`);
                             }
                             newConfig[fieldKey] = parseInt(value);
                             break
@@ -232,10 +232,10 @@
                         case 2,3: {
                             const value = fieldInput.value;
                             if (fieldInfo.max && value > fieldInfo.max) {
-                                throw new Error(`${fieldInfo.label} is more than ${fieldInfo.max} characters`);
+                                throw new Error(`${fieldInfo.label} {% translate "is more than" %} ${fieldInfo.max} characters`);
                             }
                             if (fieldInfo.min && value < fieldInfo.min) {
-                                throw new Error(`${fieldInfo.label} is less than ${fieldInfo.min} characters`);
+                                throw new Error(`${fieldInfo.label} {% translate "is less than" %} ${fieldInfo.min} characters`);
                             }
                             newConfig[fieldKey] = value
                             break
@@ -243,7 +243,7 @@
                         case 4: {
                             const value = Number.parseInt(fieldInput.value);
                             if (value < 0 || value > 2) {
-                                throw new Error(`${fieldInfo.label} value is out of range`)
+                                throw new Error(`${fieldInfo.label} {% translate "value is out of range" %}`)
                             }
                             if (value > 0)
                                 newConfig[fieldKey] = value

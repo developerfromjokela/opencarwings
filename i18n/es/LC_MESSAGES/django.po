@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-14 21:02+0000\n"
-"PO-Revision-Date: 2026-08-15 00:05+0300\n"
+"POT-Creation-Date: 2026-08-15 20:58+0000\n"
+"PO-Revision-Date: 2026-08-16 00:12+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -23,7 +23,7 @@ msgid "Too many timer commands, please delete one and try again"
 msgstr "Demasiados temporizadores, elimine uno y vuelva a intentarlo"
 
 #: api/views.py:369 tculink/coordinators/continental2012.py:25
-#: tculink/coordinators/ficosa2016.py:123
+#: tculink/coordinators/ficosa2016.py:129
 msgid "Failed to send SMS message to TCU. Please try again in a moment."
 msgstr ""
 "No se pudo enviar el mensaje SMS al TCU. Por favor, intenta de nuevo en un "
@@ -106,7 +106,8 @@ msgstr "Nuevos datos recibidos"
 msgid "Burglar alert"
 msgstr "Alerta de intrusión"
 
-#: db/models.py:36 tculink/httpgateway/ficosa/destinations/tow.py:36
+#: db/models.py:36 tculink/gdc_proto/ficosa/utils.py:62
+#: tculink/httpgateway/ficosa/destinations/tow.py:36
 msgid "Tow Notification"
 msgstr "Notificación de remolque"
 
@@ -171,7 +172,7 @@ msgstr "Bocina del coche"
 msgid "Lights"
 msgstr "Luces"
 
-#: db/models.py:59
+#: db/models.py:59 tculink/gdc_proto/ficosa/utils.py:63
 msgid "Horn & Lights"
 msgstr "Bocina y luces"
 
@@ -932,13 +933,69 @@ msgstr "trigésimo"
 msgid "thirty-first"
 msgstr "trigésimo primero"
 
-#: tculink/httpgateway/ficosa/destinations/burglar.py:35
-msgid "Burglar alarm has been triggered"
-msgstr "Se ha activado la alarma antirrobo"
+#: tculink/gdc_proto/ficosa/utils.py:38 tculink/gdc_proto/ficosa/utils.py:59
+#: tculink/httpgateway/ficosa/destinations/veh_health.py:23
+#: tculink/httpgateway/ficosa/destinations/veh_health.py:31
+msgid "Vehicle Health Report"
+msgstr "Informe de salud del vehículo"
 
+#: tculink/gdc_proto/ficosa/utils.py:43
+msgid "Service Enabled"
+msgstr "Servicio activado"
+
+#: tculink/gdc_proto/ficosa/utils.py:44
+msgid "Send frequency (days)"
+msgstr "Frecuencia de envío (días)"
+
+#: tculink/gdc_proto/ficosa/utils.py:48
+msgid "Service Provisioning"
+msgstr "Aprovisionamiento del servicio"
+
+#: tculink/gdc_proto/ficosa/utils.py:53
+msgid "EV Battery Charging Status"
+msgstr "Estado de carga de la batería del VE"
+
+#: tculink/gdc_proto/ficosa/utils.py:54
+msgid "EV Battery Charging History"
+msgstr "Historial de carga de la batería del VE"
+
+#: tculink/gdc_proto/ficosa/utils.py:55
+msgid "EV Battery Charging Remote Activation"
+msgstr "Activación remota de carga de la batería del VE"
+
+#: tculink/gdc_proto/ficosa/utils.py:56
+msgid "EV Remote HVAC Activation"
+msgstr "Activación remota del climatizador del VE"
+
+#: tculink/gdc_proto/ficosa/utils.py:57
+msgid "EV Plug Reminder"
+msgstr "Recordatorio de enchufe del VE"
+
+#: tculink/gdc_proto/ficosa/utils.py:58
+msgid "EV Battery Heating Notification"
+msgstr "Notificación de calentamiento de la batería del VE"
+
+#: tculink/gdc_proto/ficosa/utils.py:60
 #: tculink/httpgateway/ficosa/destinations/burglar.py:36
 msgid "Burglar Alarm"
 msgstr "Alarma antirrobo"
+
+#: tculink/gdc_proto/ficosa/utils.py:61
+msgid "Door Lock & Unlock"
+msgstr "Bloqueo y desbloqueo de puertas"
+
+#: tculink/gdc_proto/ficosa/utils.py:64 tculink/gdc_proto/ficosa/utils.py:65
+#: tculink/gdc_proto/ficosa/utils.py:66 tculink/gdc_proto/ficosa/utils.py:67
+#: tculink/gdc_proto/ficosa/utils.py:68 tculink/gdc_proto/ficosa/utils.py:69
+#: tculink/gdc_proto/ficosa/utils.py:70 tculink/gdc_proto/ficosa/utils.py:71
+#: tculink/gdc_proto/ficosa/utils.py:72 tculink/gdc_proto/ficosa/utils.py:73
+#, python-brace-format
+msgid "Probe Service {num}"
+msgstr "Servicio de probe {num}"
+
+#: tculink/httpgateway/ficosa/destinations/burglar.py:35
+msgid "Burglar alarm has been triggered"
+msgstr "Se ha activado la alarma antirrobo"
 
 #: tculink/httpgateway/ficosa/destinations/config.py:71
 msgid "One or more service provisionings failed to apply"
@@ -1225,11 +1282,6 @@ msgid "Your vehicle is being towed. Please check the situation if necessary."
 msgstr ""
 "Su vehículo está siendo remolcado. Por favor, verifique la situación si es "
 "necesario."
-
-#: tculink/httpgateway/ficosa/destinations/veh_health.py:23
-#: tculink/httpgateway/ficosa/destinations/veh_health.py:31
-msgid "Vehicle Health Report"
-msgstr "Informe de salud del vehículo"
 
 #: tculink/httpgateway/ficosa/destinations/veh_health.py:30
 msgid "Received new health report!"
@@ -2131,7 +2183,6 @@ msgid "Select date"
 msgstr "Seleccionar fecha"
 
 #: ui/templates/ui/car_detail.html:786
-#: ui/templates/ui/ficosa/configuration.html:35
 msgid "Monday"
 msgstr "Lunes"
 
@@ -2368,6 +2419,10 @@ msgstr "Cambiar contraseña"
 msgid "Change password"
 msgstr "Cambiar contraseña"
 
+#: ui/templates/ui/ficosa/configuration.html:11
+msgid "Select a menu to get started"
+msgstr "Selecciona un menú para comenzar"
+
 #: ui/templates/ui/ficosa/configuration.html:26
 msgid "Request current configuration"
 msgstr "Solicitar configuración actual"
@@ -2388,6 +2443,20 @@ msgstr "Activar"
 #: ui/templates/ui/ficosa/configuration.html:285
 msgid "Last value:"
 msgstr "Último valor:"
+
+#: ui/templates/ui/ficosa/configuration.html:220
+#: ui/templates/ui/ficosa/configuration.html:235
+msgid "is more than"
+msgstr "es mayor que"
+
+#: ui/templates/ui/ficosa/configuration.html:223
+#: ui/templates/ui/ficosa/configuration.html:238
+msgid "is less than"
+msgstr "es menor que"
+
+#: ui/templates/ui/ficosa/configuration.html:246
+msgid "value is out of range"
+msgstr "valor está fuera de rango"
 
 #: ui/templates/ui/ficosa/configuration.html:259
 msgid "No changes to send!"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-15 20:58+0000\n"
-"PO-Revision-Date: 2026-08-16 00:06+0300\n"
+"POT-Creation-Date: 2026-08-16 02:31+0000\n"
+"PO-Revision-Date: 2026-08-16 05:46+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -213,11 +213,11 @@ msgstr "Ожидание ответа"
 msgid "Park"
 msgstr "Парковка"
 
-#: db/models.py:76 ui/templates/ui/car_detail.html:1323
+#: db/models.py:76 ui/templates/ui/car_detail.html:1335
 msgid "Drive"
 msgstr "Движение"
 
-#: db/models.py:77 ui/templates/ui/car_detail.html:1323
+#: db/models.py:77 ui/templates/ui/car_detail.html:1335
 msgid "Reverse"
 msgstr "Задний ход"
 
@@ -902,8 +902,9 @@ msgid "thirty-first"
 msgstr "тридцать первый"
 
 #: tculink/gdc_proto/ficosa/utils.py:38 tculink/gdc_proto/ficosa/utils.py:59
-#: tculink/httpgateway/ficosa/destinations/veh_health.py:23
-#: tculink/httpgateway/ficosa/destinations/veh_health.py:31
+#: tculink/httpgateway/ficosa/destinations/veh_health.py:24
+#: tculink/httpgateway/ficosa/destinations/veh_health.py:32
+#: ui/templates/ui/car_detail.html:102
 msgid "Vehicle Health Report"
 msgstr "Отчёт о состоянии автомобиля"
 
@@ -1243,7 +1244,7 @@ msgstr "Сигнал и свет автомобиля успешно остан�
 msgid "Your vehicle is being towed. Please check the situation if necessary."
 msgstr "Ваш автомобиль эвакуируют. При необходимости проверьте ситуацию."
 
-#: tculink/httpgateway/ficosa/destinations/veh_health.py:30
+#: tculink/httpgateway/ficosa/destinations/veh_health.py:31
 msgid "Received new health report!"
 msgstr "Получен новый отчёт о состоянии!"
 
@@ -1342,13 +1343,13 @@ msgstr ""
 "TCU, чтобы установить связь. Автоматическая отправка сообщений не "
 "предусмотрена. Текст SMS для отправки после команды на сайте: {sms}"
 
-#: tculink/sms/monogoto.py:11 ui/templates/ui/car_detail.html:306
+#: tculink/sms/monogoto.py:11 ui/templates/ui/car_detail.html:310
 #: ui/templates/ui/landing.html:28 ui/templates/ui/signin.html:26
 msgid "Username"
 msgstr "Имя пользователя"
 
 #: tculink/sms/monogoto.py:12 ui/forms.py:60
-#: ui/templates/ui/car_detail.html:307 ui/templates/ui/landing.html:37
+#: ui/templates/ui/car_detail.html:311 ui/templates/ui/landing.html:37
 #: ui/templates/ui/signin.html:30
 msgid "Password"
 msgstr "Пароль"
@@ -1435,7 +1436,7 @@ msgid "POST-request will be sent to specified webhook URL when necessary."
 msgstr ""
 "POST-запрос будет отправлен на указанный URL-адрес вебхука при необходимости."
 
-#: ui/forms.py:18 ui/forms.py:34 ui/templates/ui/car_detail.html:522
+#: ui/forms.py:18 ui/forms.py:34 ui/templates/ui/car_detail.html:526
 msgid "Nickname"
 msgstr "Псевдоним"
 
@@ -1443,7 +1444,7 @@ msgstr "Псевдоним"
 msgid "Disable TCU authentication"
 msgstr "Отключить аутентификацию TCU"
 
-#: ui/forms.py:20 ui/templates/ui/car_detail.html:561
+#: ui/forms.py:20 ui/templates/ui/car_detail.html:565
 msgid "Show calculated battery percentage"
 msgstr "Показать расчётный процент заряда батареи"
 
@@ -1510,8 +1511,8 @@ msgid "Warning"
 msgstr "Предупреждение"
 
 #: ui/templates/ui/account.html:22 ui/templates/ui/car_detail.html:79
-#: ui/templates/ui/car_detail.html:635 ui/templates/ui/car_detail.html:654
-#: ui/templates/ui/car_detail.html:688 ui/templates/ui/car_detail.html:732
+#: ui/templates/ui/car_detail.html:639 ui/templates/ui/car_detail.html:658
+#: ui/templates/ui/car_detail.html:692 ui/templates/ui/car_detail.html:736
 #: ui/templates/ui/car_list.html:25
 #: ui/templates/ui/change_carwings_password.html:24
 #: ui/templates/ui/change_password.html:24
@@ -1540,9 +1541,9 @@ msgstr "Документация API"
 msgid "Reset API-key"
 msgstr "Сбросить ключ API"
 
-#: ui/templates/ui/account.html:48 ui/templates/ui/car_detail.html:419
-#: ui/templates/ui/car_detail.html:489 ui/templates/ui/car_detail.html:618
-#: ui/templates/ui/car_detail.html:717 ui/templates/ui/car_detail.html:816
+#: ui/templates/ui/account.html:48 ui/templates/ui/car_detail.html:423
+#: ui/templates/ui/car_detail.html:493 ui/templates/ui/car_detail.html:622
+#: ui/templates/ui/car_detail.html:721 ui/templates/ui/car_detail.html:820
 #: ui/templates/ui/setup/step2.html:50 ui/templates/ui/setup/step3.html:36
 #: ui/templates/ui/setup/step4.html:63
 msgid "Save"
@@ -1598,7 +1599,7 @@ msgstr "Вернуться к списку автомобилей"
 msgid "Send command"
 msgstr "Отправить команду"
 
-#: ui/templates/ui/car_detail.html:96 ui/templates/ui/car_detail.html:120
+#: ui/templates/ui/car_detail.html:96 ui/templates/ui/car_detail.html:123
 msgid "Overview"
 msgstr "Обзор"
 
@@ -1606,7 +1607,7 @@ msgstr "Обзор"
 msgid "EV Status"
 msgstr "Статус электромобиля"
 
-#: ui/templates/ui/car_detail.html:98 ui/templates/ui/car_detail.html:242
+#: ui/templates/ui/car_detail.html:98 ui/templates/ui/car_detail.html:245
 msgid "Timers"
 msgstr "Таймеры"
 
@@ -1618,404 +1619,405 @@ msgstr "Журнал автомобиля"
 msgid "Location"
 msgstr "Местоположение"
 
-#: ui/templates/ui/car_detail.html:101
+#: ui/templates/ui/car_detail.html:104
 msgid "Recent Alerts"
 msgstr "Последние уведомления"
 
-#: ui/templates/ui/car_detail.html:102
+#: ui/templates/ui/car_detail.html:105
 msgid "Route Planner"
 msgstr "Планировщик маршрутов"
 
-#: ui/templates/ui/car_detail.html:104
+#: ui/templates/ui/car_detail.html:107
 msgid "Basic Info"
 msgstr "Основная информация"
 
-#: ui/templates/ui/car_detail.html:105
+#: ui/templates/ui/car_detail.html:108
 #: ui/templates/ui/ficosa/configuration.html:5
 msgid "TCU Configuration"
 msgstr "Конфигурация TCU"
 
-#: ui/templates/ui/car_detail.html:106 ui/templates/ui/car_detail.html:517
+#: ui/templates/ui/car_detail.html:109 ui/templates/ui/car_detail.html:521
 msgid "Settings"
 msgstr "Настройки"
 
-#: ui/templates/ui/car_detail.html:127 ui/templates/ui/car_detail.html:333
+#: ui/templates/ui/car_detail.html:130 ui/templates/ui/car_detail.html:337
 msgid "Range (AC On)"
 msgstr "Запас хода (с кондиционером)"
 
-#: ui/templates/ui/car_detail.html:132 ui/templates/ui/car_detail.html:334
+#: ui/templates/ui/car_detail.html:135 ui/templates/ui/car_detail.html:338
 msgid "Range (AC Off)"
 msgstr "Запас хода (без кондиционера)"
 
-#: ui/templates/ui/car_detail.html:138 ui/templates/ui/car_detail.html:141
-#: ui/templates/ui/car_detail.html:329 ui/templates/ui/car_detail.html:330
+#: ui/templates/ui/car_detail.html:141 ui/templates/ui/car_detail.html:144
+#: ui/templates/ui/car_detail.html:333 ui/templates/ui/car_detail.html:334
 msgid "State of Charge"
 msgstr "Уровень заряда"
 
-#: ui/templates/ui/car_detail.html:141 ui/templates/ui/car_detail.html:330
+#: ui/templates/ui/car_detail.html:144 ui/templates/ui/car_detail.html:334
 msgid "Nominal"
 msgstr "Номинальный"
 
-#: ui/templates/ui/car_detail.html:158
+#: ui/templates/ui/car_detail.html:161
 msgid "EMPTY"
 msgstr "ПУСТО"
 
-#: ui/templates/ui/car_detail.html:159
+#: ui/templates/ui/car_detail.html:162
 msgid "FULL"
 msgstr "ПОЛНЫЙ"
 
-#: ui/templates/ui/car_detail.html:164 ui/templates/ui/car_detail.html:323
-#: ui/templates/ui/car_detail.html:324 ui/templates/ui/car_detail.html:326
+#: ui/templates/ui/car_detail.html:167 ui/templates/ui/car_detail.html:327
+#: ui/templates/ui/car_detail.html:328 ui/templates/ui/car_detail.html:330
 msgid "Charge time"
 msgstr "Время зарядки"
 
-#: ui/templates/ui/car_detail.html:172
+#: ui/templates/ui/car_detail.html:175
 msgid "Charge Cable"
 msgstr "Зарядный кабель"
 
-#: ui/templates/ui/car_detail.html:176
+#: ui/templates/ui/car_detail.html:179
 msgid "Plugged In,Unplugged"
 msgstr "Подключён,Отключён"
 
-#: ui/templates/ui/car_detail.html:181
+#: ui/templates/ui/car_detail.html:184
 msgid "Car status"
 msgstr "Статус автомобиля"
 
-#: ui/templates/ui/car_detail.html:185 ui/templates/ui/car_detail.html:187
-#: ui/templates/ui/car_detail.html:1259 ui/templates/ui/car_detail.html:1261
-#: ui/templates/ui/car_detail.html:1277
+#: ui/templates/ui/car_detail.html:188 ui/templates/ui/car_detail.html:190
+#: ui/templates/ui/car_detail.html:1271 ui/templates/ui/car_detail.html:1273
+#: ui/templates/ui/car_detail.html:1289
 msgid "On"
 msgstr "Включён"
 
-#: ui/templates/ui/car_detail.html:185 ui/templates/ui/car_detail.html:1259
-#: ui/templates/ui/car_detail.html:1323
+#: ui/templates/ui/car_detail.html:188 ui/templates/ui/car_detail.html:1271
+#: ui/templates/ui/car_detail.html:1335
 msgid "Parked"
 msgstr "На парковке"
 
-#: ui/templates/ui/car_detail.html:187 ui/templates/ui/car_detail.html:1261
+#: ui/templates/ui/car_detail.html:190 ui/templates/ui/car_detail.html:1273
 msgid "Driving"
 msgstr "В движении"
 
-#: ui/templates/ui/car_detail.html:191 ui/templates/ui/car_detail.html:1265
+#: ui/templates/ui/car_detail.html:194 ui/templates/ui/car_detail.html:1277
 #: ui/templates/ui/probeviewer/main.html:481
 #: ui/templates/ui/probeviewer/main.html:555
 msgid "Charging finished"
 msgstr "Зарядка завершена"
 
-#: ui/templates/ui/car_detail.html:193 ui/templates/ui/car_detail.html:336
-#: ui/templates/ui/car_detail.html:1267
+#: ui/templates/ui/car_detail.html:196 ui/templates/ui/car_detail.html:340
+#: ui/templates/ui/car_detail.html:1279
 msgid "Charging"
 msgstr "Заряжается"
 
-#: ui/templates/ui/car_detail.html:195 ui/templates/ui/car_detail.html:341
-#: ui/templates/ui/car_detail.html:1269
+#: ui/templates/ui/car_detail.html:198 ui/templates/ui/car_detail.html:345
+#: ui/templates/ui/car_detail.html:1281
 msgid "Battery heater active"
 msgstr "Активен обогреватель батареи"
 
-#: ui/templates/ui/car_detail.html:197 ui/templates/ui/car_detail.html:1271
-#: ui/templates/ui/car_detail.html:1277
+#: ui/templates/ui/car_detail.html:200 ui/templates/ui/car_detail.html:1283
+#: ui/templates/ui/car_detail.html:1289
 msgid "Off"
 msgstr "Выключен"
 
-#: ui/templates/ui/car_detail.html:204
+#: ui/templates/ui/car_detail.html:207
 msgid "AC Status"
 msgstr "Статус кондиционера"
 
-#: ui/templates/ui/car_detail.html:206
+#: ui/templates/ui/car_detail.html:209
 msgid "On,Off"
 msgstr "Включён,Выключен"
 
-#: ui/templates/ui/car_detail.html:215 ui/templates/ui/car_detail.html:313
-#: ui/templates/ui/car_detail.html:344 ui/templates/ui/car_detail.html:366
+#: ui/templates/ui/car_detail.html:218 ui/templates/ui/car_detail.html:317
+#: ui/templates/ui/car_detail.html:348 ui/templates/ui/car_detail.html:370
+#: ui/templates/ui/ficosa/veh_health.html:29
 #: ui/templates/ui/probeviewer/main.html:162
 #: ui/templates/ui/probeviewer/main.html:190
 msgid "Last Updated"
 msgstr "Последнее обновление"
 
-#: ui/templates/ui/car_detail.html:224
+#: ui/templates/ui/car_detail.html:227
 #: ui/templates/ui/probeviewer/main.html:124
 msgid "Odometer"
 msgstr "Одометр"
 
-#: ui/templates/ui/car_detail.html:225
+#: ui/templates/ui/car_detail.html:228
 msgid "Navi version"
 msgstr "Версия навигационной системы"
 
-#: ui/templates/ui/car_detail.html:226
+#: ui/templates/ui/car_detail.html:229
 msgid "Map version"
 msgstr "Версия карт"
 
-#: ui/templates/ui/car_detail.html:227
+#: ui/templates/ui/car_detail.html:230
 msgid "TCU version (from navi)"
 msgstr "Версия TCU (из навигационной системы)"
 
-#: ui/templates/ui/car_detail.html:228
+#: ui/templates/ui/car_detail.html:231
 msgid "TCU version (from TCU)"
 msgstr "Версия TCU (из TCU)"
 
-#: ui/templates/ui/car_detail.html:229 ui/templates/ui/car_detail.html:230
-#: ui/templates/ui/car_detail.html:231 ui/templates/ui/car_detail.html:232
+#: ui/templates/ui/car_detail.html:232 ui/templates/ui/car_detail.html:233
+#: ui/templates/ui/car_detail.html:234 ui/templates/ui/car_detail.html:235
 msgid "Vehicle Code"
 msgstr "Код автомобиля"
 
-#: ui/templates/ui/car_detail.html:236
+#: ui/templates/ui/car_detail.html:239
 msgid "Last Connection"
 msgstr "Последнее соединение"
 
-#: ui/templates/ui/car_detail.html:242 ui/templates/ui/car_detail.html:374
+#: ui/templates/ui/car_detail.html:245 ui/templates/ui/car_detail.html:378
 #: ui/templates/ui/car_list.html:33
 msgid "Add"
 msgstr "Добавить"
 
-#: ui/templates/ui/car_detail.html:251
+#: ui/templates/ui/car_detail.html:254
 msgid "Mon"
 msgstr "Пн."
 
-#: ui/templates/ui/car_detail.html:254
+#: ui/templates/ui/car_detail.html:257
 msgid "Tue"
 msgstr "Вт."
 
-#: ui/templates/ui/car_detail.html:257
+#: ui/templates/ui/car_detail.html:260
 msgid "Wed"
 msgstr "Ср."
 
-#: ui/templates/ui/car_detail.html:260
+#: ui/templates/ui/car_detail.html:263
 msgid "Thu"
 msgstr "Чт."
 
-#: ui/templates/ui/car_detail.html:263
+#: ui/templates/ui/car_detail.html:266
 msgid "Fri"
 msgstr "Пт."
 
-#: ui/templates/ui/car_detail.html:266
+#: ui/templates/ui/car_detail.html:269
 msgid "Sat"
 msgstr "Сб."
 
-#: ui/templates/ui/car_detail.html:269
+#: ui/templates/ui/car_detail.html:272
 msgid "Sun"
 msgstr "Вс."
 
-#: ui/templates/ui/car_detail.html:272 ui/templates/ui/car_detail.html:2597
+#: ui/templates/ui/car_detail.html:275 ui/templates/ui/car_detail.html:2609
 msgid "Last run"
 msgstr "Последняя команда"
 
-#: ui/templates/ui/car_detail.html:272 ui/templates/ui/car_detail.html:2597
+#: ui/templates/ui/car_detail.html:275 ui/templates/ui/car_detail.html:2609
 msgid "result"
 msgstr "результат"
 
-#: ui/templates/ui/car_detail.html:278 ui/templates/ui/car_detail.html:384
-#: ui/templates/ui/car_detail.html:1687 ui/templates/ui/car_detail.html:2604
+#: ui/templates/ui/car_detail.html:281 ui/templates/ui/car_detail.html:388
+#: ui/templates/ui/car_detail.html:1699 ui/templates/ui/car_detail.html:2616
 msgid "Edit"
 msgstr "Редактировать"
 
-#: ui/templates/ui/car_detail.html:284 ui/templates/ui/car_detail.html:390
-#: ui/templates/ui/car_detail.html:1692 ui/templates/ui/car_detail.html:2609
+#: ui/templates/ui/car_detail.html:287 ui/templates/ui/car_detail.html:394
+#: ui/templates/ui/car_detail.html:1704 ui/templates/ui/car_detail.html:2621
 msgid "Delete"
 msgstr "Удалить"
 
-#: ui/templates/ui/car_detail.html:290 ui/templates/ui/car_detail.html:2552
+#: ui/templates/ui/car_detail.html:293 ui/templates/ui/car_detail.html:2564
 msgid "No timers added"
 msgstr "Таймеры не добавлены"
 
-#: ui/templates/ui/car_detail.html:294
+#: ui/templates/ui/car_detail.html:297
 msgid "Note: Times are shown in local local timezone"
 msgstr "Напоминание: время указано по местному времени"
 
-#: ui/templates/ui/car_detail.html:304
+#: ui/templates/ui/car_detail.html:308
 msgid "PPP Dial Code"
 msgstr "Код набора PPP"
 
-#: ui/templates/ui/car_detail.html:310
+#: ui/templates/ui/car_detail.html:314
 msgid "Server"
 msgstr "Сервер"
 
-#: ui/templates/ui/car_detail.html:311
+#: ui/templates/ui/car_detail.html:315
 msgid "Proxy"
 msgstr "Прокси"
 
-#: ui/templates/ui/car_detail.html:312
+#: ui/templates/ui/car_detail.html:316
 msgid "Connection Type"
 msgstr "Тип соединения"
 
-#: ui/templates/ui/car_detail.html:321
+#: ui/templates/ui/car_detail.html:325
 msgid "Car on"
 msgstr "Автомобиль включён"
 
-#: ui/templates/ui/car_detail.html:321 ui/templates/ui/car_detail.html:325
-#: ui/templates/ui/car_detail.html:335 ui/templates/ui/car_detail.html:336
-#: ui/templates/ui/car_detail.html:337 ui/templates/ui/car_detail.html:338
-#: ui/templates/ui/car_detail.html:340 ui/templates/ui/car_detail.html:341
-#: ui/templates/ui/car_detail.html:365
+#: ui/templates/ui/car_detail.html:325 ui/templates/ui/car_detail.html:329
+#: ui/templates/ui/car_detail.html:339 ui/templates/ui/car_detail.html:340
+#: ui/templates/ui/car_detail.html:341 ui/templates/ui/car_detail.html:342
+#: ui/templates/ui/car_detail.html:344 ui/templates/ui/car_detail.html:345
+#: ui/templates/ui/car_detail.html:369
 msgid "Yes,No"
 msgstr "Да,Нет"
 
-#: ui/templates/ui/car_detail.html:322
+#: ui/templates/ui/car_detail.html:326
 msgid "Gear"
 msgstr "Передача"
 
-#: ui/templates/ui/car_detail.html:325
+#: ui/templates/ui/car_detail.html:329
 msgid "6kW OBC exists"
 msgstr "Имеется бортовое зарядное устройство мощностью 6 кВт"
 
-#: ui/templates/ui/car_detail.html:327
+#: ui/templates/ui/car_detail.html:331
 msgid "Charge bars"
 msgstr "Полосы заряда"
 
-#: ui/templates/ui/car_detail.html:328
+#: ui/templates/ui/car_detail.html:332
 #: ui/templates/ui/probeviewer/trip.html:205
 msgid "Capacity bars"
 msgstr "Полосы ёмкости"
 
-#: ui/templates/ui/car_detail.html:329
+#: ui/templates/ui/car_detail.html:333
 msgid "Display"
 msgstr "Дисплей"
 
-#: ui/templates/ui/car_detail.html:331
+#: ui/templates/ui/car_detail.html:335
 msgid "State of Health"
 msgstr "Состояние батареи (SOH)"
 
-#: ui/templates/ui/car_detail.html:332
+#: ui/templates/ui/car_detail.html:336
 msgid "Remaining kWh"
 msgstr "Оставшиеся кВт·ч"
 
-#: ui/templates/ui/car_detail.html:335
+#: ui/templates/ui/car_detail.html:339
 msgid "Plugged in"
 msgstr "Подключён к зарядке"
 
-#: ui/templates/ui/car_detail.html:337
+#: ui/templates/ui/car_detail.html:341
 msgid "Quick-charging"
 msgstr "Быстрая зарядка"
 
-#: ui/templates/ui/car_detail.html:338
+#: ui/templates/ui/car_detail.html:342
 msgid "Preconditioning (A/C)"
 msgstr "Предварительное кондиционирование"
 
-#: ui/templates/ui/car_detail.html:339
+#: ui/templates/ui/car_detail.html:343
 msgid "GIDs remaining"
 msgstr "Оставшиеся GID"
 
-#: ui/templates/ui/car_detail.html:340
+#: ui/templates/ui/car_detail.html:344
 msgid "Battery heater exists"
 msgstr "Имеется подогреватель батареи"
 
-#: ui/templates/ui/car_detail.html:342
+#: ui/templates/ui/car_detail.html:346
 msgid "Cabin Temperature"
 msgstr "Температура салона"
 
-#: ui/templates/ui/car_detail.html:343
+#: ui/templates/ui/car_detail.html:347
 msgid "Counter"
 msgstr "Счётчик"
 
-#: ui/templates/ui/car_detail.html:351
+#: ui/templates/ui/car_detail.html:355
 msgid "Send location to car"
 msgstr "Отправить местоположение в автомобиль"
 
-#: ui/templates/ui/car_detail.html:353 ui/templates/ui/car_detail.html:407
-#: ui/templates/ui/car_detail.html:416 ui/templates/ui/car_detail.html:1965
+#: ui/templates/ui/car_detail.html:357 ui/templates/ui/car_detail.html:411
+#: ui/templates/ui/car_detail.html:420 ui/templates/ui/car_detail.html:1977
 msgid "Search for locations or enter google/apple maps link"
 msgstr "Поиск местоположения или ввод ссылки на Google/Apple Maps"
 
-#: ui/templates/ui/car_detail.html:357 ui/templates/ui/car_detail.html:1363
+#: ui/templates/ui/car_detail.html:361 ui/templates/ui/car_detail.html:1375
 msgid "Last shared location"
 msgstr "Последнее отправленное местоположение"
 
-#: ui/templates/ui/car_detail.html:359 ui/templates/ui/car_detail.html:1365
+#: ui/templates/ui/car_detail.html:363 ui/templates/ui/car_detail.html:1377
 msgid "No past shared location"
 msgstr "Нет ранее отправленных местоположений"
 
-#: ui/templates/ui/car_detail.html:362
+#: ui/templates/ui/car_detail.html:366
 #: ui/templates/ui/ficosa/configuration.html:27
 msgid "Send"
 msgstr "Отправить"
 
-#: ui/templates/ui/car_detail.html:365
+#: ui/templates/ui/car_detail.html:369
 msgid "At Home"
 msgstr "Дома"
 
-#: ui/templates/ui/car_detail.html:374
+#: ui/templates/ui/car_detail.html:378
 msgid "Route plans"
 msgstr "Планы маршрутов"
 
-#: ui/templates/ui/car_detail.html:396 ui/templates/ui/car_detail.html:1670
+#: ui/templates/ui/car_detail.html:400 ui/templates/ui/car_detail.html:1682
 msgid "No route plans added"
 msgstr "Планы маршрутов не добавлены"
 
-#: ui/templates/ui/car_detail.html:401
+#: ui/templates/ui/car_detail.html:405
 msgid "Add/Edit a route plan"
 msgstr "Добавить/редактировать план маршрута"
 
-#: ui/templates/ui/car_detail.html:403
+#: ui/templates/ui/car_detail.html:407
 msgid "Name of the plan"
 msgstr "Название плана"
 
-#: ui/templates/ui/car_detail.html:406 ui/templates/ui/car_detail.html:639
+#: ui/templates/ui/car_detail.html:410 ui/templates/ui/car_detail.html:643
 msgid "Starting point"
 msgstr "Начальная точка"
 
-#: ui/templates/ui/car_detail.html:413
+#: ui/templates/ui/car_detail.html:417
 msgid "Add waypoint"
 msgstr "Добавить промежуточную точку"
 
-#: ui/templates/ui/car_detail.html:415 ui/templates/ui/car_detail.html:640
+#: ui/templates/ui/car_detail.html:419 ui/templates/ui/car_detail.html:644
 msgid "Destination point"
 msgstr "Пункт назначения"
 
-#: ui/templates/ui/car_detail.html:420
+#: ui/templates/ui/car_detail.html:424
 msgid "Cancel"
 msgstr "Отменить"
 
-#: ui/templates/ui/car_detail.html:430
+#: ui/templates/ui/car_detail.html:434
 msgid "Favorite channels"
 msgstr "Избранное"
 
-#: ui/templates/ui/car_detail.html:439 ui/templates/ui/car_detail.html:440
-#: ui/templates/ui/car_detail.html:441 ui/templates/ui/car_detail.html:442
 #: ui/templates/ui/car_detail.html:443 ui/templates/ui/car_detail.html:444
-#: ui/templates/ui/car_detail.html:445 ui/templates/ui/car_detail.html:448
-#: ui/templates/ui/car_detail.html:449 ui/templates/ui/car_detail.html:450
-#: ui/templates/ui/car_detail.html:451 ui/templates/ui/car_detail.html:452
+#: ui/templates/ui/car_detail.html:445 ui/templates/ui/car_detail.html:446
+#: ui/templates/ui/car_detail.html:447 ui/templates/ui/car_detail.html:448
+#: ui/templates/ui/car_detail.html:449 ui/templates/ui/car_detail.html:452
 #: ui/templates/ui/car_detail.html:453 ui/templates/ui/car_detail.html:454
-#: ui/templates/ui/car_detail.html:455 ui/templates/ui/car_detail.html:2177
+#: ui/templates/ui/car_detail.html:455 ui/templates/ui/car_detail.html:456
+#: ui/templates/ui/car_detail.html:457 ui/templates/ui/car_detail.html:458
+#: ui/templates/ui/car_detail.html:459 ui/templates/ui/car_detail.html:2189
 msgid "No selected channel"
 msgstr "Канал не выбран"
 
-#: ui/templates/ui/car_detail.html:461
+#: ui/templates/ui/car_detail.html:465
 msgid "Custom channels"
 msgstr "Мои каналы"
 
-#: ui/templates/ui/car_detail.html:469 ui/templates/ui/car_detail.html:470
-#: ui/templates/ui/car_detail.html:471 ui/templates/ui/car_detail.html:472
 #: ui/templates/ui/car_detail.html:473 ui/templates/ui/car_detail.html:474
 #: ui/templates/ui/car_detail.html:475 ui/templates/ui/car_detail.html:476
+#: ui/templates/ui/car_detail.html:477 ui/templates/ui/car_detail.html:478
 #: ui/templates/ui/car_detail.html:479 ui/templates/ui/car_detail.html:480
-#: ui/templates/ui/car_detail.html:481 ui/templates/ui/car_detail.html:482
 #: ui/templates/ui/car_detail.html:483 ui/templates/ui/car_detail.html:484
 #: ui/templates/ui/car_detail.html:485 ui/templates/ui/car_detail.html:486
-#: ui/templates/ui/car_detail.html:2253
+#: ui/templates/ui/car_detail.html:487 ui/templates/ui/car_detail.html:488
+#: ui/templates/ui/car_detail.html:489 ui/templates/ui/car_detail.html:490
+#: ui/templates/ui/car_detail.html:2265
 msgid "No content"
 msgstr "Нет контента"
 
-#: ui/templates/ui/car_detail.html:498
+#: ui/templates/ui/car_detail.html:502
 msgid "Type"
 msgstr "Тип"
 
-#: ui/templates/ui/car_detail.html:499
+#: ui/templates/ui/car_detail.html:503
 msgid "Timestamp"
 msgstr "Временная метка"
 
-#: ui/templates/ui/car_detail.html:500
+#: ui/templates/ui/car_detail.html:504
 msgid "Additional Data"
 msgstr "Дополнительные данные"
 
-#: ui/templates/ui/car_detail.html:532
+#: ui/templates/ui/car_detail.html:536
 msgid "Leave empty to use default key"
 msgstr "Оставьте пустым, чтобы использовать заводской ключ"
 
-#: ui/templates/ui/car_detail.html:538
+#: ui/templates/ui/car_detail.html:542
 msgid "Skip authentication from TCU"
 msgstr "Пропустить аутентификацию TCU"
 
-#: ui/templates/ui/car_detail.html:539
+#: ui/templates/ui/car_detail.html:543
 msgid ""
 "On AZE0 (2013) and newer LEAFs, username and password inserted to navi are "
 "not saved due to an error. In this case, check this box to skip the "
@@ -2025,15 +2027,15 @@ msgstr ""
 "навигационную систему, могут не сохраняться из-за ошибки. В этом случае "
 "установите этот флажок, чтобы пропустить аутентификацию."
 
-#: ui/templates/ui/car_detail.html:545
+#: ui/templates/ui/car_detail.html:549
 msgid "Car color"
 msgstr "Цвет автомобиля"
 
-#: ui/templates/ui/car_detail.html:554
+#: ui/templates/ui/car_detail.html:558
 msgid "Maximum GIDs value"
 msgstr "Максимальное значение GID"
 
-#: ui/templates/ui/car_detail.html:556
+#: ui/templates/ui/car_detail.html:560
 #, python-format
 msgid ""
 "OpenCARWINGS will try to auto-detect your battery size and fill this field. "
@@ -2044,7 +2046,7 @@ msgstr ""
 "это поле. Для автомобилей с заменённой батареей введите максимальное "
 "значение GID для новой батареи (SoH 100%%)."
 
-#: ui/templates/ui/car_detail.html:562
+#: ui/templates/ui/car_detail.html:566
 msgid ""
 "On AZE0 (>2013) generation cars, it is possible to see available battery "
 "capacity in percentage. For ZE0, such feature was never implemented. By "
@@ -2056,276 +2058,280 @@ msgstr ""
 "этой опции значение процента на дисплее будет рассчитано, но может быть "
 "неточным."
 
-#: ui/templates/ui/car_detail.html:568
+#: ui/templates/ui/car_detail.html:572
 msgid "Periodic data refresh interval"
 msgstr "Интервал периодического обновления данных"
 
-#: ui/templates/ui/car_detail.html:577
+#: ui/templates/ui/car_detail.html:581
 msgid "Periodic data refresh interval (while driving or charging)"
 msgstr ""
 "Интервал периодического обновления данных (во время движения или зарядки)"
 
-#: ui/templates/ui/car_detail.html:586 ui/templates/ui/setup/step4.html:29
+#: ui/templates/ui/car_detail.html:590 ui/templates/ui/setup/step4.html:29
 msgid "SMS provider"
 msgstr "Провайдер SMS"
 
-#: ui/templates/ui/car_detail.html:619
+#: ui/templates/ui/car_detail.html:623
 msgid "Remove car"
 msgstr "Удалить автомобиль"
 
-#: ui/templates/ui/car_detail.html:638
+#: ui/templates/ui/car_detail.html:642
 msgid "Set car location as"
 msgstr "Установить местоположение автомобиля как"
 
-#: ui/templates/ui/car_detail.html:657
+#: ui/templates/ui/car_detail.html:661
 msgid "Select data channel"
 msgstr "Выберите канал"
 
-#: ui/templates/ui/car_detail.html:692
+#: ui/templates/ui/car_detail.html:696
 msgid "Edit data channel"
 msgstr "Редактировать канал"
 
-#: ui/templates/ui/car_detail.html:693
+#: ui/templates/ui/car_detail.html:697
 msgid "Channel name"
 msgstr "Название канала"
 
-#: ui/templates/ui/car_detail.html:697
+#: ui/templates/ui/car_detail.html:701
 msgid "Channel icon"
 msgstr "Значок канала"
 
-#: ui/templates/ui/car_detail.html:708
+#: ui/templates/ui/car_detail.html:712
 msgid "Data URL"
 msgstr "URL-адрес"
 
-#: ui/templates/ui/car_detail.html:710
+#: ui/templates/ui/car_detail.html:714
 msgid "Data URL format and documentation"
 msgstr "Формат URL-адреса данных и документация"
 
-#: ui/templates/ui/car_detail.html:714
+#: ui/templates/ui/car_detail.html:718
 msgid "Allow sending current vehicle location"
 msgstr "Разрешить отправку текущего местоположения автомобиля"
 
-#: ui/templates/ui/car_detail.html:736 ui/templates/ui/car_detail.html:2352
+#: ui/templates/ui/car_detail.html:740 ui/templates/ui/car_detail.html:2364
 msgid "Edit timer"
 msgstr "Редактировать таймер"
 
-#: ui/templates/ui/car_detail.html:737
+#: ui/templates/ui/car_detail.html:741
 msgid "Timer name"
 msgstr "Имя таймера"
 
-#: ui/templates/ui/car_detail.html:742
+#: ui/templates/ui/car_detail.html:746
 msgid "Enabled"
 msgstr "Включено"
 
-#: ui/templates/ui/car_detail.html:745
+#: ui/templates/ui/car_detail.html:749
 msgid "Select time"
 msgstr "Выберите время"
 
-#: ui/templates/ui/car_detail.html:755
+#: ui/templates/ui/car_detail.html:759
 msgid "Command"
 msgstr "Команда"
 
-#: ui/templates/ui/car_detail.html:765
+#: ui/templates/ui/car_detail.html:769
 msgid "One-time"
 msgstr "Один раз"
 
-#: ui/templates/ui/car_detail.html:768
+#: ui/templates/ui/car_detail.html:772
 msgid "Repeating"
 msgstr "Повторяющийся"
 
-#: ui/templates/ui/car_detail.html:780
+#: ui/templates/ui/car_detail.html:784
 msgid "Select date"
 msgstr "Выберите дату"
 
-#: ui/templates/ui/car_detail.html:786
+#: ui/templates/ui/car_detail.html:790
 msgid "Monday"
 msgstr "Понедельник"
 
-#: ui/templates/ui/car_detail.html:790
+#: ui/templates/ui/car_detail.html:794
 msgid "Tuesday"
 msgstr "Вторник"
 
-#: ui/templates/ui/car_detail.html:794
+#: ui/templates/ui/car_detail.html:798
 msgid "Wednesday"
 msgstr "Среда"
 
-#: ui/templates/ui/car_detail.html:798
+#: ui/templates/ui/car_detail.html:802
 msgid "Thursday"
 msgstr "Четверг"
 
-#: ui/templates/ui/car_detail.html:802
+#: ui/templates/ui/car_detail.html:806
 msgid "Friday"
 msgstr "Пятница"
 
-#: ui/templates/ui/car_detail.html:806
+#: ui/templates/ui/car_detail.html:810
 msgid "Saturday"
 msgstr "Суббота"
 
-#: ui/templates/ui/car_detail.html:810
+#: ui/templates/ui/car_detail.html:814
 msgid "Sunday"
 msgstr "Воскресенье"
 
-#: ui/templates/ui/car_detail.html:835
+#: ui/templates/ui/car_detail.html:839
 msgid "SMS from your device"
 msgstr "SMS с вашего устройства"
 
-#: ui/templates/ui/car_detail.html:1192 ui/templates/ui/car_detail.html:1194
-#: ui/templates/ui/car_detail.html:1198 ui/templates/ui/car_detail.html:1199
-#: ui/templates/ui/car_detail.html:1415 ui/templates/ui/car_detail.html:1423
-#: ui/templates/ui/car_detail.html:1424
+#: ui/templates/ui/car_detail.html:1196 ui/templates/ui/car_detail.html:1198
+#: ui/templates/ui/car_detail.html:1202 ui/templates/ui/car_detail.html:1203
+#: ui/templates/ui/car_detail.html:1427 ui/templates/ui/car_detail.html:1435
+#: ui/templates/ui/car_detail.html:1436
 #: ui/templates/ui/ficosa/configuration.html:255
 #: ui/templates/ui/ficosa/configuration.html:259
 msgid "Error sending command"
 msgstr "Ошибка при отправке команды"
 
-#: ui/templates/ui/car_detail.html:1254
+#: ui/templates/ui/car_detail.html:1266
 msgid "Plugged In"
 msgstr "Подключён"
 
-#: ui/templates/ui/car_detail.html:1254
+#: ui/templates/ui/car_detail.html:1266
 msgid "Unplugged"
 msgstr "Отключён"
 
-#: ui/templates/ui/car_detail.html:1307 ui/templates/ui/car_detail.html:1308
-#: ui/templates/ui/car_detail.html:1309 ui/templates/ui/car_detail.html:1318
-#: ui/templates/ui/car_detail.html:1324 ui/templates/ui/car_detail.html:1325
-#: ui/templates/ui/car_detail.html:1326 ui/templates/ui/car_detail.html:1327
-#: ui/templates/ui/car_detail.html:1332
+#: ui/templates/ui/car_detail.html:1319 ui/templates/ui/car_detail.html:1320
+#: ui/templates/ui/car_detail.html:1321 ui/templates/ui/car_detail.html:1330
+#: ui/templates/ui/car_detail.html:1336 ui/templates/ui/car_detail.html:1337
+#: ui/templates/ui/car_detail.html:1338 ui/templates/ui/car_detail.html:1339
+#: ui/templates/ui/car_detail.html:1344
+#: ui/templates/ui/ficosa/veh_health.html:159
+#: ui/templates/ui/ficosa/veh_health.html:161
 msgid "Yes"
 msgstr "Да"
 
-#: ui/templates/ui/car_detail.html:1307 ui/templates/ui/car_detail.html:1308
-#: ui/templates/ui/car_detail.html:1309 ui/templates/ui/car_detail.html:1318
-#: ui/templates/ui/car_detail.html:1324 ui/templates/ui/car_detail.html:1325
-#: ui/templates/ui/car_detail.html:1326 ui/templates/ui/car_detail.html:1327
-#: ui/templates/ui/car_detail.html:1332
+#: ui/templates/ui/car_detail.html:1319 ui/templates/ui/car_detail.html:1320
+#: ui/templates/ui/car_detail.html:1321 ui/templates/ui/car_detail.html:1330
+#: ui/templates/ui/car_detail.html:1336 ui/templates/ui/car_detail.html:1337
+#: ui/templates/ui/car_detail.html:1338 ui/templates/ui/car_detail.html:1339
+#: ui/templates/ui/car_detail.html:1344
+#: ui/templates/ui/ficosa/veh_health.html:159
+#: ui/templates/ui/ficosa/veh_health.html:161
 msgid "No"
 msgstr "Нет"
 
-#: ui/templates/ui/car_detail.html:1453 ui/templates/ui/car_detail.html:1461
-#: ui/templates/ui/car_detail.html:1462
+#: ui/templates/ui/car_detail.html:1465 ui/templates/ui/car_detail.html:1473
+#: ui/templates/ui/car_detail.html:1474
 msgid "Error sending location to car"
 msgstr "Ошибка при отправке местоположения в автомобиль"
 
-#: ui/templates/ui/car_detail.html:1455
+#: ui/templates/ui/car_detail.html:1467
 msgid "Location sent!"
 msgstr "Местоположение отправлено!"
 
-#: ui/templates/ui/car_detail.html:1511 ui/templates/ui/car_detail.html:1574
-#: ui/templates/ui/car_detail.html:1845 ui/templates/ui/car_detail.html:1850
-#: ui/templates/ui/car_detail.html:1907 ui/templates/ui/car_detail.html:1920
-#: ui/templates/ui/car_detail.html:1925 ui/templates/ui/car_detail.html:2004
+#: ui/templates/ui/car_detail.html:1523 ui/templates/ui/car_detail.html:1586
+#: ui/templates/ui/car_detail.html:1857 ui/templates/ui/car_detail.html:1862
+#: ui/templates/ui/car_detail.html:1919 ui/templates/ui/car_detail.html:1932
+#: ui/templates/ui/car_detail.html:1937 ui/templates/ui/car_detail.html:2016
 msgid "No address"
 msgstr "Адрес отсутствует"
 
-#: ui/templates/ui/car_detail.html:1521 ui/templates/ui/car_detail.html:1854
+#: ui/templates/ui/car_detail.html:1533 ui/templates/ui/car_detail.html:1866
 msgid "Could not get location from map link"
 msgstr "Не удалось получить местоположение по ссылке на карту"
 
-#: ui/templates/ui/car_detail.html:1527 ui/templates/ui/car_detail.html:1599
-#: ui/templates/ui/car_detail.html:1860 ui/templates/ui/car_detail.html:1941
+#: ui/templates/ui/car_detail.html:1539 ui/templates/ui/car_detail.html:1611
+#: ui/templates/ui/car_detail.html:1872 ui/templates/ui/car_detail.html:1953
 msgid "Error searching locations"
 msgstr "Ошибка при поиске местоположений"
 
-#: ui/templates/ui/car_detail.html:1593 ui/templates/ui/car_detail.html:1935
+#: ui/templates/ui/car_detail.html:1605 ui/templates/ui/car_detail.html:1947
 msgid "Search did not find any locations"
 msgstr "Поиск не нашёл местоположений"
 
-#: ui/templates/ui/car_detail.html:1618
+#: ui/templates/ui/car_detail.html:1630
 msgid "Connection established!"
 msgstr "Соединение установлено!"
 
-#: ui/templates/ui/car_detail.html:1623
+#: ui/templates/ui/car_detail.html:1635
 msgid "Reconnecting..."
 msgstr "Переподключение…"
 
-#: ui/templates/ui/car_detail.html:1949
+#: ui/templates/ui/car_detail.html:1961
 msgid "Cannot add a new waypoint"
 msgstr "Невозможно добавить новую промежуточную точку"
 
-#: ui/templates/ui/car_detail.html:1949
+#: ui/templates/ui/car_detail.html:1961
 msgid "Maximum number of waypoints reached"
 msgstr "Достигнуто максимальное количество промежуточных точек"
 
-#: ui/templates/ui/car_detail.html:1982
+#: ui/templates/ui/car_detail.html:1994
 msgid "Waypoint"
 msgstr "Промежуточная точка"
 
-#: ui/templates/ui/car_detail.html:2034 ui/templates/ui/car_detail.html:2043
-#: ui/templates/ui/car_detail.html:2044
+#: ui/templates/ui/car_detail.html:2046 ui/templates/ui/car_detail.html:2055
+#: ui/templates/ui/car_detail.html:2056
 msgid "Error saving the route plan"
 msgstr "Ошибка при сохранении плана маршрута"
 
-#: ui/templates/ui/car_detail.html:2036
+#: ui/templates/ui/car_detail.html:2048
 msgid "Route plan saved!"
 msgstr "План маршрута сохранён!"
 
-#: ui/templates/ui/car_detail.html:2072
+#: ui/templates/ui/car_detail.html:2084
 msgid "Cannot add new route plan"
 msgstr "Невозможно добавить новый план маршрута"
 
-#: ui/templates/ui/car_detail.html:2072
+#: ui/templates/ui/car_detail.html:2084
 msgid "You have too many route plans, please delete one and try again."
 msgstr "У вас слишком много планов маршрутов, удалите один и попробуйте снова."
 
-#: ui/templates/ui/car_detail.html:2142
+#: ui/templates/ui/car_detail.html:2154
 msgid "Are you sure you want to delete this route plan?"
 msgstr "Вы уверены, что хотите удалить этот план маршрута?"
 
-#: ui/templates/ui/car_detail.html:2155 ui/templates/ui/car_detail.html:2162
-#: ui/templates/ui/car_detail.html:2163
+#: ui/templates/ui/car_detail.html:2167 ui/templates/ui/car_detail.html:2174
+#: ui/templates/ui/car_detail.html:2175
 msgid "Error deleting the route plan"
 msgstr "Ошибка при удалении плана маршрута"
 
-#: ui/templates/ui/car_detail.html:2157
+#: ui/templates/ui/car_detail.html:2169
 msgid "Route plan removed!"
 msgstr "План маршрута удалён!"
 
-#: ui/templates/ui/car_detail.html:2317 ui/templates/ui/car_detail.html:2325
-#: ui/templates/ui/car_detail.html:2326
+#: ui/templates/ui/car_detail.html:2329 ui/templates/ui/car_detail.html:2337
+#: ui/templates/ui/car_detail.html:2338
 msgid "Error saving CARWINGS settings"
 msgstr "Ошибка сохранения настроек CARWINGS"
 
-#: ui/templates/ui/car_detail.html:2319
+#: ui/templates/ui/car_detail.html:2331
 msgid "CARWINGS settings saved!"
 msgstr "Настройки CARWINGS сохранены!"
 
-#: ui/templates/ui/car_detail.html:2332
+#: ui/templates/ui/car_detail.html:2344
 msgid "Add timer"
 msgstr "Добавить таймер"
 
-#: ui/templates/ui/car_detail.html:2443 ui/templates/ui/car_detail.html:2446
+#: ui/templates/ui/car_detail.html:2455 ui/templates/ui/car_detail.html:2458
 msgid "Missing field"
 msgstr "Отсутствует пункт"
 
-#: ui/templates/ui/car_detail.html:2443
+#: ui/templates/ui/car_detail.html:2455
 msgid "Please enter valid date for the timer"
 msgstr "Пожалуйста, введите действительную дату для таймера."
 
-#: ui/templates/ui/car_detail.html:2446
+#: ui/templates/ui/car_detail.html:2458
 msgid "Please select at least one weekday"
 msgstr "Пожалуйста, выберите хотя бы один день недели"
 
-#: ui/templates/ui/car_detail.html:2467 ui/templates/ui/car_detail.html:2475
-#: ui/templates/ui/car_detail.html:2476 ui/templates/ui/car_detail.html:2497
-#: ui/templates/ui/car_detail.html:2505 ui/templates/ui/car_detail.html:2506
+#: ui/templates/ui/car_detail.html:2479 ui/templates/ui/car_detail.html:2487
+#: ui/templates/ui/car_detail.html:2488 ui/templates/ui/car_detail.html:2509
+#: ui/templates/ui/car_detail.html:2517 ui/templates/ui/car_detail.html:2518
 msgid "Error saving the timer"
 msgstr "Ошибка сохранения таймера"
 
-#: ui/templates/ui/car_detail.html:2469 ui/templates/ui/car_detail.html:2499
+#: ui/templates/ui/car_detail.html:2481 ui/templates/ui/car_detail.html:2511
 msgid "Timer saved!"
 msgstr "Таймер сохранен!"
 
-#: ui/templates/ui/car_detail.html:2513
+#: ui/templates/ui/car_detail.html:2525
 msgid "Are you sure you want to delete this timer?"
 msgstr "Вы уверены, что хотите удалить этот таймер?"
 
-#: ui/templates/ui/car_detail.html:2522
+#: ui/templates/ui/car_detail.html:2534
 msgid "Timer removed!"
 msgstr "Таймер удален!"
 
-#: ui/templates/ui/car_detail.html:2525 ui/templates/ui/car_detail.html:2527
-#: ui/templates/ui/car_detail.html:2531 ui/templates/ui/car_detail.html:2532
+#: ui/templates/ui/car_detail.html:2537 ui/templates/ui/car_detail.html:2539
+#: ui/templates/ui/car_detail.html:2543 ui/templates/ui/car_detail.html:2544
 msgid "Error deleting the timer"
 msgstr "Ошибка при удалении таймера"
 
@@ -2416,6 +2422,82 @@ msgstr "значение выходит за пределы допустимог
 #: ui/templates/ui/ficosa/configuration.html:259
 msgid "No changes to send!"
 msgstr "Нет изменений для отправки!"
+
+#: ui/templates/ui/ficosa/veh_health.html:6
+msgid "Vehicle Health"
+msgstr "Состояние автомобиля"
+
+#: ui/templates/ui/ficosa/veh_health.html:11
+msgid "TPMS Warning"
+msgstr "Индикатор предупреждения TPMS"
+
+#: ui/templates/ui/ficosa/veh_health.html:18
+msgid "Maintenance Alert"
+msgstr "Уведомление о техобслуживании"
+
+#: ui/templates/ui/ficosa/veh_health.html:25
+msgid "Mileage"
+msgstr "Пробег"
+
+#: ui/templates/ui/ficosa/veh_health.html:39
+msgid "Tire Pressures (TPMS)"
+msgstr "Давление в шинах (TPMS)"
+
+#: ui/templates/ui/ficosa/veh_health.html:47
+msgid "FL"
+msgstr ""
+
+#: ui/templates/ui/ficosa/veh_health.html:52
+msgid "FR"
+msgstr ""
+
+#: ui/templates/ui/ficosa/veh_health.html:57
+msgid "RL"
+msgstr ""
+
+#: ui/templates/ui/ficosa/veh_health.html:62
+msgid "RR"
+msgstr ""
+
+#: ui/templates/ui/ficosa/veh_health.html:70
+msgid "Diagnostic Trouble Codes"
+msgstr "Диагностические коды неисправностей"
+
+#: ui/templates/ui/ficosa/veh_health.html:73
+msgid "Read at"
+msgstr "Считано"
+
+#: ui/templates/ui/ficosa/veh_health.html:80
+msgid "ECU"
+msgstr "ЭБУ"
+
+#: ui/templates/ui/ficosa/veh_health.html:81
+msgid "Code"
+msgstr "Код"
+
+#: ui/templates/ui/ficosa/veh_health.html:82
+msgid "Warning Light"
+msgstr "Индикатор предупреждения"
+
+#: ui/templates/ui/ficosa/veh_health.html:96
+msgid "No long trouble codes reported"
+msgstr "Долговременные коды неисправностей не обнаружены"
+
+#: ui/templates/ui/ficosa/veh_health.html:108
+msgid "No short trouble codes reported"
+msgstr "Кратковременные коды неисправностей не обнаружены"
+
+#: ui/templates/ui/ficosa/veh_health.html:185
+msgid "yes"
+msgstr "Да"
+
+#: ui/templates/ui/ficosa/veh_health.html:185
+msgid "no"
+msgstr "Нет"
+
+#: ui/templates/ui/ficosa/veh_health.html:190
+msgid "No trouble codes reported"
+msgstr "Коды неисправностей не обнаружены"
 
 #: ui/templates/ui/landing.html:5
 msgid "CARWINGS reborn"

@@ -8,7 +8,7 @@ from .models import (
     AlertHistory,
     Car, User, SendToCarLocation, CRMLatest, CRMLifetime, CRMExcessiveAirconRecord, CRMExcessiveIdlingRecord,
     CRMMonthlyRecord, CRMMSNRecord, CRMChargeRecord, CRMChargeHistoryRecord, CRMABSHistoryRecord, CRMTroubleRecord,
-    CRMTripRecord, RoutePlan, DOTFile, CRMDistanceRecord, ProbeConfig, CommandTimerSetting
+    CRMTripRecord, RoutePlan, DOTFile, CRMDistanceRecord, ProbeConfig, CommandTimerSetting, VehicleHealthInfo
 )
 
 
@@ -18,6 +18,10 @@ class TCUConfigurationAdmin(admin.ModelAdmin):
     list_filter = ('connection_type', 'last_updated')
     search_fields = ('dial_code', 'apn', 'server_url')
 
+@admin.register(VehicleHealthInfo)
+class VehicleHealthAdmin(admin.ModelAdmin):
+    list_display = ('id', 'tpms_light', 'maintenance_alert', 'mileage', 'last_updated')
+    list_filter = ('maintenance_alert', 'tpms_light')
 
 @admin.register(LocationInfo)
 class LocationInfoAdmin(admin.ModelAdmin):
@@ -67,7 +71,7 @@ class CarAdmin(admin.ModelAdmin):
         'last_connection'
     )
     search_fields = ('vin', 'tcu_serial', 'tcu_model', 'iccid', 'nickname')
-    raw_id_fields = ('tcu_configuration', 'location', 'ev_info')
+    raw_id_fields = ('tcu_configuration', 'location', 'ev_info', 'veh_health')
 
     # Custom methods to display choice field values
     def command_type_display(self, obj):
@@ -93,7 +97,7 @@ class CarAdmin(admin.ModelAdmin):
                        'tcu_user', 'tcu_pass', 'last_connection', 'disable_auth')
         }),
         ('Related Objects', {
-            'fields': ('tcu_configuration', 'location', 'ev_info', 'send_to_car_location', 'route_plans')
+            'fields': ('tcu_configuration', 'location', 'ev_info', 'send_to_car_location', 'route_plans', 'veh_health')
         }),
         ('Command Info', {
             'fields': ('command_id', 'command_result', 'command_requested',

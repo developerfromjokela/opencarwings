@@ -538,7 +538,7 @@ def decode_record(record: bytes) -> dict:
     }
 
 
-def decode_acp_config_results(buf, offset=0):
+def decode_acp_config_results(buf, offset=0) -> Tuple[dict, int]:
     data_val, offset = _decode_ie_element(buf, offset, 0, IE_Element())
     count2 = data_val["length"]
     data_buf = data_val["value"]
@@ -557,3 +557,151 @@ def decode_acp_config_results(buf, offset=0):
         "configs": values,
         "triples": triples
     }, offset
+
+DTC_STATUS_BIT_NAMES = {
+    0: "testFailed",
+    1: "testFailedThisOperationCycle",
+    2: "pendingDTC",
+    3: "confirmedDTC",
+    4: "testNotCompletedSinceLastClear",
+    5: "testFailedSinceLastClear",
+    6: "testNotCompletedThisOperationCycle",
+    7: "warningIndicatorRequested",
+}
+
+ECU_CAN_IDS = {
+    0x70F: "BRAKE",
+    0x760: "ABS",
+    0x761: "VSP",
+    0x762: "EPS",
+    0x763: "METER",
+    0x764: "HVAC",
+    0x765: "BCM",
+    0x767: "MULTI A/V",
+    0x76D: "IPDM E/R",
+    0x772: "AIRBAG",
+    0x775: "PARKING BRAKE",
+    0x778: "AVM",
+    0x783: "TCU",
+    0x78C: "MOTOR CONTROL",
+    0x793: "CHARGER",
+    0x79A: "EV/HEV",
+    0x7BA: "AVM",
+    0x7BB: "HV BATTERY",
+    0x7BD: "SHIFT",
+
+    0x740: "ABS",
+    0x752: "AIBAG",
+    0x745: "BCM",
+    0x70E: "BRAKE",
+    0x792: "CHARGER",
+    0x755: "EHS/PKB",
+    0x742: "EPS",
+    0x797: "EV/HEV",
+    0x79B: "HV Battery",
+    0x744: "HVAC",
+    0x74D: "IPDM E/R",
+    0x743: "M&A",
+    0x784: "MOTOR CONTROL",
+    0x747: "MULTI A/V",
+    0x79D: "SHIFT",
+    0x746: "TCU",
+    0x73F: "VSP",
+    0x7B7: "AVM",
+}
+
+LETTER_MAP = {
+    0b00: "P",  # Powertrain
+    0b01: "C",  # Chassis
+    0b10: "B",  # Body
+    0b11: "U",  # Network/Communication
+}
+
+def decode_ficosa_dtc_info(buffer, offset=0) -> Tuple[dict, int]:
+
+    def decode_dtc_code(code_bytes):
+        b1 = code_bytes[0]
+        b2 = code_bytes[1]
+        b3 = code_bytes[2]
+        b4 = -1
+        if len(code_bytes) > 3:
+            b4 = code_bytes[3]
+
+        letter_bits = (b1 >> 6) & 0b11
+        category_bits = (b2 >> 4) & 0b11
+
+        letter = LETTER_MAP[letter_bits]
+
+        prefix_digit = str(category_bits)
+        code_number = f"{b1 & 0x0F:X}{b2:02X}"
+        full_code = f"{letter}{prefix_digit}{code_number}"
+        full_string = f"{full_code}-{b3:02X}"
+        if b4 != -1:
+            full_string += f"-{b4:02X}"
+        return full_string
+
+    data_val, data_offset = _decode_ie_element(buffer, offset, 0, IE_Element())
+    data_val = data_val["value"]
+
+    offset = 0
+
+    tstamp_data = bytes([0x04])
+    tstamp_data += data_val[:4]
+
+    timestamp, _ = decode_timestamp(tstamp_data, 0)
+    offset += 4
+
+    long_count = data_val[offset]
+    offset += 1
+
+    dtc_long = []
+    if 0 < long_count < 0xFF:
+        for i in range(long_count):
+            chunk = data_val[offset:offset + 9]
+            ecu_id = int.from_bytes(chunk[0:4], "big")
+            code = int.from_bytes(chunk[5:9], "big")
+            flag = chunk[4]
+            flags = {name: bool(flag & (1 << bit)) for bit, name in DTC_STATUS_BIT_NAMES.items()}
+            dtc_long.append({"ecu_id": ecu_id, "ecu_label": ECU_CAN_IDS.get(ecu_id), "flags": flags, "flag_raw": flag,
+                             "code": code, "code_label": decode_dtc_code(chunk[5:9])})
+            offset += 9
+
+    short_count = data_val[offset]
+    offset += 1
+    dtc_short = []
+    if 0 < short_count < 0xFF:
+        for i in range(short_count):
+            chunk = data_val[offset:offset + 8]
+            ecu_id = int.from_bytes(chunk[0:4], "big")
+            code = int.from_bytes(chunk[5:8], "big")
+            flag = chunk[4]
+            flags = {name: bool(flag & (1 << bit)) for bit, name in DTC_STATUS_BIT_NAMES.items()}
+            dtc_short.append({"ecu_id": ecu_id, "flags": flags, "flag_raw": flag, "code": code, "code_label": decode_dtc_code(chunk[5:8])})
+            offset += 8
+
+    return {
+        "dtc_long": dtc_long,
+        "dtc_short": dtc_short,
+        "timestamp": timestamp,
+    }, data_offset
+
+def decode_ficosa_tire_pressure(buf, offset=0) -> Tuple[dict, int]:
+    data_val, data_offset = _decode_ie_element(buf, offset, 0, IE_Element())
+    data_val = data_val["value"]
+
+    return {
+        "light_status": data_val[0],
+        "fr": data_val[1],
+        "fl": data_val[2],
+        "rr": data_val[3],
+        "rl": data_val[4],
+    }, data_offset
+
+def decode_acp_maintenance_alert(buf, offset=0) -> Tuple[dict, int]:
+    data_val, data_offset = _decode_ie_element(buf, offset, 0, IE_Element())
+    data_val = data_val["value"]
+
+    return {
+        "alert_status": data_val[0],
+        "mileage_km": int.from_bytes(data_val[1:], "big")
+    }, data_offset

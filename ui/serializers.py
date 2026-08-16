@@ -3,7 +3,7 @@ from drf_yasg.utils import swagger_serializer_method
 from rest_framework import serializers
 
 from db.models import Car, TCUConfiguration, LocationInfo, EVInfo, AlertHistory, SendToCarLocation, RoutePlan, \
-    CRMDistanceRecord, CommandTimerSetting
+    CRMDistanceRecord, CommandTimerSetting, VehicleHealthInfo
 from tculink.carwings_proto.autodj import ICONS
 from tculink.carwings_proto.autodj.channels import get_info_channel_data
 from tculink.coordinators import get_supported_commands
@@ -71,6 +71,12 @@ class EVInfoSerializer(serializers.ModelSerializer):
         model = EVInfo
         fields = '__all__'
 
+class VehicleHealthInfoSerializer(serializers.ModelSerializer):
+    last_updated = serializers.DateTimeField(read_only=True, default_timezone=pytz.utc)
+    class Meta:
+        model = VehicleHealthInfo
+        fields = '__all__'
+
 class EVInfoUpdatingSerializer(serializers.ModelSerializer):
     class Meta:
         model = EVInfo
@@ -103,6 +109,7 @@ class CarSerializer(serializers.ModelSerializer):
     tcu_configuration = TCUConfigurationSerializer()
     location = LocationInfoSerializer()
     ev_info = EVInfoSerializer()
+    veh_health = VehicleHealthInfoSerializer()
     send_to_car_location_all = SendToCarLocationSerializer(many=True, source='send_to_car_location')
     send_to_car_location = serializers.SerializerMethodField()
     route_plans = RoutePlanSerializer(many=True)
@@ -112,6 +119,7 @@ class CarSerializer(serializers.ModelSerializer):
     command_request_time = serializers.DateTimeField(read_only=True, default_timezone=pytz.utc)
     last_connection = serializers.DateTimeField(read_only=True, default_timezone=pytz.utc)
     supported_commands = serializers.ListField(child=serializers.IntegerField(), required=False)
+
 
     def to_representation(self, instance):
         data = super().to_representation(instance)

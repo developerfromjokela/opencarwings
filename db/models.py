@@ -297,6 +297,21 @@ class CommandTimerSetting(models.Model):
     time = models.TimeField()
     date = models.DateField(null=True, blank=True)
 
+class VehicleHealthInfo(models.Model):
+    # DTC
+    dtc_timestamp = models.DateTimeField(default=None, null=True, blank=True)
+    dtc_short = models.JSONField(null=True, default=None)
+    dtc_long = models.JSONField(null=True, default=None)
+    # TPMS
+    tpms_light = models.BooleanField(default=False)
+    tpms_fr = models.IntegerField(default=0)
+    tpms_fl = models.IntegerField(default=0)
+    tpms_rr = models.IntegerField(default=0)
+    tpms_rl = models.IntegerField(default=0)
+    # Maintenance
+    maintenance_alert = models.BooleanField(default=False)
+    mileage = models.FloatField(default=0)
+    last_updated = models.DateTimeField(null=True, default=None, blank=True)
 
 class Car(models.Model):
     vin = models.CharField(max_length=18, unique=True)
@@ -318,6 +333,7 @@ class Car(models.Model):
     tcu_configuration = models.OneToOneField(TCUConfiguration, on_delete=models.CASCADE)
     location = models.OneToOneField(LocationInfo, on_delete=models.CASCADE)
     ev_info = models.OneToOneField(EVInfo, on_delete=models.CASCADE)
+    veh_health = models.OneToOneField(VehicleHealthInfo, on_delete=models.CASCADE, null=True, blank=True)
     periodic_refresh = models.IntegerField(default=0, choices=PERIODIC_REFRESH)
     periodic_refresh_running = models.IntegerField(default=0, choices=PERIODIC_REFRESH_ACTIVE)
     # Command handle

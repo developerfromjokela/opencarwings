@@ -98,6 +98,9 @@
             <button class="tab-btn px-3 py-2 text-gray-600 dark:text-gray-400 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="timers">{% translate "Timers" %}</button>
             <a href="/car/{{ car.vin }}/probeviewer" class="px-3 py-2 text-gray-600 dark:text-gray-400 hover:text-blue-500 focus:outline-none text-sm sm:text-base">{% translate "Vehicle journal" %}</a>
             <button class="tab-btn px-3 py-2 text-gray-600 dark:text-gray-400 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="location">{% translate "Location" %}</button>
+            {% if car.tcu_type != 'continental2012' %}
+            <button class="tab-btn px-3 py-2 text-gray-600 dark:text-gray-400 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="veh-health">{% translate "Vehicle Health Report" %}</button>
+            {% endif %}
             <button class="tab-btn px-3 py-2 text-gray-600 dark:text-gray-400 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="recent-alerts">{% translate "Recent Alerts" %}</button>
             <button class="tab-btn px-3 py-2 text-gray-600 dark:text-gray-400 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="routeplanner">{% translate "Route Planner" %}</button>
             <button class="tab-btn px-3 py-2 text-gray-600 dark:text-gray-400 hover:text-blue-500 focus:outline-none text-sm sm:text-base" data-tab="carwings">CARWINGS</button>
@@ -298,6 +301,7 @@
             <!-- TCU Configuration -->
             {% if car.tcu_type != 'continental2012' %}
             {% include "ui/ficosa/configuration.html" %}
+            {% include "ui/ficosa/veh_health.html" %}
             {% else %}
             <div id="tcu-config" class="tab-content">
                 <dl class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 text-sm sm:text-base">
@@ -1236,6 +1240,14 @@
             if (data.tcu_configuration && window.updateFicosaConfigStatus) {
                 try {
                     updateFicosaConfigStatus(data);
+                } catch (e) {
+                    console.error(e);
+                }
+            }
+
+            if (data.veh_health && window.updateVehHealth) {
+                try {
+                    updateVehHealth(data);
                 } catch (e) {
                     console.error(e);
                 }

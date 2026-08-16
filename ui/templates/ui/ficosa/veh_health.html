@@ -1,0 +1,193 @@
+{% load static %}
+{% load units %}
+{% load i18n %}
+<!-- Vehicle Health Tab -->
+<div id="veh-health" class="tab-content">
+    <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-300 mb-4">{% translate "Vehicle Health" %}</h2>
+
+    <!-- Top summary row -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        <div class="status-box">
+            <dt>{% translate "TPMS Warning" %}</dt>
+            <dd id="vh-tpms-light" class="flex items-center justify-center gap-2">
+                <span class="health-dot {% if car.veh_health.tpms_light %}bad{% else %}good{% endif %}"></span>
+                {{ car.veh_health.tpms_light|yesno }}
+            </dd>
+        </div>
+        <div class="status-box">
+            <dt>{% translate "Maintenance Alert" %}</dt>
+            <dd id="vh-maint-alert" class="flex items-center justify-center gap-2">
+                <span class="health-dot {% if car.veh_health.maintenance_alert %}bad{% else %}good{% endif %}"></span>
+                {{ car.veh_health.maintenance_alert|yesno }}
+            </dd>
+        </div>
+        <div class="status-box">
+            <dt>{% translate "Mileage" %}</dt>
+            <dd id="vh-mileage">{% if car.veh_health.mileage %}{% local_dist car.veh_health.mileage decimals=0 %}{% else %}--{% endif %}</dd>
+        </div>
+        <div class="status-box">
+            <dt>{% translate "Last Updated" %}</dt>
+            <dd id="vh-last-updated">{{ car.veh_health.last_updated|date:"Y-m-d H:i"|default:"N/A" }}</dd>
+        </div>
+    </div>
+
+    <!-- TPMS visualization + DTC list -->
+    <div class="flex flex-col lg:flex-row gap-6">
+
+        <!-- Top-down car / tire pressures -->
+        <div class="flex-1 flex flex-col items-center">
+            <h3 class="text-md font-semibold text-gray-800 dark:text-gray-300 mb-3 self-start">{% translate "Tire Pressures (TPMS)" %}</h3>
+            <div id="vh-tpms-diagram" class="relative" style="width: 260px; height: 440px;">
+                {% with 'car/o/'|add:car.color|add:'.png' as car_static %}
+                  <img src="{% static car_static %}" style="height: 440px; width: 260px; object-fit: contain;"/>
+                {% endwith %}
+
+                <!-- FL -->
+                <div class="vh-tire-reading" style="left: -24px; top: 60px;">
+                    <div class="vh-tire-label">{% translate "FL" %}</div>
+                    <div class="vh-tire-value" id="vh-tpms-fl">{% if car.veh_health.tpms_fl %}{{ car.veh_health.tpms_fl }}{% else %}--{% endif %}<span class="vh-tire-unit"> kPa</span></div>
+                </div>
+                <!-- FR -->
+                <div class="vh-tire-reading" style="right: -24px; top: 60px; text-align: right;">
+                    <div class="vh-tire-label">{% translate "FR" %}</div>
+                    <div class="vh-tire-value" id="vh-tpms-fr">{% if car.veh_health.tpms_fr %}{{ car.veh_health.tpms_fr }}{% else %}--{% endif %}<span class="vh-tire-unit"> kPa</span></div>
+                </div>
+                <!-- RL -->
+                <div class="vh-tire-reading" style="left: -24px; top: 290px;">
+                    <div class="vh-tire-label">{% translate "RL" %}</div>
+                    <div class="vh-tire-value" id="vh-tpms-rl">{% if car.veh_health.tpms_rl %}{{ car.veh_health.tpms_rl }}{% else %}--{% endif %}<span class="vh-tire-unit"> kPa</span></div>
+                </div>
+                <!-- RR -->
+                <div class="vh-tire-reading" style="right: -24px; top: 290px; text-align: right;">
+                    <div class="vh-tire-label">{% translate "RR" %}</div>
+                    <div class="vh-tire-value" id="vh-tpms-rr">{% if car.veh_health.tpms_rr %}{{ car.veh_health.tpms_rr }}{% else %}--{% endif %}<span class="vh-tire-unit"> kPa</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DTC list -->
+        <div class="flex-1">
+            <h3 class="text-md font-semibold text-gray-800 dark:text-gray-300 mb-1">{% translate "Diagnostic Trouble Codes" %}</h3>
+            {% if car.veh_health.dtc_timestamp %}
+                <div class="text-xs text-gray-500 dark:text-gray-400 mb-3">
+                    {% translate "Read at" %}: {{ car.veh_health.dtc_timestamp|date:"Y-m-d H:i"|default:"Never" }}
+                </div>
+            {% endif %}
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-sm">
+                    <thead>
+                        <tr class="text-gray-700 dark:text-gray-200 border-b">
+                            <th class="py-2">{% translate "ECU" %}</th>
+                            <th class="py-2">{% translate "Code" %}</th>
+                            <th class="py-2">{% translate "Warning Light" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody id="vh-dtc-table">
+                        {% for dtc in car.veh_health.dtc_long %}
+                            <tr class="border-b text-gray-600 dark:text-gray-300">
+                                <td class="py-2">{{ dtc.ecu_label|default:dtc.ecu_id }}</td>
+                                <td class="py-2 font-mono">{{ dtc.code_label|default:dtc.code }}</td>
+                                <td class="py-2">
+                                    <span class="health-dot {% if dtc.flags.warningIndicatorRequested %}bad{% else %}good{% endif %}"></span>
+                                    {{ dtc.flags.warningIndicatorRequested|yesno }}
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <tr id="vh-dtc-empty-row"><td colspan="3" class="py-2 text-gray-500 dark:text-gray-400">{% translate "No long trouble codes reported" %}</td></tr>
+                        {% endfor %}
+                        {% for dtc in car.veh_health.dtc_short %}
+                            <tr class="border-b text-gray-600 dark:text-gray-300">
+                                <td class="py-2">{{ dtc.ecu_label|default:dtc.ecu_id }}</td>
+                                <td class="py-2 font-mono">{{ dtc.code_label|default:dtc.code }}</td>
+                                <td class="py-2">
+                                    <span class="health-dot {% if dtc.flags.warningIndicatorRequested %}bad{% else %}good{% endif %}"></span>
+                                    {{ dtc.flags.warningIndicatorRequested|yesno }}
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <tr id="vh-dtc-empty-row"><td colspan="3" class="py-2 text-gray-500 dark:text-gray-400">{% translate "No short trouble codes reported" %}</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .health-dot {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: #9ca3af;
+    }
+    .health-dot.good { background-color: #22c55e; }
+    .health-dot.bad { background-color: #ef4444; }
+
+    .vh-car-body { color: #cbd5e1; }
+    .dark .vh-car-body { color: #4b5563; }
+
+    .vh-tire-reading {
+        position: absolute;
+        width: 90px;
+    }
+    .vh-tire-label {
+        font-size: 0.7rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: #6b7280;
+    }
+    .dark .vh-tire-label { color: #9ca3af; }
+    .vh-tire-value {
+        font-size: 1.1rem;
+        font-weight: 700;
+    }
+    .vh-tire-unit {
+        font-size: 0.7rem;
+        font-weight: 400;
+        color: #6b7280;
+    }
+</style>
+
+<script>
+    function updateVehHealth(car) {
+        const vh = car.veh_health;
+        if (!vh) return;
+
+        document.getElementById('vh-tpms-light').innerHTML =
+            `<span class="health-dot ${vh.tpms_light ? 'bad' : 'good'}"></span> ${vh.tpms_light ? '{% translate "Yes" %}' : '{% translate "No" %}'}`;
+        document.getElementById('vh-maint-alert').innerHTML =
+            `<span class="health-dot ${vh.maintenance_alert ? 'bad' : 'good'}"></span> ${vh.maintenance_alert ? '{% translate "Yes" %}' : '{% translate "No" %}'}`;
+        document.getElementById('vh-mileage').textContent = vh.mileage ? distanceLocalize(vh.mileage, 0) : '--';
+        document.getElementById('vh-last-updated').textContent = vh.last_updated ? new Date(vh.last_updated).toLocaleString() : 'N/A';
+
+        document.getElementById('vh-tpms-fl').innerHTML = `${vh.tpms_fl ?? '--'}<span class="vh-tire-unit"> kPa</span>`;
+        document.getElementById('vh-tpms-fr').innerHTML = `${vh.tpms_fr ?? '--'}<span class="vh-tire-unit"> kPa</span>`;
+        document.getElementById('vh-tpms-rl').innerHTML = `${vh.tpms_rl ?? '--'}<span class="vh-tire-unit"> kPa</span>`;
+        document.getElementById('vh-tpms-rr').innerHTML = `${vh.tpms_rr ?? '--'}<span class="vh-tire-unit"> kPa</span>`;
+
+        const dtcTable = document.getElementById('vh-dtc-table');
+        dtcTable.innerHTML = '';
+        let allDtcs = [];
+        if (vh.dtc_long && vh.dtc_long.length > 0)
+            allDtcs = allDtcs.concat(vh.dtc_long);
+        if (vh.dtc_short && vh.dtc_short.length > 0)
+            allDtcs = allDtcs.concat(vh.dtc_short);
+        if (allDtcs) {
+            for (let dtc of allDtcs) {
+                 const row = document.createElement('tr');
+                row.className = 'border-b text-gray-600 dark:text-gray-300';
+                const on = dtc.flags && dtc.flags.warningIndicatorRequested;
+                row.innerHTML = `
+                    <td class="py-2">${dtc.ecu_label || dtc.ecu_id}</td>
+                    <td class="py-2 font-mono">${dtc.code_label || dtc.code}</td>
+                    <td class="py-2"><span class="health-dot ${on ? 'bad' : 'good'}"></span> ${on ? '{% translate "yes" %}' : '{% translate "no" %}'}</td>
+                `;
+                dtcTable.appendChild(row);
+            }
+        } else {
+            dtcTable.innerHTML = `<tr><td colspan="3" class="py-2 text-gray-500 dark:text-gray-400">{% translate "No trouble codes reported" %}</td></tr>`;
+        }
+    }
+</script>

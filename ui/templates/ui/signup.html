@@ -44,11 +44,17 @@
         }
 
         if (timezone) {
-          const timezoneInput = document.createElement('input');
-          timezoneInput.type = 'hidden';
-          timezoneInput.name = 'timezone';
-          timezoneInput.value = timezone;
-          form.appendChild(timezoneInput);
+            let timezoneInput = document.querySelector('input[name="timezone"]');
+            if (!timezoneInput) {
+                timezoneInput = document.createElement('input');
+                timezoneInput.type = 'hidden';
+                  timezoneInput.name = 'timezone';
+                  timezoneInput.value = timezone;
+                  form.appendChild(timezoneInput);
+            }
+            timezoneInput.type = 'hidden';
+            timezoneInput.name = 'timezone';
+            timezoneInput.value = timezone;
         }
       }
     });

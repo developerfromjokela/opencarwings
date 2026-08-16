@@ -6,6 +6,7 @@ from django.utils.translation import gettext_lazy as _
 from db.models import User, CAR_COLOR, TCU_TYPE
 from tculink.utils.password_hash import password_hash
 
+TIMEZONE_CHOICES = zip(pytz.all_timezones, pytz.all_timezones)
 
 class SettingsForm(forms.Form):
     unit_id = forms.CharField(label="Unit ID", max_length=32, required=True, strip=True, min_length=5)
@@ -43,7 +44,6 @@ class ChangeCarwingsPasswordForm(forms.Form):
     new_password = forms.CharField(widget=forms.PasswordInput(), max_length=16)
 
 class AccountForm(forms.Form):
-    TIMEZONE_CHOICES = zip(pytz.all_timezones, pytz.all_timezones)
     email = forms.EmailField(label=_("Email"), widget=forms.EmailInput(), max_length=254)
     notifications = forms.BooleanField(label=_("Notifications"), widget=forms.CheckboxInput(), required=False)
     units_imperial = forms.BooleanField(label=_("Imperial Units"), widget=forms.CheckboxInput(), required=False)
@@ -53,19 +53,41 @@ class ProbeConfigForm(forms.Form):
     new_config_id = forms.IntegerField(label="New Config ID", required=False)
     request = forms.CharField(widget=forms.HiddenInput(), required=True)
 
+
 class SignUpForm(UserCreationForm):
     email = forms.EmailField(widget=forms.EmailInput(), max_length=254)
+    timezone = forms.CharField(
+        required=False,
+        max_length=32,
+        widget=forms.HiddenInput()
+    )
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['password1'].label = _('Password')
         self.fields['password2'].label = _('Password Confirmation')
-        self.fields['tcu_pass_hash'].label = _('TCU Password')
+        self.fields['tcu_pass_hash'].label = "CARWINGS " + _('Password')
 
         self.fields['password1'].help_text = None
         self.fields['password2'].help_text = None
 
     def clean_tcu_pass_hash(self):
         return password_hash(self.cleaned_data.get('tcu_pass_hash'))
+
+    def clean_timezone(self):
+        tz = self.cleaned_data.get('timezone')
+        if tz and tz not in pytz.all_timezones:
+            return ''  # ignore invalid/spoofed values instead of erroring out
+        return tz
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        tz = self.cleaned_data.get('timezone')
+        if tz:
+            user.timezone = tz
+        if commit:
+            user.save()
+        return user
 
     class Meta:
         model = User

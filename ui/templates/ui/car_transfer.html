@@ -1,0 +1,51 @@
+{% extends 'ui/base.html'%}
+{% load static %}
+{% load i18n %}
+{% block title %} {% translate "Transfer Ownership" %} {% endblock %}
+
+{% block content %}
+    <div class="max-w-4xl mx-auto py-10 px-4 space-y-8">
+        <h1 class="text-3xl font-semibold text-gray-800 dark:text-gray-100 mb-6">{% translate "Transfer Ownership" %}</h1>
+        <div id="messages" class="mb-6">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="{% if message.tags == 'error' %}bg-red-100 border-red-400 text-red-700{% endif %} px-4 py-3 rounded relative {% if message.tags == 'success' %}bg-green-100 border-green-400 text-green-700{% endif %} {% if message.tags == 'info' %}bg-blue-100 border-blue-400 text-blue-700{% endif %} {% if message.tags == 'warning' %}bg-yellow-100 border-yellow-400 text-yellow-700{% endif %}" role="alert">
+                        <strong class="font-bold">
+                            {% if message.tags == 'success' %}{% translate "Success" %}!{% endif %}
+                            {% if message.tags == 'error' %}{% translate "Error" %}!{% endif %}
+                            {% if message.tags == 'info' %}{% translate "Notice" %}:{% endif %}
+                            {% if message.tags == 'warning' %}{% translate "Warning" %}:{% endif %}
+                        </strong>
+                        <span class="block sm:inline">{{ message }}</span>
+                        <span class="absolute top-0 bottom-0 right-0 px-4 py-3 cursor-pointer" onclick="this.parentElement.style.display='none';">
+                            <svg class="fill-current h-6 w-6" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                <title>{% translate "Close" %}</title>
+                                <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/>
+                            </svg>
+                        </span>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    {% if car %}
+        <p>{% translate "You've been shared with car transfer link. The car in question is shown below. By hitting 'Transfer', you will become its new owner." %}</p>
+        <div class="flex bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200">
+            {% with 'car/'|add:car.color|add:'.png' as car_static %}
+                 <img src="{% static car_static %}" style="padding-right: 15px; max-height: 50px; object-fit: cover"/>
+            {% endwith %}
+            <div>
+                <h5 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-1 align-center content-center flex flex-row items-center">
+                    {{ car.nickname }}
+                </h5>
+                <span class="text-sm text-gray-600 dark:text-gray-400">VIN: {{ car.vin }}</span>
+            </div>
+        </div>
+        <div class="space-y-4">
+              <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">{% translate "Transfer" %}</button>
+              </form>
+        </div>
+    {% endif %}
+    </div>
+{% endblock %}

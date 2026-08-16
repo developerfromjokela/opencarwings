@@ -76,6 +76,7 @@ urlpatterns = [
     path('account/change-password/', views.ChangePasswordView.as_view(), name='change_password'),
     path('account/reset-api-key/', views.reset_apikey, name='reset_apikey'),
     path('account/change-carwings-password/', views.change_carwings_password, name='change_carwings_password'),
+    path('t/<str:code>/', views.car_transfer, name='car_transfer'),
     path('car/<str:vin>/', views.car_detail, name='car_detail'),
     path('api/car/<str:vin>/', api_views.CarAPIView.as_view(), name='car_api'),
     path('api/car/<str:vin>/timers/', api_views.CommandTimerApiView.as_view(), name='car_timers_api'),

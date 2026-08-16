@@ -1,4 +1,5 @@
 import re
+from secrets import token_hex
 
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
@@ -312,6 +313,15 @@ class VehicleHealthInfo(models.Model):
     maintenance_alert = models.BooleanField(default=False)
     mileage = models.FloatField(default=0)
     last_updated = models.DateTimeField(null=True, default=None, blank=True)
+
+def generate_transfer_code():
+    return token_hex(16)
+
+class CarTransferRequest(models.Model):
+    request_created = models.DateTimeField(auto_now_add=True)
+    expiration_time = models.DateTimeField(null=True, default=None, blank=True)
+    car = models.ForeignKey('Car', on_delete=models.CASCADE)
+    transfer_code = models.CharField(max_length=32, default=generate_transfer_code)
 
 class Car(models.Model):
     vin = models.CharField(max_length=18, unique=True)

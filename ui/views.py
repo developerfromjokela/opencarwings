@@ -8,13 +8,17 @@ import requests
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import PasswordChangeForm
-from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.views import PasswordChangeView, redirect_to_login
 from django.contrib.auth.views import PasswordResetView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.paginator import Paginator
+from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render, redirect
 from django.templatetags.static import static
+from django.urls import reverse, resolve, NoReverseMatch
+from django.utils import timezone
+from django.utils.http import url_has_allowed_host_and_scheme
 from django.utils.translation import gettext_lazy as _
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
@@ -25,7 +29,7 @@ from rest_framework.response import Response
 from db.models import Car, COMMAND_TYPES, AlertHistory, EVInfo, LocationInfo, TCUConfiguration, PERIODIC_REFRESH, \
     PERIODIC_REFRESH_ACTIVE, CAR_COLOR, CRMLatest, CRMLifetime, CRMTripRecord, CRMMonthlyRecord, CRMChargeHistoryRecord, \
     CRMChargeRecord, CRMABSHistoryRecord, CRMExcessiveIdlingRecord, CRMExcessiveAirconRecord, CRMTroubleRecord, \
-    CRMMSNRecord, DOTFile, ProbeConfig, CRMDistanceRecord
+    CRMMSNRecord, DOTFile, ProbeConfig, CRMDistanceRecord, CarTransferRequest
 from tculink.carwings_proto.autodj import ICONS
 from tculink.carwings_proto.autodj.channels import get_info_channel_data
 from tculink.carwings_proto.probe_config import PROBE_CONFIGS, PROBE_CONFIG_INFO
@@ -90,7 +94,7 @@ class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
 
 def account(request):
     if not request.user.is_authenticated:
-        return redirect('signin')
+        return redirect_to_login(reverse('account'), 'signin')
     account_form = AccountForm()
     account_form.initial['email'] = request.user.email
     account_form.initial['notifications'] = request.user.email_notifications
@@ -122,7 +126,7 @@ def account(request):
 @api_view(['POST'])
 def reset_apikey(request):
     if not request.user.is_authenticated:
-        return redirect('signin')
+        return redirect_to_login('reset_apikey', 'login')
     if isinstance(request.auth, Token):
         return Response({'status': False, 'cause': 'Cannot reset API token with another API token!'}, status=401)
     api_key, _ = Token.objects.get_or_create(user=request.user)
@@ -416,7 +420,7 @@ def resolve_maps_link(request):
 
 def change_carwings_password(request):
     if not request.user.is_authenticated:
-        return redirect('signin')
+        return redirect_to_login('change_carwings_password', 'signin')
     if request.method == 'POST':
         form = ChangeCarwingsPasswordForm(request.POST)
         if form.is_valid():
@@ -462,9 +466,38 @@ def car_list(request):
 def vflash_editor(request):
     return render(request, 'ui/vflash_editor.html')
 
+def car_transfer(request, code):
+    if not request.user.is_authenticated:
+        return redirect_to_login(reverse('car_transfer', args=(code,)), 'signin')
+
+
+    transfer = CarTransferRequest.objects.filter(
+        Q(expiration_time__isnull=True) | Q(expiration_time__gt=timezone.now()),
+        transfer_code=code,
+    )
+
+    if transfer.exists():
+        transfer = transfer.first()
+        if request.method == 'POST':
+            transfer.car.owner = request.user
+            transfer.car.save()
+            transfer.delete()
+            messages.info(request, _("Transfer was successful!"))
+            return redirect('car_list')
+
+        context = {
+            'car': transfer.car,
+        }
+    else:
+        messages.error(request, _("Transfer link not found! It may have expired, or the transfer is already completed."))
+        context = {'car': None}
+
+
+    return render(request, 'ui/car_transfer.html', context)
+
 def car_detail(request, vin):
     if not request.user.is_authenticated:
-        return redirect('signin')
+        return redirect_to_login(reverse('car_detail', args=(vin,)), 'signin')
     car = get_object_or_404(Car, vin=vin, owner=request.user)
     supported_commands = get_supported_commands(car.tcu_type)
     FILTERED_COMMANDTYPES = [x for x in COMMAND_TYPES if x[0] in supported_commands]
@@ -560,42 +593,54 @@ def index(request):
 
 # Signup View
 def signup(request):
+    next_url = request.GET.get('next', '/') or '/'
     if request.user.is_authenticated:
+        if next_url and url_has_allowed_host_and_scheme(next_url, []):
+            return redirect(next_url)
         return redirect('/')
+
     if request.method == 'POST':
         if not django.conf.settings.SIGNUP_ENABLED:
             messages.error(request, _("Sign-up is not enabled on this instance"))
-            return redirect('signin')
+            return redirect_to_login(next_url, 'signin')
         form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, _(f'Account created for {username}! Please sign in.'))
-            return redirect('signin')
+            return redirect_to_login(next_url, 'signin')
         else:
             for field, errors in form.errors.items():
                 for error in errors:
                     messages.error(request, f"{field.capitalize()}: {error}")
     else:
         form = SignUpForm()
-    return render(request, 'ui/signup.html', {'form': form})
+    return render(request, 'ui/signup.html', {'form': form, 'next': f'?next={next_url}' if next_url else ''})
 
 # Signin View
 def signin(request):
+    next_url = request.GET.get('next', '/') or '/'
     if request.user.is_authenticated:
+        if next_url and url_has_allowed_host_and_scheme(next_url, []):
+            return redirect(next_url)
         return redirect('/')
     if request.method == 'POST':
-        username = request.POST.get('username')  # Adjust to 'email' if using email
+        username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
             if request.user.timezone == "UTC":
                 messages.warning(request, _('Your current timezone is UTC. Please set your local timezone in account settings.'))
-            return redirect('/')  # Replace with your dashboard URL
+            if next_url and url_has_allowed_host_and_scheme(next_url, []):
+                try:
+                    return redirect(next_url)
+                except NoReverseMatch:
+                    ...
+            return redirect('/')
         else:
             messages.error(request, _('Invalid username or password.'))
-    return render(request, 'ui/signin.html')
+    return render(request, 'ui/signin.html', {'next': f'?next={next_url}' if next_url else ''})
 
 # Logout View (Optional)
 def signout(request):
@@ -796,7 +841,7 @@ def setup_step5(request):
 
 def probeviewer_home(request, vin):
     if not request.user.is_authenticated:
-        return redirect('signin')
+        return redirect_to_login(reverse('probeviewer_home', args=(vin,)), 'signin')
     car = get_object_or_404(Car, vin=vin, owner=request.user)
 
     try:
@@ -913,7 +958,7 @@ def probeviewer_home(request, vin):
 
 def probeviewer_trip(request, vin, trip):
     if not request.user.is_authenticated:
-        return redirect('signin')
+        return redirect_to_login(reverse('probeviewer_trip', args=(vin, trip,)), 'signin')
     car = get_object_or_404(Car, vin=vin, owner=request.user)
 
     trip = get_object_or_404(CRMTripRecord, car=car, pk=trip)

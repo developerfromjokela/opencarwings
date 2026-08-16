@@ -8,7 +8,8 @@ from .models import (
     AlertHistory,
     Car, User, SendToCarLocation, CRMLatest, CRMLifetime, CRMExcessiveAirconRecord, CRMExcessiveIdlingRecord,
     CRMMonthlyRecord, CRMMSNRecord, CRMChargeRecord, CRMChargeHistoryRecord, CRMABSHistoryRecord, CRMTroubleRecord,
-    CRMTripRecord, RoutePlan, DOTFile, CRMDistanceRecord, ProbeConfig, CommandTimerSetting, VehicleHealthInfo
+    CRMTripRecord, RoutePlan, DOTFile, CRMDistanceRecord, ProbeConfig, CommandTimerSetting, VehicleHealthInfo,
+    CarTransferRequest
 )
 
 
@@ -59,6 +60,12 @@ class AlertHistoryAdmin(admin.ModelAdmin):
 @admin.register(CommandTimerSetting)
 class CommandTimerSettingAdmin(admin.ModelAdmin):
     list_display = ('id', 'command_type', 'timer_type')
+
+@admin.register(CarTransferRequest)
+class CarTransferRequestAdmin(admin.ModelAdmin):
+    list_display = ('id', 'expiration_time', 'car')
+    search_fields = ('car__vin',)
+    raw_id_fields = ('car',)  # Improves performance for ForeignKey field
 
 @admin.register(Car)
 class CarAdmin(admin.ModelAdmin):

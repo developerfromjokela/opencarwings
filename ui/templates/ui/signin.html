@@ -32,7 +32,7 @@
             </div>
             <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600">{% translate "Sign In" %}</button>
         </form>
-        <p class="text-center text-gray-600 dark:text-gray-400 mt-4">Don’t have an account? <a href="/signup" class="text-blue-500 dark:text-blue-400 hover:underline">{% translate "Sign Up" %}</a></p>
+        <p class="text-center text-gray-600 dark:text-gray-400 mt-4">Don’t have an account? <a href="/signup{{ next }}" class="text-blue-500 dark:text-blue-400 hover:underline">{% translate "Sign Up" %}</a></p>
         <p class="text-center text-gray-600 mt-4"><a href="{% url 'password_reset' %}" class="text-blue-500 hover:underline">{% translate "Forgot password?" %}</a></p>
     </div>
     </div>

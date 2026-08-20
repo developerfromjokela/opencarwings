@@ -676,7 +676,7 @@ def decode_ficosa_dtc_info(buffer, offset=0) -> Tuple[dict, int]:
             code = int.from_bytes(chunk[5:8], "big")
             flag = chunk[4]
             flags = {name: bool(flag & (1 << bit)) for bit, name in DTC_STATUS_BIT_NAMES.items()}
-            dtc_short.append({"ecu_id": ecu_id, "flags": flags, "flag_raw": flag, "code": code, "code_label": decode_dtc_code(chunk[5:8])})
+            dtc_short.append({"ecu_id": ecu_id, "ecu_label": ECU_CAN_IDS.get(ecu_id), "flags": flags, "flag_raw": flag, "code": code, "code_label": decode_dtc_code(chunk[5:8])})
             offset += 8
 
     return {

@@ -66,6 +66,8 @@ class Command(BaseCommand):
         now = timezone.now()
         # Calculate 5 minutes ago
         timeout_threshold = now - datetime.timedelta(minutes=settings.LEAF_COMMAND_TIMEOUT)
+        # Add 3 minutes of response wait time
+        resp_timeout_threshold = now - datetime.timedelta(minutes=settings.LEAF_COMMAND_TIMEOUT+3)
 
         # Find cars with pending commands older than 5 minutes
         timed_out_cars = Car.objects.filter(
@@ -74,9 +76,17 @@ class Command(BaseCommand):
             command_request_time__lte=timeout_threshold
         )
 
-        cars_count = timed_out_cars.count()
+        # Find cars who wait for response
+        failed_resp_cars = Car.objects.filter(
+            command_result=3,  # Await response status
+            command_request_time__lte=resp_timeout_threshold
+        )
 
-        for car in timed_out_cars:
+        all_failed_cars = timed_out_cars.union(failed_resp_cars)
+
+        cars_count = all_failed_cars.count()
+
+        for car in all_failed_cars:
             try:
                 # Update car status
                 try:

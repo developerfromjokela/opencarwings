@@ -243,6 +243,9 @@ def parse_ev_info(data: bytes, offset: int) -> Tuple[dict, int]:
         charging = False
         quick_charging = False
 
+    # 6.6 kW OBC flag
+    obc_flag = (d[15] & 0x02) != 0
+
     cabin_temp = 0.0
 
     # ZE1!
@@ -269,7 +272,7 @@ def parse_ev_info(data: bytes, offset: int) -> Tuple[dict, int]:
         "cabin_temp": cabin_temp,
         "gids": gids,
         "soh": soh,
-        "obc_6kw_exist": False,
+        "obc_6kw_exist": obc_flag,
         "batt_heat_exist": False,
         "batt_heat_active": False,
         "capacity_bars": capacity_bars,

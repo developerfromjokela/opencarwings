@@ -22,7 +22,7 @@ class ChannelData(serializers.Serializer):
     tts = serializers.CharField(max_length=0x400, required=False, allow_blank=True)
     map_point = ChannelMapPoint(required=False)
     phone_number = serializers.CharField(max_length=0x20, required=False, allow_blank=True)
-    img_base64 = serializers.CharField(max_length=25000, required=False, allow_blank=True)
+    img_base64 = serializers.CharField(max_length=0x5000*2, required=False, allow_blank=True)
     bell = serializers.BooleanField(default=True, required=False)
     save = serializers.BooleanField(default=True, required=False)
 
@@ -73,7 +73,7 @@ def handle_custom_channel(xml_data, _, channel_id, car: Car, page):
                 feature_flag2 = 0xBB
                 try:
                     img_buffer = base64.b64decode(itm['img_base64'])
-                    if len(img_buffer) > 15480:
+                    if len(img_buffer) > 0x5000:
                         img_buffer = bytes()
                 except:
                     img_buffer = bytes()

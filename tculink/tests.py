@@ -78,9 +78,9 @@ class AutoDJImageGenerationTests(TestCase):
         tree_word = "trees"
         tonnes_words = "tonnes"
         img_data = create_ecoforest_slide("World's Eco Forest", "Total number of Eco Trees:",
-                                               f"{round(112221):.0f} {tree_word}",
+                                               f"{round(9999999999999):.0f} {tree_word}",
                                                "CO2 Emission Cuts:",
-                                               f"{round(121212):.0f} {tonnes_words}")
+                                               f"{round(9999999999999):.0f} {tonnes_words}")
 
 
         with open("slide_ecoforest.png", "wb") as f:

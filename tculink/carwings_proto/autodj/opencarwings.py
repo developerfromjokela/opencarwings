@@ -2,6 +2,7 @@ import calendar
 import logging
 import os
 import random
+import re
 from datetime import datetime
 from io import BytesIO
 
@@ -310,8 +311,11 @@ def create_consumption_slide(title, consumption, bar_labels, bars=0, helptext=""
     main_frame.paste(indicator, (base_ind_pos, 0), indicator)
     frame_data = BytesIO()
     main_frame = main_frame.convert("RGB")
-    main_frame.save(frame_data, format="PNG", quality=100)
-    return pngquant.quant_data(frame_data.getvalue())[1]
+    main_frame = main_frame.quantize(colors=128, dither=Image.Dither.FLOYDSTEINBERG, method=Image.Quantize.FASTOCTREE)
+    main_frame.save(frame_data, format="PNG",
+        optimize=True,
+        compress_level=9)
+    return frame_data.getvalue()
 
 def create_info_slide(title, info_title):
     resources_dir = os.path.join(
@@ -372,8 +376,11 @@ def create_info_slide(title, info_title):
 
     frame_data = BytesIO()
     main_frame = main_frame.convert("RGB")
-    main_frame.save(frame_data, format="PNG", quality=100)
-    return pngquant.quant_data(frame_data.getvalue())[1]
+    main_frame = main_frame.quantize(colors=128, dither=Image.Dither.FLOYDSTEINBERG, method=Image.Quantize.FASTOCTREE)
+    main_frame.save(frame_data, format="PNG",
+        optimize=True,
+        compress_level=9)
+    return frame_data.getvalue()
 
 def create_ecorecord_slide(title, total, total_count, trees, records):
     resources_dir = os.path.join(
@@ -464,8 +471,11 @@ def create_ecorecord_slide(title, total, total_count, trees, records):
 
     frame_data = BytesIO()
     main_frame = main_frame.convert("RGB")
-    main_frame.save(frame_data, format="PNG", quality=100)
-    return pngquant.quant_data(frame_data.getvalue())[1]
+    main_frame = main_frame.quantize(colors=128, dither=Image.Dither.FLOYDSTEINBERG, method=Image.Quantize.MAXCOVERAGE)
+    main_frame.save(frame_data, format="PNG",
+        optimize=True,
+        compress_level=9)
+    return frame_data.getvalue()
 
 def create_ecoforest_slide(title, total_title, total_value, emission_title, emission_value):
     resources_dir = os.path.join(
@@ -539,8 +549,11 @@ def create_ecoforest_slide(title, total_title, total_value, emission_title, emis
 
     frame_data = BytesIO()
     main_frame = main_frame.convert("RGB")
-    main_frame.save(frame_data, format="PNG", quality=100)
-    return pngquant.quant_data(frame_data.getvalue())[1]
+    main_frame = main_frame.quantize(colors=128, dither=Image.Dither.FLOYDSTEINBERG, method=Image.Quantize.MAXCOVERAGE)
+    main_frame.save(frame_data, format="PNG",
+        optimize=True,
+        compress_level=9)
+    return frame_data.getvalue()
 
 
 def get_ordinal_suffix(day):
@@ -617,13 +630,12 @@ def get_energy_information_channel(xml_data, returning_xml, channel_id, car, pag
             28 -> 1 (average)
             """
             economy_status = _("Good")
-            bars = 0
-            if wh_per_km < 110:
+            if wh_per_km < 130:
                 economy_status = _("Very good")
                 bars = 5
-            elif wh_per_km < 140:
+            elif wh_per_km < 160:
                 bars = 4
-            elif wh_per_km < 180:
+            elif wh_per_km < 190:
                 bars = 3
             elif wh_per_km < 280:
                 bars = 2
@@ -696,8 +708,9 @@ def get_energy_information_channel(xml_data, returning_xml, channel_id, car, pag
         tip_slide_img = create_info_slide(tip_title, _("Drive Tip"))
 
         tip_txt = get_random_drive_tip()
-
-        tip_onscreen = _("Drive Tip")+": "+tip_txt
+        if car.tcu_type != "continental2012":
+            tip_txt = re.sub(r'</?phoneme[^>]*>', ' ', tip_txt)
+        tip_onscreen = _("Drive Tip")+": "+re.sub(r'</?phoneme[^>]*>', ' ', tip_txt)
 
         response_chdata.append(
             {
@@ -903,8 +916,11 @@ def get_eco_tree_channel(xml_data, returning_xml, channel_id, car, page):
         month = formats.date_format(time_car_now, format='F')
         day_word = get_word_of_month_i18n(time_car_now.day)
 
+        tip_txt = _('By the {day_word} of {month}, electric cars with Open Car Wings world wide saved a total of {trees} <phoneme alphabet="x-SVOX-sampa_en-GB" ph="\'i:-k@@U">eco</phoneme>trees. And {tonnes} tonnes of carbon dioxide has been reduced.'),
+        if car.tcu_type != "continental2012":
+            tip_txt = re.sub(r'</?phoneme[^>]*>', ' ', tip_txt)
         tip_txt = format_lazy(
-            _('By the {day_word} of {month}, electric cars with Open Car Wings world wide saved a total of {trees} <phoneme alphabet="x-SVOX-sampa_en-GB" ph="\'i:-k@@U">eco</phoneme>trees. And {tonnes} tonnes of carbon dioxide has been reduced.'),
+            tip_txt,
             month=month,
             day_word=day_word,
             trees=f"{round(total_trees):.0f}",

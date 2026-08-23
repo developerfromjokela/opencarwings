@@ -62,7 +62,7 @@ class JWTTokenObtainPairSerializer(TokenObtainPairSerializer):
 
         self.user = authenticate(**authenticate_kwargs)
 
-        if self.user is not None and self.user.is_2fa_enabled:
+        if self.user is not None and self.user.is_2fa_enabled():
             if 'otp_code' not in attrs:
                 raise exceptions.AuthenticationFailed(
                     "otp_code_missing",

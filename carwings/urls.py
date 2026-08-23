@@ -14,6 +14,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+import os
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -25,7 +26,6 @@ from drf_yasg.views import get_schema_view
 from rest_framework import permissions
 from rest_framework.authentication import TokenAuthentication, SessionAuthentication
 from rest_framework_simplejwt.views import TokenRefreshView
-
 import api.views as api_views
 import tculink.views as tculink_views
 import ui.views as views
@@ -50,7 +50,7 @@ decorated_token_view = \
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path(f"{os.environ.get('ADMIN_URL', 'admin')}/", admin.site.urls),
     path('apidocs/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('', views.car_list, name='car_list'),
     path('setup/step0', views.setup_step0, name='setup_0'),
@@ -64,6 +64,8 @@ urlpatterns = [
     path('ficosa/gdc', tculink_views.ficosa_http_gateway),
     path('signup', views.signup, name='car_list'),
     path('signin', views.signin, name='signin'),
+    path('signin/2fa', views.signin_2fa, name='signin_2fa'),
+    path('signin/2fa/recovery', views.signin_2fa_recovery, name='signin_2fa_recovery'),
     path('signout', views.signout, name='signout'),
     path('password-reset/', views.ResetPasswordView.as_view(), name='password_reset'),
     path('password-reset-confirm/<uidb64>/<token>/',
@@ -73,9 +75,15 @@ urlpatterns = [
                 auth_views.PasswordResetCompleteView.as_view(template_name='ui/reset_password_complete.html'),
                 name='password_reset_complete'),
     path('account', views.account, name='account'),
+    path('account/2fa/enable', views.enable_otp, name='enable_otp'),
+    path('account/2fa/disable', views.disable_otp, name='disable_otp'),
     path('account/change-password/', views.ChangePasswordView.as_view(), name='change_password'),
     path('account/reset-api-key/', views.reset_apikey, name='reset_apikey'),
+    path('account/pin/', api_views.change_command_pin, name='change_command_pin'),
+    path('account/detail/', api_views.account_info, name='account_info'),
     path('account/change-carwings-password/', views.change_carwings_password, name='change_carwings_password'),
+    path('account/change-command-pin/', views.change_command_pin, name='change_command_pin'),
+    path('account/disable-command-pin/', views.disable_command_pin, name='disable_otp'),
     path('t/<str:code>/', views.car_transfer, name='car_transfer'),
     path('car/<str:vin>/', views.car_detail, name='car_detail'),
     path('api/car/<str:vin>/', api_views.CarAPIView.as_view(), name='car_api'),

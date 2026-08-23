@@ -1,0 +1,25 @@
+{% extends 'ui/base.html'%}
+{% load i18n %}
+{% block title %} {% translate "Sign In" %} {% endblock %}
+
+{% block content %}
+    <div class="max-w-6xl mx-auto py-10 px-4 flex align-center justify-center items-center">
+
+    <div class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-md w-full max-w-md mt-20">
+        <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-6 text-center">{% translate "Sign In" %}</h2>
+
+        <!-- Messages -->
+        {% if messages %}
+            <div class="mb-4">
+                {% for message in messages %}
+                    <div class="text-center {% if message.tags == 'error' %}text-red-600{% else %}text-green-600{% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% block signin_content %}{% endblock %}
+    </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,101 @@
+{% extends 'ui/signin_base.html'%}
+{% load i18n %}
+{% block title %} {% translate "Enter 2FA Code" %} {% endblock %}
+
+
+{% block signin_content %}
+<form method="POST" id="otp-form">
+    {% csrf_token %}
+
+    <div class="mb-6">
+        <label class="block text-gray-700 dark:text-gray-300 mb-3 text-center">{% translate "Enter the 6-digit code" %}</label>
+
+        <div class="flex justify-center gap-2" id="otp-boxes">
+            {% for i in "123456" %}
+            <input
+                type="text"
+                inputmode="numeric"
+                pattern="[0-9]*"
+                maxlength="1"
+                autocomplete="{% if forloop.first %}one-time-code{% else %}off{% endif %}"
+                class="otp-box w-12 h-14 text-center text-xl font-semibold border dark:bg-gray-800 dark:border-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+            {% endfor %}
+        </div>
+
+        <!-- Hidden field that actually gets submitted to the server -->
+        <input type="hidden" name="otp" id="otp-hidden" required>
+    </div>
+
+    <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600">{% translate "Verify" %}</button>
+</form>
+
+<p class="text-center text-gray-600 mt-4"><a href="{% url 'signin_2fa_recovery' %}" class="text-blue-500 hover:underline">{% translate "Use recovery code instead" %}</a></p>
+
+<script>
+    (function () {
+        const boxes = Array.from(document.querySelectorAll('.otp-box'));
+        const hiddenInput = document.getElementById('otp-hidden');
+        const form = document.getElementById('otp-form');
+
+        function updateHiddenValue() {
+            hiddenInput.value = boxes.map(b => b.value).join('');
+        }
+
+        boxes.forEach((box, index) => {
+            box.addEventListener('input', (e) => {
+                // Only allow digits
+                box.value = box.value.replace(/[^0-9]/g, '');
+
+                if (box.value && index < boxes.length - 1) {
+                    boxes[index + 1].focus();
+                }
+                updateHiddenValue();
+            });
+
+            box.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && !box.value && index > 0) {
+                    boxes[index - 1].focus();
+                }
+                if (e.key === 'ArrowLeft' && index > 0) {
+                    boxes[index - 1].focus();
+                }
+                if (e.key === 'ArrowRight' && index < boxes.length - 1) {
+                    boxes[index + 1].focus();
+                }
+            });
+
+            box.addEventListener('paste', (e) => {
+                e.preventDefault();
+                const pasted = (e.clipboardData || window.clipboardData)
+                    .getData('text')
+                    .replace(/[^0-9]/g, '')
+                    .slice(0, boxes.length);
+
+                pasted.split('').forEach((char, i) => {
+                    if (boxes[i]) {
+                        boxes[i].value = char;
+                    }
+                });
+
+                updateHiddenValue();
+
+                const nextIndex = Math.min(pasted.length, boxes.length - 1);
+                boxes[nextIndex].focus();
+            });
+        });
+
+        form.addEventListener('submit', (e) => {
+            updateHiddenValue();
+            if (hiddenInput.value.length !== boxes.length) {
+                e.preventDefault();
+                boxes[0].focus();
+            }
+        });
+
+        if (boxes[0]) {
+            boxes[0].focus();
+        }
+    })();
+</script>
+{% endblock %}

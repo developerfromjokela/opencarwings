@@ -21,16 +21,16 @@
         body {
             font-family: 'Poppins', sans-serif;
         }
-                .connection-status {
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    margin-left: 8px;
-}
-.green { background-color: #22c55e; } /* Tailwind green-500 */
-.yellow { background-color: #eab308; } /* Tailwind yellow-500 */
-.red { background-color: #ef4444; } /* Tailwind red-500 */
+        .connection-status {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-left: 8px;
+        }
+        .green { background-color: #22c55e; } /* Tailwind green-500 */
+        .yellow { background-color: #eab308; } /* Tailwind yellow-500 */
+        .red { background-color: #ef4444; } /* Tailwind red-500 */
     </style>
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 dark:text-white min-h-screen flex flex-col">
@@ -43,12 +43,12 @@
                 <img src="{% static 'carwingslogo_color_white.png' %}" height="45px" style="height: 45px;" class=" relative top-0 left-0 hidden dark:block"/>
             </a>
             <div class="space-x-4">
-                {% if user.is_authenticated %}
+                {% if user.is_authenticated or pending_2fa %}
                 <a href="/account"><span>{{ user.get_username }}</span></a>
                 <a href="/signout" class="text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-400">{% translate "Sign Out" %}</a>
-            {% else %}
-                <a href="/signin" class="text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-400">{% translate "Sign In" %}</a>
-            {% endif %}
+                {% else %}
+                    <a href="/signin" class="text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-400">{% translate "Sign In" %}</a>
+                {% endif %}
             </div>
         </div>
     </nav>
@@ -63,10 +63,9 @@
 
     </main>
 
-<!-- Sticky Footer -->
     <footer class="bg-gray-800 text-white py-4 mt-auto">
         <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
-            <p class="text-sm">&copy; 2025 OpenCARWINGS {% translate "Project" %}.</p>
+            <p class="text-sm">&copy; {% now 'Y' %} OpenCARWINGS {% translate "Project" %}.</p>
             <div class="flex flex-row gap-2 justify-between items-center">
                 <span class="text-gray-400 text-sm">{% translate "Tools" %} |</span>
                 <a href="/navi" class="text-sm text-gray-300">{% translate "VFlash Editor" %}</a>

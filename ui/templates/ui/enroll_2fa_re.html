@@ -1,0 +1,27 @@
+{% extends 'ui/base.html'%}
+{% load i18n %}
+
+{% block title %}
+{% translate "Save Your Recovery Code" %}
+{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto py-10 px-4 flex align-center justify-center items-center">
+    <div class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-md w-full max-w-md mt-20">
+        <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-2 text-center">{% translate "2FA Enabled" %}</h2>
+        <p class="text-center text-gray-500 dark:text-gray-300 mb-6 text-sm">
+            {% translate "Save this recovery code somewhere safe. If you lose access to your authenticator app, it's the only way to get back into your account. It will not be shown again." %}
+        </p>
+
+        <div class="mb-6 flex justify-center">
+            <span class="text-lg font-mono bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-100 mx-4 px-4 py-3 rounded-md select-all">
+                {{ recovery_code }}
+            </span>
+        </div>
+
+        <a href="{% url 'account' %}" class="block w-full text-center bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600">
+            {% translate "Continue" %}
+        </a>
+    </div>
+</div>
+{% endblock %}

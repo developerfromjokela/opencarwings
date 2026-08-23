@@ -4,3 +4,10 @@ staticfiles
 mediafiles
 .env
 docs
+.venc
+.venv*
+db.sqlite3
+carwings/settings.py
+*.p8
+*.cert
+__pycache__

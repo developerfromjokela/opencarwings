@@ -1,4 +1,4 @@
-FROM python:3.10-alpine3.23
+FROM python:3.12-alpine3.24
 
 # Install dependencies
 RUN apk update && apk upgrade --scripts=no apk-tools
@@ -17,27 +17,48 @@ RUN apk add --no-cache freetype-dev \
     tk-dev \
     zlib-dev \
     bash \
-    pngquant \
-    dcron
+    pngquant
 
 # Set timezone
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apk add netcat-openbsd git
+
+# Install supercronic
+ARG TARGETARCH
+ARG SUPERCRONIC_VERSION=v0.2.33
+
+RUN apk add --no-cache --virtual .fetch-deps curl ca-certificates && \
+    case "${TARGETARCH}" in \
+        amd64) SUPERCRONIC_ARCH="amd64" ;; \
+        arm64) SUPERCRONIC_ARCH="arm64" ;; \
+        *) echo "Unsupported architecture: ${TARGETARCH}" && exit 1 ;; \
+    esac && \
+    SUPERCRONIC_URL="https://github.com/aptible/supercronic/releases/download/${SUPERCRONIC_VERSION}/supercronic-linux-${SUPERCRONIC_ARCH}" && \
+    curl -fsSL "$SUPERCRONIC_URL" -o /usr/local/bin/supercronic && \
+    chmod +x /usr/local/bin/supercronic && \
+    apk del .fetch-deps
+
+RUN addgroup -g 5000 ocw \
+    && adduser -D -u 5000 -G ocw ocw
+
+USER ocw
+
+ENV PATH="/home/ocw/.local/bin:${PATH}"
+
 RUN pip3 install --upgrade pip
-RUN pip3 install django-mysql django-postgresql gunicorn daphne gevent psycopg2-binary
+RUN pip3 install django-postgresql psycopg2-binary
 
-
-# Copy code
-COPY . /app
+COPY --chown=ocw:ocw . /app
 WORKDIR /app
+
+COPY --chown=ocw crontab /etc/crontab
 
 RUN pip3 install -r requirements.txt
 
-RUN /usr/bin/crontab /app/crontab
-
 EXPOSE 80
 EXPOSE 55230
+
 
 CMD ["bash", "/app/docker/start.sh"]
 

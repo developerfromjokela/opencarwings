@@ -1,0 +1,284 @@
+{% load i18n %}
+
+<!-- Set PIN Modal -->
+<button data-modal-target="setpin-modal" data-modal-toggle="setpin-modal" style="display: none;" type="button"></button>
+<div id="setpin-modal" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative p-4 w-full max-w-md max-h-full">
+        <div class="relative bg-white dark:bg-gray-600 rounded-lg shadow-sm">
+            <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" data-modal-hide="setpin-modal" onclick="cancelSetPin()">
+                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                </svg>
+                <span class="sr-only">{% translate "Close" %}</span>
+            </button>
+            <div class="p-4 md:p-5 text-center">
+                <h3 id="setpin-title" class="mb-5 text-lg font-normal text-gray-700 dark:text-gray-300">{% translate "Set PIN" %}</h3>
+                <p class="text-sm mb-3">{% translate "This PIN-Code is used for sensitive vehicle commands, like door locking, find my car, etc." %}</p>
+
+                <div id="setpin-error" class="hidden mb-3 text-sm text-red-600"></div>
+
+                <label class="block text-gray-700 dark:text-gray-300 mb-3 text-sm">{% translate "Enter a new 4-digit PIN" %}</label>
+                <div class="flex justify-center gap-2 mb-4" id="setpin-pin-boxes"></div>
+
+                <label class="block text-gray-700 dark:text-gray-300 mb-3 text-sm">{% translate "Confirm your new PIN" %}</label>
+                <div class="flex justify-center gap-2 mb-2" id="setpin-pin-confirm-boxes"></div>
+
+                <div id="setpin-otp-section" class="hidden mt-5">
+                    <hr class="my-4"/>
+                    <label class="block text-gray-700 dark:text-gray-300 mb-3 text-sm">{% translate "Enter your 2FA code to confirm" %}</label>
+                    <div class="flex justify-center gap-2" id="setpin-otp-boxes"></div>
+                </div>
+
+                <button type="button" id="setpin-submit" onclick="submitSetPin()" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 mt-6">
+                    {% translate "Save" %}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Request PIN Modal -->
+<button data-modal-target="requestpin-modal" data-modal-toggle="requestpin-modal" style="display: none;" type="button"></button>
+<div id="requestpin-modal" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative p-4 w-full max-w-md max-h-full">
+        <div class="relative bg-white dark:bg-gray-600 rounded-lg shadow-sm">
+            <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" data-modal-hide="requestpin-modal" onclick="cancelRequestPin()">
+                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                </svg>
+                <span class="sr-only">{% translate "Close" %}</span>
+            </button>
+            <div class="p-4 md:p-5 text-center">
+                <h3 class="mb-5 text-lg font-normal text-gray-700 dark:text-gray-300">{% translate "Enter PIN" %}</h3>
+
+                <div id="requestpin-error" class="hidden mb-3 text-sm text-red-600"></div>
+
+                <div class="flex justify-center gap-2" id="requestpin-boxes"></div>
+
+                <button type="button" id="requestpin-submit" onclick="submitRequestPin()" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 mt-6">
+                    {% translate "Continue" %}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function createDigitBoxGroup(containerEl, length, { autoSubmit = null, hidden = false } = {}) {
+        containerEl.innerHTML = '';
+        const boxes = [];
+
+        for (let i = 0; i < length; i++) {
+            const box = document.createElement('input');
+            box.type = hidden ? 'password' : 'text';
+            box.inputMode = 'numeric';
+            box.pattern = '[0-9]*';
+            box.maxLength = 1;
+            box.autocomplete = 'off';
+            box.className = 'digit-box w-11 h-13 text-center text-xl font-semibold border dark:bg-gray-800 dark:border-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500';
+            containerEl.appendChild(box);
+            boxes.push(box);
+        }
+
+        function currentValue() {
+            return boxes.map(b => b.value).join('');
+        }
+
+        boxes.forEach((box, index) => {
+            box.addEventListener('input', () => {
+                box.value = box.value.replace(/[^0-9]/g, '');
+                if (box.value && index < boxes.length - 1) {
+                    boxes[index + 1].focus();
+                }
+                if (autoSubmit && currentValue().length === length) {
+                    autoSubmit();
+                }
+            });
+
+            box.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && !box.value && index > 0) {
+                    boxes[index - 1].focus();
+                }
+                if (e.key === 'ArrowLeft' && index > 0) {
+                    boxes[index - 1].focus();
+                }
+                if (e.key === 'ArrowRight' && index < boxes.length - 1) {
+                    boxes[index + 1].focus();
+                }
+            });
+
+            box.addEventListener('paste', (e) => {
+                e.preventDefault();
+                const pasted = (e.clipboardData || window.clipboardData)
+                    .getData('text')
+                    .replace(/[^0-9]/g, '')
+                    .slice(0, boxes.length);
+
+                pasted.split('').forEach((char, i) => {
+                    if (boxes[i]) boxes[i].value = char;
+                });
+
+                const nextIndex = Math.min(pasted.length, boxes.length - 1);
+                boxes[nextIndex].focus();
+
+                if (autoSubmit && currentValue().length === length) {
+                    autoSubmit();
+                }
+            });
+        });
+
+        return {
+            getValue: currentValue,
+            focus: () => boxes[0] && boxes[0].focus(),
+            clear: () => boxes.forEach(b => b.value = ''),
+        };
+    }
+
+    let _setPinResolver = null;
+    let _setPinBoxes = null;
+    let _setPinConfirmBoxes = null;
+    let _setPinOtpBoxes = null;
+    let _requestPinResolver = null;
+    let _requestPinBoxes = null;
+
+    function openSetPinPrompt() {
+        document.getElementById('setpin-title').textContent = hasPin ? '{% translate "Change PIN" %}' : '{% translate "Set PIN" %}';
+        document.getElementById('setpin-error').classList.add('hidden');
+
+        _setPinBoxes = createDigitBoxGroup(document.getElementById('setpin-pin-boxes'), 4);
+        _setPinConfirmBoxes = createDigitBoxGroup(document.getElementById('setpin-pin-confirm-boxes'), 4);
+
+        const otpSection = document.getElementById('setpin-otp-section');
+        if (has2fa) {
+            otpSection.classList.remove('hidden');
+            _setPinOtpBoxes = createDigitBoxGroup(document.getElementById('setpin-otp-boxes'), 6);
+        } else {
+            otpSection.classList.add('hidden');
+            _setPinOtpBoxes = null;
+        }
+
+        FlowbiteInstances.getInstance('Modal', 'setpin-modal').show();
+        _setPinBoxes.focus();
+
+        return new Promise((resolve) => {
+            _setPinResolver = resolve;
+        });
+    }
+
+    function submitSetPin() {
+        const pin = _setPinBoxes.getValue();
+        const pinConfirm = _setPinConfirmBoxes.getValue();
+        const errorEl = document.getElementById('setpin-error');
+        errorEl.classList.add('hidden');
+
+        if (pin.length !== 4) {
+            errorEl.textContent = '{% translate "Please enter a 4-digit PIN." %}';
+            errorEl.classList.remove('hidden');
+            _setPinBoxes.focus();
+            return;
+        }
+
+        if (pinConfirm.length !== 4) {
+            errorEl.textContent = '{% translate "Please confirm your PIN." %}';
+            errorEl.classList.remove('hidden');
+            _setPinConfirmBoxes.focus();
+            return;
+        }
+
+        if (pin !== pinConfirm) {
+            errorEl.textContent = '{% translate "PINs do not match, please try again." %}';
+            errorEl.classList.remove('hidden');
+            _setPinBoxes.clear();
+            _setPinConfirmBoxes.clear();
+            _setPinBoxes.focus();
+            return;
+        }
+
+        let otp = null;
+        if (has2fa) {
+            otp = _setPinOtpBoxes.getValue();
+            if (otp.length !== 6) {
+                errorEl.textContent = '{% translate "Please enter your 6-digit 2FA code." %}';
+                errorEl.classList.remove('hidden');
+                _setPinOtpBoxes.focus();
+                return;
+            }
+        }
+
+        fetch('/account/pin/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({'otp_code': otp, 'new_pin': pin, 'new_pin_confirm': pinConfirm})
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    showNotification({title: '{% translate "Error setting PIN" %}', message: data.error ?? data, type: 'error'})
+                } else {
+                    FlowbiteInstances.getInstance('Modal', 'setpin-modal').hide();
+                    if (_setPinResolver) {
+
+                        _setPinResolver(pin);
+                        _setPinResolver = null;
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('{% translate "Error setting PIN" %}:', error);
+                showNotification({title: '{% translate "Error setting PIN" %}', message: error.error ?? error, type: 'error'})
+            });
+
+
+    }
+
+    function cancelSetPin() {
+        if (_setPinResolver) {
+            _setPinResolver(null);
+            _setPinResolver = null;
+        }
+    }
+
+    function requestPinPrompt() {
+        document.getElementById('requestpin-error').classList.add('hidden');
+        _requestPinBoxes = createDigitBoxGroup(document.getElementById('requestpin-boxes'), 4, {
+            autoSubmit: submitRequestPin,
+            hidden: true
+        });
+
+        FlowbiteInstances.getInstance('Modal', 'requestpin-modal').show();
+        _requestPinBoxes.focus();
+
+        return new Promise((resolve) => {
+            _requestPinResolver = resolve;
+        });
+    }
+
+    function submitRequestPin() {
+        const pin = _requestPinBoxes.getValue();
+        const errorEl = document.getElementById('requestpin-error');
+
+        if (pin.length !== 4) {
+            errorEl.textContent = '{% translate "Please enter your 4-digit PIN." %}';
+            errorEl.classList.remove('hidden');
+            _requestPinBoxes.focus();
+            return;
+        }
+
+        FlowbiteInstances.getInstance('Modal', 'requestpin-modal').hide();
+        if (_requestPinResolver) {
+            _requestPinResolver(pin);
+            _requestPinResolver = null;
+        }
+    }
+
+    function cancelRequestPin() {
+        if (_requestPinResolver) {
+            _requestPinResolver(null);
+            _requestPinResolver = null;
+        }
+    }
+</script>

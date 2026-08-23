@@ -44,10 +44,22 @@
                     </div>
                 </div>
                 {{ form|crispy }}
-
+                <div class="flex flex-col max-w-md lg:max-w-xs">
+                <a href="/account/change-password/" class="max-w-md lg:max-w-xs text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 me-2 mb-2">{% translate "Change Account Password" %}</a>
+                <a href="/account/change-carwings-password/" class="max-w-md lg:max-w-xs text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 me-2 mb-2">{% translate "Change CARWINGS Password" %}</a>
+                <div class="flex max-w-md lg:max-w-xs">
+                <a href="/account/change-command-pin/" class="flex-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 me-2 mb-2">{% if user.is_command_pin_set %}{% translate "Change Command PIN" %}{% else %}{% translate "Set Command PIN" %}{% endif %}</a>
+                {% if user.is_command_pin_set %}
+                <a href="/account/disable-command-pin/" class="flex-1 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 me-2 mb-2">{% translate "Disable Command PIN" %}</a>
+                {% endif %}
+                </div>
+                {% if user.is_2fa_enabled %}
+                <a href="/account/2fa/disable" class="max-w-md lg:max-w-xs text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 me-2 mb-2">{% translate "Disable 2FA" %}</a>
+                {% else %}
+                <a href="/account/2fa/enable" class="max-w-md lg:max-w-xs text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2 me-2 mb-2">{% translate "Enable 2FA" %}</a>
+                {% endif %}
+                </div>
                 <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 me-2 mb-2">{% translate "Save" %}</button>
-                <a href="/account/change-password/" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 me-2 mb-2">{% translate "Change Account Password" %}</a>
-                <a href="/account/change-carwings-password/" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 me-2 mb-2">{% translate "Change CARWINGS Password" %}</a>
             </form>
         </div>
     </div>

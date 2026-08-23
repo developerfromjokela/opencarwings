@@ -3,6 +3,7 @@ import logging
 import django
 from dateutil import parser
 from dateutil.parser import ParserError
+from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils import timezone
 from django.utils.decorators import method_decorator
@@ -25,8 +26,8 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 
 from api.models import TokenMetadata
 from api.serializers import JWTTokenObtainPairSerializer, TokenMetadataUpdateSerializer, TokenMetadataSerializer, \
-    JWTTokenLoginSerializer
-from db.models import Car, AlertHistory, COMMAND_TYPES, CRMDistanceRecord
+    JWTTokenLoginSerializer, PinChangeSerializer, AccountDetailSerializer, APIErrorSerializer
+from db.models import Car, AlertHistory, COMMAND_TYPES, CRMDistanceRecord, SENSITIVE_COMMANDS
 from tculink.coordinators import TCUCoordinatorError, CommandArgumentError
 from tculink.coordinators.stub import send_command_using_provider
 from ui.serializers import CarSerializer, CarSerializerList, AlertHistorySerializer, \
@@ -179,7 +180,7 @@ def update_token_metadata(request):
         except TokenError:
             return Response({"error": "Invalid refresh token"}, status=status.HTTP_400_BAD_REQUEST)
 
-        jti = refresh_token['jti']
+        jti = refresh_token.get('orig_jti', None) or refresh_token["jti"]
 
         # Verify the token belongs to the authenticated user by checking TokenMetadata
         try:
@@ -227,17 +228,17 @@ def sign_out(request):
 
         # Create RefreshToken instance to extract jti
         refresh_token = RefreshToken(refresh_token_str)
-        jti = refresh_token['jti']
+        jti = refresh_token.get('orig_jti', None) or refresh_token["jti"]
 
         # Verify the token belongs to the authenticated user by checking TokenMetadata
         try:
             metadata = TokenMetadata.objects.get(token=jti, user=request.user)
         except ObjectDoesNotExist:
-            return Response({"error": "Token metadata not found or does not belong to user"}, status=status.HTTP_404_NOT_FOUND)
+            pass
 
         # Blacklist the token
         try:
-            outstanding_token = OutstandingToken.objects.get(jti=jti)
+            outstanding_token = OutstandingToken.objects.get(jti=refresh_token["jti"])
             BlacklistedToken.objects.create(token=outstanding_token)
         except ObjectDoesNotExist:
             pass
@@ -328,12 +329,65 @@ def probe_location_hist(request, vin):
     return Response(serializer.data)
 
 @swagger_auto_schema(
+    operation_description="Get basic account details",
+    tags=['account'],
+    method='get',
+    responses={
+        200: AccountDetailSerializer(),
+        401: 'Not authorized',
+    }
+)
+@api_view(['GET'])
+def account_info(request):
+    if not request.user.is_authenticated:
+        return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+    return Response(AccountDetailSerializer(request.user).data, status=status.HTTP_200_OK)
+
+@swagger_auto_schema(
+    operation_description="Change command PIN, requires OTP code if 2FA is enabled, or old pin if disabled",
+    request_body=PinChangeSerializer(),
+    tags=['account'],
+    method='post',
+    responses={
+        200: 'Success',
+        403: 'Invalid OTP Code',
+        401: 'Not authorized',
+        400: 'Bad Request',
+    }
+)
+@api_view(['POST'])
+def change_command_pin(request):
+    if not request.user.is_authenticated:
+        return Response(status=status.HTTP_401_UNAUTHORIZED)
+    serializer = PinChangeSerializer(data=request.data)
+    serializer.fields["otp_code"].required = request.user.is_2fa_enabled()
+    serializer.fields["old_pin"].required = request.user.is_command_pin_set() and not request.user.is_2fa_enabled()
+
+    if not serializer.is_valid():
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    if (request.user.is_command_pin_set() and not request.user.is_2fa_enabled()
+            and not request.user.verify_command_pin(serializer.data['old_pin'])):
+        return Response({'error': _("Invalid PIN, please try again")}, status=status.HTTP_403_FORBIDDEN)
+
+    if request.user.is_2fa_enabled() and not request.user.verify_otp(serializer.data['otp_code']):
+        return Response({'error': _("Invalid OTP, please try again")}, status=status.HTTP_403_FORBIDDEN)
+
+    request.user.set_command_pin(serializer.data['new_pin'])
+    request.user.save()
+
+    return Response({'success': True}, status=status.HTTP_200_OK)
+
+
+@swagger_auto_schema(
     operation_description="Send a command to your vehicle",
     request_body=openapi.Schema(
         type=openapi.TYPE_OBJECT,
         properties={
             'command_type': openapi.Schema(type=openapi.TYPE_NUMBER, title="Command type", enum=COMMAND_TYPES),
-            'command_payload': openapi.Schema(type=openapi.TYPE_OBJECT, default=None)
+            'command_payload': openapi.Schema(type=openapi.TYPE_OBJECT, default=None),
+            'command_pin': openapi.Schema(type=openapi.TYPE_STRING, default=None, title=f"PIN code for command types {SENSITIVE_COMMANDS}"),
         },
         required=['vin', 'command_type']
     ),
@@ -341,6 +395,7 @@ def probe_location_hist(request, vin):
     method='post',
     responses={
         200: CommandResponseSerializer(),
+        403: 'Command PIN not set up or invalid',
         401: 'Not authorized',
         404: 'Car not found',
         400: CommandErrorSerializer(),
@@ -353,10 +408,16 @@ def command_api(request, vin):
     car = get_object_or_404(Car, vin=vin, owner=request.user)
     command_type = request.data.get('command_type')
     command_payload = request.data.get('command_payload', None)
+    command_pin = request.data.get('command_pin', None)
 
     try:
         command_type = int(command_type)
         if command_type in dict(COMMAND_TYPES):
+            if command_type in SENSITIVE_COMMANDS:
+                if not request.user.is_command_pin_set() and hasattr(django.conf.settings, 'PIN_ENFORCE') and django.conf.settings.PIN_ENFORCE:
+                    return Response({'error': _("Command PIN is not set up, please set up and try again")}, status=status.HTTP_403_FORBIDDEN)
+                if request.user.is_command_pin_set() and (command_pin is None or not request.user.verify_command_pin(command_pin)):
+                    return Response({'error': _("Invalid PIN, please try again")}, status=status.HTTP_403_FORBIDDEN)
             try:
                 car = send_command_using_provider(command_type, command_payload, car)
             except CommandArgumentError as e:
@@ -379,9 +440,10 @@ def command_api(request, vin):
 
 
 class CustomTokenObtainPairView(TokenObtainPairView):
-
+    serializer_class = JWTTokenObtainPairSerializer
     @swagger_auto_schema(tags=['token'], request_body=JWTTokenObtainPairSerializer(), responses={
-        200: JWTTokenLoginSerializer()
+        200: JWTTokenLoginSerializer(),
+        401: APIErrorSerializer()
     })
     def post(self, request, *args, **kwargs):
         # Call the parent class's post method to get the token response
@@ -394,7 +456,7 @@ class CustomTokenObtainPairView(TokenObtainPairView):
 
             # Create RefreshToken instance to extract jti
             refresh_token = RefreshToken(refresh_token_str)
-            jti = refresh_token['jti']  # Extract the jti from the token
+            jti = refresh_token.get('orig_jti', None) or refresh_token["jti"]
 
             # Get user from validated serializer
             serializer = self.get_serializer(data=request.data)

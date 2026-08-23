@@ -916,7 +916,7 @@ def get_eco_tree_channel(xml_data, returning_xml, channel_id, car, page):
         month = formats.date_format(time_car_now, format='F')
         day_word = get_word_of_month_i18n(time_car_now.day)
 
-        tip_txt = _('By the {day_word} of {month}, electric cars with Open Car Wings world wide saved a total of {trees} <phoneme alphabet="x-SVOX-sampa_en-GB" ph="\'i:-k@@U">eco</phoneme>trees. And {tonnes} tonnes of carbon dioxide has been reduced.'),
+        tip_txt = _('By the {day_word} of {month}, electric cars with Open Car Wings world wide saved a total of {trees} <phoneme alphabet="x-SVOX-sampa_en-GB" ph="\'i:-k@@U">eco</phoneme>trees. And {tonnes} tonnes of carbon dioxide has been reduced.')
         if car.tcu_type != "continental2012":
             tip_txt = re.sub(r'</?phoneme[^>]*>', ' ', tip_txt)
         tip_txt = format_lazy(

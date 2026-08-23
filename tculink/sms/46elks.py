@@ -19,7 +19,7 @@ class Provider46elks(BaseSMSProvider):
         if "msn" not in configuration or "apikey_user" not in configuration or "apikey_password" not in configuration:
             raise Exception("Configuration is incomplete")
 
-        msn = re.sub('\D', '', configuration['msn'])
+        msn = re.sub('\\D', '', configuration['msn'])
 
         request = requests.post('https://api.46elks.com/a1/sms',
                 auth=(configuration['apikey_user'], configuration['apikey_password']), timeout=10,

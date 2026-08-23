@@ -1,0 +1,19 @@
+{% extends 'ui/signin_base.html'%}
+{% load i18n %}
+{% block title %} {% translate "Enter 2FA Code" %} {% endblock %}
+
+
+{% block signin_content %}
+<form method="POST" id="otp-form">
+    {% csrf_token %}
+
+    <div class="mb-4">
+        <label for="recovery" class="block text-gray-700 dark:text-gray-300 mb-2">{% translate "Recovery Code" %}</label>
+        <input type="text" name="recovery" id="recovery" class="w-full p-2 border dark:bg-gray-800 dark:border-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+    </div>
+
+    <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600">{% translate "Reset 2FA" %}</button>
+</form>
+
+<p class="text-center text-gray-600 mt-4"><a href="{% url 'signin_2fa' %}" class="text-blue-500 hover:underline">{% translate "Back" %}</a></p>
+{% endblock %}

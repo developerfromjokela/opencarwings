@@ -1,0 +1,155 @@
+{% extends 'ui/base.html'%}
+{% load i18n %}
+
+{% block title %}
+{% translate "Confirm It's You" %}
+{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto py-10 px-4 flex align-center justify-center items-center">
+    <div class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-md w-full max-w-md mt-20">
+        <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-2 text-center">{% translate "Confirm It's You" %}</h2>
+        <p class="text-center text-gray-500 dark:text-gray-300 mb-6 text-sm">{% translate "For your security, please re-enter your 2FA code to continue." %}</p>
+
+        {% if messages %}
+            <div class="mb-4">
+                {% for message in messages %}
+                    <div class="text-center {% if message.tags == 'error' %}text-red-600{% else %}text-green-600{% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <form method="POST" id="otp-form">
+            {% csrf_token %}
+            <input type="hidden" name="reverify_2fa" value="1">
+            {% if next_path %}<input type="hidden" name="next_path" value="{{ next_path }}">{% endif %}
+
+            <div class="mb-6">
+                <label class="block text-gray-700 dark:text-gray-300 mb-3 text-center">{% translate "Enter the 6-digit code" %}</label>
+
+                <div class="flex justify-center gap-2" id="otp-boxes">
+                    {% for i in "123456" %}
+                    <input
+                        type="text"
+                        inputmode="numeric"
+                        pattern="[0-9]*"
+                        maxlength="1"
+                        autocomplete="{% if forloop.first %}one-time-code{% else %}off{% endif %}"
+                        class="otp-box w-12 h-14 text-center text-xl font-semibold border dark:bg-gray-800 dark:border-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                    {% endfor %}
+                </div>
+
+                <input type="hidden" name="otp" id="otp-hidden" required>
+            </div>
+
+            <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600">{% translate "Verify" %}</button>
+        </form>
+
+        <form method="POST" id="recovery-form" class="hidden">
+            {% csrf_token %}
+            <input type="hidden" name="reverify_2fa" value="1">
+            {% if next_path %}<input type="hidden" name="next_path" value="{{ next_path }}">{% endif %}
+
+            <div class="mb-6">
+                <label for="recovery" class="block text-gray-700 dark:text-gray-300 mb-2">{% translate "Recovery code" %}</label>
+                <input
+                    type="text"
+                    name="recovery"
+                    id="recovery"
+                    autocomplete="off"
+                    class="w-full p-2 border dark:bg-gray-800 dark:border-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="{% blocktranslate %}Enter recovery code{% endblocktranslate %}"
+                >
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">{% translate "Using a recovery code will reset your 2FA. You'll need to set it up again afterward." %}</p>
+            </div>
+
+            <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600">{% translate "Verify" %}</button>
+        </form>
+
+        <p class="text-center mt-4">
+            <a href="#" id="toggle-recovery" class="text-blue-500 hover:underline text-sm">{% translate "Use a recovery code instead" %}</a>
+        </p>
+    </div>
+</div>
+
+<script>
+    (function () {
+        const boxes = Array.from(document.querySelectorAll('.otp-box'));
+        const hiddenInput = document.getElementById('otp-hidden');
+        const form = document.getElementById('otp-form');
+        const recoveryForm = document.getElementById('recovery-form');
+        const recoveryInput = document.getElementById('recovery');
+        const toggleLink = document.getElementById('toggle-recovery');
+
+        let showingRecovery = false;
+        toggleLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            showingRecovery = !showingRecovery;
+            form.classList.toggle('hidden', showingRecovery);
+            recoveryForm.classList.toggle('hidden', !showingRecovery);
+            toggleLink.textContent = showingRecovery
+                ? '{% translate "Use your 2FA code instead" %}'
+                : '{% translate "Use a recovery code instead" %}';
+            if (showingRecovery) {
+                recoveryInput.focus();
+            } else {
+                boxes[0].focus();
+            }
+        });
+
+        function updateHiddenValue() {
+            hiddenInput.value = boxes.map(b => b.value).join('');
+        }
+
+        boxes.forEach((box, index) => {
+            box.addEventListener('input', () => {
+                box.value = box.value.replace(/[^0-9]/g, '');
+                if (box.value && index < boxes.length - 1) {
+                    boxes[index + 1].focus();
+                }
+                updateHiddenValue();
+            });
+
+            box.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && !box.value && index > 0) {
+                    boxes[index - 1].focus();
+                }
+                if (e.key === 'ArrowLeft' && index > 0) {
+                    boxes[index - 1].focus();
+                }
+                if (e.key === 'ArrowRight' && index < boxes.length - 1) {
+                    boxes[index + 1].focus();
+                }
+            });
+
+            box.addEventListener('paste', (e) => {
+                e.preventDefault();
+                const pasted = (e.clipboardData || window.clipboardData)
+                    .getData('text')
+                    .replace(/[^0-9]/g, '')
+                    .slice(0, boxes.length);
+
+                pasted.split('').forEach((char, i) => {
+                    if (boxes[i]) boxes[i].value = char;
+                });
+
+                updateHiddenValue();
+                boxes[Math.min(pasted.length, boxes.length - 1)].focus();
+            });
+        });
+
+        form.addEventListener('submit', (e) => {
+            updateHiddenValue();
+            if (hiddenInput.value.length !== boxes.length) {
+                e.preventDefault();
+                boxes[0].focus();
+            }
+        });
+
+        if (boxes[0]) boxes[0].focus();
+    })();
+</script>
+{% endblock %}

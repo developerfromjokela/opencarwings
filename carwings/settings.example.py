@@ -248,3 +248,6 @@ FCM_PROJECT_ID = ""
 GOOGLE_API_KEY = ""
 OPENCHARGEMAP_API_KEY = ""
 ITERNIO_API_KEY = ""
+
+# Enable or disable Command PIN Enforcement
+PIN_ENFORCE = os.environ.get("PIN_ENFORCE", 'false') == 'true'

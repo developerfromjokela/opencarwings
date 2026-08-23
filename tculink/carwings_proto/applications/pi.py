@@ -126,7 +126,20 @@ def handle_pi(xml_data, files):
                 logger.info("0x581 Incoming Data")
                 filename_length = int(file_content[6])
                 filename_offset = 7+filename_length
-                filename = file_content[7:filename_offset].decode('utf-8')
+                # cath the issue and save file for diagnosis
+                try:
+                    filename = file_content[7:filename_offset].decode('utf-8')
+                except UnicodeDecodeError as e:
+                    logger.exception(e)
+                    if DEBUG_ENABLED:
+                        file_path = os.path.join(log_dir, f"FILENAME-{random.randrange(111111, 999999, 6)}")
+                        if os.path.exists(file_path):
+                            file_path = os.path.join(log_dir,
+                                                     f"dupl-{random.randrange(111111, 999999, 6)}-FILENAME")
+                        with open(file_path, 'wb') as f:
+                            f.write(file_content)
+                    raise e
+
                 if len(filename) > 128:
                     filename = filename[:128]
                 logger.info("0x581 Filename LEN: %d", filename_length)

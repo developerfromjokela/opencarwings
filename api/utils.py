@@ -8,3 +8,6 @@ class SchemaGenerator(OpenAPISchemaGenerator):
     schema = super(SchemaGenerator, self).get_schema(request, public)
     schema.basePath = os.path.join(schema.basePath, 'api/')
     return schema
+
+class OTPNotEnabledError(Exception):
+  pass

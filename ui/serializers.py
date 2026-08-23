@@ -1,9 +1,10 @@
 import pytz
+from django.conf import settings
 from drf_yasg.utils import swagger_serializer_method
 from rest_framework import serializers
 
 from db.models import Car, TCUConfiguration, LocationInfo, EVInfo, AlertHistory, SendToCarLocation, RoutePlan, \
-    CRMDistanceRecord, CommandTimerSetting, VehicleHealthInfo
+    CRMDistanceRecord, CommandTimerSetting, VehicleHealthInfo, SENSITIVE_COMMANDS
 from tculink.carwings_proto.autodj import ICONS
 from tculink.carwings_proto.autodj.channels import get_info_channel_data
 from tculink.coordinators import get_supported_commands
@@ -109,7 +110,7 @@ class CarSerializer(serializers.ModelSerializer):
     tcu_configuration = TCUConfigurationSerializer()
     location = LocationInfoSerializer()
     ev_info = EVInfoSerializer()
-    veh_health = VehicleHealthInfoSerializer()
+    veh_health = VehicleHealthInfoSerializer(required=False, read_only=True, allow_null=True)
     send_to_car_location_all = SendToCarLocationSerializer(many=True, source='send_to_car_location')
     send_to_car_location = serializers.SerializerMethodField()
     route_plans = RoutePlanSerializer(many=True)
@@ -118,12 +119,15 @@ class CarSerializer(serializers.ModelSerializer):
     timer_commands = CommandTimerSettingSerializer(many=True)
     command_request_time = serializers.DateTimeField(read_only=True, default_timezone=pytz.utc)
     last_connection = serializers.DateTimeField(read_only=True, default_timezone=pytz.utc)
-    supported_commands = serializers.ListField(child=serializers.IntegerField(), required=False)
-
+    supported_commands = serializers.ListField(child=serializers.IntegerField(), required=False, read_only=True)
+    sensitive_commands = serializers.ListField(child=serializers.IntegerField(), required=False, read_only=True)
+    command_pin_enforced = serializers.BooleanField(required=False, read_only=True)
 
     def to_representation(self, instance):
         data = super().to_representation(instance)
         data['supported_commands'] = get_supported_commands(instance.tcu_type)
+        data['sensitive_commands'] = SENSITIVE_COMMANDS
+        data['command_pin_enforced'] = hasattr(settings, 'PIN_ENFORCE') and settings.PIN_ENFORCE
         return data
 
     @swagger_serializer_method(serializer_or_field=SendToCarLocationSerializer(read_only=True, allow_null=True, many=False))

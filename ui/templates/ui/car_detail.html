@@ -824,15 +824,22 @@
         </div>
     </div>
 
+    {% include "ui/snippets/security.html" %}
+
     <!-- Scripts -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet-src.js"></script>
     {{ car.sms_config|json_script:"currentSmsConfig" }}
+    {{ sensitive_commands|json_script:"sensitiveCommands" }}
 
     {{ channels|json_script:"defchannels" }}
 
     <script>
 
         const imperial = {{ imperial }};
+        const has2fa = {{ has_2fa }};
+        const sensitiveCommands = JSON.parse(document.getElementById('sensitiveCommands').textContent);
+        let hasPin = {{ has_pin }};
+        const pinEnforce = {{ pin_enforce }};
 
         const staticRes = "{% get_static_prefix %}";
 
@@ -1412,14 +1419,24 @@
                 .catch(error => console.error('Error fetching alerts:', error));
         }
 
-        function sendCommand(commandType, payload = null) {
+        async function sendCommand(commandType, payload = null) {
+            let body = { command_type: commandType, command_payload: payload };
+            if (sensitiveCommands.includes(parseInt(commandType))) {
+                if (hasPin) {
+                    let pin = await requestPinPrompt();
+                    body.command_pin = pin.toString();
+                } else if (pinEnforce) {
+                    let pin = await openSetPinPrompt();
+                    body.command_pin = pin.toString();
+                }
+            }
             fetch(`/api/command/${vin}/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'X-CSRFToken': '{{ csrf_token }}'
                 },
-                body: JSON.stringify({ command_type: commandType, command_payload: payload })
+                body: JSON.stringify(body)
             })
             .then(response => response.json())
             .then(data => {

@@ -1,7 +1,10 @@
+import hashlib
 import re
 from secrets import token_hex
 
+import pyotp
 from django.conf import settings
+from django.contrib.auth.hashers import make_password, check_password
 from django.contrib.auth.models import AbstractUser
 from django.core import validators
 from django.db import models
@@ -11,6 +14,7 @@ from rest_framework.authtoken.models import Token
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
 
+from api.utils import OTPNotEnabledError
 from tculink.coordinators import COORDINATORS
 
 ALERT_TYPES = (
@@ -63,6 +67,8 @@ COMMAND_TYPES = (
     (14, _('Remote Stop')),
     (15, _("Configuration Request"))
 )
+
+SENSITIVE_COMMANDS = [7,8,9,10,11,12,13,14]
 
 COMMAND_RESULTS = (
     (-1, _('Waiting')),
@@ -183,6 +189,37 @@ class User(AbstractUser):
     )
     email_notifications = models.BooleanField(default=True)
     units_imperial = models.BooleanField(default=False)
+    otp_key = models.CharField(max_length=40, blank=True, null=True, default=None)
+    otp_recovery = models.CharField(max_length=32, blank=True, null=True, default=None)
+    cmd_pin_hash = models.TextField(blank=True, null=True, default=None)
+
+    def is_2fa_enabled(self):
+        return self.otp_key is not None and len(self.otp_key) > 0
+
+    def verify_otp(self, code, no_exception=False):
+        if not self.is_2fa_enabled():
+            if no_exception:
+                return True
+            raise OTPNotEnabledError()
+        totp = pyotp.TOTP(self.otp_key)
+        return totp.verify(code)
+
+    def set_command_pin(self, code: str):
+        self.cmd_pin_hash = make_password(code)
+
+    def is_command_pin_set(self) -> bool:
+        return self.cmd_pin_hash is not None and len(self.cmd_pin_hash) > 0
+
+    def get_is_command_pin_set(self) -> bool:
+        return self.is_command_pin_set()
+
+    def get_is_2fa_enabled(self) -> bool:
+        return self.is_2fa_enabled()
+
+    def verify_command_pin(self, code: str) -> bool:
+        if len(code) != 4:
+            return False
+        return check_password(code, self.cmd_pin_hash)
 
 
 class TCUConfiguration(models.Model):

@@ -1,12 +1,18 @@
+import base64
+import io
 import json
 import re
+import time
 from http.cookiejar import CookiePolicy
 from urllib.parse import urlparse, parse_qs, unquote
 
 import django.conf
+import pyotp
+import qrcode
 import requests
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.views import PasswordChangeView, redirect_to_login
 from django.contrib.auth.views import PasswordResetView
@@ -16,29 +22,32 @@ from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render, redirect
 from django.templatetags.static import static
-from django.urls import reverse, resolve, NoReverseMatch
+from django.urls import NoReverseMatch
 from django.utils import timezone
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.utils.translation import gettext_lazy as _
+from django.views.decorators.csrf import csrf_exempt
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
+import db.models
 from db.models import Car, COMMAND_TYPES, AlertHistory, EVInfo, LocationInfo, TCUConfiguration, PERIODIC_REFRESH, \
     PERIODIC_REFRESH_ACTIVE, CAR_COLOR, CRMLatest, CRMLifetime, CRMTripRecord, CRMMonthlyRecord, CRMChargeHistoryRecord, \
     CRMChargeRecord, CRMABSHistoryRecord, CRMExcessiveIdlingRecord, CRMExcessiveAirconRecord, CRMTroubleRecord, \
-    CRMMSNRecord, DOTFile, ProbeConfig, CRMDistanceRecord, CarTransferRequest
+    CRMMSNRecord, DOTFile, ProbeConfig, CRMDistanceRecord, CarTransferRequest, User
 from tculink.carwings_proto.autodj import ICONS
 from tculink.carwings_proto.autodj.channels import get_info_channel_data
 from tculink.carwings_proto.probe_config import PROBE_CONFIGS, PROBE_CONFIG_INFO
 from tculink.coordinators import get_required_sms_types, get_supported_commands
 from tculink.coordinators.ficosa2016 import Ficosa2016
-from tculink.gdc_proto.ficosa.utils import CONFIGURATION_MAP, get_config_map_translated
+from tculink.gdc_proto.ficosa.utils import get_config_map_translated
 from tculink.utils.password_hash import check_password_validity, password_hash
+from .decorators import require_recent_2fa, block_apikey, block_apikey_api
 from .forms import Step2Form, Step3Form, SettingsForm, ChangeCarwingsPasswordForm, AccountForm, SignUpForm, \
-    ProbeConfigForm, Step0Form
+    ProbeConfigForm, Step0Form, ChangeCommandPinForm
 from .serializers import MapLinkResolverResponseSerializer, MapLinkResolverInputSerializer
 
 SETUP_STEPS = [
@@ -74,12 +83,19 @@ for provider_id, provider in django.conf.settings.SMS_PROVIDERS.items():
         'link': link,
     })
 
-
 class ChangePasswordView(PasswordChangeView):
     form_class = PasswordChangeForm
     success_url = '/account'
     template_name = 'ui/change_password.html'
 
+    def dispatch(self, request, *args, **kwargs):
+
+        # doing this hack, to add the decorators :)
+        @require_recent_2fa
+        @block_apikey
+        def custom__dispatch(request, *args, **kwargs):
+            return super(ChangePasswordView, self).dispatch(request, *args, **kwargs)
+        return custom__dispatch(request, *args, **kwargs)
 
 class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
     template_name = 'ui/reset_password.html'
@@ -91,10 +107,11 @@ class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
                       "please make sure you've entered the address you registered with, and check your spam folder."
     success_url = '/signin'
 
-
+@login_required(login_url='signin')
 def account(request):
-    if not request.user.is_authenticated:
-        return redirect_to_login(reverse('account'), 'signin')
+    if not request.user.is_2fa_enabled() and not (hasattr(django.conf.settings, 'HIDE_2FA_NOTICE') and django.conf.settings.HIDE_2FA_NOTICE):
+        messages.warning(request, _("It is recommended to enable 2FA for enhanced security. Please do so by clicking your username, on top right corner."))
+
     account_form = AccountForm()
     account_form.initial['email'] = request.user.email
     account_form.initial['notifications'] = request.user.email_notifications
@@ -123,12 +140,11 @@ def account(request):
         status.HTTP_200_OK: "Reset successfully!",
     },
 )
+
 @api_view(['POST'])
+@login_required(login_url='signin')
+@block_apikey_api
 def reset_apikey(request):
-    if not request.user.is_authenticated:
-        return redirect_to_login('reset_apikey', 'login')
-    if isinstance(request.auth, Token):
-        return Response({'status': False, 'cause': 'Cannot reset API token with another API token!'}, status=401)
     api_key, _ = Token.objects.get_or_create(user=request.user)
     api_key.delete()
     return Response({"status": True}, status=status.HTTP_200_OK)
@@ -394,10 +410,10 @@ def resolve_maps_link(request):
                             'address': map_url_query.get('address', [None])[0]
                         }
 
-        if "google.com" in parsed_map_url.hostname and "data=" in parsed_map_url.path:
+        if parsed_map_url.hostname.endswith("google.com") and "data=" in parsed_map_url.path:
             location = parse_google_url(map_url)
 
-        if "goo.gl" in parsed_map_url.hostname:
+        if parsed_map_url.hostname.endswith("goo.gl"):
             resp = requests.get(map_url, allow_redirects=False, timeout=3, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'})
             redir_location = resp.headers.get('Location', '')
             if "google.com" in redir_location and 'data=' in redir_location:
@@ -417,10 +433,10 @@ def resolve_maps_link(request):
 
     return Response({'status': True, "location": location}, status=status.HTTP_200_OK)
 
-
+@login_required(login_url='signin')
+@require_recent_2fa
+@block_apikey
 def change_carwings_password(request):
-    if not request.user.is_authenticated:
-        return redirect_to_login('change_carwings_password', 'signin')
     if request.method == 'POST':
         form = ChangeCarwingsPasswordForm(request.POST)
         if form.is_valid():
@@ -433,6 +449,20 @@ def change_carwings_password(request):
                 messages.success(request, msg)
                 return redirect('/account')
     return render(request, 'ui/change_carwings_password.html', {'user': request.user, 'form': ChangeCarwingsPasswordForm()})
+
+@login_required(login_url='signin')
+@require_recent_2fa
+@block_apikey
+def change_command_pin(request):
+    form = ChangeCommandPinForm()
+    if request.method == 'POST':
+        form = ChangeCommandPinForm(request.POST)
+        if form.is_valid():
+            request.user.set_command_pin(form.cleaned_data['new_pin'])
+            request.user.save()
+            messages.success(request, _("Command Pin successfully changed"))
+            return redirect('/account')
+    return render(request, 'ui/change_command_pin.html', {'user': request.user, 'form': form})
 
 def car_list(request):
     if not request.user.is_authenticated:
@@ -460,17 +490,18 @@ def car_list(request):
         return render(request, 'ui/landing.html', {
             'slideshow_images': json.dumps(slideshow_images)
         })
+
+    if not request.user.is_2fa_enabled() and not (hasattr(django.conf.settings, 'HIDE_2FA_NOTICE') and django.conf.settings.HIDE_2FA_NOTICE):
+        messages.warning(request, _("It is recommended to enable 2FA for enhanced security. Please do so by clicking your username, on top right corner."))
+
     cars = Car.objects.filter(owner=request.user)
     return render(request, 'ui/car_list.html', {'cars': cars})
 
 def vflash_editor(request):
     return render(request, 'ui/vflash_editor.html')
 
+@login_required(login_url='signin')
 def car_transfer(request, code):
-    if not request.user.is_authenticated:
-        return redirect_to_login(reverse('car_transfer', args=(code,)), 'signin')
-
-
     transfer = CarTransferRequest.objects.filter(
         Q(expiration_time__isnull=True) | Q(expiration_time__gt=timezone.now()),
         transfer_code=code,
@@ -495,9 +526,8 @@ def car_transfer(request, code):
 
     return render(request, 'ui/car_transfer.html', context)
 
+@login_required(login_url='signin')
 def car_detail(request, vin):
-    if not request.user.is_authenticated:
-        return redirect_to_login(reverse('car_detail', args=(vin,)), 'signin')
     car = get_object_or_404(Car, vin=vin, owner=request.user)
     supported_commands = get_supported_commands(car.tcu_type)
     FILTERED_COMMANDTYPES = [x for x in COMMAND_TYPES if x[0] in supported_commands]
@@ -530,9 +560,9 @@ def car_detail(request, vin):
                 form = SettingsForm(request.POST)
                 # check whether it's valid:
                 if form.is_valid():
-                    car.iccid = re.sub('\D', '', form.cleaned_data['sim_id'])
-                    car.tcu_model = re.sub('\D', '', form.cleaned_data['tcu_id'])
-                    car.tcu_serial = re.sub('\D', '', form.cleaned_data['unit_id'])
+                    car.iccid = re.sub('\\D', '', form.cleaned_data['sim_id'])
+                    car.tcu_model = re.sub('\\D', '', form.cleaned_data['tcu_id'])
+                    car.tcu_serial = re.sub('\\D', '', form.cleaned_data['unit_id'])
                     car.nickname = form.cleaned_data['nickname']
                     car.color = form.cleaned_data['color']
                     car.periodic_refresh = form.cleaned_data['periodic_refresh']
@@ -583,13 +613,13 @@ def car_detail(request, vin):
         'channels': channel_map,
         'chan_icon_choices': list(ICONS.values()),
         'tcu_config_template': tcu_config_template,
-        'imperial': 'true' if request.user.units_imperial else 'false'
+        'imperial': 'true' if request.user.units_imperial else 'false',
+        'has_2fa': 'true' if request.user.is_2fa_enabled() else 'false',
+        'has_pin': 'true' if request.user.is_command_pin_set() else 'false',
+        'sensitive_commands': db.models.SENSITIVE_COMMANDS,
+        'pin_enforce': 'true' if (hasattr(django.conf.settings, 'PIN_ENFORCE') and django.conf.settings.PIN_ENFORCE) else 'false'
     }
     return render(request, 'ui/car_detail.html', context)
-
-# Landing Page View
-def index(request):
-    return render(request, 'index.html')
 
 # Signup View
 def signup(request):
@@ -617,6 +647,18 @@ def signup(request):
         form = SignUpForm()
     return render(request, 'ui/signup.html', {'form': form, 'next': f'?next={next_url}' if next_url else ''})
 
+def _sign_in_user(request, user, next_url):
+    login(request, user)
+    if request.user.timezone == "UTC":
+        messages.warning(request,
+                         _('Your current timezone is UTC. Please set your local timezone in account settings.'))
+    if next_url and url_has_allowed_host_and_scheme(next_url, []):
+        try:
+            return redirect(next_url)
+        except NoReverseMatch:
+            ...
+    return redirect('/')
+
 # Signin View
 def signin(request):
     next_url = request.GET.get('next', '/') or '/'
@@ -629,22 +671,146 @@ def signin(request):
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
         if user is not None:
-            login(request, user)
-            if request.user.timezone == "UTC":
-                messages.warning(request, _('Your current timezone is UTC. Please set your local timezone in account settings.'))
-            if next_url and url_has_allowed_host_and_scheme(next_url, []):
-                try:
-                    return redirect(next_url)
-                except NoReverseMatch:
-                    ...
-            return redirect('/')
+            if user.is_2fa_enabled():
+                request.session['next_url'] = next_url
+                request.session['pending_2fa'] = user.pk
+                return redirect('signin_2fa')
+            return _sign_in_user(request, user, next_url)
         else:
             messages.error(request, _('Invalid username or password.'))
     return render(request, 'ui/signin.html', {'next': f'?next={next_url}' if next_url else ''})
 
+# Signin 2FA View
+def signin_2fa(request):
+    if request.user.is_authenticated:
+        if 'next_url' in request.session and url_has_allowed_host_and_scheme(request.session['next_url'], []):
+            next_url = request.session['next_url']
+            del request.session['next_url']
+            return redirect(next_url)
+        return redirect('/')
+    if 'pending_2fa' not in request.session:
+        return redirect('signin')
+    if request.method == 'POST':
+        otp_code = request.POST.get('otp')
+        try:
+            user_2fa = User.objects.get(pk=request.session['pending_2fa'])
+            if not user_2fa.is_2fa_enabled():
+                messages.error(request, _("2FA Authentication is not enabled!"))
+                return redirect('signin')
+
+            if user_2fa.verify_otp(otp_code):
+                request.session['last_2fa'] = time.time()
+                return _sign_in_user(request, user_2fa, request.session.get('next_url', '/') or '/')
+
+            messages.error(request, _("Code is not valid!"))
+        except User.DoesNotExist:
+            return redirect('signin')
+    return render(request, 'ui/signin_otp.html', {'pending_2fa': True})
+
+def signin_2fa_recovery(request):
+    if request.user.is_authenticated:
+        if 'next_url' in request.session and url_has_allowed_host_and_scheme(request.session['next_url'], []):
+            next_url = request.session['next_url']
+            del request.session['next_url']
+            return redirect(next_url)
+        return redirect('/')
+    if 'pending_2fa' not in request.session:
+        return redirect('signin')
+    if request.method == 'POST':
+        recovery_code = request.POST.get('recovery')
+        try:
+            user_2fa = User.objects.get(pk=request.session['pending_2fa'])
+            if not user_2fa.is_2fa_enabled():
+                messages.error(request, _("2FA Authentication is not enabled!"))
+                return redirect('signin')
+            if recovery_code is not None and len(recovery_code) > 0 and recovery_code.strip().lower() == user_2fa.otp_recovery:
+                user_2fa.otp_recovery = None
+                user_2fa.otp_key = None
+                user_2fa.save()
+                messages.warning(request, _("2FA was reset, please setup again in account settings."))
+                return _sign_in_user(request, user_2fa, request.session.get('next_url', '/') or '/')
+            messages.error(request, _("Code is not valid!"))
+        except User.DoesNotExist:
+            return redirect('signin')
+    return render(request, 'ui/signin_otp_re.html', {'pending_2fa': True})
+
+@login_required
+@block_apikey
+def enable_otp(request):
+    if request.user.is_2fa_enabled():
+        messages.info(request, _("2FA is already enabled."))
+        return redirect('account')
+
+    pending_key = request.session.get('pending_otp_key')
+    if not pending_key or 'new' in request.GET:
+        pending_key = pyotp.random_base32()
+        request.session['pending_otp_key'] = pending_key
+        if 'new' in request.GET:
+            return redirect('enable_otp')
+
+    if request.method == 'POST':
+        otp_code = request.POST.get('otp')
+        totp = pyotp.TOTP(pending_key)
+
+        if otp_code and totp.verify(otp_code):
+            recovery_code = db.models.generate_transfer_code()
+
+            del request.session['pending_otp_key']
+
+            request.user.otp_key = pending_key
+            request.user.otp_recovery = recovery_code
+            request.user.save(update_fields=['otp_key', 'otp_recovery'])
+
+            return render(request, 'ui/enroll_2fa_re.html', {
+                'recovery_code': recovery_code,
+            })
+
+        messages.error(request, _("Code is not valid!"))
+
+    totp = pyotp.TOTP(pending_key)
+    totp_args = {"name": request.user.email, 'issuer_name': 'OpenCARWINGS | '+request.get_host()}
+    image = request.build_absolute_uri(static('favicon.png'))
+    # Non-HTTPS image URLs not allowed
+    if image.startswith('https:'):
+        totp_args['image'] = image
+    provisioning_uri = totp.provisioning_uri(**totp_args)
+
+    qr_img = qrcode.make(provisioning_uri)
+    buffer = io.BytesIO()
+    qr_img.save(buffer, format='PNG')
+    qr_base64 = base64.b64encode(buffer.getvalue()).decode('utf-8')
+
+    return render(request, 'ui/enroll_2fa.html', {
+        'qr_base64': qr_base64,
+        'secret_key': pending_key,
+    })
+
+@login_required
+@require_recent_2fa
+@block_apikey
+def disable_otp(request):
+    request.user.otp_recovery = None
+    request.user.otp_key = None
+    request.user.save()
+    messages.success(request, _("2FA was disabled successfully!"))
+    return redirect('account')
+
+@login_required
+@require_recent_2fa
+@block_apikey
+def disable_command_pin(request):
+    if hasattr(django.conf.settings, 'PIN_ENFORCE') and django.conf.settings.PIN_ENFORCE:
+        messages.error(request, _("Command PIN is strictly enforced on this server, it cannot be disabled."))
+        return redirect('account')
+    request.user.cmd_pin_hash = None
+    request.user.save()
+    messages.success(request, _("Command PIN was disabled successfully!"))
+    return redirect('account')
+
 # Logout View (Optional)
 def signout(request):
     logout(request)
+    request.session = None
     return redirect('/')
 
 
@@ -677,9 +843,8 @@ CAR_MODELS = [
      "year_end": 2022},
 ]
 
+@login_required(login_url='signin')
 def setup_step0(request):
-    if not request.user.is_authenticated:
-        return redirect('/')
     if 'step' not in request.session:
         request.session['step'] = {"current_step": 0}
     elif request.session['step']['current_step'] != 0:
@@ -695,10 +860,8 @@ def setup_step0(request):
                 return redirect('/setup/step1')
     return render(request, 'ui/setup/step0.html', {'steps': SETUP_STEPS, "current_step": request.session['step']['current_step'], 'car_models': CAR_MODELS})
 
-
+@login_required(login_url='signin')
 def setup_step1(request):
-    if not request.user.is_authenticated:
-        return redirect('/')
     if 'step' not in request.session:
         return redirect('/setup/step0')
     elif request.session['step']['current_step'] != 1:
@@ -709,9 +872,8 @@ def setup_step1(request):
             return redirect('/setup/step2')
     return render(request, 'ui/setup/step1.html', {'steps': SETUP_STEPS, "current_step": request.session['step']['current_step'], 'tcu_type': request.session['type']})
 
+@login_required(login_url='signin')
 def setup_step2(request):
-    if not request.user.is_authenticated:
-        return redirect('/signin')
     if 'step' not in request.session:
         return redirect('/setup/step0')
     elif request.session['step']['current_step'] != 2:
@@ -731,9 +893,9 @@ def setup_step2(request):
                 if car_free:
                     request.session['step'] = {
                         "current_step": 3,
-                        "tcu_id": re.sub('\D', '', form.cleaned_data['tcu_id']),
-                        "unit_id": re.sub('\D', '', form.cleaned_data['unit_id']),
-                        "sim_id": re.sub('\D', '', form.cleaned_data['sim_id']),
+                        "tcu_id": re.sub('\\D', '', form.cleaned_data['tcu_id']),
+                        "unit_id": re.sub('\\D', '', form.cleaned_data['unit_id']),
+                        "sim_id": re.sub('\\D', '', form.cleaned_data['sim_id']),
                         "vin": form.cleaned_data['vin'].strip().upper(),
                     }
                     return redirect('/setup/step3')
@@ -741,9 +903,8 @@ def setup_step2(request):
                 messages.error(request, _('Please fill the form correctly'))
     return render(request, 'ui/setup/step2.html', {'steps': SETUP_STEPS, "current_step": request.session['step']['current_step']})
 
+@login_required(login_url='signin')
 def setup_step3(request):
-    if not request.user.is_authenticated:
-        return redirect('/signin')
     if 'step' not in request.session:
         return redirect('/setup/step0')
     elif request.session['step']['current_step'] != 3:
@@ -762,10 +923,8 @@ def setup_step3(request):
                 messages.error(request, _('Please fill the form correctly'))
     return render(request, 'ui/setup/step3.html', {'steps': SETUP_STEPS, "current_step": request.session['step']['current_step']})
 
-
+@login_required(login_url='signin')
 def setup_step4(request):
-    if not request.user.is_authenticated:
-        return redirect('/signin')
     if 'step' not in request.session:
         return redirect('/setup/step0')
     elif request.session['step']['current_step'] != 4:
@@ -802,9 +961,8 @@ def setup_step4(request):
 
     return render(request, 'ui/setup/step4.html', {'steps': SETUP_STEPS, 'providers': filtered_providers, "current_step": request.session['step']['current_step']})
 
+@login_required(login_url='signin')
 def setup_step5(request):
-    if not request.user.is_authenticated:
-        return redirect('/signin')
     if 'step' not in request.session:
         return redirect('/setup/step0')
     elif request.session['step']['current_step'] != 5:
@@ -838,10 +996,8 @@ def setup_step5(request):
 
 
 ## probe data viewer
-
+@login_required(login_url='signin')
 def probeviewer_home(request, vin):
-    if not request.user.is_authenticated:
-        return redirect_to_login(reverse('probeviewer_home', args=(vin,)), 'signin')
     car = get_object_or_404(Car, vin=vin, owner=request.user)
 
     try:
@@ -955,10 +1111,8 @@ def probeviewer_home(request, vin):
                    "idl_act": idling_page != 0, "abs_act": abs_page != 0, "charge_act": charge_page != 0, "chargehist_act": chargehist_page != 0,
                    "months": months_paginator, "trips_act": trips_page != 0, "months_act": (months_page != 0 and trips_page == 0), "dot_act":  dot_page != 0})
 
-
+@login_required(login_url='signin')
 def probeviewer_trip(request, vin, trip):
-    if not request.user.is_authenticated:
-        return redirect_to_login(reverse('probeviewer_trip', args=(vin, trip,)), 'signin')
     car = get_object_or_404(Car, vin=vin, owner=request.user)
 
     trip = get_object_or_404(CRMTripRecord, car=car, pk=trip)

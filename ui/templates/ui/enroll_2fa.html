@@ -1,0 +1,119 @@
+{% extends 'ui/base.html'%}
+{% load i18n %}
+
+{% block title %}
+{% translate "Enable 2FA" %}
+{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto py-10 px-4 flex align-center justify-center items-center">
+    <div class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-md w-full max-w-md mt-20">
+        <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-2 text-center">{% translate "Enable Two-Factor Authentication" %}</h2>
+        <p class="text-center text-gray-500 dark:text-gray-300 mb-6 text-sm">{% translate "Scan the QR code below with your authenticator app, then enter the code it generates to confirm." %}</p>
+
+        {% if messages %}
+            <div class="mb-4">
+                {% for message in messages %}
+                    <div class="text-center {% if message.tags == 'error' %}text-red-600{% else %}text-green-600{% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <div class="flex justify-center mb-4">
+            <img src="data:image/png;base64,{{ qr_base64 }}" alt="{% translate 'QR code for authenticator app' %}" class="rounded-md border dark:border-gray-900" style="height: 250px;">
+        </div>
+
+        <div class="mb-6">
+            <p class="text-center text-xs text-gray-500 dark:text-gray-400 mb-1">{% translate "Can't scan? Enter this key manually:" %}</p>
+            <p class="text-center text-sm font-mono tracking-wider text-gray-700 dark:text-gray-200 select-all break-all">{{ secret_key }}</p>
+            <p class="text-center text-gray-600 mt-4"><a href="{% url 'enable_otp' %}?new" class="text-blue-500 hover:underline">{% translate "Re-generate key" %}</a></p>
+        </div>
+
+        <form method="POST" id="otp-form">
+            {% csrf_token %}
+
+            <div class="mb-6">
+                <label class="block text-gray-700 dark:text-gray-300 mb-3 text-center">{% translate "Enter the 6-digit code" %}</label>
+
+                <div class="flex justify-center gap-2" id="otp-boxes">
+                    {% for i in "123456" %}
+                    <input
+                        type="text"
+                        inputmode="numeric"
+                        pattern="[0-9]*"
+                        maxlength="1"
+                        autocomplete="off"
+                        class="otp-box w-12 h-14 text-center text-xl font-semibold border dark:bg-gray-800 dark:border-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                    {% endfor %}
+                </div>
+
+                <input type="hidden" name="otp" id="otp-hidden" required>
+            </div>
+
+            <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600">{% translate "Verify & Enable" %}</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    (function () {
+        const boxes = Array.from(document.querySelectorAll('.otp-box'));
+        const hiddenInput = document.getElementById('otp-hidden');
+        const form = document.getElementById('otp-form');
+
+        function updateHiddenValue() {
+            hiddenInput.value = boxes.map(b => b.value).join('');
+        }
+
+        boxes.forEach((box, index) => {
+            box.addEventListener('input', () => {
+                box.value = box.value.replace(/[^0-9]/g, '');
+                if (box.value && index < boxes.length - 1) {
+                    boxes[index + 1].focus();
+                }
+                updateHiddenValue();
+            });
+
+            box.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && !box.value && index > 0) {
+                    boxes[index - 1].focus();
+                }
+                if (e.key === 'ArrowLeft' && index > 0) {
+                    boxes[index - 1].focus();
+                }
+                if (e.key === 'ArrowRight' && index < boxes.length - 1) {
+                    boxes[index + 1].focus();
+                }
+            });
+
+            box.addEventListener('paste', (e) => {
+                e.preventDefault();
+                const pasted = (e.clipboardData || window.clipboardData)
+                    .getData('text')
+                    .replace(/[^0-9]/g, '')
+                    .slice(0, boxes.length);
+
+                pasted.split('').forEach((char, i) => {
+                    if (boxes[i]) boxes[i].value = char;
+                });
+
+                updateHiddenValue();
+                boxes[Math.min(pasted.length, boxes.length - 1)].focus();
+            });
+        });
+
+        form.addEventListener('submit', (e) => {
+            updateHiddenValue();
+            if (hiddenInput.value.length !== boxes.length) {
+                e.preventDefault();
+                boxes[0].focus();
+            }
+        });
+
+        if (boxes[0]) boxes[0].focus();
+    })();
+</script>
+{% endblock %}

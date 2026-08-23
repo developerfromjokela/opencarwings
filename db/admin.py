@@ -1,5 +1,8 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.views import redirect_to_login
+from django.shortcuts import redirect
+from django.urls import reverse
 
 from .models import (
     TCUConfiguration,
@@ -12,6 +15,17 @@ from .models import (
     CarTransferRequest
 )
 
+
+def login(self, request, extra_context=None):
+    if not request.user.is_authenticated:
+        return redirect_to_login(request.get_full_path(), login_url='signin')
+    if self.has_permission(request):
+        index_path = reverse('admin:index', current_app=self.name)
+        return redirect(index_path)
+    else:
+        return redirect('/')
+
+admin.site.__class__.login = login
 
 @admin.register(TCUConfiguration)
 class TCUConfigurationAdmin(admin.ModelAdmin):
@@ -121,7 +135,8 @@ class CustomUserAdmin(UserAdmin):
             {
                 'fields': (
                     'tcu_pass_hash',
-                    'email_notifications'
+                    'email_notifications',
+                    'cmd_pin_hash'
                 ),
             },
         ),

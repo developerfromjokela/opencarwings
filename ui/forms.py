@@ -43,6 +43,19 @@ class ChangePasswordForm(forms.Form):
 class ChangeCarwingsPasswordForm(forms.Form):
     new_password = forms.CharField(widget=forms.PasswordInput(), max_length=16)
 
+class ChangeCommandPinForm(forms.Form):
+    new_pin = forms.CharField(widget=forms.NumberInput(), max_length=4, min_length=4)
+    new_pin_confirm = forms.CharField(widget=forms.NumberInput(), max_length=4, min_length=4)
+
+    def full_clean(self):
+        super().full_clean()
+        new_pin = self.data.get('new_pin')
+        new_pin_confirm = self.data.get('new_pin_confirm')
+
+        if new_pin or new_pin_confirm:
+            if new_pin != new_pin_confirm:
+                self.add_error('new_pin_confirm',  _('PIN codes do not match.'))
+
 class AccountForm(forms.Form):
     email = forms.EmailField(label=_("Email"), widget=forms.EmailInput(), max_length=254)
     notifications = forms.BooleanField(label=_("Notifications"), widget=forms.CheckboxInput(), required=False)

@@ -31,9 +31,14 @@ def handle_pi(xml_data, files):
         carwings_xml_root = ET.Element("carwings", version="2.2")
         ET.SubElement(carwings_xml_root, "aut_inf", {"sts": "ok"})
 
-        if DEBUG_ENABLED:
-            log_dir = os.path.join("logs", "probe", xml_data['authentication']['navi_id'], datetime.now().strftime('%Y%m%d%H%M'))
-            os.makedirs(log_dir, exist_ok=True)
+
+        def ensure_debuglog_dir() -> str:
+            debug_log_dir = os.path.join("logs", "probe", xml_data['authentication']['navi_id'],
+                                   datetime.now().strftime('%Y%m%d%H%M'))
+            os.makedirs(debug_log_dir, exist_ok=True)
+            return debug_log_dir
+
+        processed_files = []
 
         for send_data in xml_data['service_info']['application']['send_data']:
             id_type = send_data['id_type']
@@ -44,6 +49,12 @@ def handle_pi(xml_data, files):
             if file_content is None:
                 logger.error("File not found: %s", id_value)
                 return None
+
+            # Do not re-process files that have been processed or were as attachments
+            if id_value in processed_files:
+                continue
+            processed_files.append(id_value)
+
             file_content = file_content['content']
 
 
@@ -126,19 +137,20 @@ def handle_pi(xml_data, files):
                 logger.info("0x581 Incoming Data")
                 filename_length = int(file_content[6])
                 filename_offset = 7+filename_length
-                # cath the issue and save file for diagnosis
+
                 try:
                     filename = file_content[7:filename_offset].decode('utf-8')
                 except UnicodeDecodeError as e:
-                    logger.exception(e)
-                    if DEBUG_ENABLED:
-                        file_path = os.path.join(log_dir, f"FILENAME-{random.randrange(111111, 999999, 6)}")
-                        if os.path.exists(file_path):
-                            file_path = os.path.join(log_dir,
-                                                     f"dupl-{random.randrange(111111, 999999, 6)}-FILENAME")
-                        with open(file_path, 'wb') as f:
-                            f.write(file_content)
-                    raise e
+                    logger.error("Filename was invalid!")
+                    logger.error(e)
+                    log_dir = ensure_debuglog_dir()
+                    file_path = os.path.join(log_dir, f"FILENAME-{random.randrange(111111, 999999, 6)}")
+                    if os.path.exists(file_path):
+                        file_path = os.path.join(log_dir,
+                                                 f"dupl-{random.randrange(111111, 999999, 6)}-FILENAME")
+                    with open(file_path, 'wb') as f:
+                        f.write(file_content)
+                    return None
 
                 if len(filename) > 128:
                     filename = filename[:128]
@@ -150,6 +162,7 @@ def handle_pi(xml_data, files):
                 if probe_data is None:
                     logger.error("Probe File not found, %s", filename)
                     return None
+                processed_files.append(filename)
 
                 probe_data = probe_data["content"]
 
@@ -175,6 +188,7 @@ def handle_pi(xml_data, files):
                         if checksum != checksum_byte:
                             logger.info("Probe file checksum error!")
                             if DEBUG_ENABLED:
+                                log_dir = ensure_debuglog_dir()
                                 file_path = os.path.join(log_dir, f"CHKSUMERR-{hex(checksum_byte)}-{hex(checksum)}-{filename}")
                                 if os.path.exists(file_path):
                                     file_path = os.path.join(log_dir,
@@ -187,6 +201,7 @@ def handle_pi(xml_data, files):
                             decrypted_data_for_log += decrypted_data
 
                             if DEBUG_ENABLED:
+                                log_dir = ensure_debuglog_dir()
                                 file_path = os.path.join(log_dir,filename)
 
                                 if os.path.exists(file_path):
@@ -248,6 +263,7 @@ def handle_pi(xml_data, files):
                 else:
                     logger.error("Invalid Probe file signature! Got: %s,%s", hex(probe_data[0]), hex(probe_data[1]))
                     if DEBUG_ENABLED:
+                        log_dir = ensure_debuglog_dir()
                         file_path = os.path.join(log_dir, f"UNKNOWN-{filename}")
 
                         if os.path.exists(file_path):
@@ -257,9 +273,7 @@ def handle_pi(xml_data, files):
                             f.write(probe_data)
             else:
                 # Unknown request, write to log
-                log_dir = os.path.join("logs", "probe", xml_data['authentication']['navi_id'],
-                                       datetime.now().strftime('%Y%m%d%H%M'))
-                os.makedirs(log_dir, exist_ok=True)
+                log_dir = ensure_debuglog_dir()
                 file_path = os.path.join(log_dir, id_value)
 
                 if os.path.exists(file_path):

@@ -13,6 +13,14 @@ class UnsupportedCommandError(TCUCoordinatorError):
 class SMSError(TCUCoordinatorError):
     pass
 
+class SMSProviderError(TCUCoordinatorError):
+    error_msg = None
+
+    def __init__(self, msg: str):
+        self.error_msg = msg
+
+    def __str__(self):
+        return self.error_msg
 
 def get_supported_commands(code: str) -> list[int]:
     parts = COORDINATORS.get(code).split('.')

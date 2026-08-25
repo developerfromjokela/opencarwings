@@ -52,13 +52,17 @@ RUN pip3 install django-postgresql psycopg2-binary
 COPY --chown=ocw:ocw . /app
 WORKDIR /app
 
-COPY --chown=ocw crontab /etc/crontab
+COPY --chown=ocw ./crontab /etc/crontab
 
 RUN pip3 install -r requirements.txt
 
 EXPOSE 80
 EXPOSE 55230
 
+# establish temporary bare config for making translations
+RUN cp /app/carwings/settings.example.py /app/carwings/settings.py
+RUN REDIS_HOST="" python manage.py compilemessages
+RUN rm -rf /app/carwings
 
 CMD ["bash", "/app/docker/start.sh"]
 

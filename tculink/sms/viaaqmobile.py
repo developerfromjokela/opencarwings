@@ -2,7 +2,7 @@ import requests
 from django.conf import settings
 
 from tculink import VERSION
-from tculink.coordinators import SMSError
+from tculink.coordinators import SMSError, SMSProviderError
 from tculink.sms import BaseSMSProvider, SMSType
 from django.utils.translation import gettext_lazy as _
 
@@ -28,12 +28,12 @@ class ProviderViaaqMobileGlobal(BaseSMSProvider):
         }, timeout=10, headers={"User-Agent": f"OpenCarWings/{VERSION}",
                                 "Content-Type": "application/json",
                                 "X-Api-Token": apikey})
-        if request.status_code == 400:
-            raise SMSError(_("Could not find mobile subscription in viaaq mobile. Are you sure it's active?"))
+        if request.status_code == 400 or request.status_code == 404:
+            raise SMSProviderError(_("Could not find mobile subscription in viaaq mobile. Are you sure it's active?"))
         if request.status_code == 403:
-            raise SMSError(_("You do not have permission to send SMS messages to this subscription"))
+            raise SMSProviderError(_("You do not have permission to send SMS messages to this subscription"))
         if request.status_code == 401:
-            raise SMSError(_("Invalid API Key"))
+            raise SMSProviderError(_("Invalid API Key"))
         return request.status_code == 200
 
     def send(self, message, configuration):

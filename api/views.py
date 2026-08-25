@@ -28,7 +28,7 @@ from api.models import TokenMetadata
 from api.serializers import JWTTokenObtainPairSerializer, TokenMetadataUpdateSerializer, TokenMetadataSerializer, \
     JWTTokenLoginSerializer, PinChangeSerializer, AccountDetailSerializer, APIErrorSerializer
 from db.models import Car, AlertHistory, COMMAND_TYPES, CRMDistanceRecord, SENSITIVE_COMMANDS
-from tculink.coordinators import TCUCoordinatorError, CommandArgumentError
+from tculink.coordinators import TCUCoordinatorError, CommandArgumentError, SMSProviderError
 from tculink.coordinators.stub import send_command_using_provider
 from ui.serializers import CarSerializer, CarSerializerList, AlertHistorySerializer, \
     CommandResponseSerializer, CommandErrorSerializer, CarUpdatingSerializer, CRMDistanceRecordSerializer, \
@@ -422,6 +422,9 @@ def command_api(request, vin):
                 car = send_command_using_provider(command_type, command_payload, car)
             except CommandArgumentError as e:
                 return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+            except SMSProviderError as e:
+                logger.exception(e)
+                return Response({'error': e.error_msg}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
             except TCUCoordinatorError as e:
                 logger.exception(e)
                 return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

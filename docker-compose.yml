@@ -15,7 +15,7 @@ services:
       TZ: ${TZ}
     restart: always
     volumes:
-      - ./carwings/:/app/carwings/
+      - ./carwings/settings.py:/app/carwings/settings.py # pass only settings.py, other files need to be added separately
       - ./staticfiles/:/app/staticfiles/
       - ./mediafiles/:/app/mediafiles/
       - ./logs/:/app/logs/
@@ -23,7 +23,7 @@ services:
       - "${BACKEND_PORT}:80"
       - "${TCPSERVER_PORT}:55230"
   db:
-    image: postgres:14
+    image: postgres:18
     environment:
       PGDATA: /var/lib/postgresql/data/pgdata
       POSTGRES_DB: ${PSQL_NAME}

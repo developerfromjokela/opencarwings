@@ -1,7 +1,7 @@
 {% load i18n %}
 <div id="tcu-config" class="tab-content">
     <div class="flex flex-col md:flex-row gap-3 sm:gap-4" style="min-height: 500px;">
-    <div class="mb-6" style="min-width: 250px; max-width: 500px;">
+    <div class="mb-6 max-w-350 min-w-200 md:w-full" style="flex: 0; min-width: 250px">
         <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mt-4 flex items-center">{% translate "TCU Configuration" %}</h2>
         <div id="config-screen-btns" class="mt-2 space-y-2"></div>
     </div>
@@ -29,17 +29,19 @@
             </div>
         </div>
     </template>
-    <template id="tcuConfigFieldBool">
-        <div class="flex items-center mb-4">
-            <input type="checkbox" value="" class="">
-            <label for="" class=""></label>
+    <template id="tcuConfigOptionalField">
+        <div data-field-group class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 mb-5">
+          <label class="flex items-center gap-2 mb-3 font-medium text-gray-800 dark:text-gray-100 cursor-pointer select-none p-3">
+            <input
+              type="checkbox"
+              data-toggle
+              class="h-4 w-4 rounded border-gray-300 dark:border-gray-600 text-blue-600 focus:ring-blue-500 dark:bg-gray-700"
+            >
+            {% translate "Modify value" %}
+          </label>
+            <hr class="border-gray-300 dark:border-gray-700"/>
+          <div class="tcu-config-itm-fields gap-3 p-5 w-full"></div>
         </div>
-    </template>
-    <template id="tcuConfigFieldInt">
-
-    </template>
-    <template id="tcuConfigFieldStr">
-
     </template>
     {{ tcu_config_template|json_script:"config_template" }}
     <script>
@@ -81,8 +83,25 @@
 
 
         function makeFieldElement(config_code, code, field) {
-            let holder = document.createElement("div");
-            holder.className = "flex mb-4";
+            let holder;
+            let confHolder;
+            if (field.optional && field.type !== 4) {
+                confHolder = document.getElementById("tcuConfigOptionalField").content.children[0].cloneNode(true);
+                const confCbox = confHolder.querySelector("input[type='checkbox']");
+                confCbox.id = `${config_code}-${code}-opt`
+                function sync() {
+                    let inputs = confHolder.querySelectorAll('.tcu-config-itm-fields input, .tcu-config-itm-fields select, .tcu-config-itm-fields textarea');
+                    inputs.forEach(function (el) {
+                        el.disabled = !confCbox.checked;
+                    });
+                }
+                confCbox.addEventListener('change', sync);
+                holder = confHolder.querySelector('.tcu-config-itm-fields');
+            } else {
+                confHolder = document.createElement("div");
+                holder = confHolder;
+                confHolder.className = "flex mb-4";
+            }
             switch (field.type) {
                 case 0: {
                     holder.classList.add("flex-col")
@@ -91,6 +110,7 @@
                     input.className = inputStyle[0];
                     input.type = "number"
                     input.required = true;
+                    input.disabled = field.optional;
 
                     if (currentValues[config_code])
                         input.value = currentValues[config_code]
@@ -116,6 +136,7 @@
                     input.value = "true"
                     input.type = "checkbox"
                     input.checked = currentValues[config_code] === 1 ? "checked" : ""
+                    input.disabled = field.optional;
 
                     let inputLabel = document.createElement("label");
                     inputLabel.htmlFor = input.id;
@@ -126,18 +147,22 @@
                     holder.appendChild(inputLabel)
                     break
                 }
-                case 2, 3: {
+                case 2:
+                case 3: {
                     holder.classList.add("flex-col")
                     let input = document.createElement("input");
                     input.id = `${config_code}-${code}`;
                     input.className = inputStyle[0];
                     input.type = "text"
                     input.required = true;
+                    input.disabled = field.optional;
 
                     if (currentValues[config_code])
                         input.value = currentValues[config_code]
                     if (field.max)
                         input.maxLength = field.max
+                    if (!field.max && field.length)
+                        input.maxLength = field.length
                     if (field.min)
                         input.minLength = field.min
 
@@ -175,7 +200,7 @@
                     break
                 }
             }
-            return holder
+            return confHolder
         }
 
         function addTcuConfigMenu(code, name, fields, query) {
@@ -197,6 +222,7 @@
             sendBtn.addEventListener('click', () => {sendCurrentConfig(code)});
             tcuConfigFrames.appendChild(frame);
             tcuConfigButtons.appendChild(button);
+            registerOptionalFieldListeners();
         }
 
         function requestCurrentConfig(code) {
@@ -212,6 +238,11 @@
                 let fields = tcuConfigTemplate[code]["fields"];
                 for (let fieldKey of Object.keys(fields)) {
                     let fieldInfo = fields[fieldKey];
+                    if (fieldInfo.optional) {
+                        let optionalBox = document.getElementById(`${code}-${fieldKey}-opt`)
+                        if (!optionalBox.checked)
+                            continue;
+                    }
                     let fieldInput = document.getElementById(`${code}-${fieldKey}`);
                     switch (fieldInfo.type) {
                         case 0: {
@@ -229,13 +260,23 @@
                             newConfig[fieldKey] = fieldInput.value === "true"
                             break
                         }
-                        case 2,3: {
+                        case 2:
+                        case 3: {
                             const value = fieldInput.value;
                             if (fieldInfo.max && value > fieldInfo.max) {
-                                throw new Error(`${fieldInfo.label} {% translate "is more than" %} ${fieldInfo.max} characters`);
+                                throw new Error(`${fieldInfo.label} {% translate "is more than" %} ${fieldInfo.max} {% translate "character(s)" %}`);
+                            }
+                            if (fieldInfo.length && value > fieldInfo.length) {
+                                throw new Error(`${fieldInfo.label} {% translate "is more than" %} ${fieldInfo.max} {% translate "character(s)" %}`);
                             }
                             if (fieldInfo.min && value < fieldInfo.min) {
-                                throw new Error(`${fieldInfo.label} {% translate "is less than" %} ${fieldInfo.min} characters`);
+                                throw new Error(`${fieldInfo.label} {% translate "is less than" %} ${fieldInfo.min} {% translate "character(s)" %}`);
+                            }
+                            if (value.length > 0 && fieldInfo.type === 2 && !/^[\x00-\x7F]*$/.test(value)) {
+                                throw new Error(`${fieldInfo.label} {% translate "value only accepts following characters:" %} ASCII`);
+                            }
+                            if (value.length > 0 &&  fieldInfo.type === 2 && !value.isWellFormed()) {
+                                throw new Error(`${fieldInfo.label} {% translate "value only accepts following characters" %} Unicode`);
                             }
                             newConfig[fieldKey] = value
                             break
@@ -298,5 +339,21 @@
             }
             configureConfigButtons();
         });
+
+        function registerOptionalFieldListeners() {
+            document.querySelectorAll('[data-field-group]').forEach(function (group) {
+            let toggle = group.querySelector('[data-toggle]');
+            let inputs = group.querySelectorAll('.tcu-config-itm-fields input, .tcu-config-itm-fields select, .tcu-config-itm-fields textarea');
+
+            function sync() {
+              inputs.forEach(function (el) {
+                el.disabled = !toggle.checked;
+              });
+            }
+
+            toggle.addEventListener('change', sync);
+            sync();
+          });
+        }
     </script>
 </div>

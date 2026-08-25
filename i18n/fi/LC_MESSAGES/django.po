@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-23 00:14+0000\n"
-"PO-Revision-Date: 2026-08-23 04:04+0300\n"
+"POT-Creation-Date: 2026-08-25 21:38+0000\n"
+"PO-Revision-Date: 2026-08-26 00:42+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fi\n"
@@ -39,8 +39,8 @@ msgstr "Virheellinen OTP, yritä uudelleen."
 msgid "Command PIN is not set up, please set up and try again"
 msgstr "Komento-PIN-koodia ei ole määritetty. Määritä se ja yritä uudelleen."
 
-#: api/views.py:430 tculink/coordinators/continental2012.py:25
-#: tculink/coordinators/ficosa2016.py:129
+#: api/views.py:433 tculink/coordinators/continental2012.py:25
+#: tculink/coordinators/ficosa2016.py:130
 msgid "Failed to send SMS message to TCU. Please try again in a moment."
 msgstr ""
 "Tekstiviestiä ei voitu lähettää autoon. Kokeile uudelleen hetken kuluttua."
@@ -972,6 +972,30 @@ msgstr "Keskuslukituksen avaus ja lukitus"
 #, python-brace-format
 msgid "Probe Service {num}"
 msgstr "Probe-palvelu {num}"
+
+#: tculink/gdc_proto/ficosa/utils.py:77
+msgid "SIM Settings 1"
+msgstr "SIM-asetukset 1"
+
+#: tculink/gdc_proto/ficosa/utils.py:83 tculink/gdc_proto/ficosa/utils.py:120
+msgid "SIM Pin Code"
+msgstr "SIM-Kortin PIN-koodi"
+
+#: tculink/gdc_proto/ficosa/utils.py:85 tculink/gdc_proto/ficosa/utils.py:121
+msgid "SIM Pin Locked"
+msgstr "SIM-kortin PIN-lukituksen tila"
+
+#: tculink/gdc_proto/ficosa/utils.py:93 tculink/gdc_proto/ficosa/utils.py:125
+msgid "SMSC Number 1"
+msgstr "SMSC-numero 1"
+
+#: tculink/gdc_proto/ficosa/utils.py:111 tculink/gdc_proto/ficosa/utils.py:134
+msgid "SMSC Number 2"
+msgstr "SMSC-numero 2"
+
+#: tculink/gdc_proto/ficosa/utils.py:115
+msgid "SIM Settings 2"
+msgstr "SIM-asetukset 2"
 
 #: tculink/httpgateway/ficosa/destinations/burglar.py:35
 msgid "Burglar alarm has been triggered"
@@ -2216,8 +2240,8 @@ msgstr "SMS-viestin lähetys laitteestasi"
 #: ui/templates/ui/car_detail.html:1209 ui/templates/ui/car_detail.html:1210
 #: ui/templates/ui/car_detail.html:1444 ui/templates/ui/car_detail.html:1452
 #: ui/templates/ui/car_detail.html:1453
-#: ui/templates/ui/ficosa/configuration.html:255
-#: ui/templates/ui/ficosa/configuration.html:259
+#: ui/templates/ui/ficosa/configuration.html:296
+#: ui/templates/ui/ficosa/configuration.html:300
 msgid "Error sending command"
 msgstr "Komennon lähetys epäonnistui"
 
@@ -2522,38 +2546,57 @@ msgstr "Valitse valikko aloittaaksesi"
 msgid "Request current configuration"
 msgstr "Lataa tämänhetkiset asetukset"
 
-#: ui/templates/ui/ficosa/configuration.html:80
+#: ui/templates/ui/ficosa/configuration.html:40
+msgid "Modify value"
+msgstr "Muokkaa arvo"
+
+#: ui/templates/ui/ficosa/configuration.html:82
 msgid "Unmodified"
 msgstr "Oletusasetukset"
 
-#: ui/templates/ui/ficosa/configuration.html:80
+#: ui/templates/ui/ficosa/configuration.html:82
 msgid "Deactivate"
 msgstr "Pois päältä"
 
-#: ui/templates/ui/ficosa/configuration.html:80
+#: ui/templates/ui/ficosa/configuration.html:82
 msgid "Activate"
 msgstr "Päällä"
 
-#: ui/templates/ui/ficosa/configuration.html:172
-#: ui/templates/ui/ficosa/configuration.html:285
+#: ui/templates/ui/ficosa/configuration.html:197
+#: ui/templates/ui/ficosa/configuration.html:326
 msgid "Last value:"
 msgstr "Edellinen arvo:"
 
-#: ui/templates/ui/ficosa/configuration.html:220
-#: ui/templates/ui/ficosa/configuration.html:235
+#: ui/templates/ui/ficosa/configuration.html:251
+#: ui/templates/ui/ficosa/configuration.html:267
+#: ui/templates/ui/ficosa/configuration.html:270
 msgid "is more than"
 msgstr "on enemmän kuin"
 
-#: ui/templates/ui/ficosa/configuration.html:223
-#: ui/templates/ui/ficosa/configuration.html:238
+#: ui/templates/ui/ficosa/configuration.html:254
+#: ui/templates/ui/ficosa/configuration.html:273
 msgid "is less than"
 msgstr "on pienempi kuin"
 
-#: ui/templates/ui/ficosa/configuration.html:246
+#: ui/templates/ui/ficosa/configuration.html:267
+#: ui/templates/ui/ficosa/configuration.html:270
+#: ui/templates/ui/ficosa/configuration.html:273
+msgid "character(s)"
+msgstr "merkki(ä)"
+
+#: ui/templates/ui/ficosa/configuration.html:276
+msgid "value only accepts following characters:"
+msgstr "Arvo hyväksyy vain seuraavat merkit:"
+
+#: ui/templates/ui/ficosa/configuration.html:279
+msgid "value only accepts following characters"
+msgstr "Arvo hyväksyy vain seuraavat merkit"
+
+#: ui/templates/ui/ficosa/configuration.html:287
 msgid "value is out of range"
 msgstr "arvo on rajojen ulkopuolella "
 
-#: ui/templates/ui/ficosa/configuration.html:259
+#: ui/templates/ui/ficosa/configuration.html:300
 msgid "No changes to send!"
 msgstr "Ei muutoksia lähetettävänä!"
 
@@ -3650,9 +3693,9 @@ msgid ""
 "It is recommended to enable 2FA for enhanced security. Please do so by "
 "clicking your username, on top right corner."
 msgstr ""
-"On suositeltavaa ottaa kaksivaiheinen tunnistautuminen käyttöön "
-"tietoturvan parantamiseksi. Voit tehdä tämän napsauttamalla "
-"käyttäjänimeäsi oikeassa yläkulmassa."
+"On suositeltavaa ottaa kaksivaiheinen tunnistautuminen käyttöön tietoturvan "
+"parantamiseksi. Voit tehdä tämän napsauttamalla käyttäjänimeäsi oikeassa "
+"yläkulmassa."
 
 #: ui/views.py:129
 msgid "Account successfully updated!"

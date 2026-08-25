@@ -41,7 +41,7 @@ CONFIGURATION_MAP = {
         "query_support": False,
         "fields": {
             "enabled": {"info_id": 1, "length": 1, "type": ConfigurationFieldType.BOOLEAN, "label": _("Service Enabled")},
-            "frequency": {"info_id": 3, "length": 1, "type": ConfigurationFieldType.NUMBER, "max": 30, "min": 1, "label": _("Send frequency (days)")}
+            "frequency": {"info_id": 3, "length": 1, "type": ConfigurationFieldType.NUMBER, "max": 30, "min": 2, "label": _("Send frequency (days)")}
         }
     },
     "svc_provision": {
@@ -71,6 +71,67 @@ CONFIGURATION_MAP = {
             "probe_8": {"info_id": 0x57, "length": 1, "type": ConfigurationFieldType.PROVISIONING, "label": _("Probe Service {num}".format(num=8))},
             "probe_9": {"info_id": 0x58, "length": 1, "type": ConfigurationFieldType.PROVISIONING, "label": _("Probe Service {num}".format(num=9))},
             "probe_10": {"info_id": 0x59, "length": 1, "type": ConfigurationFieldType.PROVISIONING, "label": _("Probe Service {num}".format(num=10))},
+        }
+    },
+    "sim1_config": {
+        "label": _("SIM Settings 1"),
+        "destination": 0xf2,
+        "service_type": 0xf2,
+        "query_support": False,
+        "fields": {
+            "f1": {"info_id": 0x00, "length": 0x20, "type": ConfigurationFieldType.ASCII, "optional": True,
+                   "label": _("SIM Pin Code"), "fill": True},
+            "f2": {"info_id": 0x01, "length": 1, "type": ConfigurationFieldType.BOOLEAN, "optional": True,
+                   "label": _("SIM Pin Locked"), "fill": True},
+            "f3": {"info_id": 0x02, "length": 0x20, "type": ConfigurationFieldType.ASCII, "optional": True,
+                   "label": "APN", "fill": True},
+            "f4": {"info_id": 0x03, "length": 0x20, "type": ConfigurationFieldType.ASCII, "optional": True,
+                   "label": "APN Username", "fill": True},
+            "f5": {"info_id": 0x04, "length": 0x20, "type": ConfigurationFieldType.ASCII, "optional": True,
+                   "label": "APN Password", "fill": True},
+            "f6": {"info_id": 0x05, "length": 0x20, "type": ConfigurationFieldType.ASCII, "optional": True,
+                   "label": _("SMSC Number 1"), "fill": True},
+            "f7": {"info_id": 0x06, "length": 0x20, "type": ConfigurationFieldType.ASCII, "optional": True,
+                   "label": "DNS1", "fill": True},
+            "f8": {"info_id": 0x07, "length": 0x20, "type": ConfigurationFieldType.ASCII, "optional": True,
+                   "label": "DNS2", "fill": True},
+            "f9": {"info_id": 0x08, "length": 0x20, "type": ConfigurationFieldType.ASCII, "optional": True,
+                   "label": "MFD/TSP APN", "fill": True},
+            "f10": {"info_id": 0x09, "length": 0x20, "type": ConfigurationFieldType.ASCII, "optional": True,
+                    "label": "MFD/TSP APN Username", "fill": True},
+            "f11": {"info_id": 0x0a, "length": 0x20, "type": ConfigurationFieldType.ASCII, "optional": True,
+                    "label": "MFD/TSP APN Password", "fill": True},
+            "f12": {"info_id": 0x0b, "length": 0x20, "type": ConfigurationFieldType.ASCII, "optional": True,
+                    "label": "MFD/TSP DNS1", "fill": True},
+            "f13": {"info_id": 0x0c, "length": 0x20, "type": ConfigurationFieldType.ASCII, "optional": True,
+                    "label": "MFD/TSP DNS2", "fill": True},
+            "f14": {"info_id": 0x0d, "length": 1, "type": ConfigurationFieldType.BOOLEAN, "optional": True,
+                    "label": "SIM Radio Wave Off", "fill": True},
+            "f15": {"info_id": 0x0e, "length": 0x20, "type": ConfigurationFieldType.ASCII, "optional": True,
+                    "label": _("SMSC Number 2"), "fill": True},
+        }
+    },
+    "sim2_config": {
+        "label": _("SIM Settings 2"),
+        "destination": 0xf3,
+        "service_type": 0xf3,
+        "query_support": False,
+        "fields": {
+            "f1": {"info_id": 0x10, "length": 0x20, "type": ConfigurationFieldType.ASCII, "optional": True, "label": _("SIM Pin Code"), "fill": True},
+            "f2": {"info_id": 0x11, "length": 1, "type": ConfigurationFieldType.BOOLEAN, "optional": True, "label": _("SIM Pin Locked"), "fill": True},
+            "f3": {"info_id": 0x12, "length": 0x20, "type": ConfigurationFieldType.ASCII, "optional": True, "label": "APN", "fill": True},
+            "f4": {"info_id": 0x13, "length": 0x20, "type": ConfigurationFieldType.ASCII, "optional": True, "label": "APN Username", "fill": True},
+            "f5": {"info_id": 0x14, "length": 0x20, "type": ConfigurationFieldType.ASCII, "optional": True, "label": "APN Password", "fill": True},
+            "f6": {"info_id": 0x15, "length": 0x20, "type": ConfigurationFieldType.ASCII, "optional": True, "label": _("SMSC Number 1"), "fill": True},
+            "f7": {"info_id": 0x16, "length": 0x20, "type": ConfigurationFieldType.ASCII, "optional": True, "label": "DNS1", "fill": True},
+            "f8": {"info_id": 0x17, "length": 0x20, "type": ConfigurationFieldType.ASCII, "optional": True, "label": "DNS2", "fill": True},
+            "f9": {"info_id": 0x18, "length": 0x20, "type": ConfigurationFieldType.ASCII, "optional": True, "label": "MFD/TSP APN", "fill": True},
+            "f10": {"info_id": 0x19, "length": 0x20, "type": ConfigurationFieldType.ASCII, "optional": True, "label": "MFD/TSP APN Username", "fill": True},
+            "f11": {"info_id": 0x1a, "length": 0x20, "type": ConfigurationFieldType.ASCII, "optional": True, "label": "MFD/TSP APN Password", "fill": True},
+            "f12": {"info_id": 0x1b, "length": 0x20, "type": ConfigurationFieldType.ASCII, "optional": True, "label": "MFD/TSP DNS1", "fill": True},
+            "f13": {"info_id": 0x1c, "length": 0x20, "type": ConfigurationFieldType.ASCII, "optional": True, "label": "MFD/TSP DNS2", "fill": True},
+            "f14": {"info_id": 0x1d, "length": 1, "type": ConfigurationFieldType.BOOLEAN, "optional": True, "label": "SIM Radio Wave Off", "fill": True},
+            "f15": {"info_id": 0x1e, "length": 0x20, "type": ConfigurationFieldType.ASCII, "optional": True, "label": _("SMSC Number 2"), "fill": True},
         }
     }
 }

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-23 00:14+0000\n"
-"PO-Revision-Date: 2026-08-23 04:02+0300\n"
+"POT-Creation-Date: 2026-08-25 21:38+0000\n"
+"PO-Revision-Date: 2026-08-26 00:44+0300\n"
 "Last-Translator: \n"
 "Language-Team: Estonian <et@li.org>\n"
 "Language: et\n"
@@ -37,8 +37,8 @@ msgstr "Kehtetu ühekordne parool (OTP), palun proovi uuesti"
 msgid "Command PIN is not set up, please set up and try again"
 msgstr "Käsukoodi pole seadistatud, palun seadistage see ja proovige uuesti"
 
-#: api/views.py:430 tculink/coordinators/continental2012.py:25
-#: tculink/coordinators/ficosa2016.py:129
+#: api/views.py:433 tculink/coordinators/continental2012.py:25
+#: tculink/coordinators/ficosa2016.py:130
 msgid "Failed to send SMS message to TCU. Please try again in a moment."
 msgstr ""
 "SMS-sõnumi saatmine TCU-le ebaõnnestus. Palun proovi mõne aja pärast uuesti."
@@ -968,6 +968,30 @@ msgstr "Ukse lukustamine ja avamine"
 #, python-brace-format
 msgid "Probe Service {num}"
 msgstr "Probe teenus {num}"
+
+#: tculink/gdc_proto/ficosa/utils.py:77
+msgid "SIM Settings 1"
+msgstr "SIM-kaardi seaded 1"
+
+#: tculink/gdc_proto/ficosa/utils.py:83 tculink/gdc_proto/ficosa/utils.py:120
+msgid "SIM Pin Code"
+msgstr "SIM-kaardi PIN-kood"
+
+#: tculink/gdc_proto/ficosa/utils.py:85 tculink/gdc_proto/ficosa/utils.py:121
+msgid "SIM Pin Locked"
+msgstr "SIM-kaart on PIN-koodiga lukustatud"
+
+#: tculink/gdc_proto/ficosa/utils.py:93 tculink/gdc_proto/ficosa/utils.py:125
+msgid "SMSC Number 1"
+msgstr "SMSC number 1"
+
+#: tculink/gdc_proto/ficosa/utils.py:111 tculink/gdc_proto/ficosa/utils.py:134
+msgid "SMSC Number 2"
+msgstr "SMSC number 2"
+
+#: tculink/gdc_proto/ficosa/utils.py:115
+msgid "SIM Settings 2"
+msgstr "SIM-kaardi seaded 2"
 
 #: tculink/httpgateway/ficosa/destinations/burglar.py:35
 msgid "Burglar alarm has been triggered"
@@ -2201,8 +2225,8 @@ msgstr "SMS sinu seadmest"
 #: ui/templates/ui/car_detail.html:1209 ui/templates/ui/car_detail.html:1210
 #: ui/templates/ui/car_detail.html:1444 ui/templates/ui/car_detail.html:1452
 #: ui/templates/ui/car_detail.html:1453
-#: ui/templates/ui/ficosa/configuration.html:255
-#: ui/templates/ui/ficosa/configuration.html:259
+#: ui/templates/ui/ficosa/configuration.html:296
+#: ui/templates/ui/ficosa/configuration.html:300
 msgid "Error sending command"
 msgstr "Käsu saatmisel ilmnes viga"
 
@@ -2433,6 +2457,7 @@ msgid ""
 msgstr ""
 "Seda PIN-koodi kasutatakse tundlike sõidukikäskude jaoks, nagu uste "
 "lukustamine, auto leidmine jne."
+
 #: ui/templates/ui/change_password.html:5
 #: ui/templates/ui/change_password.html:10
 #: ui/templates/ui/reset_password_confirm.html:3
@@ -2505,38 +2530,57 @@ msgstr "Alustamiseks valige menüü"
 msgid "Request current configuration"
 msgstr "Taotle praegust konfiguratsiooni"
 
-#: ui/templates/ui/ficosa/configuration.html:80
+#: ui/templates/ui/ficosa/configuration.html:40
+msgid "Modify value"
+msgstr "Muuda väärtust"
+
+#: ui/templates/ui/ficosa/configuration.html:82
 msgid "Unmodified"
 msgstr "Muutmata"
 
-#: ui/templates/ui/ficosa/configuration.html:80
+#: ui/templates/ui/ficosa/configuration.html:82
 msgid "Deactivate"
 msgstr "Deaktiveeri"
 
-#: ui/templates/ui/ficosa/configuration.html:80
+#: ui/templates/ui/ficosa/configuration.html:82
 msgid "Activate"
 msgstr "Aktiveeri"
 
-#: ui/templates/ui/ficosa/configuration.html:172
-#: ui/templates/ui/ficosa/configuration.html:285
+#: ui/templates/ui/ficosa/configuration.html:197
+#: ui/templates/ui/ficosa/configuration.html:326
 msgid "Last value:"
 msgstr "Viimane väärtus:"
 
-#: ui/templates/ui/ficosa/configuration.html:220
-#: ui/templates/ui/ficosa/configuration.html:235
+#: ui/templates/ui/ficosa/configuration.html:251
+#: ui/templates/ui/ficosa/configuration.html:267
+#: ui/templates/ui/ficosa/configuration.html:270
 msgid "is more than"
 msgstr "on suurem kui"
 
-#: ui/templates/ui/ficosa/configuration.html:223
-#: ui/templates/ui/ficosa/configuration.html:238
+#: ui/templates/ui/ficosa/configuration.html:254
+#: ui/templates/ui/ficosa/configuration.html:273
 msgid "is less than"
 msgstr "on väiksem kui"
 
-#: ui/templates/ui/ficosa/configuration.html:246
+#: ui/templates/ui/ficosa/configuration.html:267
+#: ui/templates/ui/ficosa/configuration.html:270
+#: ui/templates/ui/ficosa/configuration.html:273
+msgid "character(s)"
+msgstr "tegelane(d)"
+
+#: ui/templates/ui/ficosa/configuration.html:276
+msgid "value only accepts following characters:"
+msgstr "väärtus aktsepteerib ainult järgmisi märke:"
+
+#: ui/templates/ui/ficosa/configuration.html:279
+msgid "value only accepts following characters"
+msgstr "väärtus aktsepteerib ainult järgmisi märke"
+
+#: ui/templates/ui/ficosa/configuration.html:287
 msgid "value is out of range"
 msgstr "väärtus on vahemikust väljas"
 
-#: ui/templates/ui/ficosa/configuration.html:259
+#: ui/templates/ui/ficosa/configuration.html:300
 msgid "No changes to send!"
 msgstr "Muudatusi pole saatmiseks!"
 
@@ -3649,6 +3693,7 @@ msgstr "Juhtviigu asendamine õnnestus"
 msgid "Transfer was successful!"
 msgstr "Ülekanne õnnestus!"
 
+#: ui/views.py:523
 msgid ""
 "Transfer link not found! It may have expired, or the transfer is already "
 "completed."
@@ -3694,7 +3739,9 @@ msgstr "Kaheastmeline autentimine (2FA) ei ole lubatud!"
 
 #: ui/views.py:730
 msgid "2FA was reset, please setup again in account settings."
-msgstr "Kaheastmeline autentimine (2FA) lähtestati, palun seadista see uuesti konto seadetes."
+msgstr ""
+"Kaheastmeline autentimine (2FA) lähtestati, palun seadista see uuesti konto "
+"seadetes."
 
 #: ui/views.py:741
 msgid "2FA is already enabled."
@@ -3706,7 +3753,8 @@ msgstr "Kaheastmeline autentimine (2FA) lülitati edukalt välja!"
 
 #: ui/views.py:803
 msgid "Command PIN is strictly enforced on this server, it cannot be disabled."
-msgstr "Käsu PIN on sellel serveril rangelt nõutud, seda ei saa välja lülitada."
+msgstr ""
+"Käsu PIN on sellel serveril rangelt nõutud, seda ei saa välja lülitada."
 
 #: ui/views.py:807
 msgid "Command PIN was disabled successfully!"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-23 00:14+0000\n"
-"PO-Revision-Date: 2026-08-23 03:38+0300\n"
+"POT-Creation-Date: 2026-08-25 21:38+0000\n"
+"PO-Revision-Date: 2026-08-26 00:49+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -39,8 +39,8 @@ msgstr "Неверный OTP, пожалуйста, попробуйте сно�
 msgid "Command PIN is not set up, please set up and try again"
 msgstr "PIN-код команды не настроен, пожалуйста, настройте и попробуйте снова"
 
-#: api/views.py:430 tculink/coordinators/continental2012.py:25
-#: tculink/coordinators/ficosa2016.py:129
+#: api/views.py:433 tculink/coordinators/continental2012.py:25
+#: tculink/coordinators/ficosa2016.py:130
 msgid "Failed to send SMS message to TCU. Please try again in a moment."
 msgstr ""
 "Не удалось отправить SMS-сообщение на TCU. Пожалуйста, попробуйте снова "
@@ -981,6 +981,30 @@ msgstr "Блокировка и разблокировка двери"
 #, python-brace-format
 msgid "Probe Service {num}"
 msgstr "Сервис ”Probe” {num}"
+
+#: tculink/gdc_proto/ficosa/utils.py:77
+msgid "SIM Settings 1"
+msgstr "SIM Настройки 1"
+
+#: tculink/gdc_proto/ficosa/utils.py:83 tculink/gdc_proto/ficosa/utils.py:120
+msgid "SIM Pin Code"
+msgstr "ПИН-код SIM-карты"
+
+#: tculink/gdc_proto/ficosa/utils.py:85 tculink/gdc_proto/ficosa/utils.py:121
+msgid "SIM Pin Locked"
+msgstr "SIM-карта заблокирована по PIN-коду"
+
+#: tculink/gdc_proto/ficosa/utils.py:93 tculink/gdc_proto/ficosa/utils.py:125
+msgid "SMSC Number 1"
+msgstr "Номер SMSC, 2"
+
+#: tculink/gdc_proto/ficosa/utils.py:111 tculink/gdc_proto/ficosa/utils.py:134
+msgid "SMSC Number 2"
+msgstr "Номер SMSC, 1"
+
+#: tculink/gdc_proto/ficosa/utils.py:115
+msgid "SIM Settings 2"
+msgstr "SIM Настройки 2"
 
 #: tculink/httpgateway/ficosa/destinations/burglar.py:35
 msgid "Burglar alarm has been triggered"
@@ -2222,8 +2246,8 @@ msgstr "SMS с вашего устройства"
 #: ui/templates/ui/car_detail.html:1209 ui/templates/ui/car_detail.html:1210
 #: ui/templates/ui/car_detail.html:1444 ui/templates/ui/car_detail.html:1452
 #: ui/templates/ui/car_detail.html:1453
-#: ui/templates/ui/ficosa/configuration.html:255
-#: ui/templates/ui/ficosa/configuration.html:259
+#: ui/templates/ui/ficosa/configuration.html:296
+#: ui/templates/ui/ficosa/configuration.html:300
 msgid "Error sending command"
 msgstr "Ошибка при отправке команды"
 
@@ -2527,38 +2551,57 @@ msgstr "Выберите пункт меню, чтобы начать."
 msgid "Request current configuration"
 msgstr "Запросить текущую конфигурацию"
 
-#: ui/templates/ui/ficosa/configuration.html:80
+#: ui/templates/ui/ficosa/configuration.html:40
+msgid "Modify value"
+msgstr "Изменить значение"
+
+#: ui/templates/ui/ficosa/configuration.html:82
 msgid "Unmodified"
 msgstr "Без изменений"
 
-#: ui/templates/ui/ficosa/configuration.html:80
+#: ui/templates/ui/ficosa/configuration.html:82
 msgid "Deactivate"
 msgstr "Деактивировать"
 
-#: ui/templates/ui/ficosa/configuration.html:80
+#: ui/templates/ui/ficosa/configuration.html:82
 msgid "Activate"
 msgstr "Активировать"
 
-#: ui/templates/ui/ficosa/configuration.html:172
-#: ui/templates/ui/ficosa/configuration.html:285
+#: ui/templates/ui/ficosa/configuration.html:197
+#: ui/templates/ui/ficosa/configuration.html:326
 msgid "Last value:"
 msgstr "Последнее значение:"
 
-#: ui/templates/ui/ficosa/configuration.html:220
-#: ui/templates/ui/ficosa/configuration.html:235
+#: ui/templates/ui/ficosa/configuration.html:251
+#: ui/templates/ui/ficosa/configuration.html:267
+#: ui/templates/ui/ficosa/configuration.html:270
 msgid "is more than"
 msgstr "больше, чем"
 
-#: ui/templates/ui/ficosa/configuration.html:223
-#: ui/templates/ui/ficosa/configuration.html:238
+#: ui/templates/ui/ficosa/configuration.html:254
+#: ui/templates/ui/ficosa/configuration.html:273
 msgid "is less than"
 msgstr "меньше"
 
-#: ui/templates/ui/ficosa/configuration.html:246
+#: ui/templates/ui/ficosa/configuration.html:267
+#: ui/templates/ui/ficosa/configuration.html:270
+#: ui/templates/ui/ficosa/configuration.html:273
+msgid "character(s)"
+msgstr "символ(ы)"
+
+#: ui/templates/ui/ficosa/configuration.html:276
+msgid "value only accepts following characters:"
+msgstr "значение принимает только следующие символы:"
+
+#: ui/templates/ui/ficosa/configuration.html:279
+msgid "value only accepts following characters"
+msgstr "значение принимает только следующие символы"
+
+#: ui/templates/ui/ficosa/configuration.html:287
 msgid "value is out of range"
 msgstr "значение выходит за пределы допустимого диапазона"
 
-#: ui/templates/ui/ficosa/configuration.html:259
+#: ui/templates/ui/ficosa/configuration.html:300
 msgid "No changes to send!"
 msgstr "Нет изменений для отправки!"
 

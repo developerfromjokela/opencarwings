@@ -33,37 +33,38 @@ def validate_config_cmd(payload):
 
         for field_key, field_info in fields.items():
             field_type = field_info["type"]
-            if field_key not in field_data and field_type != 4:
-                raise CommandArgumentError(f"Missing configuration field ${field_key}")
-            if field_type == 4:
-                if field_key in field_data:
+            if field_key not in field_data and (field_type != 4 or field_info.get("optional", False)):
+                raise CommandArgumentError(f"Missing configuration field {field_key}")
+
+            if field_key in field_data:
+                if field_type == 4:
                     if field_data[field_key] < 1:
-                        raise CommandArgumentError(f"Service provisioning field ${field_key} cannot be 0")
+                        raise CommandArgumentError(f"Service provisioning field {field_key} cannot be 0")
                     new_config[field_key] = field_data[field_key]
-            else:
-                value = field_data[field_key]
+                else:
+                    value = field_data[field_key]
 
-                if field_type == 0:
-                    if field_info.get("max") and value > field_info["max"]:
-                        raise CommandArgumentError(f"{field_info['label']} is more than {field_info['max']}")
-                    if field_info.get("min") and value < field_info["min"]:
-                        raise CommandArgumentError(f"{field_info['label']} is less than {field_info['min']}")
-                    new_config[field_key] = int(value)
+                    if field_type == 0:
+                        if field_info.get("max") and value > field_info["max"]:
+                            raise CommandArgumentError(f"{field_info['label']} is more than {field_info['max']}")
+                        if field_info.get("min") and value < field_info["min"]:
+                            raise CommandArgumentError(f"{field_info['label']} is less than {field_info['min']}")
+                        new_config[field_key] = int(value)
 
-                elif field_type == 1:
-                    new_config[field_key] = value == True
+                    elif field_type == 1:
+                        new_config[field_key] = value == True
 
-                elif field_type in (2, 3):
-                    if field_info.get("max") and len(value) > field_info["max"]:
-                        raise CommandArgumentError(f"{field_info['label']} is more than {field_info['max']} characters")
-                    if field_info.get("min") and len(value) < field_info["min"]:
-                        raise CommandArgumentError(f"{field_info['label']} is less than {field_info['min']} characters")
+                    elif field_type in (2, 3):
+                        if field_info.get("max") and len(value) > field_info["max"]:
+                            raise CommandArgumentError(f"{field_info['label']} is more than {field_info['max']} characters")
+                        if field_info.get("min") and len(value) < field_info["min"]:
+                            raise CommandArgumentError(f"{field_info['label']} is less than {field_info['min']} characters")
 
-                    if field_type == 2:
-                        if not value.isascii():
-                            raise CommandArgumentError(f"{field_info['label']} must contain only ASCII characters")
+                        if field_type == 2:
+                            if not value.isascii():
+                                raise CommandArgumentError(f"{field_info['label']} must contain only ASCII characters")
 
-                new_config[field_key] = value
+                    new_config[field_key] = value
 
         if not new_config:
             raise CommandArgumentError("No configuration fields to send!")

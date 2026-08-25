@@ -7,3 +7,4 @@ logs
 *.cert
 __pycache__
 .env
+*.mo

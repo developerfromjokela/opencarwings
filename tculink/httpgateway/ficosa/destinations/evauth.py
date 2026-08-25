@@ -58,23 +58,24 @@ def handle(_, acp_data: dict, car: Car, source_id: int, __) -> bytes:
             if config_payload["type"] == "send":
                 config_payload = config_payload["data"]
                 for field, info in config_template["fields"].items():
-                    value = config_payload[field]
-                    field_type = info["type"]
-                    if field_type == ConfigurationFieldType.NUMBER:
-                        config_encoder.add_element(service_type, info["info_id"], value.to_bytes(info["length"], "little"))
-                    elif field_type == ConfigurationFieldType.BOOLEAN:
-                        config_encoder.add_element(service_type, info["info_id"], b"\x01" if value else b"\x00")
-                    elif field_type == ConfigurationFieldType.ASCII or field_type == ConfigurationFieldType.UNICODE:
-                        encoded_val = value.encode("ascii" if field_type == ConfigurationFieldType.ASCII else "utf-8")
-                        if info.get("fill", False):
-                            buf = bytearray(info["length"])
-                            # doublecheck length
-                            if len(encoded_val) > info["length"]:
-                                encoded_val = encoded_val[:info["length"]]
-                            #insert to buffer
-                            buf[:len(encoded_val)] = encoded_val
-                            encoded_val = buf
-                        config_encoder.add_element(service_type, info["info_id"], encoded_val)
+                    if field in config_payload:
+                        value = config_payload[field]
+                        field_type = info["type"]
+                        if field_type == ConfigurationFieldType.NUMBER:
+                            config_encoder.add_element(service_type, info["info_id"], value.to_bytes(info["length"], "little"))
+                        elif field_type == ConfigurationFieldType.BOOLEAN:
+                            config_encoder.add_element(service_type, info["info_id"], b"\x01" if value else b"\x00")
+                        elif field_type == ConfigurationFieldType.ASCII or field_type == ConfigurationFieldType.UNICODE:
+                            encoded_val = value.encode("ascii" if field_type == ConfigurationFieldType.ASCII else "utf-8")
+                            if info.get("fill", False):
+                                buf = bytearray(info["length"])
+                                # doublecheck length
+                                if len(encoded_val) > info["length"]:
+                                    encoded_val = encoded_val[:info["length"]]
+                                #insert to buffer
+                                buf[:len(encoded_val)] = encoded_val
+                                encoded_val = buf
+                            config_encoder.add_element(service_type, info["info_id"], encoded_val)
 
             acp_msg += config_encoder.encode()
             logger.debug(f"<< Config ACP Message: {acp_msg.hex()}")

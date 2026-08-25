@@ -33,7 +33,7 @@ def validate_config_cmd(payload):
 
         for field_key, field_info in fields.items():
             field_type = field_info["type"]
-            if field_key not in field_data and (field_type != 4 or field_info.get("optional", False)):
+            if field_key not in field_data and field_type != 4 and not field_info.get("optional", False):
                 raise CommandArgumentError(f"Missing configuration field {field_key}")
 
             if field_key in field_data:

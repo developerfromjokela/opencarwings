@@ -2382,7 +2382,7 @@
             document.getElementById('timer-enabled').checked = timer.enabled;
             document.getElementById('timer-name').value = timer.name;
             document.getElementById('timer-time').value = utcToLocalTime(timer.time).localTime;
-            document.getElementById('timer-date').value = timer.date;
+            document.getElementById('timer-date').value = toLocalISOString(correctDateBasedOnTimerTime(timer));
             document.getElementById('timer-mon').checked = timer.weekday_mon;
             document.getElementById('timer-tue').checked = timer.weekday_tue;
             document.getElementById('timer-wed').checked = timer.weekday_wed;
@@ -2448,6 +2448,29 @@
           };
         }
 
+        function toLocalISOString(date) {
+            if (!date) return null
+            const parts = new Intl.DateTimeFormat('en-CA', {
+                year: 'numeric', month: '2-digit', day: '2-digit',
+            }).formatToParts(date).reduce((acc, p) => {
+                acc[p.type] = p.value;
+                return acc;
+            }, {});
+
+            return `${parts.year}-${parts.month}-${parts.day}`;
+        }
+
+        function correctDateBasedOnTimerTime(timer) {
+            if (!timer.date) return null;
+
+            const [hours, minutes] = timer.time.split(':').map(Number);
+
+            const utcInstant = new Date(`${timer.date}T00:00:00.000Z`);
+            utcInstant.setUTCHours(hours, minutes, 0, 0);
+
+            return utcInstant
+        }
+
         function saveTimer() {
             let newTimerObj = {
                 name: document.getElementById('timer-name').value,
@@ -2459,7 +2482,24 @@
             if (timerId != null)
                 newTimerObj.id = timerId;
 
-            newTimerObj.date = (newTimerObj.timer_type === 0) ? document.getElementById('timer-date').value : null;
+            newTimerObj.date = null;
+            if (newTimerObj.timer_type === 0) {
+                const date = new Date(document.getElementById('timer-date').value);
+                const [hours, minutes] = document.getElementById('timer-time').value.split(':').map(Number);
+
+                const localInstant = new Date(
+                    date.getUTCFullYear(),
+                    date.getUTCMonth(),
+                    date.getUTCDate(),
+                    hours,
+                    minutes,
+                    0,
+                    0
+                );
+
+                newTimerObj.date = localInstant.toISOString().slice(0, 10);
+            }
+
             newTimerObj.weekday_mon = (newTimerObj.timer_type === 1) ? document.getElementById('timer-mon').checked : false;
             newTimerObj.weekday_tue = (newTimerObj.timer_type === 1) ? document.getElementById('timer-tue').checked : false;
             newTimerObj.weekday_wed = (newTimerObj.timer_type === 1) ? document.getElementById('timer-wed').checked : false;
@@ -2604,7 +2644,7 @@
 
                 let scheduleText = `${timer.command_type_display} | `;
                 if (timer.timer_type === 0) {
-                    const formattedDate = new Date(timer.date);
+                    const formattedDate = correctDateBasedOnTimerTime(timer);
                     scheduleText += `${formattedDate.toLocaleDateString()} | `;
                 } else if (timer.timer_type === 1) {
                     const days = [

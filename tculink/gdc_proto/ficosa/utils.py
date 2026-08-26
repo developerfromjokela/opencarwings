@@ -133,6 +133,34 @@ CONFIGURATION_MAP = {
             "f14": {"info_id": 0x1d, "length": 1, "type": ConfigurationFieldType.BOOLEAN, "optional": True, "label": "SIM Radio Wave Off", "fill": True},
             "f15": {"info_id": 0x1e, "length": 0x20, "type": ConfigurationFieldType.ASCII, "optional": True, "label": _("SMSC Number 2"), "fill": True},
         }
+    },
+    "server_settings": {
+        "label": _("Server Settings"),
+        "destination": 0xf4,
+        "service_type": 0xf6,
+        "query_support": False,
+        "fields": {
+            "pid": {"info_id": 0, "type": ConfigurationFieldType.ASCII, "optional": True, "label": _("User ID"), "fill": True, "length": 0x20},
+            "pwd": {"info_id": 1, "type": ConfigurationFieldType.ASCII, "optional": True, "label": _("User Password"), "fill": True, "length": 0x20},
+            "obs_url": {"info_id": 2, "type": ConfigurationFieldType.ASCII, "optional": True, "label": "OBS URL", "fill": True, "length": 0x80},
+            "obs_port": {"info_id": 3, "type": ConfigurationFieldType.ASCII, "optional": True, "label": "OBS Port", "fill": True, "length": 0x20},
+            "ecall_operational": {"info_id": 0x10, "type": ConfigurationFieldType.ASCII, "optional": True, "label": "eCall Number - Operational", "fill": True, "length": 0x20},
+            "ecall_lifecycletest": {"info_id": 0x11, "type": ConfigurationFieldType.ASCII, "optional": True, "label": "eCall Number - Life Cycle Test", "fill": True, "length": 0x20},
+            "ecall_validation": {"info_id": 0x12, "type": ConfigurationFieldType.ASCII, "optional": True, "label": "eCall Number - Validation", "fill": True, "length": 0x20},
+            "bcall_num": {"info_id": 0x13, "type": ConfigurationFieldType.ASCII, "optional": True, "label": "Bcall Number", "fill": True, "length": 0x20},
+            "ccall_num": {"info_id": 0x14, "type": ConfigurationFieldType.ASCII, "optional": True, "label": "Ccall Number", "fill": True, "length": 0x20},
+            "bccall_num": {"info_id": 0x15, "type": ConfigurationFieldType.ASCII, "optional": True, "label": "BCcall Number", "fill": True, "length": 0x20},
+            "airbag_primary": {"info_id": 0x16, "type": ConfigurationFieldType.ASCII, "optional": True, "label": "Airbag Primary Number", "fill": True, "length": 0x20},
+            "airbag_secondary": {"info_id": 0x17, "type": ConfigurationFieldType.ASCII, "optional": True, "label": "Airbag Secondary Number", "fill": True, "length": 0x20},
+            "airbag_vo_only": {"info_id": 0x18, "type": ConfigurationFieldType.ASCII, "optional": True, "label": "Airbag Voice Only Number", "fill": True, "length": 0x20},
+            "emerg_primary": {"info_id": 0x19, "type": ConfigurationFieldType.ASCII, "optional": True, "label": "Emergency Primary Number", "fill": True, "length": 0x20},
+            "emerg_secondary": {"info_id": 0x20, "type": ConfigurationFieldType.ASCII, "optional": True, "label": "Emergency Secondary Number", "fill": True, "length": 0x20},
+            "emerg_vo_only": {"info_id": 0x21, "type": ConfigurationFieldType.ASCII, "optional": True, "label": "Emergency Voice Only Number", "fill": True, "length": 0x20},
+            "operator_primary": {"info_id": 0x22, "type": ConfigurationFieldType.ASCII, "optional": True, "label": "Operator Primary Number", "fill": True, "length": 0x20},
+            "operator_secondary": {"info_id": 0x23, "type": ConfigurationFieldType.ASCII, "optional": True, "label": "Operator Secondary Number", "fill": True, "length": 0x20},
+            "operator_vo_only": {"info_id": 0x24, "type": ConfigurationFieldType.ASCII, "optional": True, "label": "Operator Voice Only Number", "fill": True, "length": 0x20},
+            "gdc_sms": {"info_id": 0x25, "type": ConfigurationFieldType.ASCII, "optional": True, "label": "Server SMS Center Number", "fill": True, "length": 0x20},
+        }
     }
 }
 

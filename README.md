@@ -13,15 +13,31 @@ Server for running CARWINGS services for Nissan LEAF.
 <img src="https://cdn.rawgit.com/ziadsarour/stores-badges/master/appstore/black/en.svg" width="40%">
 </a>
 
+## Supported vehicles:
+
+- Nissan LEAF:
+   - 2011-2015 ZE0, AZE0
+   - 2016-2017, AZE0 30 kWh
+   - 2018-2020 ZE1 40 kWh
+- (Unconfirmed) Any Nissan model with CARWINGS functions
+   - Only Data Channels and CARWINGS in-navi functions
+
 ## Implemented features
 
 - [x] Remote control A/C
 - [x] Remote control charging
 - [x] Notifications
 - [x] Read TCU configuration
-- [ ] Write TCU configuration
+- [x] Write TCU configuration
 - [x] CARWINGS in navigation head unit
-- [x] Trip journey & efficiency info (beta)
+- [x] Trip journey & efficiency info (beta).  
+>30 kWh and ZE1:
+- [x] Vehicle Health Report (TPMS and DTC Codes)
+- [x] Door Lock & Unlock
+- [x] Horn & Lights
+- [x] Burglar Alarm notification
+- [ ] Remote Start
+- [x] Cabin Temperature   
 
 ## Public instances
 

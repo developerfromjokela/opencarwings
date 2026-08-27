@@ -17,7 +17,7 @@ class SMSProviderError(TCUCoordinatorError):
     error_msg = None
 
     def __init__(self, msg: str):
-        self.error_msg = msg
+        self.error_msg = str(msg)
 
     def __str__(self):
         return self.error_msg

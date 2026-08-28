@@ -836,7 +836,7 @@ CAR_MODELS = [
      'default_color': 'env200_white',
      "year_start": 2014,
      "year_end": 2017},
-    {"code": "continental2012", "name": "Nissan e-NV200", "image": static("car/env200_white.png"),
+    {"code": "ficosa2016", "name": "Nissan e-NV200", "image": static("car/env200_white.png"),
      "device_image": static("tcu2.png"),
      'default_color': 'env200_white',
      "year_start": 2018,

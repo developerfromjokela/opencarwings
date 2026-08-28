@@ -203,7 +203,7 @@ def parse_ev_info(data: bytes, offset: int) -> Tuple[dict, int]:
 
     chargebars = 0
     chgbar_multiplier = (d[9] & 0b11111000) >> 3
-    if chgbar_multiplier < 0x1F:
+    if 0x1F > chgbar_multiplier > 0:
         chargebars = (((d[9] & 0b00000111) << 3) | ((d[10] & 0b11100000) >> 5)) / chgbar_multiplier
 
     drive_status = (d[4] & 0b11111000) >> 3

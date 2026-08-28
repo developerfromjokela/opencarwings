@@ -362,7 +362,9 @@ def change_command_pin(request):
         return Response(status=status.HTTP_401_UNAUTHORIZED)
     serializer = PinChangeSerializer(data=request.data)
     serializer.fields["otp_code"].required = request.user.is_2fa_enabled()
+    serializer.fields["otp_code"].allow_null = not request.user.is_2fa_enabled()
     serializer.fields["old_pin"].required = request.user.is_command_pin_set() and not request.user.is_2fa_enabled()
+    serializer.fields["old_pin"].allow_null = not (request.user.is_command_pin_set() and not request.user.is_2fa_enabled())
 
     if not serializer.is_valid():
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

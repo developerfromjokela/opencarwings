@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-25 21:38+0000\n"
-"PO-Revision-Date: 2026-08-26 00:42+0300\n"
+"POT-Creation-Date: 2026-08-31 11:25+0000\n"
+"PO-Revision-Date: 2026-08-31 14:28+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fi\n"
@@ -27,19 +27,19 @@ msgstr "PIN-koodit eivät täsmää."
 msgid "Too many timer commands, please delete one and try again"
 msgstr "Liian monta ajastinkomentoa, poista yksi ja yritä uudelleen."
 
-#: api/views.py:372 api/views.py:420
+#: api/views.py:374 api/views.py:422
 msgid "Invalid PIN, please try again"
 msgstr "Virheellinen PIN, yritä uudelleen."
 
-#: api/views.py:375
+#: api/views.py:377
 msgid "Invalid OTP, please try again"
 msgstr "Virheellinen OTP, yritä uudelleen."
 
-#: api/views.py:418
+#: api/views.py:420
 msgid "Command PIN is not set up, please set up and try again"
 msgstr "Komento-PIN-koodia ei ole määritetty. Määritä se ja yritä uudelleen."
 
-#: api/views.py:433 tculink/coordinators/continental2012.py:25
+#: api/views.py:435 tculink/coordinators/continental2012.py:25
 #: tculink/coordinators/ficosa2016.py:130
 msgid "Failed to send SMS message to TCU. Please try again in a moment."
 msgstr ""
@@ -122,7 +122,7 @@ msgstr "Uusi tieto saapunut!"
 msgid "Burglar alert"
 msgstr "Varashälyttimen varoitus"
 
-#: db/models.py:41 tculink/gdc_proto/ficosa/utils.py:62
+#: db/models.py:41 tculink/gdc_proto/ficosa/utils.py:64
 #: tculink/httpgateway/ficosa/destinations/tow.py:36
 msgid "Tow Notification"
 msgstr "Hinauksen ilmoitus"
@@ -189,7 +189,7 @@ msgstr "Äänimerkki"
 msgid "Lights"
 msgstr "Valot"
 
-#: db/models.py:64 tculink/gdc_proto/ficosa/utils.py:63
+#: db/models.py:64 tculink/gdc_proto/ficosa/utils.py:65
 msgid "Horn & Lights"
 msgstr "Äänimerkki ja valo"
 
@@ -912,90 +912,102 @@ msgstr "kolmaskymmenes"
 msgid "thirty-first"
 msgstr "kolmas kymmenes ensimmäistä"
 
-#: tculink/gdc_proto/ficosa/utils.py:38 tculink/gdc_proto/ficosa/utils.py:59
+#: tculink/gdc_proto/ficosa/utils.py:40 tculink/gdc_proto/ficosa/utils.py:61
 #: tculink/httpgateway/ficosa/destinations/veh_health.py:24
 #: tculink/httpgateway/ficosa/destinations/veh_health.py:32
 #: ui/templates/ui/car_detail.html:102
 msgid "Vehicle Health Report"
 msgstr "Auton kuntoraportti"
 
-#: tculink/gdc_proto/ficosa/utils.py:43
+#: tculink/gdc_proto/ficosa/utils.py:45
 msgid "Service Enabled"
 msgstr "Palvelu käytössä"
 
-#: tculink/gdc_proto/ficosa/utils.py:44
+#: tculink/gdc_proto/ficosa/utils.py:46
 msgid "Send frequency (days)"
 msgstr "Lähetystiheys (päivien lkm)"
 
-#: tculink/gdc_proto/ficosa/utils.py:48
+#: tculink/gdc_proto/ficosa/utils.py:50
 msgid "Service Provisioning"
 msgstr "Palveluiden käyttöönotto"
 
-#: tculink/gdc_proto/ficosa/utils.py:53
+#: tculink/gdc_proto/ficosa/utils.py:55
 msgid "EV Battery Charging Status"
 msgstr "EV-akun varaustila"
 
-#: tculink/gdc_proto/ficosa/utils.py:54
+#: tculink/gdc_proto/ficosa/utils.py:56
 msgid "EV Battery Charging History"
 msgstr "EV-akun lataushistoria"
 
-#: tculink/gdc_proto/ficosa/utils.py:55
+#: tculink/gdc_proto/ficosa/utils.py:57
 msgid "EV Battery Charging Remote Activation"
 msgstr "Auton latauksen etäkäynnistys"
 
-#: tculink/gdc_proto/ficosa/utils.py:56
+#: tculink/gdc_proto/ficosa/utils.py:58
 msgid "EV Remote HVAC Activation"
 msgstr "Sähköauton ilmastointijärjestelmän etäkäynnistys"
 
-#: tculink/gdc_proto/ficosa/utils.py:57
+#: tculink/gdc_proto/ficosa/utils.py:59
 msgid "EV Plug Reminder"
 msgstr "EV-latauspistokkeen muistutus"
 
-#: tculink/gdc_proto/ficosa/utils.py:58
+#: tculink/gdc_proto/ficosa/utils.py:60
 msgid "EV Battery Heating Notification"
 msgstr "EV-akun lämmityksen ilmoitus"
 
-#: tculink/gdc_proto/ficosa/utils.py:60
+#: tculink/gdc_proto/ficosa/utils.py:62
 #: tculink/httpgateway/ficosa/destinations/burglar.py:36
 msgid "Burglar Alarm"
 msgstr "Burglar Alarm"
 
-#: tculink/gdc_proto/ficosa/utils.py:61
+#: tculink/gdc_proto/ficosa/utils.py:63
 msgid "Door Lock & Unlock"
 msgstr "Keskuslukituksen avaus ja lukitus"
 
-#: tculink/gdc_proto/ficosa/utils.py:64 tculink/gdc_proto/ficosa/utils.py:65
 #: tculink/gdc_proto/ficosa/utils.py:66 tculink/gdc_proto/ficosa/utils.py:67
 #: tculink/gdc_proto/ficosa/utils.py:68 tculink/gdc_proto/ficosa/utils.py:69
 #: tculink/gdc_proto/ficosa/utils.py:70 tculink/gdc_proto/ficosa/utils.py:71
 #: tculink/gdc_proto/ficosa/utils.py:72 tculink/gdc_proto/ficosa/utils.py:73
+#: tculink/gdc_proto/ficosa/utils.py:74 tculink/gdc_proto/ficosa/utils.py:75
 #, python-brace-format
 msgid "Probe Service {num}"
 msgstr "Probe-palvelu {num}"
 
-#: tculink/gdc_proto/ficosa/utils.py:77
+#: tculink/gdc_proto/ficosa/utils.py:79
 msgid "SIM Settings 1"
 msgstr "SIM-asetukset 1"
 
-#: tculink/gdc_proto/ficosa/utils.py:83 tculink/gdc_proto/ficosa/utils.py:120
+#: tculink/gdc_proto/ficosa/utils.py:85 tculink/gdc_proto/ficosa/utils.py:122
 msgid "SIM Pin Code"
 msgstr "SIM-Kortin PIN-koodi"
 
-#: tculink/gdc_proto/ficosa/utils.py:85 tculink/gdc_proto/ficosa/utils.py:121
+#: tculink/gdc_proto/ficosa/utils.py:87 tculink/gdc_proto/ficosa/utils.py:123
 msgid "SIM Pin Locked"
 msgstr "SIM-kortin PIN-lukituksen tila"
 
-#: tculink/gdc_proto/ficosa/utils.py:93 tculink/gdc_proto/ficosa/utils.py:125
+#: tculink/gdc_proto/ficosa/utils.py:95 tculink/gdc_proto/ficosa/utils.py:127
 msgid "SMSC Number 1"
 msgstr "SMSC-numero 1"
 
-#: tculink/gdc_proto/ficosa/utils.py:111 tculink/gdc_proto/ficosa/utils.py:134
+#: tculink/gdc_proto/ficosa/utils.py:113 tculink/gdc_proto/ficosa/utils.py:136
 msgid "SMSC Number 2"
 msgstr "SMSC-numero 2"
 
-#: tculink/gdc_proto/ficosa/utils.py:115
+#: tculink/gdc_proto/ficosa/utils.py:117
 msgid "SIM Settings 2"
 msgstr "SIM-asetukset 2"
+
+#: tculink/gdc_proto/ficosa/utils.py:140
+msgid "Server Settings"
+msgstr "Palvelimen asetukset"
+
+#: tculink/gdc_proto/ficosa/utils.py:145
+msgid "User ID"
+msgstr "Käyttäjätunnus"
+
+#: tculink/gdc_proto/ficosa/utils.py:146
+msgid "User Password"
+msgstr "Käyttäjän salasana"
 
 #: tculink/httpgateway/ficosa/destinations/burglar.py:35
 msgid "Burglar alarm has been triggered"
@@ -1861,25 +1873,25 @@ msgstr "la"
 msgid "Sun"
 msgstr "su"
 
-#: ui/templates/ui/car_detail.html:275 ui/templates/ui/car_detail.html:2626
+#: ui/templates/ui/car_detail.html:275 ui/templates/ui/car_detail.html:2666
 msgid "Last run"
 msgstr "Suoritettu viimeksi"
 
-#: ui/templates/ui/car_detail.html:275 ui/templates/ui/car_detail.html:2626
+#: ui/templates/ui/car_detail.html:275 ui/templates/ui/car_detail.html:2666
 msgid "result"
 msgstr "tulos"
 
 #: ui/templates/ui/car_detail.html:281 ui/templates/ui/car_detail.html:388
-#: ui/templates/ui/car_detail.html:1716 ui/templates/ui/car_detail.html:2633
+#: ui/templates/ui/car_detail.html:1716 ui/templates/ui/car_detail.html:2673
 msgid "Edit"
 msgstr "Muokkaa"
 
 #: ui/templates/ui/car_detail.html:287 ui/templates/ui/car_detail.html:394
-#: ui/templates/ui/car_detail.html:1721 ui/templates/ui/car_detail.html:2638
+#: ui/templates/ui/car_detail.html:1721 ui/templates/ui/car_detail.html:2678
 msgid "Delete"
 msgstr "Poista"
 
-#: ui/templates/ui/car_detail.html:293 ui/templates/ui/car_detail.html:2581
+#: ui/templates/ui/car_detail.html:293 ui/templates/ui/car_detail.html:2621
 msgid "No timers added"
 msgstr "Ei ajastimia lisättynä"
 
@@ -2367,38 +2379,38 @@ msgstr "CARWINGS asetukset tallennettu!"
 msgid "Add timer"
 msgstr "Lisää ajastin"
 
-#: ui/templates/ui/car_detail.html:2472 ui/templates/ui/car_detail.html:2475
+#: ui/templates/ui/car_detail.html:2512 ui/templates/ui/car_detail.html:2515
 msgid "Missing field"
 msgstr "Puuttuva tieto"
 
-#: ui/templates/ui/car_detail.html:2472
+#: ui/templates/ui/car_detail.html:2512
 msgid "Please enter valid date for the timer"
 msgstr "Valitse päivämäärä"
 
-#: ui/templates/ui/car_detail.html:2475
+#: ui/templates/ui/car_detail.html:2515
 msgid "Please select at least one weekday"
 msgstr "Valitse ainakin yksi viikonpäivä"
 
-#: ui/templates/ui/car_detail.html:2496 ui/templates/ui/car_detail.html:2504
-#: ui/templates/ui/car_detail.html:2505 ui/templates/ui/car_detail.html:2526
-#: ui/templates/ui/car_detail.html:2534 ui/templates/ui/car_detail.html:2535
+#: ui/templates/ui/car_detail.html:2536 ui/templates/ui/car_detail.html:2544
+#: ui/templates/ui/car_detail.html:2545 ui/templates/ui/car_detail.html:2566
+#: ui/templates/ui/car_detail.html:2574 ui/templates/ui/car_detail.html:2575
 msgid "Error saving the timer"
 msgstr "Virhe ajastimen tallennuksessa"
 
-#: ui/templates/ui/car_detail.html:2498 ui/templates/ui/car_detail.html:2528
+#: ui/templates/ui/car_detail.html:2538 ui/templates/ui/car_detail.html:2568
 msgid "Timer saved!"
 msgstr "Ajastin tallennettu!"
 
-#: ui/templates/ui/car_detail.html:2542
+#: ui/templates/ui/car_detail.html:2582
 msgid "Are you sure you want to delete this timer?"
 msgstr "Haluatko varmasti poistaa tämän ajastimen?"
 
-#: ui/templates/ui/car_detail.html:2551
+#: ui/templates/ui/car_detail.html:2591
 msgid "Timer removed!"
 msgstr "Ajastin poistettu!"
 
-#: ui/templates/ui/car_detail.html:2554 ui/templates/ui/car_detail.html:2556
-#: ui/templates/ui/car_detail.html:2560 ui/templates/ui/car_detail.html:2561
+#: ui/templates/ui/car_detail.html:2594 ui/templates/ui/car_detail.html:2596
+#: ui/templates/ui/car_detail.html:2600 ui/templates/ui/car_detail.html:2601
 msgid "Error deleting the timer"
 msgstr "Virhe ajastimen poistossa"
 
@@ -3795,9 +3807,6 @@ msgstr ""
 #: ui/views.py:1024
 msgid "Update request cancelled!"
 msgstr "Päivityspyyntö peruttu!"
-
-msgid "TCU Password"
-msgstr "TCU-salasana"
 
 msgid "New!"
 msgstr "Uusi!"

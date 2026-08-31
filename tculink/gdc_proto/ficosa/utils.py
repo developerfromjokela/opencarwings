@@ -1,3 +1,5 @@
+import copy
+from django.utils.functional import Promise
 from django.utils.translation import gettext_lazy as _
 
 COMMAND_MAP = {
@@ -24,13 +26,13 @@ class ConfigurationFieldType:
     PROVISIONING = 4
 
 def get_config_map_translated():
-    new_config = CONFIGURATION_MAP.copy()
+    new_config = copy.deepcopy(CONFIGURATION_MAP)
     for key, val in new_config.items():
-        val["label"] = _(val["label"])
+        if not isinstance(val["label"], Promise):
+            val["label"] = _(val["label"])
         for fkey, fval in val["fields"].items():
-            label = fval["label"]
-            val["fields"][fkey]["label"] = _(label)
-        new_config[key] = val
+            if not isinstance(fval["label"], Promise):
+                fval["label"] = _(fval["label"])
     return new_config
 
 CONFIGURATION_MAP = {

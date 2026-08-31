@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-25 21:38+0000\n"
-"PO-Revision-Date: 2026-08-26 00:46+0300\n"
+"POT-Creation-Date: 2026-08-31 11:25+0000\n"
+"PO-Revision-Date: 2026-08-31 14:29+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -26,20 +26,20 @@ msgstr "Los códigos PIN no coinciden."
 msgid "Too many timer commands, please delete one and try again"
 msgstr "Demasiados temporizadores, elimine uno y vuelva a intentarlo"
 
-#: api/views.py:372 api/views.py:420
+#: api/views.py:374 api/views.py:422
 msgid "Invalid PIN, please try again"
 msgstr "PIN incorrecto. Inténtalo de nuevo."
 
-#: api/views.py:375
+#: api/views.py:377
 msgid "Invalid OTP, please try again"
 msgstr "Código OTP no válido. Inténtalo de nuevo."
 
-#: api/views.py:418
+#: api/views.py:420
 msgid "Command PIN is not set up, please set up and try again"
 msgstr ""
 "No se ha configurado el PIN de comando; configúralo e inténtalo de nuevo."
 
-#: api/views.py:433 tculink/coordinators/continental2012.py:25
+#: api/views.py:435 tculink/coordinators/continental2012.py:25
 #: tculink/coordinators/ficosa2016.py:130
 msgid "Failed to send SMS message to TCU. Please try again in a moment."
 msgstr ""
@@ -123,7 +123,7 @@ msgstr "Nuevos datos recibidos"
 msgid "Burglar alert"
 msgstr "Alerta de intrusión"
 
-#: db/models.py:41 tculink/gdc_proto/ficosa/utils.py:62
+#: db/models.py:41 tculink/gdc_proto/ficosa/utils.py:64
 #: tculink/httpgateway/ficosa/destinations/tow.py:36
 msgid "Tow Notification"
 msgstr "Notificación de remolque"
@@ -191,7 +191,7 @@ msgstr "Bocina del coche"
 msgid "Lights"
 msgstr "Luces"
 
-#: db/models.py:64 tculink/gdc_proto/ficosa/utils.py:63
+#: db/models.py:64 tculink/gdc_proto/ficosa/utils.py:65
 msgid "Horn & Lights"
 msgstr "Bocina y luces"
 
@@ -954,90 +954,102 @@ msgstr "trigésimo"
 msgid "thirty-first"
 msgstr "trigésimo primero"
 
-#: tculink/gdc_proto/ficosa/utils.py:38 tculink/gdc_proto/ficosa/utils.py:59
+#: tculink/gdc_proto/ficosa/utils.py:40 tculink/gdc_proto/ficosa/utils.py:61
 #: tculink/httpgateway/ficosa/destinations/veh_health.py:24
 #: tculink/httpgateway/ficosa/destinations/veh_health.py:32
 #: ui/templates/ui/car_detail.html:102
 msgid "Vehicle Health Report"
 msgstr "Informe de salud del vehículo"
 
-#: tculink/gdc_proto/ficosa/utils.py:43
+#: tculink/gdc_proto/ficosa/utils.py:45
 msgid "Service Enabled"
 msgstr "Servicio activado"
 
-#: tculink/gdc_proto/ficosa/utils.py:44
+#: tculink/gdc_proto/ficosa/utils.py:46
 msgid "Send frequency (days)"
 msgstr "Frecuencia de envío (días)"
 
-#: tculink/gdc_proto/ficosa/utils.py:48
+#: tculink/gdc_proto/ficosa/utils.py:50
 msgid "Service Provisioning"
 msgstr "Aprovisionamiento del servicio"
 
-#: tculink/gdc_proto/ficosa/utils.py:53
+#: tculink/gdc_proto/ficosa/utils.py:55
 msgid "EV Battery Charging Status"
 msgstr "Estado de carga de la batería del VE"
 
-#: tculink/gdc_proto/ficosa/utils.py:54
+#: tculink/gdc_proto/ficosa/utils.py:56
 msgid "EV Battery Charging History"
 msgstr "Historial de carga de la batería del VE"
 
-#: tculink/gdc_proto/ficosa/utils.py:55
+#: tculink/gdc_proto/ficosa/utils.py:57
 msgid "EV Battery Charging Remote Activation"
 msgstr "Activación remota de carga de la batería del VE"
 
-#: tculink/gdc_proto/ficosa/utils.py:56
+#: tculink/gdc_proto/ficosa/utils.py:58
 msgid "EV Remote HVAC Activation"
 msgstr "Activación remota del climatizador del VE"
 
-#: tculink/gdc_proto/ficosa/utils.py:57
+#: tculink/gdc_proto/ficosa/utils.py:59
 msgid "EV Plug Reminder"
 msgstr "Recordatorio de enchufe del VE"
 
-#: tculink/gdc_proto/ficosa/utils.py:58
+#: tculink/gdc_proto/ficosa/utils.py:60
 msgid "EV Battery Heating Notification"
 msgstr "Notificación de calentamiento de la batería del VE"
 
-#: tculink/gdc_proto/ficosa/utils.py:60
+#: tculink/gdc_proto/ficosa/utils.py:62
 #: tculink/httpgateway/ficosa/destinations/burglar.py:36
 msgid "Burglar Alarm"
 msgstr "Alarma antirrobo"
 
-#: tculink/gdc_proto/ficosa/utils.py:61
+#: tculink/gdc_proto/ficosa/utils.py:63
 msgid "Door Lock & Unlock"
 msgstr "Bloqueo y desbloqueo de puertas"
 
-#: tculink/gdc_proto/ficosa/utils.py:64 tculink/gdc_proto/ficosa/utils.py:65
 #: tculink/gdc_proto/ficosa/utils.py:66 tculink/gdc_proto/ficosa/utils.py:67
 #: tculink/gdc_proto/ficosa/utils.py:68 tculink/gdc_proto/ficosa/utils.py:69
 #: tculink/gdc_proto/ficosa/utils.py:70 tculink/gdc_proto/ficosa/utils.py:71
 #: tculink/gdc_proto/ficosa/utils.py:72 tculink/gdc_proto/ficosa/utils.py:73
+#: tculink/gdc_proto/ficosa/utils.py:74 tculink/gdc_proto/ficosa/utils.py:75
 #, python-brace-format
 msgid "Probe Service {num}"
 msgstr "Servicio de probe {num}"
 
-#: tculink/gdc_proto/ficosa/utils.py:77
+#: tculink/gdc_proto/ficosa/utils.py:79
 msgid "SIM Settings 1"
 msgstr "Configuración de la SIM 1"
 
-#: tculink/gdc_proto/ficosa/utils.py:83 tculink/gdc_proto/ficosa/utils.py:120
+#: tculink/gdc_proto/ficosa/utils.py:85 tculink/gdc_proto/ficosa/utils.py:122
 msgid "SIM Pin Code"
 msgstr "Código PIN de la tarjeta SIM"
 
-#: tculink/gdc_proto/ficosa/utils.py:85 tculink/gdc_proto/ficosa/utils.py:121
+#: tculink/gdc_proto/ficosa/utils.py:87 tculink/gdc_proto/ficosa/utils.py:123
 msgid "SIM Pin Locked"
 msgstr "La tarjeta SIM está bloqueada mediante PIN."
 
-#: tculink/gdc_proto/ficosa/utils.py:93 tculink/gdc_proto/ficosa/utils.py:125
+#: tculink/gdc_proto/ficosa/utils.py:95 tculink/gdc_proto/ficosa/utils.py:127
 msgid "SMSC Number 1"
 msgstr "SMSC Número 1"
 
-#: tculink/gdc_proto/ficosa/utils.py:111 tculink/gdc_proto/ficosa/utils.py:134
+#: tculink/gdc_proto/ficosa/utils.py:113 tculink/gdc_proto/ficosa/utils.py:136
 msgid "SMSC Number 2"
 msgstr "SMSC Número 2"
 
-#: tculink/gdc_proto/ficosa/utils.py:115
+#: tculink/gdc_proto/ficosa/utils.py:117
 msgid "SIM Settings 2"
 msgstr "SIM Settings 2"
+
+#: tculink/gdc_proto/ficosa/utils.py:140
+msgid "Server Settings"
+msgstr "Configuración del servidor"
+
+#: tculink/gdc_proto/ficosa/utils.py:145
+msgid "User ID"
+msgstr ""
+
+#: tculink/gdc_proto/ficosa/utils.py:146
+msgid "User Password"
+msgstr "Contraseña de usuario"
 
 #: tculink/httpgateway/ficosa/destinations/burglar.py:35
 msgid "Burglar alarm has been triggered"
@@ -1914,25 +1926,25 @@ msgstr "Sáb"
 msgid "Sun"
 msgstr "Dom"
 
-#: ui/templates/ui/car_detail.html:275 ui/templates/ui/car_detail.html:2626
+#: ui/templates/ui/car_detail.html:275 ui/templates/ui/car_detail.html:2666
 msgid "Last run"
 msgstr "Último tiempo"
 
-#: ui/templates/ui/car_detail.html:275 ui/templates/ui/car_detail.html:2626
+#: ui/templates/ui/car_detail.html:275 ui/templates/ui/car_detail.html:2666
 msgid "result"
 msgstr "resultado"
 
 #: ui/templates/ui/car_detail.html:281 ui/templates/ui/car_detail.html:388
-#: ui/templates/ui/car_detail.html:1716 ui/templates/ui/car_detail.html:2633
+#: ui/templates/ui/car_detail.html:1716 ui/templates/ui/car_detail.html:2673
 msgid "Edit"
 msgstr "Edit"
 
 #: ui/templates/ui/car_detail.html:287 ui/templates/ui/car_detail.html:394
-#: ui/templates/ui/car_detail.html:1721 ui/templates/ui/car_detail.html:2638
+#: ui/templates/ui/car_detail.html:1721 ui/templates/ui/car_detail.html:2678
 msgid "Delete"
 msgstr "Delete"
 
-#: ui/templates/ui/car_detail.html:293 ui/templates/ui/car_detail.html:2581
+#: ui/templates/ui/car_detail.html:293 ui/templates/ui/car_detail.html:2621
 msgid "No timers added"
 msgstr "No se han añadido temporizadores"
 
@@ -2417,38 +2429,38 @@ msgstr "¡Configuración de CARWINGS guardada!"
 msgid "Add timer"
 msgstr "Añadir temporizador"
 
-#: ui/templates/ui/car_detail.html:2472 ui/templates/ui/car_detail.html:2475
+#: ui/templates/ui/car_detail.html:2512 ui/templates/ui/car_detail.html:2515
 msgid "Missing field"
 msgstr "Campo faltante"
 
-#: ui/templates/ui/car_detail.html:2472
+#: ui/templates/ui/car_detail.html:2512
 msgid "Please enter valid date for the timer"
 msgstr "Por favor, introduzca una fecha válida para el temporizador"
 
-#: ui/templates/ui/car_detail.html:2475
+#: ui/templates/ui/car_detail.html:2515
 msgid "Please select at least one weekday"
 msgstr "Por favor seleccione al menos un día de la semana"
 
-#: ui/templates/ui/car_detail.html:2496 ui/templates/ui/car_detail.html:2504
-#: ui/templates/ui/car_detail.html:2505 ui/templates/ui/car_detail.html:2526
-#: ui/templates/ui/car_detail.html:2534 ui/templates/ui/car_detail.html:2535
+#: ui/templates/ui/car_detail.html:2536 ui/templates/ui/car_detail.html:2544
+#: ui/templates/ui/car_detail.html:2545 ui/templates/ui/car_detail.html:2566
+#: ui/templates/ui/car_detail.html:2574 ui/templates/ui/car_detail.html:2575
 msgid "Error saving the timer"
 msgstr "Error al guardar el temporizador"
 
-#: ui/templates/ui/car_detail.html:2498 ui/templates/ui/car_detail.html:2528
+#: ui/templates/ui/car_detail.html:2538 ui/templates/ui/car_detail.html:2568
 msgid "Timer saved!"
 msgstr "¡Temporizador guardado!"
 
-#: ui/templates/ui/car_detail.html:2542
+#: ui/templates/ui/car_detail.html:2582
 msgid "Are you sure you want to delete this timer?"
 msgstr "¿Estás seguro que deseas eliminar este temporizador?"
 
-#: ui/templates/ui/car_detail.html:2551
+#: ui/templates/ui/car_detail.html:2591
 msgid "Timer removed!"
 msgstr "¡Temporizador eliminado!"
 
-#: ui/templates/ui/car_detail.html:2554 ui/templates/ui/car_detail.html:2556
-#: ui/templates/ui/car_detail.html:2560 ui/templates/ui/car_detail.html:2561
+#: ui/templates/ui/car_detail.html:2594 ui/templates/ui/car_detail.html:2596
+#: ui/templates/ui/car_detail.html:2600 ui/templates/ui/car_detail.html:2601
 msgid "Error deleting the timer"
 msgstr "Error al eliminar el temporizador"
 
@@ -3863,9 +3875,6 @@ msgstr ""
 #: ui/views.py:1024
 msgid "Update request cancelled!"
 msgstr "¡Solicitud de actualización cancelada!"
-
-msgid "TCU Password"
-msgstr "Contraseña del TCU"
 
 msgid "New!"
 msgstr "¡Nuevo!"

@@ -22,6 +22,12 @@ services:
     ports:
       - "${BACKEND_PORT}:80"
       - "${TCPSERVER_PORT}:55230"
+    cap_drop:
+        - ALL
+    user: "5000:5000"
+    security_opt:
+        - no-new-privileges:true
+
   db:
     image: postgres:18
     environment:
@@ -32,9 +38,27 @@ services:
     volumes:
       - psql_data:/var/lib/postgresql/data
     restart: unless-stopped
+    security_opt:
+        - no-new-privileges:true
+	cap_drop:
+		- ALL
+	cap_add:
+		- CHOWN
+		- DAC_OVERRIDE
+		- FOWNER
+		- SETUID
+		- SETGID
+
+
   redis:
     image: redis:7
-
+    security_opt:
+        - no-new-privileges:true
+    cap_drop:
+      - ALL
+    cap_add:
+      - SETUID
+      - SETGID
 
 volumes:
   psql_data:

@@ -62,8 +62,6 @@ EXPOSE 55230
 # establish temporary bare config for making translations
 RUN cp /app/carwings/settings.example.py /app/carwings/settings.py
 RUN REDIS_HOST="" python manage.py compilemessages
-RUN rm -rf /app/carwings
+RUN rm /app/carwings/settings.py
 
 CMD ["bash", "/app/docker/start.sh"]
-
-

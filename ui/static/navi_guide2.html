@@ -72,15 +72,17 @@
 <body>
 <h1>Guide: Bringing Your Navigator Back Online<br/>(AZE0&ZE1 30/40kWh, ONLY ONE SD SLOT)</h1>
 <p style="text-align: center"><span class="warning">NOTE: This guide is for navigation units with ONLY ONE SD SLOT! If you have two, please follow the guide <a href="/static/navi_guide.html">here</a></span> <br/> This detailed guide will walk you through the process of changing your navigator's APN settings. Follow each step carefully to ensure successful setup.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/0qPf6kGowmM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 <div class="step">
-  <h2><span class="step-number">Step 1:</span> Make a clone of your SD Card</h2>
-  <p>You’ll need to make a clone of your navigation SD, so you will need new SD card that you will use in the navi. Keep the original safe in case something happens. Here’s how to proceed:</p>
+  <h2><span class="step-number">Step 1:</span> Make a backup or clone of your SD Card</h2>
+  <p>You’ll need to make a backup, additionally also a clone of your navigation SD, as a preventative maintenance, in case old SD fails. In case you decide to do a clone, you will need new SD card that you will use in the navi. The bare minimum, keep a backup of your original SD! Here’s how to proceed:</p>
   <ul>
-    <li><strong>0:</strong> Get yourself an SD card with same or larger capacity to fit the original SD card clone image.</li>
-    <li><strong>1:</strong> Use Win32 disk imager, HDD Raw Copy tool or other tool depending on your system to make a disk image of your original SD Card</li>
-    <li><strong>2:</strong> Before writing the disk image, we need to fix its partition table. Use <a href="https://github.com/developerfromjokela/leafsdtools_companion/releases/">LeafSDTools companion</a>.</li>
-    <li><strong>3:</strong> Select the disk image inside LeafSDTools companion and wait for the fix to be applied.</li>
-    <li><strong>4:</strong> Write fixed disk image to your new SD card and confirm it works with the navigation unit.</li>
+    <li><strong>0:</strong> Download <a href="https://github.com/developerfromjokela/leafsdtools_companion/releases/">LeafSDTools companion</a>.</li>
+    <li><strong>1:</strong> Use LeafSDTools Companion to make a backup of your original SD Card</li>
+    <li><strong>2:</strong> (If you are making a clone!) Restore backup to new SD card</li>
+    <li><strong>3:</strong> Select the SD Card inside LeafSDTools companion, under "Fix partition" tab hit Apply Fix and wait for the fix to be applied.</li>
+    <li><strong>4:</strong> After the fix, there should be more than one partition visible.</li>
     <img style="width: 100%; max-width: 800px" src="lst_companion.jpg">
   </ul>
 </div>

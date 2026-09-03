@@ -6,6 +6,7 @@ import re
 from datetime import datetime
 from io import BytesIO
 
+import PIL.features
 from django.core.cache import cache
 
 logger = logging.getLogger("carwings_apj")
@@ -182,6 +183,11 @@ def get_infochannel(xml_data, returning_xml, channel_id, car, page):
 
 BUBBLE_TXT_COLOR = (222, 247, 148)
 
+def get_quantization_method():
+    method = Image.Quantize.FASTOCTREE
+    if PIL.features.check_feature("libimagequant"):
+        method = Image.Quantize.LIBIMAGEQUANT
+    return method
 
 def wrap_text(text, width, font):
     text_lines = []
@@ -311,9 +317,9 @@ def create_consumption_slide(title, consumption, bar_labels, bars=0, helptext=""
     main_frame.paste(indicator, (base_ind_pos, 0), indicator)
     frame_data = BytesIO()
     main_frame = main_frame.convert("RGB")
-    main_frame = main_frame.quantize(colors=128, dither=Image.Dither.FLOYDSTEINBERG, method=Image.Quantize.FASTOCTREE)
+    main_frame = main_frame.quantize(colors=256, dither=Image.Dither.FLOYDSTEINBERG, method=get_quantization_method())
     main_frame.save(frame_data, format="PNG",
-        optimize=True,
+        optimize=False,
         compress_level=9)
     return frame_data.getvalue()
 
@@ -376,9 +382,9 @@ def create_info_slide(title, info_title):
 
     frame_data = BytesIO()
     main_frame = main_frame.convert("RGB")
-    main_frame = main_frame.quantize(colors=128, dither=Image.Dither.FLOYDSTEINBERG, method=Image.Quantize.FASTOCTREE)
+    main_frame = main_frame.quantize(colors=256, dither=Image.Dither.FLOYDSTEINBERG, method=get_quantization_method())
     main_frame.save(frame_data, format="PNG",
-        optimize=True,
+        optimize=False,
         compress_level=9)
     return frame_data.getvalue()
 
@@ -473,7 +479,7 @@ def create_ecorecord_slide(title, total, total_count, trees, records):
     main_frame = main_frame.convert("RGB")
     main_frame = main_frame.quantize(colors=128, dither=Image.Dither.FLOYDSTEINBERG, method=Image.Quantize.MAXCOVERAGE)
     main_frame.save(frame_data, format="PNG",
-        optimize=True,
+        optimize=False,
         compress_level=9)
     return frame_data.getvalue()
 
@@ -551,7 +557,7 @@ def create_ecoforest_slide(title, total_title, total_value, emission_title, emis
     main_frame = main_frame.convert("RGB")
     main_frame = main_frame.quantize(colors=128, dither=Image.Dither.FLOYDSTEINBERG, method=Image.Quantize.MAXCOVERAGE)
     main_frame.save(frame_data, format="PNG",
-        optimize=True,
+        optimize=False,
         compress_level=9)
     return frame_data.getvalue()
 

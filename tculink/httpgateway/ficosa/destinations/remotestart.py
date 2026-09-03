@@ -106,6 +106,6 @@ def handle(bin_data: bytes, acp_data: dict, car: Car, source_id: int, destinatio
 
     car.command_requested = False
     car.command_result = 0
-    car.save()
+    car.save(update_fields=["command_requested", "command_result"])
 
     return acp.make_ack_response(car.vin, car.tcu_model, destination_id, source_id, 0, 0, 1)

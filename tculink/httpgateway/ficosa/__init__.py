@@ -50,7 +50,8 @@ def update_basic_car_info(acp_body: dict, car: Car) -> int|None:
     if car.command_payload is not None and car.command_payload.get("timer"):
         timer_id = car.command_payload.get("timer")
         car.command_payload = None
-    car.save()
+    car.save(update_fields=["command_payload", "tcu_ver", "vehicle_code1",
+                            "vehicle_code2", "vehicle_code3", "vehicle_code4", "last_connection"])
     return timer_id
 
 

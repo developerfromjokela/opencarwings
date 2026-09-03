@@ -235,7 +235,9 @@ class Command(BaseCommand):
                     if not authenticated:
                         car.command_result = 1
                         car.command_requested = False
-                        await sync_to_async(car.save)()
+                        await sync_to_async(car.save)(update_fields=["command_result", "command_requested",
+                                                                     "last_connection", "vehicle_code1", "vehicle_code2",
+                                                                     "vehicle_code3", "vehicle_code4", "tcu_ver"])
                         await writer.drain()
                         return
 
@@ -491,7 +493,9 @@ class Command(BaseCommand):
                         timer_id = car.command_payload.get("timer")
                         car.command_payload = None
 
-                    await sync_to_async(car.save)()
+                    await sync_to_async(car.save)(update_fields=["command_payload", "command_result", "command_requested",
+                                                                 "last_connection", "vehicle_code1", "vehicle_code2",
+                                                                 "vehicle_code3", "vehicle_code4", "tcu_ver"])
                     try:
                         if timer_id is not None:
                             timer_command = await get_commandtimersetting(timer_id)

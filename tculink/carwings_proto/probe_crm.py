@@ -692,6 +692,10 @@ def update_crm_to_db(car: Car, crm_pload):
         latest_dbobj.last_updated = timezone.now()
         latest_dbobj.save()
 
+        # also update odometer
+        car.odometer = latest.get("odometer", 0)
+        car.save(update_fields=["odometer"])
+
     if "lifetime" in crm_pload and len(list(crm_pload["lifetime"].keys())) > 0:
         lifetime = crm_pload["lifetime"]
         try:

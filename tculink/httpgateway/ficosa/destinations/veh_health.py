@@ -73,7 +73,9 @@ def handle(bin_data: bytes, acp_data: dict, car: Car, source_id: int, destinatio
         car.veh_health.last_updated = timezone.now()
         car.veh_health.save()
 
-        car.save()
+        # also update odometer
+        car.odometer = maint_data.get("mileage_km", 0) or 0
+        car.save(update_fields=["odometer", "veh_health"])
 
     except Exception as e:
         logger.exception(e)

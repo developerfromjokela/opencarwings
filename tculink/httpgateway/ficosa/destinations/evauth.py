@@ -132,7 +132,7 @@ def handle(_, acp_data: dict, car: Car, source_id: int, __) -> bytes:
             acp_msg += composer.EVCommandTail(command=0).encode()
             acp_msg += composer.ServiceProvisioning().add_entry(composer.ServiceProvisioningService(0, 0, 0)).encode()
 
-        car.save()
+        car.save(update_fields=["command_payload", "command_result"])
 
     msg = bytearray()
     msg += composer.AppHeader(app_id=app_id, mcf=3, length=len(acp_msg), special_flag=1).encode()

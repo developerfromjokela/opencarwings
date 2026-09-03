@@ -511,7 +511,7 @@ def car_transfer(request, code):
         transfer = transfer.first()
         if request.method == 'POST':
             transfer.car.owner = request.user
-            transfer.car.save()
+            transfer.car.save(update_fields=['owner'])
             transfer.delete()
             messages.info(request, _("Transfer was successful!"))
             return redirect('car_list')

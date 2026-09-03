@@ -88,7 +88,7 @@ def handle_dj(xml_data, files):
                     chan_id = int.from_bytes(data_block[1:3], "big")
                     logger.info("POS: %d, CHAN ID: %d", pos_num, chan_id)
                     car.favorite_channels[str(pos_num)] = chan_id
-                car.save()
+                car.save(update_fields=["favorite_channels"])
                 resp_file = construct_gnrlms_payload(0xB, _("Favorite channel added"), _("The channel has been added to favorites"))
 
             ET.SubElement(app_elm, "send_data", {"id_type": "file", "id": "CHANDAT.001"})

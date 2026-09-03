@@ -100,7 +100,7 @@ class Command(BaseCommand):
                     ...
                 car.command_requested = False
                 car.command_result = 2  # Timeout status from COMMAND_RESULTS
-                car.save()
+                car.save(update_fields=["command_requested", "command_result"])
 
                 # Create timeout alert
                 AlertHistory.objects.create(

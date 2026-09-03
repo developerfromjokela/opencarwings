@@ -141,7 +141,8 @@ class Ficosa2016(TCULink):
 
             car.command_payload = payload
             car.command_request_time = timezone.now()
-            car.save()
+            car.save(update_fields=["command_type", "command_id", "command_requested",
+                                    "command_result", "command_payload", "command_request_time"])
             return car
         else:
             raise InvalidCommandError()

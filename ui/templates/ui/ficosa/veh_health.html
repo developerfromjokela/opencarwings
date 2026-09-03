@@ -43,24 +43,24 @@
                 {% endwith %}
 
                 <!-- FL -->
-                <div class="vh-tire-reading" style="left: -24px; top: 60px;">
+                <div class="vh-tire-reading" style="left: -28px; top: 60px;">
                     <div class="vh-tire-label">{% translate "FL" %}</div>
-                    <div class="vh-tire-value" id="vh-tpms-fl">{% if car.veh_health.tpms_fl %}{{ car.veh_health.tpms_fl }}{% else %}--{% endif %}<span class="vh-tire-unit"> kPa</span></div>
+                    <div class="vh-tire-value" id="vh-tpms-fl">{% if car.veh_health.tpms_fl %}{% local_tpms car.veh_health.tpms_fl decimals=2 unit_label=false %}{% else %}--{% endif %}<span class="vh-tire-unit"> {% local_tpms_unit %}</span></div>
                 </div>
                 <!-- FR -->
-                <div class="vh-tire-reading" style="right: -24px; top: 60px; text-align: right;">
+                <div class="vh-tire-reading" style="right: -32px; top: 60px; text-align: right;">
                     <div class="vh-tire-label">{% translate "FR" %}</div>
-                    <div class="vh-tire-value" id="vh-tpms-fr">{% if car.veh_health.tpms_fr %}{{ car.veh_health.tpms_fr }}{% else %}--{% endif %}<span class="vh-tire-unit"> kPa</span></div>
+                    <div class="vh-tire-value" id="vh-tpms-fr">{% if car.veh_health.tpms_fr %}{% local_tpms car.veh_health.tpms_fr decimals=2 unit_label=false %}{% else %}--{% endif %}<span class="vh-tire-unit"> {% local_tpms_unit %}</span></div>
                 </div>
                 <!-- RL -->
-                <div class="vh-tire-reading" style="left: -24px; top: 290px;">
+                <div class="vh-tire-reading" style="left: -28px; top: 290px;">
                     <div class="vh-tire-label">{% translate "RL" %}</div>
-                    <div class="vh-tire-value" id="vh-tpms-rl">{% if car.veh_health.tpms_rl %}{{ car.veh_health.tpms_rl }}{% else %}--{% endif %}<span class="vh-tire-unit"> kPa</span></div>
+                    <div class="vh-tire-value" id="vh-tpms-rl">{% if car.veh_health.tpms_rl %}{% local_tpms car.veh_health.tpms_rl decimals=2 unit_label=false %}{% else %}--{% endif %}<span class="vh-tire-unit"> {% local_tpms_unit %}</span></div>
                 </div>
                 <!-- RR -->
-                <div class="vh-tire-reading" style="right: -24px; top: 290px; text-align: right;">
+                <div class="vh-tire-reading" style="right: -32px; top: 290px; text-align: right;">
                     <div class="vh-tire-label">{% translate "RR" %}</div>
-                    <div class="vh-tire-value" id="vh-tpms-rr">{% if car.veh_health.tpms_rr %}{{ car.veh_health.tpms_rr }}{% else %}--{% endif %}<span class="vh-tire-unit"> kPa</span></div>
+                    <div class="vh-tire-value" id="vh-tpms-rr">{% if car.veh_health.tpms_rr %}{% local_tpms car.veh_health.tpms_rr decimals=2 unit_label=false %}{% else %}--{% endif %}<span class="vh-tire-unit"> {% local_tpms_unit %}</span></div>
                 </div>
             </div>
         </div>
@@ -151,6 +151,17 @@
 </style>
 
 <script>
+    function makePressureData(value) {
+        if (value === 0) {
+            return "--"
+        }
+        if (imperial) {
+            value = value * 0.1450377377
+            return `${value.toFixed(2)}<span class="vh-tire-unit"> PSI</span>`;
+        }
+        value = value * 0.01
+        return `${value.toFixed(2)}<span class="vh-tire-unit"> Bar</span>`;
+    }
     function updateVehHealth(car) {
         const vh = car.veh_health;
         if (!vh) return;
@@ -162,10 +173,10 @@
         document.getElementById('vh-mileage').textContent = vh.mileage ? distanceLocalize(vh.mileage, 0) : '--';
         document.getElementById('vh-last-updated').textContent = vh.last_updated ? new Date(vh.last_updated).toLocaleString() : 'N/A';
 
-        document.getElementById('vh-tpms-fl').innerHTML = `${vh.tpms_fl ?? '--'}<span class="vh-tire-unit"> kPa</span>`;
-        document.getElementById('vh-tpms-fr').innerHTML = `${vh.tpms_fr ?? '--'}<span class="vh-tire-unit"> kPa</span>`;
-        document.getElementById('vh-tpms-rl').innerHTML = `${vh.tpms_rl ?? '--'}<span class="vh-tire-unit"> kPa</span>`;
-        document.getElementById('vh-tpms-rr').innerHTML = `${vh.tpms_rr ?? '--'}<span class="vh-tire-unit"> kPa</span>`;
+        document.getElementById('vh-tpms-fl').innerHTML = makePressureData(vh.tpms_fl)
+        document.getElementById('vh-tpms-fr').innerHTML = makePressureData(vh.tpms_fr)
+        document.getElementById('vh-tpms-rl').innerHTML = makePressureData(vh.tpms_rl)
+        document.getElementById('vh-tpms-rr').innerHTML = makePressureData(vh.tpms_rr)
 
         const dtcTable = document.getElementById('vh-dtc-table');
         dtcTable.innerHTML = '';

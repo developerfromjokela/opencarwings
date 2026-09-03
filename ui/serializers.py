@@ -8,6 +8,7 @@ from db.models import Car, TCUConfiguration, LocationInfo, EVInfo, AlertHistory,
 from tculink.carwings_proto.autodj import ICONS
 from tculink.carwings_proto.autodj.channels import get_info_channel_data
 from tculink.coordinators import get_supported_commands
+from ui.utils import convert_tpms_pressure_kpa
 
 
 class TCUConfigurationSerializer(serializers.ModelSerializer):
@@ -77,6 +78,19 @@ class VehicleHealthInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = VehicleHealthInfo
         fields = '__all__'
+
+
+    def to_representation(self, instance):
+        val = super().to_representation(instance)
+        val["tpms_fr"] = round(convert_tpms_pressure_kpa(instance.tpms_fr))
+        val["tpms_fr_float"] = convert_tpms_pressure_kpa(instance.tpms_fr)
+        val["tpms_fl"] = round(convert_tpms_pressure_kpa(instance.tpms_fl))
+        val["tpms_fl_float"] = convert_tpms_pressure_kpa(instance.tpms_fl)
+        val["tpms_rr"] = round(convert_tpms_pressure_kpa(instance.tpms_rr))
+        val["tpms_rr_float"] = convert_tpms_pressure_kpa(instance.tpms_rr)
+        val["tpms_rl"] = round(convert_tpms_pressure_kpa(instance.tpms_rl))
+        val["tpms_rl_float"] = convert_tpms_pressure_kpa(instance.tpms_rl)
+        return val
 
 class EVInfoUpdatingSerializer(serializers.ModelSerializer):
     class Meta:

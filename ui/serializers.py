@@ -75,6 +75,10 @@ class EVInfoSerializer(serializers.ModelSerializer):
 
 class VehicleHealthInfoSerializer(serializers.ModelSerializer):
     last_updated = serializers.DateTimeField(read_only=True, default_timezone=pytz.utc)
+    tpms_fr_float = serializers.FloatField(read_only=True)
+    tpms_fl_float = serializers.FloatField(read_only=True)
+    tpms_rr_float = serializers.FloatField(read_only=True)
+    tpms_rl_float = serializers.FloatField(read_only=True)
     class Meta:
         model = VehicleHealthInfo
         fields = '__all__'

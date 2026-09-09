@@ -1,18 +1,18 @@
-import hashlib
 import re
 from secrets import token_hex
 
 import pyotp
 from django.conf import settings
 from django.contrib.auth.hashers import make_password, check_password
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, UserManager
 from django.core import validators
 from django.db import models
+from django.db.models import Q
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from rest_framework.authtoken.models import Token
-from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
+from rest_framework.authtoken.models import Token
 
 from api.utils import OTPNotEnabledError
 from tculink.coordinators import COORDINATORS
@@ -168,9 +168,20 @@ class CARWINGSPasswordValidator(validators.RegexValidator):
     )
     flags = re.ASCII
 
+class EmailOrUsernameUserManager(UserManager):
+    def get_by_natural_key(self, username):
+        case_insensitive_field = self.model.USERNAME_FIELD + "__iexact"
+        try:
+            return self.get(
+                Q(**{case_insensitive_field: username}) | Q(email__iexact=username)
+            )
+        except self.model.MultipleObjectsReturned:
+            raise self.model.DoesNotExist
+
 # Username: only AA-ZZ aa-zz 0-9 - _ .
 # password: only AA-ZZ aa-zz 0-9 - _ = + @ # ? !
 class User(AbstractUser):
+    objects = EmailOrUsernameUserManager()
     username_validator = CARWINGSUsernameValidator()
     tcu_pass_validator = CARWINGSPasswordValidator()
     tcu_pass_hash = models.CharField(max_length=16, validators=[tcu_pass_validator])
@@ -220,6 +231,8 @@ class User(AbstractUser):
         if len(code) != 4:
             return False
         return check_password(code, self.cmd_pin_hash)
+
+
 
 
 class TCUConfiguration(models.Model):

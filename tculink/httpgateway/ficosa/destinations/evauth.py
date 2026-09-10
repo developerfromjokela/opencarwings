@@ -62,8 +62,8 @@ def handle(_, acp_data: dict, car: Car, source_id: int, __) -> bytes:
                     value = config_payload[field]
                     field_type = info["type"]
                     if field_type == ConfigurationFieldType.SELECT:
-                        config_bin = PROBE_DATACONFIG[car.command_payload["service_type"]][value]
-                        config_encoder.records = composer.parse_config_file_to_chunks(config_bin)
+                        config_bin = PROBE_DATACONFIG[config_template["service_type"]][value]
+                        config_encoder.records.extend(composer.parse_config_file_to_chunks(config_bin))
 
             acp_msg += config_encoder.encode()
             logger.debug(f"<< ACPProbeConfigRaw Message: {acp_msg.hex()}")

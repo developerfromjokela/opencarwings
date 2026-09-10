@@ -125,6 +125,7 @@ def handle_request(request: WSGIRequest | Any) -> HttpResponse:
             resp_bin = DESTINATIONS[destination_id](bin_data, acp_body, car, source_id, destination_id)
     except Exception as e:
         logger.critical(e)
+        logger.exception(e)
         resp_bin = ficosa_acp.make_ack_response(vin, dcm_id, destination_id, source_id, 0, 0, 0)
 
     if timer_id is not None:

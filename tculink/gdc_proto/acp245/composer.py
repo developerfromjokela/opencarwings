@@ -459,9 +459,11 @@ class ACPConfigEncoder:
 class ProbeConfigItem:
     data_id: int = 0
     can_frame_id: int = 0
-    can_param_mask: int = 0
+    can_param_mask_0: int = 0
+    can_param_mask_1: int = 0
     can_read_freq: int = 0
     conversion_type: int = 0
+    field_0x13: int = 0
     data_list_len: int = 0
     a_parameter: float = 0.0
     b_parameter: float = 0.0
@@ -472,18 +474,21 @@ class ProbeConfigItem:
 
     def to_config_bytes(self) -> bytes:
         out = bytearray()
-        out += (self.data_id         & 0xFFFFFFFF).to_bytes(4, "little")
-        out += (self.can_frame_id    & 0xFFFFFFFF).to_bytes(4, "little")
-        out += (self.can_param_mask  & 0xFFFFFFFF).to_bytes(4, "little")
-        out += (self.can_read_freq   & 0xFFFF).to_bytes(2, "little")
-        out += (self.conversion_type & 0xFFFF).to_bytes(2, "little")
+        out += (self.data_id & 0xFFFF).to_bytes(2, "little")
+        out += b'\x00\x00'  # 2 bytes padding at 0x2
+        out += (self.can_frame_id & 0xFFFFFFFF).to_bytes(4, "little", signed=True)
+        out += (self.can_param_mask_0 & 0xFFFFFFFF).to_bytes(4, "little", signed=True)
+        out += (self.can_param_mask_1 & 0xFFFFFFFF).to_bytes(4, "little", signed=True)
+        out += (self.can_read_freq & 0xFFFF).to_bytes(2, "little")
+        out.append(self.conversion_type & 0xFF)
+        out.append(self.field_0x13 & 0xFF)
         out.append(self.data_list_len & 0xFF)
-        out += b"\x00\x00\x00"
+        out += b'\x00\x00\x00'
         out += _f32_to_bytes(self.a_parameter, little_endian=True)
         out += _f32_to_bytes(self.b_parameter, little_endian=True)
         out += _f32_to_bytes(self.c_parameter, little_endian=True)
         out += _f32_to_bytes(self.d_parameter, little_endian=True)
-        out += (self.unavailable & 0xFFFFFFFF).to_bytes(4, "little")
+        out += (self.unavailable & 0xFFFFFFFF).to_bytes(4, "little", signed=True)
         out += (self.padding & 0xFFFFFFFF).to_bytes(4, "little")
         return bytes(out)
 
@@ -492,20 +497,21 @@ class ProbeConfigItem:
         if len(data) < 48:
             raise ValueError("need at least 48 bytes for one ProbeConfigItem")
         return cls(
-            data_id         = int.from_bytes(data[0:4],   "little"),
-            can_frame_id    = int.from_bytes(data[4:8],   "little"),
-            can_param_mask  = int.from_bytes(data[8:12],  "little"),
-            can_read_freq   = int.from_bytes(data[16:18], "little"),
-            conversion_type = int.from_bytes(data[18:20], "little"),
-            data_list_len   = data[20],
-            a_parameter     = _f32_from_bytes(data[24:28], little_endian=True),
-            b_parameter     = _f32_from_bytes(data[28:32], little_endian=True),
-            c_parameter     = _f32_from_bytes(data[32:36], little_endian=True),
-            d_parameter     = _f32_from_bytes(data[36:40], little_endian=True),
-            unavailable     = int.from_bytes(data[40:44], "little"),
-            padding         = int.from_bytes(data[44:48], "little"),
+            data_id          = int.from_bytes(data[0:2],   "little"),
+            can_frame_id     = int.from_bytes(data[4:8],   "little", signed=True),
+            can_param_mask_0 = int.from_bytes(data[8:12],  "little", signed=True),
+            can_param_mask_1 = int.from_bytes(data[12:16], "little", signed=True),
+            can_read_freq    = int.from_bytes(data[16:18], "little"),
+            conversion_type  = data[18],
+            field_0x13       = data[19],
+            data_list_len    = data[20],
+            a_parameter      = _f32_from_bytes(data[24:28], little_endian=True),
+            b_parameter      = _f32_from_bytes(data[28:32], little_endian=True),
+            c_parameter      = _f32_from_bytes(data[32:36], little_endian=True),
+            d_parameter      = _f32_from_bytes(data[36:40], little_endian=True),
+            unavailable      = int.from_bytes(data[40:44], "little", signed=True),
+            padding          = int.from_bytes(data[44:48], "little"),
         )
-
 
 def parse_config_file(data: bytes) -> List[ProbeConfigItem]:
     if len(data) % 48 != 0:
@@ -531,9 +537,11 @@ class ACPProbeConfig:
             item_out = bytearray()
             item_out += (item.data_id & 0xFFFF).to_bytes(2, "big")
             item_out += (item.can_frame_id & 0xFFFFFF).to_bytes(3, "big")
-            item_out += (item.can_param_mask & 0xFFFFFFFFFFFFFFFF).to_bytes(8, "big")
+            item_out += (item.can_param_mask_0 & 0xFFFFFFFF).to_bytes(4, "big")
+            item_out += (item.can_param_mask_1 & 0xFFFFFFFF).to_bytes(4, "big")
             item_out += (item.can_read_freq & 0xFFFF).to_bytes(2, "big")
-            item_out += (item.conversion_type & 0xFFFF).to_bytes(2, "big")
+            item_out.append(item.conversion_type & 0xFF)  # 1 byte
+            item_out.append(item.field_0x13 & 0xFF)
             item_out.append(item.data_list_len & 0xFF)
             item_out += _f32_to_bytes(item.a_parameter, little_endian=False)
             item_out += _f32_to_bytes(item.b_parameter, little_endian=False)

@@ -531,7 +531,7 @@ class ACPProbeConfig:
             item_out = bytearray()
             item_out += (item.data_id & 0xFFFF).to_bytes(2, "big")
             item_out += (item.can_frame_id & 0xFFFFFF).to_bytes(3, "big")
-            item_out += (item.can_param_mask & 0xFFFFFFFF).to_bytes(4, "big")
+            item_out += (item.can_param_mask & 0xFFFFFFFFFFFFFFFF).to_bytes(8, "big")
             item_out += (item.can_read_freq & 0xFFFF).to_bytes(2, "big")
             item_out += (item.conversion_type & 0xFFFF).to_bytes(2, "big")
             item_out.append(item.data_list_len & 0xFF)

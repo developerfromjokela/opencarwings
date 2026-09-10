@@ -1,6 +1,7 @@
 from db.models import Car
 from tculink.gdc_proto.acp245 import composer
-from tculink.gdc_proto.ficosa.utils import command_to_destination_id, CONFIGURATION_MAP, ConfigurationFieldType
+from tculink.gdc_proto.ficosa.utils import command_to_destination_id, CONFIGURATION_MAP, ConfigurationFieldType, \
+    PROBE_DATACONFIG
 import logging
 logger = logging.getLogger("ficosa")
 
@@ -51,6 +52,21 @@ def handle(_, acp_data: dict, car: Car, source_id: int, __) -> bytes:
 
             acp_msg += config_encoder.encode()
             logger.debug(f"<< ServProv Message: {acp_msg.hex()}")
+        elif dest_id == 0xf0:
+            # probe data config
+            config_encoder = composer.ACPProbeConfigRaw()
+            config_encoder.service_type = config_template["service_type"]
+
+            for field, info in config_template["fields"].items():
+                if field in config_payload:
+                    value = config_payload[field]
+                    field_type = info["type"]
+                    if field_type == ConfigurationFieldType.SELECT:
+                        config_bin = PROBE_DATACONFIG[car.command_payload["service_type"]][value]
+                        config_encoder.records = composer.parse_config_file_to_chunks(config_bin)
+
+            acp_msg += config_encoder.encode()
+            logger.debug(f"<< ACPProbeConfigRaw Message: {acp_msg.hex()}")
         else:
             config_encoder = composer.ACPConfigEncoder()
             service_type = config_template["service_type"]

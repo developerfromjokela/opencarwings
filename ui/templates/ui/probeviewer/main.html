@@ -125,6 +125,7 @@
                     <div><dt class="text-gray-500 dark:text-gray-300 text-sm"><i class="mic material-symbols-outlined">account_box</i> {% translate "Phone contacts in memory" %}</dt><dd class="text-gray-600 dark:text-gray-200 font-semibold">{{ latest.phone_contacts }}</dd></div>
                     <div><dt class="text-gray-500 dark:text-gray-300 text-sm"><i class="mic material-symbols-outlined">file_map</i> {% translate "Locations saved in address book" %}</dt><dd class="text-gray-600 dark:text-gray-200 font-semibold">{{ latest.navi_points_saved }}</dd></div>
                 </dl>
+                {% if car.tcu_type == "continental2012" %}
                 <hr class="my-2"/>
                 <span class="text-md">{% translate "Telemetry configuration" %}</span>
                 <dl class="grid grid-cols-1 gap-3 text-sm sm:text-base mt-4">
@@ -158,6 +159,11 @@
                         </form>
                     {% endif %}
                 </dl>
+                {% else %}
+                <hr class="my-2"/>
+                <span class="text-md">{% translate "Telemetry configuration" %}</span>
+                <span class="text-sm">{% translate "Telemetry configuration has moved to 'TCU Configuration' tab!" %}</span>
+                {% endif %}
                 <div class="mt-4 text-sm text-gray-600 dark:text-gray-400 dark:text-gray-300">
                     {% translate "Last Updated" %}: <span id="overview-last-updated">{{ latest.last_updated|default:"N/A" }}</span>
                 </div>

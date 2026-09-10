@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-31 11:25+0000\n"
-"PO-Revision-Date: 2026-08-31 14:29+0300\n"
+"POT-Creation-Date: 2026-09-10 20:11+0000\n"
+"PO-Revision-Date: 2026-09-10 23:13+0300\n"
 "Last-Translator: \n"
 "Language-Team: Estonian <et@li.org>\n"
 "Language: et\n"
@@ -38,7 +38,7 @@ msgid "Command PIN is not set up, please set up and try again"
 msgstr "Käsukoodi pole seadistatud, palun seadistage see ja proovige uuesti"
 
 #: api/views.py:435 tculink/coordinators/continental2012.py:25
-#: tculink/coordinators/ficosa2016.py:130
+#: tculink/coordinators/ficosa2016.py:134
 msgid "Failed to send SMS message to TCU. Please try again in a moment."
 msgstr ""
 "SMS-sõnumi saatmine TCU-le ebaõnnestus. Palun proovi mõne aja pärast uuesti."
@@ -120,7 +120,7 @@ msgstr "Uued andmed vastu võetud"
 msgid "Burglar alert"
 msgstr "Sissemurdmise hoiatus"
 
-#: db/models.py:41 tculink/gdc_proto/ficosa/utils.py:64
+#: db/models.py:41 tculink/gdc_proto/ficosa/utils.py:92
 #: tculink/httpgateway/ficosa/destinations/tow.py:36
 msgid "Tow Notification"
 msgstr "Puksiirteade"
@@ -187,7 +187,7 @@ msgstr "Sõiduki signaal"
 msgid "Lights"
 msgstr "Tuled"
 
-#: db/models.py:64 tculink/gdc_proto/ficosa/utils.py:65
+#: db/models.py:64 tculink/gdc_proto/ficosa/utils.py:93
 msgid "Horn & Lights"
 msgstr "Signaal ja tuled"
 
@@ -322,15 +322,15 @@ msgstr ""
 "Sisesta kehtiv TCU parool. See väärtus võib sisaldada ainult aktsendita "
 "väiketähti a-z, suurtähti A-Z, numbreid ning märke /=/-/_/+/@/#/?/!."
 
-#: db/models.py:179
+#: db/models.py:190
 msgid "username"
 msgstr "kasutajanimi"
 
-#: db/models.py:183
+#: db/models.py:194
 msgid "Required. 16 characters or fewer. Letters, digits and /./-/_ only."
 msgstr "Nõutav. Maksimaalselt 16 tähemärki. Ainult tähed, numbrid ja /./-/_."
 
-#: db/models.py:187
+#: db/models.py:198
 msgid "A user with that username already exists."
 msgstr "Sellise kasutajanimega kasutaja on juba olemas."
 
@@ -352,8 +352,8 @@ msgstr "Kanal on lisatud lemmikute hulka"
 
 #: tculink/carwings_proto/autodj/handler.py:26
 #: tculink/carwings_proto/autodj/handler.py:27
-#: tculink/carwings_proto/autodj/opencarwings.py:172
 #: tculink/carwings_proto/autodj/opencarwings.py:173
+#: tculink/carwings_proto/autodj/opencarwings.py:174
 msgid "Info from OpenCARWINGS"
 msgstr "Teave OpenCARWINGS-ilt"
 
@@ -367,7 +367,7 @@ msgstr "Andmekanal pole saadaval"
 msgid "Not authorized"
 msgstr "Pole autoriseeritud"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:31
+#: tculink/carwings_proto/autodj/opencarwings.py:32
 msgid ""
 "Second vehicle. Nissan LEAF 30 kWh.\n"
 "\n"
@@ -384,7 +384,7 @@ msgstr ""
 "\n"
 "Lisateavet leiate GitHubist ja Open Car Wingsi veebisaidilt."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:568
+#: tculink/carwings_proto/autodj/opencarwings.py:574
 msgid ""
 "Use remote climate control or the timer so that the cabin will be at a "
 "comfortable temperature before starting.  This allows the car to save energy "
@@ -394,7 +394,7 @@ msgstr ""
 "käivitamist mugaval temperatuuril. See võimaldab autol sõidu ajal energiat "
 "säästa."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:569
+#: tculink/carwings_proto/autodj/opencarwings.py:575
 msgid ""
 "Keep your car in the garage during winter times to keep the battery pack "
 "warm.  This will increase your range a bit, especially in colder climates."
@@ -402,7 +402,7 @@ msgstr ""
 "Hoidke autot talvel garaažis, et aku soojas püsiks. See suurendab veidi "
 "sõiduulatust, eriti külmemas kliimas."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:570
+#: tculink/carwings_proto/autodj/opencarwings.py:576
 msgid ""
 "Use <phoneme alphabet=\"x-SVOX-sampa_en-GB\" ph=\"'i:-k@@U\">eco</phoneme> "
 "mode or B-mode when possible to increase your regenerative energy."
@@ -410,7 +410,7 @@ msgstr ""
 "Regeneratiivse energia suurendamiseks kasutage võimaluse korral ökorežiimi "
 "või B-režiimi."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:571
+#: tculink/carwings_proto/autodj/opencarwings.py:577
 msgid ""
 "Check your tire pressure at least once a month to ensure they are at optimal "
 "level.  Low tire pressure decreases rolling effect of the car and more "
@@ -420,7 +420,7 @@ msgstr ""
 "Madal rehvirõhk vähendab auto veeremisefekti ja liikumapanemiseks kulub "
 "rohkem energiat."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:572
+#: tculink/carwings_proto/autodj/opencarwings.py:578
 msgid ""
 "Plan your routes to include charging stations, especially on longer trips, "
 "to avoid range anxiety and ensure smooth travel."
@@ -429,7 +429,7 @@ msgstr ""
 "pikemate reiside puhul, et vältida sõiduulatuse pärast muretsemist ja tagada "
 "sujuv sõit."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:573
+#: tculink/carwings_proto/autodj/opencarwings.py:579
 msgid ""
 "Avoid rapid acceleration and maintain a steady speed to maximize battery "
 "efficiency, as aggressive driving can significantly reduce your range."
@@ -437,7 +437,7 @@ msgstr ""
 "Väldi järsku kiirendamist ja hoia aku efektiivsuse maksimeerimiseks ühtlast "
 "kiirust, kuna agressiivne sõitmine võib sõiduulatust oluliselt vähendada."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:574
+#: tculink/carwings_proto/autodj/opencarwings.py:580
 msgid ""
 "Use the Nissan Leaf’s navigation system to find the most energy-efficient "
 "routes, which can help conserve battery power on unfamiliar roads."
@@ -445,7 +445,7 @@ msgstr ""
 "Kasutage Nissan Leafi navigatsioonisüsteemi, et leida kõige "
 "energiasäästlikumad marsruudid, mis aitavad tundmatutel teedel akut säästa."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:575
+#: tculink/carwings_proto/autodj/opencarwings.py:581
 msgid ""
 "In colder times, try to use more of seat heating and steering wheel heating "
 "while keeping your air conditioning on lower settings. Auxiliary heating "
@@ -455,7 +455,7 @@ msgstr ""
 "samal ajal kliimaseadme madalamal võimsusel. Lisakütteelemendid tarbivad "
 "vähem energiat kui auto kliimaseade."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:576
+#: tculink/carwings_proto/autodj/opencarwings.py:582
 msgid ""
 "Park in shaded areas during hot weather to keep the battery cool, as extreme "
 "heat can reduce battery efficiency and longevity."
@@ -463,7 +463,7 @@ msgstr ""
 "Kuuma ilmaga parkige aku jahedana hoidmiseks varjulises kohas, kuna "
 "äärmuslik kuumus võib vähendada aku efektiivsust ja eluiga."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:577
+#: tculink/carwings_proto/autodj/opencarwings.py:583
 msgid ""
 "Try to charge the battery up to 80 percent for daily usage. Charging to "
 "full, every day, is not recommended for battery longevity."
@@ -471,7 +471,7 @@ msgstr ""
 "Igapäevaseks kasutamiseks proovige akut laadida kuni 80 protsendini. Aku "
 "pikaealisuse tagamiseks ei ole soovitatav iga päev täis laadida."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:578
+#: tculink/carwings_proto/autodj/opencarwings.py:584
 msgid ""
 "With Open Car Wings, you can review your driving efficiency of each trip, "
 "online. With the data, it is easier to determine which areas of driving "
@@ -481,26 +481,26 @@ msgstr ""
 "Andmete abil on lihtsam kindlaks teha, milliseid sõiduoskusi tuleb "
 "tipptasemel energiatõhususe saavutamiseks parandada. "
 
-#: tculink/carwings_proto/autodj/opencarwings.py:608
-#: tculink/carwings_proto/autodj/opencarwings.py:642
+#: tculink/carwings_proto/autodj/opencarwings.py:614
+#: tculink/carwings_proto/autodj/opencarwings.py:648
 msgid "Average"
 msgstr "Keskmine"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:608
-#: tculink/carwings_proto/autodj/opencarwings.py:632
+#: tculink/carwings_proto/autodj/opencarwings.py:614
+#: tculink/carwings_proto/autodj/opencarwings.py:638
 msgid "Good"
 msgstr "Hea"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:608
-#: tculink/carwings_proto/autodj/opencarwings.py:634
+#: tculink/carwings_proto/autodj/opencarwings.py:614
+#: tculink/carwings_proto/autodj/opencarwings.py:640
 msgid "Very good"
 msgstr "Väga hea"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:609
+#: tculink/carwings_proto/autodj/opencarwings.py:615
 msgid "Check Energy Economy"
 msgstr "Kontrollige energiasäästlikkust"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:614
+#: tculink/carwings_proto/autodj/opencarwings.py:620
 msgid ""
 "The energy economy trend compared with the average of the last five trips is "
 "shown above."
@@ -508,27 +508,27 @@ msgstr ""
 "Energiasäästu trend võrreldes viimase viie reisi keskmisega on näidatud "
 "ülalpool."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:619
+#: tculink/carwings_proto/autodj/opencarwings.py:625
 msgid "Trend of Energy Economy\n"
 msgstr "Energiamajanduse trend\n"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:645
+#: tculink/carwings_proto/autodj/opencarwings.py:651
 msgid "Bad"
 msgstr "Halb"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:650
+#: tculink/carwings_proto/autodj/opencarwings.py:656
 msgid "[Average]\n"
 msgstr "[Keskmine]/n\n"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:652
+#: tculink/carwings_proto/autodj/opencarwings.py:658
 msgid "[Best]\n"
 msgstr "[Parim]\n"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:654
+#: tculink/carwings_proto/autodj/opencarwings.py:660
 msgid "[Worst]\n"
 msgstr "[Halvim]\n"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:657
+#: tculink/carwings_proto/autodj/opencarwings.py:663
 #, python-brace-format
 msgid ""
 "\n"
@@ -541,7 +541,7 @@ msgstr ""
 "vatt-tundi kilomeetri kohta.\n"
 "Viimase 5 sõidu põhjal on teie energiakulu {economy_status}. "
 
-#: tculink/carwings_proto/autodj/opencarwings.py:663
+#: tculink/carwings_proto/autodj/opencarwings.py:669
 msgid ""
 "There is no trip records available yet. Try checking in again after your "
 "next trip."
@@ -549,7 +549,7 @@ msgstr ""
 "Reisiandmeid pole veel saadaval. Proovige pärast järgmist reisi uuesti "
 "registreeruda."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:665
+#: tculink/carwings_proto/autodj/opencarwings.py:671
 #, python-brace-format
 msgid ""
 "\n"
@@ -562,25 +562,25 @@ msgstr ""
 "puuduva reisiteabe tõttu. Proovige pärast järgmist reisi uuesti sellele "
 "kanalile registreeruda. "
 
-#: tculink/carwings_proto/autodj/opencarwings.py:707
+#: tculink/carwings_proto/autodj/opencarwings.py:713
 msgid "Electric Car Column"
 msgstr "Elektriautode sammas"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:708
-#: tculink/carwings_proto/autodj/opencarwings.py:713
+#: tculink/carwings_proto/autodj/opencarwings.py:714
+#: tculink/carwings_proto/autodj/opencarwings.py:719
 msgid "Drive Tip"
 msgstr "Sõidunipp"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:762
-#: tculink/carwings_proto/autodj/opencarwings.py:763
+#: tculink/carwings_proto/autodj/opencarwings.py:768
+#: tculink/carwings_proto/autodj/opencarwings.py:769
 msgid "Energy Information"
 msgstr "Energiainfo"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:815
+#: tculink/carwings_proto/autodj/opencarwings.py:821
 msgid "Eco Tree Record"
 msgstr "Ökopuu rekord"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:825
+#: tculink/carwings_proto/autodj/opencarwings.py:831
 msgid ""
 "Your Eco Tree Record \n"
 "\n"
@@ -588,61 +588,61 @@ msgstr ""
 "Teie ökopuu aruanne\n"
 "\n"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:831
 #: tculink/carwings_proto/autodj/opencarwings.py:837
+#: tculink/carwings_proto/autodj/opencarwings.py:843
 msgid "tree"
 msgstr "puu"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:833
 #: tculink/carwings_proto/autodj/opencarwings.py:839
-#: tculink/carwings_proto/autodj/opencarwings.py:852
-#: tculink/carwings_proto/autodj/opencarwings.py:898
+#: tculink/carwings_proto/autodj/opencarwings.py:845
+#: tculink/carwings_proto/autodj/opencarwings.py:858
+#: tculink/carwings_proto/autodj/opencarwings.py:904
 msgid "trees"
 msgstr "puud"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:840
+#: tculink/carwings_proto/autodj/opencarwings.py:846
 #, python-brace-format
 msgid "Sum total: {trees} {tree_word}"
 msgstr "Kokku: {trees} {tree_word}"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:846
+#: tculink/carwings_proto/autodj/opencarwings.py:852
 #, python-brace-format
 msgid ""
 "On the {day_word} of {month}, you saved {trees} <phoneme alphabet=\"x-SVOX-"
 "sampa_en-GB\" ph=\"'i:-k@@U\">eco</phoneme>trees.\")"
 msgstr "Kuu {day_word} {month}, päeval päästsite {trees} ökopuud."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:852
+#: tculink/carwings_proto/autodj/opencarwings.py:858
 msgid "Total:"
 msgstr "Kokku:"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:890
+#: tculink/carwings_proto/autodj/opencarwings.py:896
 msgid "World's Eco Forest"
 msgstr "Maailma ökometsa"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:899
+#: tculink/carwings_proto/autodj/opencarwings.py:905
 msgid "tonnes"
 msgstr "tonni"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:900
+#: tculink/carwings_proto/autodj/opencarwings.py:906
 msgid "Total number of Eco Trees:"
 msgstr "Ökopuude koguarv:"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:902
+#: tculink/carwings_proto/autodj/opencarwings.py:908
 msgid "CO2 Emission Cuts:"
 msgstr "CO2 heitkoguste vähendamine:"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:910
+#: tculink/carwings_proto/autodj/opencarwings.py:916
 #, python-brace-format
 msgid "Total number of Eco Trees by {day} / {month}:"
 msgstr "Ökopuude koguarv {day} / {month} järgi:"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:912
+#: tculink/carwings_proto/autodj/opencarwings.py:918
 #, python-brace-format
 msgid "CO2 emissions reduced by {day} / {month}:"
 msgstr "CO2 heitkoguste vähenemine {day} / {month} võrra:"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:915
+#: tculink/carwings_proto/autodj/opencarwings.py:921
 msgid ""
 "(This calculation is based on an assumption that the CO2 emitted by petrol-"
 "driven cars of equivalent class can be reduced by driving electric cars)"
@@ -650,7 +650,7 @@ msgstr ""
 "(See arvutus põhineb eeldusel, et samaväärse klassi bensiinimootoriga autode "
 "CO2-heidet saab vähendada elektriautodega sõites.)"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:919
+#: tculink/carwings_proto/autodj/opencarwings.py:925
 #, python-brace-format
 msgid ""
 "By the {day_word} of {month}, electric cars with Open Car Wings world wide "
@@ -662,8 +662,8 @@ msgstr ""
 "kokku {trees} ökopuud. Ja {tonnes} tonni süsinikdioksiidi heidet on "
 "vähendatud."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:977
-#: tculink/carwings_proto/autodj/opencarwings.py:978
+#: tculink/carwings_proto/autodj/opencarwings.py:983
+#: tculink/carwings_proto/autodj/opencarwings.py:984
 msgid "ECO Tree"
 msgstr "Ökopuu"
 
@@ -908,102 +908,131 @@ msgstr "kolmekümnes"
 msgid "thirty-first"
 msgstr "kolmekümne esimene"
 
-#: tculink/gdc_proto/ficosa/utils.py:40 tculink/gdc_proto/ficosa/utils.py:61
+#: tculink/gdc_proto/ficosa/utils.py:68 tculink/gdc_proto/ficosa/utils.py:89
 #: tculink/httpgateway/ficosa/destinations/veh_health.py:24
 #: tculink/httpgateway/ficosa/destinations/veh_health.py:32
 #: ui/templates/ui/car_detail.html:102
 msgid "Vehicle Health Report"
 msgstr "Sõiduki tervisearuanne"
 
-#: tculink/gdc_proto/ficosa/utils.py:45
+#: tculink/gdc_proto/ficosa/utils.py:73
 msgid "Service Enabled"
 msgstr "Teenus lubatud"
 
-#: tculink/gdc_proto/ficosa/utils.py:46
+#: tculink/gdc_proto/ficosa/utils.py:74
 msgid "Send frequency (days)"
 msgstr "Saatmissagedus (päevad)"
 
-#: tculink/gdc_proto/ficosa/utils.py:50
+#: tculink/gdc_proto/ficosa/utils.py:78
 msgid "Service Provisioning"
 msgstr "Teenuse aktiveerimine"
 
-#: tculink/gdc_proto/ficosa/utils.py:55
+#: tculink/gdc_proto/ficosa/utils.py:83
 msgid "EV Battery Charging Status"
 msgstr "EV aku laadimise olek"
 
-#: tculink/gdc_proto/ficosa/utils.py:56
+#: tculink/gdc_proto/ficosa/utils.py:84
 msgid "EV Battery Charging History"
 msgstr "EV aku laadimise ajalugu"
 
-#: tculink/gdc_proto/ficosa/utils.py:57
+#: tculink/gdc_proto/ficosa/utils.py:85
 msgid "EV Battery Charging Remote Activation"
 msgstr "EV aku laadimise kaugkäivitus"
 
-#: tculink/gdc_proto/ficosa/utils.py:58
+#: tculink/gdc_proto/ficosa/utils.py:86
 msgid "EV Remote HVAC Activation"
 msgstr "EV kliimaseadme kaugkäivitus"
 
-#: tculink/gdc_proto/ficosa/utils.py:59
+#: tculink/gdc_proto/ficosa/utils.py:87
 msgid "EV Plug Reminder"
 msgstr "EV pistiku meeldetuletus"
 
-#: tculink/gdc_proto/ficosa/utils.py:60
+#: tculink/gdc_proto/ficosa/utils.py:88
 msgid "EV Battery Heating Notification"
 msgstr "EV aku soojendamise teavitus"
 
-#: tculink/gdc_proto/ficosa/utils.py:62
+#: tculink/gdc_proto/ficosa/utils.py:90
 #: tculink/httpgateway/ficosa/destinations/burglar.py:36
 msgid "Burglar Alarm"
 msgstr "Sissemurdmishäire"
 
-#: tculink/gdc_proto/ficosa/utils.py:63
+#: tculink/gdc_proto/ficosa/utils.py:91
 msgid "Door Lock & Unlock"
 msgstr "Ukse lukustamine ja avamine"
 
-#: tculink/gdc_proto/ficosa/utils.py:66 tculink/gdc_proto/ficosa/utils.py:67
-#: tculink/gdc_proto/ficosa/utils.py:68 tculink/gdc_proto/ficosa/utils.py:69
-#: tculink/gdc_proto/ficosa/utils.py:70 tculink/gdc_proto/ficosa/utils.py:71
-#: tculink/gdc_proto/ficosa/utils.py:72 tculink/gdc_proto/ficosa/utils.py:73
-#: tculink/gdc_proto/ficosa/utils.py:74 tculink/gdc_proto/ficosa/utils.py:75
+#: tculink/gdc_proto/ficosa/utils.py:94 tculink/gdc_proto/ficosa/utils.py:95
+#: tculink/gdc_proto/ficosa/utils.py:96 tculink/gdc_proto/ficosa/utils.py:97
+#: tculink/gdc_proto/ficosa/utils.py:98 tculink/gdc_proto/ficosa/utils.py:99
+#: tculink/gdc_proto/ficosa/utils.py:100 tculink/gdc_proto/ficosa/utils.py:101
+#: tculink/gdc_proto/ficosa/utils.py:102 tculink/gdc_proto/ficosa/utils.py:103
+#: tculink/gdc_proto/ficosa/utils.py:196 tculink/gdc_proto/ficosa/utils.py:212
+#: tculink/gdc_proto/ficosa/utils.py:229 tculink/gdc_proto/ficosa/utils.py:246
 #, python-brace-format
 msgid "Probe Service {num}"
 msgstr "Probe teenus {num}"
 
-#: tculink/gdc_proto/ficosa/utils.py:79
+#: tculink/gdc_proto/ficosa/utils.py:107
 msgid "SIM Settings 1"
 msgstr "SIM-kaardi seaded 1"
 
-#: tculink/gdc_proto/ficosa/utils.py:85 tculink/gdc_proto/ficosa/utils.py:122
+#: tculink/gdc_proto/ficosa/utils.py:113 tculink/gdc_proto/ficosa/utils.py:150
 msgid "SIM Pin Code"
 msgstr "SIM-kaardi PIN-kood"
 
-#: tculink/gdc_proto/ficosa/utils.py:87 tculink/gdc_proto/ficosa/utils.py:123
+#: tculink/gdc_proto/ficosa/utils.py:115 tculink/gdc_proto/ficosa/utils.py:151
 msgid "SIM Pin Locked"
 msgstr "SIM-kaart on PIN-koodiga lukustatud"
 
-#: tculink/gdc_proto/ficosa/utils.py:95 tculink/gdc_proto/ficosa/utils.py:127
+#: tculink/gdc_proto/ficosa/utils.py:123 tculink/gdc_proto/ficosa/utils.py:155
 msgid "SMSC Number 1"
 msgstr "SMSC number 1"
 
-#: tculink/gdc_proto/ficosa/utils.py:113 tculink/gdc_proto/ficosa/utils.py:136
+#: tculink/gdc_proto/ficosa/utils.py:141 tculink/gdc_proto/ficosa/utils.py:164
 msgid "SMSC Number 2"
 msgstr "SMSC number 2"
 
-#: tculink/gdc_proto/ficosa/utils.py:117
+#: tculink/gdc_proto/ficosa/utils.py:145
 msgid "SIM Settings 2"
 msgstr "SIM-kaardi seaded 2"
 
-#: tculink/gdc_proto/ficosa/utils.py:140
+#: tculink/gdc_proto/ficosa/utils.py:168
 msgid "Server Settings"
 msgstr "Serveri seaded"
 
-#: tculink/gdc_proto/ficosa/utils.py:145
+#: tculink/gdc_proto/ficosa/utils.py:173
 msgid "User ID"
 msgstr ""
 
-#: tculink/gdc_proto/ficosa/utils.py:146
+#: tculink/gdc_proto/ficosa/utils.py:174
 msgid "User Password"
 msgstr "Kasutaja parool"
+
+#: tculink/gdc_proto/ficosa/utils.py:202 tculink/gdc_proto/ficosa/utils.py:218
+#: tculink/gdc_proto/ficosa/utils.py:235 tculink/gdc_proto/ficosa/utils.py:252
+msgid "Data Configuration"
+msgstr "Telemeetria konfiguratsioon"
+
+#: tculink/gdc_proto/ficosa/utils.py:204 tculink/gdc_proto/ficosa/utils.py:238
+msgid "EU Configuration (all data)"
+msgstr "EL-i konfiguratsioon (kõik andmed)"
+
+#: tculink/gdc_proto/ficosa/utils.py:205 tculink/gdc_proto/ficosa/utils.py:223
+#: tculink/gdc_proto/ficosa/utils.py:239 tculink/gdc_proto/ficosa/utils.py:256
+msgid "Japan Configuration (all data)"
+msgstr "Jaapani konfiguratsioon (kõik andmed)"
+
+#: tculink/gdc_proto/ficosa/utils.py:206 tculink/gdc_proto/ficosa/utils.py:240
+#: tculink/gdc_proto/ficosa/utils.py:257
+msgid "USA Configuration (all data)"
+msgstr "USA konfiguratsioon (kõik andmed)"
+
+#: tculink/gdc_proto/ficosa/utils.py:221 tculink/gdc_proto/ficosa/utils.py:255
+msgid "EU Configuration (less data)"
+msgstr "EL-i konfiguratsioon (vähem andmeid)"
+
+#: tculink/gdc_proto/ficosa/utils.py:222
+msgid "USA Configuration (more data)"
+msgstr "USA konfiguratsioon (rohkem andmeid)"
 
 #: tculink/httpgateway/ficosa/destinations/burglar.py:35
 msgid "Burglar alarm has been triggered"
@@ -1088,18 +1117,18 @@ msgid "Door Lock/Unlock"
 msgstr "Ukse lukustamine/avamine"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:90
-#: tculink/management/commands/tcuserver.py:294
+#: tculink/management/commands/tcuserver.py:296
 msgid "Vehicle is unplugged. Please check the situation if necessary."
 msgstr ""
 "Sõiduk on lahti ühendatud. Palun kontrolli olukorda, kui see on vajalik."
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:91
-#: tculink/management/commands/tcuserver.py:295
+#: tculink/management/commands/tcuserver.py:297
 msgid "Charger unplugged notification"
 msgstr "Laadija lahtiühendamise teavitus"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:99
-#: tculink/management/commands/tcuserver.py:302
+#: tculink/management/commands/tcuserver.py:304
 msgid ""
 "The A/C preconditioning command could not be executed. One of the reasons "
 "behind such error could be: a) low state of charge b) command already "
@@ -1109,35 +1138,35 @@ msgstr ""
 "põhjused: a) madal aku laetuse tase b) käsk juba täidetud c) TCU viga."
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:101
-#: tculink/management/commands/tcuserver.py:304
+#: tculink/management/commands/tcuserver.py:306
 msgid "A/C preconditioning error"
 msgstr "Kliimaseadme eelkonditsioneerimise viga"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:107
-#: tculink/management/commands/tcuserver.py:310
+#: tculink/management/commands/tcuserver.py:312
 msgid "A/C preconditioning started"
 msgstr "Kliimaseadme eelkonditsioneerimine alustatud"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:108
-#: tculink/management/commands/tcuserver.py:311
+#: tculink/management/commands/tcuserver.py:313
 msgid "A/C preconditioning has been successfully switched on"
 msgstr "Kliimaseadme eelkonditsioneerimine on edukalt sisse lülitatud"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:112
-#: tculink/management/commands/tcuserver.py:315
+#: tculink/management/commands/tcuserver.py:317
 msgid "The A/C preconditioning has finished unexpectedly"
 msgstr "Kliimaseadme eelkonditsioneerimine lõppes ootamatult"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:113
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:125
-#: tculink/management/commands/tcuserver.py:316
-#: tculink/management/commands/tcuserver.py:329
+#: tculink/management/commands/tcuserver.py:318
+#: tculink/management/commands/tcuserver.py:331
 msgid "A/C precondition stopped"
 msgstr "Kliimaseadme eelkonditsioneerimine peatatud"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:118
-#: tculink/management/commands/tcuserver.py:321
-#: tculink/management/commands/tcuserver.py:408
+#: tculink/management/commands/tcuserver.py:323
+#: tculink/management/commands/tcuserver.py:410
 msgid ""
 "The A/C preconditioning is finished and switched off after running certain "
 "amount of time."
@@ -1146,96 +1175,96 @@ msgstr ""
 "teatud aja möödumist."
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:120
-#: tculink/management/commands/tcuserver.py:323
-#: tculink/management/commands/tcuserver.py:410
+#: tculink/management/commands/tcuserver.py:325
+#: tculink/management/commands/tcuserver.py:412
 msgid "A/C precondition finished"
 msgstr "Kliimaseadme eelkonditsioneerimine lõpetatud"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:126
-#: tculink/management/commands/tcuserver.py:330
+#: tculink/management/commands/tcuserver.py:332
 msgid "A/C preconditioning has been successfully switched off"
 msgstr "Kliimaseadme eelkonditsioneerimine on edukalt välja lülitatud"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:130
-#: tculink/management/commands/tcuserver.py:334
-#: tculink/management/commands/tcuserver.py:403
+#: tculink/management/commands/tcuserver.py:336
+#: tculink/management/commands/tcuserver.py:405
 msgid "A/C precondition notification"
 msgstr "Kliimaseadme eelkonditsioneerimise teavitus"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:131
-#: tculink/management/commands/tcuserver.py:335
-#: tculink/management/commands/tcuserver.py:357
+#: tculink/management/commands/tcuserver.py:337
+#: tculink/management/commands/tcuserver.py:359
 msgid "A/C preconditioning already switched off"
 msgstr "Kliimaseadme eelkonditsioneerimine on juba välja lülitatud"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:136
-#: tculink/management/commands/tcuserver.py:341
-#: tculink/management/commands/tcuserver.py:414
+#: tculink/management/commands/tcuserver.py:343
+#: tculink/management/commands/tcuserver.py:416
 msgid "A/C preconditioning fault"
 msgstr "Kliimaseadme eelkonditsioneerimise viga"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:139
-#: tculink/management/commands/tcuserver.py:344
+#: tculink/management/commands/tcuserver.py:346
 msgid "The vehicle failed to start A/C preconditioning"
 msgstr "Sõidukil ei õnnestunud käivitada kliimaseadme eelkonditsioneerimist"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:142
-#: tculink/management/commands/tcuserver.py:347
+#: tculink/management/commands/tcuserver.py:349
 msgid "The A/C preconditioning has finished with error"
 msgstr "Kliimaseadme eelkonditsioneerimine lõppes veaga"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:145
-#: tculink/management/commands/tcuserver.py:354
+#: tculink/management/commands/tcuserver.py:356
 msgid "A/C preconditioning could not be switched off"
 msgstr "Kliimaseadme eelkonditsioneerimist ei saanud välja lülitada"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:170
-#: tculink/management/commands/tcuserver.py:378
+#: tculink/management/commands/tcuserver.py:380
 msgid "Charging notification"
 msgstr "Laadimise teatis"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:176
-#: tculink/management/commands/tcuserver.py:384
+#: tculink/management/commands/tcuserver.py:386
 msgid "Vehicle has finished charging."
 msgstr "Sõiduk on laadimise lõpetanud."
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:177
-#: tculink/management/commands/tcuserver.py:385
+#: tculink/management/commands/tcuserver.py:387
 msgid "Charge finish notification"
 msgstr "Laadimise lõpetamise teavitus"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:180
-#: tculink/management/commands/tcuserver.py:388
+#: tculink/management/commands/tcuserver.py:390
 msgid "Vehicle has finished quick-charging."
 msgstr "Sõiduk on kiirlaadimise lõpetanud."
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:181
-#: tculink/management/commands/tcuserver.py:389
+#: tculink/management/commands/tcuserver.py:391
 msgid "Quick-charge finish notification"
 msgstr "Kiirlaadimise lõpetamise teavitus"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:184
-#: tculink/management/commands/tcuserver.py:392
+#: tculink/management/commands/tcuserver.py:394
 msgid "Charge interruption notification"
 msgstr "Laadimise katkestuse teatis"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:187
-#: tculink/management/commands/tcuserver.py:395
+#: tculink/management/commands/tcuserver.py:397
 msgid "Charging has been stopped due to an interruption"
 msgstr "Laadimine peatati katkestuse tõttu"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:189
-#: tculink/management/commands/tcuserver.py:397
+#: tculink/management/commands/tcuserver.py:399
 msgid "Quick-charging has been stopped due to an interruption"
 msgstr "Kiirlaadimine on peatatud katkestuse tõttu"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:207
-#: tculink/management/commands/tcuserver.py:437
+#: tculink/management/commands/tcuserver.py:439
 msgid "Charge start command executed"
 msgstr "Laadimise alustamise käsk täidetud"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:208
-#: tculink/management/commands/tcuserver.py:438
+#: tculink/management/commands/tcuserver.py:440
 msgid ""
 "Charging command has been sent successfully. If vehicle did not start "
 "charging, please check that the charging cable is connected and power is "
@@ -1245,24 +1274,24 @@ msgstr ""
 "kontrolli, kas laadimiskaabel on ühendatud ja toide on saadaval."
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:213
-#: tculink/management/commands/tcuserver.py:441
+#: tculink/management/commands/tcuserver.py:443
 msgid "Charge start command executed with failure"
 msgstr "Laadimise käivitamise käsk täideti vea tõttu ebaõnnestunult"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:214
-#: tculink/management/commands/tcuserver.py:442
+#: tculink/management/commands/tcuserver.py:444
 msgid ""
 "Charging command has been sent successfully, but the vehicle did not start "
 "charging."
 msgstr "Laadimise käsk saadeti edukalt, kuid sõiduk ei alustanud laadimist."
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:219
-#: tculink/management/commands/tcuserver.py:447
+#: tculink/management/commands/tcuserver.py:449
 msgid "Charge start failure"
 msgstr "Laadimise alustamine ebaõnnestus"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:220
-#: tculink/management/commands/tcuserver.py:448
+#: tculink/management/commands/tcuserver.py:450
 msgid "Charge start command failed to execute."
 msgstr "Laadimise alustamise käsu täitmine ebaõnnestus."
 
@@ -1318,22 +1347,22 @@ msgstr ""
 "Autentimine ebaõnnestus, kasutajanimi või parool on vale! Palun logige "
 "uuesti sisse navigeerimisüksuse abil."
 
-#: tculink/management/commands/tcuserver.py:350
-#: tculink/management/commands/tcuserver.py:417
+#: tculink/management/commands/tcuserver.py:352
+#: tculink/management/commands/tcuserver.py:419
 msgid ""
 "The A/C preconditioning is finished and switched off because of an error"
 msgstr ""
 "Kliimaseadme eelkonditsioneerimine on lõppenud ja välja lülitatud vea tõttu"
 
-#: tculink/management/commands/tcuserver.py:470
+#: tculink/management/commands/tcuserver.py:472
 msgid "Battery heater notification"
 msgstr "Aku soojendi teavitus"
 
-#: tculink/management/commands/tcuserver.py:471
+#: tculink/management/commands/tcuserver.py:473
 msgid "Battery heater has turned on"
 msgstr "Aku soojendus on sisse lülitatud"
 
-#: tculink/management/commands/tcuserver.py:471
+#: tculink/management/commands/tcuserver.py:473
 msgid "Battery heater has turned off"
 msgstr "Aku soojendus on välja lülitatud"
 
@@ -1682,6 +1711,10 @@ msgstr "Sõiduki logi"
 msgid "Location"
 msgstr "Asukoht"
 
+#: ui/templates/ui/car_detail.html:102
+msgid "New!"
+msgstr "Uus!"
+
 #: ui/templates/ui/car_detail.html:104
 msgid "Recent Alerts"
 msgstr "Viimased hoiatused"
@@ -1761,8 +1794,8 @@ msgid "Driving"
 msgstr "Sõitmine"
 
 #: ui/templates/ui/car_detail.html:194 ui/templates/ui/car_detail.html:1284
-#: ui/templates/ui/probeviewer/main.html:481
-#: ui/templates/ui/probeviewer/main.html:555
+#: ui/templates/ui/probeviewer/main.html:487
+#: ui/templates/ui/probeviewer/main.html:561
 msgid "Charging finished"
 msgstr "Laadimine lõpetatud"
 
@@ -1792,8 +1825,8 @@ msgstr "Sees, Väljas"
 #: ui/templates/ui/car_detail.html:218 ui/templates/ui/car_detail.html:317
 #: ui/templates/ui/car_detail.html:348 ui/templates/ui/car_detail.html:370
 #: ui/templates/ui/ficosa/veh_health.html:29
-#: ui/templates/ui/probeviewer/main.html:162
-#: ui/templates/ui/probeviewer/main.html:190
+#: ui/templates/ui/probeviewer/main.html:168
+#: ui/templates/ui/probeviewer/main.html:196
 msgid "Last Updated"
 msgstr "Viimati uuendatud"
 
@@ -2237,8 +2270,8 @@ msgstr "SMS sinu seadmest"
 #: ui/templates/ui/car_detail.html:1209 ui/templates/ui/car_detail.html:1210
 #: ui/templates/ui/car_detail.html:1444 ui/templates/ui/car_detail.html:1452
 #: ui/templates/ui/car_detail.html:1453
-#: ui/templates/ui/ficosa/configuration.html:296
-#: ui/templates/ui/ficosa/configuration.html:300
+#: ui/templates/ui/ficosa/configuration.html:331
+#: ui/templates/ui/ficosa/configuration.html:335
 msgid "Error sending command"
 msgstr "Käsu saatmisel ilmnes viga"
 
@@ -2255,8 +2288,8 @@ msgstr "Lahti ühendatud"
 #: ui/templates/ui/car_detail.html:1343 ui/templates/ui/car_detail.html:1344
 #: ui/templates/ui/car_detail.html:1345 ui/templates/ui/car_detail.html:1346
 #: ui/templates/ui/car_detail.html:1351
-#: ui/templates/ui/ficosa/veh_health.html:159
-#: ui/templates/ui/ficosa/veh_health.html:161
+#: ui/templates/ui/ficosa/veh_health.html:170
+#: ui/templates/ui/ficosa/veh_health.html:172
 msgid "Yes"
 msgstr "Jah"
 
@@ -2265,8 +2298,8 @@ msgstr "Jah"
 #: ui/templates/ui/car_detail.html:1343 ui/templates/ui/car_detail.html:1344
 #: ui/templates/ui/car_detail.html:1345 ui/templates/ui/car_detail.html:1346
 #: ui/templates/ui/car_detail.html:1351
-#: ui/templates/ui/ficosa/veh_health.html:159
-#: ui/templates/ui/ficosa/veh_health.html:161
+#: ui/templates/ui/ficosa/veh_health.html:170
+#: ui/templates/ui/ficosa/veh_health.html:172
 msgid "No"
 msgstr "Ei"
 
@@ -2559,40 +2592,45 @@ msgid "Activate"
 msgstr "Aktiveeri"
 
 #: ui/templates/ui/ficosa/configuration.html:197
-#: ui/templates/ui/ficosa/configuration.html:326
+#: ui/templates/ui/ficosa/configuration.html:224
+#: ui/templates/ui/ficosa/configuration.html:361
 msgid "Last value:"
 msgstr "Viimane väärtus:"
 
-#: ui/templates/ui/ficosa/configuration.html:251
-#: ui/templates/ui/ficosa/configuration.html:267
-#: ui/templates/ui/ficosa/configuration.html:270
+#: ui/templates/ui/ficosa/configuration.html:278
+#: ui/templates/ui/ficosa/configuration.html:294
+#: ui/templates/ui/ficosa/configuration.html:297
 msgid "is more than"
 msgstr "on suurem kui"
 
-#: ui/templates/ui/ficosa/configuration.html:254
-#: ui/templates/ui/ficosa/configuration.html:273
+#: ui/templates/ui/ficosa/configuration.html:281
+#: ui/templates/ui/ficosa/configuration.html:300
 msgid "is less than"
 msgstr "on väiksem kui"
 
-#: ui/templates/ui/ficosa/configuration.html:267
-#: ui/templates/ui/ficosa/configuration.html:270
-#: ui/templates/ui/ficosa/configuration.html:273
+#: ui/templates/ui/ficosa/configuration.html:294
+#: ui/templates/ui/ficosa/configuration.html:297
+#: ui/templates/ui/ficosa/configuration.html:300
 msgid "character(s)"
 msgstr "tegelane(d)"
 
-#: ui/templates/ui/ficosa/configuration.html:276
+#: ui/templates/ui/ficosa/configuration.html:303
 msgid "value only accepts following characters:"
 msgstr "väärtus aktsepteerib ainult järgmisi märke:"
 
-#: ui/templates/ui/ficosa/configuration.html:279
+#: ui/templates/ui/ficosa/configuration.html:306
 msgid "value only accepts following characters"
 msgstr "väärtus aktsepteerib ainult järgmisi märke"
 
-#: ui/templates/ui/ficosa/configuration.html:287
+#: ui/templates/ui/ficosa/configuration.html:314
 msgid "value is out of range"
 msgstr "väärtus on vahemikust väljas"
 
-#: ui/templates/ui/ficosa/configuration.html:300
+#: ui/templates/ui/ficosa/configuration.html:323
+msgid " has invalid choice"
+msgstr " valik on sobimatu"
+
+#: ui/templates/ui/ficosa/configuration.html:335
 msgid "No changes to send!"
 msgstr "Muudatusi pole saatmiseks!"
 
@@ -2660,15 +2698,15 @@ msgstr "Pikki rikkekoode ei ole teatatud"
 msgid "No short trouble codes reported"
 msgstr "Lühikesi rikkekoode ei ole teatatud"
 
-#: ui/templates/ui/ficosa/veh_health.html:185
+#: ui/templates/ui/ficosa/veh_health.html:196
 msgid "yes"
 msgstr "jah"
 
-#: ui/templates/ui/ficosa/veh_health.html:185
+#: ui/templates/ui/ficosa/veh_health.html:196
 msgid "no"
 msgstr "ei"
 
-#: ui/templates/ui/ficosa/veh_health.html:190
+#: ui/templates/ui/ficosa/veh_health.html:201
 msgid "No trouble codes reported"
 msgstr "Rikkekoode ei ole teatatud"
 
@@ -2731,7 +2769,7 @@ msgid "DOT-files"
 msgstr "DOT-failid"
 
 #: ui/templates/ui/probeviewer/main.html:100
-#: ui/templates/ui/probeviewer/main.html:344
+#: ui/templates/ui/probeviewer/main.html:350
 msgid "Trips"
 msgstr "Sõidud"
 
@@ -2779,23 +2817,24 @@ msgstr "Telefonikontaktid mälus"
 msgid "Locations saved in address book"
 msgstr "Aadressiraamatusse salvestatud asukohad"
 
-#: ui/templates/ui/probeviewer/main.html:129
+#: ui/templates/ui/probeviewer/main.html:130
+#: ui/templates/ui/probeviewer/main.html:164
 msgid "Telemetry configuration"
 msgstr "Telemeetria konfiguratsioon"
 
-#: ui/templates/ui/probeviewer/main.html:131
+#: ui/templates/ui/probeviewer/main.html:132
 msgid "Telemetry Configuration ID"
 msgstr "Telemeetria konfiguratsiooni ID"
 
-#: ui/templates/ui/probeviewer/main.html:133
+#: ui/templates/ui/probeviewer/main.html:134
 msgid "New Telemetry Configuration ID"
 msgstr "Uus telemeetria konfiguratsiooni ID"
 
-#: ui/templates/ui/probeviewer/main.html:136
+#: ui/templates/ui/probeviewer/main.html:137
 msgid "Configuration update status"
 msgstr "Konfiguratsiooni värskendamise olek"
 
-#: ui/templates/ui/probeviewer/main.html:139
+#: ui/templates/ui/probeviewer/main.html:140
 msgid ""
 "Please turn on the car for vehicle data auto-update or access a CARWINGS "
 "data channel to perform configuration update."
@@ -2803,125 +2842,129 @@ msgstr ""
 "Sõiduki andmete automaatseks värskendamiseks lülitage auto sisse või avage "
 "konfiguratsiooni värskendamiseks CARWINGSi andmekanal."
 
-#: ui/templates/ui/probeviewer/main.html:143
+#: ui/templates/ui/probeviewer/main.html:144
 msgid "Cancel update"
 msgstr "Tühista värskendus"
 
-#: ui/templates/ui/probeviewer/main.html:149
+#: ui/templates/ui/probeviewer/main.html:150
 msgid "New Telemetry Configuration"
 msgstr "Uus telemeetria konfiguratsioon"
 
-#: ui/templates/ui/probeviewer/main.html:157
+#: ui/templates/ui/probeviewer/main.html:158
 msgid "Update"
 msgstr "Värskendus"
 
-#: ui/templates/ui/probeviewer/main.html:166
-#: ui/templates/ui/probeviewer/main.html:194
+#: ui/templates/ui/probeviewer/main.html:165
+msgid "Telemetry configuration has moved to 'TCU Configuration' tab!"
+msgstr "Telemeetria seadistused on viidud vahekaardile „TCU seadistused“!"
+
+#: ui/templates/ui/probeviewer/main.html:172
+#: ui/templates/ui/probeviewer/main.html:200
 msgid "No vehicle data available"
 msgstr "Sõiduki andmed pole saadaval"
 
-#: ui/templates/ui/probeviewer/main.html:179
+#: ui/templates/ui/probeviewer/main.html:185
 #: ui/templates/ui/probeviewer/trip.html:143
 msgid "A/C usage"
 msgstr "Kliimaseadme kasutus"
 
-#: ui/templates/ui/probeviewer/main.html:180
+#: ui/templates/ui/probeviewer/main.html:186
 msgid "Headlights usage"
 msgstr "Esitulede kasutus"
 
-#: ui/templates/ui/probeviewer/main.html:181
-#: ui/templates/ui/probeviewer/main.html:343
+#: ui/templates/ui/probeviewer/main.html:187
+#: ui/templates/ui/probeviewer/main.html:349
 #: ui/templates/ui/probeviewer/trip.html:31
 msgid "Average speed"
 msgstr "Keskmine kiirus"
 
-#: ui/templates/ui/probeviewer/main.html:182
+#: ui/templates/ui/probeviewer/main.html:188
 msgid "Energy regeneration"
 msgstr "Energia taastamine"
 
-#: ui/templates/ui/probeviewer/main.html:183
-#: ui/templates/ui/probeviewer/main.html:187
+#: ui/templates/ui/probeviewer/main.html:189
+#: ui/templates/ui/probeviewer/main.html:193
 msgid "Energy consumption"
 msgstr "Energiatarbimine"
 
-#: ui/templates/ui/probeviewer/main.html:184
+#: ui/templates/ui/probeviewer/main.html:190
 msgid "Runtime"
 msgstr "Tööaeg"
 
-#: ui/templates/ui/probeviewer/main.html:185
+#: ui/templates/ui/probeviewer/main.html:191
 msgid "Lifetime data mileage"
 msgstr "Eluaegne andmete läbisõit"
 
-#: ui/templates/ui/probeviewer/main.html:256
+#: ui/templates/ui/probeviewer/main.html:262
 msgid "No DOT data available"
 msgstr "DOT-andmed puuduvad"
 
-#: ui/templates/ui/probeviewer/main.html:257
+#: ui/templates/ui/probeviewer/main.html:263
 msgid "DOT data comes available on next startup after a trip."
 msgstr ""
 "DOT-andmed muutuvad kättesaadavaks järgmisel käivitamisel pärast reisi."
 
-#: ui/templates/ui/probeviewer/main.html:318
+#: ui/templates/ui/probeviewer/main.html:324
 msgid "No trip data available"
 msgstr "Sõiduandmed pole saadaval"
 
-#: ui/templates/ui/probeviewer/main.html:341
+#: ui/templates/ui/probeviewer/main.html:347
 msgid "Driving distance"
 msgstr "Sõidukaugus"
 
-#: ui/templates/ui/probeviewer/main.html:342
+#: ui/templates/ui/probeviewer/main.html:348
 msgid "Driving time"
 msgstr "Sõiduaeg"
 
-#: ui/templates/ui/probeviewer/main.html:345
+#: ui/templates/ui/probeviewer/main.html:351
 #: ui/templates/ui/probeviewer/trip.html:163
 msgid "Regenerated energy"
 msgstr "Taastatud energia"
 
-#: ui/templates/ui/probeviewer/main.html:346
+#: ui/templates/ui/probeviewer/main.html:352
 msgid "Consumed energy"
 msgstr "Tarbitud energia"
 
-#: ui/templates/ui/probeviewer/main.html:349
+#: ui/templates/ui/probeviewer/main.html:355
 #: ui/templates/ui/probeviewer/trip.html:82
 #: ui/templates/ui/probeviewer/trip.html:88
 msgid "Average consumption"
 msgstr "Keskmine tarbimine"
 
-#: ui/templates/ui/probeviewer/main.html:356
+#: ui/templates/ui/probeviewer/main.html:362
 #: ui/templates/ui/probeviewer/trip.html:149
 msgid "Average acceleration"
 msgstr "Keskmine kiirendus"
 
-#: ui/templates/ui/probeviewer/main.html:395
+#: ui/templates/ui/probeviewer/main.html:401
 msgid "No monthly analytics available"
 msgstr "Kuu analüütika pole saadaval"
 
-#: ui/templates/ui/probeviewer/main.html:396
+#: ui/templates/ui/probeviewer/main.html:402
 msgid "Monthly analytics information comes available at the end of the month."
 msgstr "Kuu analüütika info muutub kättesaadavaks kuu lõpus."
 
-#: ui/templates/ui/probeviewer/main.html:414
+#: ui/templates/ui/probeviewer/main.html:420
 msgid "Single Day"
 msgstr "Üksikpäev"
 
-#: ui/templates/ui/probeviewer/main.html:418
+#: ui/templates/ui/probeviewer/main.html:424
 msgid "Single Week"
 msgstr "Üks nädal"
 
-#: ui/templates/ui/probeviewer/main.html:422
+#: ui/templates/ui/probeviewer/main.html:428
 msgid "Single Month"
 msgstr "Üks kuu"
 
-#: ui/templates/ui/probeviewer/main.html:450
+#: ui/templates/ui/probeviewer/main.html:456
 msgid "Export to GPX"
 msgstr "Ekspordi GPX-vormingus"
 
-#: ui/templates/ui/probeviewer/main.html:457
+#: ui/templates/ui/probeviewer/main.html:463
 msgid "No location available"
 msgstr "Asukoht pole saadaval"
 
-#: ui/templates/ui/probeviewer/main.html:458
+#: ui/templates/ui/probeviewer/main.html:464
 msgid ""
 "Location information comes available on next startup, if your current "
 "configuration allows it."
@@ -2929,91 +2972,91 @@ msgstr ""
 "Asukohateave on saadaval järgmisel käivitamisel, kui teie praegune "
 "konfiguratsioon seda lubab."
 
-#: ui/templates/ui/probeviewer/main.html:484
+#: ui/templates/ui/probeviewer/main.html:490
 msgid "State at start"
 msgstr "Seisund alguses"
 
-#: ui/templates/ui/probeviewer/main.html:485
+#: ui/templates/ui/probeviewer/main.html:491
 msgid "State at end"
 msgstr "Seisund lõpus"
 
-#: ui/templates/ui/probeviewer/main.html:486
-#: ui/templates/ui/probeviewer/main.html:559
+#: ui/templates/ui/probeviewer/main.html:492
+#: ui/templates/ui/probeviewer/main.html:565
 msgid "Charging type"
 msgstr "Laadimise tüüp"
 
-#: ui/templates/ui/probeviewer/main.html:487
+#: ui/templates/ui/probeviewer/main.html:493
 msgid "Charged energy"
 msgstr "Laaditud energia"
 
-#: ui/templates/ui/probeviewer/main.html:488
+#: ui/templates/ui/probeviewer/main.html:494
 msgid "Cell temp. (start)"
 msgstr "Raku temp. (algus)"
 
-#: ui/templates/ui/probeviewer/main.html:488
-#: ui/templates/ui/probeviewer/main.html:489
-#: ui/templates/ui/probeviewer/main.html:490
+#: ui/templates/ui/probeviewer/main.html:494
+#: ui/templates/ui/probeviewer/main.html:495
+#: ui/templates/ui/probeviewer/main.html:496
 msgid "avg/max/min"
 msgstr "keskmine/max/min"
 
-#: ui/templates/ui/probeviewer/main.html:489
+#: ui/templates/ui/probeviewer/main.html:495
 msgid "Cell temp. (end)"
 msgstr "Raku temp. (lõpp)"
 
-#: ui/templates/ui/probeviewer/main.html:490
+#: ui/templates/ui/probeviewer/main.html:496
 msgid "Cell volt. (start)"
 msgstr "Raku pinge (algus)"
 
-#: ui/templates/ui/probeviewer/main.html:491
+#: ui/templates/ui/probeviewer/main.html:497
 msgid "Charges while ign. off"
 msgstr "Laadimised süüte väljalülitamisel"
 
-#: ui/templates/ui/probeviewer/main.html:531
+#: ui/templates/ui/probeviewer/main.html:537
 msgid "No charging history available"
 msgstr "Laadimise ajalugu pole saadaval"
 
-#: ui/templates/ui/probeviewer/main.html:532
+#: ui/templates/ui/probeviewer/main.html:538
 msgid ""
 "Charging history may become available on next startup after the charging."
 msgstr ""
 "Laadimise ajalugu võib muutuda kättesaadavaks järgmisel käivitamisel pärast "
 "laadimist."
 
-#: ui/templates/ui/probeviewer/main.html:558
+#: ui/templates/ui/probeviewer/main.html:564
 msgid "Charge count"
 msgstr "Laadimiste arv"
 
-#: ui/templates/ui/probeviewer/main.html:599
+#: ui/templates/ui/probeviewer/main.html:605
 msgid "No charge data available"
 msgstr "Laadimisandmed pole saadaval"
 
-#: ui/templates/ui/probeviewer/main.html:600
+#: ui/templates/ui/probeviewer/main.html:606
 msgid "Charging data may become available on next startup after the charging."
 msgstr ""
 "Laadimisandmed võivad muutuda kättesaadavaks järgmisel käivitamisel pärast "
 "laadimist."
 
-#: ui/templates/ui/probeviewer/main.html:623
+#: ui/templates/ui/probeviewer/main.html:629
 msgid "Operation time"
 msgstr "Tööaeg"
 
-#: ui/templates/ui/probeviewer/main.html:624
+#: ui/templates/ui/probeviewer/main.html:630
 msgid "Vehicle speed at start"
 msgstr "Sõiduki kiirus alguses"
 
-#: ui/templates/ui/probeviewer/main.html:625
+#: ui/templates/ui/probeviewer/main.html:631
 msgid "Vehicle speed at end"
 msgstr "Sõiduki kiirus lõpus"
 
-#: ui/templates/ui/probeviewer/main.html:626
+#: ui/templates/ui/probeviewer/main.html:632
 msgid "Road type"
 msgstr "Tee tüüp"
 
-#: ui/templates/ui/probeviewer/main.html:666
+#: ui/templates/ui/probeviewer/main.html:672
 msgid "No ABS data available"
 msgstr "ABS andmed pole saadaval"
 
-#: ui/templates/ui/probeviewer/main.html:667
+#: ui/templates/ui/probeviewer/main.html:673
 msgid ""
 "ABS data may become available on next startup if your vehicle configuration "
 "allows it."
@@ -3021,29 +3064,29 @@ msgstr ""
 "ABS andmed võivad muutuda kättesaadavaks järgmisel käivitamisel, kui sinu "
 "sõiduki konfiguratsioon seda võimaldab."
 
-#: ui/templates/ui/probeviewer/main.html:684
-#: ui/templates/ui/probeviewer/main.html:756
-#: ui/templates/ui/probeviewer/main.html:828
-#: ui/templates/ui/probeviewer/main.html:900
-#: ui/templates/ui/probeviewer/main.html:972
+#: ui/templates/ui/probeviewer/main.html:690
+#: ui/templates/ui/probeviewer/main.html:762
+#: ui/templates/ui/probeviewer/main.html:834
+#: ui/templates/ui/probeviewer/main.html:906
+#: ui/templates/ui/probeviewer/main.html:978
 msgid "Date and time"
 msgstr "Kuupäev ja kellaaeg"
 
-#: ui/templates/ui/probeviewer/main.html:687
-#: ui/templates/ui/probeviewer/main.html:831
+#: ui/templates/ui/probeviewer/main.html:693
+#: ui/templates/ui/probeviewer/main.html:837
 #: ui/templates/ui/probeviewer/trip.html:44
 msgid "Duration"
 msgstr "Kestus"
 
-#: ui/templates/ui/probeviewer/main.html:739
-#: ui/templates/ui/probeviewer/main.html:811
-#: ui/templates/ui/probeviewer/main.html:883
+#: ui/templates/ui/probeviewer/main.html:745
+#: ui/templates/ui/probeviewer/main.html:817
+#: ui/templates/ui/probeviewer/main.html:889
 msgid "No idling data available"
 msgstr "Tühikäigu andmed pole saadaval"
 
-#: ui/templates/ui/probeviewer/main.html:740
-#: ui/templates/ui/probeviewer/main.html:812
-#: ui/templates/ui/probeviewer/main.html:884
+#: ui/templates/ui/probeviewer/main.html:746
+#: ui/templates/ui/probeviewer/main.html:818
+#: ui/templates/ui/probeviewer/main.html:890
 msgid ""
 "Idling data may become available on next startup if your vehicle "
 "configuration allows it."
@@ -3051,20 +3094,20 @@ msgstr ""
 "Tühikäigu andmed võivad muutuda kättesaadavaks järgmisel käivitamisel, kui "
 "sinu sõiduki konfiguratsioon seda võimaldab."
 
-#: ui/templates/ui/probeviewer/main.html:759
+#: ui/templates/ui/probeviewer/main.html:765
 msgid "Consumption"
 msgstr "Tarbimine"
 
-#: ui/templates/ui/probeviewer/main.html:903
-#: ui/templates/ui/probeviewer/main.html:975
+#: ui/templates/ui/probeviewer/main.html:909
+#: ui/templates/ui/probeviewer/main.html:981
 msgid "Data"
 msgstr "Andmed"
 
-#: ui/templates/ui/probeviewer/main.html:955
+#: ui/templates/ui/probeviewer/main.html:961
 msgid "No DTC data available"
 msgstr "DTC andmed pole saadaval"
 
-#: ui/templates/ui/probeviewer/main.html:956
+#: ui/templates/ui/probeviewer/main.html:962
 msgid ""
 "DTC data may become available on next startup if your vehicle has active DTC "
 "trouble code."
@@ -3072,17 +3115,17 @@ msgstr ""
 "DTC andmed võivad muutuda kättesaadavaks järgmisel käivitamisel, kui sinu "
 "sõidukil on aktiivne DTC veakood."
 
-#: ui/templates/ui/probeviewer/main.html:1027
+#: ui/templates/ui/probeviewer/main.html:1033
 msgid "No MSN data available"
 msgstr "MSN andmed pole saadaval"
 
-#: ui/templates/ui/probeviewer/main.html:1028
+#: ui/templates/ui/probeviewer/main.html:1034
 msgid "MSN data may become available on next startup."
 msgstr "MSN andmed võivad muutuda kättesaadavaks järgmisel käivitamisel."
 
-#: ui/templates/ui/probeviewer/main.html:1257
-#: ui/templates/ui/probeviewer/main.html:1261
-#: ui/templates/ui/probeviewer/main.html:1262
+#: ui/templates/ui/probeviewer/main.html:1263
+#: ui/templates/ui/probeviewer/main.html:1267
+#: ui/templates/ui/probeviewer/main.html:1268
 msgid "Error loading location history"
 msgstr "Asukohaajaloo laadimisel tekkis viga"
 
@@ -3693,7 +3736,7 @@ msgstr ""
 msgid "Account successfully updated!"
 msgstr "Konto edukalt uuendatud!"
 
-#: ui/views.py:132 ui/views.py:1026
+#: ui/views.py:132 ui/views.py:1029
 msgid "Please fill the form correctly and try again."
 msgstr "Palun täida vorm korrektselt ja proovi uuesti."
 
@@ -3780,16 +3823,17 @@ msgstr "Auto on juba lisatud. Palun eemalda ja proovi uuesti."
 msgid "Please select a provider for SMS."
 msgstr "Palun vali SMS-teenuse pakkuja."
 
-#: ui/views.py:1018
+#: ui/views.py:1012
+msgid "This function is not available for TCU Model"
+msgstr "This function is not available for TCU Model"
+
+#: ui/views.py:1021
 msgid "Update requested! Update will occur on next boot."
 msgstr "Värskendust taotletud! Värskendus toimub järgmisel käivitamisel."
 
-#: ui/views.py:1024
+#: ui/views.py:1027
 msgid "Update request cancelled!"
 msgstr "Värskendustaotlus tühistatud!"
-
-msgid "New!"
-msgstr "Uus!"
 
 msgid ""
 "In order to receive vehicle data, CARWINGS navigation unit must have correct "

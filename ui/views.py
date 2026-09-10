@@ -1008,28 +1008,32 @@ def probeviewer_home(request, vin):
         probe_config.save()
 
     if request.method == 'POST':
-        form = ProbeConfigForm(request.POST)
-        if form.is_valid():
-            if form.cleaned_data['request'] == 'update' and probe_config.pending_change == False and form.cleaned_data['new_config_id'] in PROBE_CONFIGS:
-                probe_config.new_config_id = form.cleaned_data['new_config_id']
-                probe_config.pending_change = True
-                probe_config.change_result = 0
-                probe_config.save()
-                messages.success(request, _('Update requested! Update will occur on next boot.'))
-            if form.cleaned_data['request'] == 'cancel' and probe_config.pending_change:
-                probe_config.change_result = -1
-                probe_config.pending_change = False
-                probe_config.new_config_id = -1
-                probe_config.save()
-                messages.success(request, _('Update request cancelled!'))
+        if car.tcu_type != "continental2012":
+            messages.error(request, _("This function is not available for TCU Model"))
         else:
-            messages.error(request, _("Please fill the form correctly and try again."))
+            form = ProbeConfigForm(request.POST)
+            if form.is_valid():
+                if form.cleaned_data['request'] == 'update' and probe_config.pending_change == False and form.cleaned_data['new_config_id'] in PROBE_CONFIGS:
+                    probe_config.new_config_id = form.cleaned_data['new_config_id']
+                    probe_config.pending_change = True
+                    probe_config.change_result = 0
+                    probe_config.save()
+                    messages.success(request, _('Update requested! Update will occur on next boot.'))
+                if form.cleaned_data['request'] == 'cancel' and probe_config.pending_change:
+                    probe_config.change_result = -1
+                    probe_config.pending_change = False
+                    probe_config.new_config_id = -1
+                    probe_config.save()
+                    messages.success(request, _('Update request cancelled!'))
+            else:
+                messages.error(request, _("Please fill the form correctly and try again."))
 
     avail_probe_configs = []
 
-    for conf_id in PROBE_CONFIGS.keys():
-        if conf_id in PROBE_CONFIG_INFO:
-            avail_probe_configs.append((conf_id, PROBE_CONFIG_INFO[conf_id]))
+    if car.tcu_type == "continental2012":
+        for conf_id in PROBE_CONFIGS.keys():
+            if conf_id in PROBE_CONFIG_INFO:
+                avail_probe_configs.append((conf_id, PROBE_CONFIG_INFO[conf_id]))
 
     try:
         latest = CRMLatest.objects.get(car=car)

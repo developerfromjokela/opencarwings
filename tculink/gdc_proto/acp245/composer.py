@@ -515,6 +515,14 @@ def parse_config_file(data: bytes) -> List[ProbeConfigItem]:
         for off in range(0, len(data), 48)
     ]
 
+def parse_config_file_to_chunks(data: bytes) -> list[bytes]:
+    if len(data) % 48 != 0:
+        raise ValueError(f"config-file size {len(data)} is not a multiple of 48")
+    return [
+        data[off:off + 48]
+        for off in range(0, len(data), 48)
+    ]
+
 @dataclass
 class ACPProbeConfig:
     service_type: int = 0x50
@@ -547,7 +555,7 @@ class ACPProbeConfig:
 @dataclass
 class ACPProbeConfigRaw:
     service_type: int = 0x50
-    records: List[bytearray] = field(default_factory=list)
+    records: List[bytes] = field(default_factory=list)
 
     def encode(self) -> bytes:
         if not self.records:

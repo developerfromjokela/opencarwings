@@ -63,6 +63,10 @@ def validate_config_cmd(payload):
                         if field_type == 2:
                             if not value.isascii():
                                 raise CommandArgumentError(f"{field_info['label']} must contain only ASCII characters")
+                    elif field_type == 5:
+                        avail_options = [x[0] for x in field_info.get("options", [])]
+                        if value not in avail_options:
+                            raise CommandArgumentError(f"{value} is not a valid option")
 
                     new_config[field_key] = value
 
@@ -104,7 +108,7 @@ class Ficosa2016(TCULink):
                     raise CommandArgumentError(str(e))
             else:
                 destination_id = command_to_destination_id(command)
-            source_id = randint(200, 255)
+            source_id = randint(128, 255)
 
             acp_msg = bytearray()
 

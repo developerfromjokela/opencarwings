@@ -15,7 +15,7 @@
    </div>
     <template id="tcuConfigMenuBtn">
         <button class="config-btn items-start justify-between p-2 bg-gray-50 dark:bg-gray-500 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition" style="width: 100%">
-            <span class="text-gray-700 dark:text-gray-300 font-medium mx-3 text-sm config-btn-label"></span>
+            <span class="text-gray-700 active:text-gray-300 dark:text-gray-300 font-medium mx-3 text-sm config-btn-label"></span>
         </button>
     </template>
     <template id="tcuConfigMenuFrame">
@@ -199,6 +199,33 @@
                     holder.appendChild(input)
                     break
                 }
+                case 5: {
+                    holder.classList.add("flex-col")
+                    let input = document.createElement("select");
+                    input.id = `${config_code}-${code}`;
+                    input.className = inputStyle[0];
+                    input.required = true;
+
+                    const confOptions = field.options ?? [];
+
+                    for (let itm of confOptions) {
+                        let option = document.createElement("option");
+                        option.value = itm[0]
+                        option.textContent = itm[1]
+                        input.appendChild(option);
+                    }
+
+                    let inputLabel = document.createElement("label");
+                    inputLabel.htmlFor = input.id;
+                    inputLabel.id = `l-${input.id}`
+                    inputLabel.className = inputStyle[1];
+                    inputLabel.textContent = field.label
+                    if (currentValues[config_code])
+                        inputLabel.textContent = `${field.label} ({% translate "Last value:" %} ${confOptions[currentValues[config_code]][1]})`
+                    holder.appendChild(inputLabel)
+                    holder.appendChild(input)
+                    break
+                }
             }
             return confHolder
         }
@@ -288,6 +315,14 @@
                             }
                             if (value > 0)
                                 newConfig[fieldKey] = value
+                            break
+                        }
+                        case 5: {
+                            const confOpts = fieldInfo.options.map(i => i[0])
+                            if (!fieldInput.value || !confOpts.includes(fieldInput.value)) {
+                                throw new Error(`${fieldInfo.label} {% translate " has invalid choice" %}`)
+                            }
+                            newConfig[fieldKey] = fieldInput.value
                             break
                         }
                     }

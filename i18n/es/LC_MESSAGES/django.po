@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-31 11:25+0000\n"
-"PO-Revision-Date: 2026-08-31 14:29+0300\n"
+"POT-Creation-Date: 2026-09-10 20:11+0000\n"
+"PO-Revision-Date: 2026-09-10 23:13+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -40,7 +40,7 @@ msgstr ""
 "No se ha configurado el PIN de comando; configúralo e inténtalo de nuevo."
 
 #: api/views.py:435 tculink/coordinators/continental2012.py:25
-#: tculink/coordinators/ficosa2016.py:130
+#: tculink/coordinators/ficosa2016.py:134
 msgid "Failed to send SMS message to TCU. Please try again in a moment."
 msgstr ""
 "No se pudo enviar el mensaje SMS al TCU. Por favor, intenta de nuevo en un "
@@ -123,7 +123,7 @@ msgstr "Nuevos datos recibidos"
 msgid "Burglar alert"
 msgstr "Alerta de intrusión"
 
-#: db/models.py:41 tculink/gdc_proto/ficosa/utils.py:64
+#: db/models.py:41 tculink/gdc_proto/ficosa/utils.py:92
 #: tculink/httpgateway/ficosa/destinations/tow.py:36
 msgid "Tow Notification"
 msgstr "Notificación de remolque"
@@ -191,7 +191,7 @@ msgstr "Bocina del coche"
 msgid "Lights"
 msgstr "Luces"
 
-#: db/models.py:64 tculink/gdc_proto/ficosa/utils.py:65
+#: db/models.py:64 tculink/gdc_proto/ficosa/utils.py:93
 msgid "Horn & Lights"
 msgstr "Bocina y luces"
 
@@ -327,15 +327,15 @@ msgstr ""
 "minúsculas y mayúsculas a-z sin acentos, números y los caracteres /=/-/_/+/@/"
 "#/?/!."
 
-#: db/models.py:179
+#: db/models.py:190
 msgid "username"
 msgstr "nombre de usuario"
 
-#: db/models.py:183
+#: db/models.py:194
 msgid "Required. 16 characters or fewer. Letters, digits and /./-/_ only."
 msgstr "Requerido. 16 caracteres o menos. Solo letras, dígitos y /./-/_."
 
-#: db/models.py:187
+#: db/models.py:198
 msgid "A user with that username already exists."
 msgstr "Ya existe un usuario con ese nombre de usuario."
 
@@ -358,8 +358,8 @@ msgstr "El canal ha sido añadido a favoritos"
 
 #: tculink/carwings_proto/autodj/handler.py:26
 #: tculink/carwings_proto/autodj/handler.py:27
-#: tculink/carwings_proto/autodj/opencarwings.py:172
 #: tculink/carwings_proto/autodj/opencarwings.py:173
+#: tculink/carwings_proto/autodj/opencarwings.py:174
 msgid "Info from OpenCARWINGS"
 msgstr "Información de OpenCARWINGS"
 
@@ -373,7 +373,7 @@ msgstr "Canal de datos no disponible"
 msgid "Not authorized"
 msgstr "No autorizado"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:31
+#: tculink/carwings_proto/autodj/opencarwings.py:32
 msgid ""
 "Second vehicle. Nissan LEAF 30 kWh.\n"
 "\n"
@@ -391,7 +391,7 @@ msgstr ""
 "\n"
 "Más información en GitHub y en el sitio web de Open Car Wings."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:568
+#: tculink/carwings_proto/autodj/opencarwings.py:574
 msgid ""
 "Use remote climate control or the timer so that the cabin will be at a "
 "comfortable temperature before starting.  This allows the car to save energy "
@@ -401,7 +401,7 @@ msgstr ""
 "a una temperatura cómoda antes de arrancar. Esto permite al coche ahorrar "
 "energía mientras se conduce."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:569
+#: tculink/carwings_proto/autodj/opencarwings.py:575
 msgid ""
 "Keep your car in the garage during winter times to keep the battery pack "
 "warm.  This will increase your range a bit, especially in colder climates."
@@ -410,7 +410,7 @@ msgstr ""
 "baterías caliente. Esto aumentará ligeramente tu autonomía, especialmente en "
 "climas más fríos."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:570
+#: tculink/carwings_proto/autodj/opencarwings.py:576
 msgid ""
 "Use <phoneme alphabet=\"x-SVOX-sampa_en-GB\" ph=\"'i:-k@@U\">eco</phoneme> "
 "mode or B-mode when possible to increase your regenerative energy."
@@ -418,7 +418,7 @@ msgstr ""
 "Usa el modo eko o el modo B cuando sea posible para aumentar tu energía "
 "regenerativa."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:571
+#: tculink/carwings_proto/autodj/opencarwings.py:577
 msgid ""
 "Check your tire pressure at least once a month to ensure they are at optimal "
 "level.  Low tire pressure decreases rolling effect of the car and more "
@@ -428,7 +428,7 @@ msgstr ""
 "de que estén en el nivel óptimo. Una presión baja reduce el efecto de "
 "rodadura del coche y se utiliza más energía en la propulsión."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:572
+#: tculink/carwings_proto/autodj/opencarwings.py:578
 msgid ""
 "Plan your routes to include charging stations, especially on longer trips, "
 "to avoid range anxiety and ensure smooth travel."
@@ -437,7 +437,7 @@ msgstr ""
 "viajes largos, para evitar la ansiedad por la autonomía y garantizar un "
 "viaje fluido."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:573
+#: tculink/carwings_proto/autodj/opencarwings.py:579
 msgid ""
 "Avoid rapid acceleration and maintain a steady speed to maximize battery "
 "efficiency, as aggressive driving can significantly reduce your range."
@@ -446,7 +446,7 @@ msgstr ""
 "la eficiencia de la batería, ya que una conducción agresiva puede reducir "
 "significativamente tu autonomía."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:574
+#: tculink/carwings_proto/autodj/opencarwings.py:580
 msgid ""
 "Use the Nissan Leaf’s navigation system to find the most energy-efficient "
 "routes, which can help conserve battery power on unfamiliar roads."
@@ -455,7 +455,7 @@ msgstr ""
 "eficientes energéticamente, lo que puede ayudar a conservar la energía de la "
 "batería en carreteras desconocidas."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:575
+#: tculink/carwings_proto/autodj/opencarwings.py:581
 msgid ""
 "In colder times, try to use more of seat heating and steering wheel heating "
 "while keeping your air conditioning on lower settings. Auxiliary heating "
@@ -466,7 +466,7 @@ msgstr ""
 "elementos de calefacción auxiliares consumen menos que el sistema de aire "
 "acondicionado del coche."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:576
+#: tculink/carwings_proto/autodj/opencarwings.py:582
 msgid ""
 "Park in shaded areas during hot weather to keep the battery cool, as extreme "
 "heat can reduce battery efficiency and longevity."
@@ -475,7 +475,7 @@ msgstr ""
 "batería fresca, ya que el calor extremo puede reducir la eficiencia y la "
 "longevidad de la batería."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:577
+#: tculink/carwings_proto/autodj/opencarwings.py:583
 msgid ""
 "Try to charge the battery up to 80 percent for daily usage. Charging to "
 "full, every day, is not recommended for battery longevity."
@@ -483,7 +483,7 @@ msgstr ""
 "Intenta cargar la batería hasta un 80 por ciento para el uso diario. Cargar "
 "al máximo todos los días no es recomendable para la longevidad de la batería."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:578
+#: tculink/carwings_proto/autodj/opencarwings.py:584
 msgid ""
 "With Open Car Wings, you can review your driving efficiency of each trip, "
 "online. With the data, it is easier to determine which areas of driving "
@@ -493,26 +493,26 @@ msgstr ""
 "en línea. Con los datos, es más fácil determinar qué áreas de conducción "
 "necesitan mejorar para lograr una eficiencia energética óptima. "
 
-#: tculink/carwings_proto/autodj/opencarwings.py:608
-#: tculink/carwings_proto/autodj/opencarwings.py:642
+#: tculink/carwings_proto/autodj/opencarwings.py:614
+#: tculink/carwings_proto/autodj/opencarwings.py:648
 msgid "Average"
 msgstr "Normal"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:608
-#: tculink/carwings_proto/autodj/opencarwings.py:632
+#: tculink/carwings_proto/autodj/opencarwings.py:614
+#: tculink/carwings_proto/autodj/opencarwings.py:638
 msgid "Good"
 msgstr "Bueno"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:608
-#: tculink/carwings_proto/autodj/opencarwings.py:634
+#: tculink/carwings_proto/autodj/opencarwings.py:614
+#: tculink/carwings_proto/autodj/opencarwings.py:640
 msgid "Very good"
 msgstr "Muy bueno"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:609
+#: tculink/carwings_proto/autodj/opencarwings.py:615
 msgid "Check Energy Economy"
 msgstr "Comprobar Ahorro Energético"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:614
+#: tculink/carwings_proto/autodj/opencarwings.py:620
 msgid ""
 "The energy economy trend compared with the average of the last five trips is "
 "shown above."
@@ -520,27 +520,27 @@ msgstr ""
 "Arriba se muestra una tendencia del Ahorro Energético comparado con la media "
 "de los últimos cinco recorridos."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:619
+#: tculink/carwings_proto/autodj/opencarwings.py:625
 msgid "Trend of Energy Economy\n"
 msgstr "Tendencia de Ahorro Energético\n"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:645
+#: tculink/carwings_proto/autodj/opencarwings.py:651
 msgid "Bad"
 msgstr "Malo"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:650
+#: tculink/carwings_proto/autodj/opencarwings.py:656
 msgid "[Average]\n"
 msgstr "[Promedio]\n"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:652
+#: tculink/carwings_proto/autodj/opencarwings.py:658
 msgid "[Best]\n"
 msgstr "[Mejor]\n"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:654
+#: tculink/carwings_proto/autodj/opencarwings.py:660
 msgid "[Worst]\n"
 msgstr "[El peor]\n"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:657
+#: tculink/carwings_proto/autodj/opencarwings.py:663
 #, python-brace-format
 msgid ""
 "\n"
@@ -553,7 +553,7 @@ msgstr ""
 "vatios-hora por kilómetro.\n"
 "Basado en los últimos 5 viajes, tu economía de energía es {economy_status}. "
 
-#: tculink/carwings_proto/autodj/opencarwings.py:663
+#: tculink/carwings_proto/autodj/opencarwings.py:669
 msgid ""
 "There is no trip records available yet. Try checking in again after your "
 "next trip."
@@ -561,7 +561,7 @@ msgstr ""
 "Aún no hay registros de viajes disponibles. Intenta revisar de nuevo después "
 "de tu próximo viaje."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:665
+#: tculink/carwings_proto/autodj/opencarwings.py:671
 #, python-brace-format
 msgid ""
 "\n"
@@ -574,25 +574,25 @@ msgstr ""
 "debido a la falta de información de viajes. Intenta revisar este canal de "
 "nuevo después de tu próximo viaje. "
 
-#: tculink/carwings_proto/autodj/opencarwings.py:707
+#: tculink/carwings_proto/autodj/opencarwings.py:713
 msgid "Electric Car Column"
 msgstr "Columna del Coche Eléctrico"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:708
-#: tculink/carwings_proto/autodj/opencarwings.py:713
+#: tculink/carwings_proto/autodj/opencarwings.py:714
+#: tculink/carwings_proto/autodj/opencarwings.py:719
 msgid "Drive Tip"
 msgstr "Consejo para la Conducción"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:762
-#: tculink/carwings_proto/autodj/opencarwings.py:763
+#: tculink/carwings_proto/autodj/opencarwings.py:768
+#: tculink/carwings_proto/autodj/opencarwings.py:769
 msgid "Energy Information"
 msgstr "Ahorro de Energía"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:815
+#: tculink/carwings_proto/autodj/opencarwings.py:821
 msgid "Eco Tree Record"
 msgstr "Registro Eco árboles"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:825
+#: tculink/carwings_proto/autodj/opencarwings.py:831
 msgid ""
 "Your Eco Tree Record \n"
 "\n"
@@ -600,61 +600,61 @@ msgstr ""
 "Su registro de árboles ecológicos\n"
 "\n"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:831
 #: tculink/carwings_proto/autodj/opencarwings.py:837
+#: tculink/carwings_proto/autodj/opencarwings.py:843
 msgid "tree"
 msgstr "árbol"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:833
 #: tculink/carwings_proto/autodj/opencarwings.py:839
-#: tculink/carwings_proto/autodj/opencarwings.py:852
-#: tculink/carwings_proto/autodj/opencarwings.py:898
+#: tculink/carwings_proto/autodj/opencarwings.py:845
+#: tculink/carwings_proto/autodj/opencarwings.py:858
+#: tculink/carwings_proto/autodj/opencarwings.py:904
 msgid "trees"
 msgstr "árboles"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:840
+#: tculink/carwings_proto/autodj/opencarwings.py:846
 #, python-brace-format
 msgid "Sum total: {trees} {tree_word}"
 msgstr "Suma total: {trees} {tree_word}"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:846
+#: tculink/carwings_proto/autodj/opencarwings.py:852
 #, python-brace-format
 msgid ""
 "On the {day_word} of {month}, you saved {trees} <phoneme alphabet=\"x-SVOX-"
 "sampa_en-GB\" ph=\"'i:-k@@U\">eco</phoneme>trees.\")"
 msgstr "El {day_word} de {month}, has salvado {trees} árboles eco"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:852
+#: tculink/carwings_proto/autodj/opencarwings.py:858
 msgid "Total:"
 msgstr "Total:"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:890
+#: tculink/carwings_proto/autodj/opencarwings.py:896
 msgid "World's Eco Forest"
 msgstr "Bosque eco del planeta"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:899
+#: tculink/carwings_proto/autodj/opencarwings.py:905
 msgid "tonnes"
 msgstr "toneladas"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:900
+#: tculink/carwings_proto/autodj/opencarwings.py:906
 msgid "Total number of Eco Trees:"
 msgstr "Número total de árboles eco:"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:902
+#: tculink/carwings_proto/autodj/opencarwings.py:908
 msgid "CO2 Emission Cuts:"
 msgstr "Reducción emisiones de CO2:"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:910
+#: tculink/carwings_proto/autodj/opencarwings.py:916
 #, python-brace-format
 msgid "Total number of Eco Trees by {day} / {month}:"
 msgstr "Número total de árboles ecológicos por {day} / {month}:"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:912
+#: tculink/carwings_proto/autodj/opencarwings.py:918
 #, python-brace-format
 msgid "CO2 emissions reduced by {day} / {month}:"
 msgstr "Emisiones de CO2 reducidas en {day} / {month}:"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:915
+#: tculink/carwings_proto/autodj/opencarwings.py:921
 msgid ""
 "(This calculation is based on an assumption that the CO2 emitted by petrol-"
 "driven cars of equivalent class can be reduced by driving electric cars)"
@@ -663,7 +663,7 @@ msgstr ""
 "vehículos de gasolina de clase equivalente pueden reducirse conduciendo "
 "vehículos eléctricos)"
 
-#: tculink/carwings_proto/autodj/opencarwings.py:919
+#: tculink/carwings_proto/autodj/opencarwings.py:925
 #, python-brace-format
 msgid ""
 "By the {day_word} of {month}, electric cars with Open Car Wings world wide "
@@ -675,8 +675,8 @@ msgstr ""
 "el mundo salvaron un total de {trees} árboles eco. Y se han reducido "
 "{tonnes} toneladas de dióxido de carbono."
 
-#: tculink/carwings_proto/autodj/opencarwings.py:977
-#: tculink/carwings_proto/autodj/opencarwings.py:978
+#: tculink/carwings_proto/autodj/opencarwings.py:983
+#: tculink/carwings_proto/autodj/opencarwings.py:984
 msgid "ECO Tree"
 msgstr "Árbol ECO"
 
@@ -954,102 +954,131 @@ msgstr "trigésimo"
 msgid "thirty-first"
 msgstr "trigésimo primero"
 
-#: tculink/gdc_proto/ficosa/utils.py:40 tculink/gdc_proto/ficosa/utils.py:61
+#: tculink/gdc_proto/ficosa/utils.py:68 tculink/gdc_proto/ficosa/utils.py:89
 #: tculink/httpgateway/ficosa/destinations/veh_health.py:24
 #: tculink/httpgateway/ficosa/destinations/veh_health.py:32
 #: ui/templates/ui/car_detail.html:102
 msgid "Vehicle Health Report"
 msgstr "Informe de salud del vehículo"
 
-#: tculink/gdc_proto/ficosa/utils.py:45
+#: tculink/gdc_proto/ficosa/utils.py:73
 msgid "Service Enabled"
 msgstr "Servicio activado"
 
-#: tculink/gdc_proto/ficosa/utils.py:46
+#: tculink/gdc_proto/ficosa/utils.py:74
 msgid "Send frequency (days)"
 msgstr "Frecuencia de envío (días)"
 
-#: tculink/gdc_proto/ficosa/utils.py:50
+#: tculink/gdc_proto/ficosa/utils.py:78
 msgid "Service Provisioning"
 msgstr "Aprovisionamiento del servicio"
 
-#: tculink/gdc_proto/ficosa/utils.py:55
+#: tculink/gdc_proto/ficosa/utils.py:83
 msgid "EV Battery Charging Status"
 msgstr "Estado de carga de la batería del VE"
 
-#: tculink/gdc_proto/ficosa/utils.py:56
+#: tculink/gdc_proto/ficosa/utils.py:84
 msgid "EV Battery Charging History"
 msgstr "Historial de carga de la batería del VE"
 
-#: tculink/gdc_proto/ficosa/utils.py:57
+#: tculink/gdc_proto/ficosa/utils.py:85
 msgid "EV Battery Charging Remote Activation"
 msgstr "Activación remota de carga de la batería del VE"
 
-#: tculink/gdc_proto/ficosa/utils.py:58
+#: tculink/gdc_proto/ficosa/utils.py:86
 msgid "EV Remote HVAC Activation"
 msgstr "Activación remota del climatizador del VE"
 
-#: tculink/gdc_proto/ficosa/utils.py:59
+#: tculink/gdc_proto/ficosa/utils.py:87
 msgid "EV Plug Reminder"
 msgstr "Recordatorio de enchufe del VE"
 
-#: tculink/gdc_proto/ficosa/utils.py:60
+#: tculink/gdc_proto/ficosa/utils.py:88
 msgid "EV Battery Heating Notification"
 msgstr "Notificación de calentamiento de la batería del VE"
 
-#: tculink/gdc_proto/ficosa/utils.py:62
+#: tculink/gdc_proto/ficosa/utils.py:90
 #: tculink/httpgateway/ficosa/destinations/burglar.py:36
 msgid "Burglar Alarm"
 msgstr "Alarma antirrobo"
 
-#: tculink/gdc_proto/ficosa/utils.py:63
+#: tculink/gdc_proto/ficosa/utils.py:91
 msgid "Door Lock & Unlock"
 msgstr "Bloqueo y desbloqueo de puertas"
 
-#: tculink/gdc_proto/ficosa/utils.py:66 tculink/gdc_proto/ficosa/utils.py:67
-#: tculink/gdc_proto/ficosa/utils.py:68 tculink/gdc_proto/ficosa/utils.py:69
-#: tculink/gdc_proto/ficosa/utils.py:70 tculink/gdc_proto/ficosa/utils.py:71
-#: tculink/gdc_proto/ficosa/utils.py:72 tculink/gdc_proto/ficosa/utils.py:73
-#: tculink/gdc_proto/ficosa/utils.py:74 tculink/gdc_proto/ficosa/utils.py:75
+#: tculink/gdc_proto/ficosa/utils.py:94 tculink/gdc_proto/ficosa/utils.py:95
+#: tculink/gdc_proto/ficosa/utils.py:96 tculink/gdc_proto/ficosa/utils.py:97
+#: tculink/gdc_proto/ficosa/utils.py:98 tculink/gdc_proto/ficosa/utils.py:99
+#: tculink/gdc_proto/ficosa/utils.py:100 tculink/gdc_proto/ficosa/utils.py:101
+#: tculink/gdc_proto/ficosa/utils.py:102 tculink/gdc_proto/ficosa/utils.py:103
+#: tculink/gdc_proto/ficosa/utils.py:196 tculink/gdc_proto/ficosa/utils.py:212
+#: tculink/gdc_proto/ficosa/utils.py:229 tculink/gdc_proto/ficosa/utils.py:246
 #, python-brace-format
 msgid "Probe Service {num}"
 msgstr "Servicio de probe {num}"
 
-#: tculink/gdc_proto/ficosa/utils.py:79
+#: tculink/gdc_proto/ficosa/utils.py:107
 msgid "SIM Settings 1"
 msgstr "Configuración de la SIM 1"
 
-#: tculink/gdc_proto/ficosa/utils.py:85 tculink/gdc_proto/ficosa/utils.py:122
+#: tculink/gdc_proto/ficosa/utils.py:113 tculink/gdc_proto/ficosa/utils.py:150
 msgid "SIM Pin Code"
 msgstr "Código PIN de la tarjeta SIM"
 
-#: tculink/gdc_proto/ficosa/utils.py:87 tculink/gdc_proto/ficosa/utils.py:123
+#: tculink/gdc_proto/ficosa/utils.py:115 tculink/gdc_proto/ficosa/utils.py:151
 msgid "SIM Pin Locked"
 msgstr "La tarjeta SIM está bloqueada mediante PIN."
 
-#: tculink/gdc_proto/ficosa/utils.py:95 tculink/gdc_proto/ficosa/utils.py:127
+#: tculink/gdc_proto/ficosa/utils.py:123 tculink/gdc_proto/ficosa/utils.py:155
 msgid "SMSC Number 1"
 msgstr "SMSC Número 1"
 
-#: tculink/gdc_proto/ficosa/utils.py:113 tculink/gdc_proto/ficosa/utils.py:136
+#: tculink/gdc_proto/ficosa/utils.py:141 tculink/gdc_proto/ficosa/utils.py:164
 msgid "SMSC Number 2"
 msgstr "SMSC Número 2"
 
-#: tculink/gdc_proto/ficosa/utils.py:117
+#: tculink/gdc_proto/ficosa/utils.py:145
 msgid "SIM Settings 2"
 msgstr "SIM Settings 2"
 
-#: tculink/gdc_proto/ficosa/utils.py:140
+#: tculink/gdc_proto/ficosa/utils.py:168
 msgid "Server Settings"
 msgstr "Configuración del servidor"
 
-#: tculink/gdc_proto/ficosa/utils.py:145
+#: tculink/gdc_proto/ficosa/utils.py:173
 msgid "User ID"
 msgstr ""
 
-#: tculink/gdc_proto/ficosa/utils.py:146
+#: tculink/gdc_proto/ficosa/utils.py:174
 msgid "User Password"
 msgstr "Contraseña de usuario"
+
+#: tculink/gdc_proto/ficosa/utils.py:202 tculink/gdc_proto/ficosa/utils.py:218
+#: tculink/gdc_proto/ficosa/utils.py:235 tculink/gdc_proto/ficosa/utils.py:252
+msgid "Data Configuration"
+msgstr "Configuración de recopilación de datos"
+
+#: tculink/gdc_proto/ficosa/utils.py:204 tculink/gdc_proto/ficosa/utils.py:238
+msgid "EU Configuration (all data)"
+msgstr "Configuración de la UE (todos los datos)"
+
+#: tculink/gdc_proto/ficosa/utils.py:205 tculink/gdc_proto/ficosa/utils.py:223
+#: tculink/gdc_proto/ficosa/utils.py:239 tculink/gdc_proto/ficosa/utils.py:256
+msgid "Japan Configuration (all data)"
+msgstr "Configuración de Japón (datos completos)"
+
+#: tculink/gdc_proto/ficosa/utils.py:206 tculink/gdc_proto/ficosa/utils.py:240
+#: tculink/gdc_proto/ficosa/utils.py:257
+msgid "USA Configuration (all data)"
+msgstr "Configuración de Estados Unidos (todos los datos)"
+
+#: tculink/gdc_proto/ficosa/utils.py:221 tculink/gdc_proto/ficosa/utils.py:255
+msgid "EU Configuration (less data)"
+msgstr "Configuración de la UE (menos datos)"
+
+#: tculink/gdc_proto/ficosa/utils.py:222
+msgid "USA Configuration (more data)"
+msgstr "Configuración de Estados Unidos (más datos)"
 
 #: tculink/httpgateway/ficosa/destinations/burglar.py:35
 msgid "Burglar alarm has been triggered"
@@ -1135,19 +1164,19 @@ msgid "Door Lock/Unlock"
 msgstr "Bloqueo/desbloqueo de puertas"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:90
-#: tculink/management/commands/tcuserver.py:294
+#: tculink/management/commands/tcuserver.py:296
 msgid "Vehicle is unplugged. Please check the situation if necessary."
 msgstr ""
 "El vehículo está desconectado. Por favor, verifica la situación si es "
 "necesario."
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:91
-#: tculink/management/commands/tcuserver.py:295
+#: tculink/management/commands/tcuserver.py:297
 msgid "Charger unplugged notification"
 msgstr "Recordatorio de enchufar el cargador"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:99
-#: tculink/management/commands/tcuserver.py:302
+#: tculink/management/commands/tcuserver.py:304
 msgid ""
 "The A/C preconditioning command could not be executed. One of the reasons "
 "behind such error could be: a) low state of charge b) command already "
@@ -1158,35 +1187,35 @@ msgstr ""
 "ejecutado c) error de TCU."
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:101
-#: tculink/management/commands/tcuserver.py:304
+#: tculink/management/commands/tcuserver.py:306
 msgid "A/C preconditioning error"
 msgstr "Error de preacondicionamiento de A/C"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:107
-#: tculink/management/commands/tcuserver.py:310
+#: tculink/management/commands/tcuserver.py:312
 msgid "A/C preconditioning started"
 msgstr "Preacondicionamiento de A/C iniciado"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:108
-#: tculink/management/commands/tcuserver.py:311
+#: tculink/management/commands/tcuserver.py:313
 msgid "A/C preconditioning has been successfully switched on"
 msgstr "El preacondicionamiento de A/C se ha activado correctamente"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:112
-#: tculink/management/commands/tcuserver.py:315
+#: tculink/management/commands/tcuserver.py:317
 msgid "The A/C preconditioning has finished unexpectedly"
 msgstr "El preacondicionamiento del A/C ha finalizado de forma inesperada"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:113
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:125
-#: tculink/management/commands/tcuserver.py:316
-#: tculink/management/commands/tcuserver.py:329
+#: tculink/management/commands/tcuserver.py:318
+#: tculink/management/commands/tcuserver.py:331
 msgid "A/C precondition stopped"
 msgstr "Preacondicionamiento de A/C detenido"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:118
-#: tculink/management/commands/tcuserver.py:321
-#: tculink/management/commands/tcuserver.py:408
+#: tculink/management/commands/tcuserver.py:323
+#: tculink/management/commands/tcuserver.py:410
 msgid ""
 "The A/C preconditioning is finished and switched off after running certain "
 "amount of time."
@@ -1195,97 +1224,97 @@ msgstr ""
 "funcionar durante un cierto tiempo."
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:120
-#: tculink/management/commands/tcuserver.py:323
-#: tculink/management/commands/tcuserver.py:410
+#: tculink/management/commands/tcuserver.py:325
+#: tculink/management/commands/tcuserver.py:412
 msgid "A/C precondition finished"
 msgstr "Preacondicionamiento de A/C finalizado"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:126
-#: tculink/management/commands/tcuserver.py:330
+#: tculink/management/commands/tcuserver.py:332
 msgid "A/C preconditioning has been successfully switched off"
 msgstr "El preacondicionamiento de A/C se ha desactivado correctamente"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:130
-#: tculink/management/commands/tcuserver.py:334
-#: tculink/management/commands/tcuserver.py:403
+#: tculink/management/commands/tcuserver.py:336
+#: tculink/management/commands/tcuserver.py:405
 msgid "A/C precondition notification"
 msgstr "Notificación de preacondicionamiento de A/C"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:131
-#: tculink/management/commands/tcuserver.py:335
-#: tculink/management/commands/tcuserver.py:357
+#: tculink/management/commands/tcuserver.py:337
+#: tculink/management/commands/tcuserver.py:359
 msgid "A/C preconditioning already switched off"
 msgstr "El preacondicionamiento del A/C ya está apagado"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:136
-#: tculink/management/commands/tcuserver.py:341
-#: tculink/management/commands/tcuserver.py:414
+#: tculink/management/commands/tcuserver.py:343
+#: tculink/management/commands/tcuserver.py:416
 msgid "A/C preconditioning fault"
 msgstr "Fallo del preacondicionamiento del A/C"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:139
-#: tculink/management/commands/tcuserver.py:344
+#: tculink/management/commands/tcuserver.py:346
 msgid "The vehicle failed to start A/C preconditioning"
 msgstr ""
 "El vehículo falló al iniciar el preacondicionamiento del aire acondicionado"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:142
-#: tculink/management/commands/tcuserver.py:347
+#: tculink/management/commands/tcuserver.py:349
 msgid "The A/C preconditioning has finished with error"
 msgstr "El preacondicionamiento del A/C ha finalizado con error"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:145
-#: tculink/management/commands/tcuserver.py:354
+#: tculink/management/commands/tcuserver.py:356
 msgid "A/C preconditioning could not be switched off"
 msgstr "El preacondicionamiento del A/C no pudo ser apagado"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:170
-#: tculink/management/commands/tcuserver.py:378
+#: tculink/management/commands/tcuserver.py:380
 msgid "Charging notification"
 msgstr "Notificación de carga"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:176
-#: tculink/management/commands/tcuserver.py:384
+#: tculink/management/commands/tcuserver.py:386
 msgid "Vehicle has finished charging."
 msgstr "El vehículo ha terminado de cargarse."
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:177
-#: tculink/management/commands/tcuserver.py:385
+#: tculink/management/commands/tcuserver.py:387
 msgid "Charge finish notification"
 msgstr "Notificación de finalización de carga"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:180
-#: tculink/management/commands/tcuserver.py:388
+#: tculink/management/commands/tcuserver.py:390
 msgid "Vehicle has finished quick-charging."
 msgstr "El vehículo ha terminado de cargarse rápidamente."
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:181
-#: tculink/management/commands/tcuserver.py:389
+#: tculink/management/commands/tcuserver.py:391
 msgid "Quick-charge finish notification"
 msgstr "Notificación de finalización de carga rápida"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:184
-#: tculink/management/commands/tcuserver.py:392
+#: tculink/management/commands/tcuserver.py:394
 msgid "Charge interruption notification"
 msgstr "Notificación de interrupción de carga"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:187
-#: tculink/management/commands/tcuserver.py:395
+#: tculink/management/commands/tcuserver.py:397
 msgid "Charging has been stopped due to an interruption"
 msgstr "La carga se ha detenido debido a una interrupción"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:189
-#: tculink/management/commands/tcuserver.py:397
+#: tculink/management/commands/tcuserver.py:399
 msgid "Quick-charging has been stopped due to an interruption"
 msgstr "La carga rápida se ha detenido debido a una interrupción"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:207
-#: tculink/management/commands/tcuserver.py:437
+#: tculink/management/commands/tcuserver.py:439
 msgid "Charge start command executed"
 msgstr "Comando de inicio de carga ejecutado"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:208
-#: tculink/management/commands/tcuserver.py:438
+#: tculink/management/commands/tcuserver.py:440
 msgid ""
 "Charging command has been sent successfully. If vehicle did not start "
 "charging, please check that the charging cable is connected and power is "
@@ -1296,12 +1325,12 @@ msgstr ""
 "energía disponible."
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:213
-#: tculink/management/commands/tcuserver.py:441
+#: tculink/management/commands/tcuserver.py:443
 msgid "Charge start command executed with failure"
 msgstr "Comando de inicio de carga ejecutado con error"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:214
-#: tculink/management/commands/tcuserver.py:442
+#: tculink/management/commands/tcuserver.py:444
 msgid ""
 "Charging command has been sent successfully, but the vehicle did not start "
 "charging."
@@ -1310,12 +1339,12 @@ msgstr ""
 "carga."
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:219
-#: tculink/management/commands/tcuserver.py:447
+#: tculink/management/commands/tcuserver.py:449
 msgid "Charge start failure"
 msgstr "Inicio de carga fallido"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:220
-#: tculink/management/commands/tcuserver.py:448
+#: tculink/management/commands/tcuserver.py:450
 msgid "Charge start command failed to execute."
 msgstr "Comando de inicio de carga falló al ejecutarse."
 
@@ -1376,23 +1405,23 @@ msgstr ""
 "Error de autenticación. ¡El nombre de usuario o la contraseña son "
 "incorrectos! Inicie sesión con la unidad de navegación."
 
-#: tculink/management/commands/tcuserver.py:350
-#: tculink/management/commands/tcuserver.py:417
+#: tculink/management/commands/tcuserver.py:352
+#: tculink/management/commands/tcuserver.py:419
 msgid ""
 "The A/C preconditioning is finished and switched off because of an error"
 msgstr ""
 "El preacondicionamiento del A/C ha finalizado y se ha apagado debido a un "
 "error"
 
-#: tculink/management/commands/tcuserver.py:470
+#: tculink/management/commands/tcuserver.py:472
 msgid "Battery heater notification"
 msgstr "Notificación del calentador de la batería"
 
-#: tculink/management/commands/tcuserver.py:471
+#: tculink/management/commands/tcuserver.py:473
 msgid "Battery heater has turned on"
 msgstr "El calentador de la batería se ha encendido"
 
-#: tculink/management/commands/tcuserver.py:471
+#: tculink/management/commands/tcuserver.py:473
 msgid "Battery heater has turned off"
 msgstr "El calentador de la batería se ha apagado"
 
@@ -1748,6 +1777,10 @@ msgstr "Código del vehículo"
 msgid "Location"
 msgstr "Ubicación"
 
+#: ui/templates/ui/car_detail.html:102
+msgid "New!"
+msgstr "¡Nuevo!"
+
 #: ui/templates/ui/car_detail.html:104
 msgid "Recent Alerts"
 msgstr "Alertas recientes"
@@ -1827,8 +1860,8 @@ msgid "Driving"
 msgstr "Conduciendo"
 
 #: ui/templates/ui/car_detail.html:194 ui/templates/ui/car_detail.html:1284
-#: ui/templates/ui/probeviewer/main.html:481
-#: ui/templates/ui/probeviewer/main.html:555
+#: ui/templates/ui/probeviewer/main.html:487
+#: ui/templates/ui/probeviewer/main.html:561
 msgid "Charging finished"
 msgstr "Carga finalizada"
 
@@ -1858,8 +1891,8 @@ msgstr "Encendido,Apagado"
 #: ui/templates/ui/car_detail.html:218 ui/templates/ui/car_detail.html:317
 #: ui/templates/ui/car_detail.html:348 ui/templates/ui/car_detail.html:370
 #: ui/templates/ui/ficosa/veh_health.html:29
-#: ui/templates/ui/probeviewer/main.html:162
-#: ui/templates/ui/probeviewer/main.html:190
+#: ui/templates/ui/probeviewer/main.html:168
+#: ui/templates/ui/probeviewer/main.html:196
 msgid "Last Updated"
 msgstr "Última actualización"
 
@@ -2304,8 +2337,8 @@ msgstr "Enviar SMS desde tu dispositivo"
 #: ui/templates/ui/car_detail.html:1209 ui/templates/ui/car_detail.html:1210
 #: ui/templates/ui/car_detail.html:1444 ui/templates/ui/car_detail.html:1452
 #: ui/templates/ui/car_detail.html:1453
-#: ui/templates/ui/ficosa/configuration.html:296
-#: ui/templates/ui/ficosa/configuration.html:300
+#: ui/templates/ui/ficosa/configuration.html:331
+#: ui/templates/ui/ficosa/configuration.html:335
 msgid "Error sending command"
 msgstr "Error al enviar el comando"
 
@@ -2322,8 +2355,8 @@ msgstr "Desconectado"
 #: ui/templates/ui/car_detail.html:1343 ui/templates/ui/car_detail.html:1344
 #: ui/templates/ui/car_detail.html:1345 ui/templates/ui/car_detail.html:1346
 #: ui/templates/ui/car_detail.html:1351
-#: ui/templates/ui/ficosa/veh_health.html:159
-#: ui/templates/ui/ficosa/veh_health.html:161
+#: ui/templates/ui/ficosa/veh_health.html:170
+#: ui/templates/ui/ficosa/veh_health.html:172
 msgid "Yes"
 msgstr "Sí"
 
@@ -2332,8 +2365,8 @@ msgstr "Sí"
 #: ui/templates/ui/car_detail.html:1343 ui/templates/ui/car_detail.html:1344
 #: ui/templates/ui/car_detail.html:1345 ui/templates/ui/car_detail.html:1346
 #: ui/templates/ui/car_detail.html:1351
-#: ui/templates/ui/ficosa/veh_health.html:159
-#: ui/templates/ui/ficosa/veh_health.html:161
+#: ui/templates/ui/ficosa/veh_health.html:170
+#: ui/templates/ui/ficosa/veh_health.html:172
 msgid "No"
 msgstr "No"
 
@@ -2628,40 +2661,45 @@ msgid "Activate"
 msgstr "Activar"
 
 #: ui/templates/ui/ficosa/configuration.html:197
-#: ui/templates/ui/ficosa/configuration.html:326
+#: ui/templates/ui/ficosa/configuration.html:224
+#: ui/templates/ui/ficosa/configuration.html:361
 msgid "Last value:"
 msgstr "Último valor:"
 
-#: ui/templates/ui/ficosa/configuration.html:251
-#: ui/templates/ui/ficosa/configuration.html:267
-#: ui/templates/ui/ficosa/configuration.html:270
+#: ui/templates/ui/ficosa/configuration.html:278
+#: ui/templates/ui/ficosa/configuration.html:294
+#: ui/templates/ui/ficosa/configuration.html:297
 msgid "is more than"
 msgstr "es mayor que"
 
-#: ui/templates/ui/ficosa/configuration.html:254
-#: ui/templates/ui/ficosa/configuration.html:273
+#: ui/templates/ui/ficosa/configuration.html:281
+#: ui/templates/ui/ficosa/configuration.html:300
 msgid "is less than"
 msgstr "es menor que"
 
-#: ui/templates/ui/ficosa/configuration.html:267
-#: ui/templates/ui/ficosa/configuration.html:270
-#: ui/templates/ui/ficosa/configuration.html:273
+#: ui/templates/ui/ficosa/configuration.html:294
+#: ui/templates/ui/ficosa/configuration.html:297
+#: ui/templates/ui/ficosa/configuration.html:300
 msgid "character(s)"
 msgstr "carácter(es)"
 
-#: ui/templates/ui/ficosa/configuration.html:276
+#: ui/templates/ui/ficosa/configuration.html:303
 msgid "value only accepts following characters:"
 msgstr "El valor solo acepta los siguientes caracteres:"
 
-#: ui/templates/ui/ficosa/configuration.html:279
+#: ui/templates/ui/ficosa/configuration.html:306
 msgid "value only accepts following characters"
 msgstr "El valor solo acepta los siguientes caracteres"
 
-#: ui/templates/ui/ficosa/configuration.html:287
+#: ui/templates/ui/ficosa/configuration.html:314
 msgid "value is out of range"
 msgstr "valor está fuera de rango"
 
-#: ui/templates/ui/ficosa/configuration.html:300
+#: ui/templates/ui/ficosa/configuration.html:323
+msgid " has invalid choice"
+msgstr " tiene una opción no válida"
+
+#: ui/templates/ui/ficosa/configuration.html:335
 msgid "No changes to send!"
 msgstr "¡No hay cambios que enviar!"
 
@@ -2729,15 +2767,15 @@ msgstr "No hay códigos de falla largos reportados"
 msgid "No short trouble codes reported"
 msgstr "No hay códigos de falla reportados"
 
-#: ui/templates/ui/ficosa/veh_health.html:185
+#: ui/templates/ui/ficosa/veh_health.html:196
 msgid "yes"
 msgstr "sí"
 
-#: ui/templates/ui/ficosa/veh_health.html:185
+#: ui/templates/ui/ficosa/veh_health.html:196
 msgid "no"
 msgstr "No"
 
-#: ui/templates/ui/ficosa/veh_health.html:190
+#: ui/templates/ui/ficosa/veh_health.html:201
 msgid "No trouble codes reported"
 msgstr "No se reportaron códigos de falla"
 
@@ -2800,7 +2838,7 @@ msgid "DOT-files"
 msgstr "DOT-datos"
 
 #: ui/templates/ui/probeviewer/main.html:100
-#: ui/templates/ui/probeviewer/main.html:344
+#: ui/templates/ui/probeviewer/main.html:350
 msgid "Trips"
 msgstr "Viajes"
 
@@ -2848,23 +2886,24 @@ msgstr "Contactos telefónicos en memoria"
 msgid "Locations saved in address book"
 msgstr "Ubicaciones guardadas en la libreta de direcciones"
 
-#: ui/templates/ui/probeviewer/main.html:129
+#: ui/templates/ui/probeviewer/main.html:130
+#: ui/templates/ui/probeviewer/main.html:164
 msgid "Telemetry configuration"
 msgstr "Configuración de telemetría"
 
-#: ui/templates/ui/probeviewer/main.html:131
+#: ui/templates/ui/probeviewer/main.html:132
 msgid "Telemetry Configuration ID"
 msgstr "ID de configuración de telemetría"
 
-#: ui/templates/ui/probeviewer/main.html:133
+#: ui/templates/ui/probeviewer/main.html:134
 msgid "New Telemetry Configuration ID"
 msgstr "Nueva ID de configuración de telemetría"
 
-#: ui/templates/ui/probeviewer/main.html:136
+#: ui/templates/ui/probeviewer/main.html:137
 msgid "Configuration update status"
 msgstr "Estado de actualización de la configuración"
 
-#: ui/templates/ui/probeviewer/main.html:139
+#: ui/templates/ui/probeviewer/main.html:140
 msgid ""
 "Please turn on the car for vehicle data auto-update or access a CARWINGS "
 "data channel to perform configuration update."
@@ -2873,127 +2912,133 @@ msgstr ""
 "un canal de datos CARWINGS para realizar la actualización de la "
 "configuración."
 
-#: ui/templates/ui/probeviewer/main.html:143
+#: ui/templates/ui/probeviewer/main.html:144
 msgid "Cancel update"
 msgstr "Cancelar actualización"
 
-#: ui/templates/ui/probeviewer/main.html:149
+#: ui/templates/ui/probeviewer/main.html:150
 msgid "New Telemetry Configuration"
 msgstr "Nueva configuración de telemetría"
 
-#: ui/templates/ui/probeviewer/main.html:157
+#: ui/templates/ui/probeviewer/main.html:158
 msgid "Update"
 msgstr "Actualizar"
 
-#: ui/templates/ui/probeviewer/main.html:166
-#: ui/templates/ui/probeviewer/main.html:194
+#: ui/templates/ui/probeviewer/main.html:165
+msgid "Telemetry configuration has moved to 'TCU Configuration' tab!"
+msgstr ""
+"¡La configuración de telemetría se ha trasladado a la pestaña «Configuración "
+"de TCU»!"
+
+#: ui/templates/ui/probeviewer/main.html:172
+#: ui/templates/ui/probeviewer/main.html:200
 msgid "No vehicle data available"
 msgstr "No hay datos del vehículo disponibles"
 
-#: ui/templates/ui/probeviewer/main.html:179
+#: ui/templates/ui/probeviewer/main.html:185
 #: ui/templates/ui/probeviewer/trip.html:143
 msgid "A/C usage"
 msgstr "Uso del aire acondicionado"
 
-#: ui/templates/ui/probeviewer/main.html:180
+#: ui/templates/ui/probeviewer/main.html:186
 msgid "Headlights usage"
 msgstr "Uso de faros"
 
-#: ui/templates/ui/probeviewer/main.html:181
-#: ui/templates/ui/probeviewer/main.html:343
+#: ui/templates/ui/probeviewer/main.html:187
+#: ui/templates/ui/probeviewer/main.html:349
 #: ui/templates/ui/probeviewer/trip.html:31
 msgid "Average speed"
 msgstr "Velocidad promedio"
 
-#: ui/templates/ui/probeviewer/main.html:182
+#: ui/templates/ui/probeviewer/main.html:188
 msgid "Energy regeneration"
 msgstr "Regeneración de energía"
 
-#: ui/templates/ui/probeviewer/main.html:183
-#: ui/templates/ui/probeviewer/main.html:187
+#: ui/templates/ui/probeviewer/main.html:189
+#: ui/templates/ui/probeviewer/main.html:193
 msgid "Energy consumption"
 msgstr "Consumo de energía"
 
-#: ui/templates/ui/probeviewer/main.html:184
+#: ui/templates/ui/probeviewer/main.html:190
 msgid "Runtime"
 msgstr "Tiempo de funcionamiento"
 
-#: ui/templates/ui/probeviewer/main.html:185
+#: ui/templates/ui/probeviewer/main.html:191
 msgid "Lifetime data mileage"
 msgstr "Kilometraje de datos de por vida"
 
-#: ui/templates/ui/probeviewer/main.html:256
+#: ui/templates/ui/probeviewer/main.html:262
 msgid "No DOT data available"
 msgstr "No hay datos DOT disponibles"
 
-#: ui/templates/ui/probeviewer/main.html:257
+#: ui/templates/ui/probeviewer/main.html:263
 msgid "DOT data comes available on next startup after a trip."
 msgstr ""
 "Los datos DOT estarán disponibles en el siguiente arranque después de un "
 "viaje."
 
-#: ui/templates/ui/probeviewer/main.html:318
+#: ui/templates/ui/probeviewer/main.html:324
 msgid "No trip data available"
 msgstr "No hay datos de viaje disponibles"
 
-#: ui/templates/ui/probeviewer/main.html:341
+#: ui/templates/ui/probeviewer/main.html:347
 msgid "Driving distance"
 msgstr "Distancia recorrida"
 
-#: ui/templates/ui/probeviewer/main.html:342
+#: ui/templates/ui/probeviewer/main.html:348
 msgid "Driving time"
 msgstr "Tiempo de conducción"
 
-#: ui/templates/ui/probeviewer/main.html:345
+#: ui/templates/ui/probeviewer/main.html:351
 #: ui/templates/ui/probeviewer/trip.html:163
 msgid "Regenerated energy"
 msgstr "Energía regenerada"
 
-#: ui/templates/ui/probeviewer/main.html:346
+#: ui/templates/ui/probeviewer/main.html:352
 msgid "Consumed energy"
 msgstr "Energía consumida"
 
-#: ui/templates/ui/probeviewer/main.html:349
+#: ui/templates/ui/probeviewer/main.html:355
 #: ui/templates/ui/probeviewer/trip.html:82
 #: ui/templates/ui/probeviewer/trip.html:88
 msgid "Average consumption"
 msgstr "Consumo medio"
 
-#: ui/templates/ui/probeviewer/main.html:356
+#: ui/templates/ui/probeviewer/main.html:362
 #: ui/templates/ui/probeviewer/trip.html:149
 msgid "Average acceleration"
 msgstr "Aceleración promedio"
 
-#: ui/templates/ui/probeviewer/main.html:395
+#: ui/templates/ui/probeviewer/main.html:401
 msgid "No monthly analytics available"
 msgstr "No hay análisis mensuales disponibles"
 
-#: ui/templates/ui/probeviewer/main.html:396
+#: ui/templates/ui/probeviewer/main.html:402
 msgid "Monthly analytics information comes available at the end of the month."
 msgstr ""
 "La información de análisis mensuales estará disponible al final del mes."
 
-#: ui/templates/ui/probeviewer/main.html:414
+#: ui/templates/ui/probeviewer/main.html:420
 msgid "Single Day"
 msgstr "Un solo día"
 
-#: ui/templates/ui/probeviewer/main.html:418
+#: ui/templates/ui/probeviewer/main.html:424
 msgid "Single Week"
 msgstr "Semana única"
 
-#: ui/templates/ui/probeviewer/main.html:422
+#: ui/templates/ui/probeviewer/main.html:428
 msgid "Single Month"
 msgstr "Mes único"
 
-#: ui/templates/ui/probeviewer/main.html:450
+#: ui/templates/ui/probeviewer/main.html:456
 msgid "Export to GPX"
 msgstr "Exportar a GPX"
 
-#: ui/templates/ui/probeviewer/main.html:457
+#: ui/templates/ui/probeviewer/main.html:463
 msgid "No location available"
 msgstr "Ubicación no disponible"
 
-#: ui/templates/ui/probeviewer/main.html:458
+#: ui/templates/ui/probeviewer/main.html:464
 msgid ""
 "Location information comes available on next startup, if your current "
 "configuration allows it."
@@ -3001,91 +3046,91 @@ msgstr ""
 "La información de ubicación estará disponible en el próximo inicio, si su "
 "configuración actual lo permite."
 
-#: ui/templates/ui/probeviewer/main.html:484
+#: ui/templates/ui/probeviewer/main.html:490
 msgid "State at start"
 msgstr "Estado al inicio"
 
-#: ui/templates/ui/probeviewer/main.html:485
+#: ui/templates/ui/probeviewer/main.html:491
 msgid "State at end"
 msgstr "Estado al final"
 
-#: ui/templates/ui/probeviewer/main.html:486
-#: ui/templates/ui/probeviewer/main.html:559
+#: ui/templates/ui/probeviewer/main.html:492
+#: ui/templates/ui/probeviewer/main.html:565
 msgid "Charging type"
 msgstr "Tipo de carga"
 
-#: ui/templates/ui/probeviewer/main.html:487
+#: ui/templates/ui/probeviewer/main.html:493
 msgid "Charged energy"
 msgstr "Energía cargada"
 
-#: ui/templates/ui/probeviewer/main.html:488
+#: ui/templates/ui/probeviewer/main.html:494
 msgid "Cell temp. (start)"
 msgstr "Temperatura de celda (inicio)"
 
-#: ui/templates/ui/probeviewer/main.html:488
-#: ui/templates/ui/probeviewer/main.html:489
-#: ui/templates/ui/probeviewer/main.html:490
+#: ui/templates/ui/probeviewer/main.html:494
+#: ui/templates/ui/probeviewer/main.html:495
+#: ui/templates/ui/probeviewer/main.html:496
 msgid "avg/max/min"
 msgstr "promedio/máximo/mínimo"
 
-#: ui/templates/ui/probeviewer/main.html:489
+#: ui/templates/ui/probeviewer/main.html:495
 msgid "Cell temp. (end)"
 msgstr "Temperatura de celda (final)"
 
-#: ui/templates/ui/probeviewer/main.html:490
+#: ui/templates/ui/probeviewer/main.html:496
 msgid "Cell volt. (start)"
 msgstr "Voltaje de celda (inicio)"
 
-#: ui/templates/ui/probeviewer/main.html:491
+#: ui/templates/ui/probeviewer/main.html:497
 msgid "Charges while ign. off"
 msgstr "Cargas con encendido apagado"
 
-#: ui/templates/ui/probeviewer/main.html:531
+#: ui/templates/ui/probeviewer/main.html:537
 msgid "No charging history available"
 msgstr "No hay historial de carga disponible"
 
-#: ui/templates/ui/probeviewer/main.html:532
+#: ui/templates/ui/probeviewer/main.html:538
 msgid ""
 "Charging history may become available on next startup after the charging."
 msgstr ""
 "El historial de carga puede estar disponible en el próximo arranque después "
 "de la carga."
 
-#: ui/templates/ui/probeviewer/main.html:558
+#: ui/templates/ui/probeviewer/main.html:564
 msgid "Charge count"
 msgstr "Conteo de cargas"
 
-#: ui/templates/ui/probeviewer/main.html:599
+#: ui/templates/ui/probeviewer/main.html:605
 msgid "No charge data available"
 msgstr "No hay datos de carga disponibles"
 
-#: ui/templates/ui/probeviewer/main.html:600
+#: ui/templates/ui/probeviewer/main.html:606
 msgid "Charging data may become available on next startup after the charging."
 msgstr ""
 "Los datos de carga pueden estar disponibles en el próximo arranque después "
 "de la carga."
 
-#: ui/templates/ui/probeviewer/main.html:623
+#: ui/templates/ui/probeviewer/main.html:629
 msgid "Operation time"
 msgstr "Tiempo de operación"
 
-#: ui/templates/ui/probeviewer/main.html:624
+#: ui/templates/ui/probeviewer/main.html:630
 msgid "Vehicle speed at start"
 msgstr "Velocidad del vehículo al inicio"
 
-#: ui/templates/ui/probeviewer/main.html:625
+#: ui/templates/ui/probeviewer/main.html:631
 msgid "Vehicle speed at end"
 msgstr "Velocidad del vehículo al final"
 
-#: ui/templates/ui/probeviewer/main.html:626
+#: ui/templates/ui/probeviewer/main.html:632
 msgid "Road type"
 msgstr "Tipo de carretera"
 
-#: ui/templates/ui/probeviewer/main.html:666
+#: ui/templates/ui/probeviewer/main.html:672
 msgid "No ABS data available"
 msgstr "No hay datos de ABS disponibles"
 
-#: ui/templates/ui/probeviewer/main.html:667
+#: ui/templates/ui/probeviewer/main.html:673
 msgid ""
 "ABS data may become available on next startup if your vehicle configuration "
 "allows it."
@@ -3093,29 +3138,29 @@ msgstr ""
 "Los datos de ABS pueden estar disponibles en el próximo arranque si la "
 "configuración del vehículo lo permite."
 
-#: ui/templates/ui/probeviewer/main.html:684
-#: ui/templates/ui/probeviewer/main.html:756
-#: ui/templates/ui/probeviewer/main.html:828
-#: ui/templates/ui/probeviewer/main.html:900
-#: ui/templates/ui/probeviewer/main.html:972
+#: ui/templates/ui/probeviewer/main.html:690
+#: ui/templates/ui/probeviewer/main.html:762
+#: ui/templates/ui/probeviewer/main.html:834
+#: ui/templates/ui/probeviewer/main.html:906
+#: ui/templates/ui/probeviewer/main.html:978
 msgid "Date and time"
 msgstr "Fecha y hora"
 
-#: ui/templates/ui/probeviewer/main.html:687
-#: ui/templates/ui/probeviewer/main.html:831
+#: ui/templates/ui/probeviewer/main.html:693
+#: ui/templates/ui/probeviewer/main.html:837
 #: ui/templates/ui/probeviewer/trip.html:44
 msgid "Duration"
 msgstr "Duración"
 
-#: ui/templates/ui/probeviewer/main.html:739
-#: ui/templates/ui/probeviewer/main.html:811
-#: ui/templates/ui/probeviewer/main.html:883
+#: ui/templates/ui/probeviewer/main.html:745
+#: ui/templates/ui/probeviewer/main.html:817
+#: ui/templates/ui/probeviewer/main.html:889
 msgid "No idling data available"
 msgstr "No hay datos de ralentí disponibles"
 
-#: ui/templates/ui/probeviewer/main.html:740
-#: ui/templates/ui/probeviewer/main.html:812
-#: ui/templates/ui/probeviewer/main.html:884
+#: ui/templates/ui/probeviewer/main.html:746
+#: ui/templates/ui/probeviewer/main.html:818
+#: ui/templates/ui/probeviewer/main.html:890
 msgid ""
 "Idling data may become available on next startup if your vehicle "
 "configuration allows it."
@@ -3123,20 +3168,20 @@ msgstr ""
 "Los datos de ralentí pueden estar disponibles en el próximo arranque si la "
 "configuración del vehículo lo permite."
 
-#: ui/templates/ui/probeviewer/main.html:759
+#: ui/templates/ui/probeviewer/main.html:765
 msgid "Consumption"
 msgstr "Consumo"
 
-#: ui/templates/ui/probeviewer/main.html:903
-#: ui/templates/ui/probeviewer/main.html:975
+#: ui/templates/ui/probeviewer/main.html:909
+#: ui/templates/ui/probeviewer/main.html:981
 msgid "Data"
 msgstr "Datos"
 
-#: ui/templates/ui/probeviewer/main.html:955
+#: ui/templates/ui/probeviewer/main.html:961
 msgid "No DTC data available"
 msgstr "No hay datos de DTC disponibles"
 
-#: ui/templates/ui/probeviewer/main.html:956
+#: ui/templates/ui/probeviewer/main.html:962
 msgid ""
 "DTC data may become available on next startup if your vehicle has active DTC "
 "trouble code."
@@ -3144,17 +3189,17 @@ msgstr ""
 "Los datos de DTC pueden estar disponibles en el próximo arranque si el "
 "vehículo tiene un código de problema DTC activo."
 
-#: ui/templates/ui/probeviewer/main.html:1027
+#: ui/templates/ui/probeviewer/main.html:1033
 msgid "No MSN data available"
 msgstr "No hay datos de MSN disponibles"
 
-#: ui/templates/ui/probeviewer/main.html:1028
+#: ui/templates/ui/probeviewer/main.html:1034
 msgid "MSN data may become available on next startup."
 msgstr "Los datos de MSN pueden estar disponibles en el próximo arranque."
 
-#: ui/templates/ui/probeviewer/main.html:1257
-#: ui/templates/ui/probeviewer/main.html:1261
-#: ui/templates/ui/probeviewer/main.html:1262
+#: ui/templates/ui/probeviewer/main.html:1263
+#: ui/templates/ui/probeviewer/main.html:1267
+#: ui/templates/ui/probeviewer/main.html:1268
 msgid "Error loading location history"
 msgstr "Error al cargar el historial de ubicaciones"
 
@@ -3779,7 +3824,7 @@ msgstr ""
 msgid "Account successfully updated!"
 msgstr "¡Cuenta actualizada con éxito!"
 
-#: ui/views.py:132 ui/views.py:1026
+#: ui/views.py:132 ui/views.py:1029
 msgid "Please fill the form correctly and try again."
 msgstr "Por favor, completa el formulario correctamente y vuelve a intentarlo."
 
@@ -3866,18 +3911,19 @@ msgstr "El coche ya está añadido. Por favor, elimínalo y vuelve a intentarlo.
 msgid "Please select a provider for SMS."
 msgstr "Por favor, selecciona un proveedor para SMS."
 
-#: ui/views.py:1018
+#: ui/views.py:1012
+msgid "This function is not available for TCU Model"
+msgstr "Esta función no está disponible para el modelo TCU"
+
+#: ui/views.py:1021
 msgid "Update requested! Update will occur on next boot."
 msgstr ""
 "¡Actualización solicitada! La actualización se realizará la próxima vez que "
 "inicie el sistema."
 
-#: ui/views.py:1024
+#: ui/views.py:1027
 msgid "Update request cancelled!"
 msgstr "¡Solicitud de actualización cancelada!"
-
-msgid "New!"
-msgstr "¡Nuevo!"
 
 msgid ""
 "In order to receive vehicle data, CARWINGS navigation unit must have correct "

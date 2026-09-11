@@ -6,5 +6,7 @@ register = template.Library()
 def fix_gforce(value):
     if value is not None and value > 65535:
         byte_value = value.to_bytes(3, byteorder="big", signed=False)
-        return int.from_bytes(byte_value[1:], byteorder="big", signed=False)
-    return value
+        return (int.from_bytes(byte_value[1:], byteorder="big", signed=False)) / 9.80665
+    elif value is not None and value > 0:
+        return value / 9.80665
+    return 0

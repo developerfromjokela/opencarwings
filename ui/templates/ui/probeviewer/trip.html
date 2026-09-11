@@ -147,7 +147,7 @@
                         <div><dt class="text-gray-500 dark:text-gray-300 text-sm"><i class="mic material-symbols-outlined">podiatry</i> {% translate "Sudden accelerations" %}</dt><dd class="text-gray-600 dark:text-gray-200 font-semibold">{{ trip.sudden_accelerations|floatformat:0 }}</dd></div>
                         <div><dt class="text-gray-500 dark:text-gray-300 text-sm"><i class="mic material-symbols-outlined">arrow_cool_down</i> {% translate "Sudden decelerations" %}</dt><dd class="text-gray-600 dark:text-gray-200 font-semibold">{{ trip.sudden_decelerations|floatformat:0 }}</dd></div>
                         <div><dt class="text-gray-500 dark:text-gray-300 text-sm"><i class="mic material-symbols-outlined">swap_driving_apps_wheel</i> {% translate "Odometer at start" %}</dt><dd class="text-gray-600 dark:text-gray-200 font-semibold">{{ trip.start_odometer|intcomma }} km</dd></div>
-                        <div><dt class="text-gray-500 dark:text-gray-300 text-sm"><i class="mic material-symbols-outlined">location_searching</i> {% translate "Average acceleration" %}</dt><dd class="text-gray-600 dark:text-gray-200 font-semibold">{{ trip.average_acceleration|fix_gforce|div:100|floatformat:2 }} G</dd></div>
+                        <div><dt class="text-gray-500 dark:text-gray-300 text-sm"><i class="mic material-symbols-outlined">location_searching</i> {% translate "Average acceleration" %}</dt><dd class="text-gray-600 dark:text-gray-200 font-semibold">{{ trip.average_acceleration|fix_gforce|floatformat:2 }} G</dd></div>
                     </dl>
             </div>
             {% if trip.start_latitude != 0 or trip.end_latitude != 0 %}

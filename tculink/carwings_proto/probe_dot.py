@@ -80,7 +80,7 @@ def parse_dotfile(dotfile_data):
             elif item_type in [0x9, 0x25]:
                 struct[prb_type[0]] = int.from_bytes(data, byteorder="big")
             elif item_type == 0x40:
-                struct[prb_type[0]] = int.from_bytes(data, byteorder="big") / 100
+                struct[prb_type[0]] = int.from_bytes(data[1:], byteorder="big")/10
             elif item_type == 0x5:
                 struct[prb_type[0] + "_raw"] = "%02d.%02d.%02d %02d:%02d:%02d" % (data[0], data[1], data[2], data[3], data[4],
                                                                                 data[5])

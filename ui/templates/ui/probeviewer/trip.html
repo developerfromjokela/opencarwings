@@ -5,6 +5,7 @@
 {% load i18n %}
 {% load l10n %}
 {% load mathfilters %}
+{% load utils %}
 {% load units %}
 {% block title %} {{ trip.start_ts }} - {% translate "Vehicle data viewer" %} - {{car.nickname}} {% endblock %}
 {% block content %}
@@ -143,7 +144,7 @@
                         <div><dt class="text-gray-500 dark:text-gray-300 text-sm"><i class="mic material-symbols-outlined">mode_fan</i> {% translate "A/C usage" %}</dt><dd class="text-gray-600 dark:text-gray-200 font-semibold">{{ trip.aircon_usage|div:60|div:60|stringformat:"02d" }}:{{ trip.aircon_usage|div:60|mod:60|stringformat:"02d" }}</dd></div>
                         <div><dt class="text-gray-500 dark:text-gray-300 text-sm"><i class="mic material-symbols-outlined">pause_circle</i> {% translate "Idling time" %}</dt><dd class="text-gray-600 dark:text-gray-200 font-semibold">{{ trip.idling_time|div:60|div:60|stringformat:"02d" }}:{{ trip.idling_time|div:60|mod:60|stringformat:"02d" }}</dd></div>
                         <div><dt class="text-gray-500 dark:text-gray-300 text-sm"><i class="mic material-symbols-outlined">light_mode</i> {% translate "Headlights usage time" %}</dt><dd class="text-gray-600 dark:text-gray-200 font-semibold">{{ trip.headlight_on_time|div:60|div:60|stringformat:"02d" }}:{{ trip.headlight_on_time|div:60|mod:60|stringformat:"02d" }}</dd></div>
-                        <div><dt class="text-gray-500 dark:text-gray-300 text-sm"><i class="mic material-symbols-outlined">podiatry</i> {% translate "Sudden accelerations" %}</dt><dd class="text-gray-600 dark:text-gray-200 font-semibold">{{ trip.sudden_accelerations|floatformat:0 }}</dd></div>
+                        <div><dt class="text-gray-500 dark:text-gray-300 text-sm"><i class="mic material-symbols-outlined">podiatry</i> {% translate "Sudden accelerations" %}</dt><dd class="text-gray-600 dark:text-gray-200 font-semibold">{{ trip.sudden_accelerations|fix_gforce|floatformat:0 }}</dd></div>
                         <div><dt class="text-gray-500 dark:text-gray-300 text-sm"><i class="mic material-symbols-outlined">arrow_cool_down</i> {% translate "Sudden decelerations" %}</dt><dd class="text-gray-600 dark:text-gray-200 font-semibold">{{ trip.sudden_decelerations|floatformat:0 }}</dd></div>
                         <div><dt class="text-gray-500 dark:text-gray-300 text-sm"><i class="mic material-symbols-outlined">swap_driving_apps_wheel</i> {% translate "Odometer at start" %}</dt><dd class="text-gray-600 dark:text-gray-200 font-semibold">{{ trip.start_odometer|intcomma }} km</dd></div>
                         <div><dt class="text-gray-500 dark:text-gray-300 text-sm"><i class="mic material-symbols-outlined">location_searching</i> {% translate "Average acceleration" %}</dt><dd class="text-gray-600 dark:text-gray-200 font-semibold">{{ trip.average_acceleration|div:100|floatformat:2 }} G</dd></div>
@@ -239,6 +240,9 @@
                 {icon: 'destination.png', lat: {{trip.end_latitude|default:"null"|unlocalize}}, lon: {{trip.end_longitude|default:"null"|unlocalize}}},
             ];
             for (const mapPnt of mapPoints) {
+                if (mapPnt.lat == null || mapPnt.lon == null) {
+                    continue;
+                }
                 const latLng = [mapPnt.lat, mapPnt.lon];
                 let markerIcn = L.icon({
                     iconUrl: staticRes+'chanicons/'+mapPnt.icon,

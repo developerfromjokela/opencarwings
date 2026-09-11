@@ -653,6 +653,7 @@ def parse_crm_datablocks(parsingblocks):
 
                 offset += 25  # Advance to next record
             draft_struct["records"] = records
+            continue
 
 
         logger.warning("  -> Unknown")
@@ -817,10 +818,11 @@ def update_crm_to_db(car: Car, crm_pload):
     if "trouble" in crm_pload:
         for troublerow in crm_pload["trouble"]:
             for trouble in troublerow:
-                trouble_db = CRMTroubleRecord()
-                trouble_db.car = car
-                trouble_db.data = trouble
-                trouble_db.save()
+                if "records" in troublerow and len(troublerow["records"]) > 0:
+                    trouble_db = CRMTroubleRecord()
+                    trouble_db.car = car
+                    trouble_db.data = trouble
+                    trouble_db.save()
 
     if "distance" in crm_pload:
         for distance in crm_pload["distance"]:

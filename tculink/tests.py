@@ -2,6 +2,7 @@ from django.test import TestCase
 
 from tculink.carwings_proto.autodj.opencarwings import create_consumption_slide, create_ecorecord_slide, \
     create_ecoforest_slide, create_info_slide
+from tculink.gdc_proto.acp245 import composer
 from tculink.gdc_proto.responses import create_charge_status_response, create_charge_request_response, \
     create_ac_setting_response, create_ac_stop_response, create_config_read
 
@@ -20,6 +21,23 @@ class DataPacketParse(TestCase):
         print("AC stop true", create_ac_stop_response(True).hex(' ').upper())
         print("AC stop true", create_ac_stop_response(True).hex(' ').upper())
         print("Read config", create_config_read().hex(' ').upper())
+
+    def test_ficosa(self):
+        acp_msg = bytearray()
+
+        acp_msg += composer.VersionFicosa(sw_version=2, hw_1=1, hw_2=0, hw_3=2).encode()
+        acp_msg += composer.VehDesc(vin="SHORTVIN", dcm="SHORTDCM").encode()
+        acp_msg += b'\xFF'
+        acp_msg += b'\xFF'
+        acp_msg += composer.Timestamp().encode()
+
+        msg = bytearray()
+        msg += composer.AppHeader(app_id=2, mcf=3, length=len(acp_msg), special_flag=1).encode()
+        msg += acp_msg
+
+        print(msg.hex())
+
+        assert len(msg) == 0x32
 
 
 class AutoDJImageGenerationTests(TestCase):

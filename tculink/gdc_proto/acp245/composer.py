@@ -21,7 +21,7 @@ def _f32_from_bytes(data: bytes, little_endian: bool = True) -> float:
     return a[0]
 
 
-def _encode_ie(value: str | bytes, ie_id=-1) -> bytes:
+def _encode_ie(value: str | bytes, ie_id=-1, fill_length = 0) -> bytes:
     if isinstance(value, str):
         raw = value.encode('ascii')
         if ie_id == -1:
@@ -30,6 +30,12 @@ def _encode_ie(value: str | bytes, ie_id=-1) -> bytes:
         raw = value
         if ie_id == -1:
             ie_id = 0
+
+    # For fields like VehDesc fields, which expect specific exact length,
+    # fill rest with zeroes to match expected length
+    if fill_length > 0 and len(raw) < fill_length:
+        raw = raw + b'\x00' * (fill_length - len(raw))
+
     length = len(raw)
     more = 1 if length > 0x1F else 0
     if more:
@@ -111,29 +117,29 @@ class VehDesc:
 
         if self.vin:
             flags |= 0x20
-            content.extend(_encode_ie(self.vin))
+            content.extend(_encode_ie(self.vin, fill_length=0x11))
         if self.dcm:
             flags |= 0x10
-            content.extend(_encode_ie(self.dcm))
+            content.extend(_encode_ie(self.dcm, fill_length=0xc))
         if self.imei_msn:
             flags |= 0x01
-            content.extend(_encode_ie(self.imei_msn))
+            content.extend(_encode_ie(self.imei_msn, fill_length=0xf))
 
         if self.navi_id:
             ext_flags |= 0x40
-            content.extend(_encode_ie(self.navi_id))
+            content.extend(_encode_ie(self.navi_id, fill_length=0xc))
         if self.sim_id:
             ext_flags |= 0x20
-            content.extend(_encode_ie(self.sim_id))
+            content.extend(_encode_ie(self.sim_id, fill_length=0x14))
         if self.dcm_ver:
             ext_flags |= 0x10
-            content.extend(_encode_ie(self.dcm_ver))
+            content.extend(_encode_ie(self.dcm_ver, fill_length=0xa))
         if self.batt_id:
             ext_flags |= 0x02
-            content.extend(_encode_ie(self.batt_id))
+            content.extend(_encode_ie(self.batt_id, fill_length=0x20))
         if self.vehicle_type:
             ext_flags |= 0x01
-            content.extend(_encode_ie(self.vehicle_type))
+            content.extend(_encode_ie(self.vehicle_type, fill_length=4))
 
         if ext_flags:
             flags |= 0x80

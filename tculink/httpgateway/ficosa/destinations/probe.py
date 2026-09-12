@@ -1,12 +1,17 @@
+import csv
+import io
 import logging
 import os
 import random
+import uuid
 from datetime import datetime
-
+from django.core.files.base import ContentFile
 import tculink.gdc_proto.ficosa.acp as acp
-from db.models import Car
+from db.models import Car, DOTFile
 from tculink.carwings_proto.probe_crm import crm_labelmap, sections, parse_crm_datablocks, update_crm_to_db
+from tculink.carwings_proto.probe_dot import prb_dotfiletypes, parse_dotfile
 from tculink.gdc_proto.acp245.parser import decode_probe_form_item
+from tculink.gdc_proto.ficosa.probe import make_crm_parsing_block_v2
 
 logger = logging.getLogger("ficosa")
 
@@ -20,7 +25,7 @@ def save_debug_data(tcu_gen, block, block_id, fulldata, req_id):
         with open(file_path, "wb") as f:
             f.write(fulldata)
 
-    file_path = os.path.join(log_dir, f"block-{block_id}-{req_id}.bin")
+    file_path = os.path.join(log_dir, f"block-{block_id}-{block_id:04x}-{req_id}.bin")
     with open(file_path, "wb") as f:
         f.write(block)
 
@@ -52,40 +57,72 @@ def handle(bin_data: bytes, acp_data: dict, car: Car, source_id: int, destinatio
         car.ev_info.plugged_in = False
         car.ev_info.save()
 
+    # Service types, 0x50 = latest, 0x51 = trip info, charging etc. 0x52 = unknown new fields, 0x53 = DOT data
     probe_service = probe_data["type"]
-
-    # Service types, 0x50 = latest, 0x51 = trip info, charging etc. 0x52 = unknown, new fields
+    binary_data = probe_data["data"]
+    datablocks = []
+    i = 0
 
     if probe_service == 0x53:
-        # TODO DOT, requires special handling
-        pass
+        dot_data = bytearray()
+        while i < len(binary_data):
+            new_itm, li = decode_probe_form_item(binary_data, i)
+            block_length = new_itm["length"]
+            if block_length > 0:
+                block_data = new_itm["data"]
+                if block_data[0] in prb_dotfiletypes:
+                    dot_data.extend(block_data)
+            i += li
+
+        parsed_dot_info = parse_dotfile(dot_data, ficosa=True)
+        gps_time = next((x["GPS time"] for x in dot_data if "GPS time" in x), None)
+        csv_file = io.StringIO()
+        fieldnames = [x[0] for x in list(prb_dotfiletypes.values())]
+        fieldnames.append("road_type")
+        fieldnames.append("road_collected")
+        fieldnames.append("GPS time_raw")
+        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(parsed_dot_info)
+        content = csv_file.getvalue().encode('utf-8')
+        csv_file_obj = ContentFile(content, name=f"DOT-{uuid.uuid4()}.csv")
+        dot_dbrecord = DOTFile()
+        dot_dbrecord.car = car
+        dot_dbrecord.file = csv_file_obj
+        dot_dbrecord.capture_ts = gps_time
+        dot_dbrecord.save()
     else:
-        binary_data = probe_data["data"]
-        datablocks = []
-        i = 0
-        print(len(binary_data), probe_data)
         while i < len(binary_data):
             new_itm, li = decode_probe_form_item(binary_data, i)
             block_length = new_itm["length"]
             block_id = new_itm["id"]
-            print(new_itm)
             if block_length > 0:
                 block_data = new_itm["data"]
-                if block_data[0] not in crm_labelmap:
+                if block_data[0] == 1:
+                    # New FICOSA Type
+                    data_id = int.from_bytes([block_data[0], block_data[1]], byteorder="big", signed=False)
+                    ficosa_block = make_crm_parsing_block_v2(data_id, block_data[2:])
+                    if ficosa_block is None:
+                        logger.warning("FICOSA CRM block not found, %d, %d", data_id, block_length)
+                        try:
+                            save_debug_data(tcu_gen, block_data, data_id, bin_data, unique_req_id)
+                        except:
+                            pass
+                    else:
+                        datablocks.append(ficosa_block)
+                elif block_data[0] not in crm_labelmap:
                     logger.warning("CRM block not found, %d, %d", block_id, block_length)
                     try:
                         save_debug_data(tcu_gen, block_data, block_id, bin_data, unique_req_id)
                     except:
                         pass
                 else:
-                    # skip element 0xb9, it is somewhat different and not parsing right
-                    if block_data[0] != 0xb9:
-                        meta = crm_labelmap[block_data[0]]
-                        datablocks.append({
-                            "type": block_data[0],
-                            "struct": sections[meta["structure"]],
-                            "data": block_data[1:]
-                        })
+                    meta = crm_labelmap[block_data[0]]
+                    datablocks.append({
+                        "type": block_data[0],
+                        "struct": sections[meta["structure"]],
+                        "data": block_data[1:]
+                    })
 
             i += li
 

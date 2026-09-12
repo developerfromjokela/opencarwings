@@ -223,10 +223,9 @@ def parse_ev_info(data: bytes, offset: int) -> Tuple[dict, int]:
     acoff = (d[19] << 2) | ((d[20] & 0b11000000) >> 6)
     acon = ((d[20] & 0b00111111) << 4) | ((d[21] & 0b11110000) >> 4)
 
-    # not sure if this is cap bars, zero out if its OOB
-    capacity_bars = (d[13] & 0b11110000) >> 4
-    if capacity_bars > 12:
-        capacity_bars = 0
+    capacity_bars_raw = d[12]
+    # 241-255 is faulty data
+    capacity_bars = 0 if capacity_bars_raw > 240 else (capacity_bars_raw - 1) // 20 + 1
 
 
 
@@ -247,6 +246,11 @@ def parse_ev_info(data: bytes, offset: int) -> Tuple[dict, int]:
     obc_flag = (d[15] & 0x02) != 0
 
     cabin_temp = 0.0
+
+    # GIDS when new, max energy at SOH 100%
+    gids_when_new = (
+        ((d[21] & 0b00001111) << 6) | ((d[22] & 0b11111100) >> 2)
+    )
 
     # ZE1!
     if len(d) == 24:
@@ -278,7 +282,8 @@ def parse_ev_info(data: bytes, offset: int) -> Tuple[dict, int]:
         "capacity_bars": capacity_bars,
         "1kw_chg": chg_time_1,
         "3kw_chg": chg_time_2,
-        "6kw_chg": chg_time_3
+        "6kw_chg": chg_time_3,
+        "gids_when_new": gids_when_new
     }, all_li
 
 

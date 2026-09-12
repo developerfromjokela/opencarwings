@@ -2,7 +2,6 @@ import pytz
 import datetime
 import logging
 from django.utils import timezone
-import struct as structlib
 
 from tculink.carwings_proto.utils import parse_std_location
 
@@ -52,7 +51,7 @@ def apply_date_patch(date):
         return timezone.make_aware(date + rollover_timedelta, timezone=pytz.utc)
     return timezone.make_aware(date, timezone=pytz.utc)
 
-def parse_dotfile(dotfile_data):
+def parse_dotfile(dotfile_data, ficosa=False):
     pos = 0
     files = []
     blocks = []
@@ -61,13 +60,18 @@ def parse_dotfile(dotfile_data):
     while pos < len(dotfile_data):
         item_type = dotfile_data[pos]
         if item_type in prb_dotfiletypes:
-            if gps_time_aquired and item_type == 2:
-                files.append(blocks)
-                blocks = []
-            if (not gps_time_aquired and item_type == 5) or (gps_time_aquired and item_type == 0x25):
-                if len(struct.keys()) > 0:
+            if ficosa:
+                if item_type == 5 and len(struct.keys()) > 0:
                     blocks.append(struct)
                     struct = {}
+            else:
+                if gps_time_aquired and item_type == 2:
+                    files.append(blocks)
+                    blocks = []
+                if (not gps_time_aquired and item_type == 5) or (gps_time_aquired and item_type == 0x25):
+                    if len(struct.keys()) > 0:
+                        blocks.append(struct)
+                        struct = {}
             prb_type = prb_dotfiletypes[item_type]
             pos += 1
             logger.debug("TYPE: %d/%s, %s", item_type, hex(item_type), str(prb_type[0]))
@@ -87,9 +91,11 @@ def parse_dotfile(dotfile_data):
                 struct[prb_type[0]] = apply_date_patch(datetime.datetime(2000 + data[0], data[1], data[2], data[3], data[4], data[5]))
             elif item_type == 16 or item_type == 17:
                 struct[prb_type[0]] = True if int.from_bytes(data, byteorder="big") == 0x31 else False
-            elif item_type == 12 or item_type == 10:
-                location = parse_std_location(structlib.unpack('>i', data[0:4])[0],
-                                              structlib.unpack('>i', data[4:9])[0])
+            elif item_type == 12 or item_type == 10 or item_type == 6:
+                if item_type == 6:
+                    data = data[1:]
+                location = parse_std_location(int.from_bytes(data[0:4], "big", signed=True),
+                                              int.from_bytes(data[4:9], "big", signed=True))
                 struct[prb_type[0]] = '%f,%f' % (location[0], location[1])
             elif item_type == 18:
                 road_type = data[0] & 3

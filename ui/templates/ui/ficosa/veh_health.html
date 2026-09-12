@@ -114,42 +114,6 @@
     </div>
 </div>
 
-<style>
-    .health-dot {
-        display: inline-block;
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background-color: #9ca3af;
-    }
-    .health-dot.good { background-color: #22c55e; }
-    .health-dot.bad { background-color: #ef4444; }
-
-    .vh-car-body { color: #cbd5e1; }
-    .dark .vh-car-body { color: #4b5563; }
-
-    .vh-tire-reading {
-        position: absolute;
-        width: 90px;
-    }
-    .vh-tire-label {
-        font-size: 0.7rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        color: #6b7280;
-    }
-    .dark .vh-tire-label { color: #9ca3af; }
-    .vh-tire-value {
-        font-size: 1.1rem;
-        font-weight: 700;
-    }
-    .vh-tire-unit {
-        font-size: 0.7rem;
-        font-weight: 400;
-        color: #6b7280;
-    }
-</style>
-
 <script>
     function makePressureData(value) {
         if (value === 0) {

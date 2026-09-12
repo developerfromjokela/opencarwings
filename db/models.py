@@ -614,6 +614,11 @@ class CRMTripRecord(models.Model):
     # battery degradation analysis 2
     bda2_capacity_bars_end = models.BigIntegerField(default=0)
     bda2_soc_end = models.BigIntegerField(default=0)
+    # TPMS
+    tpms_fr = models.IntegerField(default=0)
+    tpms_fl = models.IntegerField(default=0)
+    tpms_rr = models.IntegerField(default=0)
+    tpms_rl = models.IntegerField(default=0)
     # other
     headlight_on_time = models.BigIntegerField(default=0)
     average_acceleration = models.FloatField(default=0)

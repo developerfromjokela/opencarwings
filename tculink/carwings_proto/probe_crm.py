@@ -63,10 +63,17 @@ def datetime_safe_parse(year, month, day, hour=0, minute=0, second=0, microsecon
     except ValueError:
         return datetime.datetime.now()
 
-def time_safe_parse(hour=0, minute=0, second=0, microsecond=0):
+def time_safe_parse(hour=0, minute=0, second=0, microsecond=0, maybe_epoch=False):
     try:
         return datetime.time(int(hour), int(minute), int(second), int(microsecond))
     except ValueError:
+        if maybe_epoch:
+            try:
+                val = int.from_bytes([hour, minute, second, microsecond], byteorder="big", signed=False)
+                rel_epoch = val / 1800
+                return datetime.datetime.fromtimestamp(rel_epoch, tz=datetime.timezone.utc).time()
+            except ValueError:
+                pass
         return datetime.time(0,0,0)
 
 def parse_crmfile(data):
@@ -182,6 +189,12 @@ def parse_crm_datablocks(parsingblocks):
             currentblock = crmblock["struct"]
 
         logger.info("Block %d", crmblock["type"])
+
+        # New FICOSA fields joined to draft struct
+        if "ficosa" in crmblock:
+            draft_struct = {**draft_struct["ficosa"], **draft_struct}
+            continue
+
         block_data = crmblock["data"]
 
         # latest
@@ -405,12 +418,30 @@ def parse_crm_datablocks(parsingblocks):
             continue
         if crmblock["type"] == 0xB9:
             draft_struct["accelerator_work"] = {
-                "sudden_start_consumption": int.from_bytes(block_data[:4], byteorder="big", signed=False),
-                "sudden_start_timestamp": time_safe_parse(block_data[4], block_data[5], block_data[6], block_data[7]),
-                "sudden_acceleration_consumption": int.from_bytes(block_data[8:12], byteorder="big", signed=False),
-                "sudden_acceleration_timestamp": time_safe_parse(block_data[12], block_data[13], block_data[14], block_data[15]),
-                "non_eco_deceleration_consumption": int.from_bytes(block_data[16:20], byteorder="big", signed=False),
-                "non_eco_deceleration_timestamp": time_safe_parse(block_data[16], block_data[17], block_data[18], block_data[19]),
+                "sudden_start_timestamp": time_safe_parse(
+                    block_data[0], block_data[1], block_data[2], block_data[3], maybe_epoch=True
+                ),
+                "sudden_start_consumption": int.from_bytes(
+                    block_data[4:6], byteorder="big", signed=False
+                ),
+                "sudden_acceleration_timestamp": time_safe_parse(
+                    block_data[6], block_data[7], block_data[8], block_data[9], maybe_epoch=True
+                ),
+                "sudden_acceleration_consumption": int.from_bytes(
+                    block_data[10:12], byteorder="big", signed=False
+                ),
+                "non_eco_deceleration_timestamp": time_safe_parse(
+                    block_data[12], block_data[13], block_data[14], block_data[15], maybe_epoch=True
+                ),
+                "non_eco_deceleration_consumption": int.from_bytes(
+                    block_data[16:18], byteorder="big", signed=False
+                ),
+                "non_constant_speed_timestamp": time_safe_parse(
+                    block_data[18], block_data[19], block_data[20], block_data[21], maybe_epoch=True
+                ),
+                "non_constant_speed_consumption": int.from_bytes(
+                    block_data[22:24], byteorder="big", signed=False
+                )
             }
             continue
         if crmblock["type"] == 0xBA:
@@ -910,6 +941,12 @@ def update_crm_to_db(car: Car, crm_pload):
             if "batt_degradation_analysis_new" in trip:
                 trip_db.bda2_soc_end = trip["batt_degradation_analysis_new"].get("soh_end", 0)
                 trip_db.bda2_capacity_bars_end = trip["batt_degradation_analysis_new"].get("capacity_bars_end", 0)
+            # TPMS (FICOSA)
+            if "tpms" in trip:
+                trip_db.tpms_fr = trip["tpms"].get("fr", 0) or 0
+                trip_db.tpms_fl = trip["tpms"].get("fl", 0) or 0
+                trip_db.tpms_rr = trip["tpms"].get("rr", 0) or 0
+                trip_db.tpms_rl = trip["tpms"].get("rl", 0) or 0
             trip_db.save()
 
 

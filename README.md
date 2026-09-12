@@ -14,13 +14,6 @@ height="60">](https://play.google.com/store/apps/details?id=com.developerfromjok
 alt="Download on App Store"
 height="40">](https://apps.apple.com/fi/app/opencarwings/id6745239364)
 
-<a href="">
-   Google Play App
-</a>
-<br/>
-<a href="https://apps.apple.com/fi/app/opencarwings/id6745239364">
-   iOS/iPadOS App
-</a>
 
 **Join OpenCARWINGS Discord Server! https://discord.gg/ABWfGrXT7**
 

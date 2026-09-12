@@ -7,13 +7,13 @@
 <img src="https://raw.githubusercontent.com/developerfromjokela/opencarwings/refs/heads/main/ui/static/slideshow/img0.jpeg" height="700px">     
 Server for running CARWINGS services for Nissan LEAF.
 
-<a href="https://play.google.com/store/apps/details?id=com.developerfromjokela.opencarwings">
-   Google Play App
-</a>
-<br/>
-<a href="https://apps.apple.com/fi/app/opencarwings/id6745239364">
-   iOS/iPadOS App
-</a>
+[<img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png"
+alt="Download on Google Play"
+height="60">](https://play.google.com/store/apps/details?id=com.developerfromjokela.opencarwings)   
+[<img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+alt="Download on App Store"
+height="40">](https://apps.apple.com/fi/app/opencarwings/id6745239364)
+
 
 **Join OpenCARWINGS Discord Server! https://discord.gg/ABWfGrXT7**
 

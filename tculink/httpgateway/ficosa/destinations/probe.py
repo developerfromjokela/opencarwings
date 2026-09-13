@@ -75,7 +75,7 @@ def handle(bin_data: bytes, acp_data: dict, car: Car, source_id: int, destinatio
             i += li
 
         parsed_dot_info = parse_dotfile(dot_data, ficosa=True)
-        gps_time = next((x["GPS time"] for x in dot_data if "GPS time" in x), None)
+        gps_time = next((x["GPS time"] for x in parsed_dot_info if "GPS time" in x), None)
         csv_file = io.StringIO()
         fieldnames = [x[0] for x in list(prb_dotfiletypes.values())]
         fieldnames.append("road_type")

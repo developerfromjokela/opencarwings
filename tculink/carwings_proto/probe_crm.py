@@ -192,7 +192,7 @@ def parse_crm_datablocks(parsingblocks):
 
         # New FICOSA fields joined to draft struct
         if "ficosa" in crmblock:
-            draft_struct = {**draft_struct["ficosa"], **draft_struct}
+            draft_struct = {**crmblock["ficosa"], **draft_struct}
             continue
 
         block_data = crmblock["data"]

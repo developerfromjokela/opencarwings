@@ -51,6 +51,12 @@ def apply_date_patch(date):
         return timezone.make_aware(date + rollover_timedelta, timezone=pytz.utc)
     return timezone.make_aware(date, timezone=pytz.utc)
 
+def datetime_safe_parse(year, month, day, hour=0, minute=0, second=0, microsecond=0):
+    try:
+        return datetime.datetime(int(year), int(month), int(day), int(hour), int(minute), int(second), int(microsecond))
+    except ValueError:
+        return datetime.datetime.now()
+
 def parse_dotfile(dotfile_data, ficosa=False):
     pos = 0
     files = []
@@ -88,7 +94,7 @@ def parse_dotfile(dotfile_data, ficosa=False):
             elif item_type == 0x5:
                 struct[prb_type[0] + "_raw"] = "%02d.%02d.%02d %02d:%02d:%02d" % (data[0], data[1], data[2], data[3], data[4],
                                                                                 data[5])
-                struct[prb_type[0]] = apply_date_patch(datetime.datetime(2000 + data[0], data[1], data[2], data[3], data[4], data[5]))
+                struct[prb_type[0]] = apply_date_patch(datetime_safe_parse(2000 + data[0], data[1], data[2], data[3], data[4], data[5]))
             elif item_type == 16 or item_type == 17:
                 struct[prb_type[0]] = True if int.from_bytes(data, byteorder="big") == 0x31 else False
             elif item_type == 12 or item_type == 10 or item_type == 6:

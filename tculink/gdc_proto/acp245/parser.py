@@ -148,6 +148,8 @@ def _decode_ie_element(data: bytes, p: int, li: int, ie_element: IE_Element, onl
     Decode IE element, according to ACP 245 V1.2 protocol specifications.
     li tracks used up bytes, p is offset inside data argument
     """
+    MAX_IE_LEN = 10  # cap on how many iterations, to avoid infinite loops
+
     _need(data, p + li, 1, "VehDesc")
     b = data[p + li]
 
@@ -159,29 +161,43 @@ def _decode_ie_element(data: bytes, p: int, li: int, ie_element: IE_Element, onl
         raise ACPParseError("VehDesc: Invalid IE ID", code=1021)
 
     more_flag = 1 if (b & 0x20) else 0
-
     length = b & 0x1f
+    header_offset = 1
+
     if more_flag == 1:
-        b1 = data[p + li + 1]
-        length = ((b & 0x1f) << 7) | (b1 & 0x7f)
+        more_i = 0
+        while True:
+            more_i += 1
+            if more_i > MAX_IE_LEN:
+                raise ACPParseError(
+                    f"VehDesc: IE Length loop exceeded max of {MAX_IE_LEN} octets",
+                    code=1023,
+                )
+            _need(data, p + li + header_offset, 1, "VehDesc")
+            next_byte = data[p + li + header_offset]
+            length = (length << 7) | (next_byte & 0x7f)
+            header_offset += 1
+            if not (next_byte & 0x80):
+                break
 
     if length != ie_element.length and ie_element.length > 0:
         raise ACPParseError(f"VehDesc: Invalid Length, expected {ie_element.length}, got {length}", code=1022)
 
-    _need(data, p + li + 1+more_flag, length, "VehDesc")
-    raw = data[p + li + 1+more_flag: p + li + 1+more_flag + length]
+    _need(data, p + li + header_offset, length, "VehDesc")
+    raw = data[p + li + header_offset: p + li + header_offset + length]
+
+    value = (raw.decode("ascii", errors="replace").rstrip('\x00').strip()
+             if ie_id == IE_Element.ElementType.ASCII.value else bytes(raw))
 
     info = {
         "ie_id": ie_id,
         "more_flag": more_flag == 1,
         "length": length,
-        "value": raw.decode("ascii", errors="replace").rstrip('\x00').strip()
-                if ie_id == IE_Element.ElementType.ASCII.value else bytes(raw),
+        "value": value,
     }
     if only_value:
-        return (raw.decode("ascii", errors="replace").rstrip('\x00').strip()
-                if ie_id == IE_Element.ElementType.ASCII.value else bytes(raw)), li + 1+more_flag + length
-    return info, li + 1+more_flag + length
+        return value, li + header_offset + length
+    return info, li + header_offset + length
 
 
 def decode_veh_desc(data: bytes, offset: int) -> Tuple[Dict[str, Any], int]:

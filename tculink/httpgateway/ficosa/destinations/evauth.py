@@ -142,6 +142,9 @@ def handle(_, acp_data: dict, car: Car, source_id: int, __) -> bytes:
             acp_msg += composer.EVCommandTail(command=0x10 if car.command_type == 13 else 0x11).encode()
             acp_msg += composer.TimeSync().encode()
             acp_msg += composer.RemoteStartRequest().encode()
+        elif dest_id == 0xe4:
+            acp_msg += composer.EVCommandTail(command=0x71).encode()
+            acp_msg += composer.TimeSync().encode()
         else:
             car.command_result = 1
             app_id = 0x1d

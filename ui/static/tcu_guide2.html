@@ -139,10 +139,10 @@
                 </ol>
             </li>
             <li><strong>Connect to TCU:</strong> Power on the vehicle to ACC mode (important). Use the app to connect to the TCU via Bluetooth OBD.</li>
-            <li><strong>Set APN (also the TSP APN):</strong>
+            <li><strong>Set ONLY TSP APN:</strong>
                 <ol>
                     <li>Open the app and locate the APN settings.</li>
-                    <li>Enter the APN for your SIM provider (e.g., almost all Finnish operators use “internet”; viaaq mobile shows the APN in the subscription details; check your provider’s website for specifics).</li>
+                    <li>Enter the APN information of your SIM provider into <b>fields with names "TSP". Leave other APN Fields as-is.</b> (e.g., almost all Finnish operators use “internet”; viaaq mobile shows the APN in the subscription details; check your provider’s website for specifics).</li>
                     <li>Save and apply the settings.</li>
                 </ol>
             </li>
@@ -172,12 +172,12 @@
         <h2><span class="step-number">Step 6:</span> Configure your preferred SMS provider</h2>
         <p>Finalize the TCU activation by setting up an SMS provider in OpenCARWINGS settings:</p>
         <ul>
-            <li><strong>Binary SMS:</strong> The providers shown in settings are limited to those capable of sending Binary SMS.</li>
-            <li><strong>For OpenCARWINGS SMS:</strong> Set up your Raspberry Pi/computer/server to act as a relay; the latest releases are available at <a href="https://github.com/developerfromjokela/opencarwings-sms">https://github.com/developerfromjokela/opencarwings-sms</a>. (Android is not supported.)</li>
+            <li><strong>SMS Providers:</strong> The providers shown in settings are limited to those capable of sending Binary SMS.</li>
+            <li><strong>OpenCARWINGS SMS Gateway:</strong> Set up your Raspberry Pi/computer/server to act as a relay; the latest releases are available at <a href="https://github.com/developerfromjokela/opencarwings-sms">https://github.com/developerfromjokela/opencarwings-sms</a>. (Android is not supported.)</li>
             <li><strong>Verify:</strong> Do a data refresh to confirm the TCU is receiving SMS.</li>
+                    <p><span class="warning">Be aware:</span> In some cases, TCU services have been remotely disabled by Nissan. In this case, sending refresh commands won't do anything. You have to send the "Service Provisioning" configuration command from the "TCU Configuration" tab, with all services set to "Active." Then try sending the refresh command again.</p>
         </ul>
         <p><span class="warning">Note:</span> Please clear all DTC codes before trying to send SMS! Active DTC codes may put the TCU into fault mode, causing it to refuse any commands.</p>
-        <p><span class="warning">Be aware:</span> In rare cases, TCU services have been remotely disabled by Nissan, for unknown reasons. In this case, sending refresh commands won't do anything. You may need to send the "Service Provisioning" configuration command from the "TCU Configuration" tab, with all services set to "Active." Then try sending the refresh command again.</p>
     </div>
 
 

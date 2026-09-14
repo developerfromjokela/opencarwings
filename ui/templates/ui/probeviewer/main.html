@@ -214,7 +214,7 @@
                         <li class="py-3 sm:pb-4">
                             <a href="{{ file.file.url }}">
                                 <div class="flex-1 min-w-0">
-                                        <p class="text-sm font-medium text-gray-900 dark:text-gray-100 truncate">
+                                        <p class="text-sm underline font-medium text-gray-900 dark:text-gray-100 truncate">
                                             {% if file.capture_ts %}
                                             {{ file.capture_ts }}
                                             {% else %}
@@ -276,7 +276,7 @@
                     {% for trip in trips %}
                         <li class="py-3 sm:pb-4">
                             <a href="/car/{{ car.vin }}/probeviewer/trip/{{ trip.pk }}">
-                                <div class="flex-1 min-w-0">
+                                <div class="flex-1 min-w-0 underline">
                                         <p class="text-sm font-medium text-gray-900 dark:text-gray-100 truncate">
                                            {{ trip.start_ts }} ({{ trip.trip_time|div:60|div:60|stringformat:"02d" }}:{{ trip.trip_time|div:60|mod:60|stringformat:"02d" }})
                                         </p>

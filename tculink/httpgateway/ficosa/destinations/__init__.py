@@ -12,7 +12,9 @@ DESTINATIONS = {
     0x2c: evinfo.handle, # A/C
     0xd8: evinfo.handle, # A/C autostop
     0x3e: evinfo.handle, # ChargeStart80%
-    0xe4: evinfo.handle, # UnblockCharge
+    0xe4: evinfo.handle, # UnblockCharge Initiator
+    0xe2: evinfo.handle, # UnblockCharge Result From PMC
+    0xe1: evinfo.handle, # UnblockCharge Result From PMC
     # Car
     0x31: door.handle,
     0x32: burglar.handle,

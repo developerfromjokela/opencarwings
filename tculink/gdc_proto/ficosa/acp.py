@@ -212,6 +212,8 @@ def parse_ev_info(data: bytes, offset: int) -> Tuple[dict, int]:
 
     soc = (((d[7] & 0b01111111) << 3) | ((d[8] & 0b11100000) >> 3))/10.0
     soc_display_int = d[11]
+    if soc_display_int > 100:
+        soc_display_int = 0
     soc_display = ((d[17] << 4) | ((d[18] & 0b11110000) >> 4))
     if soc_display == 0:
         soc_display = soc_display_int
@@ -252,6 +254,8 @@ def parse_ev_info(data: bytes, offset: int) -> Tuple[dict, int]:
         ((d[21] & 0b00001111) << 6) | ((d[22] & 0b11111100) >> 2)
     )
 
+    lease_contract = (d[22] & 0b00000010) >> 1
+
     # ZE1!
     if len(d) == 24:
         temp_data = d[23]
@@ -270,6 +274,7 @@ def parse_ev_info(data: bytes, offset: int) -> Tuple[dict, int]:
         "ignition": ignition,
         "parked": drive_status == 1,
         "direction_forward": drive_status == 4,
+        "lease_contract": lease_contract == 1,
         "soc": soc,
         "soc_display": soc_display,
         "soc_display_int": soc_display_int,

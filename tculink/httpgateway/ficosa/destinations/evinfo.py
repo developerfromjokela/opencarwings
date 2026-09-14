@@ -227,4 +227,29 @@ def handle(bin_data: bytes, acp_data: dict, car: Car, source_id: int, destinatio
             message,
             subject), thread_sensitive=False)
 
+    if destination_id == 0xe4:
+        new_alert = AlertHistory()
+        new_alert.type = 22
+        new_alert.car = car
+        new_alert.command_id = car.command_id
+
+        logger.debug("GBA Unblock!")
+        logger.debug(app_info)
+
+        if app_info["flags"]["fail"]> 0:
+            subject = _("Unblock charge failure")
+            message = _("Unblocking charge features could not be completed.")
+            message += f" (ECODE {app_info['raw'].hex()})"
+            new_alert.type = 99
+        else:
+            subject = _("Unblock charging")
+            message = _("Unblock request sent successfully.")
+        new_alert.additional_data = message
+
+        new_alert.save()
+        sync_to_async(send_vehicle_alert_notification(
+            car,
+            message,
+            subject), thread_sensitive=False)
+
     return acp.make_ack_response(car.vin, car.tcu_model, destination_id, source_id, 0, 0, 1)

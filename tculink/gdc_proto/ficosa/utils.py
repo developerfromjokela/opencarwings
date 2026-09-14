@@ -15,7 +15,8 @@ COMMAND_MAP = {
     11: 0x38,
     12: 0x38,
     13: 0x39,
-    14: 0x39
+    14: 0x39,
+    16: 0xe4
 }
 
 class ConfigurationFieldType:
@@ -101,6 +102,7 @@ CONFIGURATION_MAP = {
             "probe_8": {"info_id": 0x57, "length": 1, "type": ConfigurationFieldType.PROVISIONING, "label": _("Probe Service {num}".format(num=8))},
             "probe_9": {"info_id": 0x58, "length": 1, "type": ConfigurationFieldType.PROVISIONING, "label": _("Probe Service {num}".format(num=9))},
             "probe_10": {"info_id": 0x59, "length": 1, "type": ConfigurationFieldType.PROVISIONING, "label": _("Probe Service {num}".format(num=10))},
+            "ev_gba_inhibit": {"info_id": 0x4a, "length": 1, "type": ConfigurationFieldType.PROVISIONING, "label": _("EV Battery Lease Program: Charging block service (DO NOT ENABLE IF NOT NEEDED)")},
         }
     },
     "sim1_config": {

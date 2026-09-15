@@ -39,7 +39,7 @@ ALERT_TYPES = (
     (19, _('Received new data')),
     (20, _('Burglar alert')),
     (21, _('Tow Notification')),
-    (22, _('End Battery Lease Restrictions')),
+    (22, _('End Battery Lease Contract')),
     (92, _('TCU Configuration error')),
     (93, _('Remote Start/Stop error')),
     (94, _('Horn & Light error')),
@@ -67,7 +67,7 @@ COMMAND_TYPES = (
     (13, _('Remote Start')),
     (14, _('Remote Stop')),
     (15, _("Configuration Request")),
-    (16, _('End Battery Lease Restrictions'))
+    (16, _('End Battery Lease Contract'))
 )
 
 SENSITIVE_COMMANDS = [7,8,9,10,11,12,13,14,16]

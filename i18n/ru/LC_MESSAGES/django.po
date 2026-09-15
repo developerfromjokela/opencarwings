@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-10 20:11+0000\n"
-"PO-Revision-Date: 2026-09-10 23:12+0300\n"
+"POT-Creation-Date: 2026-09-15 11:11+0000\n"
+"PO-Revision-Date: 2026-09-15 14:25+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -50,7 +50,7 @@ msgstr ""
 msgid "Charge stop"
 msgstr "Остановка зарядки"
 
-#: db/models.py:22 db/models.py:31 db/models.py:55 db/models.py:56
+#: db/models.py:22 db/models.py:31 db/models.py:56 db/models.py:57
 msgid "Charge start"
 msgstr "Начало зарядки"
 
@@ -58,11 +58,11 @@ msgstr "Начало зарядки"
 msgid "Charge cable reminder"
 msgstr "Напоминание о зарядном кабеле"
 
-#: db/models.py:24 db/models.py:57
+#: db/models.py:24 db/models.py:58
 msgid "A/C on"
 msgstr "Включение кондиционера"
 
-#: db/models.py:25 db/models.py:58
+#: db/models.py:25 db/models.py:59
 msgid "A/C off"
 msgstr "Выключение кондиционера"
 
@@ -86,11 +86,11 @@ msgstr "Начался обогрев батареи"
 msgid "Battery heater stop"
 msgstr "Нагрев батареи закончен"
 
-#: db/models.py:32 db/models.py:60
+#: db/models.py:32 db/models.py:61
 msgid "Door unlock"
 msgstr "Разблокировать двери"
 
-#: db/models.py:33 db/models.py:61
+#: db/models.py:33 db/models.py:62
 msgid "Door lock"
 msgstr "Заблокировать двери"
 
@@ -103,11 +103,11 @@ msgstr "Сигнал и свет"
 msgid "Stop Horn & Light"
 msgstr "Остановить сигнал и свет"
 
-#: db/models.py:36 db/models.py:66
+#: db/models.py:36 db/models.py:67
 msgid "Remote Start"
 msgstr "Удалённый запуск"
 
-#: db/models.py:37 db/models.py:67
+#: db/models.py:37 db/models.py:68
 msgid "Remote Stop"
 msgstr "Удалённая остановка"
 
@@ -123,97 +123,101 @@ msgstr "Получены новые данные"
 msgid "Burglar alert"
 msgstr "Сигнал тревоги"
 
-#: db/models.py:41 tculink/gdc_proto/ficosa/utils.py:92
+#: db/models.py:41 tculink/gdc_proto/ficosa/utils.py:93
 #: tculink/httpgateway/ficosa/destinations/tow.py:36
 msgid "Tow Notification"
 msgstr "Уведомление о эвакуации"
 
-#: db/models.py:42
+#: db/models.py:42 db/models.py:70
+msgid "End Battery Lease Contract"
+msgstr "Прекратить ограничения аренды батареи"
+
+#: db/models.py:43
 msgid "TCU Configuration error"
 msgstr "Ошибка конфигурации TCU"
 
-#: db/models.py:43
+#: db/models.py:44
 msgid "Remote Start/Stop error"
 msgstr "Ошибка удалённого запуска/остановки"
 
-#: db/models.py:44
+#: db/models.py:45
 msgid "Horn & Light error"
 msgstr "Ошибка сигнала и света"
 
-#: db/models.py:45
+#: db/models.py:46
 msgid "Door Lock/Unlock error"
 msgstr "Ошибка блокировки/разблокировки двери"
 
-#: db/models.py:46
+#: db/models.py:47
 msgid "Charge error"
 msgstr "Ошибка зарядки"
 
-#: db/models.py:47
+#: db/models.py:48
 msgid "A/C error"
 msgstr "Ошибка кондиционера"
 
-#: db/models.py:48
+#: db/models.py:49
 msgid "Command timeout"
 msgstr "Тайм-аут команды"
 
-#: db/models.py:49 db/models.py:76 ui/templates/ui/account.html:15
+#: db/models.py:50 db/models.py:78 ui/templates/ui/account.html:15
 #: ui/templates/ui/car_detail.html:72 ui/templates/ui/car_list.html:18
 #: ui/templates/ui/car_transfer.html:15
 #: ui/templates/ui/change_carwings_password.html:17
 #: ui/templates/ui/change_command_pin.html:17
 #: ui/templates/ui/change_password.html:17
 #: ui/templates/ui/probeviewer/main.html:72
-#: ui/templates/ui/probeviewer/trip.html:106
+#: ui/templates/ui/probeviewer/trip.html:107
 #: ui/templates/ui/reset_password_confirm.html:34
 #: ui/templates/ui/setup/step2.html:13 ui/templates/ui/setup/step3.html:13
 #: ui/templates/ui/setup/step4.html:13
 msgid "Error"
 msgstr "Ошибка"
 
-#: db/models.py:53 db/models.py:132
+#: db/models.py:54 db/models.py:134
 msgid "No command"
 msgstr "Команда отсутствует"
 
-#: db/models.py:54
+#: db/models.py:55
 msgid "Refresh data"
 msgstr "Обновление данных"
 
-#: db/models.py:59
+#: db/models.py:60
 msgid "Read configuration"
 msgstr "Чтение настроек"
 
-#: db/models.py:62
+#: db/models.py:63
 msgid "Horn"
 msgstr "Сигнал"
 
-#: db/models.py:63
+#: db/models.py:64
 msgid "Lights"
 msgstr "Свет"
 
-#: db/models.py:64 tculink/gdc_proto/ficosa/utils.py:93
+#: db/models.py:65 tculink/gdc_proto/ficosa/utils.py:94
 msgid "Horn & Lights"
 msgstr "Сигнал и свет"
 
-#: db/models.py:65
+#: db/models.py:66
 msgid "Stop Horn & light"
 msgstr "Остановить сигнал и свет"
 
-#: db/models.py:68
+#: db/models.py:69
 msgid "Configuration Request"
 msgstr "Запрос конфигурации"
 
-#: db/models.py:74
+#: db/models.py:76
 msgid "Waiting"
 msgstr "Ожидание"
 
-#: db/models.py:75 db/models.py:134 ui/templates/ui/account.html:14
+#: db/models.py:77 db/models.py:136 ui/templates/ui/account.html:14
 #: ui/templates/ui/car_detail.html:71 ui/templates/ui/car_list.html:17
 #: ui/templates/ui/car_transfer.html:14
 #: ui/templates/ui/change_carwings_password.html:16
 #: ui/templates/ui/change_command_pin.html:16
 #: ui/templates/ui/change_password.html:16
 #: ui/templates/ui/probeviewer/main.html:71
-#: ui/templates/ui/probeviewer/trip.html:105
+#: ui/templates/ui/probeviewer/trip.html:106
 #: ui/templates/ui/reset_password_complete.html:10
 #: ui/templates/ui/reset_password_confirm.html:33
 #: ui/templates/ui/setup/step2.html:12 ui/templates/ui/setup/step3.html:12
@@ -221,95 +225,95 @@ msgstr "Ожидание"
 msgid "Success"
 msgstr "Успех"
 
-#: db/models.py:77
+#: db/models.py:79
 msgid "Timeout"
 msgstr "Тайм-аут"
 
-#: db/models.py:78
+#: db/models.py:80
 msgid "Await response"
 msgstr "Ожидание ответа"
 
-#: db/models.py:82
+#: db/models.py:84
 msgid "Park"
 msgstr "Парковка"
 
-#: db/models.py:83 ui/templates/ui/car_detail.html:1342
+#: db/models.py:85 ui/templates/ui/car_detail.html:1344
 msgid "Drive"
 msgstr "Движение"
 
-#: db/models.py:84 ui/templates/ui/car_detail.html:1342
+#: db/models.py:86 ui/templates/ui/car_detail.html:1344
 msgid "Reverse"
 msgstr "Задний ход"
 
-#: db/models.py:88 db/models.py:98
+#: db/models.py:90 db/models.py:100
 msgid "Never"
 msgstr "Никогда"
 
-#: db/models.py:89 db/models.py:102
+#: db/models.py:91 db/models.py:104
 msgid "Every 30 minutes"
 msgstr "Каждые 30 минут"
 
-#: db/models.py:90 db/models.py:103
+#: db/models.py:92 db/models.py:105
 msgid "Every 45 minutes"
 msgstr "Каждые 45 минут"
 
-#: db/models.py:91 db/models.py:104
+#: db/models.py:93 db/models.py:106
 msgid "Every hour"
 msgstr "Каждый час"
 
-#: db/models.py:92 db/models.py:105
+#: db/models.py:94 db/models.py:107
 msgid "Every three hours"
 msgstr "Каждые 3 часа"
 
-#: db/models.py:93 db/models.py:106
+#: db/models.py:95 db/models.py:108
 msgid "Every 12 hours"
 msgstr "Каждые 12 часов"
 
-#: db/models.py:94 db/models.py:107
+#: db/models.py:96 db/models.py:109
 msgid "Every day"
 msgstr "Каждый день"
 
-#: db/models.py:99
+#: db/models.py:101
 msgid "Every 5 minutes"
 msgstr "Каждые 5 минут"
 
-#: db/models.py:100
+#: db/models.py:102
 msgid "Every 10 minutes"
 msgstr "Каждые 10 минут"
 
-#: db/models.py:101
+#: db/models.py:103
 msgid "Every 15 minutes"
 msgstr "Каждые 15 минут"
 
-#: db/models.py:127
+#: db/models.py:129
 msgid "Slow charge"
 msgstr "Медленная зарядка"
 
-#: db/models.py:128
+#: db/models.py:130
 msgid "Quick charge"
 msgstr "Быстрая зарядка"
 
-#: db/models.py:133
+#: db/models.py:135
 msgid "Pending"
 msgstr "В ожидании"
 
-#: db/models.py:135
+#: db/models.py:137
 msgid "Failure"
 msgstr "Ошибка"
 
-#: db/models.py:136
+#: db/models.py:138
 msgid "Rejected"
 msgstr "Отказ от автомобиля"
 
-#: db/models.py:146
+#: db/models.py:148
 msgid "Continental 2012-2015"
 msgstr "Continental 2012-2015"
 
-#: db/models.py:147
+#: db/models.py:149
 msgid "Ficosa 2016-2019"
 msgstr "FICOSA / GMV Sistemas"
 
-#: db/models.py:158
+#: db/models.py:160
 msgid ""
 "Enter a valid username. This value may contain only unaccented lowercase a-z "
 "and uppercase A-Z letters, numbers, and /./-/_ characters."
@@ -318,7 +322,7 @@ msgstr ""
 "строчные буквы a–z и заглавные буквы A–Z без диакритических знаков, цифры и "
 "символы /./-/_."
 
-#: db/models.py:166
+#: db/models.py:168
 msgid ""
 "Enter a valid TCU Password. This value may contain only unaccented lowercase "
 "a-z and uppercase A-Z letters, numbers, and /=/-/_/+/@/#/?/! characters."
@@ -327,16 +331,16 @@ msgstr ""
 "буквы a–z и заглавные буквы A–Z без диакритических знаков, цифры и символы /"
 "=/-/_/+/@/#/?/!."
 
-#: db/models.py:190
+#: db/models.py:192
 msgid "username"
 msgstr "Имя пользователя"
 
-#: db/models.py:194
+#: db/models.py:196
 msgid "Required. 16 characters or fewer. Letters, digits and /./-/_ only."
 msgstr ""
 "Обязательно. Не более 16 символов. Только буквы, цифры и символы /./-/_."
 
-#: db/models.py:198
+#: db/models.py:200
 msgid "A user with that username already exists."
 msgstr "Пользователь с таким именем уже существует."
 
@@ -921,129 +925,137 @@ msgstr "тридцатый"
 msgid "thirty-first"
 msgstr "тридцать первый"
 
-#: tculink/gdc_proto/ficosa/utils.py:68 tculink/gdc_proto/ficosa/utils.py:89
+#: tculink/gdc_proto/ficosa/utils.py:69 tculink/gdc_proto/ficosa/utils.py:90
 #: tculink/httpgateway/ficosa/destinations/veh_health.py:24
 #: tculink/httpgateway/ficosa/destinations/veh_health.py:32
 #: ui/templates/ui/car_detail.html:102
 msgid "Vehicle Health Report"
 msgstr "Отчёт о состоянии автомобиля"
 
-#: tculink/gdc_proto/ficosa/utils.py:73
+#: tculink/gdc_proto/ficosa/utils.py:74
 msgid "Service Enabled"
 msgstr "Услуга включена"
 
-#: tculink/gdc_proto/ficosa/utils.py:74
+#: tculink/gdc_proto/ficosa/utils.py:75
 msgid "Send frequency (days)"
 msgstr "Частота отправки (дни)"
 
-#: tculink/gdc_proto/ficosa/utils.py:78
+#: tculink/gdc_proto/ficosa/utils.py:79
 msgid "Service Provisioning"
 msgstr "Настройка сервисов"
 
-#: tculink/gdc_proto/ficosa/utils.py:83
+#: tculink/gdc_proto/ficosa/utils.py:84
 msgid "EV Battery Charging Status"
 msgstr "Статус зарядки батареи ЭМ"
 
-#: tculink/gdc_proto/ficosa/utils.py:84
+#: tculink/gdc_proto/ficosa/utils.py:85
 msgid "EV Battery Charging History"
 msgstr "История зарядки батареи ЭМ"
 
-#: tculink/gdc_proto/ficosa/utils.py:85
+#: tculink/gdc_proto/ficosa/utils.py:86
 msgid "EV Battery Charging Remote Activation"
 msgstr "Дистанционный запуск зарядки батареи ЭМ"
 
-#: tculink/gdc_proto/ficosa/utils.py:86
+#: tculink/gdc_proto/ficosa/utils.py:87
 msgid "EV Remote HVAC Activation"
 msgstr "Удалённая активация климат-контроля"
 
-#: tculink/gdc_proto/ficosa/utils.py:87
+#: tculink/gdc_proto/ficosa/utils.py:88
 msgid "EV Plug Reminder"
 msgstr "Напоминание о подключении зарядки"
 
-#: tculink/gdc_proto/ficosa/utils.py:88
+#: tculink/gdc_proto/ficosa/utils.py:89
 msgid "EV Battery Heating Notification"
 msgstr "Уведомление о подогреве батареи ЭМ"
 
-#: tculink/gdc_proto/ficosa/utils.py:90
+#: tculink/gdc_proto/ficosa/utils.py:91
 #: tculink/httpgateway/ficosa/destinations/burglar.py:36
 msgid "Burglar Alarm"
 msgstr "Охранная сигнализация"
 
-#: tculink/gdc_proto/ficosa/utils.py:91
+#: tculink/gdc_proto/ficosa/utils.py:92
 msgid "Door Lock & Unlock"
 msgstr "Блокировка и разблокировка двери"
 
-#: tculink/gdc_proto/ficosa/utils.py:94 tculink/gdc_proto/ficosa/utils.py:95
-#: tculink/gdc_proto/ficosa/utils.py:96 tculink/gdc_proto/ficosa/utils.py:97
-#: tculink/gdc_proto/ficosa/utils.py:98 tculink/gdc_proto/ficosa/utils.py:99
-#: tculink/gdc_proto/ficosa/utils.py:100 tculink/gdc_proto/ficosa/utils.py:101
-#: tculink/gdc_proto/ficosa/utils.py:102 tculink/gdc_proto/ficosa/utils.py:103
-#: tculink/gdc_proto/ficosa/utils.py:196 tculink/gdc_proto/ficosa/utils.py:212
-#: tculink/gdc_proto/ficosa/utils.py:229 tculink/gdc_proto/ficosa/utils.py:246
+#: tculink/gdc_proto/ficosa/utils.py:95 tculink/gdc_proto/ficosa/utils.py:96
+#: tculink/gdc_proto/ficosa/utils.py:97 tculink/gdc_proto/ficosa/utils.py:98
+#: tculink/gdc_proto/ficosa/utils.py:99 tculink/gdc_proto/ficosa/utils.py:100
+#: tculink/gdc_proto/ficosa/utils.py:101 tculink/gdc_proto/ficosa/utils.py:102
+#: tculink/gdc_proto/ficosa/utils.py:103 tculink/gdc_proto/ficosa/utils.py:104
+#: tculink/gdc_proto/ficosa/utils.py:198 tculink/gdc_proto/ficosa/utils.py:214
+#: tculink/gdc_proto/ficosa/utils.py:231 tculink/gdc_proto/ficosa/utils.py:248
 #, python-brace-format
 msgid "Probe Service {num}"
 msgstr "Сервис ”Probe” {num}"
 
-#: tculink/gdc_proto/ficosa/utils.py:107
+#: tculink/gdc_proto/ficosa/utils.py:105
+msgid ""
+"EV Battery Lease Program: Charging block service (DO NOT ENABLE IF NOT "
+"NEEDED)"
+msgstr ""
+"Программа лизинга батареи электромобиля: услуга блокировки зарядки (НЕ "
+"ВКЛЮЧАТЬ, ЕСЛИ НЕ ТРЕБУЕТСЯ)"
+
+#: tculink/gdc_proto/ficosa/utils.py:109
 msgid "SIM Settings 1"
 msgstr "SIM Настройки 1"
 
-#: tculink/gdc_proto/ficosa/utils.py:113 tculink/gdc_proto/ficosa/utils.py:150
+#: tculink/gdc_proto/ficosa/utils.py:115 tculink/gdc_proto/ficosa/utils.py:152
 msgid "SIM Pin Code"
 msgstr "ПИН-код SIM-карты"
 
-#: tculink/gdc_proto/ficosa/utils.py:115 tculink/gdc_proto/ficosa/utils.py:151
+#: tculink/gdc_proto/ficosa/utils.py:117 tculink/gdc_proto/ficosa/utils.py:153
 msgid "SIM Pin Locked"
 msgstr "SIM-карта заблокирована по PIN-коду"
 
-#: tculink/gdc_proto/ficosa/utils.py:123 tculink/gdc_proto/ficosa/utils.py:155
+#: tculink/gdc_proto/ficosa/utils.py:125 tculink/gdc_proto/ficosa/utils.py:157
 msgid "SMSC Number 1"
 msgstr "Номер SMSC, 2"
 
-#: tculink/gdc_proto/ficosa/utils.py:141 tculink/gdc_proto/ficosa/utils.py:164
+#: tculink/gdc_proto/ficosa/utils.py:143 tculink/gdc_proto/ficosa/utils.py:166
 msgid "SMSC Number 2"
 msgstr "Номер SMSC, 1"
 
-#: tculink/gdc_proto/ficosa/utils.py:145
+#: tculink/gdc_proto/ficosa/utils.py:147
 msgid "SIM Settings 2"
 msgstr "SIM Настройки 2"
 
-#: tculink/gdc_proto/ficosa/utils.py:168
+#: tculink/gdc_proto/ficosa/utils.py:170
 msgid "Server Settings"
 msgstr "Настройки сервера"
 
-#: tculink/gdc_proto/ficosa/utils.py:173
+#: tculink/gdc_proto/ficosa/utils.py:175
 msgid "User ID"
 msgstr ""
 
-#: tculink/gdc_proto/ficosa/utils.py:174
+#: tculink/gdc_proto/ficosa/utils.py:176
 msgid "User Password"
 msgstr "Пароль пользователя"
 
-#: tculink/gdc_proto/ficosa/utils.py:202 tculink/gdc_proto/ficosa/utils.py:218
-#: tculink/gdc_proto/ficosa/utils.py:235 tculink/gdc_proto/ficosa/utils.py:252
+#: tculink/gdc_proto/ficosa/utils.py:204 tculink/gdc_proto/ficosa/utils.py:220
+#: tculink/gdc_proto/ficosa/utils.py:237 tculink/gdc_proto/ficosa/utils.py:254
 msgid "Data Configuration"
 msgstr "Конфигурация сбора данных"
 
-#: tculink/gdc_proto/ficosa/utils.py:204 tculink/gdc_proto/ficosa/utils.py:238
+#: tculink/gdc_proto/ficosa/utils.py:206 tculink/gdc_proto/ficosa/utils.py:240
 msgid "EU Configuration (all data)"
 msgstr "Конфигурация ЕС (все данные)"
 
-#: tculink/gdc_proto/ficosa/utils.py:205 tculink/gdc_proto/ficosa/utils.py:223
-#: tculink/gdc_proto/ficosa/utils.py:239 tculink/gdc_proto/ficosa/utils.py:256
+#: tculink/gdc_proto/ficosa/utils.py:207 tculink/gdc_proto/ficosa/utils.py:225
+#: tculink/gdc_proto/ficosa/utils.py:241 tculink/gdc_proto/ficosa/utils.py:258
 msgid "Japan Configuration (all data)"
 msgstr "Конфигурация Японии (все данные)"
 
-#: tculink/gdc_proto/ficosa/utils.py:206 tculink/gdc_proto/ficosa/utils.py:240
-#: tculink/gdc_proto/ficosa/utils.py:257
+#: tculink/gdc_proto/ficosa/utils.py:208 tculink/gdc_proto/ficosa/utils.py:242
+#: tculink/gdc_proto/ficosa/utils.py:259
 msgid "USA Configuration (all data)"
 msgstr "Конфигурация США (все данные)"
 
-#: tculink/gdc_proto/ficosa/utils.py:221 tculink/gdc_proto/ficosa/utils.py:255
+#: tculink/gdc_proto/ficosa/utils.py:223 tculink/gdc_proto/ficosa/utils.py:257
 msgid "EU Configuration (less data)"
 msgstr "Конфигурация ЕС (меньше данных)"
 
-#: tculink/gdc_proto/ficosa/utils.py:222
+#: tculink/gdc_proto/ficosa/utils.py:224
 msgid "USA Configuration (more data)"
 msgstr "Конфигурация США (больше данных)"
 
@@ -1130,18 +1142,18 @@ msgstr "Двери успешно заблокированы!"
 msgid "Door Lock/Unlock"
 msgstr "Блокировка/разблокировка двери"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:90
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:87
 #: tculink/management/commands/tcuserver.py:296
 msgid "Vehicle is unplugged. Please check the situation if necessary."
 msgstr ""
 "Автомобиль не подключён к зарядке. При необходимости проверьте ситуацию."
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:91
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:88
 #: tculink/management/commands/tcuserver.py:297
 msgid "Charger unplugged notification"
 msgstr "Уведомление о неподключённом зарядном кабеле"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:99
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:96
 #: tculink/management/commands/tcuserver.py:304
 msgid ""
 "The A/C preconditioning command could not be executed. One of the reasons "
@@ -1151,34 +1163,34 @@ msgstr ""
 "Команда предварительного кондиционирования не выполнена. Возможные причины: "
 "a) низкий уровень заряда, b) команда уже выполнена, c) ошибка TCU."
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:101
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:98
 #: tculink/management/commands/tcuserver.py:306
 msgid "A/C preconditioning error"
 msgstr "Ошибка предварительного кондиционирования"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:107
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:104
 #: tculink/management/commands/tcuserver.py:312
 msgid "A/C preconditioning started"
 msgstr "Предварительное кондиционирование начато"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:108
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:105
 #: tculink/management/commands/tcuserver.py:313
 msgid "A/C preconditioning has been successfully switched on"
 msgstr "Предварительное кондиционирование успешно включено"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:112
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:109
 #: tculink/management/commands/tcuserver.py:317
 msgid "The A/C preconditioning has finished unexpectedly"
 msgstr "Предварительное кондиционирование неожиданно завершилась."
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:113
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:125
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:110
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:122
 #: tculink/management/commands/tcuserver.py:318
 #: tculink/management/commands/tcuserver.py:331
 msgid "A/C precondition stopped"
 msgstr "Предварительное кондиционирование остановлено"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:118
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:115
 #: tculink/management/commands/tcuserver.py:323
 #: tculink/management/commands/tcuserver.py:410
 msgid ""
@@ -1188,96 +1200,96 @@ msgstr ""
 "Предварительное кондиционирование завершено и выключено после определённого "
 "времени работы."
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:120
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:117
 #: tculink/management/commands/tcuserver.py:325
 #: tculink/management/commands/tcuserver.py:412
 msgid "A/C precondition finished"
 msgstr "Предварительное кондиционирование завершено"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:126
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:123
 #: tculink/management/commands/tcuserver.py:332
 msgid "A/C preconditioning has been successfully switched off"
 msgstr "Предварительное кондиционирование успешно выключено"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:130
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:127
 #: tculink/management/commands/tcuserver.py:336
 #: tculink/management/commands/tcuserver.py:405
 msgid "A/C precondition notification"
 msgstr "Уведомление о предварительном кондиционировании"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:131
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:128
 #: tculink/management/commands/tcuserver.py:337
 #: tculink/management/commands/tcuserver.py:359
 msgid "A/C preconditioning already switched off"
 msgstr "Предварительное кондиционирование уже выключено"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:136
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:133
 #: tculink/management/commands/tcuserver.py:343
 #: tculink/management/commands/tcuserver.py:416
 msgid "A/C preconditioning fault"
 msgstr "Неисправность предварительного кондиционирования"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:139
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:136
 #: tculink/management/commands/tcuserver.py:346
 msgid "The vehicle failed to start A/C preconditioning"
 msgstr "Автомобиль не смог запустить кондиционер."
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:142
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:139
 #: tculink/management/commands/tcuserver.py:349
 msgid "The A/C preconditioning has finished with error"
 msgstr "Предварительное кондиционирование завершено с ошибкой."
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:145
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:142
 #: tculink/management/commands/tcuserver.py:356
 msgid "A/C preconditioning could not be switched off"
 msgstr "Предварительное кондиционирование не удалось выключить"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:170
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:167
 #: tculink/management/commands/tcuserver.py:380
 msgid "Charging notification"
 msgstr "Уведомление о зарядки"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:176
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:173
 #: tculink/management/commands/tcuserver.py:386
 msgid "Vehicle has finished charging."
 msgstr "Автомобиль завершил зарядку."
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:177
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:174
 #: tculink/management/commands/tcuserver.py:387
 msgid "Charge finish notification"
 msgstr "Уведомление о завершении зарядки"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:180
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:177
 #: tculink/management/commands/tcuserver.py:390
 msgid "Vehicle has finished quick-charging."
 msgstr "Автомобиль завершил быструю зарядку."
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:181
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:178
 #: tculink/management/commands/tcuserver.py:391
 msgid "Quick-charge finish notification"
 msgstr "Уведомление о завершении быстрой зарядки"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:184
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:181
 #: tculink/management/commands/tcuserver.py:394
 msgid "Charge interruption notification"
 msgstr "Уведомление о прерывании зарядки"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:187
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:184
 #: tculink/management/commands/tcuserver.py:397
 msgid "Charging has been stopped due to an interruption"
 msgstr "Зарядка приостановлена ​​из-за перебоя."
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:189
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:186
 #: tculink/management/commands/tcuserver.py:399
 msgid "Quick-charging has been stopped due to an interruption"
 msgstr "Быстрая зарядка приостановлена ​​из-за сбоя."
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:207
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:204
 #: tculink/management/commands/tcuserver.py:439
 msgid "Charge start command executed"
 msgstr "Команда начала зарядки выполнена"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:208
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:205
 #: tculink/management/commands/tcuserver.py:440
 msgid ""
 "Charging command has been sent successfully. If vehicle did not start "
@@ -1287,27 +1299,57 @@ msgstr ""
 "Команда зарядки успешно отправлена. Если автомобиль не начал заряжаться, "
 "проверьте подключение зарядного кабеля и наличие питания."
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:213
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:210
 #: tculink/management/commands/tcuserver.py:443
 msgid "Charge start command executed with failure"
 msgstr "Команда начала зарядки выполнена с ошибкой."
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:214
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:211
 #: tculink/management/commands/tcuserver.py:444
 msgid ""
 "Charging command has been sent successfully, but the vehicle did not start "
 "charging."
 msgstr "Команда зарядки успешно отправлена, но зарядка не началась."
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:219
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:216
 #: tculink/management/commands/tcuserver.py:449
 msgid "Charge start failure"
 msgstr "Сбой запуска зарядки"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:220
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:217
 #: tculink/management/commands/tcuserver.py:450
 msgid "Charge start command failed to execute."
 msgstr "Команда начала зарядки не была выполнена."
+
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:241
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:266
+msgid "Unblock charge failure"
+msgstr "Сбой разблокировки зарядки"
+
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:242
+msgid "Unblocking charge features could not be completed."
+msgstr "Не удалось завершить разблокировку функций зарядки."
+
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:246
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:271
+msgid "Unblock charging"
+msgstr "Разблокировать зарядку"
+
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:247
+msgid "Unblock request sent successfully."
+msgstr "Запрос на разблокировку успешно отправлен."
+
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:267
+msgid "Unblocking charge features failed."
+msgstr "Функция разблокировки зарядки не работает."
+
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:272
+msgid "Charging has been unblocked successfully."
+msgstr "Функция зарядки успешно разблокирована."
+
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:272
+msgid "Failed to unblock charging, CAN Error!"
+msgstr "Не удалось разблокировать зарядку, ошибка CAN!"
 
 #: tculink/httpgateway/ficosa/destinations/hornlight.py:63
 #: tculink/httpgateway/ficosa/destinations/remotestart.py:63
@@ -1525,7 +1567,7 @@ msgstr ""
 msgid "Code is not valid!"
 msgstr "Код недействителен!"
 
-#: ui/forms.py:19 ui/forms.py:35 ui/templates/ui/car_detail.html:526
+#: ui/forms.py:19 ui/forms.py:35 ui/templates/ui/car_detail.html:527
 msgid "Nickname"
 msgstr "Псевдоним"
 
@@ -1533,7 +1575,7 @@ msgstr "Псевдоним"
 msgid "Disable TCU authentication"
 msgstr "Отключить аутентификацию TCU"
 
-#: ui/forms.py:21 ui/templates/ui/car_detail.html:565
+#: ui/forms.py:21 ui/templates/ui/car_detail.html:566
 msgid "Show calculated battery percentage"
 msgstr "Показать расчётный процент заряда батареи"
 
@@ -1577,7 +1619,7 @@ msgstr ""
 #: ui/templates/ui/change_command_pin.html:18
 #: ui/templates/ui/change_password.html:18
 #: ui/templates/ui/probeviewer/main.html:73
-#: ui/templates/ui/probeviewer/trip.html:107
+#: ui/templates/ui/probeviewer/trip.html:108
 #: ui/templates/ui/reset_password_confirm.html:35
 #: ui/templates/ui/setup/step2.html:14 ui/templates/ui/setup/step3.html:14
 #: ui/templates/ui/setup/step4.html:14
@@ -1590,7 +1632,7 @@ msgstr "Уведомление"
 #: ui/templates/ui/change_command_pin.html:19
 #: ui/templates/ui/change_password.html:19
 #: ui/templates/ui/probeviewer/main.html:74
-#: ui/templates/ui/probeviewer/trip.html:108
+#: ui/templates/ui/probeviewer/trip.html:109
 #: ui/templates/ui/reset_password_confirm.html:36
 #: ui/templates/ui/setup/step2.html:15 ui/templates/ui/setup/step3.html:15
 #: ui/templates/ui/setup/step4.html:15
@@ -1598,14 +1640,14 @@ msgid "Warning"
 msgstr "Предупреждение"
 
 #: ui/templates/ui/account.html:22 ui/templates/ui/car_detail.html:79
-#: ui/templates/ui/car_detail.html:639 ui/templates/ui/car_detail.html:658
-#: ui/templates/ui/car_detail.html:692 ui/templates/ui/car_detail.html:736
+#: ui/templates/ui/car_detail.html:640 ui/templates/ui/car_detail.html:659
+#: ui/templates/ui/car_detail.html:693 ui/templates/ui/car_detail.html:737
 #: ui/templates/ui/car_list.html:25 ui/templates/ui/car_transfer.html:22
 #: ui/templates/ui/change_carwings_password.html:24
 #: ui/templates/ui/change_command_pin.html:24
 #: ui/templates/ui/change_password.html:24
 #: ui/templates/ui/probeviewer/main.html:79
-#: ui/templates/ui/probeviewer/trip.html:113
+#: ui/templates/ui/probeviewer/trip.html:114
 #: ui/templates/ui/reset_password_confirm.html:20
 #: ui/templates/ui/reset_password_confirm.html:41
 #: ui/templates/ui/setup/step2.html:20 ui/templates/ui/setup/step3.html:20
@@ -1659,9 +1701,9 @@ msgstr "Отключить 2FA"
 msgid "Enable 2FA"
 msgstr "Включить 2FA"
 
-#: ui/templates/ui/account.html:62 ui/templates/ui/car_detail.html:423
-#: ui/templates/ui/car_detail.html:493 ui/templates/ui/car_detail.html:622
-#: ui/templates/ui/car_detail.html:721 ui/templates/ui/car_detail.html:820
+#: ui/templates/ui/account.html:62 ui/templates/ui/car_detail.html:424
+#: ui/templates/ui/car_detail.html:494 ui/templates/ui/car_detail.html:623
+#: ui/templates/ui/car_detail.html:722 ui/templates/ui/car_detail.html:821
 #: ui/templates/ui/setup/step2.html:50 ui/templates/ui/setup/step3.html:36
 #: ui/templates/ui/setup/step4.html:63
 #: ui/templates/ui/snippets/security.html:33
@@ -1752,7 +1794,7 @@ msgstr "Основная информация"
 msgid "TCU Configuration"
 msgstr "Конфигурация TCU"
 
-#: ui/templates/ui/car_detail.html:109 ui/templates/ui/car_detail.html:521
+#: ui/templates/ui/car_detail.html:109 ui/templates/ui/car_detail.html:522
 msgid "Settings"
 msgstr "Настройки"
 
@@ -1799,38 +1841,38 @@ msgid "Car status"
 msgstr "Статус автомобиля"
 
 #: ui/templates/ui/car_detail.html:188 ui/templates/ui/car_detail.html:190
-#: ui/templates/ui/car_detail.html:1278 ui/templates/ui/car_detail.html:1280
-#: ui/templates/ui/car_detail.html:1296
+#: ui/templates/ui/car_detail.html:1279 ui/templates/ui/car_detail.html:1281
+#: ui/templates/ui/car_detail.html:1297
 msgid "On"
 msgstr "Включён"
 
-#: ui/templates/ui/car_detail.html:188 ui/templates/ui/car_detail.html:1278
-#: ui/templates/ui/car_detail.html:1342
+#: ui/templates/ui/car_detail.html:188 ui/templates/ui/car_detail.html:1279
+#: ui/templates/ui/car_detail.html:1344
 msgid "Parked"
 msgstr "На парковке"
 
-#: ui/templates/ui/car_detail.html:190 ui/templates/ui/car_detail.html:1280
+#: ui/templates/ui/car_detail.html:190 ui/templates/ui/car_detail.html:1281
 msgid "Driving"
 msgstr "В движении"
 
-#: ui/templates/ui/car_detail.html:194 ui/templates/ui/car_detail.html:1284
+#: ui/templates/ui/car_detail.html:194 ui/templates/ui/car_detail.html:1285
 #: ui/templates/ui/probeviewer/main.html:487
 #: ui/templates/ui/probeviewer/main.html:561
 msgid "Charging finished"
 msgstr "Зарядка завершена"
 
 #: ui/templates/ui/car_detail.html:196 ui/templates/ui/car_detail.html:340
-#: ui/templates/ui/car_detail.html:1286
+#: ui/templates/ui/car_detail.html:1287
 msgid "Charging"
 msgstr "Заряжается"
 
 #: ui/templates/ui/car_detail.html:198 ui/templates/ui/car_detail.html:345
-#: ui/templates/ui/car_detail.html:1288
+#: ui/templates/ui/car_detail.html:1289
 msgid "Battery heater active"
 msgstr "Активен обогреватель батареи"
 
-#: ui/templates/ui/car_detail.html:200 ui/templates/ui/car_detail.html:1290
-#: ui/templates/ui/car_detail.html:1296
+#: ui/templates/ui/car_detail.html:200 ui/templates/ui/car_detail.html:1291
+#: ui/templates/ui/car_detail.html:1297
 msgid "Off"
 msgstr "Выключен"
 
@@ -1843,7 +1885,7 @@ msgid "On,Off"
 msgstr "Включён,Выключен"
 
 #: ui/templates/ui/car_detail.html:218 ui/templates/ui/car_detail.html:317
-#: ui/templates/ui/car_detail.html:348 ui/templates/ui/car_detail.html:370
+#: ui/templates/ui/car_detail.html:349 ui/templates/ui/car_detail.html:371
 #: ui/templates/ui/ficosa/veh_health.html:29
 #: ui/templates/ui/probeviewer/main.html:168
 #: ui/templates/ui/probeviewer/main.html:196
@@ -1880,7 +1922,7 @@ msgstr "Код автомобиля"
 msgid "Last Connection"
 msgstr "Последнее соединение"
 
-#: ui/templates/ui/car_detail.html:245 ui/templates/ui/car_detail.html:378
+#: ui/templates/ui/car_detail.html:245 ui/templates/ui/car_detail.html:379
 #: ui/templates/ui/car_list.html:33
 msgid "Add"
 msgstr "Добавить"
@@ -1913,25 +1955,25 @@ msgstr "Сб."
 msgid "Sun"
 msgstr "Вс."
 
-#: ui/templates/ui/car_detail.html:275 ui/templates/ui/car_detail.html:2666
+#: ui/templates/ui/car_detail.html:275 ui/templates/ui/car_detail.html:2669
 msgid "Last run"
 msgstr "Последняя команда"
 
-#: ui/templates/ui/car_detail.html:275 ui/templates/ui/car_detail.html:2666
+#: ui/templates/ui/car_detail.html:275 ui/templates/ui/car_detail.html:2669
 msgid "result"
 msgstr "результат"
 
-#: ui/templates/ui/car_detail.html:281 ui/templates/ui/car_detail.html:388
-#: ui/templates/ui/car_detail.html:1716 ui/templates/ui/car_detail.html:2673
+#: ui/templates/ui/car_detail.html:281 ui/templates/ui/car_detail.html:389
+#: ui/templates/ui/car_detail.html:1718 ui/templates/ui/car_detail.html:2676
 msgid "Edit"
 msgstr "Редактировать"
 
-#: ui/templates/ui/car_detail.html:287 ui/templates/ui/car_detail.html:394
-#: ui/templates/ui/car_detail.html:1721 ui/templates/ui/car_detail.html:2678
+#: ui/templates/ui/car_detail.html:287 ui/templates/ui/car_detail.html:395
+#: ui/templates/ui/car_detail.html:1723 ui/templates/ui/car_detail.html:2681
 msgid "Delete"
 msgstr "Удалить"
 
-#: ui/templates/ui/car_detail.html:293 ui/templates/ui/car_detail.html:2621
+#: ui/templates/ui/car_detail.html:293 ui/templates/ui/car_detail.html:2623
 msgid "No timers added"
 msgstr "Таймеры не добавлены"
 
@@ -1963,7 +2005,7 @@ msgstr "Автомобиль включён"
 #: ui/templates/ui/car_detail.html:339 ui/templates/ui/car_detail.html:340
 #: ui/templates/ui/car_detail.html:341 ui/templates/ui/car_detail.html:342
 #: ui/templates/ui/car_detail.html:344 ui/templates/ui/car_detail.html:345
-#: ui/templates/ui/car_detail.html:369
+#: ui/templates/ui/car_detail.html:346 ui/templates/ui/car_detail.html:370
 msgid "Yes,No"
 msgstr "Да,Нет"
 
@@ -1980,7 +2022,7 @@ msgid "Charge bars"
 msgstr "Полосы заряда"
 
 #: ui/templates/ui/car_detail.html:332
-#: ui/templates/ui/probeviewer/trip.html:205
+#: ui/templates/ui/probeviewer/trip.html:241
 msgid "Capacity bars"
 msgstr "Полосы ёмкости"
 
@@ -2017,123 +2059,127 @@ msgid "Battery heater exists"
 msgstr "Имеется подогреватель батареи"
 
 #: ui/templates/ui/car_detail.html:346
+msgid "Battery Lease Contract's Charging Block Active"
+msgstr "Блокировка зарядки по договору лизинга батареи активна"
+
+#: ui/templates/ui/car_detail.html:347
 msgid "Cabin Temperature"
 msgstr "Температура салона"
 
-#: ui/templates/ui/car_detail.html:347
+#: ui/templates/ui/car_detail.html:348
 msgid "Counter"
 msgstr "Счётчик"
 
-#: ui/templates/ui/car_detail.html:355
+#: ui/templates/ui/car_detail.html:356
 msgid "Send location to car"
 msgstr "Отправить местоположение в автомобиль"
 
-#: ui/templates/ui/car_detail.html:357 ui/templates/ui/car_detail.html:411
-#: ui/templates/ui/car_detail.html:420 ui/templates/ui/car_detail.html:1994
+#: ui/templates/ui/car_detail.html:358 ui/templates/ui/car_detail.html:412
+#: ui/templates/ui/car_detail.html:421 ui/templates/ui/car_detail.html:1996
 msgid "Search for locations or enter google/apple maps link"
 msgstr "Поиск местоположения или ввод ссылки на Google/Apple Maps"
 
-#: ui/templates/ui/car_detail.html:361 ui/templates/ui/car_detail.html:1382
+#: ui/templates/ui/car_detail.html:362 ui/templates/ui/car_detail.html:1384
 msgid "Last shared location"
 msgstr "Последнее отправленное местоположение"
 
-#: ui/templates/ui/car_detail.html:363 ui/templates/ui/car_detail.html:1384
+#: ui/templates/ui/car_detail.html:364 ui/templates/ui/car_detail.html:1386
 msgid "No past shared location"
 msgstr "Нет ранее отправленных местоположений"
 
-#: ui/templates/ui/car_detail.html:366
+#: ui/templates/ui/car_detail.html:367
 #: ui/templates/ui/ficosa/configuration.html:27
 msgid "Send"
 msgstr "Отправить"
 
-#: ui/templates/ui/car_detail.html:369
+#: ui/templates/ui/car_detail.html:370
 msgid "At Home"
 msgstr "Дома"
 
-#: ui/templates/ui/car_detail.html:378
+#: ui/templates/ui/car_detail.html:379
 msgid "Route plans"
 msgstr "Планы маршрутов"
 
-#: ui/templates/ui/car_detail.html:400 ui/templates/ui/car_detail.html:1699
+#: ui/templates/ui/car_detail.html:401 ui/templates/ui/car_detail.html:1701
 msgid "No route plans added"
 msgstr "Планы маршрутов не добавлены"
 
-#: ui/templates/ui/car_detail.html:405
+#: ui/templates/ui/car_detail.html:406
 msgid "Add/Edit a route plan"
 msgstr "Добавить/редактировать план маршрута"
 
-#: ui/templates/ui/car_detail.html:407
+#: ui/templates/ui/car_detail.html:408
 msgid "Name of the plan"
 msgstr "Название плана"
 
-#: ui/templates/ui/car_detail.html:410 ui/templates/ui/car_detail.html:643
+#: ui/templates/ui/car_detail.html:411 ui/templates/ui/car_detail.html:644
 msgid "Starting point"
 msgstr "Начальная точка"
 
-#: ui/templates/ui/car_detail.html:417
+#: ui/templates/ui/car_detail.html:418
 msgid "Add waypoint"
 msgstr "Добавить промежуточную точку"
 
-#: ui/templates/ui/car_detail.html:419 ui/templates/ui/car_detail.html:644
+#: ui/templates/ui/car_detail.html:420 ui/templates/ui/car_detail.html:645
 msgid "Destination point"
 msgstr "Пункт назначения"
 
-#: ui/templates/ui/car_detail.html:424
+#: ui/templates/ui/car_detail.html:425
 msgid "Cancel"
 msgstr "Отменить"
 
-#: ui/templates/ui/car_detail.html:434
+#: ui/templates/ui/car_detail.html:435
 msgid "Favorite channels"
 msgstr "Избранное"
 
-#: ui/templates/ui/car_detail.html:443 ui/templates/ui/car_detail.html:444
-#: ui/templates/ui/car_detail.html:445 ui/templates/ui/car_detail.html:446
-#: ui/templates/ui/car_detail.html:447 ui/templates/ui/car_detail.html:448
-#: ui/templates/ui/car_detail.html:449 ui/templates/ui/car_detail.html:452
-#: ui/templates/ui/car_detail.html:453 ui/templates/ui/car_detail.html:454
-#: ui/templates/ui/car_detail.html:455 ui/templates/ui/car_detail.html:456
-#: ui/templates/ui/car_detail.html:457 ui/templates/ui/car_detail.html:458
-#: ui/templates/ui/car_detail.html:459 ui/templates/ui/car_detail.html:2206
+#: ui/templates/ui/car_detail.html:444 ui/templates/ui/car_detail.html:445
+#: ui/templates/ui/car_detail.html:446 ui/templates/ui/car_detail.html:447
+#: ui/templates/ui/car_detail.html:448 ui/templates/ui/car_detail.html:449
+#: ui/templates/ui/car_detail.html:450 ui/templates/ui/car_detail.html:453
+#: ui/templates/ui/car_detail.html:454 ui/templates/ui/car_detail.html:455
+#: ui/templates/ui/car_detail.html:456 ui/templates/ui/car_detail.html:457
+#: ui/templates/ui/car_detail.html:458 ui/templates/ui/car_detail.html:459
+#: ui/templates/ui/car_detail.html:460 ui/templates/ui/car_detail.html:2208
 msgid "No selected channel"
 msgstr "Канал не выбран"
 
-#: ui/templates/ui/car_detail.html:465
+#: ui/templates/ui/car_detail.html:466
 msgid "Custom channels"
 msgstr "Мои каналы"
 
-#: ui/templates/ui/car_detail.html:473 ui/templates/ui/car_detail.html:474
-#: ui/templates/ui/car_detail.html:475 ui/templates/ui/car_detail.html:476
-#: ui/templates/ui/car_detail.html:477 ui/templates/ui/car_detail.html:478
-#: ui/templates/ui/car_detail.html:479 ui/templates/ui/car_detail.html:480
-#: ui/templates/ui/car_detail.html:483 ui/templates/ui/car_detail.html:484
-#: ui/templates/ui/car_detail.html:485 ui/templates/ui/car_detail.html:486
-#: ui/templates/ui/car_detail.html:487 ui/templates/ui/car_detail.html:488
-#: ui/templates/ui/car_detail.html:489 ui/templates/ui/car_detail.html:490
-#: ui/templates/ui/car_detail.html:2282
+#: ui/templates/ui/car_detail.html:474 ui/templates/ui/car_detail.html:475
+#: ui/templates/ui/car_detail.html:476 ui/templates/ui/car_detail.html:477
+#: ui/templates/ui/car_detail.html:478 ui/templates/ui/car_detail.html:479
+#: ui/templates/ui/car_detail.html:480 ui/templates/ui/car_detail.html:481
+#: ui/templates/ui/car_detail.html:484 ui/templates/ui/car_detail.html:485
+#: ui/templates/ui/car_detail.html:486 ui/templates/ui/car_detail.html:487
+#: ui/templates/ui/car_detail.html:488 ui/templates/ui/car_detail.html:489
+#: ui/templates/ui/car_detail.html:490 ui/templates/ui/car_detail.html:491
+#: ui/templates/ui/car_detail.html:2284
 msgid "No content"
 msgstr "Нет контента"
 
-#: ui/templates/ui/car_detail.html:502
+#: ui/templates/ui/car_detail.html:503
 msgid "Type"
 msgstr "Тип"
 
-#: ui/templates/ui/car_detail.html:503
+#: ui/templates/ui/car_detail.html:504
 msgid "Timestamp"
 msgstr "Временная метка"
 
-#: ui/templates/ui/car_detail.html:504
+#: ui/templates/ui/car_detail.html:505
 msgid "Additional Data"
 msgstr "Дополнительные данные"
 
-#: ui/templates/ui/car_detail.html:536
+#: ui/templates/ui/car_detail.html:537
 msgid "Leave empty to use default key"
 msgstr "Оставьте пустым, чтобы использовать заводской ключ"
 
-#: ui/templates/ui/car_detail.html:542
+#: ui/templates/ui/car_detail.html:543
 msgid "Skip authentication from TCU"
 msgstr "Пропустить аутентификацию TCU"
 
-#: ui/templates/ui/car_detail.html:543
+#: ui/templates/ui/car_detail.html:544
 msgid ""
 "On AZE0 (2013) and newer LEAFs, username and password inserted to navi are "
 "not saved due to an error. In this case, check this box to skip the "
@@ -2143,15 +2189,15 @@ msgstr ""
 "навигационную систему, могут не сохраняться из-за ошибки. В этом случае "
 "установите этот флажок, чтобы пропустить аутентификацию."
 
-#: ui/templates/ui/car_detail.html:549
+#: ui/templates/ui/car_detail.html:550
 msgid "Car color"
 msgstr "Цвет автомобиля"
 
-#: ui/templates/ui/car_detail.html:558
+#: ui/templates/ui/car_detail.html:559
 msgid "Maximum GIDs value"
 msgstr "Максимальное значение GID"
 
-#: ui/templates/ui/car_detail.html:560
+#: ui/templates/ui/car_detail.html:561
 #, python-format
 msgid ""
 "OpenCARWINGS will try to auto-detect your battery size and fill this field. "
@@ -2162,7 +2208,7 @@ msgstr ""
 "это поле. Для автомобилей с заменённой батареей введите максимальное "
 "значение GID для новой батареи (SoH 100%%)."
 
-#: ui/templates/ui/car_detail.html:566
+#: ui/templates/ui/car_detail.html:567
 msgid ""
 "On AZE0 (>2013) generation cars, it is possible to see available battery "
 "capacity in percentage. For ZE0, such feature was never implemented. By "
@@ -2174,280 +2220,280 @@ msgstr ""
 "этой опции значение процента на дисплее будет рассчитано, но может быть "
 "неточным."
 
-#: ui/templates/ui/car_detail.html:572
+#: ui/templates/ui/car_detail.html:573
 msgid "Periodic data refresh interval"
 msgstr "Интервал периодического обновления данных"
 
-#: ui/templates/ui/car_detail.html:581
+#: ui/templates/ui/car_detail.html:582
 msgid "Periodic data refresh interval (while driving or charging)"
 msgstr ""
 "Интервал периодического обновления данных (во время движения или зарядки)"
 
-#: ui/templates/ui/car_detail.html:590 ui/templates/ui/setup/step4.html:29
+#: ui/templates/ui/car_detail.html:591 ui/templates/ui/setup/step4.html:29
 msgid "SMS provider"
 msgstr "Провайдер SMS"
 
-#: ui/templates/ui/car_detail.html:623
+#: ui/templates/ui/car_detail.html:624
 msgid "Remove car"
 msgstr "Удалить автомобиль"
 
-#: ui/templates/ui/car_detail.html:642
+#: ui/templates/ui/car_detail.html:643
 msgid "Set car location as"
 msgstr "Установить местоположение автомобиля как"
 
-#: ui/templates/ui/car_detail.html:661
+#: ui/templates/ui/car_detail.html:662
 msgid "Select data channel"
 msgstr "Выберите канал"
 
-#: ui/templates/ui/car_detail.html:696
+#: ui/templates/ui/car_detail.html:697
 msgid "Edit data channel"
 msgstr "Редактировать канал"
 
-#: ui/templates/ui/car_detail.html:697
+#: ui/templates/ui/car_detail.html:698
 msgid "Channel name"
 msgstr "Название канала"
 
-#: ui/templates/ui/car_detail.html:701
+#: ui/templates/ui/car_detail.html:702
 msgid "Channel icon"
 msgstr "Значок канала"
 
-#: ui/templates/ui/car_detail.html:712
+#: ui/templates/ui/car_detail.html:713
 msgid "Data URL"
 msgstr "URL-адрес"
 
-#: ui/templates/ui/car_detail.html:714
+#: ui/templates/ui/car_detail.html:715
 msgid "Data URL format and documentation"
 msgstr "Формат URL-адреса данных и документация"
 
-#: ui/templates/ui/car_detail.html:718
+#: ui/templates/ui/car_detail.html:719
 msgid "Allow sending current vehicle location"
 msgstr "Разрешить отправку текущего местоположения автомобиля"
 
-#: ui/templates/ui/car_detail.html:740 ui/templates/ui/car_detail.html:2381
+#: ui/templates/ui/car_detail.html:741 ui/templates/ui/car_detail.html:2383
 msgid "Edit timer"
 msgstr "Редактировать таймер"
 
-#: ui/templates/ui/car_detail.html:741
+#: ui/templates/ui/car_detail.html:742
 msgid "Timer name"
 msgstr "Имя таймера"
 
-#: ui/templates/ui/car_detail.html:746
+#: ui/templates/ui/car_detail.html:747
 msgid "Enabled"
 msgstr "Включено"
 
-#: ui/templates/ui/car_detail.html:749
+#: ui/templates/ui/car_detail.html:750
 msgid "Select time"
 msgstr "Выберите время"
 
-#: ui/templates/ui/car_detail.html:759
+#: ui/templates/ui/car_detail.html:760
 msgid "Command"
 msgstr "Команда"
 
-#: ui/templates/ui/car_detail.html:769
+#: ui/templates/ui/car_detail.html:770
 msgid "One-time"
 msgstr "Один раз"
 
-#: ui/templates/ui/car_detail.html:772
+#: ui/templates/ui/car_detail.html:773
 msgid "Repeating"
 msgstr "Повторяющийся"
 
-#: ui/templates/ui/car_detail.html:784
+#: ui/templates/ui/car_detail.html:785
 msgid "Select date"
 msgstr "Выберите дату"
 
-#: ui/templates/ui/car_detail.html:790
+#: ui/templates/ui/car_detail.html:791
 msgid "Monday"
 msgstr "Понедельник"
 
-#: ui/templates/ui/car_detail.html:794
+#: ui/templates/ui/car_detail.html:795
 msgid "Tuesday"
 msgstr "Вторник"
 
-#: ui/templates/ui/car_detail.html:798
+#: ui/templates/ui/car_detail.html:799
 msgid "Wednesday"
 msgstr "Среда"
 
-#: ui/templates/ui/car_detail.html:802
+#: ui/templates/ui/car_detail.html:803
 msgid "Thursday"
 msgstr "Четверг"
 
-#: ui/templates/ui/car_detail.html:806
+#: ui/templates/ui/car_detail.html:807
 msgid "Friday"
 msgstr "Пятница"
 
-#: ui/templates/ui/car_detail.html:810
+#: ui/templates/ui/car_detail.html:811
 msgid "Saturday"
 msgstr "Суббота"
 
-#: ui/templates/ui/car_detail.html:814
+#: ui/templates/ui/car_detail.html:815
 msgid "Sunday"
 msgstr "Воскресенье"
 
-#: ui/templates/ui/car_detail.html:846
+#: ui/templates/ui/car_detail.html:847
 msgid "SMS from your device"
 msgstr "SMS с вашего устройства"
 
-#: ui/templates/ui/car_detail.html:1203 ui/templates/ui/car_detail.html:1205
-#: ui/templates/ui/car_detail.html:1209 ui/templates/ui/car_detail.html:1210
-#: ui/templates/ui/car_detail.html:1444 ui/templates/ui/car_detail.html:1452
-#: ui/templates/ui/car_detail.html:1453
+#: ui/templates/ui/car_detail.html:1204 ui/templates/ui/car_detail.html:1206
+#: ui/templates/ui/car_detail.html:1210 ui/templates/ui/car_detail.html:1211
+#: ui/templates/ui/car_detail.html:1446 ui/templates/ui/car_detail.html:1454
+#: ui/templates/ui/car_detail.html:1455
 #: ui/templates/ui/ficosa/configuration.html:331
 #: ui/templates/ui/ficosa/configuration.html:335
 msgid "Error sending command"
 msgstr "Ошибка при отправке команды"
 
-#: ui/templates/ui/car_detail.html:1273
+#: ui/templates/ui/car_detail.html:1274
 msgid "Plugged In"
 msgstr "Подключён"
 
-#: ui/templates/ui/car_detail.html:1273
+#: ui/templates/ui/car_detail.html:1274
 msgid "Unplugged"
 msgstr "Отключён"
 
-#: ui/templates/ui/car_detail.html:1326 ui/templates/ui/car_detail.html:1327
-#: ui/templates/ui/car_detail.html:1328 ui/templates/ui/car_detail.html:1337
-#: ui/templates/ui/car_detail.html:1343 ui/templates/ui/car_detail.html:1344
-#: ui/templates/ui/car_detail.html:1345 ui/templates/ui/car_detail.html:1346
-#: ui/templates/ui/car_detail.html:1351
-#: ui/templates/ui/ficosa/veh_health.html:170
-#: ui/templates/ui/ficosa/veh_health.html:172
+#: ui/templates/ui/car_detail.html:1327 ui/templates/ui/car_detail.html:1328
+#: ui/templates/ui/car_detail.html:1329 ui/templates/ui/car_detail.html:1332
+#: ui/templates/ui/car_detail.html:1339 ui/templates/ui/car_detail.html:1345
+#: ui/templates/ui/car_detail.html:1346 ui/templates/ui/car_detail.html:1347
+#: ui/templates/ui/car_detail.html:1348 ui/templates/ui/car_detail.html:1353
+#: ui/templates/ui/ficosa/veh_health.html:134
+#: ui/templates/ui/ficosa/veh_health.html:136
 msgid "Yes"
 msgstr "Да"
 
-#: ui/templates/ui/car_detail.html:1326 ui/templates/ui/car_detail.html:1327
-#: ui/templates/ui/car_detail.html:1328 ui/templates/ui/car_detail.html:1337
-#: ui/templates/ui/car_detail.html:1343 ui/templates/ui/car_detail.html:1344
-#: ui/templates/ui/car_detail.html:1345 ui/templates/ui/car_detail.html:1346
-#: ui/templates/ui/car_detail.html:1351
-#: ui/templates/ui/ficosa/veh_health.html:170
-#: ui/templates/ui/ficosa/veh_health.html:172
+#: ui/templates/ui/car_detail.html:1327 ui/templates/ui/car_detail.html:1328
+#: ui/templates/ui/car_detail.html:1329 ui/templates/ui/car_detail.html:1332
+#: ui/templates/ui/car_detail.html:1339 ui/templates/ui/car_detail.html:1345
+#: ui/templates/ui/car_detail.html:1346 ui/templates/ui/car_detail.html:1347
+#: ui/templates/ui/car_detail.html:1348 ui/templates/ui/car_detail.html:1353
+#: ui/templates/ui/ficosa/veh_health.html:134
+#: ui/templates/ui/ficosa/veh_health.html:136
 msgid "No"
 msgstr "Нет"
 
-#: ui/templates/ui/car_detail.html:1482 ui/templates/ui/car_detail.html:1490
-#: ui/templates/ui/car_detail.html:1491
+#: ui/templates/ui/car_detail.html:1484 ui/templates/ui/car_detail.html:1492
+#: ui/templates/ui/car_detail.html:1493
 msgid "Error sending location to car"
 msgstr "Ошибка при отправке местоположения в автомобиль"
 
-#: ui/templates/ui/car_detail.html:1484
+#: ui/templates/ui/car_detail.html:1486
 msgid "Location sent!"
 msgstr "Местоположение отправлено!"
 
-#: ui/templates/ui/car_detail.html:1540 ui/templates/ui/car_detail.html:1603
-#: ui/templates/ui/car_detail.html:1874 ui/templates/ui/car_detail.html:1879
-#: ui/templates/ui/car_detail.html:1936 ui/templates/ui/car_detail.html:1949
-#: ui/templates/ui/car_detail.html:1954 ui/templates/ui/car_detail.html:2033
+#: ui/templates/ui/car_detail.html:1542 ui/templates/ui/car_detail.html:1605
+#: ui/templates/ui/car_detail.html:1876 ui/templates/ui/car_detail.html:1881
+#: ui/templates/ui/car_detail.html:1938 ui/templates/ui/car_detail.html:1951
+#: ui/templates/ui/car_detail.html:1956 ui/templates/ui/car_detail.html:2035
 msgid "No address"
 msgstr "Адрес отсутствует"
 
-#: ui/templates/ui/car_detail.html:1550 ui/templates/ui/car_detail.html:1883
+#: ui/templates/ui/car_detail.html:1552 ui/templates/ui/car_detail.html:1885
 msgid "Could not get location from map link"
 msgstr "Не удалось получить местоположение по ссылке на карту"
 
-#: ui/templates/ui/car_detail.html:1556 ui/templates/ui/car_detail.html:1628
-#: ui/templates/ui/car_detail.html:1889 ui/templates/ui/car_detail.html:1970
+#: ui/templates/ui/car_detail.html:1558 ui/templates/ui/car_detail.html:1630
+#: ui/templates/ui/car_detail.html:1891 ui/templates/ui/car_detail.html:1972
 msgid "Error searching locations"
 msgstr "Ошибка при поиске местоположений"
 
-#: ui/templates/ui/car_detail.html:1622 ui/templates/ui/car_detail.html:1964
+#: ui/templates/ui/car_detail.html:1624 ui/templates/ui/car_detail.html:1966
 msgid "Search did not find any locations"
 msgstr "Поиск не нашёл местоположений"
 
-#: ui/templates/ui/car_detail.html:1647
+#: ui/templates/ui/car_detail.html:1649
 msgid "Connection established!"
 msgstr "Соединение установлено!"
 
-#: ui/templates/ui/car_detail.html:1652
+#: ui/templates/ui/car_detail.html:1654
 msgid "Reconnecting..."
 msgstr "Переподключение…"
 
-#: ui/templates/ui/car_detail.html:1978
+#: ui/templates/ui/car_detail.html:1980
 msgid "Cannot add a new waypoint"
 msgstr "Невозможно добавить новую промежуточную точку"
 
-#: ui/templates/ui/car_detail.html:1978
+#: ui/templates/ui/car_detail.html:1980
 msgid "Maximum number of waypoints reached"
 msgstr "Достигнуто максимальное количество промежуточных точек"
 
-#: ui/templates/ui/car_detail.html:2011
+#: ui/templates/ui/car_detail.html:2013
 msgid "Waypoint"
 msgstr "Промежуточная точка"
 
-#: ui/templates/ui/car_detail.html:2063 ui/templates/ui/car_detail.html:2072
-#: ui/templates/ui/car_detail.html:2073
+#: ui/templates/ui/car_detail.html:2065 ui/templates/ui/car_detail.html:2074
+#: ui/templates/ui/car_detail.html:2075
 msgid "Error saving the route plan"
 msgstr "Ошибка при сохранении плана маршрута"
 
-#: ui/templates/ui/car_detail.html:2065
+#: ui/templates/ui/car_detail.html:2067
 msgid "Route plan saved!"
 msgstr "План маршрута сохранён!"
 
-#: ui/templates/ui/car_detail.html:2101
+#: ui/templates/ui/car_detail.html:2103
 msgid "Cannot add new route plan"
 msgstr "Невозможно добавить новый план маршрута"
 
-#: ui/templates/ui/car_detail.html:2101
+#: ui/templates/ui/car_detail.html:2103
 msgid "You have too many route plans, please delete one and try again."
 msgstr "У вас слишком много планов маршрутов, удалите один и попробуйте снова."
 
-#: ui/templates/ui/car_detail.html:2171
+#: ui/templates/ui/car_detail.html:2173
 msgid "Are you sure you want to delete this route plan?"
 msgstr "Вы уверены, что хотите удалить этот план маршрута?"
 
-#: ui/templates/ui/car_detail.html:2184 ui/templates/ui/car_detail.html:2191
-#: ui/templates/ui/car_detail.html:2192
+#: ui/templates/ui/car_detail.html:2186 ui/templates/ui/car_detail.html:2193
+#: ui/templates/ui/car_detail.html:2194
 msgid "Error deleting the route plan"
 msgstr "Ошибка при удалении плана маршрута"
 
-#: ui/templates/ui/car_detail.html:2186
+#: ui/templates/ui/car_detail.html:2188
 msgid "Route plan removed!"
 msgstr "План маршрута удалён!"
 
-#: ui/templates/ui/car_detail.html:2346 ui/templates/ui/car_detail.html:2354
-#: ui/templates/ui/car_detail.html:2355
+#: ui/templates/ui/car_detail.html:2348 ui/templates/ui/car_detail.html:2356
+#: ui/templates/ui/car_detail.html:2357
 msgid "Error saving CARWINGS settings"
 msgstr "Ошибка сохранения настроек CARWINGS"
 
-#: ui/templates/ui/car_detail.html:2348
+#: ui/templates/ui/car_detail.html:2350
 msgid "CARWINGS settings saved!"
 msgstr "Настройки CARWINGS сохранены!"
 
-#: ui/templates/ui/car_detail.html:2361
+#: ui/templates/ui/car_detail.html:2363
 msgid "Add timer"
 msgstr "Добавить таймер"
 
-#: ui/templates/ui/car_detail.html:2512 ui/templates/ui/car_detail.html:2515
+#: ui/templates/ui/car_detail.html:2514 ui/templates/ui/car_detail.html:2517
 msgid "Missing field"
 msgstr "Отсутствует пункт"
 
-#: ui/templates/ui/car_detail.html:2512
+#: ui/templates/ui/car_detail.html:2514
 msgid "Please enter valid date for the timer"
 msgstr "Пожалуйста, введите действительную дату для таймера."
 
-#: ui/templates/ui/car_detail.html:2515
+#: ui/templates/ui/car_detail.html:2517
 msgid "Please select at least one weekday"
 msgstr "Пожалуйста, выберите хотя бы один день недели"
 
-#: ui/templates/ui/car_detail.html:2536 ui/templates/ui/car_detail.html:2544
-#: ui/templates/ui/car_detail.html:2545 ui/templates/ui/car_detail.html:2566
-#: ui/templates/ui/car_detail.html:2574 ui/templates/ui/car_detail.html:2575
+#: ui/templates/ui/car_detail.html:2538 ui/templates/ui/car_detail.html:2546
+#: ui/templates/ui/car_detail.html:2547 ui/templates/ui/car_detail.html:2568
+#: ui/templates/ui/car_detail.html:2576 ui/templates/ui/car_detail.html:2577
 msgid "Error saving the timer"
 msgstr "Ошибка сохранения таймера"
 
-#: ui/templates/ui/car_detail.html:2538 ui/templates/ui/car_detail.html:2568
+#: ui/templates/ui/car_detail.html:2540 ui/templates/ui/car_detail.html:2570
 msgid "Timer saved!"
 msgstr "Таймер сохранен!"
 
-#: ui/templates/ui/car_detail.html:2582
+#: ui/templates/ui/car_detail.html:2584
 msgid "Are you sure you want to delete this timer?"
 msgstr "Вы уверены, что хотите удалить этот таймер?"
 
-#: ui/templates/ui/car_detail.html:2591
+#: ui/templates/ui/car_detail.html:2593
 msgid "Timer removed!"
 msgstr "Таймер удален!"
 
-#: ui/templates/ui/car_detail.html:2594 ui/templates/ui/car_detail.html:2596
-#: ui/templates/ui/car_detail.html:2600 ui/templates/ui/car_detail.html:2601
+#: ui/templates/ui/car_detail.html:2596 ui/templates/ui/car_detail.html:2598
+#: ui/templates/ui/car_detail.html:2602 ui/templates/ui/car_detail.html:2603
 msgid "Error deleting the timer"
 msgstr "Ошибка при удалении таймера"
 
@@ -2672,22 +2718,27 @@ msgid "Mileage"
 msgstr "Пробег"
 
 #: ui/templates/ui/ficosa/veh_health.html:39
+#: ui/templates/ui/probeviewer/trip.html:130
 msgid "Tire Pressures (TPMS)"
 msgstr "Давление в шинах (TPMS)"
 
 #: ui/templates/ui/ficosa/veh_health.html:47
+#: ui/templates/ui/probeviewer/trip.html:171
 msgid "FL"
 msgstr ""
 
 #: ui/templates/ui/ficosa/veh_health.html:52
+#: ui/templates/ui/probeviewer/trip.html:176
 msgid "FR"
 msgstr ""
 
 #: ui/templates/ui/ficosa/veh_health.html:57
+#: ui/templates/ui/probeviewer/trip.html:181
 msgid "RL"
 msgstr ""
 
 #: ui/templates/ui/ficosa/veh_health.html:62
+#: ui/templates/ui/probeviewer/trip.html:186
 msgid "RR"
 msgstr ""
 
@@ -2719,15 +2770,15 @@ msgstr "Долговременные коды неисправностей не 
 msgid "No short trouble codes reported"
 msgstr "Кратковременные коды неисправностей не обнаружены"
 
-#: ui/templates/ui/ficosa/veh_health.html:196
+#: ui/templates/ui/ficosa/veh_health.html:160
 msgid "yes"
 msgstr "Да"
 
-#: ui/templates/ui/ficosa/veh_health.html:196
+#: ui/templates/ui/ficosa/veh_health.html:160
 msgid "no"
 msgstr "Нет"
 
-#: ui/templates/ui/ficosa/veh_health.html:201
+#: ui/templates/ui/ficosa/veh_health.html:165
 msgid "No trouble codes reported"
 msgstr "Коды неисправностей не обнаружены"
 
@@ -2766,13 +2817,13 @@ msgstr "Начать"
 
 #: ui/templates/ui/probeviewer/main.html:10
 #: ui/templates/ui/probeviewer/main.html:58
-#: ui/templates/ui/probeviewer/trip.html:9
-#: ui/templates/ui/probeviewer/trip.html:18
+#: ui/templates/ui/probeviewer/trip.html:10
+#: ui/templates/ui/probeviewer/trip.html:19
 msgid "Vehicle data viewer"
 msgstr "Просмотр данных автомобиля"
 
 #: ui/templates/ui/probeviewer/main.html:52
-#: ui/templates/ui/probeviewer/trip.html:15
+#: ui/templates/ui/probeviewer/trip.html:16
 #: ui/templates/ui/signin_otp_re.html:18
 msgid "Back"
 msgstr "Назад"
@@ -2885,7 +2936,7 @@ msgid "No vehicle data available"
 msgstr "Данные об автомобиле отсутствуют"
 
 #: ui/templates/ui/probeviewer/main.html:185
-#: ui/templates/ui/probeviewer/trip.html:143
+#: ui/templates/ui/probeviewer/trip.html:147
 msgid "A/C usage"
 msgstr "Использование кондиционера"
 
@@ -2895,7 +2946,7 @@ msgstr "Использование фар"
 
 #: ui/templates/ui/probeviewer/main.html:187
 #: ui/templates/ui/probeviewer/main.html:349
-#: ui/templates/ui/probeviewer/trip.html:31
+#: ui/templates/ui/probeviewer/trip.html:32
 msgid "Average speed"
 msgstr "Средняя скорость"
 
@@ -2939,7 +2990,7 @@ msgid "Driving time"
 msgstr "Время в пути"
 
 #: ui/templates/ui/probeviewer/main.html:351
-#: ui/templates/ui/probeviewer/trip.html:163
+#: ui/templates/ui/probeviewer/trip.html:199
 msgid "Regenerated energy"
 msgstr "Регенерированная энергия"
 
@@ -2948,13 +2999,13 @@ msgid "Consumed energy"
 msgstr "Потреблённая энергия"
 
 #: ui/templates/ui/probeviewer/main.html:355
-#: ui/templates/ui/probeviewer/trip.html:82
-#: ui/templates/ui/probeviewer/trip.html:88
+#: ui/templates/ui/probeviewer/trip.html:83
+#: ui/templates/ui/probeviewer/trip.html:89
 msgid "Average consumption"
 msgstr "Среднее потребление"
 
 #: ui/templates/ui/probeviewer/main.html:362
-#: ui/templates/ui/probeviewer/trip.html:149
+#: ui/templates/ui/probeviewer/trip.html:153
 msgid "Average acceleration"
 msgstr "Среднее ускорение"
 
@@ -3094,7 +3145,7 @@ msgstr "Дата и время"
 
 #: ui/templates/ui/probeviewer/main.html:693
 #: ui/templates/ui/probeviewer/main.html:837
-#: ui/templates/ui/probeviewer/trip.html:44
+#: ui/templates/ui/probeviewer/trip.html:45
 msgid "Duration"
 msgstr "Продолжительность"
 
@@ -3172,199 +3223,199 @@ msgstr ""
 "конфиденциальности при загрузке навигации. Однако в зависимости от настроек "
 "сбора данных TCU не вся информация может передаваться."
 
-#: ui/templates/ui/probeviewer/trip.html:18
+#: ui/templates/ui/probeviewer/trip.html:19
 msgid "Trip"
 msgstr "Поездка"
 
-#: ui/templates/ui/probeviewer/trip.html:27
+#: ui/templates/ui/probeviewer/trip.html:28
 msgid "Distance"
 msgstr "Расстояние"
 
-#: ui/templates/ui/probeviewer/trip.html:35
+#: ui/templates/ui/probeviewer/trip.html:36
 msgid "Energy consumed"
 msgstr "Потреблённая энергия"
 
-#: ui/templates/ui/probeviewer/trip.html:72
+#: ui/templates/ui/probeviewer/trip.html:73
 msgid "Eco-trees"
 msgstr "Экодеревья"
 
-#: ui/templates/ui/probeviewer/trip.html:77
+#: ui/templates/ui/probeviewer/trip.html:78
 msgid "Regenerated"
 msgstr "Регенерировано"
 
-#: ui/templates/ui/probeviewer/trip.html:124
+#: ui/templates/ui/probeviewer/trip.html:125
 msgid "Info"
 msgstr "Информация"
 
-#: ui/templates/ui/probeviewer/trip.html:126
+#: ui/templates/ui/probeviewer/trip.html:127
 msgid "Map"
 msgstr "Карта"
 
-#: ui/templates/ui/probeviewer/trip.html:128
+#: ui/templates/ui/probeviewer/trip.html:132
 msgid "Energy"
 msgstr "Энергия"
 
-#: ui/templates/ui/probeviewer/trip.html:129
+#: ui/templates/ui/probeviewer/trip.html:133
 msgid "HV Battery"
 msgstr "Высоковольтная батарея"
 
-#: ui/templates/ui/probeviewer/trip.html:136
+#: ui/templates/ui/probeviewer/trip.html:140
 msgid "Trip end date"
 msgstr "Дата окончания поездки"
 
-#: ui/templates/ui/probeviewer/trip.html:137
+#: ui/templates/ui/probeviewer/trip.html:141
 msgid "Outside temperature at start"
 msgstr "Наружная температура при запуске"
 
-#: ui/templates/ui/probeviewer/trip.html:138
+#: ui/templates/ui/probeviewer/trip.html:142
 msgid "Outside temperature at finish"
 msgstr "Наружная температура на финише"
 
-#: ui/templates/ui/probeviewer/trip.html:139
+#: ui/templates/ui/probeviewer/trip.html:143
 msgid "Max speed"
 msgstr "Максимальная скорость"
 
-#: ui/templates/ui/probeviewer/trip.html:140
+#: ui/templates/ui/probeviewer/trip.html:144
 msgid "Cabin preconditioning before trip"
 msgstr "Подготовка салона перед поездкой"
 
-#: ui/templates/ui/probeviewer/trip.html:141
+#: ui/templates/ui/probeviewer/trip.html:145
 msgid "Highway driving time"
 msgstr "Время движения по трассе"
 
-#: ui/templates/ui/probeviewer/trip.html:142
+#: ui/templates/ui/probeviewer/trip.html:146
 msgid "Optimal highway driving time"
 msgstr "Оптимальное время движения по трассе"
 
-#: ui/templates/ui/probeviewer/trip.html:144
+#: ui/templates/ui/probeviewer/trip.html:148
 msgid "Idling time"
 msgstr "Время холостого хода"
 
-#: ui/templates/ui/probeviewer/trip.html:145
+#: ui/templates/ui/probeviewer/trip.html:149
 msgid "Headlights usage time"
 msgstr "Время использования фар"
 
-#: ui/templates/ui/probeviewer/trip.html:146
+#: ui/templates/ui/probeviewer/trip.html:150
 msgid "Sudden accelerations"
 msgstr "Резкие ускорения"
 
-#: ui/templates/ui/probeviewer/trip.html:147
+#: ui/templates/ui/probeviewer/trip.html:151
 msgid "Sudden decelerations"
 msgstr "Резкие замедления"
 
-#: ui/templates/ui/probeviewer/trip.html:148
+#: ui/templates/ui/probeviewer/trip.html:152
 msgid "Odometer at start"
 msgstr "Показания одометра в начале"
 
-#: ui/templates/ui/probeviewer/trip.html:159
+#: ui/templates/ui/probeviewer/trip.html:195
 msgid "A/C consumption"
 msgstr "Потребление кондиционера"
 
-#: ui/templates/ui/probeviewer/trip.html:160
+#: ui/templates/ui/probeviewer/trip.html:196
 msgid "Auxiliary consumption"
 msgstr "Потребление дополнительного оборудования"
 
-#: ui/templates/ui/probeviewer/trip.html:161
+#: ui/templates/ui/probeviewer/trip.html:197
 msgid "Motor consumption"
 msgstr "Расход мотора"
 
-#: ui/templates/ui/probeviewer/trip.html:162
+#: ui/templates/ui/probeviewer/trip.html:198
 msgid "Idle consumption"
 msgstr "Потребление на холостом ходу"
 
-#: ui/templates/ui/probeviewer/trip.html:164
+#: ui/templates/ui/probeviewer/trip.html:200
 msgid "Sudden acceleration consumption"
 msgstr "Потребление при резком ускорении"
 
-#: ui/templates/ui/probeviewer/trip.html:165
+#: ui/templates/ui/probeviewer/trip.html:201
 msgid "Sudden acceleration time"
 msgstr "Время резкого ускорения"
 
-#: ui/templates/ui/probeviewer/trip.html:166
+#: ui/templates/ui/probeviewer/trip.html:202
 msgid "Non-eco deceleration consumption"
 msgstr "Потребление при неэкономичном замедлении"
 
-#: ui/templates/ui/probeviewer/trip.html:167
+#: ui/templates/ui/probeviewer/trip.html:203
 msgid "Non-eco deceleration time"
 msgstr "Время неэкономичного замедления"
 
-#: ui/templates/ui/probeviewer/trip.html:168
+#: ui/templates/ui/probeviewer/trip.html:204
 msgid "Sudden start consumption"
 msgstr "Потребление при резком старте"
 
-#: ui/templates/ui/probeviewer/trip.html:169
+#: ui/templates/ui/probeviewer/trip.html:205
 msgid "Sudden start time"
 msgstr "Время резкого старта"
 
-#: ui/templates/ui/probeviewer/trip.html:175
+#: ui/templates/ui/probeviewer/trip.html:211
 msgid "Trip start"
 msgstr "Начало поездки"
 
-#: ui/templates/ui/probeviewer/trip.html:177
-#: ui/templates/ui/probeviewer/trip.html:194
+#: ui/templates/ui/probeviewer/trip.html:213
+#: ui/templates/ui/probeviewer/trip.html:230
 msgid "Battery pack temperature"
 msgstr "Температура аккумуляторной батареи"
 
-#: ui/templates/ui/probeviewer/trip.html:179
-#: ui/templates/ui/probeviewer/trip.html:180
-#: ui/templates/ui/probeviewer/trip.html:196
-#: ui/templates/ui/probeviewer/trip.html:197
+#: ui/templates/ui/probeviewer/trip.html:215
+#: ui/templates/ui/probeviewer/trip.html:216
+#: ui/templates/ui/probeviewer/trip.html:232
+#: ui/templates/ui/probeviewer/trip.html:233
 msgid "Energy content"
 msgstr "Энергосодержание"
 
-#: ui/templates/ui/probeviewer/trip.html:181
-#: ui/templates/ui/probeviewer/trip.html:198
+#: ui/templates/ui/probeviewer/trip.html:217
+#: ui/templates/ui/probeviewer/trip.html:234
 msgid "Average cell temperature"
 msgstr "Средняя температура ячеек"
 
-#: ui/templates/ui/probeviewer/trip.html:182
-#: ui/templates/ui/probeviewer/trip.html:199
+#: ui/templates/ui/probeviewer/trip.html:218
+#: ui/templates/ui/probeviewer/trip.html:235
 msgid "Max cell temperature"
 msgstr "Максимальная температура ячеек"
 
-#: ui/templates/ui/probeviewer/trip.html:183
-#: ui/templates/ui/probeviewer/trip.html:200
+#: ui/templates/ui/probeviewer/trip.html:219
+#: ui/templates/ui/probeviewer/trip.html:236
 msgid "Min cell temperature"
 msgstr "Минимальная температура ячеек"
 
-#: ui/templates/ui/probeviewer/trip.html:184
+#: ui/templates/ui/probeviewer/trip.html:220
 msgid "Average cell voltage"
 msgstr "Среднее напряжение ячеек"
 
-#: ui/templates/ui/probeviewer/trip.html:185
+#: ui/templates/ui/probeviewer/trip.html:221
 msgid "Max cell voltage"
 msgstr "Максимальное напряжение ячеек"
 
-#: ui/templates/ui/probeviewer/trip.html:186
+#: ui/templates/ui/probeviewer/trip.html:222
 msgid "Min cell voltage"
 msgstr "Минимальное напряжение ячеек"
 
-#: ui/templates/ui/probeviewer/trip.html:187
+#: ui/templates/ui/probeviewer/trip.html:223
 msgid "AC charges (total?)"
 msgstr "Количество медленных зарядок"
 
-#: ui/templates/ui/probeviewer/trip.html:188
+#: ui/templates/ui/probeviewer/trip.html:224
 msgid "QC charges (total?)"
 msgstr "Количество быстрых зарядок"
 
-#: ui/templates/ui/probeviewer/trip.html:192
+#: ui/templates/ui/probeviewer/trip.html:228
 msgid "Trip end"
 msgstr "Конец поездки"
 
-#: ui/templates/ui/probeviewer/trip.html:201
+#: ui/templates/ui/probeviewer/trip.html:237
 msgid "Accumulated current"
 msgstr "Накопленный ток"
 
-#: ui/templates/ui/probeviewer/trip.html:202
-#: ui/templates/ui/probeviewer/trip.html:206
+#: ui/templates/ui/probeviewer/trip.html:238
+#: ui/templates/ui/probeviewer/trip.html:242
 msgid "SOH"
 msgstr "Состояние батареи (SOH)"
 
-#: ui/templates/ui/probeviewer/trip.html:203
+#: ui/templates/ui/probeviewer/trip.html:239
 msgid "Pack resistance"
 msgstr "Сопротивление батареи"
 
-#: ui/templates/ui/probeviewer/trip.html:207
+#: ui/templates/ui/probeviewer/trip.html:243
 msgid "New battery degradation analysis program"
 msgstr "Новая программа анализа деградации батареи"
 

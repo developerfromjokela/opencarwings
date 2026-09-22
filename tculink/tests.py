@@ -1,3 +1,4 @@
+from django.template.loader import render_to_string
 from django.test import TestCase
 
 from tculink.carwings_proto.autodj.opencarwings import create_consumption_slide, create_ecorecord_slide, \
@@ -83,3 +84,43 @@ class AutoDJImageGenerationTests(TestCase):
 
         with open("slide_info.png", "wb") as f:
             f.write(img_data)
+
+class EmailAlerts(TestCase):
+
+    def test_email_alert_mi(self):
+        text_content = render_to_string(
+            "emails/vehicle_alert.txt",
+            context={
+                "alert": "test",
+                "vehicle": "nick",
+                "range_acon": 50,
+                "range_acoff": 55,
+                "soc": 55,
+                "pluggedin": "yes",
+                "athome": "yes",
+                "imperial": True
+            },
+        )
+
+        print(text_content)
+        print("KM not in text & mi in text", "km" not in text_content, "mi" in text_content)
+        assert "km" not in text_content and "mi" in text_content
+
+    def test_email_alert_km(self):
+        text_content = render_to_string(
+            "emails/vehicle_alert.txt",
+            context={
+                "alert": "test",
+                "vehicle": "nick",
+                "range_acon": 50,
+                "range_acoff": 55,
+                "soc": 55,
+                "pluggedin": "yes",
+                "athome": "yes",
+                "imperial": False
+            },
+        )
+
+        print(text_content)
+        print("KM in text", "km" in text_content)
+        assert "km" in text_content

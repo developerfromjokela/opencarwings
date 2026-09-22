@@ -6,7 +6,7 @@ register = template.Library()
 
 
 @register.simple_tag(takes_context=True)
-def local_dist(context, value, *args, decimals=2):
+def local_dist(context, value, *args, decimals=2, default_imperial=False):
     try:
         # Convert value to float to handle numeric inputs
         value = float(value)
@@ -16,12 +16,17 @@ def local_dist(context, value, *args, decimals=2):
         if decimals < 0:
             decimals = 0
 
+        is_imperial = default_imperial
+
         # Access request from template context
         request = context.get('request') if context else None
 
-        # Check if request exists and user prefers imperial units
         if request and hasattr(request, 'user') and hasattr(request.user,
                                                             'units_imperial') and request.user.units_imperial:
+            is_imperial = True
+
+        # Check if request exists and user prefers imperial units
+        if is_imperial:
             # Convert km to miles (1 km = 0.621371 miles)
             value = value * 0.621371
             return f"{value:.{decimals}f} mi"

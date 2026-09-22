@@ -128,7 +128,8 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',
-    )
+    ),
+    'EXCEPTION_HANDLER': 'api.exception.custom_exception_handler'
 }
 
 

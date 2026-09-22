@@ -2548,7 +2548,7 @@
                     });
         }
 
-        function changeTimerState(id, enabled) {
+        function changeTimerState(id, enabled, target) {
             const progressNotBusy = commandSpinner.style.display === 'none';
             if (progressNotBusy)
                 commandSpinner.style.display = 'inline-block';
@@ -2565,12 +2565,14 @@
                         if (progressNotBusy)
                             commandSpinner.style.display = 'none';
                         if (data.error || data.detail) {
+                            target.checked = !enabled;
                             showNotification({title: '{% translate "Error saving the timer" %}', message: data.error ?? data.detail ?? data.status ?? data, type: 'error'})
                         } else {
                             showNotification({message: "{% translate "Timer saved!" %}", type: "success"});
                         }
                     })
                     .catch(error => {
+                        target.checked = !enabled;
                         if (progressNotBusy)
                             commandSpinner.style.display = 'none';
                         console.error('{% translate "Error saving the timer" %}:', error);
@@ -2634,7 +2636,7 @@
                 checkbox.type = 'checkbox';
                 checkbox.value = 'checked';
                 checkbox.checked = timer.enabled;
-                checkbox.addEventListener('change', (evt) => {changeTimerState(timer.id, evt.target.checked)});
+                checkbox.addEventListener('change', (evt) => {changeTimerState(timer.id, evt.target.checked, evt.target)});
                 checkbox.className = 'p-2 border rounded mt-1 checkboxinput';
 
                 const nameText = document.createTextNode(` ${timer.name}`);

@@ -76,7 +76,8 @@ async def send_email_for_user(car, car_owner, ev_info, location, alert_message, 
             "range_acoff": ev_info.range_acoff,
             "soc": ev_info.soc,
             "pluggedin": "yes" if ev_info.plugged_in else "no",
-            "athome": "yes" if location.home else "no"
+            "athome": "yes" if location.home else "no",
+            "imperial": car_owner.units_imperial
         },
     )
 

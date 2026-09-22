@@ -1,3 +1,5 @@
+from datetime import datetime, timezone
+
 import pytz
 from django.conf import settings
 from drf_yasg.utils import swagger_serializer_method
@@ -123,6 +125,28 @@ class CommandTimerSettingSerializer(serializers.ModelSerializer):
             'last_command_result_display': {'read_only': True},
             'timer_type_display': {'read_only': True},
         }
+
+    def validate(self, attrs):
+        enabled = attrs.get('enabled', getattr(self.instance, 'enabled', False))
+        timer_type = attrs.get('timer_type', getattr(self.instance, 'timer_type', None))
+        date_val = attrs.get('date', getattr(self.instance, 'date', None))
+        time_val = attrs.get('time', getattr(self.instance, 'time', None))
+
+        if enabled and timer_type == 0:
+            if not date_val or not time_val:
+                raise serializers.ValidationError({
+                    'error': 'Both date and time are required for timer_type 0.'
+                })
+
+            combined_datetime = datetime.combine(date_val, time_val).replace(tzinfo=timezone.utc)
+            now_utc = datetime.now(timezone.utc)
+
+            if combined_datetime <= now_utc:
+                raise serializers.ValidationError({
+                    'error': 'Date and time must be in the future.'
+                })
+
+        return attrs
 
 class CarSerializer(serializers.ModelSerializer):
     tcu_configuration = TCUConfigurationSerializer()

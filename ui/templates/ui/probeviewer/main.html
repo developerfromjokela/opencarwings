@@ -32,13 +32,15 @@
             attribution: ''
         }).addTo(absMap);
         let markerIcn = L.divIcon({
-            className: 'rotatable-marker',
-            html: `<div class="marker-wrapper" style="transform: rotate(${heading}deg);">
-                     <img src="${staticRes}arrow.svg" class="marker-icon">
-                   </div>`,
+            className: 'dot-heading-marker',
+            html: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 560 560" style="display:block; background:transparent; border:0;">
+                     <g transform="rotate(${heading} 280 280)">
+                       <path stroke-width="35" fill="#FFF" stroke="#000" d="M280,40L522,525L280,420L38,525z"/>
+                     </g>
+                   </svg>`,
             iconSize: [24, 24],
-            iconAnchor: [12, 24],
-            popupAnchor: [0, -24],
+            iconAnchor: [12, 12],
+            popupAnchor: [0, -12],
           });
         L.marker(latlon, {icon: markerIcn}).addTo(absMap)
         absMap.invalidateSize();
@@ -46,6 +48,9 @@
         maps.push(absMap);
     }
     </script>
+    <style>
+    .dot-heading-marker { background: transparent !important; border: none !important; }
+    </style>
         <div class="max-w-6xl mx-auto py-6 px-4 sm:px-6">
         <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6 space-y-4 sm:space-y-0">
             <div>
@@ -209,53 +214,65 @@
 
             <div id="dotdata" class="tab-content{% if dot_act %} active{% endif %}">
                 {% if dotfiles %}
-                    <ul class="divide-y divide-gray-200">
-                    {% for file in dotfiles %}
-                        <li class="py-3 sm:pb-4">
-                            <a href="{{ file.file.url }}">
-                                <div class="flex-1 min-w-0">
-                                        <p class="text-sm underline font-medium text-gray-900 dark:text-gray-100 truncate">
-                                            {% if file.capture_ts %}
-                                            {{ file.capture_ts }}
-                                            {% else %}
-                                            {{ file.upload_ts }}
-                                            {% endif %}
-                                        </p>
-                                </div>
-                            </a>
-                        </li>
-                    {% endfor %}
-                    </ul>
+                    <div class="flex flex-col md:flex-row gap-3 sm:gap-4" style="min-height: 500px;">
+                    <div id="dotfilesbox" class="mb-6" style="min-width: 350px; max-width: 500px;">
+                        <div class="border border-gray-200 dark:border-gray-500 rounded-lg p-2" style="max-height: 420px; overflow-y: auto;">
+                            <ul class="divide-y divide-gray-200" id="dotfileslist">
+                            {% for file in dotfiles %}
+                                <li class="flex items-center">
+                                    <button type="button" class="dot-file-btn flex-1 text-left px-2 py-3 sm:pb-4 rounded text-gray-700 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors" data-url="{{ file.file.url }}">
+                                        <div class="flex-1 min-w-0">
+                                                <p class="text-sm font-medium truncate">
+                                                    {% if file.capture_ts %}
+                                                    {{ file.capture_ts }}
+                                                    {% else %}
+                                                    {{ file.upload_ts }}
+                                                    {% endif %}
+                                                </p>
+                                        </div>
+                                    </button>
+                                    <a href="{{ file.file.url }}" download title="{% translate "Download CSV" %}" class="flex-shrink-0 p-2 text-gray-400 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400" onclick="event.stopPropagation();">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3"/>
+                                        </svg>
+                                    </a>
+                                </li>
+                            {% endfor %}
+                            </ul>
+                        </div>
 
-                    <nav class="flex items-center justify-center">
-                      <ul class="flex items-center -space-x-px h-8 text-sm">
-                          <li>
-                          <a {% if dotfiles.number|add:'-4' > 1 %} href="?tp={{ dotfiles.number|add:'-5' }}" {% else %}disabled{% endif %} class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 dark:text-gray-300 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700">
-                            <span class="sr-only">Previous</span>
-                            <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
-                            </svg>
-                          </a>
-                        </li>
-
-                        {% for i in dotfiles.paginator.page_range %}
-                            <li>
-                            {% if dotfiles.number == i %}
-                                      <a href="?dot={{ i }}" aria-current="page" class="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700">{{ i }}</a>
-                            {% elif i > dotfiles.number|add:'-5' and i < dotfiles.number|add:'5' %}
-                                <a href="?dot={{ i }}" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 dark:text-gray-300 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">{{ i }}</a>
-                            {% endif %}
+                        <nav class="flex items-center justify-center mt-3">
+                          <ul class="flex items-center -space-x-px h-8 text-sm">
+                              <li>
+                              <a {% if dotfiles.number|add:'-4' > 1 %} href="?tp={{ dotfiles.number|add:'-5' }}" {% else %}disabled{% endif %} class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 dark:text-gray-300 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700">
+                                <span class="sr-only">Previous</span>
+                                <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+                                </svg>
+                              </a>
                             </li>
-                        {% endfor %}
+
+                            {% for i in dotfiles.paginator.page_range %}
+                                <li>
+                                {% if dotfiles.number == i %}
+                                          <a href="?dot={{ i }}" aria-current="page" class="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700">{{ i }}</a>
+                                {% elif i > dotfiles.number|add:'-5' and i < dotfiles.number|add:'5' %}
+                                    <a href="?dot={{ i }}" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 dark:text-gray-300 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">{{ i }}</a>
+                                {% endif %}
+                                </li>
+                            {% endfor %}
 
 
-                        <li><a {% if dotfiles.paginator.num_pages > dotfiles.number|add:'4' %}href="?dot={{ dotfiles.number|add:'5' }}" {% else %}disabled{% endif %} class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 dark:text-gray-300 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700">        <span class="sr-only">Next</span>
-                            <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
-                            </svg></a></li>
+                            <li><a {% if dotfiles.paginator.num_pages > dotfiles.number|add:'4' %}href="?dot={{ dotfiles.number|add:'5' }}" {% else %}disabled{% endif %} class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 dark:text-gray-300 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700">        <span class="sr-only">Next</span>
+                                <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                                </svg></a></li>
 
-                      </ul>
-                    </nav>
+                          </ul>
+                        </nav>
+                    </div>
+                    <div id="dotmap" class="map mb-4 flex-1 rounded-md" style="min-height: 300px;"></div>
+                    </div>
 
                 {% else %}
                 <div class="flex flex-col text-center items-center justify-center">
@@ -1045,6 +1062,7 @@
 
     <!-- Scripts -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/papaparse@5.4.1/papaparse.min.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -1064,6 +1082,10 @@
 
                 if (tabId === 'location') {
                     setTimeout(() => {updateMap()}, 300);
+                }
+
+                if (tabId === 'dotdata' && typeof dotMap !== 'undefined' && dotMap) {
+                    setTimeout(() => {dotMap.invalidateSize()}, 300);
                 }
 
                 if (selectedButton && selectedContent) {
@@ -1133,7 +1155,184 @@
             window.addEventListener('resize', updateArrows);
         });
     </script>
-    {% if locations %}
+    <script>
+        let dotMap;
+        const dotStaticRes = staticRes;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const dotMapEl = document.getElementById('dotmap');
+            if (!dotMapEl) return;
+
+            L.TileLayer.prototype.options.referrerPolicy = 'strict-origin-when-cross-origin';
+            dotMap = L.map('dotmap', { zoomControl: true });
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(dotMap);
+            dotMap.setView([0, 0], 2);
+
+            document.querySelectorAll('.dot-file-btn').forEach((btn) => {
+                btn.addEventListener('click', () => loadDotFile(btn));
+            });
+        });
+
+        function dotGetKeyCI(row, name) {
+            const target = name.toLowerCase();
+            const keys = Object.keys(row);
+            for (let i = 0; i < keys.length; i++) {
+                if (keys[i].trim().toLowerCase() === target) return keys[i];
+            }
+            return null;
+        }
+
+        function dotParseLatLon(value) {
+            if (value === null || value === undefined) return null;
+            const parts = String(value).split(',');
+            if (parts.length !== 2) return null;
+            const lat = parseFloat(parts[0].trim());
+            const lon = parseFloat(parts[1].trim());
+            if (isNaN(lat) || isNaN(lon)) return null;
+            if (lat === 0 && lon === 0) return null;
+            return { lat: lat, lon: lon };
+        }
+        const excludePopup = ["pos", "relative"];
+        function dotBuildPopup(row) {
+            const wrapper = document.createElement('div');
+            wrapper.style.maxHeight = '350px';
+            wrapper.style.overflowY = 'auto';
+
+            const table = document.createElement('table');
+            table.className = 'text-xs';
+
+            const tbody = document.createElement('tbody');
+
+            for (const key of Object.keys(row)) {
+                if (excludePopup.some(s => key.toLowerCase().includes(s.toLowerCase()))) continue;
+                let val = row[key];
+                if (val === null || val === undefined || val === '') continue;
+
+                const tr = document.createElement('tr');
+
+                const th = document.createElement('td');
+                th.className = 'pr-2 font-medium text-gray-600 align-top whitespace-nowrap';
+                th.textContent = key;
+
+                const td = document.createElement('td');
+                td.className = 'text-gray-800 align-top';
+                td.textContent = val;
+
+                tr.appendChild(th);
+                tr.appendChild(td);
+                tbody.appendChild(tr);
+            }
+
+            table.appendChild(tbody);
+            wrapper.appendChild(table);
+            return wrapper;
+        }
+
+        function dotSetActiveFile(button) {
+            document.querySelectorAll('.dot-file-btn').forEach((btn) => {
+                btn.classList.remove('bg-blue-500', 'text-white', 'hover:bg-blue-600');
+            });
+            button.classList.add('bg-blue-500', 'text-white', 'hover:bg-blue-600');
+        }
+
+        function loadDotFile(button) {
+            const url = button.getAttribute('data-url');
+            if (!url) return;
+
+            dotSetActiveFile(button);
+
+            fetch(url)
+                .then((response) => {
+                    if (!response.ok) throw new Error(response.statusText);
+                    return response.text();
+                })
+                .then((csvText) => {
+                    const parsed = Papa.parse(csvText, { header: true, skipEmptyLines: true });
+                    if (parsed.errors && parsed.errors.length > 0) {
+                        console.warn('DOT CSV parse warnings:', parsed.errors);
+                    }
+                    dotRenderPoints(parsed.data);
+                })
+                .catch((error) => {
+                    console.error('{% translate "Error loading DOT file" %}:', error);
+                    showNotification({title: '{% translate "Error loading DOT file" %}', message: error.message ?? error, type: 'error'});
+                });
+        }
+
+        function dotRenderPoints(rows) {
+            if (!dotMap) return;
+
+            dotMap.eachLayer((layer) => { dotMap.removeLayer(layer); });
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(dotMap);
+
+            const latlngs = [];
+            const markers = [];
+
+            rows.forEach((row) => {
+                const gpsKey = dotGetKeyCI(row, 'GPS Position');
+                const naviKey = dotGetKeyCI(row, 'Navi position');
+                const gpsHeadingKey = dotGetKeyCI(row, 'GPS Direction');
+                const naviHeadingKey = dotGetKeyCI(row, 'Navi direction');
+
+                let pos = null;
+                if (gpsKey) pos = dotParseLatLon(row[gpsKey]);
+                if (!pos && naviKey) pos = dotParseLatLon(row[naviKey]);
+                if (!pos) return;
+
+                const latLng = [pos.lat, pos.lon];
+                latlngs.push(latLng);
+
+                let heading = NaN;
+                if (gpsHeadingKey && !isNaN(parseFloat(row[gpsHeadingKey]))) {
+                    heading = parseFloat(row[gpsHeadingKey]);
+                } else if (naviHeadingKey && !isNaN(parseFloat(row[naviHeadingKey]))) {
+                    heading = parseFloat(row[naviHeadingKey]);
+                }
+                let marker;
+
+                if (!isNaN(heading)) {
+                    const markerIcn = L.divIcon({
+                        className: 'dot-heading-marker',
+                        html: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 560 560" style="display:block; background:transparent; border:0;">
+                                 <g transform="rotate(${heading-180} 280 280)">
+                                   <path stroke-width="35" fill="#FFF" stroke="#000" d="M280,40L522,525L280,420L38,525z"/>
+                                 </g>
+                               </svg>`,
+                        iconSize: [24, 24],
+                        iconAnchor: [12, 12],
+                        popupAnchor: [0, -12],
+                    });
+                    marker = L.marker(latLng, { icon: markerIcn });
+                } else {
+                    marker = L.circleMarker(latLng, { color: '#3388ff', radius: 5, fillOpacity: 1.0 });
+                }
+
+                marker.bindPopup(dotBuildPopup(row));
+                markers.push(marker);
+            });
+
+            if (latlngs.length > 1) {
+                L.polyline(latlngs, {
+                    color: 'red',
+                    weight: 3,
+                    opacity: 0.5,
+                    smoothFactor: 1
+                }).addTo(dotMap);
+            }
+
+            markers.forEach((marker) => { marker.addTo(dotMap); });
+
+            if (latlngs.length > 0) {
+                dotMap.fitBounds(latlngs, { padding: [12, 12] });
+            } else {
+                showNotification({title: '{% translate "Error loading DOT file" %}', message: '{% translate "No usable GPS points found in this file." %}', type: 'error'});
+            }
+        }
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {L.TileLayer.prototype.options.referrerPolicy = 'strict-origin-when-cross-origin';mainMap = L.map('locationmap', { zoomControl: true })})
 
@@ -1387,5 +1586,4 @@
 
         renderCalendar();
     </script>
-    {% endif %}
 {% endblock %}

@@ -83,7 +83,7 @@ def local_cons(context, value, *args, decimals=2):
         return value  # Return original value if conversion fails or request is unavailable
 
 @register.simple_tag(takes_context=True)
-def local_tpms(context, value, *args, decimals=2, unit_label=True):
+def local_tpms(context, value, *args, decimals=2, unit_label=True, int_pressure=False):
     try:
         # Ensure decimals is a valid integer and within reasonable bounds
         decimals = int(decimals)
@@ -92,16 +92,16 @@ def local_tpms(context, value, *args, decimals=2, unit_label=True):
 
         # Access request from template context
         request = context.get('request') if context else None
-
+        print(value)
         # Check if request exists and user prefers imperial units
         if request and hasattr(request, 'user') and hasattr(request.user,
                                                             'units_imperial') and request.user.units_imperial:
-            value = convert_tpms_pressure(value)
+            value = convert_tpms_pressure(value, int_pressure=int_pressure, round_val=False)
             unit = " PSI"
             if not unit_label:
                 unit = ""
             return f"{value:.{decimals}f}{unit}"
-        value = convert_tpms_pressure_bar(value)
+        value = convert_tpms_pressure_bar(value, int_pressure=int_pressure, round_val=False)
         unit = " Bar"
         if not unit_label:
             unit = ""

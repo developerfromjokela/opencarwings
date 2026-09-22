@@ -166,25 +166,21 @@
                               <img src="{% static car_static %}" style="height: 440px; width: 260px; object-fit: contain;"/>
                             {% endwith %}
 
-                            <!-- FL -->
                             <div class="vh-tire-reading" style="left: -28px; top: 60px;">
                                 <div class="vh-tire-label">{% translate "FL" %}</div>
-                                <div class="vh-tire-value" id="vh-tpms-fl">{% if trip.tpms_fl %}{% local_tpms trip.tpms_fl decimals=2 unit_label=false %}{% else %}--{% endif %}<span class="vh-tire-unit"> {% local_tpms_unit %}</span></div>
+                                <div class="vh-tire-value" id="vh-tpms-fl">{% if trip.tpms_fl %}{% local_tpms trip.tpms_fl decimals=2 unit_label=False int_pressure=True %}{% else %}--{% endif %}<span class="vh-tire-unit"> {% local_tpms_unit %}</span></div>
                             </div>
-                            <!-- FR -->
                             <div class="vh-tire-reading" style="right: -32px; top: 60px; text-align: right;">
                                 <div class="vh-tire-label">{% translate "FR" %}</div>
-                                <div class="vh-tire-value" id="vh-tpms-fr">{% if trip.tpms_fr %}{% local_tpms trip.tpms_fr decimals=2 unit_label=false %}{% else %}--{% endif %}<span class="vh-tire-unit"> {% local_tpms_unit %}</span></div>
+                                <div class="vh-tire-value" id="vh-tpms-fr">{% if trip.tpms_fr %}{% local_tpms trip.tpms_fr decimals=2 unit_label=False int_pressure=True %}{% else %}--{% endif %}<span class="vh-tire-unit"> {% local_tpms_unit %}</span></div>
                             </div>
-                            <!-- RL -->
                             <div class="vh-tire-reading" style="left: -28px; top: 290px;">
                                 <div class="vh-tire-label">{% translate "RL" %}</div>
-                                <div class="vh-tire-value" id="vh-tpms-rl">{% if trip.tpms_rl %}{% local_tpms trip.tpms_rl decimals=2 unit_label=false %}{% else %}--{% endif %}<span class="vh-tire-unit"> {% local_tpms_unit %}</span></div>
+                                <div class="vh-tire-value" id="vh-tpms-rl">{% if trip.tpms_rl %}{% local_tpms trip.tpms_rl decimals=2 unit_label=False int_pressure=True %}{% else %}--{% endif %}<span class="vh-tire-unit"> {% local_tpms_unit %}</span></div>
                             </div>
-                            <!-- RR -->
                             <div class="vh-tire-reading" style="right: -32px; top: 290px; text-align: right;">
                                 <div class="vh-tire-label">{% translate "RR" %}</div>
-                                <div class="vh-tire-value" id="vh-tpms-rr">{% if trip.tpms_rr %}{% local_tpms trip.tpms_rr decimals=2 unit_label=false %}{% else %}--{% endif %}<span class="vh-tire-unit"> {% local_tpms_unit %}</span></div>
+                                <div class="vh-tire-value" id="vh-tpms-rr">{% if trip.tpms_rr %}{% local_tpms trip.tpms_rr decimals=2 unit_label=False int_pressure=True %}{% else %}--{% endif %}<span class="vh-tire-unit"> {% local_tpms_unit %}</span></div>
                             </div>
                         </div>
                     </div>

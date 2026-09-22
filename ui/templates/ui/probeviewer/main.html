@@ -34,7 +34,7 @@
         let markerIcn = L.divIcon({
             className: 'dot-heading-marker',
             html: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 560 560" style="display:block; background:transparent; border:0;">
-                     <g transform="rotate(${heading} 280 280)">
+                     <g transform="rotate(${(810 - heading) % 360} 280 280)">
                        <path stroke-width="35" fill="#FFF" stroke="#000" d="M280,40L522,525L280,420L38,525z"/>
                      </g>
                    </svg>`,

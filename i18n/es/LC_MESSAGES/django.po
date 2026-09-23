@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-15 11:11+0000\n"
-"PO-Revision-Date: 2026-09-15 14:21+0300\n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2026-09-23 14:15+0000\n"
+"Last-Translator: Diogo Castro <diogorrcastro@gmail.com>\n"
+"Language-Team: Spanish <https://i18n.viaaq.eu/projects/opencarwings-server/"
+"server/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.9\n"
+"X-Generator: Weblate 2026.9.1\n"
 
 #: api/serializers.py:41 ui/forms.py:57
 msgid "PIN codes do not match."
@@ -28,16 +29,16 @@ msgstr "Demasiados temporizadores, elimine uno y vuelva a intentarlo"
 
 #: api/views.py:374 api/views.py:422
 msgid "Invalid PIN, please try again"
-msgstr "PIN incorrecto. Inténtalo de nuevo."
+msgstr "PIN incorrecto, inténtalo de nuevo"
 
 #: api/views.py:377
 msgid "Invalid OTP, please try again"
-msgstr "Código OTP no válido. Inténtalo de nuevo."
+msgstr "Código OTP no válido, inténtalo de nuevo"
 
 #: api/views.py:420
 msgid "Command PIN is not set up, please set up and try again"
 msgstr ""
-"No se ha configurado el PIN de comando; configúralo e inténtalo de nuevo."
+"No se ha configurado el PIN de comando, configúralo e inténtalo de nuevo"
 
 #: api/views.py:435 tculink/coordinators/continental2012.py:25
 #: tculink/coordinators/ficosa2016.py:134
@@ -101,7 +102,7 @@ msgstr "Bocina y luces"
 
 #: db/models.py:35
 msgid "Stop Horn & Light"
-msgstr "Detener bocina y luz"
+msgstr "Detener bocina y luces"
 
 #: db/models.py:36 db/models.py:67
 msgid "Remote Start"
@@ -1031,7 +1032,7 @@ msgstr ""
 
 #: tculink/gdc_proto/ficosa/utils.py:109
 msgid "SIM Settings 1"
-msgstr "Configuración de la SIM 1"
+msgstr "Configuración de tarjeta SIM 1"
 
 #: tculink/gdc_proto/ficosa/utils.py:115 tculink/gdc_proto/ficosa/utils.py:152
 msgid "SIM Pin Code"
@@ -1039,7 +1040,7 @@ msgstr "Código PIN de la tarjeta SIM"
 
 #: tculink/gdc_proto/ficosa/utils.py:117 tculink/gdc_proto/ficosa/utils.py:153
 msgid "SIM Pin Locked"
-msgstr "La tarjeta SIM está bloqueada mediante PIN."
+msgstr "Código PIN de la tarjeta SIM bloqueado"
 
 #: tculink/gdc_proto/ficosa/utils.py:125 tculink/gdc_proto/ficosa/utils.py:157
 msgid "SMSC Number 1"
@@ -1051,7 +1052,7 @@ msgstr "SMSC Número 2"
 
 #: tculink/gdc_proto/ficosa/utils.py:147
 msgid "SIM Settings 2"
-msgstr "SIM Settings 2"
+msgstr "Configuración de tarjeta SIM 2"
 
 #: tculink/gdc_proto/ficosa/utils.py:170
 msgid "Server Settings"
@@ -1059,7 +1060,7 @@ msgstr "Configuración del servidor"
 
 #: tculink/gdc_proto/ficosa/utils.py:175
 msgid "User ID"
-msgstr ""
+msgstr "ID de usuario"
 
 #: tculink/gdc_proto/ficosa/utils.py:176
 msgid "User Password"
@@ -1139,7 +1140,7 @@ msgstr "No se pudo ejecutar {name}"
 #: tculink/httpgateway/ficosa/destinations/remotestart.py:60
 #, python-brace-format
 msgid "Could not execute {name}, please try again later"
-msgstr "No se pudo ejecutar {name}, por favor inténtelo de nuevo más tarde."
+msgstr "No se pudo ejecutar {name}, inténtelo de nuevo más tarde."
 
 #: tculink/httpgateway/ficosa/destinations/door.py:63
 msgid ""
@@ -1813,7 +1814,7 @@ msgstr "Temporizadores"
 
 #: ui/templates/ui/car_detail.html:99
 msgid "Vehicle journal"
-msgstr "Código del vehículo"
+msgstr "Diario del vehículo"
 
 #: ui/templates/ui/car_detail.html:100
 msgid "Location"
@@ -2773,22 +2774,22 @@ msgstr "Presión de los Neumáticos (TPMS)"
 #: ui/templates/ui/ficosa/veh_health.html:47
 #: ui/templates/ui/probeviewer/trip.html:171
 msgid "FL"
-msgstr ""
+msgstr "DI"
 
 #: ui/templates/ui/ficosa/veh_health.html:52
 #: ui/templates/ui/probeviewer/trip.html:176
 msgid "FR"
-msgstr ""
+msgstr "DD"
 
 #: ui/templates/ui/ficosa/veh_health.html:57
 #: ui/templates/ui/probeviewer/trip.html:181
 msgid "RL"
-msgstr ""
+msgstr "TI"
 
 #: ui/templates/ui/ficosa/veh_health.html:62
 #: ui/templates/ui/probeviewer/trip.html:186
 msgid "RR"
-msgstr ""
+msgstr "TD"
 
 #: ui/templates/ui/ficosa/veh_health.html:70
 msgid "Diagnostic Trouble Codes"

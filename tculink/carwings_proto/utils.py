@@ -1,4 +1,6 @@
 import logging
+import math
+
 from django.utils import timezone
 
 from carwings import settings
@@ -186,7 +188,8 @@ def parse_std_location(lat_int, lon_int):
 
 def xml_dms_to_decimal(dms):
     degrees, minutes, seconds = map(float, dms.split(','))
-    return  degrees + (minutes / 60.0) + (seconds / 3600.0)
+    sign = -1.0 if math.copysign(1, degrees) < 0 else 1.0
+    return sign * (abs(degrees) + (minutes / 60.0) + (seconds / 3600.0))
 
 def xml_coordinate_to_float(crd):
     if crd.get('datum', '') != 'wgs84':

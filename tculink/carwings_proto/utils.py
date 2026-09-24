@@ -154,21 +154,26 @@ def get_word_of_month_i18n(num):
     return ordinal_dict.get(num, str(num))
 
 
-def parse_std_location_precise(lat_int, lon_int):
+def parse_std_location_precise(header, lat_int, lon_int):
     """
     Parse 32-bit latitude and longitude into GPS coordinates.
+    Header format:
+    |bit0                    | bit1         | bit2         | bit3 | bit4 | bit5 | bit6 | bit7
+    |0 == JAPAN, 1 == ROTW   | LON negative | LAT Negative |
     """
 
-    def dms_to_decimal(coord_int):
+    def dms_to_decimal(coord_int, minus):
         degrees = (coord_int >> 24) & 0xFF
         minutes = (coord_int >> 16) & 0xFF
         seconds_x100 = coord_int & 0xFFFF
         seconds = seconds_x100 / 100.0
         decimal = degrees + minutes / 60.0 + seconds / 3600.0
+        if minus:
+            decimal = -decimal
         return decimal
 
 
-    return dms_to_decimal(lat_int), dms_to_decimal(lon_int)
+    return dms_to_decimal(lat_int, header & 0x80 > 0 and header & 0x20 > 0), dms_to_decimal(lon_int, header & 0x80 > 0 and header & 0x40 > 0)
 
 def parse_std_location(lat_int, lon_int):
     """

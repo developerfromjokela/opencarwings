@@ -72,8 +72,14 @@ def construct_dms_coordinate(latitude: float, longitude: float) -> bytearray:
     result = bytearray(10)
 
     # Header: 80 00
-    result[0] = 0x80
+    result[0] = 0x80 # BIT0=IS_WORLDWIDE,BIT1=LON_MINUS,BIT2=LAT_MINUS
     result[1] = 0x00
+
+    if latitude < 0:
+        result[0] = result[0] | 0x20
+
+    if longitude < 0:
+        result[0] = result[0] | 0x40
 
     # Longitude: degrees, minutes, seconds*100 (2 bytes, big-endian)
     result[2] = lon_deg

@@ -15,7 +15,7 @@
                     {% with 'car/'|add:car.color|add:'.png' as car_static %}
                       <img src="{% static car_static %}" style="padding-right: 15px; max-height: 60px; object-fit: cover"/>
                     {% endwith %}
-                    <div class="cell-signal signal-{{ car.signal_level }} mr-3 dark:text-white" style="display: {% if car.signal_level > 0 %}block{% else %}none{% endif %};">
+                    <div class="cell-signal signal-{{ car.signal_level }} mr-3 dark:text-white text-center" style="display: {% if car.signal_level > 0 %}block{% else %}none{% endif %};">
                         <div class="signal-bars">
                           <div class="bar"></div>
                           <div class="bar"></div>
@@ -38,7 +38,7 @@
                                     {% else %}
                                         yellow
                                     {% endif %}
-                                "></span>
+                                " title="{% translate "Last connected" %}: {{ car.last_connection }}"></span>
                             {% endwith %}
                         {% endwith %}
                     {% else %}
@@ -48,9 +48,9 @@
             </div>
             <!-- Command Controls -->
             <div class="flex flex-col sm:flex-row sm:items-center sm:space-x-3 space-y-3 sm:space-y-0">
-                <div class="flex items-center space-x-3">
-                    <div class="spinner" id="command-spinner"></div>
-                    <select id="command-select" class="w-full sm:w-auto border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600">
+                <div class="flex items-center">
+                    <div class="spinner mx-3 flex-0" id="command-spinner"></div>
+                    <select id="command-select" class="flex-1 sm:w-auto border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600">
                         {% for value, label in command_choices %}
                             {% if value != 15 %}
                             <option value="{{ value }}">{{ label }}</option>
@@ -58,7 +58,7 @@
                         {% endfor %}
                     </select>
                 </div>
-                <button id="send-command" class="bg-blue-500 text-white rounded-md hover:bg-blue-600 w-full sm:w-auto">{% translate "Send command" %}</button>
+                <button id="send-command" class="bg-blue-500 text-white rounded-md hover:bg-blue-600 flex-1 sm:w-auto">{% translate "Send command" %}</button>
             </div>
         </div>
 
@@ -890,18 +890,10 @@
         const webSockClient = new WebSocketClient("/ws/notif/", ws_connect, ws_msg, ws_err, ws_close, ws_reconnect)
         webSockClient.maxReconnectAttempts = 0;
 
-        function escapeHtml(unsafe) {
-              return unsafe
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
-        }
-
-        function setSignalStrength(strength) {
+        function setSignalStrength(strength, operatorName) {
           const signalDiv = document.querySelector('.cell-signal');
           signalDiv.className = 'cell-signal mr-3'; // Reset classes
+          signalDiv.title = operatorName;
           if (strength >= 1 && strength <= 5) {
               signalDiv.style.display = 'block';
             signalDiv.classList.add(`signal-${strength}`);
@@ -1101,6 +1093,10 @@
         const commandSpinner = document.getElementById('command-spinner');
 
         function updateCommandState(commandType, requested) {
+            if (commandType === 3)
+                commandSpinner.classList.add('success')
+            else
+                commandSpinner.classList.remove('success')
             if ((commandType === -1 && requested) || commandType === 3) {
                 commandSpinner.style.display = 'inline-block';
                 sendCommandButton.disabled = true;
@@ -1359,7 +1355,7 @@
             document.getElementById('tcu_version2').textContent = data.tcu_ver ? data.tcu_ver : '--';
             document.getElementById('navi_version').textContent = data.navi_version ? data.navi_version : '--';
             document.getElementById('carrier').textContent = data.carrier ? data.carrier : '';
-            setSignalStrength(data.signal_level);
+            setSignalStrength(data.signal_level, data.carrier ? data.carrier : '');
 
             // Update connection status color
             const connectionStatus = document.getElementById('connection-status');
@@ -1368,6 +1364,7 @@
                 const currentTime = new Date().getTime();
                 const diffTime = (currentTime - lastConnectionTime) / 1000; // Difference in seconds
                 connectionStatus.className = 'connection-status';
+                connectionStatus.title = `{% translate 'Last connected' %}: ${new Date(data.last_connection).toLocaleString()}`
                 if (diffTime < 3600) { // Within 1 hour
                     connectionStatus.classList.add('green');
                 } else if (diffTime > 1209600) { // Over 2 weeks (14 days)
@@ -1377,6 +1374,7 @@
                 }
             } else {
                 connectionStatus.className = 'connection-status red';
+                connectionStatus.title = '{% translate 'Last connected' %}: N/A'
             }
 
             sendToCarResults.innerHTML = '';

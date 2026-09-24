@@ -142,6 +142,7 @@ def handle_cp(xml_data, files):
         req_id = int.from_bytes(file_content[4:6], byteorder="big")
         logger.info("CP Request ID %d", req_id)
         if req_id == 281:
+            logger.debug("full pload: %s", file_content.hex())
             location_center = parse_std_location_precise(int.from_bytes(file_content[13:17], "big"), int.from_bytes(file_content[9:13], "big"))
             logger.debug("handle availability!! %f, %f", location_center[0], location_center[1])
             chargers = requests.get("https://api.iternio.com/1/get_chargers", params={

@@ -560,9 +560,9 @@ def car_detail(request, vin):
                 form = SettingsForm(request.POST)
                 # check whether it's valid:
                 if form.is_valid():
-                    car.iccid = re.sub('\\D', '', form.cleaned_data['sim_id'])
-                    car.tcu_model = re.sub('\\D', '', form.cleaned_data['tcu_id'])
-                    car.tcu_serial = re.sub('\\D', '', form.cleaned_data['unit_id'])
+                    car.iccid = re.sub('[^0-9A-Z]', '', form.cleaned_data['sim_id'])
+                    car.tcu_model = re.sub('[^0-9A-Z]', '', form.cleaned_data['tcu_id'])
+                    car.tcu_serial = re.sub('[^0-9A-Z]', '', form.cleaned_data['unit_id'])
                     car.nickname = form.cleaned_data['nickname']
                     car.color = form.cleaned_data['color']
                     car.periodic_refresh = form.cleaned_data['periodic_refresh']
@@ -893,8 +893,8 @@ def setup_step2(request):
                 if car_free:
                     request.session['step'] = {
                         "current_step": 3,
-                        "tcu_id": re.sub('\\D', '', form.cleaned_data['tcu_id']),
-                        "unit_id": re.sub('\\D', '', form.cleaned_data['unit_id']),
+                        "tcu_id": re.sub('[^0-9A-Z]', '', form.cleaned_data['tcu_id']),
+                        "unit_id": re.sub('[^0-9A-Z]', '', form.cleaned_data['unit_id']),
                         "sim_id": re.sub('\\D', '', form.cleaned_data['sim_id']),
                         "vin": form.cleaned_data['vin'].strip().upper(),
                     }

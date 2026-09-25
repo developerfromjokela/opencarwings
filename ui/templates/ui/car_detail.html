@@ -529,108 +529,145 @@
             <div id="settings" class="tab-content {% if show_settings %}active{% endif %}">
                 <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">{% translate "Settings" %}</h2>
 
-                <form method="post" class="mt-5">
+                <form method="post" class="mt-5 space-y-3">
                     {% csrf_token %}
 
-                    <label class="block text-gray-700 dark:text-gray-300">{% translate "Nickname" %}</label>
-                    <input type="text" value="{{car.nickname}}" maxlength="64" name="nickname" class="w-full p-2 border rounded dark:bg-gray-600 mt-1" required>
-                    <label class="block text-gray-700 dark:text-gray-300">Navi ID</label>
-                    <input type="text" value="{{car.tcu_serial}}" maxlength="32" name="unit_id" class="w-full p-2 border rounded dark:bg-gray-600 mt-1" required>
-                    <label class="block text-gray-700 dark:text-gray-300 mt-2 ">TCU ID</label>
-                    <input type="text" value="{{car.tcu_model}}" maxlength="32" name="tcu_id" class="w-full p-2 border rounded dark:bg-gray-600 mt-1" required>
-                    <label class="block text-gray-700 dark:text-gray-300 mt-2 ">SIM ID</label>
-                    <input type="text" value="{{car.iccid}}"  maxlength="32" name="sim_id" class="w-full p-2 border rounded dark:bg-gray-600 mt-1" required>
-                    {% if car.tcu_type != 'continental2012' %}
-                    <label class="block text-gray-700 dark:text-gray-300 mt-2 ">HMAC Key</label>
-                    <input type="text" value="{{car.hmac_key}}"  maxlength="32" name="hmac_key" placeholder="{% translate "Leave empty to use default key" %}" class="w-full p-2 border rounded dark:bg-gray-600 mt-1">
-                    {% else %}
-                    <input type="hidden" name="hmac_key" value=""/>
-                    {% endif %}
-                    <div class="block mt-5">
-                        <input type="checkbox" id="disable_auth" value="checked" {% if car.disable_auth %}checked{% endif %} maxlength="22" name="disable_auth" class="p-2 border rounded mt-1 checkboxinput ">
-                        <label for="disable_auth">{% translate "Skip authentication from TCU" %}</label>
-                        <span class="block text-sm text-gray-700 dark:text-gray-400 mt-1">{% translate "On AZE0 (2013) and newer LEAFs, username and password inserted to navi are not saved due to an error. In this case, check this box to skip the authentication" %}</span>
-                    </div>
-
-                    <hr class="my-3"/>
-
-                    <div class="block mt-5">
-                        <label class="block text-gray-700 dark:text-gray-300 mt-2 ">{% translate "Car color" %}</label>
-                        <select name="color" class="w-full periodic-select sm:w-auto border rounded-md dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                            {% for value, label in car_color_choices %}
-                                <option value="{{ value }}" {% if car.color == value %}selected{% endif %}>{{ label }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-
-                    <div class="block" >
-                        <label class="block text-gray-700 dark:text-gray-300 mt-2 ">{% translate "Maximum GIDs value" %}</label>
-                        <input type="text" value="{{car.ev_info.max_gids}}" name="max_gids" class="w-full p-2 border rounded dark:bg-gray-600 mt-1" required>
-                        <span class="block text-sm text-gray-700 dark:text-gray-400 mt-1">{% translate "OpenCARWINGS will try to auto-detect your battery size and fill this field. For cars with swapped/replaced battery, please enter maximum amount of GIDS when battery is new (SoH 100%)." %}</span>
-                    </div>
-
-                    <div class="block mt-5{% if car.vehicle_code1 != 2 %} hidden{% endif %}">
-                        <input type="checkbox" id="force_soc_display" value="checked" {% if car.ev_info.force_soc_display %}checked{% endif %} maxlength="22" name="force_soc_display" class="p-2 border rounded mt-1 checkboxinput">
-                        <label for="force_soc_display">{% translate "Show calculated battery percentage" %}</label>
-                        <span class="block text-sm text-gray-700 dark:text-gray-400 mt-1">{% translate "On AZE0 (>2013) generation cars, it is possible to see available battery capacity in percentage. For ZE0, such feature was never implemented. By enabling this option, 'display' percentage value will be calculated, it may be inaccurate." %}</span>
-                    </div>
-
-                    <hr class="my-3"/>
-
-                    <div class="block mt-5">
-                        <label class="block text-gray-700 dark:text-gray-300 mt-2 ">{% translate "Periodic data refresh interval" %}</label>
-                        <select name="periodic_refresh" class="w-full periodic-select sm:w-auto border rounded-md  dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                            {% for value, label in periodic_refresh_choices %}
-                                <option value="{{ value }}" {% if car.periodic_refresh == value %}selected{% endif %}>{{ label }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-
-                    <div class="block mt-5">
-                        <label class="block text-gray-700 dark:text-gray-300 mt-2 ">{% translate "Periodic data refresh interval (while driving or charging)" %}</label>
-                        <select name="periodic_refresh_running" class="w-full periodic-select sm:w-auto border rounded-md  dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                            {% for value, label in periodic_refresh_running_choices %}
-                                <option value="{{ value }}" {% if car.periodic_refresh_running == value %}selected{% endif %}>{{ label }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-
-                    <hr class="mt-4 mb-4"/>
-                    <label class="mt-4">{% translate "SMS provider" %}</label>
-
-                    {% for provider in providers %}
-                    <div class="flex items-center my-2">
-                        <input id="sms-radio-{{provider.id}}"
-                               {% if provider.id == car.sms_config.provider %} checked {% endif %}
-                               type="radio" value="{{provider.id}}" name="sms-provider" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
-                        <label for="sms-radio-{{provider.id}}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-200">{% translate provider.name %}</label>
-                    </div>
-                    {% endfor %}
-
-                    {% for provider in providers %}
-                    <div id="{{provider.id}}-fields" class="mt-4 space-y-4 hidden provider-fields">
-                        {% for field in provider.fields %}
-                        <div>
-                            <label for="field-{{ field.0 }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-200">{{ field.1 }}</label>
-                            <input type="text" id="field-{{ field.0 }}" value="{{ car.sms_config|get_item:field.0 }}" maxlength="512" name="{{provider.id}}-{{ field.0 }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg dark:bg-gray-700 dark:text-gray-300 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                        </div>
-                        {% endfor %}
-                        {% if provider.help %}
-                        <div class="mt-4">
-                            <div class="p-4 text-sm text-blue-800 dark:text-blue-200 rounded-lg bg-blue-50 dark:bg-blue-800" role="alert">
-                                {{provider.help}}
-                                {% if provider.link %}
-                                    <a href="{{ provider.link }}" target="_blank" class="underline">{{ provider.link }}</a>
-                                {% endif %}
+                    <details class="settings-group border rounded-lg dark:border-gray-600" open>
+                        <summary class="settings-summary cursor-pointer select-none list-none flex items-center justify-between p-3 font-medium text-gray-800 dark:text-gray-200 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                            <span>{% translate "Car Identification" %}</span>
+                            <img src="{% static "icon/chevron.svg" %}" alt="" class="chevron w-4 h-4 transition-transform">
+                        </summary>
+                        <div class="p-3 space-y-3">
+                            <div>
+                                <label class="block text-gray-700 dark:text-gray-300">{% translate "Nickname" %}</label>
+                                <input type="text" value="{{car.nickname}}" maxlength="64" name="nickname" class="w-full p-2 border rounded dark:bg-gray-600 mt-1" required>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 dark:text-gray-300">Navi ID</label>
+                                <input type="text" value="{{car.tcu_serial}}" maxlength="32" name="unit_id" class="w-full p-2 border rounded dark:bg-gray-600 mt-1" required>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 dark:text-gray-300">TCU ID</label>
+                                <input type="text" value="{{car.tcu_model}}" maxlength="32" name="tcu_id" class="w-full p-2 border rounded dark:bg-gray-600 mt-1" required>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 dark:text-gray-300">SIM ID</label>
+                                <input type="text" value="{{car.iccid}}" maxlength="32" name="sim_id" class="w-full p-2 border rounded dark:bg-gray-600 mt-1" required>
+                            </div>
+                            {% if car.tcu_type != 'continental2012' %}
+                            <div>
+                                <label class="block text-gray-700 dark:text-gray-300">HMAC Key</label>
+                                <input type="text" value="{{car.hmac_key}}" maxlength="32" name="hmac_key" placeholder="{% translate "Leave empty to use default key" %}" class="w-full p-2 border rounded dark:bg-gray-600 mt-1">
+                            </div>
+                            {% else %}
+                            <input type="hidden" name="hmac_key" value=""/>
+                            {% endif %}
+                            <div class="flex items-start gap-2">
+                                <input type="checkbox" id="disable_auth" value="checked" {% if car.disable_auth %}checked{% endif %} maxlength="22" name="disable_auth" class="mt-1 border rounded checkboxinput">
+                                <div>
+                                    <label for="disable_auth">{% translate "Skip authentication from TCU" %}</label>
+                                    <span class="block text-sm text-gray-700 dark:text-gray-400 mt-1">{% translate "On AZE0 (2013) and newer LEAFs, username and password inserted to navi are not saved due to an error. In this case, check this box to skip the authentication" %}</span>
+                                </div>
                             </div>
                         </div>
-                        {% endif %}
+                    </details>
+
+                    <details class="settings-group border rounded-lg dark:border-gray-600">
+                        <summary class="settings-summary cursor-pointer select-none list-none flex items-center justify-between p-3 font-medium text-gray-800 dark:text-gray-200 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                            <span>{% translate "Battery & vehicle" %}</span>
+                            <img src="{% static "icon/chevron.svg" %}" alt="" class="chevron w-4 h-4 transition-transform">
+                        </summary>
+                        <div class="p-3 space-y-3">
+                            <div>
+                                <label class="block text-gray-700 dark:text-gray-300">{% translate "Car color" %}</label>
+                                <select name="color" class="w-full periodic-select sm:w-auto border rounded-md dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    {% for value, label in car_color_choices %}
+                                        <option value="{{ value }}" {% if car.color == value %}selected{% endif %}>{{ label }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 dark:text-gray-300">{% translate "Maximum GIDs value" %}</label>
+                                <input type="text" value="{{car.ev_info.max_gids}}" name="max_gids" class="w-full p-2 border rounded dark:bg-gray-600 mt-1" required>
+                                <span class="block text-sm text-gray-700 dark:text-gray-400 mt-1">{% translate "OpenCARWINGS will try to auto-detect your battery size and fill this field. For cars with swapped/replaced battery, please enter maximum amount of GIDS when battery is new (SoH 100%)." %}</span>
+                            </div>
+                            <div class="flex items-start gap-2{% if car.vehicle_code1 != 2 %} hidden{% endif %}">
+                                <input type="checkbox" id="force_soc_display" value="checked" {% if car.ev_info.force_soc_display %}checked{% endif %} maxlength="22" name="force_soc_display" class="mt-1 border rounded checkboxinput">
+                                <div>
+                                    <label for="force_soc_display">{% translate "Show calculated battery percentage" %}</label>
+                                    <span class="block text-sm text-gray-700 dark:text-gray-400 mt-1">{% translate "On AZE0 (>2013) generation cars, it is possible to see available battery capacity in percentage. For ZE0, such feature was never implemented. By enabling this option, 'display' percentage value will be calculated, it may be inaccurate." %}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+
+                    <details class="settings-group border rounded-lg dark:border-gray-600">
+                        <summary class="settings-summary cursor-pointer select-none list-none flex items-center justify-between p-3 font-medium text-gray-800 dark:text-gray-200 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                            <span>{% translate "Refresh intervals" %}</span>
+                            <img src="{% static "icon/chevron.svg" %}" alt="" class="chevron w-4 h-4 transition-transform">
+                        </summary>
+                        <div class="p-3 space-y-3">
+                            <div>
+                                <label class="block text-gray-700 dark:text-gray-300">{% translate "Periodic data refresh interval" %}</label>
+                                <select name="periodic_refresh" class="w-full periodic-select sm:w-auto border rounded-md dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    {% for value, label in periodic_refresh_choices %}
+                                        <option value="{{ value }}" {% if car.periodic_refresh == value %}selected{% endif %}>{{ label }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 dark:text-gray-300">{% translate "Periodic data refresh interval (while driving or charging)" %}</label>
+                                <select name="periodic_refresh_running" class="w-full periodic-select sm:w-auto border rounded-md dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    {% for value, label in periodic_refresh_running_choices %}
+                                        <option value="{{ value }}" {% if car.periodic_refresh_running == value %}selected{% endif %}>{{ label }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </details>
+
+                    <details class="settings-group border rounded-lg dark:border-gray-600">
+                        <summary class="settings-summary cursor-pointer select-none list-none flex items-center justify-between p-3 font-medium text-gray-800 dark:text-gray-200 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                            <span>{% translate "SMS provider" %}</span>
+                            <img src="{% static "icon/chevron.svg" %}" alt="" class="chevron w-4 h-4 transition-transform">
+                        </summary>
+                        <div class="p-3 space-y-3">
+                            {% for provider in providers %}
+                            <div class="flex items-center my-2">
+                                <input id="sms-radio-{{provider.id}}"
+                                       {% if provider.id == car.sms_config.provider %} checked {% endif %}
+                                       type="radio" value="{{provider.id}}" name="sms-provider" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
+                                <label for="sms-radio-{{provider.id}}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-200">{% translate provider.name %}</label>
+                            </div>
+                            {% endfor %}
+
+                            {% for provider in providers %}
+                            <div id="{{provider.id}}-fields" class="mt-4 space-y-4 hidden provider-fields">
+                                {% for field in provider.fields %}
+                                <div>
+                                    <label for="field-{{ field.0 }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-200">{{ field.1 }}</label>
+                                    <input type="text" id="field-{{ field.0 }}" value="{{ car.sms_config|get_item:field.0 }}" maxlength="512" name="{{provider.id}}-{{ field.0 }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg dark:bg-gray-700 dark:text-gray-300 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                </div>
+                                {% endfor %}
+                                {% if provider.help %}
+                                <div class="mt-4">
+                                    <div class="p-4 text-sm text-blue-800 dark:text-blue-200 rounded-lg bg-blue-50 dark:bg-blue-800" role="alert">
+                                        {{provider.help}}
+                                        {% if provider.link %}
+                                            <a href="{{ provider.link }}" target="_blank" class="underline">{{ provider.link }}</a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </details>
+
+                    <div class="pt-2">
+                        <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 me-2 mb-2 mt-5" type="submit">{% translate "Save" %}</button>
+                        <button class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 me-2 mb-2 mt-5" type="button" onclick="removeCarConfirm()">{% translate "Remove car" %}</button>
                     </div>
-                    {% endfor %}
-
-                    <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 me-2 mb-2 mt-5" type="submit">{% translate "Save" %}</button>
-                    <button class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 me-2 mb-2 mt-5" type="button" onclick="removeCarConfirm()">{% translate "Remove car" %}</button>
-
                 </form>
             </div>
         </div>

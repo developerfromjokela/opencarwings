@@ -332,11 +332,11 @@ class ACPEVCalendarChargeSchedule:
         out.extend(Timestamp().encode())
         return _encode_ie(bytes(out), ie_id=0)
 
-
+EV_TEMP_SETTINGS_FLOORS = [16, 60]
 
 class EVTemperaturePayload:
-    units: int = 0        # 1 bit
-    temp_val: int = 0     # 5 bits
+    units: int = 0        # 1 bit, 0 = Celsius, 1 = Fahrenheit
+    temp_val: int = 0     # 5 bits TEMP value is incremental, not full temp. Floor is 16 degC or 60 degF
     enum_mode: int = 0    # 2 bits
     state1: int = 0       # 2 bits
     state2: int = 0       # 2 bits

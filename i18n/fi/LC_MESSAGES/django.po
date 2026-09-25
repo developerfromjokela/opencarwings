@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-25 11:54+0000\n"
-"PO-Revision-Date: 2026-09-25 11:51+0000\n"
+"PO-Revision-Date: 2026-09-26 11:58+0000\n"
 "Last-Translator: Weblate Admin <hello@ruben.fi>\n"
 "Language-Team: Finnish <https://i18n.viaaq.eu/projects/opencarwings-server/"
 "server/fi/>\n"
@@ -1836,7 +1836,7 @@ msgstr "Liitetty,Ei liitetty"
 
 #: ui/templates/ui/car_detail.html:182 ui/templates/ui/car_detail.html:1278
 msgid "No Power"
-msgstr ""
+msgstr "Ei virtaa"
 
 #: ui/templates/ui/car_detail.html:189
 msgid "Car status"
@@ -1864,10 +1864,8 @@ msgid "Charging finished"
 msgstr "Lataus valmis"
 
 #: ui/templates/ui/car_detail.html:201 ui/templates/ui/car_detail.html:1292
-#, fuzzy
-#| msgid "Charging type"
 msgid "Charging interrupted"
-msgstr "Latauksen tyyppi"
+msgstr "Lataus keskeytynyt"
 
 #: ui/templates/ui/car_detail.html:203 ui/templates/ui/car_detail.html:348
 #: ui/templates/ui/car_detail.html:1294
@@ -2052,10 +2050,8 @@ msgid "Plugged in"
 msgstr "Liitetty laturiin"
 
 #: ui/templates/ui/car_detail.html:347
-#, fuzzy
-#| msgid "No ABS data available"
 msgid "Power Available"
-msgstr "ABS-tietoja ei saatavilla"
+msgstr "Virtaa saatavilla latauspistokkeesta"
 
 #: ui/templates/ui/car_detail.html:349
 msgid "Quick-charging"
@@ -2984,7 +2980,7 @@ msgstr "Elinikäisen tietojen matka"
 
 #: ui/templates/ui/probeviewer/main.html:234
 msgid "Download CSV"
-msgstr ""
+msgstr "Lataa CSV"
 
 #: ui/templates/ui/probeviewer/main.html:279
 msgid "No DOT data available"
@@ -3215,14 +3211,12 @@ msgstr "MSN-tiedot voivat tulla näkyviin seuraavan käynnistyksen yhteydessä."
 #: ui/templates/ui/probeviewer/main.html:1259
 #: ui/templates/ui/probeviewer/main.html:1260
 #: ui/templates/ui/probeviewer/main.html:1332
-#, fuzzy
-#| msgid "Error saving the timer"
 msgid "Error loading DOT file"
-msgstr "Virhe ajastimen tallennuksessa"
+msgstr "Virhe DOT-tiedoston latauksessa"
 
 #: ui/templates/ui/probeviewer/main.html:1332
 msgid "No usable GPS points found in this file."
-msgstr ""
+msgstr "Sijaintitietoja ei löytynyt tästä tiedostosta."
 
 #: ui/templates/ui/probeviewer/main.html:1462
 #: ui/templates/ui/probeviewer/main.html:1466

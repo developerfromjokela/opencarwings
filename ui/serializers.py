@@ -240,7 +240,6 @@ class CarUpdatingSerializer(serializers.ModelSerializer):
                 i = str(i)
                 if i in chandict:
                     chanitem = chandict[i]
-                    print(chanitem)
                     if 'name' in chanitem and 'icon' in chanitem and 'url' in chanitem:
                         validated_customchandict[i] = {
                             'name': chanitem['name'][:30],

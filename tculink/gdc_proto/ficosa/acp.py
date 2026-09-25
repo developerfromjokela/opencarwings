@@ -193,11 +193,12 @@ def parse_ev_info(data: bytes, offset: int) -> Tuple[dict, int]:
         raise Exception("Not enough bytes in EV data")
     # Format Doc: EVInfo.ods @ nissan-leaf-tcu repo
 
-    pluggedin = (d[0] & 0b00001001) == 9
+    pluggedin = (d[0] & 0b00001000) > 0
+    plugpower = (d[0] & 0b00000001) == 1
     charging = ((d[0] & 0b01000000) >> 6) == 1
     ignition = ((d[0] & 0b00100000) >> 5) == 1
-    # TODO quickcharge
-    quick_charging = False
+    # TODO quickcharge based on actual data capture, this is just theoretical
+    quick_charging = charging and not pluggedin and not plugpower
     finish_flag = (d[0] & 0b10000000) > 0
     acstate = ((d[0] & 0b00000010) >> 1) == 1
 
@@ -243,6 +244,9 @@ def parse_ev_info(data: bytes, offset: int) -> Tuple[dict, int]:
     if finish_flag:
         charging = False
         quick_charging = False
+    elif quick_charging:
+        pluggedin = True
+        plugpower = True
 
     # 6.6 kW OBC flag
     obc_flag = (d[15] & 0x02) != 0
@@ -266,6 +270,7 @@ def parse_ev_info(data: bytes, offset: int) -> Tuple[dict, int]:
         "acon": range_acon,
         "acoff": range_acoff,
         "pluggedin":pluggedin,
+        "plugpower": plugpower,
         "charging": charging,
         "quick_charging": quick_charging,
         "finish_flag": finish_flag,

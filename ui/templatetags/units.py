@@ -92,7 +92,6 @@ def local_tpms(context, value, *args, decimals=2, unit_label=True, int_pressure=
 
         # Access request from template context
         request = context.get('request') if context else None
-        print(value)
         # Check if request exists and user prefers imperial units
         if request and hasattr(request, 'user') and hasattr(request.user,
                                                             'units_imperial') and request.user.units_imperial:

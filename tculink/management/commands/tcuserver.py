@@ -54,10 +54,11 @@ def set_evinfo(car, ev_info, tcu_info):
     car.ev_info.range_acoff = int(decimal.Decimal(
         (ev_info.get("acoff", 0)*((ev_info.get("gids", 0)*WH_PER_GID_GEN1)/10000))).__round__(0))
     car.ev_info.plugged_in = ev_info.get("pluggedin", False)
+    car.ev_info.power_available = ev_info.get("pluggedin", False)
     car.ev_info.charge_finish = ev_info.get("charging_finish", False)
     car.ev_info.quick_charging = ev_info.get("quick_charging", False)
     car.ev_info.charging = True if car.ev_info.quick_charging else ev_info.get("charging", False)
-
+    car.ev_info.charging_interrupted = False
 
     if car.ev_info.charge_finish:
         car.ev_info.charging = False

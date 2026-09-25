@@ -176,7 +176,12 @@
                         {% if car.ev_info.quick_charging %}
                         <dd id="overview-plugged-in">CHAdeMO</dd>
                         {% else %}
-                        <dd id="overview-plugged-in">{{ car.ev_info.plugged_in|yesno:_("Plugged In,Unplugged") }}</dd>
+                        <dd id="overview-plugged-in">
+                            {{ car.ev_info.plugged_in|yesno:_("Plugged In,Unplugged") }}
+                            {% if car.ev_info.power_available == False %}
+                                ({% translate "No Power" %})
+                            {% endif %}
+                        </dd>
                         {% endif %}
                     </div>
                     <!-- Car Status -->
@@ -192,6 +197,8 @@
                             {% else %}
                                 {% if car.ev_info.charge_finish %}
                                     {% translate "Charging finished" %}
+                                {% elif car.ev_info.charging_interrupted %}
+                                    {% translate "Charging interrupted" %}
                                 {% elif car.ev_info.charging %}
                                     {% translate "Charging" %}
                                 {% elif car.ev_info.batt_heater_status %}
@@ -337,6 +344,7 @@
                     <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Range (AC On)" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="range_acon">{% local_dist car.ev_info.range_acon decimals=0 %}</dd></div>
                     <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Range (AC Off)" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="range_acoff">{% local_dist car.ev_info.range_acoff decimals=0 %}</dd></div>
                     <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Plugged in" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="plugged_in">{{ car.ev_info.plugged_in|yesno:_("Yes,No") }}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Power Available" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="power_available">{{ car.ev_info.power_available|yesno:_("Yes,No") }}</dd></div>
                     <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Charging" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="charging">{{ car.ev_info.charging|yesno:_("Yes,No") }}</dd></div>
                     <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Quick-charging" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="quick_charging">{{ car.ev_info.quick_charging|yesno:_("Yes,No") }}</dd></div>
                     <div><dt class="text-gray-700 dark:text-gray-300 font-semibold">{% translate "Preconditioning (A/C)" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="ac_status">{{ car.ev_info.ac_status|yesno:_("Yes,No") }}</dd></div>
@@ -440,7 +448,7 @@
                   </h2>
                   <div id="favorite-body" class="hidden px-2 py-4 grid grid-cols-1 md:grid-cols-2 gap-3" aria-labelledby="favorite-heading">
                       <div class="grid gap-3">
-                          <div class="datachannel p-2 rounded-md bg-gray-100 dark:bg-gray-600 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">1.</b> <img class="inline h-4 mr-2" src="{% static channels.0.channels.0.icon %}"/> {{ channels.0.channels.0.name }}</div></div>
+                          <div class="datachannel p-2 rounded-md bg-gray-100 dark:bg-gray-600 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">1.</b> <img class="inline h-4 mr-2" src="{% static channels.1.channels.0.icon %}"/> {{ channels.1.channels.0.name }}</div></div>
                           <div class="datachannel p-2 rounded-md bg-gray-100 dark:bg-gray-600 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">2.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No selected channel" %}</span></div><button onclick="editFvtChn(2)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrFvtChn(2)"><i class="mic material-symbols-outlined">delete</i></button></div>
                           <div class="datachannel p-2 rounded-md bg-gray-100 dark:bg-gray-600 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">3.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No selected channel" %}</span></div><button onclick="editFvtChn(3)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrFvtChn(3)"><i class="mic material-symbols-outlined">delete</i></button></div>
                           <div class="datachannel p-2 rounded-md bg-gray-100 dark:bg-gray-600 flex flex-row items-center"><div class="flex-1 flex items-center"><b class="text-md mr-2">4.</b> <img class="inline h-4 mr-2"/><span class="datachannel-name">{% translate "No selected channel" %}</span></div><button onclick="editFvtChn(4)" class="px-1"><i class="mic material-symbols-outlined">edit</i></button><button class="px-1" onclick="clrFvtChn(4)"><i class="mic material-symbols-outlined">delete</i></button></div>
@@ -1267,7 +1275,8 @@
             document.getElementById('overview-soc').textContent = data.ev_info.soc_display > 0 ? `${data.ev_info.soc_display.toFixed(1)}%` : `${data.ev_info.soc.toFixed(1)}%`;
             document.getElementById('overview-range-acon').textContent = distanceLocalize(data.ev_info.range_acon, 0);
             document.getElementById('overview-range-acoff').textContent = distanceLocalize(data.ev_info.range_acoff, 0)
-            document.getElementById('overview-plugged-in').textContent = data.ev_info.quick_charging ? 'CHAdeMO' : (data.ev_info.plugged_in ? '{% translate "Plugged In" %}' : '{% translate "Unplugged" %}');
+            const powerTxt = data.ev_info.power_available ? '' : ' ({% translate "No Power" %})'
+            document.getElementById('overview-plugged-in').textContent = data.ev_info.quick_charging ? 'CHAdeMO' : (data.ev_info.plugged_in ? `{% translate "Plugged In" %}${powerTxt}` : '{% translate "Unplugged" %}');
             // Update Car Status
             const carStatus = document.getElementById('overview-car-status');
             if (data.ev_info.car_running) {
@@ -1279,8 +1288,10 @@
             } else {
                 if (data.ev_info.charge_finish) {
                     carStatus.textContent = '{% translate "Charging finished" %}';
+                } else if (data.ev_info.charging_interrupted) {
+                    carStatus.textContent = `{% translate "Charging interrupted" %}`;
                 } else if (data.ev_info.charging) {
-                    carStatus.textContent = '{% translate "Charging" %}';
+                    carStatus.textContent = `{% translate "Charging" %}`;
                 } else if (data.ev_info.batt_heater_status) {
                     carStatus.textContent = '{% translate "Battery heater active" %}';
                 } else {
@@ -1321,6 +1332,7 @@
             document.getElementById('range_acon').textContent = distanceLocalize(data.ev_info.range_acon, 0);
             document.getElementById('range_acoff').textContent = distanceLocalize(data.ev_info.range_acoff, 0);
             document.getElementById('plugged_in').textContent = data.ev_info.plugged_in ? '{% translate "Yes" %}' : '{% translate "No" %}';
+            document.getElementById('power_available').textContent = data.ev_info.power_available ? '{% translate "Yes" %}' : '{% translate "No" %}';
             document.getElementById('charging').textContent = data.ev_info.charging ? '{% translate "Yes" %}' : '{% translate "No" %}';
             document.getElementById('quick_charging').textContent = data.ev_info.quick_charging ? '{% translate "Yes" %}' : '{% translate "No" %}';
             document.getElementById('gids').textContent = data.ev_info.gids;

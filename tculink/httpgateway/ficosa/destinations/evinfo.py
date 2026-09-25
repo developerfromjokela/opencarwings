@@ -34,10 +34,13 @@ def handle(bin_data: bytes, acp_data: dict, car: Car, source_id: int, destinatio
 
     # Update car EVInfo
     c_ev_info = car.ev_info
+    c_ev_info.charging_interrupted = ev_info["charging"] and ev_info["pluggedin"] and not ev_info["plugpower"]
     c_ev_info.range_acon = ev_info["acon"]
     c_ev_info.range_acoff = ev_info["acoff"]
     c_ev_info.plugged_in = ev_info["pluggedin"]
-    c_ev_info.charging = ev_info["charging"]
+    c_ev_info.power_available = ev_info["plugpower"]
+    c_ev_info.charge_finish = ev_info["finish_flag"]
+    c_ev_info.charging = ev_info["charging"] if not c_ev_info.charging_interrupted else False
     c_ev_info.quick_charging = ev_info["quick_charging"]
     c_ev_info.ac_status = ev_info["acstate"]
     c_ev_info.charge_bars = ev_info["chargebars"]

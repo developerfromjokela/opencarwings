@@ -52,7 +52,7 @@ def handle(bin_data: bytes, acp_data: dict, car: Car, source_id: int, destinatio
 
 
     if probe_header["data_type"] == 5:
-        car.ev_info.car_running = destination_id == 0xed
+        car.ev_info.car_running = True
         car.ev_info.charging = False
         car.ev_info.plugged_in = False
         car.ev_info.save()
@@ -129,10 +129,9 @@ def handle(bin_data: bytes, acp_data: dict, car: Car, source_id: int, destinatio
         parsed_crm_info = parse_crm_datablocks(datablocks)
 
         # only one trip at a time. merge all separate trip objects into one
-        if probe_service == 0x51:
-            if "trips" in parsed_crm_info and len(parsed_crm_info["trips"]) > 0:
-                unified_trip = {k: v for d in parsed_crm_info["trips"] for k, v in d.items()}
-                parsed_crm_info["trips"] = [unified_trip]
+        if "trips" in parsed_crm_info and len(parsed_crm_info["trips"]) > 0:
+            unified_trip = {k: v for d in parsed_crm_info["trips"] for k, v in d.items()}
+            parsed_crm_info["trips"] = [unified_trip]
 
         update_crm_to_db(car, parsed_crm_info)
 

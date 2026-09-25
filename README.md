@@ -4,6 +4,7 @@
 [![Patreon](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-patreon.vercel.app%2Fapi%3Fusername%3Ddeveloperfromjokela%26type%3Dpatrons)](https://patreom.com/developerfromjokela)
 [![Liberapay patrons](https://img.shields.io/liberapay/patrons/developerfromjokela?style=plastic&logo=liberapay&label=liberapay&link=https%3A%2F%2Fliberapay.com%2Fdeveloperfromjokela%2F)](https://liberapay.com/developerfromjokela/)
 [![](https://dcbadge.limes.pink/api/server/ABWfGrXT7?style=flat)](https://discord.gg/ABWfGrXT7)
+[![Translation status](https://i18n.viaaq.eu/widget/opencarwings-server/server/svg-badge.svg?capitalize=1)](https://i18n.viaaq.eu/engage/opencarwings-server/)
 <img src="https://raw.githubusercontent.com/developerfromjokela/opencarwings/refs/heads/main/ui/static/slideshow/img0.jpeg" height="700px">     
 Server for running CARWINGS services for Nissan LEAF.
 

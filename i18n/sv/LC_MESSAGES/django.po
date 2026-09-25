@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-15 11:11+0000\n"
+"POT-Creation-Date: 2026-09-25 11:54+0000\n"
 "PO-Revision-Date: 2026-09-24 19:32+0000\n"
 "Last-Translator: Rikard Svenman <rsvenman@gmail.com>\n"
 "Language-Team: Swedish <https://i18n.viaaq.eu/projects/opencarwings-server/"
@@ -164,7 +164,7 @@ msgstr "Kommando tog för lång tid"
 #: ui/templates/ui/change_carwings_password.html:17
 #: ui/templates/ui/change_command_pin.html:17
 #: ui/templates/ui/change_password.html:17
-#: ui/templates/ui/probeviewer/main.html:72
+#: ui/templates/ui/probeviewer/main.html:77
 #: ui/templates/ui/probeviewer/trip.html:107
 #: ui/templates/ui/reset_password_confirm.html:34
 #: ui/templates/ui/setup/step2.html:13 ui/templates/ui/setup/step3.html:13
@@ -214,7 +214,7 @@ msgstr "Väntar"
 #: ui/templates/ui/change_carwings_password.html:16
 #: ui/templates/ui/change_command_pin.html:16
 #: ui/templates/ui/change_password.html:16
-#: ui/templates/ui/probeviewer/main.html:71
+#: ui/templates/ui/probeviewer/main.html:76
 #: ui/templates/ui/probeviewer/trip.html:106
 #: ui/templates/ui/reset_password_complete.html:10
 #: ui/templates/ui/reset_password_confirm.html:33
@@ -235,11 +235,11 @@ msgstr "Inväntar svar"
 msgid "Park"
 msgstr "Park"
 
-#: db/models.py:85 ui/templates/ui/car_detail.html:1344
+#: db/models.py:85 ui/templates/ui/car_detail.html:1352
 msgid "Drive"
 msgstr "Drive"
 
-#: db/models.py:86 ui/templates/ui/car_detail.html:1344
+#: db/models.py:86 ui/templates/ui/car_detail.html:1352
 msgid "Reverse"
 msgstr "Back"
 
@@ -762,127 +762,127 @@ msgid ""
 "{maxtemp} degrees celsius, lowest temperature of {mintemp} degrees celsius\n"
 msgstr ""
 
-#: tculink/carwings_proto/utils.py:144
+#: tculink/carwings_proto/utils.py:146
 msgid "first"
 msgstr ""
 
-#: tculink/carwings_proto/utils.py:144
+#: tculink/carwings_proto/utils.py:146
 msgid "second"
 msgstr ""
 
-#: tculink/carwings_proto/utils.py:144
+#: tculink/carwings_proto/utils.py:146
 msgid "third"
 msgstr ""
 
-#: tculink/carwings_proto/utils.py:144
+#: tculink/carwings_proto/utils.py:146
 msgid "fourth"
 msgstr ""
 
-#: tculink/carwings_proto/utils.py:144
+#: tculink/carwings_proto/utils.py:146
 msgid "fifth"
 msgstr ""
 
-#: tculink/carwings_proto/utils.py:145
+#: tculink/carwings_proto/utils.py:147
 msgid "sixth"
 msgstr ""
 
-#: tculink/carwings_proto/utils.py:145
+#: tculink/carwings_proto/utils.py:147
 msgid "seventh"
 msgstr ""
 
-#: tculink/carwings_proto/utils.py:145
+#: tculink/carwings_proto/utils.py:147
 msgid "eighth"
 msgstr ""
 
-#: tculink/carwings_proto/utils.py:145
+#: tculink/carwings_proto/utils.py:147
 msgid "ninth"
 msgstr ""
 
-#: tculink/carwings_proto/utils.py:145
+#: tculink/carwings_proto/utils.py:147
 msgid "tenth"
 msgstr ""
 
-#: tculink/carwings_proto/utils.py:146
+#: tculink/carwings_proto/utils.py:148
 msgid "eleventh"
 msgstr ""
 
-#: tculink/carwings_proto/utils.py:146
+#: tculink/carwings_proto/utils.py:148
 msgid "twelfth"
 msgstr ""
 
-#: tculink/carwings_proto/utils.py:146
+#: tculink/carwings_proto/utils.py:148
 msgid "thirteenth"
 msgstr ""
 
-#: tculink/carwings_proto/utils.py:146
+#: tculink/carwings_proto/utils.py:148
 msgid "fourteenth"
 msgstr ""
 
-#: tculink/carwings_proto/utils.py:146
+#: tculink/carwings_proto/utils.py:148
 msgid "fifteenth"
 msgstr ""
 
-#: tculink/carwings_proto/utils.py:147
+#: tculink/carwings_proto/utils.py:149
 msgid "sixteenth"
 msgstr ""
 
-#: tculink/carwings_proto/utils.py:147
+#: tculink/carwings_proto/utils.py:149
 msgid "seventeenth"
 msgstr ""
 
-#: tculink/carwings_proto/utils.py:147
+#: tculink/carwings_proto/utils.py:149
 msgid "eighteenth"
 msgstr ""
 
-#: tculink/carwings_proto/utils.py:147
+#: tculink/carwings_proto/utils.py:149
 msgid "nineteenth"
 msgstr ""
 
-#: tculink/carwings_proto/utils.py:147
+#: tculink/carwings_proto/utils.py:149
 msgid "twentieth"
 msgstr ""
 
-#: tculink/carwings_proto/utils.py:148
+#: tculink/carwings_proto/utils.py:150
 msgid "twenty-first"
 msgstr ""
 
-#: tculink/carwings_proto/utils.py:148
+#: tculink/carwings_proto/utils.py:150
 msgid "twenty-second"
 msgstr ""
 
-#: tculink/carwings_proto/utils.py:148
+#: tculink/carwings_proto/utils.py:150
 msgid "twenty-third"
 msgstr ""
 
-#: tculink/carwings_proto/utils.py:148
+#: tculink/carwings_proto/utils.py:150
 msgid "twenty-fourth"
 msgstr ""
 
-#: tculink/carwings_proto/utils.py:148
+#: tculink/carwings_proto/utils.py:150
 msgid "twenty-fifth"
 msgstr ""
 
-#: tculink/carwings_proto/utils.py:149
+#: tculink/carwings_proto/utils.py:151
 msgid "twenty-sixth"
 msgstr ""
 
-#: tculink/carwings_proto/utils.py:149
+#: tculink/carwings_proto/utils.py:151
 msgid "twenty-seventh"
 msgstr ""
 
-#: tculink/carwings_proto/utils.py:149
+#: tculink/carwings_proto/utils.py:151
 msgid "twenty-eighth"
 msgstr ""
 
-#: tculink/carwings_proto/utils.py:149
+#: tculink/carwings_proto/utils.py:151
 msgid "twenty-ninth"
 msgstr ""
 
-#: tculink/carwings_proto/utils.py:149
+#: tculink/carwings_proto/utils.py:151
 msgid "thirtieth"
 msgstr ""
 
-#: tculink/carwings_proto/utils.py:150
+#: tculink/carwings_proto/utils.py:152
 msgid "thirty-first"
 msgstr ""
 
@@ -1098,205 +1098,205 @@ msgstr ""
 msgid "Door Lock/Unlock"
 msgstr ""
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:87
-#: tculink/management/commands/tcuserver.py:296
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:90
+#: tculink/management/commands/tcuserver.py:297
 msgid "Vehicle is unplugged. Please check the situation if necessary."
 msgstr ""
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:88
-#: tculink/management/commands/tcuserver.py:297
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:91
+#: tculink/management/commands/tcuserver.py:298
 msgid "Charger unplugged notification"
 msgstr ""
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:96
-#: tculink/management/commands/tcuserver.py:304
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:99
+#: tculink/management/commands/tcuserver.py:305
 msgid ""
 "The A/C preconditioning command could not be executed. One of the reasons "
 "behind such error could be: a) low state of charge b) command already "
 "executed c) TCU error."
 msgstr ""
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:98
-#: tculink/management/commands/tcuserver.py:306
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:101
+#: tculink/management/commands/tcuserver.py:307
 msgid "A/C preconditioning error"
 msgstr ""
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:104
-#: tculink/management/commands/tcuserver.py:312
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:107
+#: tculink/management/commands/tcuserver.py:313
 msgid "A/C preconditioning started"
 msgstr ""
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:105
-#: tculink/management/commands/tcuserver.py:313
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:108
+#: tculink/management/commands/tcuserver.py:314
 msgid "A/C preconditioning has been successfully switched on"
 msgstr ""
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:109
-#: tculink/management/commands/tcuserver.py:317
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:112
+#: tculink/management/commands/tcuserver.py:318
 msgid "The A/C preconditioning has finished unexpectedly"
 msgstr ""
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:110
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:122
-#: tculink/management/commands/tcuserver.py:318
-#: tculink/management/commands/tcuserver.py:331
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:113
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:125
+#: tculink/management/commands/tcuserver.py:319
+#: tculink/management/commands/tcuserver.py:332
 msgid "A/C precondition stopped"
 msgstr ""
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:115
-#: tculink/management/commands/tcuserver.py:323
-#: tculink/management/commands/tcuserver.py:410
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:118
+#: tculink/management/commands/tcuserver.py:324
+#: tculink/management/commands/tcuserver.py:411
 msgid ""
 "The A/C preconditioning is finished and switched off after running certain "
 "amount of time."
 msgstr ""
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:117
-#: tculink/management/commands/tcuserver.py:325
-#: tculink/management/commands/tcuserver.py:412
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:120
+#: tculink/management/commands/tcuserver.py:326
+#: tculink/management/commands/tcuserver.py:413
 msgid "A/C precondition finished"
 msgstr ""
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:123
-#: tculink/management/commands/tcuserver.py:332
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:126
+#: tculink/management/commands/tcuserver.py:333
 msgid "A/C preconditioning has been successfully switched off"
 msgstr ""
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:127
-#: tculink/management/commands/tcuserver.py:336
-#: tculink/management/commands/tcuserver.py:405
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:130
+#: tculink/management/commands/tcuserver.py:337
+#: tculink/management/commands/tcuserver.py:406
 msgid "A/C precondition notification"
 msgstr ""
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:128
-#: tculink/management/commands/tcuserver.py:337
-#: tculink/management/commands/tcuserver.py:359
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:131
+#: tculink/management/commands/tcuserver.py:338
+#: tculink/management/commands/tcuserver.py:360
 msgid "A/C preconditioning already switched off"
 msgstr ""
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:133
-#: tculink/management/commands/tcuserver.py:343
-#: tculink/management/commands/tcuserver.py:416
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:136
+#: tculink/management/commands/tcuserver.py:344
+#: tculink/management/commands/tcuserver.py:417
 msgid "A/C preconditioning fault"
 msgstr ""
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:136
-#: tculink/management/commands/tcuserver.py:346
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:139
+#: tculink/management/commands/tcuserver.py:347
 msgid "The vehicle failed to start A/C preconditioning"
 msgstr ""
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:139
-#: tculink/management/commands/tcuserver.py:349
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:142
+#: tculink/management/commands/tcuserver.py:350
 msgid "The A/C preconditioning has finished with error"
 msgstr ""
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:142
-#: tculink/management/commands/tcuserver.py:356
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:145
+#: tculink/management/commands/tcuserver.py:357
 msgid "A/C preconditioning could not be switched off"
 msgstr ""
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:167
-#: tculink/management/commands/tcuserver.py:380
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:170
+#: tculink/management/commands/tcuserver.py:381
 msgid "Charging notification"
 msgstr ""
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:173
-#: tculink/management/commands/tcuserver.py:386
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:176
+#: tculink/management/commands/tcuserver.py:387
 msgid "Vehicle has finished charging."
 msgstr ""
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:174
-#: tculink/management/commands/tcuserver.py:387
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:177
+#: tculink/management/commands/tcuserver.py:388
 msgid "Charge finish notification"
 msgstr ""
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:177
-#: tculink/management/commands/tcuserver.py:390
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:180
+#: tculink/management/commands/tcuserver.py:391
 msgid "Vehicle has finished quick-charging."
 msgstr ""
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:178
-#: tculink/management/commands/tcuserver.py:391
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:181
+#: tculink/management/commands/tcuserver.py:392
 msgid "Quick-charge finish notification"
 msgstr ""
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:181
-#: tculink/management/commands/tcuserver.py:394
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:184
+#: tculink/management/commands/tcuserver.py:395
 msgid "Charge interruption notification"
 msgstr ""
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:184
-#: tculink/management/commands/tcuserver.py:397
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:187
+#: tculink/management/commands/tcuserver.py:398
 msgid "Charging has been stopped due to an interruption"
 msgstr ""
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:186
-#: tculink/management/commands/tcuserver.py:399
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:189
+#: tculink/management/commands/tcuserver.py:400
 msgid "Quick-charging has been stopped due to an interruption"
 msgstr ""
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:204
-#: tculink/management/commands/tcuserver.py:439
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:207
+#: tculink/management/commands/tcuserver.py:440
 msgid "Charge start command executed"
 msgstr ""
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:205
-#: tculink/management/commands/tcuserver.py:440
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:208
+#: tculink/management/commands/tcuserver.py:441
 msgid ""
 "Charging command has been sent successfully. If vehicle did not start "
 "charging, please check that the charging cable is connected and power is "
 "available."
 msgstr ""
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:210
-#: tculink/management/commands/tcuserver.py:443
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:213
+#: tculink/management/commands/tcuserver.py:444
 msgid "Charge start command executed with failure"
 msgstr ""
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:211
-#: tculink/management/commands/tcuserver.py:444
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:214
+#: tculink/management/commands/tcuserver.py:445
 msgid ""
 "Charging command has been sent successfully, but the vehicle did not start "
 "charging."
 msgstr ""
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:216
-#: tculink/management/commands/tcuserver.py:449
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:219
+#: tculink/management/commands/tcuserver.py:450
 msgid "Charge start failure"
 msgstr ""
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:217
-#: tculink/management/commands/tcuserver.py:450
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:220
+#: tculink/management/commands/tcuserver.py:451
 msgid "Charge start command failed to execute."
 msgstr ""
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:241
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:266
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:244
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:269
 msgid "Unblock charge failure"
 msgstr ""
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:242
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:245
 msgid "Unblocking charge features could not be completed."
 msgstr ""
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:246
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:271
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:249
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:274
 msgid "Unblock charging"
 msgstr ""
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:247
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:250
 msgid "Unblock request sent successfully."
 msgstr ""
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:267
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:270
 msgid "Unblocking charge features failed."
 msgstr ""
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:272
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:275
 msgid "Charging has been unblocked successfully."
 msgstr ""
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:272
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:275
 msgid "Failed to unblock charging, CAN Error!"
 msgstr ""
 
@@ -1323,45 +1323,45 @@ msgstr ""
 msgid "Received new health report!"
 msgstr ""
 
-#: tculink/management/commands/tcuserver.py:164
+#: tculink/management/commands/tcuserver.py:165
 msgid "TCU ID does not match with specified ID, please double check!"
 msgstr ""
 
-#: tculink/management/commands/tcuserver.py:173
+#: tculink/management/commands/tcuserver.py:174
 msgid "Navi ID does not match with specified ID, please double check!"
 msgstr ""
 
-#: tculink/management/commands/tcuserver.py:182
+#: tculink/management/commands/tcuserver.py:183
 msgid "Sim ID does not match with specified ID, please double check!"
 msgstr ""
 
-#: tculink/management/commands/tcuserver.py:200
+#: tculink/management/commands/tcuserver.py:201
 msgid ""
 "Authentication failed, username or password is missing! Please sign in using "
 "navigation unit."
 msgstr ""
 
-#: tculink/management/commands/tcuserver.py:218
+#: tculink/management/commands/tcuserver.py:219
 msgid ""
 "Authentication failed, username or password is incorrect! Please sign in "
 "using navigation unit."
 msgstr ""
 
-#: tculink/management/commands/tcuserver.py:352
-#: tculink/management/commands/tcuserver.py:419
+#: tculink/management/commands/tcuserver.py:353
+#: tculink/management/commands/tcuserver.py:420
 msgid ""
 "The A/C preconditioning is finished and switched off because of an error"
 msgstr ""
 
-#: tculink/management/commands/tcuserver.py:472
+#: tculink/management/commands/tcuserver.py:473
 msgid "Battery heater notification"
 msgstr ""
 
-#: tculink/management/commands/tcuserver.py:473
+#: tculink/management/commands/tcuserver.py:474
 msgid "Battery heater has turned on"
 msgstr ""
 
-#: tculink/management/commands/tcuserver.py:473
+#: tculink/management/commands/tcuserver.py:474
 msgid "Battery heater has turned off"
 msgstr ""
 
@@ -1408,13 +1408,13 @@ msgid ""
 "after you've issued a command on the website: {sms}"
 msgstr ""
 
-#: tculink/sms/monogoto.py:11 ui/templates/ui/car_detail.html:310
+#: tculink/sms/monogoto.py:11 ui/templates/ui/car_detail.html:317
 #: ui/templates/ui/landing.html:28 ui/templates/ui/signin.html:9
 msgid "Username"
 msgstr ""
 
 #: tculink/sms/monogoto.py:12 ui/forms.py:80 ui/forms.py:82
-#: ui/templates/ui/car_detail.html:311 ui/templates/ui/landing.html:37
+#: ui/templates/ui/car_detail.html:318 ui/templates/ui/landing.html:37
 #: ui/templates/ui/signin.html:13
 msgid "Password"
 msgstr ""
@@ -1486,7 +1486,7 @@ msgstr ""
 msgid "Code is not valid!"
 msgstr ""
 
-#: ui/forms.py:19 ui/forms.py:35 ui/templates/ui/car_detail.html:527
+#: ui/forms.py:19 ui/forms.py:35 ui/templates/ui/car_detail.html:535
 msgid "Nickname"
 msgstr ""
 
@@ -1494,7 +1494,7 @@ msgstr ""
 msgid "Disable TCU authentication"
 msgstr ""
 
-#: ui/forms.py:21 ui/templates/ui/car_detail.html:566
+#: ui/forms.py:21 ui/templates/ui/car_detail.html:574
 msgid "Show calculated battery percentage"
 msgstr ""
 
@@ -1535,7 +1535,7 @@ msgstr ""
 #: ui/templates/ui/change_carwings_password.html:18
 #: ui/templates/ui/change_command_pin.html:18
 #: ui/templates/ui/change_password.html:18
-#: ui/templates/ui/probeviewer/main.html:73
+#: ui/templates/ui/probeviewer/main.html:78
 #: ui/templates/ui/probeviewer/trip.html:108
 #: ui/templates/ui/reset_password_confirm.html:35
 #: ui/templates/ui/setup/step2.html:14 ui/templates/ui/setup/step3.html:14
@@ -1548,7 +1548,7 @@ msgstr ""
 #: ui/templates/ui/change_carwings_password.html:19
 #: ui/templates/ui/change_command_pin.html:19
 #: ui/templates/ui/change_password.html:19
-#: ui/templates/ui/probeviewer/main.html:74
+#: ui/templates/ui/probeviewer/main.html:79
 #: ui/templates/ui/probeviewer/trip.html:109
 #: ui/templates/ui/reset_password_confirm.html:36
 #: ui/templates/ui/setup/step2.html:15 ui/templates/ui/setup/step3.html:15
@@ -1557,13 +1557,13 @@ msgid "Warning"
 msgstr ""
 
 #: ui/templates/ui/account.html:22 ui/templates/ui/car_detail.html:79
-#: ui/templates/ui/car_detail.html:640 ui/templates/ui/car_detail.html:659
-#: ui/templates/ui/car_detail.html:693 ui/templates/ui/car_detail.html:737
+#: ui/templates/ui/car_detail.html:648 ui/templates/ui/car_detail.html:667
+#: ui/templates/ui/car_detail.html:701 ui/templates/ui/car_detail.html:745
 #: ui/templates/ui/car_list.html:25 ui/templates/ui/car_transfer.html:22
 #: ui/templates/ui/change_carwings_password.html:24
 #: ui/templates/ui/change_command_pin.html:24
 #: ui/templates/ui/change_password.html:24
-#: ui/templates/ui/probeviewer/main.html:79
+#: ui/templates/ui/probeviewer/main.html:84
 #: ui/templates/ui/probeviewer/trip.html:114
 #: ui/templates/ui/reset_password_confirm.html:20
 #: ui/templates/ui/reset_password_confirm.html:41
@@ -1618,9 +1618,9 @@ msgstr ""
 msgid "Enable 2FA"
 msgstr ""
 
-#: ui/templates/ui/account.html:62 ui/templates/ui/car_detail.html:424
-#: ui/templates/ui/car_detail.html:494 ui/templates/ui/car_detail.html:623
-#: ui/templates/ui/car_detail.html:722 ui/templates/ui/car_detail.html:821
+#: ui/templates/ui/account.html:62 ui/templates/ui/car_detail.html:432
+#: ui/templates/ui/car_detail.html:502 ui/templates/ui/car_detail.html:631
+#: ui/templates/ui/car_detail.html:730 ui/templates/ui/car_detail.html:829
 #: ui/templates/ui/setup/step2.html:50 ui/templates/ui/setup/step3.html:36
 #: ui/templates/ui/setup/step4.html:63
 #: ui/templates/ui/snippets/security.html:33
@@ -1666,6 +1666,11 @@ msgstr ""
 msgid "Back to cars"
 msgstr ""
 
+#: ui/templates/ui/car_detail.html:41 ui/templates/ui/car_detail.html:1379
+#: ui/templates/ui/car_detail.html:1389 ui/templates/ui/car_list.html:64
+msgid "Last connected"
+msgstr ""
+
 #: ui/templates/ui/car_detail.html:61
 msgid "Send command"
 msgstr ""
@@ -1678,7 +1683,7 @@ msgstr ""
 msgid "EV Status"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:98 ui/templates/ui/car_detail.html:245
+#: ui/templates/ui/car_detail.html:98 ui/templates/ui/car_detail.html:252
 msgid "Timers"
 msgstr ""
 
@@ -1711,24 +1716,24 @@ msgstr ""
 msgid "TCU Configuration"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:109 ui/templates/ui/car_detail.html:522
+#: ui/templates/ui/car_detail.html:109 ui/templates/ui/car_detail.html:530
 msgid "Settings"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:130 ui/templates/ui/car_detail.html:337
+#: ui/templates/ui/car_detail.html:130 ui/templates/ui/car_detail.html:344
 msgid "Range (AC On)"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:135 ui/templates/ui/car_detail.html:338
+#: ui/templates/ui/car_detail.html:135 ui/templates/ui/car_detail.html:345
 msgid "Range (AC Off)"
 msgstr ""
 
 #: ui/templates/ui/car_detail.html:141 ui/templates/ui/car_detail.html:144
-#: ui/templates/ui/car_detail.html:333 ui/templates/ui/car_detail.html:334
+#: ui/templates/ui/car_detail.html:340 ui/templates/ui/car_detail.html:341
 msgid "State of Charge"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:144 ui/templates/ui/car_detail.html:334
+#: ui/templates/ui/car_detail.html:144 ui/templates/ui/car_detail.html:341
 msgid "Nominal"
 msgstr ""
 
@@ -1740,8 +1745,8 @@ msgstr ""
 msgid "FULL"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:167 ui/templates/ui/car_detail.html:327
-#: ui/templates/ui/car_detail.html:328 ui/templates/ui/car_detail.html:330
+#: ui/templates/ui/car_detail.html:167 ui/templates/ui/car_detail.html:334
+#: ui/templates/ui/car_detail.html:335 ui/templates/ui/car_detail.html:337
 msgid "Charge time"
 msgstr ""
 
@@ -1749,369 +1754,382 @@ msgstr ""
 msgid "Charge Cable"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:179
+#: ui/templates/ui/car_detail.html:180
 msgid "Plugged In,Unplugged"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:184
+#: ui/templates/ui/car_detail.html:182 ui/templates/ui/car_detail.html:1278
+msgid "No Power"
+msgstr ""
+
+#: ui/templates/ui/car_detail.html:189
 msgid "Car status"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:188 ui/templates/ui/car_detail.html:190
-#: ui/templates/ui/car_detail.html:1279 ui/templates/ui/car_detail.html:1281
-#: ui/templates/ui/car_detail.html:1297
+#: ui/templates/ui/car_detail.html:193 ui/templates/ui/car_detail.html:195
+#: ui/templates/ui/car_detail.html:1284 ui/templates/ui/car_detail.html:1286
+#: ui/templates/ui/car_detail.html:1304
 msgid "On"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:188 ui/templates/ui/car_detail.html:1279
-#: ui/templates/ui/car_detail.html:1344
+#: ui/templates/ui/car_detail.html:193 ui/templates/ui/car_detail.html:1284
+#: ui/templates/ui/car_detail.html:1352
 msgid "Parked"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:190 ui/templates/ui/car_detail.html:1281
+#: ui/templates/ui/car_detail.html:195 ui/templates/ui/car_detail.html:1286
 msgid "Driving"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:194 ui/templates/ui/car_detail.html:1285
-#: ui/templates/ui/probeviewer/main.html:487
-#: ui/templates/ui/probeviewer/main.html:561
+#: ui/templates/ui/car_detail.html:199 ui/templates/ui/car_detail.html:1290
+#: ui/templates/ui/probeviewer/main.html:504
+#: ui/templates/ui/probeviewer/main.html:578
 msgid "Charging finished"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:196 ui/templates/ui/car_detail.html:340
-#: ui/templates/ui/car_detail.html:1287
+#: ui/templates/ui/car_detail.html:201 ui/templates/ui/car_detail.html:1292
+msgid "Charging interrupted"
+msgstr ""
+
+#: ui/templates/ui/car_detail.html:203 ui/templates/ui/car_detail.html:348
+#: ui/templates/ui/car_detail.html:1294
 msgid "Charging"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:198 ui/templates/ui/car_detail.html:345
-#: ui/templates/ui/car_detail.html:1289
+#: ui/templates/ui/car_detail.html:205 ui/templates/ui/car_detail.html:353
+#: ui/templates/ui/car_detail.html:1296
 msgid "Battery heater active"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:200 ui/templates/ui/car_detail.html:1291
-#: ui/templates/ui/car_detail.html:1297
+#: ui/templates/ui/car_detail.html:207 ui/templates/ui/car_detail.html:1298
+#: ui/templates/ui/car_detail.html:1304
 msgid "Off"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:207
+#: ui/templates/ui/car_detail.html:214
 msgid "AC Status"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:209
+#: ui/templates/ui/car_detail.html:216
 msgid "On,Off"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:218 ui/templates/ui/car_detail.html:317
-#: ui/templates/ui/car_detail.html:349 ui/templates/ui/car_detail.html:371
+#: ui/templates/ui/car_detail.html:225 ui/templates/ui/car_detail.html:324
+#: ui/templates/ui/car_detail.html:357 ui/templates/ui/car_detail.html:379
 #: ui/templates/ui/ficosa/veh_health.html:29
-#: ui/templates/ui/probeviewer/main.html:168
-#: ui/templates/ui/probeviewer/main.html:196
+#: ui/templates/ui/probeviewer/main.html:173
+#: ui/templates/ui/probeviewer/main.html:201
 msgid "Last Updated"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:227
-#: ui/templates/ui/probeviewer/main.html:124
+#: ui/templates/ui/car_detail.html:234
+#: ui/templates/ui/probeviewer/main.html:129
 msgid "Odometer"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:228
+#: ui/templates/ui/car_detail.html:235
 msgid "Navi version"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:229
+#: ui/templates/ui/car_detail.html:236
 msgid "Map version"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:230
+#: ui/templates/ui/car_detail.html:237
 msgid "TCU version (from navi)"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:231
+#: ui/templates/ui/car_detail.html:238
 msgid "TCU version (from TCU)"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:232 ui/templates/ui/car_detail.html:233
-#: ui/templates/ui/car_detail.html:234 ui/templates/ui/car_detail.html:235
+#: ui/templates/ui/car_detail.html:239 ui/templates/ui/car_detail.html:240
+#: ui/templates/ui/car_detail.html:241 ui/templates/ui/car_detail.html:242
 msgid "Vehicle Code"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:239
+#: ui/templates/ui/car_detail.html:246
 msgid "Last Connection"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:245 ui/templates/ui/car_detail.html:379
+#: ui/templates/ui/car_detail.html:252 ui/templates/ui/car_detail.html:387
 #: ui/templates/ui/car_list.html:33
 msgid "Add"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:254
+#: ui/templates/ui/car_detail.html:261
 msgid "Mon"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:257
+#: ui/templates/ui/car_detail.html:264
 msgid "Tue"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:260
+#: ui/templates/ui/car_detail.html:267
 msgid "Wed"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:263
+#: ui/templates/ui/car_detail.html:270
 msgid "Thu"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:266
+#: ui/templates/ui/car_detail.html:273
 msgid "Fri"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:269
+#: ui/templates/ui/car_detail.html:276
 msgid "Sat"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:272
+#: ui/templates/ui/car_detail.html:279
 msgid "Sun"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:275 ui/templates/ui/car_detail.html:2669
+#: ui/templates/ui/car_detail.html:282 ui/templates/ui/car_detail.html:2681
 msgid "Last run"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:275 ui/templates/ui/car_detail.html:2669
+#: ui/templates/ui/car_detail.html:282 ui/templates/ui/car_detail.html:2681
 msgid "result"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:281 ui/templates/ui/car_detail.html:389
-#: ui/templates/ui/car_detail.html:1718 ui/templates/ui/car_detail.html:2676
+#: ui/templates/ui/car_detail.html:288 ui/templates/ui/car_detail.html:397
+#: ui/templates/ui/car_detail.html:1728 ui/templates/ui/car_detail.html:2688
 msgid "Edit"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:287 ui/templates/ui/car_detail.html:395
-#: ui/templates/ui/car_detail.html:1723 ui/templates/ui/car_detail.html:2681
+#: ui/templates/ui/car_detail.html:294 ui/templates/ui/car_detail.html:403
+#: ui/templates/ui/car_detail.html:1733 ui/templates/ui/car_detail.html:2693
 msgid "Delete"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:293 ui/templates/ui/car_detail.html:2623
+#: ui/templates/ui/car_detail.html:300 ui/templates/ui/car_detail.html:2635
 msgid "No timers added"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:297
+#: ui/templates/ui/car_detail.html:304
 msgid "Note: Times are shown in local local timezone"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:308
+#: ui/templates/ui/car_detail.html:315
 msgid "PPP Dial Code"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:314
+#: ui/templates/ui/car_detail.html:321
 msgid "Server"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:315
+#: ui/templates/ui/car_detail.html:322
 msgid "Proxy"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:316
+#: ui/templates/ui/car_detail.html:323
 msgid "Connection Type"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:325
+#: ui/templates/ui/car_detail.html:332
 msgid "Car on"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:325 ui/templates/ui/car_detail.html:329
-#: ui/templates/ui/car_detail.html:339 ui/templates/ui/car_detail.html:340
-#: ui/templates/ui/car_detail.html:341 ui/templates/ui/car_detail.html:342
-#: ui/templates/ui/car_detail.html:344 ui/templates/ui/car_detail.html:345
-#: ui/templates/ui/car_detail.html:346 ui/templates/ui/car_detail.html:370
+#: ui/templates/ui/car_detail.html:332 ui/templates/ui/car_detail.html:336
+#: ui/templates/ui/car_detail.html:346 ui/templates/ui/car_detail.html:347
+#: ui/templates/ui/car_detail.html:348 ui/templates/ui/car_detail.html:349
+#: ui/templates/ui/car_detail.html:350 ui/templates/ui/car_detail.html:352
+#: ui/templates/ui/car_detail.html:353 ui/templates/ui/car_detail.html:354
+#: ui/templates/ui/car_detail.html:378
 msgid "Yes,No"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:326
+#: ui/templates/ui/car_detail.html:333
 msgid "Gear"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:329
+#: ui/templates/ui/car_detail.html:336
 msgid "6kW OBC exists"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:331
+#: ui/templates/ui/car_detail.html:338
 msgid "Charge bars"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:332
-#: ui/templates/ui/probeviewer/trip.html:241
+#: ui/templates/ui/car_detail.html:339
+#: ui/templates/ui/probeviewer/trip.html:237
 msgid "Capacity bars"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:333
+#: ui/templates/ui/car_detail.html:340
 msgid "Display"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:335
+#: ui/templates/ui/car_detail.html:342
 msgid "State of Health"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:336
+#: ui/templates/ui/car_detail.html:343
 msgid "Remaining kWh"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:339
+#: ui/templates/ui/car_detail.html:346
 msgid "Plugged in"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:341
+#: ui/templates/ui/car_detail.html:347
+msgid "Power Available"
+msgstr ""
+
+#: ui/templates/ui/car_detail.html:349
 msgid "Quick-charging"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:342
+#: ui/templates/ui/car_detail.html:350
 msgid "Preconditioning (A/C)"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:343
+#: ui/templates/ui/car_detail.html:351
 msgid "GIDs remaining"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:344
+#: ui/templates/ui/car_detail.html:352
 msgid "Battery heater exists"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:346
+#: ui/templates/ui/car_detail.html:354
 msgid "Battery Lease Contract's Charging Block Active"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:347
+#: ui/templates/ui/car_detail.html:355
 msgid "Cabin Temperature"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:348
+#: ui/templates/ui/car_detail.html:356
 msgid "Counter"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:356
+#: ui/templates/ui/car_detail.html:364
 msgid "Send location to car"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:358 ui/templates/ui/car_detail.html:412
-#: ui/templates/ui/car_detail.html:421 ui/templates/ui/car_detail.html:1996
+#: ui/templates/ui/car_detail.html:366 ui/templates/ui/car_detail.html:420
+#: ui/templates/ui/car_detail.html:429 ui/templates/ui/car_detail.html:2006
 msgid "Search for locations or enter google/apple maps link"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:362 ui/templates/ui/car_detail.html:1384
+#: ui/templates/ui/car_detail.html:370 ui/templates/ui/car_detail.html:1394
 msgid "Last shared location"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:364 ui/templates/ui/car_detail.html:1386
+#: ui/templates/ui/car_detail.html:372 ui/templates/ui/car_detail.html:1396
 msgid "No past shared location"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:367
+#: ui/templates/ui/car_detail.html:375
 #: ui/templates/ui/ficosa/configuration.html:27
 msgid "Send"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:370
+#: ui/templates/ui/car_detail.html:378
 msgid "At Home"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:379
+#: ui/templates/ui/car_detail.html:387
 msgid "Route plans"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:401 ui/templates/ui/car_detail.html:1701
+#: ui/templates/ui/car_detail.html:409 ui/templates/ui/car_detail.html:1711
 msgid "No route plans added"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:406
+#: ui/templates/ui/car_detail.html:414
 msgid "Add/Edit a route plan"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:408
+#: ui/templates/ui/car_detail.html:416
 msgid "Name of the plan"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:411 ui/templates/ui/car_detail.html:644
+#: ui/templates/ui/car_detail.html:419 ui/templates/ui/car_detail.html:652
 msgid "Starting point"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:418
+#: ui/templates/ui/car_detail.html:426
 msgid "Add waypoint"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:420 ui/templates/ui/car_detail.html:645
+#: ui/templates/ui/car_detail.html:428 ui/templates/ui/car_detail.html:653
 msgid "Destination point"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:425
+#: ui/templates/ui/car_detail.html:433
 msgid "Cancel"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:435
+#: ui/templates/ui/car_detail.html:443
 msgid "Favorite channels"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:444 ui/templates/ui/car_detail.html:445
-#: ui/templates/ui/car_detail.html:446 ui/templates/ui/car_detail.html:447
-#: ui/templates/ui/car_detail.html:448 ui/templates/ui/car_detail.html:449
-#: ui/templates/ui/car_detail.html:450 ui/templates/ui/car_detail.html:453
+#: ui/templates/ui/car_detail.html:452 ui/templates/ui/car_detail.html:453
 #: ui/templates/ui/car_detail.html:454 ui/templates/ui/car_detail.html:455
 #: ui/templates/ui/car_detail.html:456 ui/templates/ui/car_detail.html:457
-#: ui/templates/ui/car_detail.html:458 ui/templates/ui/car_detail.html:459
-#: ui/templates/ui/car_detail.html:460 ui/templates/ui/car_detail.html:2208
+#: ui/templates/ui/car_detail.html:458 ui/templates/ui/car_detail.html:461
+#: ui/templates/ui/car_detail.html:462 ui/templates/ui/car_detail.html:463
+#: ui/templates/ui/car_detail.html:464 ui/templates/ui/car_detail.html:465
+#: ui/templates/ui/car_detail.html:466 ui/templates/ui/car_detail.html:467
+#: ui/templates/ui/car_detail.html:468 ui/templates/ui/car_detail.html:2218
 msgid "No selected channel"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:466
+#: ui/templates/ui/car_detail.html:474
 msgid "Custom channels"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:474 ui/templates/ui/car_detail.html:475
-#: ui/templates/ui/car_detail.html:476 ui/templates/ui/car_detail.html:477
-#: ui/templates/ui/car_detail.html:478 ui/templates/ui/car_detail.html:479
-#: ui/templates/ui/car_detail.html:480 ui/templates/ui/car_detail.html:481
+#: ui/templates/ui/car_detail.html:482 ui/templates/ui/car_detail.html:483
 #: ui/templates/ui/car_detail.html:484 ui/templates/ui/car_detail.html:485
 #: ui/templates/ui/car_detail.html:486 ui/templates/ui/car_detail.html:487
 #: ui/templates/ui/car_detail.html:488 ui/templates/ui/car_detail.html:489
-#: ui/templates/ui/car_detail.html:490 ui/templates/ui/car_detail.html:491
-#: ui/templates/ui/car_detail.html:2284
+#: ui/templates/ui/car_detail.html:492 ui/templates/ui/car_detail.html:493
+#: ui/templates/ui/car_detail.html:494 ui/templates/ui/car_detail.html:495
+#: ui/templates/ui/car_detail.html:496 ui/templates/ui/car_detail.html:497
+#: ui/templates/ui/car_detail.html:498 ui/templates/ui/car_detail.html:499
+#: ui/templates/ui/car_detail.html:2294
 msgid "No content"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:503
+#: ui/templates/ui/car_detail.html:511
 msgid "Type"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:504
+#: ui/templates/ui/car_detail.html:512
 msgid "Timestamp"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:505
+#: ui/templates/ui/car_detail.html:513
 msgid "Additional Data"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:537
+#: ui/templates/ui/car_detail.html:545
 msgid "Leave empty to use default key"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:543
+#: ui/templates/ui/car_detail.html:551
 msgid "Skip authentication from TCU"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:544
+#: ui/templates/ui/car_detail.html:552
 msgid ""
 "On AZE0 (2013) and newer LEAFs, username and password inserted to navi are "
 "not saved due to an error. In this case, check this box to skip the "
 "authentication"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:550
+#: ui/templates/ui/car_detail.html:558
 msgid "Car color"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:559
+#: ui/templates/ui/car_detail.html:567
 msgid "Maximum GIDs value"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:561
+#: ui/templates/ui/car_detail.html:569
 #, python-format
 msgid ""
 "OpenCARWINGS will try to auto-detect your battery size and fill this field. "
@@ -2119,7 +2137,7 @@ msgid ""
 "when battery is new (SoH 100%%)."
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:567
+#: ui/templates/ui/car_detail.html:575
 msgid ""
 "On AZE0 (>2013) generation cars, it is possible to see available battery "
 "capacity in percentage. For ZE0, such feature was never implemented. By "
@@ -2127,288 +2145,286 @@ msgid ""
 "be inaccurate."
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:573
+#: ui/templates/ui/car_detail.html:581
 msgid "Periodic data refresh interval"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:582
+#: ui/templates/ui/car_detail.html:590
 msgid "Periodic data refresh interval (while driving or charging)"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:591 ui/templates/ui/setup/step4.html:29
+#: ui/templates/ui/car_detail.html:599 ui/templates/ui/setup/step4.html:29
 msgid "SMS provider"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:624
+#: ui/templates/ui/car_detail.html:632
 msgid "Remove car"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:643
+#: ui/templates/ui/car_detail.html:651
 msgid "Set car location as"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:662
+#: ui/templates/ui/car_detail.html:670
 msgid "Select data channel"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:697
+#: ui/templates/ui/car_detail.html:705
 msgid "Edit data channel"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:698
+#: ui/templates/ui/car_detail.html:706
 msgid "Channel name"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:702
+#: ui/templates/ui/car_detail.html:710
 msgid "Channel icon"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:713
+#: ui/templates/ui/car_detail.html:721
 msgid "Data URL"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:715
+#: ui/templates/ui/car_detail.html:723
 msgid "Data URL format and documentation"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:719
+#: ui/templates/ui/car_detail.html:727
 msgid "Allow sending current vehicle location"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:741 ui/templates/ui/car_detail.html:2383
+#: ui/templates/ui/car_detail.html:749 ui/templates/ui/car_detail.html:2393
 msgid "Edit timer"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:742
+#: ui/templates/ui/car_detail.html:750
 msgid "Timer name"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:747
+#: ui/templates/ui/car_detail.html:755
 msgid "Enabled"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:750
+#: ui/templates/ui/car_detail.html:758
 msgid "Select time"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:760
+#: ui/templates/ui/car_detail.html:768
 msgid "Command"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:770
+#: ui/templates/ui/car_detail.html:778
 msgid "One-time"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:773
+#: ui/templates/ui/car_detail.html:781
 msgid "Repeating"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:785
+#: ui/templates/ui/car_detail.html:793
 msgid "Select date"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:791
+#: ui/templates/ui/car_detail.html:799
 msgid "Monday"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:795
+#: ui/templates/ui/car_detail.html:803
 msgid "Tuesday"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:799
+#: ui/templates/ui/car_detail.html:807
 msgid "Wednesday"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:803
+#: ui/templates/ui/car_detail.html:811
 msgid "Thursday"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:807
+#: ui/templates/ui/car_detail.html:815
 msgid "Friday"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:811
+#: ui/templates/ui/car_detail.html:819
 msgid "Saturday"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:815
+#: ui/templates/ui/car_detail.html:823
 msgid "Sunday"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:847
+#: ui/templates/ui/car_detail.html:855
 msgid "SMS from your device"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:1204 ui/templates/ui/car_detail.html:1206
-#: ui/templates/ui/car_detail.html:1210 ui/templates/ui/car_detail.html:1211
-#: ui/templates/ui/car_detail.html:1446 ui/templates/ui/car_detail.html:1454
-#: ui/templates/ui/car_detail.html:1455
+#: ui/templates/ui/car_detail.html:1208 ui/templates/ui/car_detail.html:1210
+#: ui/templates/ui/car_detail.html:1214 ui/templates/ui/car_detail.html:1215
+#: ui/templates/ui/car_detail.html:1456 ui/templates/ui/car_detail.html:1464
+#: ui/templates/ui/car_detail.html:1465
 #: ui/templates/ui/ficosa/configuration.html:331
 #: ui/templates/ui/ficosa/configuration.html:335
 msgid "Error sending command"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:1274
+#: ui/templates/ui/car_detail.html:1279
 msgid "Plugged In"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:1274
+#: ui/templates/ui/car_detail.html:1279
 msgid "Unplugged"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:1327 ui/templates/ui/car_detail.html:1328
-#: ui/templates/ui/car_detail.html:1329 ui/templates/ui/car_detail.html:1332
-#: ui/templates/ui/car_detail.html:1339 ui/templates/ui/car_detail.html:1345
-#: ui/templates/ui/car_detail.html:1346 ui/templates/ui/car_detail.html:1347
-#: ui/templates/ui/car_detail.html:1348 ui/templates/ui/car_detail.html:1353
+#: ui/templates/ui/car_detail.html:1334 ui/templates/ui/car_detail.html:1335
+#: ui/templates/ui/car_detail.html:1336 ui/templates/ui/car_detail.html:1337
+#: ui/templates/ui/car_detail.html:1340 ui/templates/ui/car_detail.html:1347
+#: ui/templates/ui/car_detail.html:1353 ui/templates/ui/car_detail.html:1354
+#: ui/templates/ui/car_detail.html:1355 ui/templates/ui/car_detail.html:1356
+#: ui/templates/ui/car_detail.html:1361
 #: ui/templates/ui/ficosa/veh_health.html:134
 #: ui/templates/ui/ficosa/veh_health.html:136
 msgid "Yes"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:1327 ui/templates/ui/car_detail.html:1328
-#: ui/templates/ui/car_detail.html:1329 ui/templates/ui/car_detail.html:1332
-#: ui/templates/ui/car_detail.html:1339 ui/templates/ui/car_detail.html:1345
-#: ui/templates/ui/car_detail.html:1346 ui/templates/ui/car_detail.html:1347
-#: ui/templates/ui/car_detail.html:1348 ui/templates/ui/car_detail.html:1353
+#: ui/templates/ui/car_detail.html:1334 ui/templates/ui/car_detail.html:1335
+#: ui/templates/ui/car_detail.html:1336 ui/templates/ui/car_detail.html:1337
+#: ui/templates/ui/car_detail.html:1340 ui/templates/ui/car_detail.html:1347
+#: ui/templates/ui/car_detail.html:1353 ui/templates/ui/car_detail.html:1354
+#: ui/templates/ui/car_detail.html:1355 ui/templates/ui/car_detail.html:1356
+#: ui/templates/ui/car_detail.html:1361
 #: ui/templates/ui/ficosa/veh_health.html:134
 #: ui/templates/ui/ficosa/veh_health.html:136
 msgid "No"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:1484 ui/templates/ui/car_detail.html:1492
-#: ui/templates/ui/car_detail.html:1493
+#: ui/templates/ui/car_detail.html:1494 ui/templates/ui/car_detail.html:1502
+#: ui/templates/ui/car_detail.html:1503
 msgid "Error sending location to car"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:1486
+#: ui/templates/ui/car_detail.html:1496
 msgid "Location sent!"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:1542 ui/templates/ui/car_detail.html:1605
-#: ui/templates/ui/car_detail.html:1876 ui/templates/ui/car_detail.html:1881
-#: ui/templates/ui/car_detail.html:1938 ui/templates/ui/car_detail.html:1951
-#: ui/templates/ui/car_detail.html:1956 ui/templates/ui/car_detail.html:2035
+#: ui/templates/ui/car_detail.html:1552 ui/templates/ui/car_detail.html:1615
+#: ui/templates/ui/car_detail.html:1886 ui/templates/ui/car_detail.html:1891
+#: ui/templates/ui/car_detail.html:1948 ui/templates/ui/car_detail.html:1961
+#: ui/templates/ui/car_detail.html:1966 ui/templates/ui/car_detail.html:2045
 msgid "No address"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:1552 ui/templates/ui/car_detail.html:1885
+#: ui/templates/ui/car_detail.html:1562 ui/templates/ui/car_detail.html:1895
 msgid "Could not get location from map link"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:1558 ui/templates/ui/car_detail.html:1630
-#: ui/templates/ui/car_detail.html:1891 ui/templates/ui/car_detail.html:1972
+#: ui/templates/ui/car_detail.html:1568 ui/templates/ui/car_detail.html:1640
+#: ui/templates/ui/car_detail.html:1901 ui/templates/ui/car_detail.html:1982
 msgid "Error searching locations"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:1624 ui/templates/ui/car_detail.html:1966
+#: ui/templates/ui/car_detail.html:1634 ui/templates/ui/car_detail.html:1976
 msgid "Search did not find any locations"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:1649
+#: ui/templates/ui/car_detail.html:1659
 msgid "Connection established!"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:1654
+#: ui/templates/ui/car_detail.html:1664
 msgid "Reconnecting..."
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:1980
+#: ui/templates/ui/car_detail.html:1990
 msgid "Cannot add a new waypoint"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:1980
+#: ui/templates/ui/car_detail.html:1990
 msgid "Maximum number of waypoints reached"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:2013
+#: ui/templates/ui/car_detail.html:2023
 msgid "Waypoint"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:2065 ui/templates/ui/car_detail.html:2074
-#: ui/templates/ui/car_detail.html:2075
+#: ui/templates/ui/car_detail.html:2075 ui/templates/ui/car_detail.html:2084
+#: ui/templates/ui/car_detail.html:2085
 msgid "Error saving the route plan"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:2067
+#: ui/templates/ui/car_detail.html:2077
 msgid "Route plan saved!"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:2103
+#: ui/templates/ui/car_detail.html:2113
 msgid "Cannot add new route plan"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:2103
+#: ui/templates/ui/car_detail.html:2113
 msgid "You have too many route plans, please delete one and try again."
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:2173
+#: ui/templates/ui/car_detail.html:2183
 msgid "Are you sure you want to delete this route plan?"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:2186 ui/templates/ui/car_detail.html:2193
-#: ui/templates/ui/car_detail.html:2194
+#: ui/templates/ui/car_detail.html:2196 ui/templates/ui/car_detail.html:2203
+#: ui/templates/ui/car_detail.html:2204
 msgid "Error deleting the route plan"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:2188
+#: ui/templates/ui/car_detail.html:2198
 msgid "Route plan removed!"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:2348 ui/templates/ui/car_detail.html:2356
-#: ui/templates/ui/car_detail.html:2357
+#: ui/templates/ui/car_detail.html:2358 ui/templates/ui/car_detail.html:2366
+#: ui/templates/ui/car_detail.html:2367
 msgid "Error saving CARWINGS settings"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:2350
+#: ui/templates/ui/car_detail.html:2360
 msgid "CARWINGS settings saved!"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:2363
+#: ui/templates/ui/car_detail.html:2373
 msgid "Add timer"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:2514 ui/templates/ui/car_detail.html:2517
+#: ui/templates/ui/car_detail.html:2524 ui/templates/ui/car_detail.html:2527
 msgid "Missing field"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:2514
+#: ui/templates/ui/car_detail.html:2524
 msgid "Please enter valid date for the timer"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:2517
+#: ui/templates/ui/car_detail.html:2527
 msgid "Please select at least one weekday"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:2538 ui/templates/ui/car_detail.html:2546
-#: ui/templates/ui/car_detail.html:2547 ui/templates/ui/car_detail.html:2568
-#: ui/templates/ui/car_detail.html:2576 ui/templates/ui/car_detail.html:2577
+#: ui/templates/ui/car_detail.html:2548 ui/templates/ui/car_detail.html:2556
+#: ui/templates/ui/car_detail.html:2557 ui/templates/ui/car_detail.html:2579
+#: ui/templates/ui/car_detail.html:2588 ui/templates/ui/car_detail.html:2589
 msgid "Error saving the timer"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:2540 ui/templates/ui/car_detail.html:2570
+#: ui/templates/ui/car_detail.html:2550 ui/templates/ui/car_detail.html:2581
 msgid "Timer saved!"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:2584
+#: ui/templates/ui/car_detail.html:2596
 msgid "Are you sure you want to delete this timer?"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:2593
+#: ui/templates/ui/car_detail.html:2605
 msgid "Timer removed!"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:2596 ui/templates/ui/car_detail.html:2598
-#: ui/templates/ui/car_detail.html:2602 ui/templates/ui/car_detail.html:2603
+#: ui/templates/ui/car_detail.html:2608 ui/templates/ui/car_detail.html:2610
+#: ui/templates/ui/car_detail.html:2614 ui/templates/ui/car_detail.html:2615
 msgid "Error deleting the timer"
 msgstr ""
 
 #: ui/templates/ui/car_list.html:5 ui/templates/ui/car_list.html:33
 msgid "My cars"
-msgstr ""
-
-#: ui/templates/ui/car_list.html:64
-msgid "Last connected"
 msgstr ""
 
 #: ui/templates/ui/car_list.html:70
@@ -2616,22 +2632,22 @@ msgid "Tire Pressures (TPMS)"
 msgstr ""
 
 #: ui/templates/ui/ficosa/veh_health.html:47
-#: ui/templates/ui/probeviewer/trip.html:171
+#: ui/templates/ui/probeviewer/trip.html:170
 msgid "FL"
 msgstr ""
 
 #: ui/templates/ui/ficosa/veh_health.html:52
-#: ui/templates/ui/probeviewer/trip.html:176
+#: ui/templates/ui/probeviewer/trip.html:174
 msgid "FR"
 msgstr ""
 
 #: ui/templates/ui/ficosa/veh_health.html:57
-#: ui/templates/ui/probeviewer/trip.html:181
+#: ui/templates/ui/probeviewer/trip.html:178
 msgid "RL"
 msgstr ""
 
 #: ui/templates/ui/ficosa/veh_health.html:62
-#: ui/templates/ui/probeviewer/trip.html:186
+#: ui/templates/ui/probeviewer/trip.html:182
 msgid "RR"
 msgstr ""
 
@@ -2706,373 +2722,387 @@ msgid "Get Started"
 msgstr ""
 
 #: ui/templates/ui/probeviewer/main.html:10
-#: ui/templates/ui/probeviewer/main.html:58
+#: ui/templates/ui/probeviewer/main.html:63
 #: ui/templates/ui/probeviewer/trip.html:10
 #: ui/templates/ui/probeviewer/trip.html:19
 msgid "Vehicle data viewer"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:52
+#: ui/templates/ui/probeviewer/main.html:57
 #: ui/templates/ui/probeviewer/trip.html:16
 #: ui/templates/ui/signin_otp_re.html:18
 msgid "Back"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:97
+#: ui/templates/ui/probeviewer/main.html:102
 msgid "Latest"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:98
+#: ui/templates/ui/probeviewer/main.html:103
 msgid "Lifetime statistics"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:99
+#: ui/templates/ui/probeviewer/main.html:104
 msgid "DOT-files"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:100
-#: ui/templates/ui/probeviewer/main.html:350
+#: ui/templates/ui/probeviewer/main.html:105
+#: ui/templates/ui/probeviewer/main.html:367
 msgid "Trips"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:101
+#: ui/templates/ui/probeviewer/main.html:106
 msgid "Monthly statistics"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:102
+#: ui/templates/ui/probeviewer/main.html:107
 msgid "Location history"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:103
+#: ui/templates/ui/probeviewer/main.html:108
 msgid "Charging history"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:104
+#: ui/templates/ui/probeviewer/main.html:109
 msgid "Charges"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:105
+#: ui/templates/ui/probeviewer/main.html:110
 msgid "Excessive idling history"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:106
+#: ui/templates/ui/probeviewer/main.html:111
 msgid "Excessive A/C history"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:107
+#: ui/templates/ui/probeviewer/main.html:112
 msgid "ABS history"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:108
+#: ui/templates/ui/probeviewer/main.html:113
 msgid "DTC history"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:109
+#: ui/templates/ui/probeviewer/main.html:114
 msgid "MSN history"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:125
+#: ui/templates/ui/probeviewer/main.html:130
 msgid "Phone contacts in memory"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:126
+#: ui/templates/ui/probeviewer/main.html:131
 msgid "Locations saved in address book"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:130
-#: ui/templates/ui/probeviewer/main.html:164
+#: ui/templates/ui/probeviewer/main.html:135
+#: ui/templates/ui/probeviewer/main.html:169
 msgid "Telemetry configuration"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:132
+#: ui/templates/ui/probeviewer/main.html:137
 msgid "Telemetry Configuration ID"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:134
+#: ui/templates/ui/probeviewer/main.html:139
 msgid "New Telemetry Configuration ID"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:137
+#: ui/templates/ui/probeviewer/main.html:142
 msgid "Configuration update status"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:140
+#: ui/templates/ui/probeviewer/main.html:145
 msgid ""
 "Please turn on the car for vehicle data auto-update or access a CARWINGS "
 "data channel to perform configuration update."
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:144
+#: ui/templates/ui/probeviewer/main.html:149
 msgid "Cancel update"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:150
+#: ui/templates/ui/probeviewer/main.html:155
 msgid "New Telemetry Configuration"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:158
+#: ui/templates/ui/probeviewer/main.html:163
 msgid "Update"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:165
+#: ui/templates/ui/probeviewer/main.html:170
 msgid "Telemetry configuration has moved to 'TCU Configuration' tab!"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:172
-#: ui/templates/ui/probeviewer/main.html:200
+#: ui/templates/ui/probeviewer/main.html:177
+#: ui/templates/ui/probeviewer/main.html:205
 msgid "No vehicle data available"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:185
+#: ui/templates/ui/probeviewer/main.html:190
 #: ui/templates/ui/probeviewer/trip.html:147
 msgid "A/C usage"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:186
+#: ui/templates/ui/probeviewer/main.html:191
 msgid "Headlights usage"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:187
-#: ui/templates/ui/probeviewer/main.html:349
+#: ui/templates/ui/probeviewer/main.html:192
+#: ui/templates/ui/probeviewer/main.html:366
 #: ui/templates/ui/probeviewer/trip.html:32
 msgid "Average speed"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:188
+#: ui/templates/ui/probeviewer/main.html:193
 msgid "Energy regeneration"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:189
-#: ui/templates/ui/probeviewer/main.html:193
+#: ui/templates/ui/probeviewer/main.html:194
+#: ui/templates/ui/probeviewer/main.html:198
 msgid "Energy consumption"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:190
+#: ui/templates/ui/probeviewer/main.html:195
 msgid "Runtime"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:191
+#: ui/templates/ui/probeviewer/main.html:196
 msgid "Lifetime data mileage"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:262
+#: ui/templates/ui/probeviewer/main.html:234
+msgid "Download CSV"
+msgstr ""
+
+#: ui/templates/ui/probeviewer/main.html:279
 msgid "No DOT data available"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:263
+#: ui/templates/ui/probeviewer/main.html:280
 msgid "DOT data comes available on next startup after a trip."
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:324
+#: ui/templates/ui/probeviewer/main.html:341
 msgid "No trip data available"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:347
+#: ui/templates/ui/probeviewer/main.html:364
 msgid "Driving distance"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:348
+#: ui/templates/ui/probeviewer/main.html:365
 msgid "Driving time"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:351
-#: ui/templates/ui/probeviewer/trip.html:199
+#: ui/templates/ui/probeviewer/main.html:368
+#: ui/templates/ui/probeviewer/trip.html:195
 msgid "Regenerated energy"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:352
+#: ui/templates/ui/probeviewer/main.html:369
 msgid "Consumed energy"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:355
+#: ui/templates/ui/probeviewer/main.html:372
 #: ui/templates/ui/probeviewer/trip.html:83
 #: ui/templates/ui/probeviewer/trip.html:89
 msgid "Average consumption"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:362
+#: ui/templates/ui/probeviewer/main.html:379
 #: ui/templates/ui/probeviewer/trip.html:153
 msgid "Average acceleration"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:401
+#: ui/templates/ui/probeviewer/main.html:418
 msgid "No monthly analytics available"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:402
+#: ui/templates/ui/probeviewer/main.html:419
 msgid "Monthly analytics information comes available at the end of the month."
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:420
+#: ui/templates/ui/probeviewer/main.html:437
 msgid "Single Day"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:424
+#: ui/templates/ui/probeviewer/main.html:441
 msgid "Single Week"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:428
+#: ui/templates/ui/probeviewer/main.html:445
 msgid "Single Month"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:456
+#: ui/templates/ui/probeviewer/main.html:473
 msgid "Export to GPX"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:463
+#: ui/templates/ui/probeviewer/main.html:480
 msgid "No location available"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:464
+#: ui/templates/ui/probeviewer/main.html:481
 msgid ""
 "Location information comes available on next startup, if your current "
 "configuration allows it."
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:490
+#: ui/templates/ui/probeviewer/main.html:507
 msgid "State at start"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:491
+#: ui/templates/ui/probeviewer/main.html:508
 msgid "State at end"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:492
-#: ui/templates/ui/probeviewer/main.html:565
+#: ui/templates/ui/probeviewer/main.html:509
+#: ui/templates/ui/probeviewer/main.html:582
 msgid "Charging type"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:493
+#: ui/templates/ui/probeviewer/main.html:510
 msgid "Charged energy"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:494
+#: ui/templates/ui/probeviewer/main.html:511
 msgid "Cell temp. (start)"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:494
-#: ui/templates/ui/probeviewer/main.html:495
-#: ui/templates/ui/probeviewer/main.html:496
+#: ui/templates/ui/probeviewer/main.html:511
+#: ui/templates/ui/probeviewer/main.html:512
+#: ui/templates/ui/probeviewer/main.html:513
 msgid "avg/max/min"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:495
+#: ui/templates/ui/probeviewer/main.html:512
 msgid "Cell temp. (end)"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:496
+#: ui/templates/ui/probeviewer/main.html:513
 msgid "Cell volt. (start)"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:497
+#: ui/templates/ui/probeviewer/main.html:514
 msgid "Charges while ign. off"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:537
+#: ui/templates/ui/probeviewer/main.html:554
 msgid "No charging history available"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:538
+#: ui/templates/ui/probeviewer/main.html:555
 msgid ""
 "Charging history may become available on next startup after the charging."
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:564
+#: ui/templates/ui/probeviewer/main.html:581
 msgid "Charge count"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:605
+#: ui/templates/ui/probeviewer/main.html:622
 msgid "No charge data available"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:606
+#: ui/templates/ui/probeviewer/main.html:623
 msgid "Charging data may become available on next startup after the charging."
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:629
+#: ui/templates/ui/probeviewer/main.html:646
 msgid "Operation time"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:630
+#: ui/templates/ui/probeviewer/main.html:647
 msgid "Vehicle speed at start"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:631
+#: ui/templates/ui/probeviewer/main.html:648
 msgid "Vehicle speed at end"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:632
+#: ui/templates/ui/probeviewer/main.html:649
 msgid "Road type"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:672
+#: ui/templates/ui/probeviewer/main.html:689
 msgid "No ABS data available"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:673
+#: ui/templates/ui/probeviewer/main.html:690
 msgid ""
 "ABS data may become available on next startup if your vehicle configuration "
 "allows it."
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:690
-#: ui/templates/ui/probeviewer/main.html:762
-#: ui/templates/ui/probeviewer/main.html:834
-#: ui/templates/ui/probeviewer/main.html:906
-#: ui/templates/ui/probeviewer/main.html:978
+#: ui/templates/ui/probeviewer/main.html:707
+#: ui/templates/ui/probeviewer/main.html:779
+#: ui/templates/ui/probeviewer/main.html:851
+#: ui/templates/ui/probeviewer/main.html:923
+#: ui/templates/ui/probeviewer/main.html:995
 msgid "Date and time"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:693
-#: ui/templates/ui/probeviewer/main.html:837
+#: ui/templates/ui/probeviewer/main.html:710
+#: ui/templates/ui/probeviewer/main.html:854
 #: ui/templates/ui/probeviewer/trip.html:45
 msgid "Duration"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:745
-#: ui/templates/ui/probeviewer/main.html:817
-#: ui/templates/ui/probeviewer/main.html:889
+#: ui/templates/ui/probeviewer/main.html:762
+#: ui/templates/ui/probeviewer/main.html:834
+#: ui/templates/ui/probeviewer/main.html:906
 msgid "No idling data available"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:746
-#: ui/templates/ui/probeviewer/main.html:818
-#: ui/templates/ui/probeviewer/main.html:890
+#: ui/templates/ui/probeviewer/main.html:763
+#: ui/templates/ui/probeviewer/main.html:835
+#: ui/templates/ui/probeviewer/main.html:907
 msgid ""
 "Idling data may become available on next startup if your vehicle "
 "configuration allows it."
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:765
+#: ui/templates/ui/probeviewer/main.html:782
 msgid "Consumption"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:909
-#: ui/templates/ui/probeviewer/main.html:981
+#: ui/templates/ui/probeviewer/main.html:926
+#: ui/templates/ui/probeviewer/main.html:998
 msgid "Data"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:961
+#: ui/templates/ui/probeviewer/main.html:978
 msgid "No DTC data available"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:962
+#: ui/templates/ui/probeviewer/main.html:979
 msgid ""
 "DTC data may become available on next startup if your vehicle has active DTC "
 "trouble code."
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:1033
+#: ui/templates/ui/probeviewer/main.html:1050
 msgid "No MSN data available"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:1034
+#: ui/templates/ui/probeviewer/main.html:1051
 msgid "MSN data may become available on next startup."
 msgstr ""
 
-#: ui/templates/ui/probeviewer/main.html:1263
-#: ui/templates/ui/probeviewer/main.html:1267
-#: ui/templates/ui/probeviewer/main.html:1268
+#: ui/templates/ui/probeviewer/main.html:1259
+#: ui/templates/ui/probeviewer/main.html:1260
+#: ui/templates/ui/probeviewer/main.html:1332
+msgid "Error loading DOT file"
+msgstr ""
+
+#: ui/templates/ui/probeviewer/main.html:1332
+msgid "No usable GPS points found in this file."
+msgstr ""
+
+#: ui/templates/ui/probeviewer/main.html:1462
+#: ui/templates/ui/probeviewer/main.html:1466
+#: ui/templates/ui/probeviewer/main.html:1467
 msgid "Error loading location history"
 msgstr ""
 
@@ -3178,115 +3208,115 @@ msgstr ""
 msgid "Odometer at start"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/trip.html:195
+#: ui/templates/ui/probeviewer/trip.html:191
 msgid "A/C consumption"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/trip.html:196
+#: ui/templates/ui/probeviewer/trip.html:192
 msgid "Auxiliary consumption"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/trip.html:197
+#: ui/templates/ui/probeviewer/trip.html:193
 msgid "Motor consumption"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/trip.html:198
+#: ui/templates/ui/probeviewer/trip.html:194
 msgid "Idle consumption"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/trip.html:200
+#: ui/templates/ui/probeviewer/trip.html:196
 msgid "Sudden acceleration consumption"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/trip.html:201
+#: ui/templates/ui/probeviewer/trip.html:197
 msgid "Sudden acceleration time"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/trip.html:202
+#: ui/templates/ui/probeviewer/trip.html:198
 msgid "Non-eco deceleration consumption"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/trip.html:203
+#: ui/templates/ui/probeviewer/trip.html:199
 msgid "Non-eco deceleration time"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/trip.html:204
+#: ui/templates/ui/probeviewer/trip.html:200
 msgid "Sudden start consumption"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/trip.html:205
+#: ui/templates/ui/probeviewer/trip.html:201
 msgid "Sudden start time"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/trip.html:211
+#: ui/templates/ui/probeviewer/trip.html:207
 msgid "Trip start"
+msgstr ""
+
+#: ui/templates/ui/probeviewer/trip.html:209
+#: ui/templates/ui/probeviewer/trip.html:226
+msgid "Battery pack temperature"
+msgstr ""
+
+#: ui/templates/ui/probeviewer/trip.html:211
+#: ui/templates/ui/probeviewer/trip.html:212
+#: ui/templates/ui/probeviewer/trip.html:228
+#: ui/templates/ui/probeviewer/trip.html:229
+msgid "Energy content"
 msgstr ""
 
 #: ui/templates/ui/probeviewer/trip.html:213
 #: ui/templates/ui/probeviewer/trip.html:230
-msgid "Battery pack temperature"
-msgstr ""
-
-#: ui/templates/ui/probeviewer/trip.html:215
-#: ui/templates/ui/probeviewer/trip.html:216
-#: ui/templates/ui/probeviewer/trip.html:232
-#: ui/templates/ui/probeviewer/trip.html:233
-msgid "Energy content"
-msgstr ""
-
-#: ui/templates/ui/probeviewer/trip.html:217
-#: ui/templates/ui/probeviewer/trip.html:234
 msgid "Average cell temperature"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/trip.html:218
-#: ui/templates/ui/probeviewer/trip.html:235
+#: ui/templates/ui/probeviewer/trip.html:214
+#: ui/templates/ui/probeviewer/trip.html:231
 msgid "Max cell temperature"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/trip.html:219
-#: ui/templates/ui/probeviewer/trip.html:236
+#: ui/templates/ui/probeviewer/trip.html:215
+#: ui/templates/ui/probeviewer/trip.html:232
 msgid "Min cell temperature"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/trip.html:220
+#: ui/templates/ui/probeviewer/trip.html:216
 msgid "Average cell voltage"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/trip.html:221
+#: ui/templates/ui/probeviewer/trip.html:217
 msgid "Max cell voltage"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/trip.html:222
+#: ui/templates/ui/probeviewer/trip.html:218
 msgid "Min cell voltage"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/trip.html:223
+#: ui/templates/ui/probeviewer/trip.html:219
 msgid "AC charges (total?)"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/trip.html:224
+#: ui/templates/ui/probeviewer/trip.html:220
 msgid "QC charges (total?)"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/trip.html:228
+#: ui/templates/ui/probeviewer/trip.html:224
 msgid "Trip end"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/trip.html:237
+#: ui/templates/ui/probeviewer/trip.html:233
 msgid "Accumulated current"
 msgstr ""
 
+#: ui/templates/ui/probeviewer/trip.html:234
 #: ui/templates/ui/probeviewer/trip.html:238
-#: ui/templates/ui/probeviewer/trip.html:242
 msgid "SOH"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/trip.html:239
+#: ui/templates/ui/probeviewer/trip.html:235
 msgid "Pack resistance"
 msgstr ""
 
-#: ui/templates/ui/probeviewer/trip.html:243
+#: ui/templates/ui/probeviewer/trip.html:239
 msgid "New battery degradation analysis program"
 msgstr ""
 
@@ -3743,171 +3773,4 @@ msgstr ""
 
 #: ui/views.py:1027
 msgid "Update request cancelled!"
-msgstr ""
-
-msgid ""
-"In order to receive vehicle data, CARWINGS navigation unit must have correct "
-"connection settings."
-msgstr ""
-
-msgid "Trip information comes available on next startup after the trip."
-msgstr ""
-
-msgid "A/C precondition notice"
-msgstr ""
-
-#, python-brace-format
-msgid "Account created for {username}! Please sign in."
-msgstr ""
-
-msgid "Export VFlash"
-msgstr ""
-
-msgid "Take Back Control of Your Nissan LEAF"
-msgstr ""
-
-msgid ""
-"The iconic Nissan LEAF deserves more than abandonment. With the "
-"manufacturer's support fading, the community steps up. Sign up now to bring "
-"your LEAF back to life!"
-msgstr ""
-
-msgid "Charge position"
-msgstr ""
-
-msgid "Direction"
-msgstr ""
-
-msgid "Result"
-msgstr ""
-
-msgid "Version"
-msgstr ""
-
-msgid "OpenCARWINGS"
-msgstr ""
-
-msgid "Route Planning & Navigation"
-msgstr ""
-
-msgid "Online Services"
-msgstr ""
-
-msgid "Any new announcements or features can be shown here"
-msgstr ""
-
-msgid "Energy Economy"
-msgstr ""
-
-msgid "Get latest energy economy information"
-msgstr ""
-
-msgid "Eco Trees"
-msgstr ""
-
-msgid "Get latest eco tree information"
-msgstr ""
-
-msgid "Weather Forecast"
-msgstr ""
-
-msgid "Download Weather Forecast for your area"
-msgstr ""
-
-msgid "clear"
-msgstr ""
-
-msgid "mainly clear"
-msgstr ""
-
-msgid "partly cloudy"
-msgstr ""
-
-msgid "cloudy"
-msgstr ""
-
-msgid "foggy"
-msgstr ""
-
-msgid "foggy with rime ice"
-msgstr ""
-
-msgid "drizzling lightly"
-msgstr ""
-
-msgid "drizzling moderately"
-msgstr ""
-
-msgid "heavy drizzling"
-msgstr ""
-
-msgid "drizzling lightly freezed"
-msgstr ""
-
-msgid "drizzling moderately freezed"
-msgstr ""
-
-msgid "raining slightly"
-msgstr ""
-
-msgid "raining moderately"
-msgstr ""
-
-msgid "raining heavily"
-msgstr ""
-
-msgid "freeze raining lightly"
-msgstr ""
-
-msgid "freeze raining moderately"
-msgstr ""
-
-msgid "snowing slightly"
-msgstr ""
-
-msgid "moderate snowing"
-msgstr ""
-
-msgid "snowing heavily"
-msgstr ""
-
-msgid "snowing grain"
-msgstr ""
-
-msgid "slight rain shower"
-msgstr ""
-
-msgid "moderate rain shower"
-msgstr ""
-
-msgid "violent rain shower"
-msgstr ""
-
-msgid "slight snow shower"
-msgstr ""
-
-msgid "heavy snow shower"
-msgstr ""
-
-msgid "thunderstorm"
-msgstr ""
-
-msgid "This channel does not exist and cannot be added to favorites list"
-msgstr ""
-
-msgid ""
-"You may sign in with your username and CARWINGS password in navigation unit "
-"like showed below."
-msgstr ""
-
-msgid "Latitude"
-msgstr ""
-
-msgid "Longitude"
-msgstr ""
-
-msgid "VFlash editor"
-msgstr ""
-
-msgid "GIDs remaining (relative)"
 msgstr ""

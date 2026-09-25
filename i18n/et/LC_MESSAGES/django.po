@@ -8,11 +8,11 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-25 11:54+0000\n"
-"PO-Revision-Date: 2026-09-25 11:51+0000\n"
+"PO-Revision-Date: 2026-09-26 11:58+0000\n"
 "Last-Translator: Weblate Admin <hello@ruben.fi>\n"
-"Language-Team: Ewe <https://i18n.viaaq.eu/projects/opencarwings-server/"
-"server/ee/>\n"
-"Language: ee\n"
+"Language-Team: Estonian <https://i18n.viaaq.eu/projects/opencarwings-server/"
+"server/et/>\n"
+"Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1825,7 +1825,7 @@ msgstr "Ühendatud, Lahti ühendatud"
 
 #: ui/templates/ui/car_detail.html:182 ui/templates/ui/car_detail.html:1278
 msgid "No Power"
-msgstr ""
+msgstr "Ei voolu"
 
 #: ui/templates/ui/car_detail.html:189
 msgid "Car status"
@@ -1853,10 +1853,8 @@ msgid "Charging finished"
 msgstr "Laadimine lõpetatud"
 
 #: ui/templates/ui/car_detail.html:201 ui/templates/ui/car_detail.html:1292
-#, fuzzy
-#| msgid "Charging type"
 msgid "Charging interrupted"
-msgstr "Laadimise tüüp"
+msgstr "Laadimine katkestatud"
 
 #: ui/templates/ui/car_detail.html:203 ui/templates/ui/car_detail.html:348
 #: ui/templates/ui/car_detail.html:1294
@@ -2041,10 +2039,8 @@ msgid "Plugged in"
 msgstr "Ühendatud"
 
 #: ui/templates/ui/car_detail.html:347
-#, fuzzy
-#| msgid "No ABS data available"
 msgid "Power Available"
-msgstr "ABS andmed pole saadaval"
+msgstr "Toide on saadaval"
 
 #: ui/templates/ui/car_detail.html:349
 msgid "Quick-charging"
@@ -2970,7 +2966,7 @@ msgstr "Eluaegne andmete läbisõit"
 
 #: ui/templates/ui/probeviewer/main.html:234
 msgid "Download CSV"
-msgstr ""
+msgstr "Laadi alla CSV-fail"
 
 #: ui/templates/ui/probeviewer/main.html:279
 msgid "No DOT data available"
@@ -3203,14 +3199,12 @@ msgstr "MSN andmed võivad muutuda kättesaadavaks järgmisel käivitamisel."
 #: ui/templates/ui/probeviewer/main.html:1259
 #: ui/templates/ui/probeviewer/main.html:1260
 #: ui/templates/ui/probeviewer/main.html:1332
-#, fuzzy
-#| msgid "Error saving the timer"
 msgid "Error loading DOT file"
-msgstr "Taimeri salvestamisel tekkis viga"
+msgstr "Viga DOT-faili laadimisel"
 
 #: ui/templates/ui/probeviewer/main.html:1332
 msgid "No usable GPS points found in this file."
-msgstr ""
+msgstr "Sellest failist ei leitud kasutatavaid GPS-punkte."
 
 #: ui/templates/ui/probeviewer/main.html:1462
 #: ui/templates/ui/probeviewer/main.html:1466

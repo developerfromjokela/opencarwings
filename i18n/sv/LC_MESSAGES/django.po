@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-25 11:54+0000\n"
-"PO-Revision-Date: 2026-09-24 19:32+0000\n"
+"PO-Revision-Date: 2026-09-26 11:58+0000\n"
 "Last-Translator: Rikard Svenman <rsvenman@gmail.com>\n"
 "Language-Team: Swedish <https://i18n.viaaq.eu/projects/opencarwings-server/"
 "server/sv/>\n"
@@ -559,47 +559,53 @@ msgid ""
 "yet, because of missing trip information. Try checking in to this channel "
 "again after your next trip. "
 msgstr ""
+"\n"
+"För {day_word} i {month}, kan energiekonomin inte beräknas ännu, eftersom "
+"det saknas tur-information. Kontrollera denna kanal igen efter din nästa "
+"biltur. "
 
 #: tculink/carwings_proto/autodj/opencarwings.py:713
 msgid "Electric Car Column"
-msgstr ""
+msgstr "Elbilskolumn"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:714
 #: tculink/carwings_proto/autodj/opencarwings.py:719
 msgid "Drive Tip"
-msgstr ""
+msgstr "Körtips"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:768
 #: tculink/carwings_proto/autodj/opencarwings.py:769
 msgid "Energy Information"
-msgstr ""
+msgstr "Energiinformation"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:821
 msgid "Eco Tree Record"
-msgstr ""
+msgstr "Ekoträds-historik"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:831
 msgid ""
 "Your Eco Tree Record \n"
 "\n"
 msgstr ""
+"Din ekoträdshistorik \n"
+"\n"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:837
 #: tculink/carwings_proto/autodj/opencarwings.py:843
 msgid "tree"
-msgstr ""
+msgstr "träd"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:839
 #: tculink/carwings_proto/autodj/opencarwings.py:845
 #: tculink/carwings_proto/autodj/opencarwings.py:858
 #: tculink/carwings_proto/autodj/opencarwings.py:904
 msgid "trees"
-msgstr ""
+msgstr "träd"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:846
 #, python-brace-format
 msgid "Sum total: {trees} {tree_word}"
-msgstr ""
+msgstr "Totalt: {trees} {tree_word}"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:852
 #, python-brace-format
@@ -607,42 +613,46 @@ msgid ""
 "On the {day_word} of {month}, you saved {trees} <phoneme alphabet=\"x-SVOX-"
 "sampa_en-GB\" ph=\"'i:-k@@U\">eco</phoneme>trees.\")"
 msgstr ""
+"{day_word} den {month} sparade du {trees} <phoneme alphabet=\"x-SVOX-"
+"sampa_en-GB\" ph=\"'i:-k@@U\">eco</phoneme>träd.\")"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:858
 msgid "Total:"
-msgstr ""
+msgstr "Totalt:"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:896
 msgid "World's Eco Forest"
-msgstr ""
+msgstr "Planetens ekoskog"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:905
 msgid "tonnes"
-msgstr ""
+msgstr "ton"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:906
 msgid "Total number of Eco Trees:"
-msgstr ""
+msgstr "Totalt antal ekoträd:"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:908
 msgid "CO2 Emission Cuts:"
-msgstr ""
+msgstr "CO2-utsläppsbesparing:"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:916
 #, python-brace-format
 msgid "Total number of Eco Trees by {day} / {month}:"
-msgstr ""
+msgstr "Totalt antal ekoträd sedan: {day} / {month}:"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:918
 #, python-brace-format
 msgid "CO2 emissions reduced by {day} / {month}:"
-msgstr ""
+msgstr "CO2-besparing sedan {day} / {month}:"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:921
 msgid ""
 "(This calculation is based on an assumption that the CO2 emitted by petrol-"
 "driven cars of equivalent class can be reduced by driving electric cars)"
 msgstr ""
+"(Den här beräkningen baseras på antagandet att koldioxidutsläpp från "
+"liknande bensinbilar kan reduceras genom att köra elbil istället)"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:925
 #, python-brace-format
@@ -652,27 +662,30 @@ msgid ""
 "k@@U\">eco</phoneme>trees. And {tonnes} tonnes of carbon dioxide has been "
 "reduced."
 msgstr ""
+"Till och med {day_word} of {month}, kommer elbilar med Open Car Wings i hela "
+"världen ha sparat totalt {trees} <phoneme alphabet=\"x-SVOX-sampa_en-GB\" "
+"ph=\"'i:-k@@U\">eco</phoneme>träd, och sparat {tonnes} ton koldioxid."
 
 #: tculink/carwings_proto/autodj/opencarwings.py:983
 #: tculink/carwings_proto/autodj/opencarwings.py:984
 msgid "ECO Tree"
-msgstr ""
+msgstr "ECO-träd"
 
 #: tculink/carwings_proto/autodj/routeplanner.py:23
 #: tculink/carwings_proto/autodj/routeplanner.py:33
 msgid "Route Plan not available"
-msgstr ""
+msgstr "Rutt inte tillgänglig"
 
 #: tculink/carwings_proto/autodj/routeplanner.py:34
 msgid ""
 "This route plan is empty. Please save a route plan online and try again."
-msgstr ""
+msgstr "Den här rutten är tom. Spara en rutt online och försök igen."
 
 #: tculink/carwings_proto/autodj/routeplanner.py:55
 #: tculink/carwings_proto/autodj/routeplanner.py:56
 #, python-brace-format
 msgid "Route Plan {num}"
-msgstr ""
+msgstr "Rutt nummer {num}"
 
 #: tculink/carwings_proto/autodj/sendtocar.py:39
 #, python-brace-format
@@ -680,10 +693,12 @@ msgid ""
 "Location point, \"{point_name}\", which is {distance} kilometers away. Set "
 "it as destination by pressing pause and setting map point as destination."
 msgstr ""
+"Intressepunkt \"{point_name}\", som är {distance} km bort. Ange som "
+"destination genom att trycka pause och ställa in kartpunkt som destination."
 
 #: tculink/carwings_proto/autodj/sendtocar.py:76
 msgid "Google Send To Car: No Destinations"
-msgstr ""
+msgstr "Google Send To Car: Inga destinationer"
 
 #: tculink/carwings_proto/autodj/sendtocar.py:77
 msgid ""
@@ -691,49 +706,51 @@ msgid ""
 "destination from your computer or mobile device and access this channel "
 "again."
 msgstr ""
+"Inga destinationer har sänts till bilen. Sänd minst en destination från din "
+"dator eller mobil och anslut till kanalen på nytt."
 
 #: tculink/carwings_proto/autodj/weather.py:155
 #: tculink/carwings_proto/autodj/weather.py:161
 msgid "early morning"
-msgstr ""
+msgstr "tidig morgon"
 
 #: tculink/carwings_proto/autodj/weather.py:156
 #: tculink/carwings_proto/autodj/weather.py:162
 msgid "morning"
-msgstr ""
+msgstr "morgon"
 
 #: tculink/carwings_proto/autodj/weather.py:157
 #: tculink/carwings_proto/autodj/weather.py:163
 msgid "day"
-msgstr ""
+msgstr "dag"
 
 #: tculink/carwings_proto/autodj/weather.py:158
 #: tculink/carwings_proto/autodj/weather.py:164
 msgid "evening"
-msgstr ""
+msgstr "kväll"
 
 #: tculink/carwings_proto/autodj/weather.py:159
 #: tculink/carwings_proto/autodj/weather.py:165
 msgid "night"
-msgstr ""
+msgstr "natt"
 
 #: tculink/carwings_proto/autodj/weather.py:160
 msgid "late night"
-msgstr ""
+msgstr "sen natt"
 
 #: tculink/carwings_proto/autodj/weather.py:168
 msgid "vehicle location"
-msgstr ""
+msgstr "fordonets plats"
 
 #: tculink/carwings_proto/autodj/weather.py:263
 #, python-brace-format
 msgid "Weather Forecast for today, near {location_txt}."
-msgstr ""
+msgstr "Väderprognos för idag, nära {location_txt}."
 
 #: tculink/carwings_proto/autodj/weather.py:267
 #: tculink/carwings_proto/autodj/weather.py:404
 msgid "No forecast data available."
-msgstr ""
+msgstr "Ingen prognos tillgänglig."
 
 #: tculink/carwings_proto/autodj/weather.py:270
 #, python-brace-format
@@ -742,18 +759,21 @@ msgid ""
 "degrees celsius, wind speed of {wind} meters per second and {rain} percent "
 "chance of rain. \n"
 msgstr ""
+"Under {period}, förutspås {condition}. Temperaturer kring {temp} grader "
+"celsius, vindhastighet {wind} meter per sekund och {rain} procents risk för "
+"nederbörd. \n"
 
 #: tculink/carwings_proto/autodj/weather.py:281
 #: tculink/carwings_proto/autodj/weather.py:419
 #: tculink/carwings_proto/autodj/weather.py:461
 #: tculink/carwings_proto/autodj/weather.py:462
 msgid "Weather forecast"
-msgstr ""
+msgstr "Väderprognos"
 
 #: tculink/carwings_proto/autodj/weather.py:401
 #, python-brace-format
 msgid "Weather Forecast for next seven days, near {location_txt}."
-msgstr ""
+msgstr "Väderprognos för de kommande sju dagarna nära {location_txt}."
 
 #: tculink/carwings_proto/autodj/weather.py:408
 #, python-brace-format
@@ -761,182 +781,184 @@ msgid ""
 "On {weekday}, forecasted to {condition}. With highest temperature of "
 "{maxtemp} degrees celsius, lowest temperature of {mintemp} degrees celsius\n"
 msgstr ""
+"På {weekday}förutspås {condition}. Med högsta temperatur {maxtemp} grader "
+"celsius och lägsta {mintemp} grader\n"
 
 #: tculink/carwings_proto/utils.py:146
 msgid "first"
-msgstr ""
+msgstr "första"
 
 #: tculink/carwings_proto/utils.py:146
 msgid "second"
-msgstr ""
+msgstr "andra"
 
 #: tculink/carwings_proto/utils.py:146
 msgid "third"
-msgstr ""
+msgstr "tredje"
 
 #: tculink/carwings_proto/utils.py:146
 msgid "fourth"
-msgstr ""
+msgstr "fjärde"
 
 #: tculink/carwings_proto/utils.py:146
 msgid "fifth"
-msgstr ""
+msgstr "femte"
 
 #: tculink/carwings_proto/utils.py:147
 msgid "sixth"
-msgstr ""
+msgstr "sjätte"
 
 #: tculink/carwings_proto/utils.py:147
 msgid "seventh"
-msgstr ""
+msgstr "sjunde"
 
 #: tculink/carwings_proto/utils.py:147
 msgid "eighth"
-msgstr ""
+msgstr "åttonde"
 
 #: tculink/carwings_proto/utils.py:147
 msgid "ninth"
-msgstr ""
+msgstr "nionde"
 
 #: tculink/carwings_proto/utils.py:147
 msgid "tenth"
-msgstr ""
+msgstr "tionde"
 
 #: tculink/carwings_proto/utils.py:148
 msgid "eleventh"
-msgstr ""
+msgstr "elfte"
 
 #: tculink/carwings_proto/utils.py:148
 msgid "twelfth"
-msgstr ""
+msgstr "tolfte"
 
 #: tculink/carwings_proto/utils.py:148
 msgid "thirteenth"
-msgstr ""
+msgstr "trettonde"
 
 #: tculink/carwings_proto/utils.py:148
 msgid "fourteenth"
-msgstr ""
+msgstr "fjortonde"
 
 #: tculink/carwings_proto/utils.py:148
 msgid "fifteenth"
-msgstr ""
+msgstr "femtonde"
 
 #: tculink/carwings_proto/utils.py:149
 msgid "sixteenth"
-msgstr ""
+msgstr "sextonde"
 
 #: tculink/carwings_proto/utils.py:149
 msgid "seventeenth"
-msgstr ""
+msgstr "sjuttonde"
 
 #: tculink/carwings_proto/utils.py:149
 msgid "eighteenth"
-msgstr ""
+msgstr "artonde"
 
 #: tculink/carwings_proto/utils.py:149
 msgid "nineteenth"
-msgstr ""
+msgstr "nittonde"
 
 #: tculink/carwings_proto/utils.py:149
 msgid "twentieth"
-msgstr ""
+msgstr "tjugonde"
 
 #: tculink/carwings_proto/utils.py:150
 msgid "twenty-first"
-msgstr ""
+msgstr "tjugoförsta"
 
 #: tculink/carwings_proto/utils.py:150
 msgid "twenty-second"
-msgstr ""
+msgstr "tjugoandra"
 
 #: tculink/carwings_proto/utils.py:150
 msgid "twenty-third"
-msgstr ""
+msgstr "tjugotredje"
 
 #: tculink/carwings_proto/utils.py:150
 msgid "twenty-fourth"
-msgstr ""
+msgstr "tjugofjärde"
 
 #: tculink/carwings_proto/utils.py:150
 msgid "twenty-fifth"
-msgstr ""
+msgstr "tjugofemte"
 
 #: tculink/carwings_proto/utils.py:151
 msgid "twenty-sixth"
-msgstr ""
+msgstr "tjugosjätte"
 
 #: tculink/carwings_proto/utils.py:151
 msgid "twenty-seventh"
-msgstr ""
+msgstr "tjugosjunde"
 
 #: tculink/carwings_proto/utils.py:151
 msgid "twenty-eighth"
-msgstr ""
+msgstr "tjugoåttonde"
 
 #: tculink/carwings_proto/utils.py:151
 msgid "twenty-ninth"
-msgstr ""
+msgstr "tjugonionde"
 
 #: tculink/carwings_proto/utils.py:151
 msgid "thirtieth"
-msgstr ""
+msgstr "trettionde"
 
 #: tculink/carwings_proto/utils.py:152
 msgid "thirty-first"
-msgstr ""
+msgstr "trettioförsta"
 
 #: tculink/gdc_proto/ficosa/utils.py:69 tculink/gdc_proto/ficosa/utils.py:90
 #: tculink/httpgateway/ficosa/destinations/veh_health.py:24
 #: tculink/httpgateway/ficosa/destinations/veh_health.py:32
 #: ui/templates/ui/car_detail.html:102
 msgid "Vehicle Health Report"
-msgstr ""
+msgstr "Fordonshälsorapport"
 
 #: tculink/gdc_proto/ficosa/utils.py:74
 msgid "Service Enabled"
-msgstr ""
+msgstr "Tjänst aktiv"
 
 #: tculink/gdc_proto/ficosa/utils.py:75
 msgid "Send frequency (days)"
-msgstr ""
+msgstr "Sändningsintervall (dagar)"
 
 #: tculink/gdc_proto/ficosa/utils.py:79
 msgid "Service Provisioning"
-msgstr ""
+msgstr "Tjänsteinställningar"
 
 #: tculink/gdc_proto/ficosa/utils.py:84
 msgid "EV Battery Charging Status"
-msgstr ""
+msgstr "EV-batteri laddstatus"
 
 #: tculink/gdc_proto/ficosa/utils.py:85
 msgid "EV Battery Charging History"
-msgstr ""
+msgstr "EV-batteri laddhistorik"
 
 #: tculink/gdc_proto/ficosa/utils.py:86
 msgid "EV Battery Charging Remote Activation"
-msgstr ""
+msgstr "EV-batteri fjärraktivering laddning"
 
 #: tculink/gdc_proto/ficosa/utils.py:87
 msgid "EV Remote HVAC Activation"
-msgstr ""
+msgstr "EV Fjärraktivering HVAC"
 
 #: tculink/gdc_proto/ficosa/utils.py:88
 msgid "EV Plug Reminder"
-msgstr ""
+msgstr "EV Laddkabel Påminnelse"
 
 #: tculink/gdc_proto/ficosa/utils.py:89
 msgid "EV Battery Heating Notification"
-msgstr ""
+msgstr "EV Batterivärme notis"
 
 #: tculink/gdc_proto/ficosa/utils.py:91
 #: tculink/httpgateway/ficosa/destinations/burglar.py:36
 msgid "Burglar Alarm"
-msgstr ""
+msgstr "Tjuvlarm"
 
 #: tculink/gdc_proto/ficosa/utils.py:92
 msgid "Door Lock & Unlock"
-msgstr ""
+msgstr "Dörr lås/lås upp"
 
 #: tculink/gdc_proto/ficosa/utils.py:95 tculink/gdc_proto/ficosa/utils.py:96
 #: tculink/gdc_proto/ficosa/utils.py:97 tculink/gdc_proto/ficosa/utils.py:98
@@ -947,105 +969,107 @@ msgstr ""
 #: tculink/gdc_proto/ficosa/utils.py:231 tculink/gdc_proto/ficosa/utils.py:248
 #, python-brace-format
 msgid "Probe Service {num}"
-msgstr ""
+msgstr "Informationstjänst {num}"
 
 #: tculink/gdc_proto/ficosa/utils.py:105
 msgid ""
 "EV Battery Lease Program: Charging block service (DO NOT ENABLE IF NOT "
 "NEEDED)"
 msgstr ""
+"EV Batterileasing-program: Laddblockeringstjänst (AKTIVERA INTE OM DET INTE "
+"BEHÖVS)"
 
 #: tculink/gdc_proto/ficosa/utils.py:109
 msgid "SIM Settings 1"
-msgstr ""
+msgstr "SIM-inställningar 1"
 
 #: tculink/gdc_proto/ficosa/utils.py:115 tculink/gdc_proto/ficosa/utils.py:152
 msgid "SIM Pin Code"
-msgstr ""
+msgstr "SIM pin-kod"
 
 #: tculink/gdc_proto/ficosa/utils.py:117 tculink/gdc_proto/ficosa/utils.py:153
 msgid "SIM Pin Locked"
-msgstr ""
+msgstr "SIM pin-låst"
 
 #: tculink/gdc_proto/ficosa/utils.py:125 tculink/gdc_proto/ficosa/utils.py:157
 msgid "SMSC Number 1"
-msgstr ""
+msgstr "SMCS-nummer 1"
 
 #: tculink/gdc_proto/ficosa/utils.py:143 tculink/gdc_proto/ficosa/utils.py:166
 msgid "SMSC Number 2"
-msgstr ""
+msgstr "SMCS-nummer 2"
 
 #: tculink/gdc_proto/ficosa/utils.py:147
 msgid "SIM Settings 2"
-msgstr ""
+msgstr "SIM-inställningar 2"
 
 #: tculink/gdc_proto/ficosa/utils.py:170
 msgid "Server Settings"
-msgstr ""
+msgstr "Server-inställningar"
 
 #: tculink/gdc_proto/ficosa/utils.py:175
 msgid "User ID"
-msgstr ""
+msgstr "Användar-ID"
 
 #: tculink/gdc_proto/ficosa/utils.py:176
 msgid "User Password"
-msgstr ""
+msgstr "Användar-lösenord"
 
 #: tculink/gdc_proto/ficosa/utils.py:204 tculink/gdc_proto/ficosa/utils.py:220
 #: tculink/gdc_proto/ficosa/utils.py:237 tculink/gdc_proto/ficosa/utils.py:254
 msgid "Data Configuration"
-msgstr ""
+msgstr "Data-konfigurering"
 
 #: tculink/gdc_proto/ficosa/utils.py:206 tculink/gdc_proto/ficosa/utils.py:240
 msgid "EU Configuration (all data)"
-msgstr ""
+msgstr "EU-konfiguration (all data)"
 
 #: tculink/gdc_proto/ficosa/utils.py:207 tculink/gdc_proto/ficosa/utils.py:225
 #: tculink/gdc_proto/ficosa/utils.py:241 tculink/gdc_proto/ficosa/utils.py:258
 msgid "Japan Configuration (all data)"
-msgstr ""
+msgstr "Japan-konfiguration (all data)"
 
 #: tculink/gdc_proto/ficosa/utils.py:208 tculink/gdc_proto/ficosa/utils.py:242
 #: tculink/gdc_proto/ficosa/utils.py:259
 msgid "USA Configuration (all data)"
-msgstr ""
+msgstr "USA-konfiguration (all data)"
 
 #: tculink/gdc_proto/ficosa/utils.py:223 tculink/gdc_proto/ficosa/utils.py:257
 msgid "EU Configuration (less data)"
-msgstr ""
+msgstr "EU-konfiguration (mindre data)"
 
 #: tculink/gdc_proto/ficosa/utils.py:224
 msgid "USA Configuration (more data)"
-msgstr ""
+msgstr "USA-konfiguration (mer data)"
 
 #: tculink/httpgateway/ficosa/destinations/burglar.py:35
 msgid "Burglar alarm has been triggered"
-msgstr ""
+msgstr "Stöldlarm har aktiverats"
 
 #: tculink/httpgateway/ficosa/destinations/config.py:71
 msgid "One or more service provisionings failed to apply"
-msgstr ""
+msgstr "Ändring av en eller flera tjänsteinställningar misslyckades"
 
 #: tculink/httpgateway/ficosa/destinations/config.py:72
 #: tculink/httpgateway/ficosa/destinations/config.py:112
 msgid "Configuration Update Failed"
-msgstr ""
+msgstr "Konfigurationsuppdatering misslyckades"
 
 #: tculink/httpgateway/ficosa/destinations/config.py:85
 msgid "Service Provisioning performed successfully!"
-msgstr ""
+msgstr "Ändring av tjänsteinställningar lyckades!"
 
 #: tculink/httpgateway/ficosa/destinations/config.py:86
 #: tculink/httpgateway/ficosa/destinations/config.py:127
 msgid "Configuration Updated Successfully"
-msgstr ""
+msgstr "Ändring av konfiguration lyckades"
 
 #: tculink/httpgateway/ficosa/destinations/door.py:45
 #: tculink/httpgateway/ficosa/destinations/hornlight.py:45
 #: tculink/httpgateway/ficosa/destinations/remotestart.py:45
 #, python-brace-format
 msgid "{name} function is disabled in TCU"
-msgstr ""
+msgstr "Funktionen {name} är inaktiverad i TCU"
 
 #: tculink/httpgateway/ficosa/destinations/door.py:53
 #: tculink/httpgateway/ficosa/destinations/door.py:73
@@ -1058,55 +1082,57 @@ msgstr ""
 #: tculink/httpgateway/ficosa/destinations/remotestart.py:88
 #, python-brace-format
 msgid "Could not execute {name}"
-msgstr ""
+msgstr "Kunde inte utföra {name}"
 
 #: tculink/httpgateway/ficosa/destinations/door.py:60
 #: tculink/httpgateway/ficosa/destinations/hornlight.py:60
 #: tculink/httpgateway/ficosa/destinations/remotestart.py:60
 #, python-brace-format
 msgid "Could not execute {name}, please try again later"
-msgstr ""
+msgstr "Kunde inte utföra {name}, vänligen försök senare"
 
 #: tculink/httpgateway/ficosa/destinations/door.py:63
 msgid ""
 "Vehicle conditions not met for command execution. Make sure car is not "
 "running and key is not inside."
 msgstr ""
+"Fordonsvillkor ej uppfyllda för kommandot. Kontrollera att bilen inte är på "
+"och att nyckeln inte är i bilen."
 
 #: tculink/httpgateway/ficosa/destinations/door.py:80
 #: tculink/httpgateway/ficosa/destinations/hornlight.py:80
 #: tculink/httpgateway/ficosa/destinations/remotestart.py:80
 msgid "CANBUS failure when executing lock/unlock"
-msgstr ""
+msgstr "CANBUS-fel vid låsning/upplåsning"
 
 #: tculink/httpgateway/ficosa/destinations/door.py:87
 #: tculink/httpgateway/ficosa/destinations/hornlight.py:87
 #: tculink/httpgateway/ficosa/destinations/remotestart.py:87
 #, python-brace-format
 msgid "CANBUS failure when executing {name}"
-msgstr ""
+msgstr "CANBUS-fel vid kommando {name}"
 
 #: tculink/httpgateway/ficosa/destinations/door.py:101
 msgid "Door unlocked successfully!"
-msgstr ""
+msgstr "Dörr upplåst!"
 
 #: tculink/httpgateway/ficosa/destinations/door.py:101
 msgid "Door locked successfully!"
-msgstr ""
+msgstr "Dörr låst!"
 
 #: tculink/httpgateway/ficosa/destinations/door.py:102
 msgid "Door Lock/Unlock"
-msgstr ""
+msgstr "Lås/Lås upp dörr"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:90
 #: tculink/management/commands/tcuserver.py:297
 msgid "Vehicle is unplugged. Please check the situation if necessary."
-msgstr ""
+msgstr "Laddkabeln är frånkopplad. Kontrollera läget om det behövs."
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:91
 #: tculink/management/commands/tcuserver.py:298
 msgid "Charger unplugged notification"
-msgstr ""
+msgstr "Notis: Laddkabel frånkopplad"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:99
 #: tculink/management/commands/tcuserver.py:305
@@ -1115,33 +1141,35 @@ msgid ""
 "behind such error could be: a) low state of charge b) command already "
 "executed c) TCU error."
 msgstr ""
+"A/C-förvärmning kunde inte aktiveras. Anledning till felet kan vara a) låg "
+"batteriladdning, b)kommando redan utfört, c) TCU-fel."
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:101
 #: tculink/management/commands/tcuserver.py:307
 msgid "A/C preconditioning error"
-msgstr ""
+msgstr "A/C-förvärmningsfel"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:107
 #: tculink/management/commands/tcuserver.py:313
 msgid "A/C preconditioning started"
-msgstr ""
+msgstr "A/C-förvärmning startad"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:108
 #: tculink/management/commands/tcuserver.py:314
 msgid "A/C preconditioning has been successfully switched on"
-msgstr ""
+msgstr "Start av A/C-förvärmning lyckades"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:112
 #: tculink/management/commands/tcuserver.py:318
 msgid "The A/C preconditioning has finished unexpectedly"
-msgstr ""
+msgstr "A/C-förvärmningen avslutades oväntat"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:113
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:125
 #: tculink/management/commands/tcuserver.py:319
 #: tculink/management/commands/tcuserver.py:332
 msgid "A/C precondition stopped"
-msgstr ""
+msgstr "A/C-förkonditionering stoppade"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:118
 #: tculink/management/commands/tcuserver.py:324
@@ -1149,96 +1177,96 @@ msgstr ""
 msgid ""
 "The A/C preconditioning is finished and switched off after running certain "
 "amount of time."
-msgstr ""
+msgstr "A/C-förkonditionering är avslutad efter att ha kört en viss tid."
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:120
 #: tculink/management/commands/tcuserver.py:326
 #: tculink/management/commands/tcuserver.py:413
 msgid "A/C precondition finished"
-msgstr ""
+msgstr "A/C-förkonditionering avslutad"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:126
 #: tculink/management/commands/tcuserver.py:333
 msgid "A/C preconditioning has been successfully switched off"
-msgstr ""
+msgstr "Stopp av A/C-förkonditionering lyckades"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:130
 #: tculink/management/commands/tcuserver.py:337
 #: tculink/management/commands/tcuserver.py:406
 msgid "A/C precondition notification"
-msgstr ""
+msgstr "Notis: A/C-förkonditionering"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:131
 #: tculink/management/commands/tcuserver.py:338
 #: tculink/management/commands/tcuserver.py:360
 msgid "A/C preconditioning already switched off"
-msgstr ""
+msgstr "A/C-förkonditionering är redan stoppad"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:136
 #: tculink/management/commands/tcuserver.py:344
 #: tculink/management/commands/tcuserver.py:417
 msgid "A/C preconditioning fault"
-msgstr ""
+msgstr "A/C-förkonditionering fel"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:139
 #: tculink/management/commands/tcuserver.py:347
 msgid "The vehicle failed to start A/C preconditioning"
-msgstr ""
+msgstr "Fordonet lyckades inte starta A/C-förkonditionering"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:142
 #: tculink/management/commands/tcuserver.py:350
 msgid "The A/C preconditioning has finished with error"
-msgstr ""
+msgstr "A/C-förkonditionering stoppade med ett fel"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:145
 #: tculink/management/commands/tcuserver.py:357
 msgid "A/C preconditioning could not be switched off"
-msgstr ""
+msgstr "A/C-förkonditionering kunde inte stoppas"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:170
 #: tculink/management/commands/tcuserver.py:381
 msgid "Charging notification"
-msgstr ""
+msgstr "Laddnotis"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:176
 #: tculink/management/commands/tcuserver.py:387
 msgid "Vehicle has finished charging."
-msgstr ""
+msgstr "Fordonet har slutat ladda."
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:177
 #: tculink/management/commands/tcuserver.py:388
 msgid "Charge finish notification"
-msgstr ""
+msgstr "Laddavslutsnotis"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:180
 #: tculink/management/commands/tcuserver.py:391
 msgid "Vehicle has finished quick-charging."
-msgstr ""
+msgstr "Fordonet har slutat snabbladda."
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:181
 #: tculink/management/commands/tcuserver.py:392
 msgid "Quick-charge finish notification"
-msgstr ""
+msgstr "Notis snabbladdning avslutad"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:184
 #: tculink/management/commands/tcuserver.py:395
 msgid "Charge interruption notification"
-msgstr ""
+msgstr "Notis laddning avbruten"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:187
 #: tculink/management/commands/tcuserver.py:398
 msgid "Charging has been stopped due to an interruption"
-msgstr ""
+msgstr "Laddningen har stoppat på grund av ett avbrott"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:189
 #: tculink/management/commands/tcuserver.py:400
 msgid "Quick-charging has been stopped due to an interruption"
-msgstr ""
+msgstr "Snabbladdningen har stoppat på grund av ett avbrott"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:207
 #: tculink/management/commands/tcuserver.py:440
 msgid "Charge start command executed"
-msgstr ""
+msgstr "Kommando Starta laddning utfört"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:208
 #: tculink/management/commands/tcuserver.py:441

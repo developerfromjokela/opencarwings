@@ -3,16 +3,28 @@ New Probe methods, fields and functions for FICOSA TCUs.
 A big part of Probe data has been made "backwards-compatible" to Nissan's old format.
 New data fields have yet-to-be-determined data format and new IDs
 """
+from tculink.gdc_proto.acp245.parser import decode_dtc_code, ECU_CAN_IDS
 
 NEW_FIELDS = {
 #   DataID -> desc(None=unknown)|length(incl. two bytes for DataID)
-    0x101: (None, 0x12f), #dtchistory?
-    0x103: (None, 0x522), #dtchistory_long?
-    0x108: (None, 0x6d), #dtchistory_short
-    0x109: (None, 0), #dtchistory_dynamic
-    0x10a: (None, 0xe), #dtchistory_shortest
-    0x10c: (None, 0xc5), #dtchistory_midsize
-    0x10f: (None, 0x100), #dtchistory_x100
+    # ---- ECU DTC Codes --------
+    0x129: (0x7E8, 4), # ECU 7E8
+    0x12a: (0x7E9, 4), # ECU 7E9
+    0x12b: (0x765, 4), # ECU 765
+    0x12d: (0x7ED, 4), # ECU 7ED
+    0x12e: (0x7BB, 4), # ECU 7BB
+    0x12f: (0x768, 4), # ECU 768
+    0x130: (0x7BD, 4), # ECU 7BD
+    0x131: (0x772, 4), # ECU 772
+    0x132: (0x763, 4), # ECU 763
+    # ---------------------------
+    0x101: (None, 0x12f), # 0x7e0,0x7e8
+    0x103: (None, 0x522), # 0x7e0,0x7e8, LIDs 0x1801, 0x1802, 0x1803, 0x1804, 0x1805, 0x1806, 0x1807, 0x1808, 0x1809, 0x180a, 0x180b, 0x1821, 0x1822, 0x1823, 0x1824, 0x1825, 0x1841, 0x1842, 0x1843, 0x1844, 0x1845, 0x1846, 0x1847, 0x1848, 0x1849, 0x184a, 0x184b, 0x184c, 0x1851, 0x1852, 0x1853, 0x1854, 0x1855, 0x1856, 0x1861, 0x1862, 0x1863
+    0x108: (None, 0x6d), # 0x7e5,0x7ed LIDs 1-3
+    0x109: (None, 0), # 0x79d,0x7bd, LIDs 1-6
+    0x10a: (None, 0xe), # 0,0 LIDs 1-3
+    0x10c: (None, 0xc5), # 0x748,0x768, LIDs 1-2
+    0x10f: (None, 0x100), # 0x7e1, 0x7e9 LID 0
     0x110: (None, 3),
     0x111: (None, 6),
     0x112: (None, 4), # possible angle or heading? UINT is divided by 360000 and then cast to short.
@@ -44,6 +56,19 @@ def make_crm_parsing_block_v2(data_id, data_bin) -> dict|None:
     if data_id not in NEW_FIELDS or NEW_FIELDS[data_id][0] is None:
         return None
     new_block = {"type": data_id, "struct": "", "data": bytearray(), "ficosa": {}}
+
+    if 0x129 <= data_id <= 0x132 and len(data_bin) % 4 == 0:
+        new_block["struct"] = "trouble"
+        dtcs = []
+        ecu_id = NEW_FIELDS[data_id][0]
+        for itm in range(len(data_bin) // 4):
+            dtc_data = data_bin[itm * 4 : itm * 4 + 4]
+            dtc_code = decode_dtc_code(dtc_data)
+            dtcs.append({"ecu_id": ecu_id,
+                         "ecu_label": ECU_CAN_IDS.get(ecu_id),
+                         "code": int.from_bytes(dtc_data, "big"),
+                         "code_label": dtc_code})
+        new_block["ficosa"]["dtcs"] = dtcs
 
     if data_id == 0x127:
         new_block["struct"] = "trips"

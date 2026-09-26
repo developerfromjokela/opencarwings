@@ -126,6 +126,17 @@ def handle(bin_data: bytes, acp_data: dict, car: Car, source_id: int, destinatio
 
             i += li
 
+        # Merge DTCs
+        all_dtcs = []
+        for itm in datablocks:
+            if itm["struct"] == "trouble" and "ficosa" in itm and "dtcs" in itm["ficosa"]:
+                all_dtcs.extend(itm["ficosa"]["dtcs"])
+
+        if len(all_dtcs) > 0:
+            datablocks = [x for x in datablocks if
+                          x["struct"] != "trouble" or "ficosa" not in x or "dtcs" not in x["ficosa"]]
+            datablocks.append({"type": 0, "struct": "trouble", "data": bytearray(), "ficosa": {"dtcs": all_dtcs}})
+
         parsed_crm_info = parse_crm_datablocks(datablocks)
 
         # only one trip at a time. merge all separate trip objects into one

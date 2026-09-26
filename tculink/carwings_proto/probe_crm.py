@@ -849,7 +849,8 @@ def update_crm_to_db(car: Car, crm_pload):
     if "trouble" in crm_pload:
         for troublerow in crm_pload["trouble"]:
             for trouble in troublerow:
-                if "records" in troublerow and len(troublerow["records"]) > 0:
+                if (("records" in troublerow and len(troublerow["records"]) > 0) or
+                        ("dtcs" in troublerow and len(troublerow["dtcs"]) > 0)):
                     trouble_db = CRMTroubleRecord()
                     trouble_db.car = car
                     trouble_db.data = trouble

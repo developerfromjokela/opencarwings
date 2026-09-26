@@ -4,8 +4,8 @@ import math
 import xml.etree.ElementTree as ET
 
 import requests
+from dateutil import parser
 from django.conf import settings
-from unidecode import unidecode
 
 from tculink.carwings_proto.databuffer import construct_carwings_filepacket, compress_carwings
 from tculink.carwings_proto.dataobjects import create_cpinfo, construct_dms_coordinate, compose_ca_list, compose_ca_data
@@ -13,7 +13,6 @@ from tculink.carwings_proto.meshutils import read_big_endian_u_int32, unpack_mon
     mesh_point_to_map_point
 from tculink.carwings_proto.utils import encode_utf8, parse_std_location_precise
 from tculink.carwings_proto.xml import carwings_create_xmlfile_content
-from dateutil import parser
 
 logger = logging.getLogger("carwings_cp")
 
@@ -151,7 +150,7 @@ def handle_cp(xml_data, files):
                 'types': 'j1772,type2,chademo',
                 'sort_by_distance': 'true',
                 'sort_by_power': 'false',
-                'limit': '100'
+                'limit': '255'
             }, headers={"User-Agent": "OpenCARWINGS", "Authorization": f"APIKEY {settings.ITERNIO_API_KEY}"})
             try:
                 chargers = chargers.json().get("result", [])

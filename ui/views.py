@@ -219,9 +219,8 @@ def resolve_maps_link(request):
                             curr = stack[-1]
 
                     def flatten(arr):
-                        return flatten(arr[0]) if isinstance(arr, list) and len(arr) == 1 and isinstance(arr[0],
-                                                                                                         list) else [
-                            flatten(x) for x in arr] if isinstance(arr, list) else arr
+                        return flatten(arr[0]) if isinstance(arr, list) and len(arr) == 1 else \
+                            [flatten(x) for x in arr] if isinstance(arr, list) else arr
 
                     parsed_data = flatten(root)
 

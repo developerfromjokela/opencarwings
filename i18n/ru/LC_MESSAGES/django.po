@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-25 11:54+0000\n"
-"PO-Revision-Date: 2026-09-25 11:51+0000\n"
-"Last-Translator: Weblate Admin <hello@ruben.fi>\n"
+"PO-Revision-Date: 2026-09-29 08:58+0000\n"
+"Last-Translator: Andy Ber <wargaelanor@gmail.com>\n"
 "Language-Team: Russian <https://i18n.viaaq.eu/projects/opencarwings-server/"
 "server/ru/>\n"
 "Language: ru\n"
@@ -308,7 +308,7 @@ msgstr "Отказ от автомобиля"
 
 #: db/models.py:148
 msgid "Continental 2012-2015"
-msgstr "Continental 2012-2015"
+msgstr "Континенталь 2012-2015"
 
 #: db/models.py:149
 msgid "Ficosa 2016-2019"
@@ -1844,7 +1844,7 @@ msgstr "Подключён,Отключён"
 
 #: ui/templates/ui/car_detail.html:182 ui/templates/ui/car_detail.html:1278
 msgid "No Power"
-msgstr ""
+msgstr "Нет питания"
 
 #: ui/templates/ui/car_detail.html:189
 msgid "Car status"
@@ -2990,7 +2990,7 @@ msgstr "Пробег за весь период"
 
 #: ui/templates/ui/probeviewer/main.html:234
 msgid "Download CSV"
-msgstr ""
+msgstr "Скачать CSV"
 
 #: ui/templates/ui/probeviewer/main.html:279
 msgid "No DOT data available"
@@ -3229,7 +3229,7 @@ msgstr "Ошибка сохранения таймера"
 
 #: ui/templates/ui/probeviewer/main.html:1332
 msgid "No usable GPS points found in this file."
-msgstr ""
+msgstr "В этом файле не найдено точек GPS."
 
 #: ui/templates/ui/probeviewer/main.html:1462
 #: ui/templates/ui/probeviewer/main.html:1466

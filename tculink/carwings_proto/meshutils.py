@@ -176,9 +176,9 @@ def mesh_point_is_valid(mesh_point: MeshPoint, level_out: ctypes.POINTER(ctypes.
 
     mesh_id_valid = validate_mesh_id(ctypes.c_uint32(mesh_point.meshID), level_out)
     if (mesh_id_valid != 0 and
-            mesh_point.y < 0x800 and
+            mesh_point.y <= 0x800 and
             mesh_point.y > -1 and
-            mesh_point.x < 0x800 and
+            mesh_point.x <= 0x800 and
             mesh_point.x > -1):
         return 1
     return 0
@@ -190,7 +190,7 @@ def mesh_point_to_map_point(mesh_point: MeshPoint, map_point: MapPoint) -> bool:
 
     mesh_pnt_valid = mesh_point_is_valid(mesh_point, mesh_id_level)
     if mesh_pnt_valid == 0 or not map_point:
-        return 2
+        return False
 
     result, x, y = convert_to_utm(ctypes.c_uint32(mesh_point.meshID), 0)
 

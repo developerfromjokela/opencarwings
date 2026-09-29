@@ -396,13 +396,13 @@ def handle_cp(xml_data, files):
                 if not mesh_point_to_map_point(base_meshpoint, base_map_point):
                     continue
                 # top left
-                base_meshpoint.x = 0x7ff
+                base_meshpoint.x = 0x800
                 base_meshpoint.y = 0
                 if not mesh_point_to_map_point(base_meshpoint, tl_map_point):
                     continue
                 # bottom right
                 base_meshpoint.x = 0
-                base_meshpoint.y = 0x7ff
+                base_meshpoint.y = 0x800
                 if not mesh_point_to_map_point(base_meshpoint, bl_map_point):
                     continue
 

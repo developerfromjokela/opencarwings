@@ -1,4 +1,5 @@
 import datetime
+import xxhash
 import logging
 import math
 import xml.etree.ElementTree as ET
@@ -118,6 +119,28 @@ def find_containing_mesh_id(lat, lon, bounding_boxes):
             nearest_bbox = bbox
 
     return nearest_mesh_id, nearest_bbox
+
+
+def chargerinfo_hash(charger: dict) -> bytes:
+    addr = charger.get("AddressInfo") or {}
+    phone_num = addr.get("ContactTelephone1")
+    if not phone_num:
+        phone_num = (charger.get("OperatorInfo") or {}).get("PhonePrimaryContact") or ""
+    blob = "|".join(map(str, (
+        charger.get("ID"),
+        addr.get("Title"),
+        addr.get("Town"),
+        addr.get("StateOrProvince"),
+        addr.get("Postcode"),
+        addr.get("AddressLine1"),
+        ",".join(str(x.get("ConnectionTypeID", 0)) for x in (charger.get("Connections") or [])),
+        f"{float(addr.get('Latitude') or 0.0):.5f}",
+        f"{float(addr.get('Longitude') or 0.0):.5f}",
+        phone_num,
+        charger.get("NumberOfPoints"),
+        charger.get("UsageTypeID")
+    ))).encode('utf-8')
+    return xxhash.xxh32_digest(blob)
 
 def handle_cp(xml_data, files):
     if 'send_data' in xml_data['service_info']['application']:
@@ -414,9 +437,8 @@ def handle_cp(xml_data, files):
             for charger in chargers_resp:
                 # charger_ids.append(str(charger['ID']))
                 data = charger['ID'].to_bytes(4, 'big')
-                # Calculate revision info based on last modification day
-                tstamp = abs(datetime.datetime.fromisoformat(charger['DateLastVerified'].replace("Z", "")).timestamp() - datetime.datetime(2020, 1, 1, 0, 0, 0).timestamp())
-                data += int(tstamp+2100).to_bytes(4, 'big')
+                # Calculate revision info based on the data
+                data += chargerinfo_hash(charger)
                 data += construct_dms_coordinate(charger['AddressInfo']['Latitude'],
                                                  charger['AddressInfo']['Longitude'])
                 mesh_id, bbox = find_containing_mesh_id(charger['AddressInfo']['Latitude'],

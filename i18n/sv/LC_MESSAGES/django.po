@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-25 11:54+0000\n"
-"PO-Revision-Date: 2026-09-26 11:58+0000\n"
+"PO-Revision-Date: 2026-10-01 18:07+0000\n"
 "Last-Translator: Rikard Svenman <rsvenman@gmail.com>\n"
 "Language-Team: Swedish <https://i18n.viaaq.eu/projects/opencarwings-server/"
 "server/sv/>\n"
@@ -1275,158 +1275,164 @@ msgid ""
 "charging, please check that the charging cable is connected and power is "
 "available."
 msgstr ""
+"Laddkommando har skickats. Om fordonet inte började ladda, kontrollera att "
+"laddkabeln är ansluten och spänningssatt."
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:213
 #: tculink/management/commands/tcuserver.py:444
 msgid "Charge start command executed with failure"
-msgstr ""
+msgstr "Kommando för laddstart misslyckades"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:214
 #: tculink/management/commands/tcuserver.py:445
 msgid ""
 "Charging command has been sent successfully, but the vehicle did not start "
 "charging."
-msgstr ""
+msgstr "Laddkommando har skickats, men bilen började inte ladda."
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:219
 #: tculink/management/commands/tcuserver.py:450
 msgid "Charge start failure"
-msgstr ""
+msgstr "Laddstart misslyckades"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:220
 #: tculink/management/commands/tcuserver.py:451
 msgid "Charge start command failed to execute."
-msgstr ""
+msgstr "Laddstartskommando kördes inte."
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:244
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:269
 msgid "Unblock charge failure"
-msgstr ""
+msgstr "fel vid avblockering av laddningstjänst"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:245
 msgid "Unblocking charge features could not be completed."
-msgstr ""
+msgstr "Avblockering av laddningsfunktioner kunde inte slutföras."
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:249
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:274
 msgid "Unblock charging"
-msgstr ""
+msgstr "Avblockera laddning"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:250
 msgid "Unblock request sent successfully."
-msgstr ""
+msgstr "Avblockeringsförfrågan skickad."
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:270
 msgid "Unblocking charge features failed."
-msgstr ""
+msgstr "Avblockering av laddfunktioner misslyckades."
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:275
 msgid "Charging has been unblocked successfully."
-msgstr ""
+msgstr "Avblockering av laddning lyckades."
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:275
 msgid "Failed to unblock charging, CAN Error!"
-msgstr ""
+msgstr "Avblockering av laddning misslyckades, CAN-fel!"
 
 #: tculink/httpgateway/ficosa/destinations/hornlight.py:63
 #: tculink/httpgateway/ficosa/destinations/remotestart.py:63
 msgid "Vehicle conditions not met for command execution."
-msgstr ""
+msgstr "Fordonsstatus ej uppfylld för kommando."
 
 #: tculink/httpgateway/ficosa/destinations/hornlight.py:101
 #: tculink/httpgateway/ficosa/destinations/remotestart.py:101
 msgid "Horn & Light started successfully!"
-msgstr ""
+msgstr "Tuta och ljus aktiverade!"
 
 #: tculink/httpgateway/ficosa/destinations/hornlight.py:101
 #: tculink/httpgateway/ficosa/destinations/remotestart.py:101
 msgid "Horn & Light stopped successfully!"
-msgstr ""
+msgstr "Tuta och ljus stoppade!"
 
 #: tculink/httpgateway/ficosa/destinations/tow.py:35
 msgid "Your vehicle is being towed. Please check the situation if necessary."
-msgstr ""
+msgstr "Ditt fordon bogseras. Kontrollera läget om det behövs."
 
 #: tculink/httpgateway/ficosa/destinations/veh_health.py:31
 msgid "Received new health report!"
-msgstr ""
+msgstr "Tog emot ny hälsorapport!"
 
 #: tculink/management/commands/tcuserver.py:165
 msgid "TCU ID does not match with specified ID, please double check!"
-msgstr ""
+msgstr "TCU ID matchar inte angivet ID, vänligen kontrollera!"
 
 #: tculink/management/commands/tcuserver.py:174
 msgid "Navi ID does not match with specified ID, please double check!"
-msgstr ""
+msgstr "Navi ID matchar inte angivet ID, vänligen kontrollera!"
 
 #: tculink/management/commands/tcuserver.py:183
 msgid "Sim ID does not match with specified ID, please double check!"
-msgstr ""
+msgstr "Sim ID matchar inte angivet ID, vänligen kontrollera!"
 
 #: tculink/management/commands/tcuserver.py:201
 msgid ""
 "Authentication failed, username or password is missing! Please sign in using "
 "navigation unit."
 msgstr ""
+"Autenticering misslyckades, användarnamn eller lösenord saknas. Logga in via "
+"navigationsenheten."
 
 #: tculink/management/commands/tcuserver.py:219
 msgid ""
 "Authentication failed, username or password is incorrect! Please sign in "
 "using navigation unit."
 msgstr ""
+"Autenticering misslyckades, fel användarnamn eller lösenord. Vänligen logga "
+"in via navigationsenheten."
 
 #: tculink/management/commands/tcuserver.py:353
 #: tculink/management/commands/tcuserver.py:420
 msgid ""
 "The A/C preconditioning is finished and switched off because of an error"
-msgstr ""
+msgstr "A/C-förkonditioneringen är avslutad och avstängd på grund av ett fel"
 
 #: tculink/management/commands/tcuserver.py:473
 msgid "Battery heater notification"
-msgstr ""
+msgstr "Notis: Batterivärmare"
 
 #: tculink/management/commands/tcuserver.py:474
 msgid "Battery heater has turned on"
-msgstr ""
+msgstr "Batterivärmare har slagits på"
 
 #: tculink/management/commands/tcuserver.py:474
 msgid "Battery heater has turned off"
-msgstr ""
+msgstr "Batterivärmare har slagits av"
 
 #: tculink/sms/46elks.py:11
 msgid "API Username"
-msgstr ""
+msgstr "API-användarnamn"
 
 #: tculink/sms/46elks.py:12
 msgid "API Password"
-msgstr ""
+msgstr "API-lösenord"
 
 #: tculink/sms/46elks.py:13 tculink/sms/gatewayapi.py:14
 #: tculink/sms/ondevice.py:9 tculink/sms/seven.py:13
 #: tculink/sms/smsgateway.py:11 tculink/sms/webhook.py:12
 msgid "TCU Phone Number (international format)"
-msgstr ""
+msgstr "TCU-telefonnummer (internationellt format)"
 
 #: tculink/sms/46elks.py:15
 msgid "API credentials are available in your 46elks dashboard."
-msgstr ""
+msgstr "API-inloggningsuppgifter finns i din 46elks-panel."
 
 #: tculink/sms/gatewayapi.py:13 tculink/sms/hologram.py:10
 #: tculink/sms/seven.py:12 tculink/sms/viaaqmobile.py:47
 msgid "API Key"
-msgstr ""
+msgstr "API-nyckel"
 
 #: tculink/sms/gatewayapi.py:16
 msgid "API credentials are available in gatewayapi.com API section."
-msgstr ""
+msgstr "API-inloggningsuppgifter finns i API-sektionen på gatewayapi.com."
 
 #: tculink/sms/hologram.py:11 tculink/sms/smsgateway.py:9
 msgid "Device ID"
-msgstr ""
+msgstr "Enhets-ID"
 
 #: tculink/sms/hologram.py:13
 msgid "API credentials are available in Hologram dashboard Settings."
-msgstr ""
+msgstr "API-inloggningsuppgifter finns i panelen inställningar i Hologram."
 
 #: tculink/sms/manual.py:11
 #, python-brace-format
@@ -1435,21 +1441,24 @@ msgid ""
 "for this to work. No automated messaging will be set up. SMS message to send "
 "after you've issued a command on the website: {sms}"
 msgstr ""
+"Viktigt: Med det här valet måste du själv sända sms:et för att det ska "
+"fungera. Ingen automatisk sändning kommer ställas in. SMS-meddelande att "
+"skicka efter att ett kommando givits på websiten: {sms}"
 
 #: tculink/sms/monogoto.py:11 ui/templates/ui/car_detail.html:317
 #: ui/templates/ui/landing.html:28 ui/templates/ui/signin.html:9
 msgid "Username"
-msgstr ""
+msgstr "Användarnamn"
 
 #: tculink/sms/monogoto.py:12 ui/forms.py:80 ui/forms.py:82
 #: ui/templates/ui/car_detail.html:318 ui/templates/ui/landing.html:37
 #: ui/templates/ui/signin.html:13
 msgid "Password"
-msgstr ""
+msgstr "Lösenord"
 
 #: tculink/sms/monogoto.py:13
 msgid "Thing ID"
-msgstr ""
+msgstr "Thing ID"
 
 #: tculink/sms/monogoto.py:15
 msgid ""
@@ -1457,6 +1466,9 @@ msgid ""
 "the URL when viewing your SIM. It has this structure: "
 "ThingId_ICCID_9999999999999999999"
 msgstr ""
+"Inloggningsuppgifter finns i Monogoto-panelen. Thing ID syns i URL:en när du "
+"tittar på ditt SIM. Det har följande struktur: "
+"ThingId_ICCID_9999999999999999999"
 
 #: tculink/sms/ondevice.py:12
 msgid ""
@@ -1465,16 +1477,22 @@ msgid ""
 "This method won't work via API or automations, only from the website or "
 "mobile app!"
 msgstr ""
+"Med det här valet kommer webplatsen dirigera om dig för att sända SMS från "
+"din telefon. På mobilappen skickas det automatiskt om det går. Den här "
+"metoden fungerar inte via API eller automatiseringar, bara från webplatsen "
+"eller mobilappen!"
 
 #: tculink/sms/seven.py:15
 msgid ""
 "API credentials are available in dashboard.seven.io Developer section. "
 "Remember to add 'OCW' as Sender ID under account settings!"
 msgstr ""
+"API-inloggningsuppgifter finns i seven.io utvecklarpanel. Kom ihåg att ange "
+"'OCW' som Sändar-ID (Sender ID) under kontoinställningar!"
 
 #: tculink/sms/smsgateway.py:10
 msgid "Encryption Key"
-msgstr ""
+msgstr "Krypteringsnyckel"
 
 #: tculink/sms/smsgateway.py:14
 msgid ""
@@ -1482,81 +1500,88 @@ msgid ""
 "been installed, write values shown in the app to their respective fields. "
 "More information: "
 msgstr ""
+"Använd din gamla smarttelefon eller USB-modem som gateway för att skicka "
+"SMS. När appen har installerats, skriv ner visade värden i sina respektive "
+"fält. Mer information: "
 
 #: tculink/sms/viaaqmobile.py:14
 msgid ""
 "Your subscription is automatically linked with OpenCARWINGS, using TCU ID "
 "shown in mobile.viaaq.eu/dashboard"
 msgstr ""
+"Ditt abbonemang länkas automatiskt med OpenCARWINGS via det TCU ID som visas "
+"i mobile.viaaq.eu/dashboard"
 
 #: tculink/sms/viaaqmobile.py:32
 msgid ""
 "Could not find mobile subscription in viaaq mobile. Are you sure it's active?"
 msgstr ""
+"Hittade inget abonnemang i viaaq.mobile. Är du säkert på att det är aktivt?"
 
 #: tculink/sms/viaaqmobile.py:34
 msgid "You do not have permission to send SMS messages to this subscription"
-msgstr ""
+msgstr "Du har inte rätt att skicka SMS till det här abonnemanget"
 
 #: tculink/sms/viaaqmobile.py:36
 msgid "Invalid API Key"
-msgstr ""
+msgstr "Ogiltig API-nyckel"
 
 #: tculink/sms/webhook.py:11
 msgid "Webhook URL"
-msgstr ""
+msgstr "Webhook-URL"
 
 #: tculink/sms/webhook.py:14
 msgid "POST-request will be sent to specified webhook URL when necessary."
-msgstr ""
+msgstr "POST-förfrågan kommer skickas till angiven webhook-URL när det behövs."
 
 #: ui/decorators.py:52 ui/views.py:705 ui/views.py:732 ui/views.py:768
 msgid "Code is not valid!"
-msgstr ""
+msgstr "Ogiltig kod!"
 
 #: ui/forms.py:19 ui/forms.py:35 ui/templates/ui/car_detail.html:535
 msgid "Nickname"
-msgstr ""
+msgstr "Skärmnamn"
 
 #: ui/forms.py:20
 msgid "Disable TCU authentication"
-msgstr ""
+msgstr "Inaktivera TCU-autentisering"
 
 #: ui/forms.py:21 ui/templates/ui/car_detail.html:574
 msgid "Show calculated battery percentage"
-msgstr ""
+msgstr "Visa beräknad batteriprocent"
 
 #: ui/forms.py:22
 msgid "HMAC Key"
-msgstr ""
+msgstr "HMAC-nyckel"
 
 #: ui/forms.py:60 ui/templates/ui/reset_password.html:26
 msgid "Email"
-msgstr ""
+msgstr "Epost"
 
 #: ui/forms.py:61
 msgid "Notifications"
-msgstr ""
+msgstr "Meddelanden"
 
 #: ui/forms.py:62
 msgid "Imperial Units"
-msgstr ""
+msgstr "brittiska måttenheter"
 
 #: ui/forms.py:63
 msgid "Timezone"
-msgstr ""
+msgstr "Tidszon"
 
 #: ui/forms.py:81
 msgid "Password Confirmation"
-msgstr ""
+msgstr "Bekräfta lösenord"
 
 #: ui/forms.py:109
 msgid "Can include only letters, numbers, dashes, dots and underscores"
 msgstr ""
+"Får endast innehålla bokstäver, siffror, streck, punkter och understreck"
 
 #: ui/forms.py:110
 msgid "This password is used for signing in to your account inside the car"
-msgstr ""
+msgstr "Det här lösenordet används för att logga in på ditt konto i bilen"
 
 #: ui/templates/ui/account.html:16 ui/templates/ui/car_detail.html:73
 #: ui/templates/ui/car_list.html:19 ui/templates/ui/car_transfer.html:16
@@ -1569,7 +1594,7 @@ msgstr ""
 #: ui/templates/ui/setup/step2.html:14 ui/templates/ui/setup/step3.html:14
 #: ui/templates/ui/setup/step4.html:14
 msgid "Notice"
-msgstr ""
+msgstr "Notis"
 
 #: ui/templates/ui/account.html:17 ui/templates/ui/car_detail.html:74
 #: ui/templates/ui/car_list.html:20 ui/templates/ui/car_transfer.html:17
@@ -1582,7 +1607,7 @@ msgstr ""
 #: ui/templates/ui/setup/step2.html:15 ui/templates/ui/setup/step3.html:15
 #: ui/templates/ui/setup/step4.html:15
 msgid "Warning"
-msgstr ""
+msgstr "Varning"
 
 #: ui/templates/ui/account.html:22 ui/templates/ui/car_detail.html:79
 #: ui/templates/ui/car_detail.html:648 ui/templates/ui/car_detail.html:667
@@ -1600,51 +1625,51 @@ msgstr ""
 #: ui/templates/ui/snippets/security.html:12
 #: ui/templates/ui/snippets/security.html:49
 msgid "Close"
-msgstr ""
+msgstr "Stäng"
 
 #: ui/templates/ui/account.html:31
 msgid "My Account"
-msgstr ""
+msgstr "Mitt konto"
 
 #: ui/templates/ui/account.html:36
 msgid "API-key"
-msgstr ""
+msgstr "API-nyckel"
 
 #: ui/templates/ui/account.html:38
 msgid "API documentation"
-msgstr ""
+msgstr "API-dokumentation"
 
 #: ui/templates/ui/account.html:42
 msgid "Reset API-key"
-msgstr ""
+msgstr "Återställ API-nyckel"
 
 #: ui/templates/ui/account.html:48
 msgid "Change Account Password"
-msgstr ""
+msgstr "Byt kontolösenord"
 
 #: ui/templates/ui/account.html:49
 msgid "Change CARWINGS Password"
-msgstr ""
+msgstr "Byt CARWINGS-lösenord"
 
 #: ui/templates/ui/account.html:51
 msgid "Change Command PIN"
-msgstr ""
+msgstr "Byt kommando-PIN"
 
 #: ui/templates/ui/account.html:51
 msgid "Set Command PIN"
-msgstr ""
+msgstr "Ställ in kommando-PIN"
 
 #: ui/templates/ui/account.html:53
 msgid "Disable Command PIN"
-msgstr ""
+msgstr "Inaktivera kommando-PIN"
 
 #: ui/templates/ui/account.html:57
 msgid "Disable 2FA"
-msgstr ""
+msgstr "Inaktivera 2FA"
 
 #: ui/templates/ui/account.html:59 ui/templates/ui/enroll_2fa.html:5
 msgid "Enable 2FA"
-msgstr ""
+msgstr "Aktivera 2FA"
 
 #: ui/templates/ui/account.html:62 ui/templates/ui/car_detail.html:432
 #: ui/templates/ui/car_detail.html:502 ui/templates/ui/car_detail.html:631
@@ -1653,194 +1678,194 @@ msgstr ""
 #: ui/templates/ui/setup/step4.html:63
 #: ui/templates/ui/snippets/security.html:33
 msgid "Save"
-msgstr ""
+msgstr "Spara"
 
 #: ui/templates/ui/account.html:69
 msgid "Are you sure you want to reset your API key?"
-msgstr ""
+msgstr "Är du säker på att du vill återställa API-nyckel?"
 
 #: ui/templates/ui/account.html:84
 msgid "Failure occurred while resetting the API key"
-msgstr ""
+msgstr "Fel uppstod vid återställning av API-nyckel"
 
 #: ui/templates/ui/account.html:89
 msgid "An error occurred while resetting the API key"
-msgstr ""
+msgstr "Ett fel uppstod vid återställning av API-nyckel"
 
 #: ui/templates/ui/base.html:48
 msgid "Sign Out"
-msgstr ""
+msgstr "Logga ut"
 
 #: ui/templates/ui/base.html:50 ui/templates/ui/landing.html:20
 #: ui/templates/ui/landing.html:46 ui/templates/ui/signin.html:3
 #: ui/templates/ui/signin.html:16 ui/templates/ui/signin_base.html:3
 #: ui/templates/ui/signin_base.html:9
 msgid "Sign In"
-msgstr ""
+msgstr "Logga in"
 
 #: ui/templates/ui/base.html:68
 msgid "Project"
-msgstr ""
+msgstr "Projekt"
 
 #: ui/templates/ui/base.html:70
 msgid "Tools"
-msgstr ""
+msgstr "Verktyg"
 
 #: ui/templates/ui/base.html:71 ui/templates/ui/vflash_editor.html:5
 msgid "VFlash Editor"
-msgstr ""
+msgstr "VFlash-editor"
 
 #: ui/templates/ui/car_detail.html:13
 msgid "Back to cars"
-msgstr ""
+msgstr "tillbaka till bilar"
 
 #: ui/templates/ui/car_detail.html:41 ui/templates/ui/car_detail.html:1379
 #: ui/templates/ui/car_detail.html:1389 ui/templates/ui/car_list.html:64
 msgid "Last connected"
-msgstr ""
+msgstr "Senast ansluten"
 
 #: ui/templates/ui/car_detail.html:61
 msgid "Send command"
-msgstr ""
+msgstr "skicka kommando"
 
 #: ui/templates/ui/car_detail.html:96 ui/templates/ui/car_detail.html:123
 msgid "Overview"
-msgstr ""
+msgstr "Översikt"
 
 #: ui/templates/ui/car_detail.html:97
 msgid "EV Status"
-msgstr ""
+msgstr "EV-status"
 
 #: ui/templates/ui/car_detail.html:98 ui/templates/ui/car_detail.html:252
 msgid "Timers"
-msgstr ""
+msgstr "Timers"
 
 #: ui/templates/ui/car_detail.html:99
 msgid "Vehicle journal"
-msgstr ""
+msgstr "Fordonsjournal"
 
 #: ui/templates/ui/car_detail.html:100
 msgid "Location"
-msgstr ""
+msgstr "Plats"
 
 #: ui/templates/ui/car_detail.html:102
 msgid "New!"
-msgstr ""
+msgstr "Nytt!"
 
 #: ui/templates/ui/car_detail.html:104
 msgid "Recent Alerts"
-msgstr ""
+msgstr "Senaste notiserna"
 
 #: ui/templates/ui/car_detail.html:105
 msgid "Route Planner"
-msgstr ""
+msgstr "Ruttplanerare"
 
 #: ui/templates/ui/car_detail.html:107
 msgid "Basic Info"
-msgstr ""
+msgstr "Grundläggande info"
 
 #: ui/templates/ui/car_detail.html:108
 #: ui/templates/ui/ficosa/configuration.html:5
 msgid "TCU Configuration"
-msgstr ""
+msgstr "TCU-inställningar"
 
 #: ui/templates/ui/car_detail.html:109 ui/templates/ui/car_detail.html:530
 msgid "Settings"
-msgstr ""
+msgstr "Inställningar"
 
 #: ui/templates/ui/car_detail.html:130 ui/templates/ui/car_detail.html:344
 msgid "Range (AC On)"
-msgstr ""
+msgstr "Räckvidd (AC på)"
 
 #: ui/templates/ui/car_detail.html:135 ui/templates/ui/car_detail.html:345
 msgid "Range (AC Off)"
-msgstr ""
+msgstr "Räckvidd (AC av)"
 
 #: ui/templates/ui/car_detail.html:141 ui/templates/ui/car_detail.html:144
 #: ui/templates/ui/car_detail.html:340 ui/templates/ui/car_detail.html:341
 msgid "State of Charge"
-msgstr ""
+msgstr "Laddnivå"
 
 #: ui/templates/ui/car_detail.html:144 ui/templates/ui/car_detail.html:341
 msgid "Nominal"
-msgstr ""
+msgstr "Nominell"
 
 #: ui/templates/ui/car_detail.html:161
 msgid "EMPTY"
-msgstr ""
+msgstr "TOM"
 
 #: ui/templates/ui/car_detail.html:162
 msgid "FULL"
-msgstr ""
+msgstr "FULL"
 
 #: ui/templates/ui/car_detail.html:167 ui/templates/ui/car_detail.html:334
 #: ui/templates/ui/car_detail.html:335 ui/templates/ui/car_detail.html:337
 msgid "Charge time"
-msgstr ""
+msgstr "Laddtid"
 
 #: ui/templates/ui/car_detail.html:175
 msgid "Charge Cable"
-msgstr ""
+msgstr "Laddkabel"
 
 #: ui/templates/ui/car_detail.html:180
 msgid "Plugged In,Unplugged"
-msgstr ""
+msgstr "Ansluten/Oansluten"
 
 #: ui/templates/ui/car_detail.html:182 ui/templates/ui/car_detail.html:1278
 msgid "No Power"
-msgstr ""
+msgstr "Ej spänningssatt"
 
 #: ui/templates/ui/car_detail.html:189
 msgid "Car status"
-msgstr ""
+msgstr "Bilstatus"
 
 #: ui/templates/ui/car_detail.html:193 ui/templates/ui/car_detail.html:195
 #: ui/templates/ui/car_detail.html:1284 ui/templates/ui/car_detail.html:1286
 #: ui/templates/ui/car_detail.html:1304
 msgid "On"
-msgstr ""
+msgstr "På"
 
 #: ui/templates/ui/car_detail.html:193 ui/templates/ui/car_detail.html:1284
 #: ui/templates/ui/car_detail.html:1352
 msgid "Parked"
-msgstr ""
+msgstr "Parkerad"
 
 #: ui/templates/ui/car_detail.html:195 ui/templates/ui/car_detail.html:1286
 msgid "Driving"
-msgstr ""
+msgstr "Körs"
 
 #: ui/templates/ui/car_detail.html:199 ui/templates/ui/car_detail.html:1290
 #: ui/templates/ui/probeviewer/main.html:504
 #: ui/templates/ui/probeviewer/main.html:578
 msgid "Charging finished"
-msgstr ""
+msgstr "Laddning avslutad"
 
 #: ui/templates/ui/car_detail.html:201 ui/templates/ui/car_detail.html:1292
 msgid "Charging interrupted"
-msgstr ""
+msgstr "Laddning avbruten"
 
 #: ui/templates/ui/car_detail.html:203 ui/templates/ui/car_detail.html:348
 #: ui/templates/ui/car_detail.html:1294
 msgid "Charging"
-msgstr ""
+msgstr "Laddar"
 
 #: ui/templates/ui/car_detail.html:205 ui/templates/ui/car_detail.html:353
 #: ui/templates/ui/car_detail.html:1296
 msgid "Battery heater active"
-msgstr ""
+msgstr "Batterivärmare aktiv"
 
 #: ui/templates/ui/car_detail.html:207 ui/templates/ui/car_detail.html:1298
 #: ui/templates/ui/car_detail.html:1304
 msgid "Off"
-msgstr ""
+msgstr "Av"
 
 #: ui/templates/ui/car_detail.html:214
 msgid "AC Status"
-msgstr ""
+msgstr "AC-status"
 
 #: ui/templates/ui/car_detail.html:216
 msgid "On,Off"
-msgstr ""
+msgstr "Av, På"
 
 #: ui/templates/ui/car_detail.html:225 ui/templates/ui/car_detail.html:324
 #: ui/templates/ui/car_detail.html:357 ui/templates/ui/car_detail.html:379
@@ -1848,116 +1873,116 @@ msgstr ""
 #: ui/templates/ui/probeviewer/main.html:173
 #: ui/templates/ui/probeviewer/main.html:201
 msgid "Last Updated"
-msgstr ""
+msgstr "Senast uppdaterad"
 
 #: ui/templates/ui/car_detail.html:234
 #: ui/templates/ui/probeviewer/main.html:129
 msgid "Odometer"
-msgstr ""
+msgstr "Mätare"
 
 #: ui/templates/ui/car_detail.html:235
 msgid "Navi version"
-msgstr ""
+msgstr "Navi-version"
 
 #: ui/templates/ui/car_detail.html:236
 msgid "Map version"
-msgstr ""
+msgstr "Kartversion"
 
 #: ui/templates/ui/car_detail.html:237
 msgid "TCU version (from navi)"
-msgstr ""
+msgstr "TCU-version (från navi)"
 
 #: ui/templates/ui/car_detail.html:238
 msgid "TCU version (from TCU)"
-msgstr ""
+msgstr "TCU-version (från TCU)"
 
 #: ui/templates/ui/car_detail.html:239 ui/templates/ui/car_detail.html:240
 #: ui/templates/ui/car_detail.html:241 ui/templates/ui/car_detail.html:242
 msgid "Vehicle Code"
-msgstr ""
+msgstr "Fordonskod"
 
 #: ui/templates/ui/car_detail.html:246
 msgid "Last Connection"
-msgstr ""
+msgstr "Senaste anslutning"
 
 #: ui/templates/ui/car_detail.html:252 ui/templates/ui/car_detail.html:387
 #: ui/templates/ui/car_list.html:33
 msgid "Add"
-msgstr ""
+msgstr "Lägg till"
 
 #: ui/templates/ui/car_detail.html:261
 msgid "Mon"
-msgstr ""
+msgstr "Mån"
 
 #: ui/templates/ui/car_detail.html:264
 msgid "Tue"
-msgstr ""
+msgstr "Tis"
 
 #: ui/templates/ui/car_detail.html:267
 msgid "Wed"
-msgstr ""
+msgstr "Ons"
 
 #: ui/templates/ui/car_detail.html:270
 msgid "Thu"
-msgstr ""
+msgstr "Tors"
 
 #: ui/templates/ui/car_detail.html:273
 msgid "Fri"
-msgstr ""
+msgstr "Fre"
 
 #: ui/templates/ui/car_detail.html:276
 msgid "Sat"
-msgstr ""
+msgstr "Lör"
 
 #: ui/templates/ui/car_detail.html:279
 msgid "Sun"
-msgstr ""
+msgstr "Sön"
 
 #: ui/templates/ui/car_detail.html:282 ui/templates/ui/car_detail.html:2681
 msgid "Last run"
-msgstr ""
+msgstr "Senast körd"
 
 #: ui/templates/ui/car_detail.html:282 ui/templates/ui/car_detail.html:2681
 msgid "result"
-msgstr ""
+msgstr "resultat"
 
 #: ui/templates/ui/car_detail.html:288 ui/templates/ui/car_detail.html:397
 #: ui/templates/ui/car_detail.html:1728 ui/templates/ui/car_detail.html:2688
 msgid "Edit"
-msgstr ""
+msgstr "Redigera"
 
 #: ui/templates/ui/car_detail.html:294 ui/templates/ui/car_detail.html:403
 #: ui/templates/ui/car_detail.html:1733 ui/templates/ui/car_detail.html:2693
 msgid "Delete"
-msgstr ""
+msgstr "Radera"
 
 #: ui/templates/ui/car_detail.html:300 ui/templates/ui/car_detail.html:2635
 msgid "No timers added"
-msgstr ""
+msgstr "inga timers tillagda"
 
 #: ui/templates/ui/car_detail.html:304
 msgid "Note: Times are shown in local local timezone"
-msgstr ""
+msgstr "Notera: Timers visas i lokal tidszon"
 
 #: ui/templates/ui/car_detail.html:315
 msgid "PPP Dial Code"
-msgstr ""
+msgstr "PPP-uppringningskod"
 
 #: ui/templates/ui/car_detail.html:321
 msgid "Server"
-msgstr ""
+msgstr "Server"
 
 #: ui/templates/ui/car_detail.html:322
 msgid "Proxy"
-msgstr ""
+msgstr "Proxy"
 
 #: ui/templates/ui/car_detail.html:323
 msgid "Connection Type"
-msgstr ""
+msgstr "Anslutningstyp"
 
 #: ui/templates/ui/car_detail.html:332
 msgid "Car on"
-msgstr ""
+msgstr "Bil på"
 
 #: ui/templates/ui/car_detail.html:332 ui/templates/ui/car_detail.html:336
 #: ui/templates/ui/car_detail.html:346 ui/templates/ui/car_detail.html:347
@@ -1966,134 +1991,134 @@ msgstr ""
 #: ui/templates/ui/car_detail.html:353 ui/templates/ui/car_detail.html:354
 #: ui/templates/ui/car_detail.html:378
 msgid "Yes,No"
-msgstr ""
+msgstr "Ja,Nej"
 
 #: ui/templates/ui/car_detail.html:333
 msgid "Gear"
-msgstr ""
+msgstr "Växel"
 
 #: ui/templates/ui/car_detail.html:336
 msgid "6kW OBC exists"
-msgstr ""
+msgstr "6kw OBL finns"
 
 #: ui/templates/ui/car_detail.html:338
 msgid "Charge bars"
-msgstr ""
+msgstr "Laddstreck"
 
 #: ui/templates/ui/car_detail.html:339
 #: ui/templates/ui/probeviewer/trip.html:237
 msgid "Capacity bars"
-msgstr ""
+msgstr "Kapacitetsstreck"
 
 #: ui/templates/ui/car_detail.html:340
 msgid "Display"
-msgstr ""
+msgstr "Display"
 
 #: ui/templates/ui/car_detail.html:342
 msgid "State of Health"
-msgstr ""
+msgstr "Batterihälsa"
 
 #: ui/templates/ui/car_detail.html:343
 msgid "Remaining kWh"
-msgstr ""
+msgstr "Kvarvarande kWh"
 
 #: ui/templates/ui/car_detail.html:346
 msgid "Plugged in"
-msgstr ""
+msgstr "Inkopplad"
 
 #: ui/templates/ui/car_detail.html:347
 msgid "Power Available"
-msgstr ""
+msgstr "Spänningssatt"
 
 #: ui/templates/ui/car_detail.html:349
 msgid "Quick-charging"
-msgstr ""
+msgstr "Snabbladdar"
 
 #: ui/templates/ui/car_detail.html:350
 msgid "Preconditioning (A/C)"
-msgstr ""
+msgstr "Förkonditionerar (A/C)"
 
 #: ui/templates/ui/car_detail.html:351
 msgid "GIDs remaining"
-msgstr ""
+msgstr "Antal GIDs kvar"
 
 #: ui/templates/ui/car_detail.html:352
 msgid "Battery heater exists"
-msgstr ""
+msgstr "Batterivärmare finns"
 
 #: ui/templates/ui/car_detail.html:354
 msgid "Battery Lease Contract's Charging Block Active"
-msgstr ""
+msgstr "Leasingkontraktets laddblockering aktiv"
 
 #: ui/templates/ui/car_detail.html:355
 msgid "Cabin Temperature"
-msgstr ""
+msgstr "Kupétemperatur"
 
 #: ui/templates/ui/car_detail.html:356
 msgid "Counter"
-msgstr ""
+msgstr "Räknare"
 
 #: ui/templates/ui/car_detail.html:364
 msgid "Send location to car"
-msgstr ""
+msgstr "Skicka plats till bil"
 
 #: ui/templates/ui/car_detail.html:366 ui/templates/ui/car_detail.html:420
 #: ui/templates/ui/car_detail.html:429 ui/templates/ui/car_detail.html:2006
 msgid "Search for locations or enter google/apple maps link"
-msgstr ""
+msgstr "Sök efter platser eller ange google/apple maps-länk"
 
 #: ui/templates/ui/car_detail.html:370 ui/templates/ui/car_detail.html:1394
 msgid "Last shared location"
-msgstr ""
+msgstr "Senast delade plats"
 
 #: ui/templates/ui/car_detail.html:372 ui/templates/ui/car_detail.html:1396
 msgid "No past shared location"
-msgstr ""
+msgstr "Ingen tidigare delad plats"
 
 #: ui/templates/ui/car_detail.html:375
 #: ui/templates/ui/ficosa/configuration.html:27
 msgid "Send"
-msgstr ""
+msgstr "Skicka"
 
 #: ui/templates/ui/car_detail.html:378
 msgid "At Home"
-msgstr ""
+msgstr "Hemma"
 
 #: ui/templates/ui/car_detail.html:387
 msgid "Route plans"
-msgstr ""
+msgstr "Rutter"
 
 #: ui/templates/ui/car_detail.html:409 ui/templates/ui/car_detail.html:1711
 msgid "No route plans added"
-msgstr ""
+msgstr "Inga rutter tillagda"
 
 #: ui/templates/ui/car_detail.html:414
 msgid "Add/Edit a route plan"
-msgstr ""
+msgstr "Lägg till/Redigera rutt"
 
 #: ui/templates/ui/car_detail.html:416
 msgid "Name of the plan"
-msgstr ""
+msgstr "Ruttnamn"
 
 #: ui/templates/ui/car_detail.html:419 ui/templates/ui/car_detail.html:652
 msgid "Starting point"
-msgstr ""
+msgstr "Startplats"
 
 #: ui/templates/ui/car_detail.html:426
 msgid "Add waypoint"
-msgstr ""
+msgstr "lägg till vägpunkt"
 
 #: ui/templates/ui/car_detail.html:428 ui/templates/ui/car_detail.html:653
 msgid "Destination point"
-msgstr ""
+msgstr "Destination"
 
 #: ui/templates/ui/car_detail.html:433
 msgid "Cancel"
-msgstr ""
+msgstr "Avbryt"
 
 #: ui/templates/ui/car_detail.html:443
 msgid "Favorite channels"
-msgstr ""
+msgstr "Favoritkanaler"
 
 #: ui/templates/ui/car_detail.html:452 ui/templates/ui/car_detail.html:453
 #: ui/templates/ui/car_detail.html:454 ui/templates/ui/car_detail.html:455
@@ -2104,11 +2129,11 @@ msgstr ""
 #: ui/templates/ui/car_detail.html:466 ui/templates/ui/car_detail.html:467
 #: ui/templates/ui/car_detail.html:468 ui/templates/ui/car_detail.html:2218
 msgid "No selected channel"
-msgstr ""
+msgstr "Ingen kanal vald"
 
 #: ui/templates/ui/car_detail.html:474
 msgid "Custom channels"
-msgstr ""
+msgstr "Egna kanaler"
 
 #: ui/templates/ui/car_detail.html:482 ui/templates/ui/car_detail.html:483
 #: ui/templates/ui/car_detail.html:484 ui/templates/ui/car_detail.html:485
@@ -2120,27 +2145,27 @@ msgstr ""
 #: ui/templates/ui/car_detail.html:498 ui/templates/ui/car_detail.html:499
 #: ui/templates/ui/car_detail.html:2294
 msgid "No content"
-msgstr ""
+msgstr "inget innehåll"
 
 #: ui/templates/ui/car_detail.html:511
 msgid "Type"
-msgstr ""
+msgstr "Sort"
 
 #: ui/templates/ui/car_detail.html:512
 msgid "Timestamp"
-msgstr ""
+msgstr "Tidsstämpel"
 
 #: ui/templates/ui/car_detail.html:513
 msgid "Additional Data"
-msgstr ""
+msgstr "Ytterligare data"
 
 #: ui/templates/ui/car_detail.html:545
 msgid "Leave empty to use default key"
-msgstr ""
+msgstr "Lämna tomt för att använda standardnyckel"
 
 #: ui/templates/ui/car_detail.html:551
 msgid "Skip authentication from TCU"
-msgstr ""
+msgstr "Hoppa över autenticering från TCU"
 
 #: ui/templates/ui/car_detail.html:552
 msgid ""
@@ -2148,14 +2173,17 @@ msgid ""
 "not saved due to an error. In this case, check this box to skip the "
 "authentication"
 msgstr ""
+"På AZE0 (2013) och nyare LEAF sparas inte användarnamn och lösenord från TCU "
+"på grund av ett fel. För dessa fall, klicka i rutan för att skippa "
+"autentisering"
 
 #: ui/templates/ui/car_detail.html:558
 msgid "Car color"
-msgstr ""
+msgstr "Bilfärg"
 
 #: ui/templates/ui/car_detail.html:567
 msgid "Maximum GIDs value"
-msgstr ""
+msgstr "Max GIDs"
 
 #: ui/templates/ui/car_detail.html:569
 #, python-format
@@ -2164,6 +2192,9 @@ msgid ""
 "For cars with swapped/replaced battery, please enter maximum amount of GIDS "
 "when battery is new (SoH 100%%)."
 msgstr ""
+"OpenCARWINGS kommer försöka autodetektera din batteristorlek. För bilar med "
+"utbytt/ersatt batteri, vänligen ange maximalt antal GIDs när batteriet är "
+"nytt (SOH 100%%)."
 
 #: ui/templates/ui/car_detail.html:575
 msgid ""

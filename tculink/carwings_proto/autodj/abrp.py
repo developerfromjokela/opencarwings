@@ -273,6 +273,8 @@ def handle_abrp(xml_data, returning_xml, channel_id, car: Car, page):
 
     period = 5 if car.ev_info.car_running else 30
     if car.ev_info.last_updated is None or car.ev_info.last_updated < timezone.now() - timedelta(minutes=period):
+        if car.command_requested:
+            return [("ABRP", no_evdata_resp(channel_id))]
         car.periodic_refresh_running = 5
         car.save(update_fields=['periodic_refresh_running'])
         try:

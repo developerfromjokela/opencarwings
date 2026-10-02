@@ -1,13 +1,35 @@
 import logging
+import os.path
 
+from django.conf import settings
 from django.utils.translation import gettext as _, activate, deactivate
 
-from tculink.carwings_proto.autodj import NOT_FOUND_AUTODJ_ITEM, NOT_AUTHORIZED_AUTODJ_ITEM
+from tculink.carwings_proto.autodj import NOT_FOUND_AUTODJ_ITEM, NOT_AUTHORIZED_AUTODJ_ITEM, CUSTOM_ICONS
 from tculink.carwings_proto.autodj.channels import get_info_channel_data
-from tculink.carwings_proto.dataobjects import construct_chnmst_payload, construct_fvtchn_payload, build_autodj_payload
+from tculink.carwings_proto.dataobjects import construct_chnmst_payload, construct_fvtchn_payload, build_autodj_payload, \
+    compose_icndat
 from tculink.carwings_proto.utils import get_cws_authenticated_car, carwings_lang_to_code
 
 logger = logging.getLogger("carwings_apl")
+
+def handle_icons_response(xml_data, returning_xml, icons):
+    icon_files = []
+
+    for custom_icon in icons:
+        if custom_icon in CUSTOM_ICONS:
+            filename, __  = CUSTOM_ICONS[custom_icon]
+            icon_path = os.path.join(settings.BASE_DIR, 'ui', 'static', 'chanicons', filename)
+            if os.path.isfile(icon_path) and os.path.getsize(icon_path) < 1801:
+                try:
+                    with open(icon_path, 'rb') as f:
+                        img_data = f.read()
+                except Exception as e:
+                    img_data = None
+                    logger.error("Could not read custom icon: %s", icon_path)
+                    logger.exception(e)
+                icon_files.append((f"ICN{custom_icon:04X}", compose_icndat(custom_icon, img_data, img_data)))
+
+    return icon_files
 
 def handle_directory_response(xml_data, returning_xml):
 

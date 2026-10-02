@@ -25,6 +25,12 @@ ICONS = {
     0xFFFE: ("folder.png", "folder"),
 }
 
+# Custom built-in icons
+CUSTOM_ICONS = {
+    0xf001: ("abrp.png", "A Better Route Planner"),
+    0xf002: ("qcstation.png", "QC Station"),
+}
+
 NOT_FOUND_AUTODJ_ITEM = [
     {
         'itemId': 1,

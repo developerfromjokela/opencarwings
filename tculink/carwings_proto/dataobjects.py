@@ -704,3 +704,32 @@ def compose_ca_data(data_dict) -> bytes:
         data.append(meta.get('reservation_flag', 0))
 
     return bytes(data)
+
+def compose_icndat(icon_id, icon_dat1: bytes|None, icon_dat2: bytes|None) -> bytes:
+    if not (0xF000 < icon_id < 0xFFFE):
+        raise ValueError("Icon ID out of range!")
+    if icon_dat1 is not None and len(icon_dat1) > 1800:
+        raise ValueError("icon data1 is over 1800 bytes!")
+    if icon_dat2 is not None and len(icon_dat2) > 1800:
+        raise ValueError("icon data1 is over 1800 bytes!")
+
+    valid_image = 1 if (icon_dat1 is not None or icon_dat2 is not None) else 0
+
+    data = bytearray()
+    data.extend(b'\x00' * 9)  # First 7 bytes (unknown purpose)
+    # Message ID
+    data.extend(b'\x01\x03')
+    data.extend(icon_id.to_bytes(2, 'big'))
+    data.extend(valid_image.to_bytes(1, "big")) # valid icon resource = 1, no icon available = 0
+    if icon_dat1 is not None:
+        data.extend(len(icon_dat1).to_bytes(2, 'big'))
+        data.extend(icon_dat1)
+    else:
+        data.extend(b'\x00\x00')
+    # only data2 is used on LEAFs, maybe data1 is a legacy thing?
+    if icon_dat2 is not None:
+        data.extend(len(icon_dat2).to_bytes(2, 'big'))
+        data.extend(icon_dat2)
+    else:
+        data.extend(b'\x00\x00')
+    return bytes(data)

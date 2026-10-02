@@ -38,7 +38,7 @@ from db.models import Car, COMMAND_TYPES, AlertHistory, EVInfo, LocationInfo, TC
     PERIODIC_REFRESH_ACTIVE, CAR_COLOR, CRMLatest, CRMLifetime, CRMTripRecord, CRMMonthlyRecord, CRMChargeHistoryRecord, \
     CRMChargeRecord, CRMABSHistoryRecord, CRMExcessiveIdlingRecord, CRMExcessiveAirconRecord, CRMTroubleRecord, \
     CRMMSNRecord, DOTFile, ProbeConfig, CRMDistanceRecord, CarTransferRequest, User
-from tculink.carwings_proto.autodj import ICONS
+from tculink.carwings_proto.autodj import ICONS, CUSTOM_ICONS
 from tculink.carwings_proto.autodj.channels import get_info_channel_data
 from tculink.carwings_proto.probe_config import PROBE_CONFIGS, PROBE_CONFIG_INFO
 from tculink.coordinators import get_required_sms_types, get_supported_commands
@@ -57,6 +57,8 @@ SETUP_STEPS = [
     {"index": 4, "name": _("SMS configuration")},
     {"index": 5, "name": _("Car added")},
 ]
+
+FULL_ICONS = {**ICONS, **CUSTOM_ICONS}
 
 def get_class( kls ):
     parts = kls.split('.')
@@ -588,8 +590,8 @@ def car_detail(request, vin):
 
     channel_map = []
     for folder in folders:
-        new_folder = {'id': folder['id'], 'name': folder['name1'], 'icon': "chanicons/"+ICONS[0xFFFE][0]}
-        folder_chans = [{'id': x['id'], 'name': x['name1'], 'icon': "chanicons/"+ICONS[x['icon']][0]} for x in channels if x['folder_id'] == new_folder['id']]
+        new_folder = {'id': folder['id'], 'name': folder['name1'], 'icon': "chanicons/"+FULL_ICONS[0xFFFE][0]}
+        folder_chans = [{'id': x['id'], 'name': x['name1'], 'icon': "chanicons/"+FULL_ICONS[x['icon']][0]} for x in channels if x['folder_id'] == new_folder['id']]
         if folder['id'] != 5:
             new_folder["channels"] = folder_chans
         channel_map.append(new_folder)

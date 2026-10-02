@@ -162,7 +162,7 @@ def plan_error_resp(channel_id, error_msg, long_msg) -> bytes:
 def get_vehicle_route(xml_data) -> tuple[list, bool]:
     if (xml_data.get('operation_info', None) is not None
             and xml_data['operation_info'].get('via_destination', None) is not None
-            and xml_data['operation_info']['via_destination'] not in ["dst", "no_guide"]):
+            and xml_data['operation_info']['via_destination']['guide_status'] not in ["dst", "no_guide"]):
         points_count = int(xml_data['operation_info']['via_destination'].get('set_number') or 0)
         points = [None] * points_count
         waypoints = xml_data['operation_info']['via_destination']["waypoints"]
@@ -308,7 +308,7 @@ def handle_abrp(xml_data, returning_xml, channel_id, car: Car, page):
                 continue
             infobox = str(int(round((origin.get('arrivalSocFrac') or 0)*100, 0)))
             if "departureSocFrac" in origin and origin.get('departureSocFrac') != origin.get('arrivalSocFrac'):
-                infobox += f"→{int(round((origin.get('departureSocFrac') or 0)*100, 0))}"
+                infobox += f"->{int(round((origin.get('departureSocFrac') or 0)*100, 0))}"
             infobox += "%"
 
             abrp_waypoints.append({

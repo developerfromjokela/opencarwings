@@ -24,7 +24,7 @@ def no_route_set_resp(channel_id) -> bytes:
             {
                 'itemId': 1,
                 'itemFlag1': 1,
-                'dynamicDataField1': encode_utf8(_('No Destination')),
+                'dynamicDataField1': encode_utf8(_('No Destination'), limit=0x20),
                 'dynamicDataField2': b'',
                 'dynamicDataField3': b'',
                 "DMSLocation": b'\xFF' * 10,
@@ -72,7 +72,7 @@ def no_evdata_resp(channel_id) -> bytes:
             {
                 'itemId': 1,
                 'itemFlag1': 1,
-                'dynamicDataField1': encode_utf8(_('Updating current battery information')),
+                'dynamicDataField1': encode_utf8(_('Updating battery info'), limit=0x20),
                 'dynamicDataField2': b'',
                 'dynamicDataField3': b'',
                 "DMSLocation": b'\xFF' * 10,

@@ -116,8 +116,16 @@ def handle(_, acp_data: dict, car: Car, source_id: int, __) -> bytes:
             if car.command_type == 3:
                 # Check for A/C temp setting
                 if car.command_payload is not None and "unit" in car.command_payload and "temp" in car.command_payload:
-                    acp_msg += composer.EVTemperaturePayload(units=car.command_payload.get("unit", 0),
-                                                             temp_val=car.command_payload.get("temp", 0)).encode()
+                    unit = car.command_payload.get("unit", 0)
+                    temp_val = car.command_payload.get("temp", 0)
+                    # Validate inputs with floors and max value
+                    if (unit+1 > len(composer.EV_TEMP_SETTINGS_FLOORS)
+                            or temp_val < composer.EV_TEMP_SETTINGS_FLOORS[unit] or temp_val > 31):
+                        acp_msg += composer.EVTemperatureDummy().encode() # failsafe
+                    else:
+                        temp_val = temp_val - composer.EV_TEMP_SETTINGS_FLOORS[unit]
+                        acp_msg += composer.EVTemperaturePayload(units=unit,
+                                                                 temp_val=temp_val).encode()
                     car.command_payload = None
                 else:
                     acp_msg += composer.EVTemperatureDummy().encode()

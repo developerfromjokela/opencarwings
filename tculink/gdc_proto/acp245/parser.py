@@ -633,28 +633,29 @@ LETTER_MAP = {
     0b11: "U",  # Network/Communication
 }
 
+
+def decode_dtc_code(code_bytes):
+    b1 = code_bytes[0]
+    b2 = code_bytes[1]
+    b3 = code_bytes[2]
+    b4 = -1
+    if len(code_bytes) > 3:
+        b4 = code_bytes[3]
+
+    letter_bits = (b1 >> 6) & 0b11
+    category_bits = (b2 >> 4) & 0b11
+
+    letter = LETTER_MAP[letter_bits]
+
+    prefix_digit = str(category_bits)
+    code_number = f"{b1 & 0x0F:X}{b2:02X}"
+    full_code = f"{letter}{prefix_digit}{code_number}"
+    full_string = f"{full_code}-{b3:02X}"
+    if b4 != -1:
+        full_string += f"-{b4:02X}"
+    return full_string
+
 def decode_ficosa_dtc_info(buffer, offset=0) -> Tuple[dict, int]:
-
-    def decode_dtc_code(code_bytes):
-        b1 = code_bytes[0]
-        b2 = code_bytes[1]
-        b3 = code_bytes[2]
-        b4 = -1
-        if len(code_bytes) > 3:
-            b4 = code_bytes[3]
-
-        letter_bits = (b1 >> 6) & 0b11
-        category_bits = (b2 >> 4) & 0b11
-
-        letter = LETTER_MAP[letter_bits]
-
-        prefix_digit = str(category_bits)
-        code_number = f"{b1 & 0x0F:X}{b2:02X}"
-        full_code = f"{letter}{prefix_digit}{code_number}"
-        full_string = f"{full_code}-{b3:02X}"
-        if b4 != -1:
-            full_string += f"-{b4:02X}"
-        return full_string
 
     data_val, data_offset = _decode_ie_element(buffer, offset, 0, IE_Element())
     data_val = data_val["value"]

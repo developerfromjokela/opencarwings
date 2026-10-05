@@ -116,9 +116,26 @@ def parse_carwings_xml(xml_string: str) -> dict:
         result['operation_info'] = {}
         via_dst = op_inf.find('via_dst')
         if via_dst is not None:
+            waypoints = []
+            for xml_point in via_dst.findall("point"):
+                point = {
+                    "type": xml_point.get('type'), # via1, via2, via3, via4, via5, dst
+                    "name": xml_point.get('name'),
+                    "coordinates": None
+                }
+                crd = xml_point.find('crd')
+                if crd is not None:
+                    point['coordinates'] = {
+                        'datum': crd.get('datum'),
+                        'latitude': crd.get('lat'),
+                        'longitude': crd.get('lon')
+                    }
+                waypoints.append(point)
             result['operation_info']['via_destination'] = {
                 'set_number': via_dst.get('set_number'),
-                'guide_status': via_dst.get('gid_sts')
+                'search_condition': via_dst.get('srch_cnd'), # hwy, nml, eco (hwy = minimize highways, nml = normal, eco = most efficient)
+                'waypoints': waypoints,
+                'guide_status': via_dst.get('gid_sts') # start, via1, via2, via3, via4, via5, off_course, dst, no_guide
             }
 
         rd_point = op_inf.find('rd_point')

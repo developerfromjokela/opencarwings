@@ -19,7 +19,7 @@ class ProviderSevenIO(BaseSMSProvider):
         if "apikey" not in configuration or "msn" not in configuration:
             raise Exception("Configuration is incomplete")
 
-        msn = re.sub('\D', '', configuration['msn'])
+        msn = re.sub('\\D', '', configuration['msn'])
 
         if len(msn) < 1:
             raise Exception("Phone number is not valid")

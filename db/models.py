@@ -553,6 +553,7 @@ class CRMDistanceRecord(models.Model):
 class CRMTroubleRecord(models.Model):
     car = models.ForeignKey(Car, on_delete=models.CASCADE)
     data = models.JSONField()
+    created_at = models.DateTimeField(auto_now_add=True)
 
 class CRMTripRecord(models.Model):
     car = models.ForeignKey(Car, on_delete=models.CASCADE)

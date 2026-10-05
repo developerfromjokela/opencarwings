@@ -87,7 +87,7 @@ def validate_config_cmd(payload):
 
 class Ficosa2016(TCULink):
     CODE = 'ficosa2016'
-    SUPPORTED_COMMANDS = [1,2,3,4,6,7,8,9,10,11,12,13,14,15,16]
+    SUPPORTED_COMMANDS = [1,2,3,4,7,8,9,10,11,12,13,14,15,16] # 80% removed, not working
     REQUIRED_SMS_TYPES = [SMSType.BINARY]
 
     def send_command(self, command: int, payload, car: Car):

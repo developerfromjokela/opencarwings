@@ -1,11 +1,12 @@
 import datetime
+import xxhash
 import logging
 import math
 import xml.etree.ElementTree as ET
 
 import requests
+from dateutil import parser
 from django.conf import settings
-from unidecode import unidecode
 
 from tculink.carwings_proto.databuffer import construct_carwings_filepacket, compress_carwings
 from tculink.carwings_proto.dataobjects import create_cpinfo, construct_dms_coordinate, compose_ca_list, compose_ca_data
@@ -13,7 +14,6 @@ from tculink.carwings_proto.meshutils import read_big_endian_u_int32, unpack_mon
     mesh_point_to_map_point
 from tculink.carwings_proto.utils import encode_utf8, parse_std_location_precise
 from tculink.carwings_proto.xml import carwings_create_xmlfile_content
-from dateutil import parser
 
 logger = logging.getLogger("carwings_cp")
 
@@ -120,6 +120,28 @@ def find_containing_mesh_id(lat, lon, bounding_boxes):
 
     return nearest_mesh_id, nearest_bbox
 
+
+def chargerinfo_hash(charger: dict) -> bytes:
+    addr = charger.get("AddressInfo") or {}
+    phone_num = addr.get("ContactTelephone1")
+    if not phone_num:
+        phone_num = (charger.get("OperatorInfo") or {}).get("PhonePrimaryContact") or ""
+    blob = "|".join(map(str, (
+        charger.get("ID"),
+        addr.get("Title"),
+        addr.get("Town"),
+        addr.get("StateOrProvince"),
+        addr.get("Postcode"),
+        addr.get("AddressLine1"),
+        ",".join(str(x.get("ConnectionTypeID", 0)) for x in (charger.get("Connections") or [])),
+        f"{float(addr.get('Latitude') or 0.0):.5f}",
+        f"{float(addr.get('Longitude') or 0.0):.5f}",
+        phone_num,
+        charger.get("NumberOfPoints"),
+        charger.get("UsageTypeID")
+    ))).encode('utf-8')
+    return xxhash.xxh32_digest(blob)
+
 def handle_cp(xml_data, files):
     if 'send_data' in xml_data['service_info']['application']:
         if len(xml_data['service_info']['application']['send_data']) == 0:
@@ -151,7 +173,7 @@ def handle_cp(xml_data, files):
                 'types': 'j1772,type2,chademo',
                 'sort_by_distance': 'true',
                 'sort_by_power': 'false',
-                'limit': '100'
+                'limit': '255'
             }, headers={"User-Agent": "OpenCARWINGS", "Authorization": f"APIKEY {settings.ITERNIO_API_KEY}"})
             try:
                 chargers = chargers.json().get("result", [])
@@ -374,13 +396,13 @@ def handle_cp(xml_data, files):
                 if not mesh_point_to_map_point(base_meshpoint, base_map_point):
                     continue
                 # top left
-                base_meshpoint.x = 0x7ff
+                base_meshpoint.x = 0x800
                 base_meshpoint.y = 0
                 if not mesh_point_to_map_point(base_meshpoint, tl_map_point):
                     continue
                 # bottom right
                 base_meshpoint.x = 0
-                base_meshpoint.y = 0x7ff
+                base_meshpoint.y = 0x800
                 if not mesh_point_to_map_point(base_meshpoint, bl_map_point):
                     continue
 
@@ -415,9 +437,8 @@ def handle_cp(xml_data, files):
             for charger in chargers_resp:
                 # charger_ids.append(str(charger['ID']))
                 data = charger['ID'].to_bytes(4, 'big')
-                # Calculate revision info based on last modification day
-                tstamp = abs(datetime.datetime.fromisoformat(charger['DateLastVerified'].replace("Z", "")).timestamp() - datetime.datetime(2020, 1, 1, 0, 0, 0).timestamp())
-                data += int(tstamp+2100).to_bytes(4, 'big')
+                # Calculate revision info based on the data
+                data += chargerinfo_hash(charger)
                 data += construct_dms_coordinate(charger['AddressInfo']['Latitude'],
                                                  charger['AddressInfo']['Longitude'])
                 mesh_id, bbox = find_containing_mesh_id(charger['AddressInfo']['Latitude'],

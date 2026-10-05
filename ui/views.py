@@ -38,7 +38,7 @@ from db.models import Car, COMMAND_TYPES, AlertHistory, EVInfo, LocationInfo, TC
     PERIODIC_REFRESH_ACTIVE, CAR_COLOR, CRMLatest, CRMLifetime, CRMTripRecord, CRMMonthlyRecord, CRMChargeHistoryRecord, \
     CRMChargeRecord, CRMABSHistoryRecord, CRMExcessiveIdlingRecord, CRMExcessiveAirconRecord, CRMTroubleRecord, \
     CRMMSNRecord, DOTFile, ProbeConfig, CRMDistanceRecord, CarTransferRequest, User
-from tculink.carwings_proto.autodj import ICONS
+from tculink.carwings_proto.autodj import ICONS, CUSTOM_ICONS
 from tculink.carwings_proto.autodj.channels import get_info_channel_data
 from tculink.carwings_proto.probe_config import PROBE_CONFIGS, PROBE_CONFIG_INFO
 from tculink.coordinators import get_required_sms_types, get_supported_commands
@@ -57,6 +57,8 @@ SETUP_STEPS = [
     {"index": 4, "name": _("SMS configuration")},
     {"index": 5, "name": _("Car added")},
 ]
+
+FULL_ICONS = {**ICONS, **CUSTOM_ICONS}
 
 def get_class( kls ):
     parts = kls.split('.')
@@ -219,9 +221,8 @@ def resolve_maps_link(request):
                             curr = stack[-1]
 
                     def flatten(arr):
-                        return flatten(arr[0]) if isinstance(arr, list) and len(arr) == 1 and isinstance(arr[0],
-                                                                                                         list) else [
-                            flatten(x) for x in arr] if isinstance(arr, list) else arr
+                        return flatten(arr[0]) if isinstance(arr, list) and len(arr) == 1 else \
+                            [flatten(x) for x in arr] if isinstance(arr, list) else arr
 
                     parsed_data = flatten(root)
 
@@ -560,9 +561,9 @@ def car_detail(request, vin):
                 form = SettingsForm(request.POST)
                 # check whether it's valid:
                 if form.is_valid():
-                    car.iccid = re.sub('\\D', '', form.cleaned_data['sim_id'])
-                    car.tcu_model = re.sub('\\D', '', form.cleaned_data['tcu_id'])
-                    car.tcu_serial = re.sub('\\D', '', form.cleaned_data['unit_id'])
+                    car.iccid = re.sub('[^0-9A-Z]', '', form.cleaned_data['sim_id'])
+                    car.tcu_model = re.sub('[^0-9A-Z]', '', form.cleaned_data['tcu_id'])
+                    car.tcu_serial = re.sub('[^0-9A-Z]', '', form.cleaned_data['unit_id'])
                     car.nickname = form.cleaned_data['nickname']
                     car.color = form.cleaned_data['color']
                     car.periodic_refresh = form.cleaned_data['periodic_refresh']
@@ -589,8 +590,8 @@ def car_detail(request, vin):
 
     channel_map = []
     for folder in folders:
-        new_folder = {'id': folder['id'], 'name': folder['name1'], 'icon': "chanicons/"+ICONS[0xFFFE][0]}
-        folder_chans = [{'id': x['id'], 'name': x['name1'], 'icon': "chanicons/"+ICONS[x['icon']][0]} for x in channels if x['folder_id'] == new_folder['id']]
+        new_folder = {'id': folder['id'], 'name': folder['name1'], 'icon': "chanicons/"+FULL_ICONS[0xFFFE][0]}
+        folder_chans = [{'id': x['id'], 'name': x['name1'], 'icon': "chanicons/"+FULL_ICONS[x['icon']][0]} for x in channels if x['folder_id'] == new_folder['id']]
         if folder['id'] != 5:
             new_folder["channels"] = folder_chans
         channel_map.append(new_folder)
@@ -893,8 +894,8 @@ def setup_step2(request):
                 if car_free:
                     request.session['step'] = {
                         "current_step": 3,
-                        "tcu_id": re.sub('\\D', '', form.cleaned_data['tcu_id']),
-                        "unit_id": re.sub('\\D', '', form.cleaned_data['unit_id']),
+                        "tcu_id": re.sub('[^0-9A-Z]', '', form.cleaned_data['tcu_id']),
+                        "unit_id": re.sub('[^0-9A-Z]', '', form.cleaned_data['unit_id']),
                         "sim_id": re.sub('\\D', '', form.cleaned_data['sim_id']),
                         "vin": form.cleaned_data['vin'].strip().upper(),
                     }

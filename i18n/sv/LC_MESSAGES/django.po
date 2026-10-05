@@ -236,10 +236,12 @@ msgid "Park"
 msgstr "Park"
 
 #: db/models.py:85 ui/templates/ui/car_detail.html:1352
+#: ui/templates/ui/car_detail.html:1389
 msgid "Drive"
 msgstr "Drive"
 
 #: db/models.py:86 ui/templates/ui/car_detail.html:1352
+#: ui/templates/ui/car_detail.html:1389
 msgid "Reverse"
 msgstr "Back"
 
@@ -2196,7 +2198,7 @@ msgstr ""
 "utbytt/ersatt batteri, vänligen ange maximalt antal GIDs när batteriet är "
 "nytt (SOH 100%%)."
 
-#: ui/templates/ui/car_detail.html:575
+#: ui/templates/ui/car_detail.html:575 ui/templates/ui/car_detail.html:598
 msgid ""
 "On AZE0 (>2013) generation cars, it is possible to see available battery "
 "capacity in percentage. For ZE0, such feature was never implemented. By "
@@ -2204,115 +2206,117 @@ msgid ""
 "be inaccurate."
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:581
+#: ui/templates/ui/car_detail.html:581 ui/templates/ui/car_detail.html:611
 msgid "Periodic data refresh interval"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:590
+#: ui/templates/ui/car_detail.html:590 ui/templates/ui/car_detail.html:619
 msgid "Periodic data refresh interval (while driving or charging)"
 msgstr ""
 
 #: ui/templates/ui/car_detail.html:599 ui/templates/ui/setup/step4.html:29
+#: ui/templates/ui/car_detail.html:631
 msgid "SMS provider"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:632
+#: ui/templates/ui/car_detail.html:632 ui/templates/ui/car_detail.html:669
 msgid "Remove car"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:651
+#: ui/templates/ui/car_detail.html:651 ui/templates/ui/car_detail.html:688
 msgid "Set car location as"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:670
+#: ui/templates/ui/car_detail.html:670 ui/templates/ui/car_detail.html:707
 msgid "Select data channel"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:705
+#: ui/templates/ui/car_detail.html:705 ui/templates/ui/car_detail.html:742
 msgid "Edit data channel"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:706
+#: ui/templates/ui/car_detail.html:706 ui/templates/ui/car_detail.html:743
 msgid "Channel name"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:710
+#: ui/templates/ui/car_detail.html:710 ui/templates/ui/car_detail.html:747
 msgid "Channel icon"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:721
+#: ui/templates/ui/car_detail.html:721 ui/templates/ui/car_detail.html:758
 msgid "Data URL"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:723
+#: ui/templates/ui/car_detail.html:723 ui/templates/ui/car_detail.html:760
 msgid "Data URL format and documentation"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:727
+#: ui/templates/ui/car_detail.html:727 ui/templates/ui/car_detail.html:764
 msgid "Allow sending current vehicle location"
 msgstr ""
 
 #: ui/templates/ui/car_detail.html:749 ui/templates/ui/car_detail.html:2393
+#: ui/templates/ui/car_detail.html:786 ui/templates/ui/car_detail.html:2430
 msgid "Edit timer"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:750
+#: ui/templates/ui/car_detail.html:750 ui/templates/ui/car_detail.html:787
 msgid "Timer name"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:755
+#: ui/templates/ui/car_detail.html:755 ui/templates/ui/car_detail.html:792
 msgid "Enabled"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:758
+#: ui/templates/ui/car_detail.html:758 ui/templates/ui/car_detail.html:795
 msgid "Select time"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:768
+#: ui/templates/ui/car_detail.html:768 ui/templates/ui/car_detail.html:805
 msgid "Command"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:778
+#: ui/templates/ui/car_detail.html:778 ui/templates/ui/car_detail.html:815
 msgid "One-time"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:781
+#: ui/templates/ui/car_detail.html:781 ui/templates/ui/car_detail.html:818
 msgid "Repeating"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:793
+#: ui/templates/ui/car_detail.html:793 ui/templates/ui/car_detail.html:830
 msgid "Select date"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:799
+#: ui/templates/ui/car_detail.html:799 ui/templates/ui/car_detail.html:836
 msgid "Monday"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:803
+#: ui/templates/ui/car_detail.html:803 ui/templates/ui/car_detail.html:840
 msgid "Tuesday"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:807
+#: ui/templates/ui/car_detail.html:807 ui/templates/ui/car_detail.html:844
 msgid "Wednesday"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:811
+#: ui/templates/ui/car_detail.html:811 ui/templates/ui/car_detail.html:848
 msgid "Thursday"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:815
+#: ui/templates/ui/car_detail.html:815 ui/templates/ui/car_detail.html:852
 msgid "Friday"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:819
+#: ui/templates/ui/car_detail.html:819 ui/templates/ui/car_detail.html:856
 msgid "Saturday"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:823
+#: ui/templates/ui/car_detail.html:823 ui/templates/ui/car_detail.html:860
 msgid "Sunday"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:855
+#: ui/templates/ui/car_detail.html:855 ui/templates/ui/car_detail.html:892
 msgid "SMS from your device"
 msgstr ""
 
@@ -2322,14 +2326,18 @@ msgstr ""
 #: ui/templates/ui/car_detail.html:1465
 #: ui/templates/ui/ficosa/configuration.html:331
 #: ui/templates/ui/ficosa/configuration.html:335
+#: ui/templates/ui/car_detail.html:1245 ui/templates/ui/car_detail.html:1247
+#: ui/templates/ui/car_detail.html:1251 ui/templates/ui/car_detail.html:1252
+#: ui/templates/ui/car_detail.html:1493 ui/templates/ui/car_detail.html:1501
+#: ui/templates/ui/car_detail.html:1502
 msgid "Error sending command"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:1279
+#: ui/templates/ui/car_detail.html:1279 ui/templates/ui/car_detail.html:1316
 msgid "Plugged In"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:1279
+#: ui/templates/ui/car_detail.html:1279 ui/templates/ui/car_detail.html:1316
 msgid "Unplugged"
 msgstr ""
 
@@ -2341,6 +2349,12 @@ msgstr ""
 #: ui/templates/ui/car_detail.html:1361
 #: ui/templates/ui/ficosa/veh_health.html:134
 #: ui/templates/ui/ficosa/veh_health.html:136
+#: ui/templates/ui/car_detail.html:1371 ui/templates/ui/car_detail.html:1372
+#: ui/templates/ui/car_detail.html:1373 ui/templates/ui/car_detail.html:1374
+#: ui/templates/ui/car_detail.html:1377 ui/templates/ui/car_detail.html:1384
+#: ui/templates/ui/car_detail.html:1390 ui/templates/ui/car_detail.html:1391
+#: ui/templates/ui/car_detail.html:1392 ui/templates/ui/car_detail.html:1393
+#: ui/templates/ui/car_detail.html:1398
 msgid "Yes"
 msgstr ""
 
@@ -2352,15 +2366,22 @@ msgstr ""
 #: ui/templates/ui/car_detail.html:1361
 #: ui/templates/ui/ficosa/veh_health.html:134
 #: ui/templates/ui/ficosa/veh_health.html:136
+#: ui/templates/ui/car_detail.html:1371 ui/templates/ui/car_detail.html:1372
+#: ui/templates/ui/car_detail.html:1373 ui/templates/ui/car_detail.html:1374
+#: ui/templates/ui/car_detail.html:1377 ui/templates/ui/car_detail.html:1384
+#: ui/templates/ui/car_detail.html:1390 ui/templates/ui/car_detail.html:1391
+#: ui/templates/ui/car_detail.html:1392 ui/templates/ui/car_detail.html:1393
+#: ui/templates/ui/car_detail.html:1398
 msgid "No"
 msgstr ""
 
 #: ui/templates/ui/car_detail.html:1494 ui/templates/ui/car_detail.html:1502
-#: ui/templates/ui/car_detail.html:1503
+#: ui/templates/ui/car_detail.html:1503 ui/templates/ui/car_detail.html:1531
+#: ui/templates/ui/car_detail.html:1539 ui/templates/ui/car_detail.html:1540
 msgid "Error sending location to car"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:1496
+#: ui/templates/ui/car_detail.html:1496 ui/templates/ui/car_detail.html:1533
 msgid "Location sent!"
 msgstr ""
 
@@ -2368,117 +2389,135 @@ msgstr ""
 #: ui/templates/ui/car_detail.html:1886 ui/templates/ui/car_detail.html:1891
 #: ui/templates/ui/car_detail.html:1948 ui/templates/ui/car_detail.html:1961
 #: ui/templates/ui/car_detail.html:1966 ui/templates/ui/car_detail.html:2045
+#: ui/templates/ui/car_detail.html:1589 ui/templates/ui/car_detail.html:1652
+#: ui/templates/ui/car_detail.html:1923 ui/templates/ui/car_detail.html:1928
+#: ui/templates/ui/car_detail.html:1985 ui/templates/ui/car_detail.html:1998
+#: ui/templates/ui/car_detail.html:2003 ui/templates/ui/car_detail.html:2082
 msgid "No address"
 msgstr ""
 
 #: ui/templates/ui/car_detail.html:1562 ui/templates/ui/car_detail.html:1895
+#: ui/templates/ui/car_detail.html:1599 ui/templates/ui/car_detail.html:1932
 msgid "Could not get location from map link"
 msgstr ""
 
 #: ui/templates/ui/car_detail.html:1568 ui/templates/ui/car_detail.html:1640
 #: ui/templates/ui/car_detail.html:1901 ui/templates/ui/car_detail.html:1982
+#: ui/templates/ui/car_detail.html:1605 ui/templates/ui/car_detail.html:1677
+#: ui/templates/ui/car_detail.html:1938 ui/templates/ui/car_detail.html:2019
 msgid "Error searching locations"
 msgstr ""
 
 #: ui/templates/ui/car_detail.html:1634 ui/templates/ui/car_detail.html:1976
+#: ui/templates/ui/car_detail.html:1671 ui/templates/ui/car_detail.html:2013
 msgid "Search did not find any locations"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:1659
+#: ui/templates/ui/car_detail.html:1659 ui/templates/ui/car_detail.html:1696
 msgid "Connection established!"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:1664
+#: ui/templates/ui/car_detail.html:1664 ui/templates/ui/car_detail.html:1701
 msgid "Reconnecting..."
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:1990
+#: ui/templates/ui/car_detail.html:1990 ui/templates/ui/car_detail.html:2027
 msgid "Cannot add a new waypoint"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:1990
+#: ui/templates/ui/car_detail.html:1990 ui/templates/ui/car_detail.html:2027
 msgid "Maximum number of waypoints reached"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:2023
+#: ui/templates/ui/car_detail.html:2023 ui/templates/ui/car_detail.html:2060
 msgid "Waypoint"
 msgstr ""
 
 #: ui/templates/ui/car_detail.html:2075 ui/templates/ui/car_detail.html:2084
-#: ui/templates/ui/car_detail.html:2085
+#: ui/templates/ui/car_detail.html:2085 ui/templates/ui/car_detail.html:2112
+#: ui/templates/ui/car_detail.html:2121 ui/templates/ui/car_detail.html:2122
 msgid "Error saving the route plan"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:2077
+#: ui/templates/ui/car_detail.html:2077 ui/templates/ui/car_detail.html:2114
 msgid "Route plan saved!"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:2113
+#: ui/templates/ui/car_detail.html:2113 ui/templates/ui/car_detail.html:2150
 msgid "Cannot add new route plan"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:2113
+#: ui/templates/ui/car_detail.html:2113 ui/templates/ui/car_detail.html:2150
 msgid "You have too many route plans, please delete one and try again."
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:2183
+#: ui/templates/ui/car_detail.html:2183 ui/templates/ui/car_detail.html:2220
 msgid "Are you sure you want to delete this route plan?"
 msgstr ""
 
 #: ui/templates/ui/car_detail.html:2196 ui/templates/ui/car_detail.html:2203
-#: ui/templates/ui/car_detail.html:2204
+#: ui/templates/ui/car_detail.html:2204 ui/templates/ui/car_detail.html:2233
+#: ui/templates/ui/car_detail.html:2240 ui/templates/ui/car_detail.html:2241
 msgid "Error deleting the route plan"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:2198
+#: ui/templates/ui/car_detail.html:2198 ui/templates/ui/car_detail.html:2235
 msgid "Route plan removed!"
 msgstr ""
 
 #: ui/templates/ui/car_detail.html:2358 ui/templates/ui/car_detail.html:2366
-#: ui/templates/ui/car_detail.html:2367
+#: ui/templates/ui/car_detail.html:2367 ui/templates/ui/car_detail.html:2395
+#: ui/templates/ui/car_detail.html:2403 ui/templates/ui/car_detail.html:2404
 msgid "Error saving CARWINGS settings"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:2360
+#: ui/templates/ui/car_detail.html:2360 ui/templates/ui/car_detail.html:2397
 msgid "CARWINGS settings saved!"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:2373
+#: ui/templates/ui/car_detail.html:2373 ui/templates/ui/car_detail.html:2410
 msgid "Add timer"
 msgstr ""
 
 #: ui/templates/ui/car_detail.html:2524 ui/templates/ui/car_detail.html:2527
+#: ui/templates/ui/car_detail.html:2561 ui/templates/ui/car_detail.html:2564
 msgid "Missing field"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:2524
+#: ui/templates/ui/car_detail.html:2524 ui/templates/ui/car_detail.html:2561
 msgid "Please enter valid date for the timer"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:2527
+#: ui/templates/ui/car_detail.html:2527 ui/templates/ui/car_detail.html:2564
 msgid "Please select at least one weekday"
 msgstr ""
 
 #: ui/templates/ui/car_detail.html:2548 ui/templates/ui/car_detail.html:2556
 #: ui/templates/ui/car_detail.html:2557 ui/templates/ui/car_detail.html:2579
 #: ui/templates/ui/car_detail.html:2588 ui/templates/ui/car_detail.html:2589
+#: ui/templates/ui/car_detail.html:2585 ui/templates/ui/car_detail.html:2593
+#: ui/templates/ui/car_detail.html:2594 ui/templates/ui/car_detail.html:2616
+#: ui/templates/ui/car_detail.html:2625 ui/templates/ui/car_detail.html:2626
 msgid "Error saving the timer"
 msgstr ""
 
 #: ui/templates/ui/car_detail.html:2550 ui/templates/ui/car_detail.html:2581
+#: ui/templates/ui/car_detail.html:2587 ui/templates/ui/car_detail.html:2618
 msgid "Timer saved!"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:2596
+#: ui/templates/ui/car_detail.html:2596 ui/templates/ui/car_detail.html:2633
 msgid "Are you sure you want to delete this timer?"
 msgstr ""
 
-#: ui/templates/ui/car_detail.html:2605
+#: ui/templates/ui/car_detail.html:2605 ui/templates/ui/car_detail.html:2642
 msgid "Timer removed!"
 msgstr ""
 
 #: ui/templates/ui/car_detail.html:2608 ui/templates/ui/car_detail.html:2610
 #: ui/templates/ui/car_detail.html:2614 ui/templates/ui/car_detail.html:2615
+#: ui/templates/ui/car_detail.html:2645 ui/templates/ui/car_detail.html:2647
+#: ui/templates/ui/car_detail.html:2651 ui/templates/ui/car_detail.html:2652
 msgid "Error deleting the timer"
 msgstr ""
 
@@ -3833,3 +3872,17 @@ msgstr ""
 #: ui/views.py:1027
 msgid "Update request cancelled!"
 msgstr ""
+
+#: ui/templates/ui/car_detail.html:537
+#, fuzzy
+msgid "Car Identification"
+msgstr "Bogseringsvarning"
+
+#: ui/templates/ui/car_detail.html:577
+msgid "Battery & vehicle"
+msgstr ""
+
+#: ui/templates/ui/car_detail.html:606
+#, fuzzy
+msgid "Refresh intervals"
+msgstr "Förnya data"

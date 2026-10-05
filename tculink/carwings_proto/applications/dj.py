@@ -5,8 +5,8 @@ from datetime import datetime
 
 from django.utils.translation import activate, get_language, deactivate
 
-from tculink.carwings_proto.autodj.channels import get_info_channel_data
-from tculink.carwings_proto.autodj.handler import handle_channel_response, handle_directory_response
+from tculink.carwings_proto.autodj.handler import handle_channel_response, handle_directory_response, \
+    handle_icons_response
 from tculink.carwings_proto.databuffer import get_carwings_dj_payload, construct_carwings_filepacket, compress_carwings
 from tculink.carwings_proto.dataobjects import construct_gnrlms_payload
 from tculink.carwings_proto.utils import carwings_lang_to_code, get_cws_authenticated_car
@@ -126,14 +126,36 @@ def handle_dj(xml_data, files):
                         ET.SubElement(app_elm, "send_data", {"id_type": "file", "id": name})
                         files.append((name, file[1]))
                     datapos += 3
+                elif handler_id == 0x103:
+                    ids_count = (command_list[datapos + 2] << 8) | command_list[datapos + 3]
+                    items_data = command_list[datapos + 4:]
+                    logger.info("  ->Icon ID count: %d", ids_count)
+                    icon_ids = []
+                    for i in range(ids_count):
+                        pos = i * 2
+                        icon_id = (items_data[pos] << 8) | items_data[pos + 1]
+                        logger.debug("     -> POS %d: 0x%04X", i, icon_id)
+                        icon_ids.append(icon_id)
+
+                    for fidx, file in enumerate(handle_icons_response(xml_data, app_elm, icon_ids)):
+                        name = file[0]
+                        name += f".{fidx+1}.{i+1:03}"
+                        ET.SubElement(app_elm, "send_data", {"id_type": "file", "id": name})
+                        files.append((name, file[1]))
+                    datapos += 5
+                    datapos += ids_count*2
+                elif handler_id == 0x10f: # end of list
+                    break
                 else:
                     datapos += 3
+                    logger.warning("Unknown ID %d", id_value)
                     log_dir = os.path.join("logs", "dj", xml_data['authentication']['navi_id'],
                                            datetime.now().strftime('%Y%m%d%H%M%S.%s'))
                     os.makedirs(log_dir, exist_ok=True)
                     with open(os.path.join(log_dir, f"UNKNOWNID-{id_value}"), 'wb') as f:
                         f.write(file_content)
         else:
+            logger.warning("Unknown action %d", action)
             log_dir = os.path.join("logs", "dj", xml_data['authentication']['navi_id'],
                                    datetime.now().strftime('%Y%m%d%H%M%S.%s'))
             os.makedirs(log_dir, exist_ok=True)

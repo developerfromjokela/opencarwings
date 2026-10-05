@@ -26,3 +26,4 @@ setuptools
 PyOTP~=2.10.0
 qrcode~=8.2
 Twisted[tls,http2]~=26.4.0
+xxhash~=4.0.1

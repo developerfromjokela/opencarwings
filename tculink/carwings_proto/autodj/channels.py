@@ -2,6 +2,7 @@ from django.utils.text import format_lazy
 from django.utils.translation import gettext as _
 
 from tculink.carwings_proto.autodj import ICONS
+from tculink.carwings_proto.autodj.abrp import handle_abrp
 from tculink.carwings_proto.autodj.custom import handle_custom_channel
 from tculink.carwings_proto.autodj.opencarwings import get_infochannel, get_energy_information_channel, \
     get_eco_tree_channel
@@ -211,6 +212,20 @@ STANDARD_AUTODJ_CHANNELS = [
         'data2': bytearray(),
         'flag2': 0x00,
         'processor': get_weather_forecast
+    },
+    {
+        'id': 0x1021,
+        'internal_id': 0x0021,
+        'name1': 'ABRP Plan Charging Stops (BETA)',
+        'name2': 'Plan charging stops to current destination',
+        'folder_id': 4,
+        'icon': 0xf001,
+        'enabled': True,
+        'auth': False,
+        'data1': bytearray(),
+        'data2': bytearray(),
+        'flag2': 0xFF,
+        'processor': handle_abrp
     }
 ]
 

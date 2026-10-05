@@ -8,158 +8,155 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-25 11:54+0000\n"
-"PO-Revision-Date: 2026-09-29 08:58+0000\n"
-"Last-Translator: Andy Ber <wargaelanor@gmail.com>\n"
-"Language-Team: Russian <https://i18n.viaaq.eu/projects/opencarwings-server/"
-"server/ru/>\n"
-"Language: ru\n"
+"PO-Revision-Date: 2026-10-02 04:45+0000\n"
+"Last-Translator: Albert Magnusson <albertbm@gmail.com>\n"
+"Language-Team: Icelandic <https://i18n.viaaq.eu/projects/opencarwings-server/"
+"server/is/>\n"
+"Language: is\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=2; plural=n % 10 != 1 || n % 100 == 11;\n"
 "X-Generator: Weblate 2026.9.1\n"
 
 #: api/serializers.py:41 ui/forms.py:57
 msgid "PIN codes do not match."
-msgstr "PIN-коды не совпадают."
+msgstr "PIN-númerin passa ekki saman."
 
 #: api/views.py:102
 msgid "Too many timer commands, please delete one and try again"
-msgstr "У вас слишком много таймеров, удалите один и попробуйте снова"
+msgstr "Of margar tímastilltar skipanir. Eyddu einni og reyndu aftur"
 
 #: api/views.py:374 api/views.py:422
 msgid "Invalid PIN, please try again"
-msgstr "Неверный PIN, пожалуйста, попробуйте снова"
+msgstr "Rangt PIN-númer, reyndu aftur"
 
 #: api/views.py:377
 msgid "Invalid OTP, please try again"
-msgstr "Неверный OTP, пожалуйста, попробуйте снова"
+msgstr "Rangur auðkenningarkóði, reyndu aftur"
 
 #: api/views.py:420
 msgid "Command PIN is not set up, please set up and try again"
-msgstr "PIN-код команды не настроен, пожалуйста, настройте и попробуйте снова"
+msgstr "Skipana-PIN hefur ekki verið stillt. Stilltu það og reyndu aftur"
 
 #: api/views.py:435 tculink/coordinators/continental2012.py:25
 #: tculink/coordinators/ficosa2016.py:134
 msgid "Failed to send SMS message to TCU. Please try again in a moment."
-msgstr ""
-"Не удалось отправить SMS-сообщение на TCU. Пожалуйста, попробуйте снова "
-"через некоторое время."
+msgstr "Ekki tókst að senda SMS til TCU. Reyndu aftur eftir smástund."
 
 #: db/models.py:21
 msgid "Charge stop"
-msgstr "Остановка зарядки"
+msgstr "Hætta hleðslu"
 
 #: db/models.py:22 db/models.py:31 db/models.py:56 db/models.py:57
 msgid "Charge start"
-msgstr "Начало зарядки"
+msgstr "Hefja hleðslu"
 
 #: db/models.py:23
 msgid "Charge cable reminder"
-msgstr "Напоминание о зарядном кабеле"
+msgstr "Áminning um hleðslusnúru"
 
 #: db/models.py:24 db/models.py:58
 msgid "A/C on"
-msgstr "Включение кондиционера"
+msgstr "Miðstöð á"
 
 #: db/models.py:25 db/models.py:59
 msgid "A/C off"
-msgstr "Выключение кондиционера"
+msgstr "Miðstöð af"
 
 #: db/models.py:26
 msgid "Configuration read"
-msgstr "Чтение конфигурации"
+msgstr "Stillingar lesnar"
 
 #: db/models.py:27
 msgid "A/C auto off"
-msgstr "Автоматическое выключение кондиционера"
+msgstr "Miðstöð slökkti sjálfkrafa"
 
 #: db/models.py:28
 msgid "Quick charge stop"
-msgstr "Остановка быстрой зарядки"
+msgstr "Hraðhleðslu hætt"
 
 #: db/models.py:29
 msgid "Battery heater start"
-msgstr "Начался обогрев батареи"
+msgstr "Rafhlöðuhitari ræstur"
 
 #: db/models.py:30
 msgid "Battery heater stop"
-msgstr "Нагрев батареи закончен"
+msgstr "Rafhlöðuhitari stöðvaður"
 
 #: db/models.py:32 db/models.py:61
 msgid "Door unlock"
-msgstr "Разблокировать двери"
+msgstr "Aflæsa hurðum"
 
 #: db/models.py:33 db/models.py:62
 msgid "Door lock"
-msgstr "Заблокировать двери"
+msgstr "Læsa hurðum"
 
 #: db/models.py:34 tculink/httpgateway/ficosa/destinations/hornlight.py:102
 #: tculink/httpgateway/ficosa/destinations/remotestart.py:102
 msgid "Horn & Light"
-msgstr "Сигнал и свет"
+msgstr "Flauta og ljós"
 
 #: db/models.py:35
 msgid "Stop Horn & Light"
-msgstr "Остановить сигнал и свет"
+msgstr "Stöðva flautu og ljós"
 
 #: db/models.py:36 db/models.py:67
 msgid "Remote Start"
-msgstr "Удалённый запуск"
+msgstr "Fjarstart"
 
 #: db/models.py:37 db/models.py:68
 msgid "Remote Stop"
-msgstr "Удалённая остановка"
+msgstr "Stöðva fjarstart"
 
 #: db/models.py:38
 msgid "Configuration Updated"
-msgstr "Конфигурация обновлена"
+msgstr "Stillingar uppfærðar"
 
 #: db/models.py:39
 msgid "Received new data"
-msgstr "Получены новые данные"
+msgstr "Ný gögn bárust"
 
 #: db/models.py:40
 msgid "Burglar alert"
-msgstr "Сигнал тревоги"
+msgstr "Þjófavörn"
 
 #: db/models.py:41 tculink/gdc_proto/ficosa/utils.py:93
 #: tculink/httpgateway/ficosa/destinations/tow.py:36
 msgid "Tow Notification"
-msgstr "Уведомление о эвакуации"
+msgstr "Tilkynning um drátt"
 
 #: db/models.py:42 db/models.py:70
 msgid "End Battery Lease Contract"
-msgstr "Прекратить ограничения аренды батареи"
+msgstr "Lok rafhlöðuleigusamnings"
 
 #: db/models.py:43
 msgid "TCU Configuration error"
-msgstr "Ошибка конфигурации TCU"
+msgstr "Villa í TCU stillingum"
 
 #: db/models.py:44
 msgid "Remote Start/Stop error"
-msgstr "Ошибка удалённого запуска/остановки"
+msgstr "Villa í fjarstart"
 
 #: db/models.py:45
 msgid "Horn & Light error"
-msgstr "Ошибка сигнала и света"
+msgstr "Villa í flautu og ljósum"
 
 #: db/models.py:46
 msgid "Door Lock/Unlock error"
-msgstr "Ошибка блокировки/разблокировки двери"
+msgstr "Villa í læsingu/aflæsingu hurða"
 
 #: db/models.py:47
 msgid "Charge error"
-msgstr "Ошибка зарядки"
+msgstr "Villa í hleðslu"
 
 #: db/models.py:48
 msgid "A/C error"
-msgstr "Ошибка кондиционера"
+msgstr "Villa í miðstöð"
 
 #: db/models.py:49
 msgid "Command timeout"
-msgstr "Тайм-аут команды"
+msgstr "Tímamörk skipunar runnu út"
 
 #: db/models.py:50 db/models.py:78 ui/templates/ui/account.html:15
 #: ui/templates/ui/car_detail.html:72 ui/templates/ui/car_list.html:18
@@ -173,43 +170,43 @@ msgstr "Тайм-аут команды"
 #: ui/templates/ui/setup/step2.html:13 ui/templates/ui/setup/step3.html:13
 #: ui/templates/ui/setup/step4.html:13
 msgid "Error"
-msgstr "Ошибка"
+msgstr "Villa"
 
 #: db/models.py:54 db/models.py:134
 msgid "No command"
-msgstr "Команда отсутствует"
+msgstr "Engin skipun"
 
 #: db/models.py:55
 msgid "Refresh data"
-msgstr "Обновление данных"
+msgstr "Uppfæra gögn"
 
 #: db/models.py:60
 msgid "Read configuration"
-msgstr "Чтение настроек"
+msgstr "Lesa stillingar"
 
 #: db/models.py:63
 msgid "Horn"
-msgstr "Сигнал"
+msgstr "Flauta"
 
 #: db/models.py:64
 msgid "Lights"
-msgstr "Свет"
+msgstr "Ljós"
 
 #: db/models.py:65 tculink/gdc_proto/ficosa/utils.py:94
 msgid "Horn & Lights"
-msgstr "Сигнал и свет"
+msgstr "Flauta og ljós"
 
 #: db/models.py:66
 msgid "Stop Horn & light"
-msgstr "Остановить сигнал и свет"
+msgstr "Stöðva flautu og ljós"
 
 #: db/models.py:69
 msgid "Configuration Request"
-msgstr "Запрос конфигурации"
+msgstr "Beiðni um stillingar"
 
 #: db/models.py:76
 msgid "Waiting"
-msgstr "Ожидание"
+msgstr "Í bið"
 
 #: db/models.py:77 db/models.py:136 ui/templates/ui/account.html:14
 #: ui/templates/ui/car_detail.html:71 ui/templates/ui/car_list.html:17
@@ -224,163 +221,157 @@ msgstr "Ожидание"
 #: ui/templates/ui/setup/step2.html:12 ui/templates/ui/setup/step3.html:12
 #: ui/templates/ui/setup/step4.html:12
 msgid "Success"
-msgstr "Успех"
+msgstr "Tókst"
 
 #: db/models.py:79
 msgid "Timeout"
-msgstr "Тайм-аут"
+msgstr "Tímamörk runnu út"
 
 #: db/models.py:80
 msgid "Await response"
-msgstr "Ожидание ответа"
+msgstr "Bíður svars"
 
 #: db/models.py:84
 msgid "Park"
-msgstr "Парковка"
+msgstr "Park"
 
 #: db/models.py:85 ui/templates/ui/car_detail.html:1352
-#: ui/templates/ui/car_detail.html:1389
 msgid "Drive"
-msgstr "Движение"
+msgstr "Drive"
 
 #: db/models.py:86 ui/templates/ui/car_detail.html:1352
-#: ui/templates/ui/car_detail.html:1389
 msgid "Reverse"
-msgstr "Задний ход"
+msgstr "Bakkgír"
 
 #: db/models.py:90 db/models.py:100
 msgid "Never"
-msgstr "Никогда"
+msgstr "Aldrei"
 
 #: db/models.py:91 db/models.py:104
 msgid "Every 30 minutes"
-msgstr "Каждые 30 минут"
+msgstr "Á 30 mínútna fresti"
 
 #: db/models.py:92 db/models.py:105
 msgid "Every 45 minutes"
-msgstr "Каждые 45 минут"
+msgstr "Á 45 mínútna fresti"
 
 #: db/models.py:93 db/models.py:106
 msgid "Every hour"
-msgstr "Каждый час"
+msgstr "Á klukkustundar fresti"
 
 #: db/models.py:94 db/models.py:107
 msgid "Every three hours"
-msgstr "Каждые 3 часа"
+msgstr "Á þriggja klukkustunda fresti"
 
 #: db/models.py:95 db/models.py:108
 msgid "Every 12 hours"
-msgstr "Каждые 12 часов"
+msgstr "Á 12 klukkustunda fresti"
 
 #: db/models.py:96 db/models.py:109
 msgid "Every day"
-msgstr "Каждый день"
+msgstr "Daglega"
 
 #: db/models.py:101
 msgid "Every 5 minutes"
-msgstr "Каждые 5 минут"
+msgstr "Á 5 mínútna fresti"
 
 #: db/models.py:102
 msgid "Every 10 minutes"
-msgstr "Каждые 10 минут"
+msgstr "Á 10 mínútna fresti"
 
 #: db/models.py:103
 msgid "Every 15 minutes"
-msgstr "Каждые 15 минут"
+msgstr "Á 15 mínútna fresti"
 
 #: db/models.py:129
 msgid "Slow charge"
-msgstr "Медленная зарядка"
+msgstr "Hæg hleðsla"
 
 #: db/models.py:130
 msgid "Quick charge"
-msgstr "Быстрая зарядка"
+msgstr "Hraðhleðsla"
 
 #: db/models.py:135
 msgid "Pending"
-msgstr "В ожидании"
+msgstr "Í vinnslu"
 
 #: db/models.py:137
 msgid "Failure"
-msgstr "Ошибка"
+msgstr "Mistókst"
 
 #: db/models.py:138
 msgid "Rejected"
-msgstr "Отказ от автомобиля"
+msgstr "Hafnað"
 
 #: db/models.py:148
 msgid "Continental 2012-2015"
-msgstr "Континенталь 2012-2015"
+msgstr "Continental 2012-2015"
 
 #: db/models.py:149
 msgid "Ficosa 2016-2019"
-msgstr "FICOSA / GMV Sistemas"
+msgstr "Ficosa 2016-2019"
 
 #: db/models.py:160
 msgid ""
 "Enter a valid username. This value may contain only unaccented lowercase a-z "
 "and uppercase A-Z letters, numbers, and /./-/_ characters."
 msgstr ""
-"Введите корректное имя пользователя. Это значение может содержать только "
-"строчные буквы a–z и заглавные буквы A–Z без диакритических знаков, цифры и "
-"символы /./-/_."
+"Sláðu inn gilt notandanafn. Það má aðeins innihalda óbrotna lágstafi a-z og "
+"hástafi A-Z, tölustafi og stafina /./-/_."
 
 #: db/models.py:168
 msgid ""
 "Enter a valid TCU Password. This value may contain only unaccented lowercase "
 "a-z and uppercase A-Z letters, numbers, and /=/-/_/+/@/#/?/! characters."
 msgstr ""
-"Введите корректный пароль TCU. Это значение может содержать только строчные "
-"буквы a–z и заглавные буквы A–Z без диакритических знаков, цифры и символы /"
-"=/-/_/+/@/#/?/!."
+"Sláðu inn gilt TCU-lykilorð. Það má aðeins innihalda óbrotna lágstafi a-z og "
+"hástafi A-Z, tölustafi og stafina /=/-/_/+/@/#/?/!."
 
 #: db/models.py:192
 msgid "username"
-msgstr "Имя пользователя"
+msgstr "notandanafn"
 
 #: db/models.py:196
 msgid "Required. 16 characters or fewer. Letters, digits and /./-/_ only."
 msgstr ""
-"Обязательно. Не более 16 символов. Только буквы, цифры и символы /./-/_."
+"Nauðsynlegt. Að hámarki 16 stafir. Aðeins bókstafir, tölustafir og /./-/_."
 
 #: db/models.py:200
 msgid "A user with that username already exists."
-msgstr "Пользователь с таким именем уже существует."
+msgstr "Notandi með þetta notandanafn er þegar til."
 
 #: tculink/carwings_proto/applications/dj.py:78
 msgid "Not authenticated"
-msgstr "Не аутентифицировано"
+msgstr "Ekki auðkenndur"
 
 #: tculink/carwings_proto/applications/dj.py:78
 msgid "Please authenticate to Car Wings before saving a favorite channel"
-msgstr ""
-"Пожалуйста, пройдите аутентификацию в Car Wings перед сохранением любимого "
-"канала"
+msgstr "Skráðu þig inn í Car Wings áður en þú vistar uppáhaldsrás"
 
 #: tculink/carwings_proto/applications/dj.py:92
 msgid "Favorite channel added"
-msgstr "Добавлен в список избранных"
+msgstr "Uppáhaldsrás bætt við"
 
 #: tculink/carwings_proto/applications/dj.py:92
 msgid "The channel has been added to favorites"
-msgstr "Канал добавлен в избранное"
+msgstr "Rásinni hefur verið bætt við uppáhaldsrásir"
 
 #: tculink/carwings_proto/autodj/handler.py:26
 #: tculink/carwings_proto/autodj/handler.py:27
 #: tculink/carwings_proto/autodj/opencarwings.py:173
 #: tculink/carwings_proto/autodj/opencarwings.py:174
 msgid "Info from OpenCARWINGS"
-msgstr "Информация от OpenCARWINGS"
+msgstr "Upplýsingar frá OpenCARWINGS"
 
 #: tculink/carwings_proto/autodj/handler.py:75
 #: tculink/carwings_proto/autodj/handler.py:76
 msgid "Data Channel not available"
-msgstr "Канал недоступен"
+msgstr "Gagnarás ekki tiltæk"
 
 #: tculink/carwings_proto/autodj/handler.py:94
 #: tculink/carwings_proto/autodj/handler.py:95
 msgid "Not authorized"
-msgstr "Не аутентифицировано"
+msgstr "Ekki heimilt"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:32
 msgid ""
@@ -392,12 +383,12 @@ msgid ""
 "\n"
 "Learn more about them on Git Hub and Open Car Wings website."
 msgstr ""
-"Второй автомобиль. Nissan LEAF 30 кВт·ч.\n"
+"Annar bíll. Nissan LEAF 30 kWh.\n"
 "\n"
-"Автомобиль также оснащён похожим семейством телематических блоков Ficosa. "
-"Единственное отличие — поддерживаемые поколения сетей, ограничены 3G.\n"
+"Bíllinn er einnig búinn sambærilegum Ficosa fjarskiptaeiningum. Eini "
+"munurinn er hvaða farsímakerfi eru studd, aðeins 3G.\n"
 "\n"
-"Подробнее на GitHub и сайте Open Car Wings."
+"Kynntu þér þær betur á GitHub og vef Open Car Wings."
 
 #: tculink/carwings_proto/autodj/opencarwings.py:574
 msgid ""
@@ -405,25 +396,24 @@ msgid ""
 "comfortable temperature before starting.  This allows the car to save energy "
 "whilst being driven."
 msgstr ""
-"Используйте дистанционное управление климатом или таймер, чтобы перед "
-"началом поездки в салоне была комфортная температура. Это позволяет "
-"автомобилю экономить энергию во время движения."
+"Notaðu fjarstýrða miðstöð eða tímastilli svo að hitinn í bílnum sé þægilegur "
+"áður en þú leggur af stað.  Þannig sparar bíllinn orku í akstri."
 
 #: tculink/carwings_proto/autodj/opencarwings.py:575
 msgid ""
 "Keep your car in the garage during winter times to keep the battery pack "
 "warm.  This will increase your range a bit, especially in colder climates."
 msgstr ""
-"Зимой держите автомобиль в гараже, чтобы аккумулятор оставался тёплым. Это "
-"немного увеличит запас хода, особенно в холодном климате."
+"Geymdu bílinn í bílskúr yfir veturinn til að halda rafhlöðunni heitri.  Það "
+"eykur drægnina aðeins, sérstaklega í köldu loftslagi."
 
 #: tculink/carwings_proto/autodj/opencarwings.py:576
 msgid ""
 "Use <phoneme alphabet=\"x-SVOX-sampa_en-GB\" ph=\"'i:-k@@U\">eco</phoneme> "
 "mode or B-mode when possible to increase your regenerative energy."
 msgstr ""
-"По возможности используйте эко-режим или B-режим, чтобы увеличить "
-"регенеративную энергию."
+"Notaðu eco-stillingu eða B-stillingu þegar hægt er til að auka endurheimta "
+"orku."
 
 #: tculink/carwings_proto/autodj/opencarwings.py:577
 msgid ""
@@ -431,36 +421,33 @@ msgid ""
 "level.  Low tire pressure decreases rolling effect of the car and more "
 "energy is used on propulsion."
 msgstr ""
-"Проверяйте давление в шинах не реже одного раза в месяц, чтобы убедиться, "
-"что оно находится на оптимальном уровне. Низкое давление в шинах ухудшает "
-"качение автомобиля и увеличивает расход энергии на движение."
+"Athugaðu loftþrýsting í dekkjum minnst einu sinni í mánuði svo hann sé "
+"réttur.  Lágur dekkjaþrýstingur eykur veltiviðnám og meiri orka fer í að "
+"knýja bílinn áfram."
 
 #: tculink/carwings_proto/autodj/opencarwings.py:578
 msgid ""
 "Plan your routes to include charging stations, especially on longer trips, "
 "to avoid range anxiety and ensure smooth travel."
 msgstr ""
-"Планируйте маршруты так, чтобы они включали зарядные станции, особенно на "
-"длительных поездках, чтобы избежать беспокойства о запасе хода и обеспечить "
-"комфортное путешествие."
+"Skipuleggðu leiðina þannig að hún liggi hjá hleðslustöðvum, sérstaklega í "
+"lengri ferðum, svo þú þurfir ekki að óttast að drægnin klárist."
 
 #: tculink/carwings_proto/autodj/opencarwings.py:579
 msgid ""
 "Avoid rapid acceleration and maintain a steady speed to maximize battery "
 "efficiency, as aggressive driving can significantly reduce your range."
 msgstr ""
-"Избегайте резкого ускорения и поддерживайте постоянную скорость, чтобы "
-"максимально эффективно использовать аккумулятор, так как агрессивное "
-"вождение может значительно сократить запас хода."
+"Forðastu snögga hröðun og haltu jöfnum hraða til að nýta rafhlöðuna sem "
+"best. Ágengur akstur getur minnkað drægnina töluvert."
 
 #: tculink/carwings_proto/autodj/opencarwings.py:580
 msgid ""
 "Use the Nissan Leaf’s navigation system to find the most energy-efficient "
 "routes, which can help conserve battery power on unfamiliar roads."
 msgstr ""
-"Используйте навигационную систему Nissan Leaf для поиска наиболее "
-"энергоэффективных маршрутов, что поможет сэкономить заряд аккумулятора на "
-"незнакомых дорогах."
+"Notaðu leiðsögukerfi Nissan Leaf til að finna sparneytnustu leiðirnar. Það "
+"sparar rafhlöðuna á ókunnum vegum."
 
 #: tculink/carwings_proto/autodj/opencarwings.py:581
 msgid ""
@@ -468,26 +455,24 @@ msgid ""
 "while keeping your air conditioning on lower settings. Auxiliary heating "
 "elements consume less than car's air conditioning system."
 msgstr ""
-"В холодное время года чаще используйте обогрев сидений и рулевого колеса, "
-"снижая мощность кондиционера. Дополнительные нагревательные элементы "
-"потребляют меньше энергии, чем система кондиционирования автомобиля."
+"Í kulda skaltu frekar nota sætahita og stýrishita og hafa miðstöðina lægra "
+"stillta. Aukahitarar nota minni orku en miðstöð bílsins."
 
 #: tculink/carwings_proto/autodj/opencarwings.py:582
 msgid ""
 "Park in shaded areas during hot weather to keep the battery cool, as extreme "
 "heat can reduce battery efficiency and longevity."
 msgstr ""
-"В жаркую погоду паркуйтесь в затенённых местах, чтобы аккумулятор оставался "
-"прохладным, так как сильная жара может снизить эффективность и срок службы "
-"аккумулятора."
+"Leggðu í skugga í hita til að halda rafhlöðunni kaldri. Mikill hiti getur "
+"dregið úr afköstum og endingu rafhlöðunnar."
 
 #: tculink/carwings_proto/autodj/opencarwings.py:583
 msgid ""
 "Try to charge the battery up to 80 percent for daily usage. Charging to "
 "full, every day, is not recommended for battery longevity."
 msgstr ""
-"Старайтесь заряжать аккумулятор до 80% при ежедневном использовании. Полная "
-"зарядка каждый день не рекомендуется для продления срока службы аккумулятора."
+"Reyndu að hlaða rafhlöðuna upp í 80 prósent í daglegri notkun. Ekki er mælt "
+"með því að fullhlaða á hverjum degi ef rafhlaðan á að endast."
 
 #: tculink/carwings_proto/autodj/opencarwings.py:584
 msgid ""
@@ -495,56 +480,55 @@ msgid ""
 "online. With the data, it is easier to determine which areas of driving "
 "needs to be improved to achieve supreme energy efficiency. "
 msgstr ""
-"С Open Car Wings вы можете онлайн анализировать эффективность вождения для "
-"каждой поездки. Эти данные помогут определить, какие аспекты вождения нужно "
-"улучшить для достижения максимальной энергоэффективности."
+"Með Open Car Wings geturðu skoðað aksturshagkvæmni hverrar ferðar á netinu. "
+"Gögnin sýna hvað í akstrinum má bæta til að ná sem bestri orkunýtingu. "
 
 #: tculink/carwings_proto/autodj/opencarwings.py:614
 #: tculink/carwings_proto/autodj/opencarwings.py:648
 msgid "Average"
-msgstr "Среднее"
+msgstr "Í meðallagi"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:614
 #: tculink/carwings_proto/autodj/opencarwings.py:638
 msgid "Good"
-msgstr "Хорошо"
+msgstr "Góð"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:614
 #: tculink/carwings_proto/autodj/opencarwings.py:640
 msgid "Very good"
-msgstr "Очень хорошо"
+msgstr "Mjög góð"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:615
 msgid "Check Energy Economy"
-msgstr "Проверка энергоэффективности"
+msgstr "Skoða orkunýtingu"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:620
 msgid ""
 "The energy economy trend compared with the average of the last five trips is "
 "shown above."
 msgstr ""
-"Тенденция энергоэффективности по сравнению со средним показателем за "
-"последние пять поездок показана выше."
+"Hér fyrir ofan sést þróun orkunýtingar borin saman við meðaltal síðustu fimm "
+"ferða."
 
 #: tculink/carwings_proto/autodj/opencarwings.py:625
 msgid "Trend of Energy Economy\n"
-msgstr "Тенденция энергоэффективности\n"
+msgstr "Þróun orkunýtingar\n"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:651
 msgid "Bad"
-msgstr "Плохо"
+msgstr "Slæm"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:656
 msgid "[Average]\n"
-msgstr "[Среднее]\n"
+msgstr "[Meðaltal]\n"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:658
 msgid "[Best]\n"
-msgstr "[Лучшее]\n"
+msgstr "[Best]\n"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:660
 msgid "[Worst]\n"
-msgstr "[Худшее]\n"
+msgstr "[Verst]\n"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:663
 #, python-brace-format
@@ -555,18 +539,15 @@ msgid ""
 "Based on the last 5 trips, Your energy economy is {economy_status}. "
 msgstr ""
 "\n"
-"По состоянию на {day_word} {month}, ваш расход энергии составил "
-"{cons_formatted_str} ватт-часов на километр.\n"
-"На основе последних 5 поездок ваша энергоэффективность оценивается как "
-"{economy_status}."
+"Þann {day_word} {month} var orkunotkun þín {cons_formatted_str} vattstundir "
+"á kílómetra.\n"
+"Miðað við síðustu 5 ferðir er orkunýting þín {economy_status}. "
 
 #: tculink/carwings_proto/autodj/opencarwings.py:669
 msgid ""
 "There is no trip records available yet. Try checking in again after your "
 "next trip."
-msgstr ""
-"Записей о поездках пока нет. Попробуйте проверить снова после следующей "
-"поездки."
+msgstr "Engar ferðir hafa enn verið skráðar. Kíktu aftur eftir næstu ferð."
 
 #: tculink/carwings_proto/autodj/opencarwings.py:671
 #, python-brace-format
@@ -577,98 +558,96 @@ msgid ""
 "again after your next trip. "
 msgstr ""
 "\n"
-"По состоянию на {day_word} {month}, ваш расход энергии пока не может быть "
-"рассчитан из-за отсутствия информации о поездках. Попробуйте снова зайти на "
-"этот канал после следующей поездки."
+"Þann {day_word} {month} er ekki enn hægt að reikna orkunýtingu þína vegna "
+"þess að ferðaupplýsingar vantar. Kíktu aftur á þessa rás eftir næstu ferð. "
 
 #: tculink/carwings_proto/autodj/opencarwings.py:713
 msgid "Electric Car Column"
-msgstr "Колонка об электромобилях"
+msgstr "Pistill um rafbíla"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:714
 #: tculink/carwings_proto/autodj/opencarwings.py:719
 msgid "Drive Tip"
-msgstr "Совет водителю"
+msgstr "Akstursráð"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:768
 #: tculink/carwings_proto/autodj/opencarwings.py:769
 msgid "Energy Information"
-msgstr "Информация об энергии"
+msgstr "Orkuupplýsingar"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:821
 msgid "Eco Tree Record"
-msgstr "Запись об экодеревьях"
+msgstr "Skrá yfir vistvæn tré"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:831
 msgid ""
 "Your Eco Tree Record \n"
 "\n"
 msgstr ""
-"Ваши экодеревья\n"
+"Vistvænu trén þín \n"
 "\n"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:837
 #: tculink/carwings_proto/autodj/opencarwings.py:843
 msgid "tree"
-msgstr "дерево"
+msgstr "tré"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:839
 #: tculink/carwings_proto/autodj/opencarwings.py:845
 #: tculink/carwings_proto/autodj/opencarwings.py:858
 #: tculink/carwings_proto/autodj/opencarwings.py:904
 msgid "trees"
-msgstr "деревья"
+msgstr "tré"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:846
 #, python-brace-format
 msgid "Sum total: {trees} {tree_word}"
-msgstr "Всего: {trees} {tree_word}"
+msgstr "Samtals: {trees} {tree_word}"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:852
 #, python-brace-format
 msgid ""
 "On the {day_word} of {month}, you saved {trees} <phoneme alphabet=\"x-SVOX-"
 "sampa_en-GB\" ph=\"'i:-k@@U\">eco</phoneme>trees.\")"
-msgstr "{day_word} {month} вы спасли {trees} экодеревьев."
+msgstr "Þann {day_word} {month} sparaðir þú {trees} vistvæn tré."
 
 #: tculink/carwings_proto/autodj/opencarwings.py:858
 msgid "Total:"
-msgstr "Всего:"
+msgstr "Samtals:"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:896
 msgid "World's Eco Forest"
-msgstr "Мировой экологический лес"
+msgstr "Vistvænn skógur heimsins"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:905
 msgid "tonnes"
-msgstr "тонн"
+msgstr "tonn"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:906
 msgid "Total number of Eco Trees:"
-msgstr "Общее количество экодеревьев:"
+msgstr "Heildarfjöldi vistvænna trjáa:"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:908
 msgid "CO2 Emission Cuts:"
-msgstr "Сокращение выбросов CO2:"
+msgstr "Minnkun koltvísýringslosunar:"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:916
 #, python-brace-format
 msgid "Total number of Eco Trees by {day} / {month}:"
-msgstr "Общее количество экодеревьев на {day}/{month}:"
+msgstr "Heildarfjöldi vistvænna trjáa til {day} / {month}:"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:918
 #, python-brace-format
 msgid "CO2 emissions reduced by {day} / {month}:"
-msgstr "Снижение выбросов CO2 на {day}/{month}:"
+msgstr "Minnkun koltvísýringslosunar til {day} / {month}:"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:921
 msgid ""
 "(This calculation is based on an assumption that the CO2 emitted by petrol-"
 "driven cars of equivalent class can be reduced by driving electric cars)"
 msgstr ""
-"(Этот расчёт основан на предположении, что выбросы CO2, производимые "
-"автомобилями с бензиновым двигателем аналогичного класса, можно сократить за "
-"счёт использования электромобилей.)"
+"(Þessi útreikningur byggir á þeirri forsendu að með akstri rafbíla megi "
+"draga úr koltvísýringslosun sambærilegra bensínbíla)"
 
 #: tculink/carwings_proto/autodj/opencarwings.py:925
 #, python-brace-format
@@ -678,32 +657,31 @@ msgid ""
 "k@@U\">eco</phoneme>trees. And {tonnes} tonnes of carbon dioxide has been "
 "reduced."
 msgstr ""
-"К {day_word} {month} электромобили с Open Car Wings по всему миру спасли в "
-"общей сложности {trees} экодеревьев. Выбросы углекислого газа сократились на "
-"{tonnes} тонн."
+"Til og með {day_word} {month} hafa rafbílar með Open Car Wings um allan heim "
+"sparað samtals {trees} vistvæn tré. Og losun koltvísýrings hefur minnkað um "
+"{tonnes} tonn."
 
 #: tculink/carwings_proto/autodj/opencarwings.py:983
 #: tculink/carwings_proto/autodj/opencarwings.py:984
 msgid "ECO Tree"
-msgstr "Экодерево"
+msgstr "Vistvænt tré"
 
 #: tculink/carwings_proto/autodj/routeplanner.py:23
 #: tculink/carwings_proto/autodj/routeplanner.py:33
 msgid "Route Plan not available"
-msgstr "План маршрута недоступен"
+msgstr "Leiðaráætlun ekki tiltæk"
 
 #: tculink/carwings_proto/autodj/routeplanner.py:34
 msgid ""
 "This route plan is empty. Please save a route plan online and try again."
 msgstr ""
-"Этот план маршрута пуст. Пожалуйста, сохраните план маршрута онлайн и "
-"попробуйте снова."
+"Þessi leiðaráætlun er tóm. Vistaðu leiðaráætlun á netinu og reyndu aftur."
 
 #: tculink/carwings_proto/autodj/routeplanner.py:55
 #: tculink/carwings_proto/autodj/routeplanner.py:56
 #, python-brace-format
 msgid "Route Plan {num}"
-msgstr "План маршрута {num}"
+msgstr "Leiðaráætlun {num}"
 
 #: tculink/carwings_proto/autodj/sendtocar.py:39
 #, python-brace-format
@@ -711,13 +689,13 @@ msgid ""
 "Location point, \"{point_name}\", which is {distance} kilometers away. Set "
 "it as destination by pressing pause and setting map point as destination."
 msgstr ""
-"Точка местоположения \"{point_name}\", находящаяся в {distance} километрах. "
-"Установите её в качестве пункта назначения, нажав на паузу и выбрав точку на "
-"карте в качестве пункта назначения."
+"Staðsetningin „{point_name}“ er í {distance} kílómetra fjarlægð. Veldu hana "
+"sem áfangastað með því að ýta á hlé og velja punktinn á kortinu sem "
+"áfangastað."
 
 #: tculink/carwings_proto/autodj/sendtocar.py:76
 msgid "Google Send To Car: No Destinations"
-msgstr "Google Send To Car: Пункты назначения отсутствуют"
+msgstr "Google Send To Car: Engir áfangastaðir"
 
 #: tculink/carwings_proto/autodj/sendtocar.py:77
 msgid ""
@@ -725,52 +703,51 @@ msgid ""
 "destination from your computer or mobile device and access this channel "
 "again."
 msgstr ""
-"На автомобиль не отправлено ни одного пункта назначения. Пожалуйста, "
-"отправьте хотя бы один пункт назначения с компьютера или мобильного "
-"устройства и снова зайдите на этот канал."
+"Engir áfangastaðir hafa verið sendir í bílinn. Sendu minnst einn áfangastað "
+"úr tölvu eða síma og opnaðu þessa rás aftur."
 
 #: tculink/carwings_proto/autodj/weather.py:155
 #: tculink/carwings_proto/autodj/weather.py:161
 msgid "early morning"
-msgstr "ранее утро"
+msgstr "snemma morguns"
 
 #: tculink/carwings_proto/autodj/weather.py:156
 #: tculink/carwings_proto/autodj/weather.py:162
 msgid "morning"
-msgstr "утро"
+msgstr "að morgni"
 
 #: tculink/carwings_proto/autodj/weather.py:157
 #: tculink/carwings_proto/autodj/weather.py:163
 msgid "day"
-msgstr "день"
+msgstr "yfir daginn"
 
 #: tculink/carwings_proto/autodj/weather.py:158
 #: tculink/carwings_proto/autodj/weather.py:164
 msgid "evening"
-msgstr "вечер"
+msgstr "að kvöldi"
 
 #: tculink/carwings_proto/autodj/weather.py:159
 #: tculink/carwings_proto/autodj/weather.py:165
 msgid "night"
-msgstr "ночь"
+msgstr "að nóttu"
 
 #: tculink/carwings_proto/autodj/weather.py:160
 msgid "late night"
-msgstr "поздняя ночь"
+msgstr "seint um nóttina"
 
 #: tculink/carwings_proto/autodj/weather.py:168
 msgid "vehicle location"
-msgstr "местоположение автомобиля"
+msgstr "staðsetningu bílsins"
 
 #: tculink/carwings_proto/autodj/weather.py:263
 #, python-brace-format
 msgid "Weather Forecast for today, near {location_txt}."
-msgstr "Прогноз погоды на сегодня в районе {location_txt}."
+msgstr "Veðurspá dagsins nálægt {location_txt}."
 
 #: tculink/carwings_proto/autodj/weather.py:267
 #: tculink/carwings_proto/autodj/weather.py:404
 msgid "No forecast data available."
-msgstr "Данные прогноза погоды отсутствуют."
+msgstr "Engin spágögn tiltæk."
 
 #: tculink/carwings_proto/autodj/weather.py:270
 #, python-brace-format
@@ -779,21 +756,20 @@ msgid ""
 "degrees celsius, wind speed of {wind} meters per second and {rain} percent "
 "chance of rain. \n"
 msgstr ""
-"В течение {period} ожидается {condition}. Температура составит {temp} "
-"градусов Цельсия, скорость ветра — {wind} метров в секунду, вероятность "
-"дождя — {rain} процентов.\n"
+"Spáð er {condition} {period}. Hiti {temp} gráður á Celsíus, vindhraði {wind} "
+"metrar á sekúndu og {rain} prósent líkur á úrkomu. \n"
 
 #: tculink/carwings_proto/autodj/weather.py:281
 #: tculink/carwings_proto/autodj/weather.py:419
 #: tculink/carwings_proto/autodj/weather.py:461
 #: tculink/carwings_proto/autodj/weather.py:462
 msgid "Weather forecast"
-msgstr "Прогноз погоды"
+msgstr "Veðurspá"
 
 #: tculink/carwings_proto/autodj/weather.py:401
 #, python-brace-format
 msgid "Weather Forecast for next seven days, near {location_txt}."
-msgstr "Прогноз погоды на ближайшие семь дней в районе {location_txt}."
+msgstr "Veðurspá næstu sjö daga nálægt {location_txt}."
 
 #: tculink/carwings_proto/autodj/weather.py:408
 #, python-brace-format
@@ -801,184 +777,184 @@ msgid ""
 "On {weekday}, forecasted to {condition}. With highest temperature of "
 "{maxtemp} degrees celsius, lowest temperature of {mintemp} degrees celsius\n"
 msgstr ""
-"В {weekday} ожидается {condition}. Максимальная температура — {maxtemp} "
-"градусов Цельсия, минимальная температура — {mintemp} градусов Цельсия.\n"
+"{weekday}: spáð er {condition}. Hæsti hiti {maxtemp} gráður á Celsíus, "
+"lægsti hiti {mintemp} gráður á Celsíus\n"
 
 #: tculink/carwings_proto/utils.py:146
 msgid "first"
-msgstr "первый"
+msgstr "fyrsta"
 
 #: tculink/carwings_proto/utils.py:146
 msgid "second"
-msgstr "второй"
+msgstr "annan"
 
 #: tculink/carwings_proto/utils.py:146
 msgid "third"
-msgstr "третий"
+msgstr "þriðja"
 
 #: tculink/carwings_proto/utils.py:146
 msgid "fourth"
-msgstr "четвёртый"
+msgstr "fjórða"
 
 #: tculink/carwings_proto/utils.py:146
 msgid "fifth"
-msgstr "пятый"
+msgstr "fimmta"
 
 #: tculink/carwings_proto/utils.py:147
 msgid "sixth"
-msgstr "шестой"
+msgstr "sjötta"
 
 #: tculink/carwings_proto/utils.py:147
 msgid "seventh"
-msgstr "седьмой"
+msgstr "sjöunda"
 
 #: tculink/carwings_proto/utils.py:147
 msgid "eighth"
-msgstr "восьмой"
+msgstr "áttunda"
 
 #: tculink/carwings_proto/utils.py:147
 msgid "ninth"
-msgstr "девятый"
+msgstr "níunda"
 
 #: tculink/carwings_proto/utils.py:147
 msgid "tenth"
-msgstr "десятый"
+msgstr "tíunda"
 
 #: tculink/carwings_proto/utils.py:148
 msgid "eleventh"
-msgstr "одиннадцатый"
+msgstr "ellefta"
 
 #: tculink/carwings_proto/utils.py:148
 msgid "twelfth"
-msgstr "двенадцатый"
+msgstr "tólfta"
 
 #: tculink/carwings_proto/utils.py:148
 msgid "thirteenth"
-msgstr "тринадцатый"
+msgstr "þrettánda"
 
 #: tculink/carwings_proto/utils.py:148
 msgid "fourteenth"
-msgstr "четырнадцатый"
+msgstr "fjórtánda"
 
 #: tculink/carwings_proto/utils.py:148
 msgid "fifteenth"
-msgstr "пятнадцатый"
+msgstr "fimmtánda"
 
 #: tculink/carwings_proto/utils.py:149
 msgid "sixteenth"
-msgstr "шестнадцатый"
+msgstr "sextánda"
 
 #: tculink/carwings_proto/utils.py:149
 msgid "seventeenth"
-msgstr "семнадцатый"
+msgstr "sautjánda"
 
 #: tculink/carwings_proto/utils.py:149
 msgid "eighteenth"
-msgstr "восемнадцатый"
+msgstr "átjánda"
 
 #: tculink/carwings_proto/utils.py:149
 msgid "nineteenth"
-msgstr "девятнадцатый"
+msgstr "nítjánda"
 
 #: tculink/carwings_proto/utils.py:149
 msgid "twentieth"
-msgstr "двадцатый"
+msgstr "tuttugasta"
 
 #: tculink/carwings_proto/utils.py:150
 msgid "twenty-first"
-msgstr "двадцать первый"
+msgstr "tuttugasta og fyrsta"
 
 #: tculink/carwings_proto/utils.py:150
 msgid "twenty-second"
-msgstr "двадцать второй"
+msgstr "tuttugasta og annan"
 
 #: tculink/carwings_proto/utils.py:150
 msgid "twenty-third"
-msgstr "двадцать третий"
+msgstr "tuttugasta og þriðja"
 
 #: tculink/carwings_proto/utils.py:150
 msgid "twenty-fourth"
-msgstr "двадцать четвёртый"
+msgstr "tuttugasta og fjórða"
 
 #: tculink/carwings_proto/utils.py:150
 msgid "twenty-fifth"
-msgstr "двадцать пятый"
+msgstr "tuttugasta og fimmta"
 
 #: tculink/carwings_proto/utils.py:151
 msgid "twenty-sixth"
-msgstr "двадцать шестой"
+msgstr "tuttugasta og sjötta"
 
 #: tculink/carwings_proto/utils.py:151
 msgid "twenty-seventh"
-msgstr "двадцать седьмой"
+msgstr "tuttugasta og sjöunda"
 
 #: tculink/carwings_proto/utils.py:151
 msgid "twenty-eighth"
-msgstr "двадцать восьмой"
+msgstr "tuttugasta og áttunda"
 
 #: tculink/carwings_proto/utils.py:151
 msgid "twenty-ninth"
-msgstr "двадцать девятый"
+msgstr "tuttugasta og níunda"
 
 #: tculink/carwings_proto/utils.py:151
 msgid "thirtieth"
-msgstr "тридцатый"
+msgstr "þrítugasta"
 
 #: tculink/carwings_proto/utils.py:152
 msgid "thirty-first"
-msgstr "тридцать первый"
+msgstr "þrítugasta og fyrsta"
 
 #: tculink/gdc_proto/ficosa/utils.py:69 tculink/gdc_proto/ficosa/utils.py:90
 #: tculink/httpgateway/ficosa/destinations/veh_health.py:24
 #: tculink/httpgateway/ficosa/destinations/veh_health.py:32
 #: ui/templates/ui/car_detail.html:102
 msgid "Vehicle Health Report"
-msgstr "Отчёт о состоянии автомобиля"
+msgstr "Ástandsskýrsla bíls"
 
 #: tculink/gdc_proto/ficosa/utils.py:74
 msgid "Service Enabled"
-msgstr "Услуга включена"
+msgstr "Þjónusta virk"
 
 #: tculink/gdc_proto/ficosa/utils.py:75
 msgid "Send frequency (days)"
-msgstr "Частота отправки (дни)"
+msgstr "Sendingartíðni (dagar)"
 
 #: tculink/gdc_proto/ficosa/utils.py:79
 msgid "Service Provisioning"
-msgstr "Настройка сервисов"
+msgstr "Virkjun þjónustu"
 
 #: tculink/gdc_proto/ficosa/utils.py:84
 msgid "EV Battery Charging Status"
-msgstr "Статус зарядки батареи ЭМ"
+msgstr "Hleðslustaða rafhlöðu"
 
 #: tculink/gdc_proto/ficosa/utils.py:85
 msgid "EV Battery Charging History"
-msgstr "История зарядки батареи ЭМ"
+msgstr "Hleðslusaga rafhlöðu"
 
 #: tculink/gdc_proto/ficosa/utils.py:86
 msgid "EV Battery Charging Remote Activation"
-msgstr "Дистанционный запуск зарядки батареи ЭМ"
+msgstr "Fjarræsing hleðslu"
 
 #: tculink/gdc_proto/ficosa/utils.py:87
 msgid "EV Remote HVAC Activation"
-msgstr "Удалённая активация климат-контроля"
+msgstr "Fjarstýrð miðstöð"
 
 #: tculink/gdc_proto/ficosa/utils.py:88
 msgid "EV Plug Reminder"
-msgstr "Напоминание о подключении зарядки"
+msgstr "Áminning um að stinga í samband"
 
 #: tculink/gdc_proto/ficosa/utils.py:89
 msgid "EV Battery Heating Notification"
-msgstr "Уведомление о подогреве батареи ЭМ"
+msgstr "Tilkynning um rafhlöðuhitara"
 
 #: tculink/gdc_proto/ficosa/utils.py:91
 #: tculink/httpgateway/ficosa/destinations/burglar.py:36
 msgid "Burglar Alarm"
-msgstr "Охранная сигнализация"
+msgstr "Þjófavörn"
 
 #: tculink/gdc_proto/ficosa/utils.py:92
 msgid "Door Lock & Unlock"
-msgstr "Блокировка и разблокировка двери"
+msgstr "Læsing og aflæsing hurða"
 
 #: tculink/gdc_proto/ficosa/utils.py:95 tculink/gdc_proto/ficosa/utils.py:96
 #: tculink/gdc_proto/ficosa/utils.py:97 tculink/gdc_proto/ficosa/utils.py:98
@@ -989,107 +965,105 @@ msgstr "Блокировка и разблокировка двери"
 #: tculink/gdc_proto/ficosa/utils.py:231 tculink/gdc_proto/ficosa/utils.py:248
 #, python-brace-format
 msgid "Probe Service {num}"
-msgstr "Сервис ”Probe” {num}"
+msgstr "Probe-þjónusta {num}"
 
 #: tculink/gdc_proto/ficosa/utils.py:105
 msgid ""
 "EV Battery Lease Program: Charging block service (DO NOT ENABLE IF NOT "
 "NEEDED)"
-msgstr ""
-"Программа лизинга батареи электромобиля: услуга блокировки зарядки (НЕ "
-"ВКЛЮЧАТЬ, ЕСЛИ НЕ ТРЕБУЕТСЯ)"
+msgstr "Rafhlöðuleiga: Hleðslulokun (EKKI VIRKJA NEMA ÞESS ÞURFI)"
 
 #: tculink/gdc_proto/ficosa/utils.py:109
 msgid "SIM Settings 1"
-msgstr "SIM Настройки 1"
+msgstr "SIM-stillingar 1"
 
 #: tculink/gdc_proto/ficosa/utils.py:115 tculink/gdc_proto/ficosa/utils.py:152
 msgid "SIM Pin Code"
-msgstr "ПИН-код SIM-карты"
+msgstr "PIN-númer SIM-korts"
 
 #: tculink/gdc_proto/ficosa/utils.py:117 tculink/gdc_proto/ficosa/utils.py:153
 msgid "SIM Pin Locked"
-msgstr "SIM-карта заблокирована по PIN-коду"
+msgstr "SIM-kort PIN-læst"
 
 #: tculink/gdc_proto/ficosa/utils.py:125 tculink/gdc_proto/ficosa/utils.py:157
 msgid "SMSC Number 1"
-msgstr "Номер SMSC, 2"
+msgstr "SMSC-númer 1"
 
 #: tculink/gdc_proto/ficosa/utils.py:143 tculink/gdc_proto/ficosa/utils.py:166
 msgid "SMSC Number 2"
-msgstr "Номер SMSC, 1"
+msgstr "SMSC-númer 2"
 
 #: tculink/gdc_proto/ficosa/utils.py:147
 msgid "SIM Settings 2"
-msgstr "SIM Настройки 2"
+msgstr "SIM-stillingar 2"
 
 #: tculink/gdc_proto/ficosa/utils.py:170
 msgid "Server Settings"
-msgstr "Настройки сервера"
+msgstr "Netþjónsstillingar"
 
 #: tculink/gdc_proto/ficosa/utils.py:175
 msgid "User ID"
-msgstr "ID пользователя"
+msgstr "Notandaauðkenni"
 
 #: tculink/gdc_proto/ficosa/utils.py:176
 msgid "User Password"
-msgstr "Пароль пользователя"
+msgstr "Lykilorð notanda"
 
 #: tculink/gdc_proto/ficosa/utils.py:204 tculink/gdc_proto/ficosa/utils.py:220
 #: tculink/gdc_proto/ficosa/utils.py:237 tculink/gdc_proto/ficosa/utils.py:254
 msgid "Data Configuration"
-msgstr "Конфигурация сбора данных"
+msgstr "Gagnastillingar"
 
 #: tculink/gdc_proto/ficosa/utils.py:206 tculink/gdc_proto/ficosa/utils.py:240
 msgid "EU Configuration (all data)"
-msgstr "Конфигурация ЕС (все данные)"
+msgstr "EU stillingar (öll gögn)"
 
 #: tculink/gdc_proto/ficosa/utils.py:207 tculink/gdc_proto/ficosa/utils.py:225
 #: tculink/gdc_proto/ficosa/utils.py:241 tculink/gdc_proto/ficosa/utils.py:258
 msgid "Japan Configuration (all data)"
-msgstr "Конфигурация Японии (все данные)"
+msgstr "JP stillingar (öll gögn)"
 
 #: tculink/gdc_proto/ficosa/utils.py:208 tculink/gdc_proto/ficosa/utils.py:242
 #: tculink/gdc_proto/ficosa/utils.py:259
 msgid "USA Configuration (all data)"
-msgstr "Конфигурация США (все данные)"
+msgstr "USA stillingar (öll gögn)"
 
 #: tculink/gdc_proto/ficosa/utils.py:223 tculink/gdc_proto/ficosa/utils.py:257
 msgid "EU Configuration (less data)"
-msgstr "Конфигурация ЕС (меньше данных)"
+msgstr "EU stillingar (minni gögn)"
 
 #: tculink/gdc_proto/ficosa/utils.py:224
 msgid "USA Configuration (more data)"
-msgstr "Конфигурация США (больше данных)"
+msgstr "USA stillingar (meiri gögn)"
 
 #: tculink/httpgateway/ficosa/destinations/burglar.py:35
 msgid "Burglar alarm has been triggered"
-msgstr "Сработала охранная сигнализация"
+msgstr "Þjófavörn fór í gang"
 
 #: tculink/httpgateway/ficosa/destinations/config.py:71
 msgid "One or more service provisionings failed to apply"
-msgstr "Не удалось применить одно или несколько настроек сервисов"
+msgstr "Ekki tókst að virkja eina eða fleiri þjónustur"
 
 #: tculink/httpgateway/ficosa/destinations/config.py:72
 #: tculink/httpgateway/ficosa/destinations/config.py:112
 msgid "Configuration Update Failed"
-msgstr "Ошибка обновления конфигурации"
+msgstr "Uppfærsla stillinga mistókst"
 
 #: tculink/httpgateway/ficosa/destinations/config.py:85
 msgid "Service Provisioning performed successfully!"
-msgstr "Настройка сервисов выполнена успешно!"
+msgstr "Þjónusta virkjuð!"
 
 #: tculink/httpgateway/ficosa/destinations/config.py:86
 #: tculink/httpgateway/ficosa/destinations/config.py:127
 msgid "Configuration Updated Successfully"
-msgstr "Конфигурация успешно обновлена"
+msgstr "Stillingar uppfærðar"
 
 #: tculink/httpgateway/ficosa/destinations/door.py:45
 #: tculink/httpgateway/ficosa/destinations/hornlight.py:45
 #: tculink/httpgateway/ficosa/destinations/remotestart.py:45
 #, python-brace-format
 msgid "{name} function is disabled in TCU"
-msgstr "Функция {name} отключена в TCU."
+msgstr "{name} er óvirkt í TCU"
 
 #: tculink/httpgateway/ficosa/destinations/door.py:53
 #: tculink/httpgateway/ficosa/destinations/door.py:73
@@ -1102,59 +1076,57 @@ msgstr "Функция {name} отключена в TCU."
 #: tculink/httpgateway/ficosa/destinations/remotestart.py:88
 #, python-brace-format
 msgid "Could not execute {name}"
-msgstr "Не удалось выполнить команду {name}"
+msgstr "Ekki tókst að framkvæma {name}"
 
 #: tculink/httpgateway/ficosa/destinations/door.py:60
 #: tculink/httpgateway/ficosa/destinations/hornlight.py:60
 #: tculink/httpgateway/ficosa/destinations/remotestart.py:60
 #, python-brace-format
 msgid "Could not execute {name}, please try again later"
-msgstr ""
-"Не удалось выполнить команду {name}, пожалуйста, повторите попытку позже"
+msgstr "Ekki tókst að framkvæma {name}. Reyndu aftur síðar"
 
 #: tculink/httpgateway/ficosa/destinations/door.py:63
 msgid ""
 "Vehicle conditions not met for command execution. Make sure car is not "
 "running and key is not inside."
 msgstr ""
-"Условия автомобиля не соответствуют требованиям для выполнения команды. "
-"Убедитесь, что двигатель не работает и ключ не находится внутри салона."
+"Ástand bílsins leyfir ekki að skipunin sé framkvæmd. Gakktu úr skugga um að "
+"bíllinn sé ekki í gangi og lykillinn ekki inni í honum."
 
 #: tculink/httpgateway/ficosa/destinations/door.py:80
 #: tculink/httpgateway/ficosa/destinations/hornlight.py:80
 #: tculink/httpgateway/ficosa/destinations/remotestart.py:80
 msgid "CANBUS failure when executing lock/unlock"
-msgstr "Сбой CANBUS при выполнении команды блокировки/разблокировки"
+msgstr "CAN-bus villa við læsingu/aflæsingu"
 
 #: tculink/httpgateway/ficosa/destinations/door.py:87
 #: tculink/httpgateway/ficosa/destinations/hornlight.py:87
 #: tculink/httpgateway/ficosa/destinations/remotestart.py:87
 #, python-brace-format
 msgid "CANBUS failure when executing {name}"
-msgstr "Сбой CANBUS при выполнении команды {name}"
+msgstr "CAN-bus villa við framkvæmd {name}"
 
 #: tculink/httpgateway/ficosa/destinations/door.py:101
 msgid "Door unlocked successfully!"
-msgstr "Двери успешно разблокированы!"
+msgstr "Hurðir aflæstar!"
 
 #: tculink/httpgateway/ficosa/destinations/door.py:101
 msgid "Door locked successfully!"
-msgstr "Двери успешно заблокированы!"
+msgstr "Hurðum læst!"
 
 #: tculink/httpgateway/ficosa/destinations/door.py:102
 msgid "Door Lock/Unlock"
-msgstr "Блокировка/разблокировка двери"
+msgstr "Læsing/aflæsing hurða"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:90
 #: tculink/management/commands/tcuserver.py:297
 msgid "Vehicle is unplugged. Please check the situation if necessary."
-msgstr ""
-"Автомобиль не подключён к зарядке. При необходимости проверьте ситуацию."
+msgstr "Bíllinn er ekki lengur í sambandi. Athugaðu málið ef þörf er á."
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:91
 #: tculink/management/commands/tcuserver.py:298
 msgid "Charger unplugged notification"
-msgstr "Уведомление о неподключённом зарядном кабеле"
+msgstr "Tilkynning: hleðslutæki tekið úr sambandi"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:99
 #: tculink/management/commands/tcuserver.py:305
@@ -1163,35 +1135,35 @@ msgid ""
 "behind such error could be: a) low state of charge b) command already "
 "executed c) TCU error."
 msgstr ""
-"Команда предварительного кондиционирования не выполнена. Возможные причины: "
-"a) низкий уровень заряда, b) команда уже выполнена, c) ошибка TCU."
+"Ekki tókst að framkvæma skipun um forhitun. Mögulegar ástæður: a) lág "
+"hleðslustaða b) skipunin hefur þegar verið framkvæmd c) villa í TCU."
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:101
 #: tculink/management/commands/tcuserver.py:307
 msgid "A/C preconditioning error"
-msgstr "Ошибка предварительного кондиционирования"
+msgstr "Villa í forhitun"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:107
 #: tculink/management/commands/tcuserver.py:313
 msgid "A/C preconditioning started"
-msgstr "Предварительное кондиционирование начато"
+msgstr "Forhitun hafin"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:108
 #: tculink/management/commands/tcuserver.py:314
 msgid "A/C preconditioning has been successfully switched on"
-msgstr "Предварительное кондиционирование успешно включено"
+msgstr "Kveikt á forhitun"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:112
 #: tculink/management/commands/tcuserver.py:318
 msgid "The A/C preconditioning has finished unexpectedly"
-msgstr "Предварительное кондиционирование неожиданно завершилась"
+msgstr "Forhitun hætti óvænt"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:113
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:125
 #: tculink/management/commands/tcuserver.py:319
 #: tculink/management/commands/tcuserver.py:332
 msgid "A/C precondition stopped"
-msgstr "Предварительное кондиционирование остановлено"
+msgstr "Forhitun stöðvuð"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:118
 #: tculink/management/commands/tcuserver.py:324
@@ -1199,98 +1171,96 @@ msgstr "Предварительное кондиционирование ост
 msgid ""
 "The A/C preconditioning is finished and switched off after running certain "
 "amount of time."
-msgstr ""
-"Предварительное кондиционирование завершено и выключено после определённого "
-"времени работы."
+msgstr "Forhitun lauk og slökkti á sér eftir tiltekinn tíma."
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:120
 #: tculink/management/commands/tcuserver.py:326
 #: tculink/management/commands/tcuserver.py:413
 msgid "A/C precondition finished"
-msgstr "Предварительное кондиционирование завершено"
+msgstr "Forhitun lokið"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:126
 #: tculink/management/commands/tcuserver.py:333
 msgid "A/C preconditioning has been successfully switched off"
-msgstr "Предварительное кондиционирование успешно выключено"
+msgstr "Slökkt á forhitun"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:130
 #: tculink/management/commands/tcuserver.py:337
 #: tculink/management/commands/tcuserver.py:406
 msgid "A/C precondition notification"
-msgstr "Уведомление о предварительном кондиционировании"
+msgstr "Tilkynning um forhitun"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:131
 #: tculink/management/commands/tcuserver.py:338
 #: tculink/management/commands/tcuserver.py:360
 msgid "A/C preconditioning already switched off"
-msgstr "Предварительное кондиционирование уже выключено"
+msgstr "Þegar slökkt á forhitun"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:136
 #: tculink/management/commands/tcuserver.py:344
 #: tculink/management/commands/tcuserver.py:417
 msgid "A/C preconditioning fault"
-msgstr "Неисправность предварительного кондиционирования"
+msgstr "Bilun í forhitun"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:139
 #: tculink/management/commands/tcuserver.py:347
 msgid "The vehicle failed to start A/C preconditioning"
-msgstr "Автомобиль не смог запустить кондиционер"
+msgstr "Bíllinn gat ekki ræst forhitun"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:142
 #: tculink/management/commands/tcuserver.py:350
 msgid "The A/C preconditioning has finished with error"
-msgstr "Предварительное кондиционирование завершено с ошибкой"
+msgstr "Forhitun lauk með villu"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:145
 #: tculink/management/commands/tcuserver.py:357
 msgid "A/C preconditioning could not be switched off"
-msgstr "Предварительное кондиционирование не удалось выключить"
+msgstr "Ekki tókst að slökkva á forhitun"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:170
 #: tculink/management/commands/tcuserver.py:381
 msgid "Charging notification"
-msgstr "Уведомление о зарядки"
+msgstr "Tilkynning um hleðslu"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:176
 #: tculink/management/commands/tcuserver.py:387
 msgid "Vehicle has finished charging."
-msgstr "Автомобиль завершил зарядку."
+msgstr "Bíllinn hefur lokið hleðslu."
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:177
 #: tculink/management/commands/tcuserver.py:388
 msgid "Charge finish notification"
-msgstr "Уведомление о завершении зарядки"
+msgstr "Tilkynning: hleðslu lokið"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:180
 #: tculink/management/commands/tcuserver.py:391
 msgid "Vehicle has finished quick-charging."
-msgstr "Автомобиль завершил быструю зарядку."
+msgstr "Bíllinn hefur lokið hraðhleðslu."
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:181
 #: tculink/management/commands/tcuserver.py:392
 msgid "Quick-charge finish notification"
-msgstr "Уведомление о завершении быстрой зарядки"
+msgstr "Tilkynning: hraðhleðslu lokið"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:184
 #: tculink/management/commands/tcuserver.py:395
 msgid "Charge interruption notification"
-msgstr "Уведомление о прерывании зарядки"
+msgstr "Tilkynning: hleðsla rofnaði"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:187
 #: tculink/management/commands/tcuserver.py:398
 msgid "Charging has been stopped due to an interruption"
-msgstr "Зарядка приостановлена из-за перебоя"
+msgstr "Hleðsla stöðvaðist vegna truflunar"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:189
 #: tculink/management/commands/tcuserver.py:400
 msgid "Quick-charging has been stopped due to an interruption"
-msgstr "Быстрая зарядка приостановлена из-за сбоя"
+msgstr "Hraðhleðsla stöðvaðist vegna truflunar"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:207
 #: tculink/management/commands/tcuserver.py:440
 msgid "Charge start command executed"
-msgstr "Команда начала зарядки выполнена"
+msgstr "Skipun um hleðslu framkvæmd"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:208
 #: tculink/management/commands/tcuserver.py:441
@@ -1299,168 +1269,164 @@ msgid ""
 "charging, please check that the charging cable is connected and power is "
 "available."
 msgstr ""
-"Команда зарядки успешно отправлена. Если автомобиль не начал заряжаться, "
-"проверьте подключение зарядного кабеля и наличие питания."
+"Skipun um hleðslu var send. Ef bíllinn byrjaði ekki að hlaða skaltu athuga "
+"hvort hleðslusnúran sé tengd og rafmagn á henni."
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:213
 #: tculink/management/commands/tcuserver.py:444
 msgid "Charge start command executed with failure"
-msgstr "Команда начала зарядки выполнена с ошибкой"
+msgstr "Skipun um hleðslu framkvæmd en mistókst"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:214
 #: tculink/management/commands/tcuserver.py:445
 msgid ""
 "Charging command has been sent successfully, but the vehicle did not start "
 "charging."
-msgstr "Команда зарядки успешно отправлена, но зарядка не началась."
+msgstr "Skipun um hleðslu var send en bíllinn byrjaði ekki að hlaða."
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:219
 #: tculink/management/commands/tcuserver.py:450
 msgid "Charge start failure"
-msgstr "Сбой запуска зарядки"
+msgstr "Hleðsla fór ekki af stað"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:220
 #: tculink/management/commands/tcuserver.py:451
 msgid "Charge start command failed to execute."
-msgstr "Команда начала зарядки не была выполнена."
+msgstr "Ekki tókst að framkvæma skipun um hleðslu."
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:244
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:269
 msgid "Unblock charge failure"
-msgstr "Сбой разблокировки зарядки"
+msgstr "Ekki tókst að opna fyrir hleðslu"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:245
 msgid "Unblocking charge features could not be completed."
-msgstr "Не удалось завершить разблокировку функций зарядки."
+msgstr "Ekki tókst að ljúka við að opna fyrir hleðslu."
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:249
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:274
 msgid "Unblock charging"
-msgstr "Разблокировать зарядку"
+msgstr "Opna fyrir hleðslu"
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:250
 msgid "Unblock request sent successfully."
-msgstr "Запрос на разблокировку успешно отправлен."
+msgstr "Beiðni um að opna fyrir hleðslu send."
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:270
 msgid "Unblocking charge features failed."
-msgstr "Функция разблокировки зарядки не работает."
+msgstr "Ekki tókst að opna fyrir hleðslu."
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:275
 msgid "Charging has been unblocked successfully."
-msgstr "Функция зарядки успешно разблокирована."
+msgstr "Opnað var fyrir hleðslu."
 
 #: tculink/httpgateway/ficosa/destinations/evinfo.py:275
 msgid "Failed to unblock charging, CAN Error!"
-msgstr "Не удалось разблокировать зарядку, ошибка CAN!"
+msgstr "Ekki tókst að opna fyrir hleðslu, CAN-villa!"
 
 #: tculink/httpgateway/ficosa/destinations/hornlight.py:63
 #: tculink/httpgateway/ficosa/destinations/remotestart.py:63
 msgid "Vehicle conditions not met for command execution."
-msgstr ""
-"Условия автомобиля не соответствуют требованиям для выполнения команды."
+msgstr "Ástand bílsins leyfir ekki að skipunin sé framkvæmd."
 
 #: tculink/httpgateway/ficosa/destinations/hornlight.py:101
 #: tculink/httpgateway/ficosa/destinations/remotestart.py:101
 msgid "Horn & Light started successfully!"
-msgstr "Сигнал и свет автомобиля успешно включены!"
+msgstr "Kveikt á flautu og ljósum!"
 
 #: tculink/httpgateway/ficosa/destinations/hornlight.py:101
 #: tculink/httpgateway/ficosa/destinations/remotestart.py:101
 msgid "Horn & Light stopped successfully!"
-msgstr "Сигнал и свет автомобиля успешно остановлены!"
+msgstr "Slökkt á flautu og ljósum!"
 
 #: tculink/httpgateway/ficosa/destinations/tow.py:35
 msgid "Your vehicle is being towed. Please check the situation if necessary."
-msgstr "Ваш автомобиль эвакуируют. При необходимости проверьте ситуацию."
+msgstr "Verið er að draga bílinn þinn. Athugaðu málið ef þörf er á."
 
 #: tculink/httpgateway/ficosa/destinations/veh_health.py:31
 msgid "Received new health report!"
-msgstr "Получен новый отчёт о состоянии!"
+msgstr "Ný ástandsskýrsla barst!"
 
 #: tculink/management/commands/tcuserver.py:165
 msgid "TCU ID does not match with specified ID, please double check!"
-msgstr ""
-"TCU ID не совпадает с указанным идентификатором, пожалуйста, перепроверьте!"
+msgstr "TCU-auðkenni passar ekki við uppgefið auðkenni. Athugaðu það aftur!"
 
 #: tculink/management/commands/tcuserver.py:174
 msgid "Navi ID does not match with specified ID, please double check!"
-msgstr ""
-"Navi ID не совпадает с указанным идентификатором, пожалуйста, перепроверьте!"
+msgstr "Navi-auðkenni passar ekki við uppgefið auðkenni. Athugaðu það aftur!"
 
 #: tculink/management/commands/tcuserver.py:183
 msgid "Sim ID does not match with specified ID, please double check!"
-msgstr ""
-"SIM ID не совпадает с указанным идентификатором, пожалуйста, перепроверьте!"
+msgstr "SIM-auðkenni passar ekki við uppgefið auðkenni. Athugaðu það aftur!"
 
 #: tculink/management/commands/tcuserver.py:201
 msgid ""
 "Authentication failed, username or password is missing! Please sign in using "
 "navigation unit."
 msgstr ""
-"Аутентификация не удалась, отсутствует имя пользователя или пароль! "
-"Пожалуйста, войдите в систему, используя навигационное устройство."
+"Auðkenning mistókst, notandanafn eða lykilorð vantar! Skráðu þig inn í "
+"leiðsögukerfinu."
 
 #: tculink/management/commands/tcuserver.py:219
 msgid ""
 "Authentication failed, username or password is incorrect! Please sign in "
 "using navigation unit."
 msgstr ""
-"Аутентификация не удалась, имя пользователя или пароль неверны! Пожалуйста, "
-"войдите в систему, используя навигационное устройство."
+"Auðkenning mistókst, notandanafn eða lykilorð er rangt! Skráðu þig inn í "
+"leiðsögukerfinu."
 
 #: tculink/management/commands/tcuserver.py:353
 #: tculink/management/commands/tcuserver.py:420
 msgid ""
 "The A/C preconditioning is finished and switched off because of an error"
-msgstr "Предварительное кондиционирование завершена и отключена из-за ошибки."
+msgstr "Forhitun lauk og slökkti á sér vegna villu"
 
 #: tculink/management/commands/tcuserver.py:473
 msgid "Battery heater notification"
-msgstr "Уведомление о нагревателе батареи"
+msgstr "Tilkynning um rafhlöðuhitara"
 
 #: tculink/management/commands/tcuserver.py:474
 msgid "Battery heater has turned on"
-msgstr "Нагреватель батареи включился и нагревает батарею."
+msgstr "Kveikt á rafhlöðuhitara"
 
 #: tculink/management/commands/tcuserver.py:474
 msgid "Battery heater has turned off"
-msgstr "Нагреватель батареи выключен."
+msgstr "Slökkt á rafhlöðuhitara"
 
 #: tculink/sms/46elks.py:11
 msgid "API Username"
-msgstr "Имя пользователя API"
+msgstr "API-notandanafn"
 
 #: tculink/sms/46elks.py:12
 msgid "API Password"
-msgstr "Пароль API"
+msgstr "API-lykilorð"
 
 #: tculink/sms/46elks.py:13 tculink/sms/gatewayapi.py:14
 #: tculink/sms/ondevice.py:9 tculink/sms/seven.py:13
 #: tculink/sms/smsgateway.py:11 tculink/sms/webhook.py:12
 msgid "TCU Phone Number (international format)"
-msgstr "Номер телефона TCU (международный формат)"
+msgstr "Símanúmer TCU (á alþjóðlegu sniði)"
 
 #: tculink/sms/46elks.py:15
 msgid "API credentials are available in your 46elks dashboard."
-msgstr "Учетные данные API доступны в вашей панели управления 46elks."
+msgstr "API-aðgangsupplýsingar eru á stjórnborði 46elks."
 
 #: tculink/sms/gatewayapi.py:13 tculink/sms/hologram.py:10
 #: tculink/sms/seven.py:12 tculink/sms/viaaqmobile.py:47
 msgid "API Key"
-msgstr "Ключ API"
+msgstr "API-lykill"
 
 #: tculink/sms/gatewayapi.py:16
 msgid "API credentials are available in gatewayapi.com API section."
-msgstr "Учётные данные API доступны в разделе API на сайте gatewayapi.com."
+msgstr "API-aðgangsupplýsingar eru í API-hluta gatewayapi.com."
 
 #: tculink/sms/hologram.py:11 tculink/sms/smsgateway.py:9
 msgid "Device ID"
-msgstr "Идентификатор устройства"
+msgstr "Auðkenni tækis"
 
 #: tculink/sms/hologram.py:13
 msgid "API credentials are available in Hologram dashboard Settings."
-msgstr "Учетные данные API доступны в настройках панели управления Hologram."
+msgstr "API-aðgangsupplýsingar eru undir Settings á stjórnborði Hologram."
 
 #: tculink/sms/manual.py:11
 #, python-brace-format
@@ -1469,20 +1435,20 @@ msgid ""
 "for this to work. No automated messaging will be set up. SMS message to send "
 "after you've issued a command on the website: {sms}"
 msgstr ""
-"Важно: При выборе этого варианта вам нужно будет вручную отправить SMS на "
-"TCU, чтобы установить связь. Автоматическая отправка сообщений не "
-"предусмотрена. Текст SMS для отправки после команды на сайте: {sms}"
+"Mikilvægt: Með þessum valkosti þarftu að senda SMS-skeytið handvirkt svo "
+"þetta virki. Engar sjálfvirkar sendingar verða settar upp. SMS-skeyti til að "
+"senda eftir að þú hefur gefið skipun á vefnum: {sms}"
 
 #: tculink/sms/monogoto.py:11 ui/templates/ui/car_detail.html:317
 #: ui/templates/ui/landing.html:28 ui/templates/ui/signin.html:9
 msgid "Username"
-msgstr "Имя пользователя"
+msgstr "Notandanafn"
 
 #: tculink/sms/monogoto.py:12 ui/forms.py:80 ui/forms.py:82
 #: ui/templates/ui/car_detail.html:318 ui/templates/ui/landing.html:37
 #: ui/templates/ui/signin.html:13
 msgid "Password"
-msgstr "Пароль"
+msgstr "Lykilorð"
 
 #: tculink/sms/monogoto.py:13
 msgid "Thing ID"
@@ -1494,9 +1460,9 @@ msgid ""
 "the URL when viewing your SIM. It has this structure: "
 "ThingId_ICCID_9999999999999999999"
 msgstr ""
-"Учётные данные доступны в панели управления Monogoto. Идентификатор Thing ID "
-"можно найти в URL-адресе при просмотре SIM-карты. Он имеет следующую "
-"структуру: ThingId_ICCID_99999999999999999999"
+"Aðgangsupplýsingar eru á stjórnborði Monogoto. Thing ID sést í vefslóðinni "
+"þegar þú skoðar SIM-kortið. Það er á þessu sniði: "
+"ThingId_ICCID_9999999999999999999"
 
 #: tculink/sms/ondevice.py:12
 msgid ""
@@ -1505,23 +1471,21 @@ msgid ""
 "This method won't work via API or automations, only from the website or "
 "mobile app!"
 msgstr ""
-"При выборе этого варианта сайт или приложение автоматически откроет "
-"приложение для отправки SMS на TCU. Учтите, что этот вариант не поддерживает "
-"автоматизированные команды или команды через API, только через сайт или "
-"мобильное приложение!"
+"Með þessum valkosti vísar vefurinn þér á að senda SMS úr símanum þínum. Í "
+"appinu er það sent sjálfkrafa ef hægt er. Þessi aðferð virkar ekki í gegnum "
+"API eða sjálfvirkni, aðeins á vefnum eða í appinu!"
 
 #: tculink/sms/seven.py:15
 msgid ""
 "API credentials are available in dashboard.seven.io Developer section. "
 "Remember to add 'OCW' as Sender ID under account settings!"
 msgstr ""
-"Учетные данные API доступны в разделе для разработчиков на сайте "
-"dashboard.seven.io. Не забудьте добавить «OCW» в качестве идентификатора "
-"отправителя в настройках учетной записи!"
+"API-aðgangsupplýsingar eru undir Developer á dashboard.seven.io. Mundu að "
+"skrá 'OCW' sem Sender ID í aðgangsstillingum!"
 
 #: tculink/sms/smsgateway.py:10
 msgid "Encryption Key"
-msgstr "Ключ шифрования"
+msgstr "Dulkóðunarlykill"
 
 #: tculink/sms/smsgateway.py:14
 msgid ""
@@ -1529,94 +1493,87 @@ msgid ""
 "been installed, write values shown in the app to their respective fields. "
 "More information: "
 msgstr ""
-"Используйте свой старый смартфон или USB-модем в качестве ретранслятора для "
-"отправки SMS. После установки приложения впишите значения, показанные в "
-"приложении, в соответствующие поля. Дополнительная информация:"
+"Notaðu gamla snjallsímann þinn eða USB-mótald sem gátt til að senda SMS. "
+"Þegar appið er komið upp skaltu slá gildin sem það sýnir inn í viðeigandi "
+"reiti. Nánari upplýsingar: "
 
 #: tculink/sms/viaaqmobile.py:14
 msgid ""
 "Your subscription is automatically linked with OpenCARWINGS, using TCU ID "
 "shown in mobile.viaaq.eu/dashboard"
 msgstr ""
-"Ваша подписка автоматически связана с OpenCARWINGS с использованием "
-"идентификатора TCU, указанного на mobile.viaaq.eu/dashboard."
+"Áskriftin þín tengist OpenCARWINGS sjálfkrafa með TCU-auðkenninu sem sést á "
+"mobile.viaaq.eu/dashboard"
 
 #: tculink/sms/viaaqmobile.py:32
 msgid ""
 "Could not find mobile subscription in viaaq mobile. Are you sure it's active?"
-msgstr ""
-"В приложении Viaaq Mobile не удалось найти мобильную подписку. Вы уверены, "
-"что она активна?"
+msgstr "Fann ekki farsímaáskrift hjá viaaq mobile. Ertu viss um að hún sé virk?"
 
 #: tculink/sms/viaaqmobile.py:34
 msgid "You do not have permission to send SMS messages to this subscription"
-msgstr ""
-"У вас нет разрешения на отправку SMS-сообщений на этот мобильный номер."
+msgstr "Þú hefur ekki heimild til að senda SMS á þessa áskrift"
 
 #: tculink/sms/viaaqmobile.py:36
 msgid "Invalid API Key"
-msgstr "Недействительный ключ API"
+msgstr "Ógildur API-lykill"
 
 #: tculink/sms/webhook.py:11
 msgid "Webhook URL"
-msgstr "URL-адрес вебхука"
+msgstr "Webhook-slóð"
 
 #: tculink/sms/webhook.py:14
 msgid "POST-request will be sent to specified webhook URL when necessary."
-msgstr ""
-"POST-запрос будет отправлен на указанный URL-адрес вебхука при необходимости."
+msgstr "POST-beiðni verður send á uppgefna webhook-slóð þegar þörf er á."
 
 #: ui/decorators.py:52 ui/views.py:705 ui/views.py:732 ui/views.py:768
 msgid "Code is not valid!"
-msgstr "Код недействителен!"
+msgstr "Kóðinn er ekki gildur!"
 
 #: ui/forms.py:19 ui/forms.py:35 ui/templates/ui/car_detail.html:535
-#: ui/templates/ui/car_detail.html:542
 msgid "Nickname"
-msgstr "Псевдоним"
+msgstr "Gælunafn"
 
 #: ui/forms.py:20
 msgid "Disable TCU authentication"
-msgstr "Отключить аутентификацию TCU"
+msgstr "Slökkva á TCU-auðkenningu"
 
 #: ui/forms.py:21 ui/templates/ui/car_detail.html:574
-#: ui/templates/ui/car_detail.html:597
 msgid "Show calculated battery percentage"
-msgstr "Показать расчётный процент заряда батареи"
+msgstr "Sýna reiknaða hleðsluprósentu"
 
 #: ui/forms.py:22
 msgid "HMAC Key"
-msgstr "HMAC-ключ"
+msgstr "HMAC-lykill"
 
 #: ui/forms.py:60 ui/templates/ui/reset_password.html:26
 msgid "Email"
-msgstr "Электронная почта"
+msgstr "Netfang"
 
 #: ui/forms.py:61
 msgid "Notifications"
-msgstr "Уведомления"
+msgstr "Tilkynningar"
 
 #: ui/forms.py:62
 msgid "Imperial Units"
-msgstr "Имперские единицы измерения"
+msgstr "Engilsaxneskar mælieiningar"
 
 #: ui/forms.py:63
 msgid "Timezone"
-msgstr "Часовой пояс"
+msgstr "Tímabelti"
 
 #: ui/forms.py:81
 msgid "Password Confirmation"
-msgstr "Подтверждение пароля"
+msgstr "Staðfesting lykilorðs"
 
 #: ui/forms.py:109
 msgid "Can include only letters, numbers, dashes, dots and underscores"
-msgstr "Может содержать только буквы, цифры, тире, точки и подчёркивания"
+msgstr ""
+"Má aðeins innihalda bókstafi, tölustafi, bandstrik, punkta og undirstrik"
 
 #: ui/forms.py:110
 msgid "This password is used for signing in to your account inside the car"
-msgstr ""
-"Этот пароль используется для входа в вашу учётную запись в навигационной "
-"системе автомобиля"
+msgstr "Þetta lykilorð er notað til að skrá sig inn á aðganginn í bílnum"
 
 #: ui/templates/ui/account.html:16 ui/templates/ui/car_detail.html:73
 #: ui/templates/ui/car_list.html:19 ui/templates/ui/car_transfer.html:16
@@ -1629,7 +1586,7 @@ msgstr ""
 #: ui/templates/ui/setup/step2.html:14 ui/templates/ui/setup/step3.html:14
 #: ui/templates/ui/setup/step4.html:14
 msgid "Notice"
-msgstr "Уведомление"
+msgstr "Athugið"
 
 #: ui/templates/ui/account.html:17 ui/templates/ui/car_detail.html:74
 #: ui/templates/ui/car_list.html:20 ui/templates/ui/car_transfer.html:17
@@ -1642,7 +1599,7 @@ msgstr "Уведомление"
 #: ui/templates/ui/setup/step2.html:15 ui/templates/ui/setup/step3.html:15
 #: ui/templates/ui/setup/step4.html:15
 msgid "Warning"
-msgstr "Предупреждение"
+msgstr "Viðvörun"
 
 #: ui/templates/ui/account.html:22 ui/templates/ui/car_detail.html:79
 #: ui/templates/ui/car_detail.html:648 ui/templates/ui/car_detail.html:667
@@ -1659,54 +1616,52 @@ msgstr "Предупреждение"
 #: ui/templates/ui/setup/step4.html:20
 #: ui/templates/ui/snippets/security.html:12
 #: ui/templates/ui/snippets/security.html:49
-#: ui/templates/ui/car_detail.html:685 ui/templates/ui/car_detail.html:704
-#: ui/templates/ui/car_detail.html:738 ui/templates/ui/car_detail.html:782
 msgid "Close"
-msgstr "Закрыть"
+msgstr "Loka"
 
 #: ui/templates/ui/account.html:31
 msgid "My Account"
-msgstr "Мой аккаунт"
+msgstr "Aðgangurinn minn"
 
 #: ui/templates/ui/account.html:36
 msgid "API-key"
-msgstr "Ключ API"
+msgstr "API-lykill"
 
 #: ui/templates/ui/account.html:38
 msgid "API documentation"
-msgstr "Документация API"
+msgstr "API-skjölun"
 
 #: ui/templates/ui/account.html:42
 msgid "Reset API-key"
-msgstr "Сбросить ключ API"
+msgstr "Endurstilla API-lykil"
 
 #: ui/templates/ui/account.html:48
 msgid "Change Account Password"
-msgstr "Изменить пароль аккаунта"
+msgstr "Breyta lykilorði aðgangs"
 
 #: ui/templates/ui/account.html:49
 msgid "Change CARWINGS Password"
-msgstr "Изменить пароль TCU"
+msgstr "Breyta CARWINGS lykilorði"
 
 #: ui/templates/ui/account.html:51
 msgid "Change Command PIN"
-msgstr "Изменить PIN-код команды"
+msgstr "Breyta skipana PIN"
 
 #: ui/templates/ui/account.html:51
 msgid "Set Command PIN"
-msgstr "Установить PIN-код команды"
+msgstr "Stilla skipana-PIN"
 
 #: ui/templates/ui/account.html:53
 msgid "Disable Command PIN"
-msgstr "Отключить PIN-код команды"
+msgstr "Slökkva á skipana-PIN"
 
 #: ui/templates/ui/account.html:57
 msgid "Disable 2FA"
-msgstr "Отключить 2FA"
+msgstr "Slökkva á 2FA"
 
 #: ui/templates/ui/account.html:59 ui/templates/ui/enroll_2fa.html:5
 msgid "Enable 2FA"
-msgstr "Включить 2FA"
+msgstr "Virkja 2FA"
 
 #: ui/templates/ui/account.html:62 ui/templates/ui/car_detail.html:432
 #: ui/templates/ui/car_detail.html:502 ui/templates/ui/car_detail.html:631
@@ -1714,205 +1669,195 @@ msgstr "Включить 2FA"
 #: ui/templates/ui/setup/step2.html:50 ui/templates/ui/setup/step3.html:36
 #: ui/templates/ui/setup/step4.html:63
 #: ui/templates/ui/snippets/security.html:33
-#: ui/templates/ui/car_detail.html:668 ui/templates/ui/car_detail.html:767
-#: ui/templates/ui/car_detail.html:866
 msgid "Save"
-msgstr "Сохранить"
+msgstr "Vista"
 
 #: ui/templates/ui/account.html:69
 msgid "Are you sure you want to reset your API key?"
-msgstr "Вы уверены, что хотите сбросить ключ API?"
+msgstr "Ertu viss um að þú viljir endurstilla API-lykilinn?"
 
 #: ui/templates/ui/account.html:84
 msgid "Failure occurred while resetting the API key"
-msgstr "Произошла ошибка при сбросе ключа API"
+msgstr "Ekki tókst að endurstilla API-lykilinn"
 
 #: ui/templates/ui/account.html:89
 msgid "An error occurred while resetting the API key"
-msgstr "Произошла ошибка при сбросе ключа API"
+msgstr "Villa kom upp við að endurstilla API-lykilinn"
 
 #: ui/templates/ui/base.html:48
 msgid "Sign Out"
-msgstr "Выйти"
+msgstr "Skrá út"
 
 #: ui/templates/ui/base.html:50 ui/templates/ui/landing.html:20
 #: ui/templates/ui/landing.html:46 ui/templates/ui/signin.html:3
 #: ui/templates/ui/signin.html:16 ui/templates/ui/signin_base.html:3
 #: ui/templates/ui/signin_base.html:9
 msgid "Sign In"
-msgstr "Войти"
+msgstr "Skrá inn"
 
 #: ui/templates/ui/base.html:68
 msgid "Project"
-msgstr "Проект"
+msgstr "Verkefnið"
 
 #: ui/templates/ui/base.html:70
 msgid "Tools"
-msgstr "Инструменты"
+msgstr "Verkfæri"
 
 #: ui/templates/ui/base.html:71 ui/templates/ui/vflash_editor.html:5
 msgid "VFlash Editor"
-msgstr "Редактор VFlash"
+msgstr "VFlash-ritill"
 
 #: ui/templates/ui/car_detail.html:13
 msgid "Back to cars"
-msgstr "Вернуться к списку автомобилей"
+msgstr "Aftur í bíla"
 
 #: ui/templates/ui/car_detail.html:41 ui/templates/ui/car_detail.html:1379
 #: ui/templates/ui/car_detail.html:1389 ui/templates/ui/car_list.html:64
-#: ui/templates/ui/car_detail.html:1416 ui/templates/ui/car_detail.html:1426
 msgid "Last connected"
-msgstr "Последнее подключение"
+msgstr "Síðast tengdur"
 
 #: ui/templates/ui/car_detail.html:61
 msgid "Send command"
-msgstr "Отправить команду"
+msgstr "Senda skipun"
 
 #: ui/templates/ui/car_detail.html:96 ui/templates/ui/car_detail.html:123
 msgid "Overview"
-msgstr "Обзор"
+msgstr "Yfirlit"
 
 #: ui/templates/ui/car_detail.html:97
 msgid "EV Status"
-msgstr "Статус электромобиля"
+msgstr "Staða rafbíls"
 
 #: ui/templates/ui/car_detail.html:98 ui/templates/ui/car_detail.html:252
 msgid "Timers"
-msgstr "Таймеры"
+msgstr "Tímastillar"
 
 #: ui/templates/ui/car_detail.html:99
 msgid "Vehicle journal"
-msgstr "Журнал автомобиля"
+msgstr "Atvikaskrá bíls"
 
 #: ui/templates/ui/car_detail.html:100
 msgid "Location"
-msgstr "Местоположение"
+msgstr "Staðsetning"
 
 #: ui/templates/ui/car_detail.html:102
 msgid "New!"
-msgstr "Новое!"
+msgstr "Nýtt!"
 
 #: ui/templates/ui/car_detail.html:104
 msgid "Recent Alerts"
-msgstr "Последние уведомления"
+msgstr "Nýlegar tilkynningar"
 
 #: ui/templates/ui/car_detail.html:105
 msgid "Route Planner"
-msgstr "Планировщик маршрутов"
+msgstr "Leiðaskipuleggjari"
 
 #: ui/templates/ui/car_detail.html:107
 msgid "Basic Info"
-msgstr "Основная информация"
+msgstr "Grunnupplýsingar"
 
 #: ui/templates/ui/car_detail.html:108
 #: ui/templates/ui/ficosa/configuration.html:5
 msgid "TCU Configuration"
-msgstr "Конфигурация TCU"
+msgstr "TCU-stillingar"
 
 #: ui/templates/ui/car_detail.html:109 ui/templates/ui/car_detail.html:530
 msgid "Settings"
-msgstr "Настройки"
+msgstr "Stillingar"
 
 #: ui/templates/ui/car_detail.html:130 ui/templates/ui/car_detail.html:344
 msgid "Range (AC On)"
-msgstr "Запас хода (с кондиционером)"
+msgstr "Drægni (miðstöð á)"
 
 #: ui/templates/ui/car_detail.html:135 ui/templates/ui/car_detail.html:345
 msgid "Range (AC Off)"
-msgstr "Запас хода (без кондиционера)"
+msgstr "Drægni (miðstöð af)"
 
 #: ui/templates/ui/car_detail.html:141 ui/templates/ui/car_detail.html:144
 #: ui/templates/ui/car_detail.html:340 ui/templates/ui/car_detail.html:341
 msgid "State of Charge"
-msgstr "Уровень заряда"
+msgstr "Hleðslustaða"
 
 #: ui/templates/ui/car_detail.html:144 ui/templates/ui/car_detail.html:341
 msgid "Nominal"
-msgstr "Номинальный"
+msgstr "Nafngildi"
 
 #: ui/templates/ui/car_detail.html:161
 msgid "EMPTY"
-msgstr "ПУСТО"
+msgstr "TÓM"
 
 #: ui/templates/ui/car_detail.html:162
 msgid "FULL"
-msgstr "ПОЛНЫЙ"
+msgstr "FULL"
 
 #: ui/templates/ui/car_detail.html:167 ui/templates/ui/car_detail.html:334
 #: ui/templates/ui/car_detail.html:335 ui/templates/ui/car_detail.html:337
 msgid "Charge time"
-msgstr "Время зарядки"
+msgstr "Hleðslutími"
 
 #: ui/templates/ui/car_detail.html:175
 msgid "Charge Cable"
-msgstr "Зарядный кабель"
+msgstr "Hleðslusnúra"
 
 #: ui/templates/ui/car_detail.html:180
 msgid "Plugged In,Unplugged"
-msgstr "Подключён,Отключён"
+msgstr "Í sambandi,Ekki í sambandi"
 
 #: ui/templates/ui/car_detail.html:182 ui/templates/ui/car_detail.html:1278
 msgid "No Power"
-msgstr "Нет питания"
+msgstr "Ekkert rafmagn"
 
 #: ui/templates/ui/car_detail.html:189
 msgid "Car status"
-msgstr "Статус автомобиля"
+msgstr "Staða bíls"
 
 #: ui/templates/ui/car_detail.html:193 ui/templates/ui/car_detail.html:195
 #: ui/templates/ui/car_detail.html:1284 ui/templates/ui/car_detail.html:1286
-#: ui/templates/ui/car_detail.html:1304 ui/templates/ui/car_detail.html:1321
-#: ui/templates/ui/car_detail.html:1323 ui/templates/ui/car_detail.html:1341
+#: ui/templates/ui/car_detail.html:1304
 msgid "On"
-msgstr "Включён"
+msgstr "Kveikt"
 
 #: ui/templates/ui/car_detail.html:193 ui/templates/ui/car_detail.html:1284
-#: ui/templates/ui/car_detail.html:1352 ui/templates/ui/car_detail.html:1321
-#: ui/templates/ui/car_detail.html:1389
+#: ui/templates/ui/car_detail.html:1352
 msgid "Parked"
-msgstr "На парковке"
+msgstr "Lagt"
 
 #: ui/templates/ui/car_detail.html:195 ui/templates/ui/car_detail.html:1286
-#: ui/templates/ui/car_detail.html:1323
 msgid "Driving"
-msgstr "В движении"
+msgstr "Í akstri"
 
 #: ui/templates/ui/car_detail.html:199 ui/templates/ui/car_detail.html:1290
 #: ui/templates/ui/probeviewer/main.html:504
 #: ui/templates/ui/probeviewer/main.html:578
-#: ui/templates/ui/car_detail.html:1327
 msgid "Charging finished"
-msgstr "Зарядка завершена"
+msgstr "Hleðslu lokið"
 
 #: ui/templates/ui/car_detail.html:201 ui/templates/ui/car_detail.html:1292
-#: ui/templates/ui/car_detail.html:1329
-#, fuzzy
 msgid "Charging interrupted"
-msgstr "Тип зарядки"
+msgstr "Hleðsla rofnaði"
 
 #: ui/templates/ui/car_detail.html:203 ui/templates/ui/car_detail.html:348
-#: ui/templates/ui/car_detail.html:1294 ui/templates/ui/car_detail.html:1331
+#: ui/templates/ui/car_detail.html:1294
 msgid "Charging"
-msgstr "Заряжается"
+msgstr "Í hleðslu"
 
 #: ui/templates/ui/car_detail.html:205 ui/templates/ui/car_detail.html:353
-#: ui/templates/ui/car_detail.html:1296 ui/templates/ui/car_detail.html:1333
+#: ui/templates/ui/car_detail.html:1296
 msgid "Battery heater active"
-msgstr "Активен обогреватель батареи"
+msgstr "Rafhlöðuhitari virkur"
 
 #: ui/templates/ui/car_detail.html:207 ui/templates/ui/car_detail.html:1298
-#: ui/templates/ui/car_detail.html:1304 ui/templates/ui/car_detail.html:1335
-#: ui/templates/ui/car_detail.html:1341
+#: ui/templates/ui/car_detail.html:1304
 msgid "Off"
-msgstr "Выключен"
+msgstr "Slökkt"
 
 #: ui/templates/ui/car_detail.html:214
 msgid "AC Status"
-msgstr "Статус кондиционера"
+msgstr "Staða miðstöðvar"
 
 #: ui/templates/ui/car_detail.html:216
 msgid "On,Off"
-msgstr "Включён,Выключен"
+msgstr "Kveikt,Slökkt"
 
 #: ui/templates/ui/car_detail.html:225 ui/templates/ui/car_detail.html:324
 #: ui/templates/ui/car_detail.html:357 ui/templates/ui/car_detail.html:379
@@ -1920,121 +1865,116 @@ msgstr "Включён,Выключен"
 #: ui/templates/ui/probeviewer/main.html:173
 #: ui/templates/ui/probeviewer/main.html:201
 msgid "Last Updated"
-msgstr "Последнее обновление"
+msgstr "Síðast uppfært"
 
 #: ui/templates/ui/car_detail.html:234
 #: ui/templates/ui/probeviewer/main.html:129
 msgid "Odometer"
-msgstr "Одометр"
+msgstr "Kílómetrastaða"
 
 #: ui/templates/ui/car_detail.html:235
 msgid "Navi version"
-msgstr "Версия навигационной системы"
+msgstr "Navi-útgáfa"
 
 #: ui/templates/ui/car_detail.html:236
 msgid "Map version"
-msgstr "Версия карт"
+msgstr "Kortaútgáfa"
 
 #: ui/templates/ui/car_detail.html:237
 msgid "TCU version (from navi)"
-msgstr "Версия TCU (из навигационной системы)"
+msgstr "TCU-útgáfa (úr navi)"
 
 #: ui/templates/ui/car_detail.html:238
 msgid "TCU version (from TCU)"
-msgstr "Версия TCU (из TCU)"
+msgstr "TCU-útgáfa (úr TCU)"
 
 #: ui/templates/ui/car_detail.html:239 ui/templates/ui/car_detail.html:240
 #: ui/templates/ui/car_detail.html:241 ui/templates/ui/car_detail.html:242
 msgid "Vehicle Code"
-msgstr "Код автомобиля"
+msgstr "Bílkóði"
 
 #: ui/templates/ui/car_detail.html:246
 msgid "Last Connection"
-msgstr "Последнее соединение"
+msgstr "Síðasta tenging"
 
 #: ui/templates/ui/car_detail.html:252 ui/templates/ui/car_detail.html:387
 #: ui/templates/ui/car_list.html:33
 msgid "Add"
-msgstr "Добавить"
+msgstr "Bæta við"
 
 #: ui/templates/ui/car_detail.html:261
 msgid "Mon"
-msgstr "Пн."
+msgstr "Mán"
 
 #: ui/templates/ui/car_detail.html:264
 msgid "Tue"
-msgstr "Вт."
+msgstr "Þri"
 
 #: ui/templates/ui/car_detail.html:267
 msgid "Wed"
-msgstr "Ср."
+msgstr "Mið"
 
 #: ui/templates/ui/car_detail.html:270
 msgid "Thu"
-msgstr "Чт."
+msgstr "Fim"
 
 #: ui/templates/ui/car_detail.html:273
 msgid "Fri"
-msgstr "Пт."
+msgstr "Fös"
 
 #: ui/templates/ui/car_detail.html:276
 msgid "Sat"
-msgstr "Сб."
+msgstr "Lau"
 
 #: ui/templates/ui/car_detail.html:279
 msgid "Sun"
-msgstr "Вс."
+msgstr "Sun"
 
 #: ui/templates/ui/car_detail.html:282 ui/templates/ui/car_detail.html:2681
-#: ui/templates/ui/car_detail.html:2718
 msgid "Last run"
-msgstr "Последняя команда"
+msgstr "Keyrt síðast"
 
 #: ui/templates/ui/car_detail.html:282 ui/templates/ui/car_detail.html:2681
-#: ui/templates/ui/car_detail.html:2718
 msgid "result"
-msgstr "результат"
+msgstr "niðurstaða"
 
 #: ui/templates/ui/car_detail.html:288 ui/templates/ui/car_detail.html:397
 #: ui/templates/ui/car_detail.html:1728 ui/templates/ui/car_detail.html:2688
-#: ui/templates/ui/car_detail.html:1765 ui/templates/ui/car_detail.html:2725
 msgid "Edit"
-msgstr "Редактировать"
+msgstr "Breyta"
 
 #: ui/templates/ui/car_detail.html:294 ui/templates/ui/car_detail.html:403
 #: ui/templates/ui/car_detail.html:1733 ui/templates/ui/car_detail.html:2693
-#: ui/templates/ui/car_detail.html:1770 ui/templates/ui/car_detail.html:2730
 msgid "Delete"
-msgstr "Удалить"
+msgstr "Eyða"
 
 #: ui/templates/ui/car_detail.html:300 ui/templates/ui/car_detail.html:2635
-#: ui/templates/ui/car_detail.html:2672
 msgid "No timers added"
-msgstr "Таймеры не добавлены"
+msgstr "Engum tímastillum bætt við"
 
 #: ui/templates/ui/car_detail.html:304
 msgid "Note: Times are shown in local local timezone"
-msgstr "Напоминание: время указано по местному времени"
+msgstr "Athugið: Tímar eru sýndir í staðartíma"
 
 #: ui/templates/ui/car_detail.html:315
 msgid "PPP Dial Code"
-msgstr "Код набора PPP"
+msgstr "PPP-hringikóði"
 
 #: ui/templates/ui/car_detail.html:321
 msgid "Server"
-msgstr "Сервер"
+msgstr "Netþjónn"
 
 #: ui/templates/ui/car_detail.html:322
 msgid "Proxy"
-msgstr "Прокси"
+msgstr "Proxy"
 
 #: ui/templates/ui/car_detail.html:323
 msgid "Connection Type"
-msgstr "Тип соединения"
+msgstr "Tengigerð"
 
 #: ui/templates/ui/car_detail.html:332
 msgid "Car on"
-msgstr "Автомобиль включён"
+msgstr "Kveikt á bíl"
 
 #: ui/templates/ui/car_detail.html:332 ui/templates/ui/car_detail.html:336
 #: ui/templates/ui/car_detail.html:346 ui/templates/ui/car_detail.html:347
@@ -2043,141 +1983,134 @@ msgstr "Автомобиль включён"
 #: ui/templates/ui/car_detail.html:353 ui/templates/ui/car_detail.html:354
 #: ui/templates/ui/car_detail.html:378
 msgid "Yes,No"
-msgstr "Да,Нет"
+msgstr "Já,Nei"
 
 #: ui/templates/ui/car_detail.html:333
 msgid "Gear"
-msgstr "Передача"
+msgstr "Gír"
 
 #: ui/templates/ui/car_detail.html:336
 msgid "6kW OBC exists"
-msgstr "Имеется бортовое зарядное устройство мощностью 6 кВт"
+msgstr "6 kW hleðslutæki til staðar"
 
 #: ui/templates/ui/car_detail.html:338
 msgid "Charge bars"
-msgstr "Полосы заряда"
+msgstr "Hleðslustrik"
 
 #: ui/templates/ui/car_detail.html:339
 #: ui/templates/ui/probeviewer/trip.html:237
 msgid "Capacity bars"
-msgstr "Полосы ёмкости"
+msgstr "Rýmdarstrik"
 
 #: ui/templates/ui/car_detail.html:340
 msgid "Display"
-msgstr "Дисплей"
+msgstr "Skjár"
 
 #: ui/templates/ui/car_detail.html:342
 msgid "State of Health"
-msgstr "Состояние батареи (SOH)"
+msgstr "Ástand rafhlöðu (SoH)"
 
 #: ui/templates/ui/car_detail.html:343
 msgid "Remaining kWh"
-msgstr "Оставшиеся кВт·ч"
+msgstr "Eftirstandandi kWh"
 
 #: ui/templates/ui/car_detail.html:346
 msgid "Plugged in"
-msgstr "Подключён к зарядке"
+msgstr "Í sambandi"
 
 #: ui/templates/ui/car_detail.html:347
-#, fuzzy
 msgid "Power Available"
-msgstr "Данные ABS отсутствуют"
+msgstr "Rafmagn til staðar"
 
 #: ui/templates/ui/car_detail.html:349
 msgid "Quick-charging"
-msgstr "Быстрая зарядка"
+msgstr "Í hraðhleðslu"
 
 #: ui/templates/ui/car_detail.html:350
 msgid "Preconditioning (A/C)"
-msgstr "Предварительное кондиционирование"
+msgstr "Forhitun (miðstöð)"
 
 #: ui/templates/ui/car_detail.html:351
 msgid "GIDs remaining"
-msgstr "Оставшиеся GID"
+msgstr "GIDs eftir"
 
 #: ui/templates/ui/car_detail.html:352
 msgid "Battery heater exists"
-msgstr "Имеется подогреватель батареи"
+msgstr "Rafhlöðuhitari til staðar"
 
 #: ui/templates/ui/car_detail.html:354
 msgid "Battery Lease Contract's Charging Block Active"
-msgstr "Блокировка зарядки по договору лизинга батареи активна"
+msgstr "Hleðslulokun rafhlöðuleigusamnings virk"
 
 #: ui/templates/ui/car_detail.html:355
 msgid "Cabin Temperature"
-msgstr "Температура салона"
+msgstr "Hiti í farþegarými"
 
 #: ui/templates/ui/car_detail.html:356
 msgid "Counter"
-msgstr "Счётчик"
+msgstr "Teljari"
 
 #: ui/templates/ui/car_detail.html:364
 msgid "Send location to car"
-msgstr "Отправить местоположение в автомобиль"
+msgstr "Senda staðsetningu í bílinn"
 
 #: ui/templates/ui/car_detail.html:366 ui/templates/ui/car_detail.html:420
 #: ui/templates/ui/car_detail.html:429 ui/templates/ui/car_detail.html:2006
-#: ui/templates/ui/car_detail.html:2043
 msgid "Search for locations or enter google/apple maps link"
-msgstr "Поиск местоположения или ввод ссылки на Google/Apple Maps"
+msgstr "Leitaðu að stað eða settu inn Google/Apple Maps-tengil"
 
 #: ui/templates/ui/car_detail.html:370 ui/templates/ui/car_detail.html:1394
-#: ui/templates/ui/car_detail.html:1431
 msgid "Last shared location"
-msgstr "Последнее отправленное местоположение"
+msgstr "Síðast deilda staðsetning"
 
 #: ui/templates/ui/car_detail.html:372 ui/templates/ui/car_detail.html:1396
-#: ui/templates/ui/car_detail.html:1433
 msgid "No past shared location"
-msgstr "Нет ранее отправленных местоположений"
+msgstr "Engri staðsetningu hefur verið deilt"
 
 #: ui/templates/ui/car_detail.html:375
 #: ui/templates/ui/ficosa/configuration.html:27
 msgid "Send"
-msgstr "Отправить"
+msgstr "Senda"
 
 #: ui/templates/ui/car_detail.html:378
 msgid "At Home"
-msgstr "Дома"
+msgstr "Heima"
 
 #: ui/templates/ui/car_detail.html:387
 msgid "Route plans"
-msgstr "Планы маршрутов"
+msgstr "Leiðaráætlanir"
 
 #: ui/templates/ui/car_detail.html:409 ui/templates/ui/car_detail.html:1711
-#: ui/templates/ui/car_detail.html:1748
 msgid "No route plans added"
-msgstr "Планы маршрутов не добавлены"
+msgstr "Engum leiðaráætlunum bætt við"
 
 #: ui/templates/ui/car_detail.html:414
 msgid "Add/Edit a route plan"
-msgstr "Добавить/редактировать план маршрута"
+msgstr "Bæta við/breyta leiðaráætlun"
 
 #: ui/templates/ui/car_detail.html:416
 msgid "Name of the plan"
-msgstr "Название плана"
+msgstr "Heiti áætlunar"
 
 #: ui/templates/ui/car_detail.html:419 ui/templates/ui/car_detail.html:652
-#: ui/templates/ui/car_detail.html:689
 msgid "Starting point"
-msgstr "Начальная точка"
+msgstr "Upphafsstaður"
 
 #: ui/templates/ui/car_detail.html:426
 msgid "Add waypoint"
-msgstr "Добавить промежуточную точку"
+msgstr "Bæta við viðkomustað"
 
 #: ui/templates/ui/car_detail.html:428 ui/templates/ui/car_detail.html:653
-#: ui/templates/ui/car_detail.html:690
 msgid "Destination point"
-msgstr "Пункт назначения"
+msgstr "Áfangastaður"
 
 #: ui/templates/ui/car_detail.html:433
 msgid "Cancel"
-msgstr "Отменить"
+msgstr "Hætta við"
 
 #: ui/templates/ui/car_detail.html:443
 msgid "Favorite channels"
-msgstr "Избранное"
+msgstr "Uppáhaldsrásir"
 
 #: ui/templates/ui/car_detail.html:452 ui/templates/ui/car_detail.html:453
 #: ui/templates/ui/car_detail.html:454 ui/templates/ui/car_detail.html:455
@@ -2187,13 +2120,12 @@ msgstr "Избранное"
 #: ui/templates/ui/car_detail.html:464 ui/templates/ui/car_detail.html:465
 #: ui/templates/ui/car_detail.html:466 ui/templates/ui/car_detail.html:467
 #: ui/templates/ui/car_detail.html:468 ui/templates/ui/car_detail.html:2218
-#: ui/templates/ui/car_detail.html:2255
 msgid "No selected channel"
-msgstr "Канал не выбран"
+msgstr "Engin rás valin"
 
 #: ui/templates/ui/car_detail.html:474
 msgid "Custom channels"
-msgstr "Мои каналы"
+msgstr "Sérsniðnar rásir"
 
 #: ui/templates/ui/car_detail.html:482 ui/templates/ui/car_detail.html:483
 #: ui/templates/ui/car_detail.html:484 ui/templates/ui/car_detail.html:485
@@ -2203,185 +2135,181 @@ msgstr "Мои каналы"
 #: ui/templates/ui/car_detail.html:494 ui/templates/ui/car_detail.html:495
 #: ui/templates/ui/car_detail.html:496 ui/templates/ui/car_detail.html:497
 #: ui/templates/ui/car_detail.html:498 ui/templates/ui/car_detail.html:499
-#: ui/templates/ui/car_detail.html:2294 ui/templates/ui/car_detail.html:2331
+#: ui/templates/ui/car_detail.html:2294
 msgid "No content"
-msgstr "Нет контента"
+msgstr "Ekkert efni"
 
 #: ui/templates/ui/car_detail.html:511
 msgid "Type"
-msgstr "Тип"
+msgstr "Gerð"
 
 #: ui/templates/ui/car_detail.html:512
 msgid "Timestamp"
-msgstr "Временная метка"
+msgstr "Tímastimpill"
 
 #: ui/templates/ui/car_detail.html:513
 msgid "Additional Data"
-msgstr "Дополнительные данные"
+msgstr "Viðbótargögn"
 
-#: ui/templates/ui/car_detail.html:545 ui/templates/ui/car_detail.html:560
+#: ui/templates/ui/car_detail.html:545
 msgid "Leave empty to use default key"
-msgstr "Оставьте пустым, чтобы использовать заводской ключ"
+msgstr "Skildu eftir autt til að nota sjálfgefinn lykil"
 
-#: ui/templates/ui/car_detail.html:551 ui/templates/ui/car_detail.html:568
+#: ui/templates/ui/car_detail.html:551
 msgid "Skip authentication from TCU"
-msgstr "Пропустить аутентификацию TCU"
+msgstr "Sleppa auðkenningu frá TCU"
 
-#: ui/templates/ui/car_detail.html:552 ui/templates/ui/car_detail.html:569
+#: ui/templates/ui/car_detail.html:552
 msgid ""
 "On AZE0 (2013) and newer LEAFs, username and password inserted to navi are "
 "not saved due to an error. In this case, check this box to skip the "
 "authentication"
 msgstr ""
-"На автомобилях AZE0 (2013 и новее) имя пользователя и пароль, введённые в "
-"навигационную систему, могут не сохраняться из-за ошибки. В этом случае "
-"установите этот флажок, чтобы пропустить аутентификацию."
+"Á AZE0 (2013) og nýrri LEAF vistast notandanafn og lykilorð sem slegin eru "
+"inn í navi ekki vegna villu. Hakaðu þá í þennan reit til að sleppa "
+"auðkenningunni"
 
-#: ui/templates/ui/car_detail.html:558 ui/templates/ui/car_detail.html:582
+#: ui/templates/ui/car_detail.html:558
 msgid "Car color"
-msgstr "Цвет автомобиля"
+msgstr "Litur bíls"
 
-#: ui/templates/ui/car_detail.html:567 ui/templates/ui/car_detail.html:590
+#: ui/templates/ui/car_detail.html:567
 msgid "Maximum GIDs value"
-msgstr "Максимальное значение GID"
+msgstr "Hámarksgildi GIDs"
 
-#: ui/templates/ui/car_detail.html:569 ui/templates/ui/car_detail.html:592
+#: ui/templates/ui/car_detail.html:569
 #, python-format
 msgid ""
 "OpenCARWINGS will try to auto-detect your battery size and fill this field. "
 "For cars with swapped/replaced battery, please enter maximum amount of GIDS "
 "when battery is new (SoH 100%%)."
 msgstr ""
-"OpenCARWINGS попытается автоматически определить размер батареи и заполнить "
-"это поле. Для автомобилей с заменённой батареей введите максимальное "
-"значение GID для новой батареи (SoH 100%%)."
+"OpenCARWINGS reynir að greina stærð rafhlöðunnar sjálfkrafa og fylla út "
+"þennan reit. Ef skipt hefur verið um rafhlöðu skaltu slá inn hámarksfjölda "
+"GIDS þegar rafhlaðan er ný (SoH 100%%)."
 
-#: ui/templates/ui/car_detail.html:575 ui/templates/ui/car_detail.html:598
+#: ui/templates/ui/car_detail.html:575
 msgid ""
 "On AZE0 (>2013) generation cars, it is possible to see available battery "
 "capacity in percentage. For ZE0, such feature was never implemented. By "
 "enabling this option, 'display' percentage value will be calculated, it may "
 "be inaccurate."
 msgstr ""
-"На автомобилях AZE0 (после 2013 года) можно увидеть доступную ёмкость "
-"батареи в процентах. Для ZE0 эта функция не была реализована. При включении "
-"этой опции значение процента на дисплее будет рассчитано, но может быть "
-"неточным."
+"Á bílum af AZE0-kynslóð (>2013) er hægt að sjá tiltæka rýmd rafhlöðunnar í "
+"prósentum. Á ZE0 var sá eiginleiki aldrei til staðar. Ef þú virkjar þennan "
+"valkost er prósentan á 'skjánum' reiknuð og hún getur verið ónákvæm."
 
-#: ui/templates/ui/car_detail.html:581 ui/templates/ui/car_detail.html:611
+#: ui/templates/ui/car_detail.html:581
 msgid "Periodic data refresh interval"
-msgstr "Интервал периодического обновления данных"
+msgstr "Tíðni reglulegrar gagnauppfærslu"
 
-#: ui/templates/ui/car_detail.html:590 ui/templates/ui/car_detail.html:619
+#: ui/templates/ui/car_detail.html:590
 msgid "Periodic data refresh interval (while driving or charging)"
-msgstr ""
-"Интервал периодического обновления данных (во время движения или зарядки)"
+msgstr "Tíðni reglulegrar gagnauppfærslu (í akstri eða hleðslu)"
 
 #: ui/templates/ui/car_detail.html:599 ui/templates/ui/setup/step4.html:29
-#: ui/templates/ui/car_detail.html:631
 msgid "SMS provider"
-msgstr "Провайдер SMS"
+msgstr "SMS-þjónusta"
 
-#: ui/templates/ui/car_detail.html:632 ui/templates/ui/car_detail.html:669
+#: ui/templates/ui/car_detail.html:632
 msgid "Remove car"
-msgstr "Удалить автомобиль"
+msgstr "Fjarlægja bíl"
 
-#: ui/templates/ui/car_detail.html:651 ui/templates/ui/car_detail.html:688
+#: ui/templates/ui/car_detail.html:651
 msgid "Set car location as"
-msgstr "Установить местоположение автомобиля как"
+msgstr "Skrá staðsetningu bíls sem"
 
-#: ui/templates/ui/car_detail.html:670 ui/templates/ui/car_detail.html:707
+#: ui/templates/ui/car_detail.html:670
 msgid "Select data channel"
-msgstr "Выберите канал"
+msgstr "Velja gagnarás"
 
-#: ui/templates/ui/car_detail.html:705 ui/templates/ui/car_detail.html:742
+#: ui/templates/ui/car_detail.html:705
 msgid "Edit data channel"
-msgstr "Редактировать канал"
+msgstr "Breyta gagnarás"
 
-#: ui/templates/ui/car_detail.html:706 ui/templates/ui/car_detail.html:743
+#: ui/templates/ui/car_detail.html:706
 msgid "Channel name"
-msgstr "Название канала"
+msgstr "Heiti rásar"
 
-#: ui/templates/ui/car_detail.html:710 ui/templates/ui/car_detail.html:747
+#: ui/templates/ui/car_detail.html:710
 msgid "Channel icon"
-msgstr "Значок канала"
+msgstr "Tákn rásar"
 
-#: ui/templates/ui/car_detail.html:721 ui/templates/ui/car_detail.html:758
+#: ui/templates/ui/car_detail.html:721
 msgid "Data URL"
-msgstr "URL-адрес"
+msgstr "Gagnaslóð"
 
-#: ui/templates/ui/car_detail.html:723 ui/templates/ui/car_detail.html:760
+#: ui/templates/ui/car_detail.html:723
 msgid "Data URL format and documentation"
-msgstr "Формат URL-адреса данных и документация"
+msgstr "Snið gagnaslóðar og skjölun"
 
-#: ui/templates/ui/car_detail.html:727 ui/templates/ui/car_detail.html:764
+#: ui/templates/ui/car_detail.html:727
 msgid "Allow sending current vehicle location"
-msgstr "Разрешить отправку текущего местоположения автомобиля"
+msgstr "Leyfa sendingu núverandi staðsetningar bílsins"
 
 #: ui/templates/ui/car_detail.html:749 ui/templates/ui/car_detail.html:2393
-#: ui/templates/ui/car_detail.html:786 ui/templates/ui/car_detail.html:2430
 msgid "Edit timer"
-msgstr "Редактировать таймер"
+msgstr "Breyta tímastilli"
 
-#: ui/templates/ui/car_detail.html:750 ui/templates/ui/car_detail.html:787
+#: ui/templates/ui/car_detail.html:750
 msgid "Timer name"
-msgstr "Имя таймера"
+msgstr "Heiti tímastillis"
 
-#: ui/templates/ui/car_detail.html:755 ui/templates/ui/car_detail.html:792
+#: ui/templates/ui/car_detail.html:755
 msgid "Enabled"
-msgstr "Включено"
+msgstr "Virkt"
 
-#: ui/templates/ui/car_detail.html:758 ui/templates/ui/car_detail.html:795
+#: ui/templates/ui/car_detail.html:758
 msgid "Select time"
-msgstr "Выберите время"
+msgstr "Veldu tíma"
 
-#: ui/templates/ui/car_detail.html:768 ui/templates/ui/car_detail.html:805
+#: ui/templates/ui/car_detail.html:768
 msgid "Command"
-msgstr "Команда"
+msgstr "Skipun"
 
-#: ui/templates/ui/car_detail.html:778 ui/templates/ui/car_detail.html:815
+#: ui/templates/ui/car_detail.html:778
 msgid "One-time"
-msgstr "Один раз"
+msgstr "Einu sinni"
 
-#: ui/templates/ui/car_detail.html:781 ui/templates/ui/car_detail.html:818
+#: ui/templates/ui/car_detail.html:781
 msgid "Repeating"
-msgstr "Повторяющийся"
+msgstr "Endurtekið"
 
-#: ui/templates/ui/car_detail.html:793 ui/templates/ui/car_detail.html:830
+#: ui/templates/ui/car_detail.html:793
 msgid "Select date"
-msgstr "Выберите дату"
+msgstr "Veldu dagsetningu"
 
-#: ui/templates/ui/car_detail.html:799 ui/templates/ui/car_detail.html:836
+#: ui/templates/ui/car_detail.html:799
 msgid "Monday"
-msgstr "Понедельник"
+msgstr "Mánudagur"
 
-#: ui/templates/ui/car_detail.html:803 ui/templates/ui/car_detail.html:840
+#: ui/templates/ui/car_detail.html:803
 msgid "Tuesday"
-msgstr "Вторник"
+msgstr "Þriðjudagur"
 
-#: ui/templates/ui/car_detail.html:807 ui/templates/ui/car_detail.html:844
+#: ui/templates/ui/car_detail.html:807
 msgid "Wednesday"
-msgstr "Среда"
+msgstr "Miðvikudagur"
 
-#: ui/templates/ui/car_detail.html:811 ui/templates/ui/car_detail.html:848
+#: ui/templates/ui/car_detail.html:811
 msgid "Thursday"
-msgstr "Четверг"
+msgstr "Fimmtudagur"
 
-#: ui/templates/ui/car_detail.html:815 ui/templates/ui/car_detail.html:852
+#: ui/templates/ui/car_detail.html:815
 msgid "Friday"
-msgstr "Пятница"
+msgstr "Föstudagur"
 
-#: ui/templates/ui/car_detail.html:819 ui/templates/ui/car_detail.html:856
+#: ui/templates/ui/car_detail.html:819
 msgid "Saturday"
-msgstr "Суббота"
+msgstr "Laugardagur"
 
-#: ui/templates/ui/car_detail.html:823 ui/templates/ui/car_detail.html:860
+#: ui/templates/ui/car_detail.html:823
 msgid "Sunday"
-msgstr "Воскресенье"
+msgstr "Sunnudagur"
 
-#: ui/templates/ui/car_detail.html:855 ui/templates/ui/car_detail.html:892
+#: ui/templates/ui/car_detail.html:855
 msgid "SMS from your device"
-msgstr "SMS с вашего устройства"
+msgstr "SMS úr tækinu þínu"
 
 #: ui/templates/ui/car_detail.html:1208 ui/templates/ui/car_detail.html:1210
 #: ui/templates/ui/car_detail.html:1214 ui/templates/ui/car_detail.html:1215
@@ -2389,20 +2317,16 @@ msgstr "SMS с вашего устройства"
 #: ui/templates/ui/car_detail.html:1465
 #: ui/templates/ui/ficosa/configuration.html:331
 #: ui/templates/ui/ficosa/configuration.html:335
-#: ui/templates/ui/car_detail.html:1245 ui/templates/ui/car_detail.html:1247
-#: ui/templates/ui/car_detail.html:1251 ui/templates/ui/car_detail.html:1252
-#: ui/templates/ui/car_detail.html:1493 ui/templates/ui/car_detail.html:1501
-#: ui/templates/ui/car_detail.html:1502
 msgid "Error sending command"
-msgstr "Ошибка при отправке команды"
+msgstr "Villa við að senda skipun"
 
-#: ui/templates/ui/car_detail.html:1279 ui/templates/ui/car_detail.html:1316
+#: ui/templates/ui/car_detail.html:1279
 msgid "Plugged In"
-msgstr "Подключён"
+msgstr "Í sambandi"
 
-#: ui/templates/ui/car_detail.html:1279 ui/templates/ui/car_detail.html:1316
+#: ui/templates/ui/car_detail.html:1279
 msgid "Unplugged"
-msgstr "Отключён"
+msgstr "Ekki í sambandi"
 
 #: ui/templates/ui/car_detail.html:1334 ui/templates/ui/car_detail.html:1335
 #: ui/templates/ui/car_detail.html:1336 ui/templates/ui/car_detail.html:1337
@@ -2412,14 +2336,8 @@ msgstr "Отключён"
 #: ui/templates/ui/car_detail.html:1361
 #: ui/templates/ui/ficosa/veh_health.html:134
 #: ui/templates/ui/ficosa/veh_health.html:136
-#: ui/templates/ui/car_detail.html:1371 ui/templates/ui/car_detail.html:1372
-#: ui/templates/ui/car_detail.html:1373 ui/templates/ui/car_detail.html:1374
-#: ui/templates/ui/car_detail.html:1377 ui/templates/ui/car_detail.html:1384
-#: ui/templates/ui/car_detail.html:1390 ui/templates/ui/car_detail.html:1391
-#: ui/templates/ui/car_detail.html:1392 ui/templates/ui/car_detail.html:1393
-#: ui/templates/ui/car_detail.html:1398
 msgid "Yes"
-msgstr "Да"
+msgstr "Já"
 
 #: ui/templates/ui/car_detail.html:1334 ui/templates/ui/car_detail.html:1335
 #: ui/templates/ui/car_detail.html:1336 ui/templates/ui/car_detail.html:1337
@@ -2429,220 +2347,195 @@ msgstr "Да"
 #: ui/templates/ui/car_detail.html:1361
 #: ui/templates/ui/ficosa/veh_health.html:134
 #: ui/templates/ui/ficosa/veh_health.html:136
-#: ui/templates/ui/car_detail.html:1371 ui/templates/ui/car_detail.html:1372
-#: ui/templates/ui/car_detail.html:1373 ui/templates/ui/car_detail.html:1374
-#: ui/templates/ui/car_detail.html:1377 ui/templates/ui/car_detail.html:1384
-#: ui/templates/ui/car_detail.html:1390 ui/templates/ui/car_detail.html:1391
-#: ui/templates/ui/car_detail.html:1392 ui/templates/ui/car_detail.html:1393
-#: ui/templates/ui/car_detail.html:1398
 msgid "No"
-msgstr "Нет"
+msgstr "Nei"
 
 #: ui/templates/ui/car_detail.html:1494 ui/templates/ui/car_detail.html:1502
-#: ui/templates/ui/car_detail.html:1503 ui/templates/ui/car_detail.html:1531
-#: ui/templates/ui/car_detail.html:1539 ui/templates/ui/car_detail.html:1540
+#: ui/templates/ui/car_detail.html:1503
 msgid "Error sending location to car"
-msgstr "Ошибка при отправке местоположения в автомобиль"
+msgstr "Villa við að senda staðsetningu í bílinn"
 
-#: ui/templates/ui/car_detail.html:1496 ui/templates/ui/car_detail.html:1533
+#: ui/templates/ui/car_detail.html:1496
 msgid "Location sent!"
-msgstr "Местоположение отправлено!"
+msgstr "Staðsetning send!"
 
 #: ui/templates/ui/car_detail.html:1552 ui/templates/ui/car_detail.html:1615
 #: ui/templates/ui/car_detail.html:1886 ui/templates/ui/car_detail.html:1891
 #: ui/templates/ui/car_detail.html:1948 ui/templates/ui/car_detail.html:1961
 #: ui/templates/ui/car_detail.html:1966 ui/templates/ui/car_detail.html:2045
-#: ui/templates/ui/car_detail.html:1589 ui/templates/ui/car_detail.html:1652
-#: ui/templates/ui/car_detail.html:1923 ui/templates/ui/car_detail.html:1928
-#: ui/templates/ui/car_detail.html:1985 ui/templates/ui/car_detail.html:1998
-#: ui/templates/ui/car_detail.html:2003 ui/templates/ui/car_detail.html:2082
 msgid "No address"
-msgstr "Адрес отсутствует"
+msgstr "Ekkert heimilisfang"
 
 #: ui/templates/ui/car_detail.html:1562 ui/templates/ui/car_detail.html:1895
-#: ui/templates/ui/car_detail.html:1599 ui/templates/ui/car_detail.html:1932
 msgid "Could not get location from map link"
-msgstr "Не удалось получить местоположение по ссылке на карту"
+msgstr "Ekki tókst að lesa staðsetningu úr kortatenglinum"
 
 #: ui/templates/ui/car_detail.html:1568 ui/templates/ui/car_detail.html:1640
 #: ui/templates/ui/car_detail.html:1901 ui/templates/ui/car_detail.html:1982
-#: ui/templates/ui/car_detail.html:1605 ui/templates/ui/car_detail.html:1677
-#: ui/templates/ui/car_detail.html:1938 ui/templates/ui/car_detail.html:2019
 msgid "Error searching locations"
-msgstr "Ошибка при поиске местоположений"
+msgstr "Villa við leit að stöðum"
 
 #: ui/templates/ui/car_detail.html:1634 ui/templates/ui/car_detail.html:1976
-#: ui/templates/ui/car_detail.html:1671 ui/templates/ui/car_detail.html:2013
 msgid "Search did not find any locations"
-msgstr "Поиск не нашёл местоположений"
+msgstr "Leitin fann enga staði"
 
-#: ui/templates/ui/car_detail.html:1659 ui/templates/ui/car_detail.html:1696
+#: ui/templates/ui/car_detail.html:1659
 msgid "Connection established!"
-msgstr "Соединение установлено!"
+msgstr "Tenging komin á!"
 
-#: ui/templates/ui/car_detail.html:1664 ui/templates/ui/car_detail.html:1701
+#: ui/templates/ui/car_detail.html:1664
 msgid "Reconnecting..."
-msgstr "Переподключение…"
+msgstr "Tengist aftur..."
 
-#: ui/templates/ui/car_detail.html:1990 ui/templates/ui/car_detail.html:2027
+#: ui/templates/ui/car_detail.html:1990
 msgid "Cannot add a new waypoint"
-msgstr "Невозможно добавить новую промежуточную точку"
+msgstr "Ekki hægt að bæta við viðkomustað"
 
-#: ui/templates/ui/car_detail.html:1990 ui/templates/ui/car_detail.html:2027
+#: ui/templates/ui/car_detail.html:1990
 msgid "Maximum number of waypoints reached"
-msgstr "Достигнуто максимальное количество промежуточных точек"
+msgstr "Hámarksfjölda viðkomustaða náð"
 
-#: ui/templates/ui/car_detail.html:2023 ui/templates/ui/car_detail.html:2060
+#: ui/templates/ui/car_detail.html:2023
 msgid "Waypoint"
-msgstr "Промежуточная точка"
+msgstr "Viðkomustaður"
 
 #: ui/templates/ui/car_detail.html:2075 ui/templates/ui/car_detail.html:2084
-#: ui/templates/ui/car_detail.html:2085 ui/templates/ui/car_detail.html:2112
-#: ui/templates/ui/car_detail.html:2121 ui/templates/ui/car_detail.html:2122
+#: ui/templates/ui/car_detail.html:2085
 msgid "Error saving the route plan"
-msgstr "Ошибка при сохранении плана маршрута"
+msgstr "Villa við að vista leiðaráætlunina"
 
-#: ui/templates/ui/car_detail.html:2077 ui/templates/ui/car_detail.html:2114
+#: ui/templates/ui/car_detail.html:2077
 msgid "Route plan saved!"
-msgstr "План маршрута сохранён!"
+msgstr "Leiðaráætlun vistuð!"
 
-#: ui/templates/ui/car_detail.html:2113 ui/templates/ui/car_detail.html:2150
+#: ui/templates/ui/car_detail.html:2113
 msgid "Cannot add new route plan"
-msgstr "Невозможно добавить новый план маршрута"
+msgstr "Ekki hægt að bæta við nýrri leiðaráætlun"
 
-#: ui/templates/ui/car_detail.html:2113 ui/templates/ui/car_detail.html:2150
+#: ui/templates/ui/car_detail.html:2113
 msgid "You have too many route plans, please delete one and try again."
-msgstr "У вас слишком много планов маршрутов, удалите один и попробуйте снова."
+msgstr "Þú ert með of margar leiðaráætlanir. Eyddu einni og reyndu aftur."
 
-#: ui/templates/ui/car_detail.html:2183 ui/templates/ui/car_detail.html:2220
+#: ui/templates/ui/car_detail.html:2183
 msgid "Are you sure you want to delete this route plan?"
-msgstr "Вы уверены, что хотите удалить этот план маршрута?"
+msgstr "Ertu viss um að þú viljir eyða þessari leiðaráætlun?"
 
 #: ui/templates/ui/car_detail.html:2196 ui/templates/ui/car_detail.html:2203
-#: ui/templates/ui/car_detail.html:2204 ui/templates/ui/car_detail.html:2233
-#: ui/templates/ui/car_detail.html:2240 ui/templates/ui/car_detail.html:2241
+#: ui/templates/ui/car_detail.html:2204
 msgid "Error deleting the route plan"
-msgstr "Ошибка при удалении плана маршрута"
+msgstr "Villa við að eyða leiðaráætluninni"
 
-#: ui/templates/ui/car_detail.html:2198 ui/templates/ui/car_detail.html:2235
+#: ui/templates/ui/car_detail.html:2198
 msgid "Route plan removed!"
-msgstr "План маршрута удалён!"
+msgstr "Leiðaráætlun fjarlægð!"
 
 #: ui/templates/ui/car_detail.html:2358 ui/templates/ui/car_detail.html:2366
-#: ui/templates/ui/car_detail.html:2367 ui/templates/ui/car_detail.html:2395
-#: ui/templates/ui/car_detail.html:2403 ui/templates/ui/car_detail.html:2404
+#: ui/templates/ui/car_detail.html:2367
 msgid "Error saving CARWINGS settings"
-msgstr "Ошибка сохранения настроек CARWINGS"
+msgstr "Villa við að vista CARWINGS-stillingar"
 
-#: ui/templates/ui/car_detail.html:2360 ui/templates/ui/car_detail.html:2397
+#: ui/templates/ui/car_detail.html:2360
 msgid "CARWINGS settings saved!"
-msgstr "Настройки CARWINGS сохранены!"
+msgstr "CARWINGS-stillingar vistaðar!"
 
-#: ui/templates/ui/car_detail.html:2373 ui/templates/ui/car_detail.html:2410
+#: ui/templates/ui/car_detail.html:2373
 msgid "Add timer"
-msgstr "Добавить таймер"
+msgstr "Bæta við tímastilli"
 
 #: ui/templates/ui/car_detail.html:2524 ui/templates/ui/car_detail.html:2527
-#: ui/templates/ui/car_detail.html:2561 ui/templates/ui/car_detail.html:2564
 msgid "Missing field"
-msgstr "Отсутствует пункт"
+msgstr "Reit vantar"
 
-#: ui/templates/ui/car_detail.html:2524 ui/templates/ui/car_detail.html:2561
+#: ui/templates/ui/car_detail.html:2524
 msgid "Please enter valid date for the timer"
-msgstr "Пожалуйста, введите действительную дату для таймера."
+msgstr "Sláðu inn gilda dagsetningu fyrir tímastillinn"
 
-#: ui/templates/ui/car_detail.html:2527 ui/templates/ui/car_detail.html:2564
+#: ui/templates/ui/car_detail.html:2527
 msgid "Please select at least one weekday"
-msgstr "Пожалуйста, выберите хотя бы один день недели"
+msgstr "Veldu minnst einn vikudag"
 
 #: ui/templates/ui/car_detail.html:2548 ui/templates/ui/car_detail.html:2556
 #: ui/templates/ui/car_detail.html:2557 ui/templates/ui/car_detail.html:2579
 #: ui/templates/ui/car_detail.html:2588 ui/templates/ui/car_detail.html:2589
-#: ui/templates/ui/car_detail.html:2585 ui/templates/ui/car_detail.html:2593
-#: ui/templates/ui/car_detail.html:2594 ui/templates/ui/car_detail.html:2616
-#: ui/templates/ui/car_detail.html:2625 ui/templates/ui/car_detail.html:2626
 msgid "Error saving the timer"
-msgstr "Ошибка сохранения таймера"
+msgstr "Villa við að vista tímastillinn"
 
 #: ui/templates/ui/car_detail.html:2550 ui/templates/ui/car_detail.html:2581
-#: ui/templates/ui/car_detail.html:2587 ui/templates/ui/car_detail.html:2618
 msgid "Timer saved!"
-msgstr "Таймер сохранен!"
+msgstr "Tímastillir vistaður!"
 
-#: ui/templates/ui/car_detail.html:2596 ui/templates/ui/car_detail.html:2633
+#: ui/templates/ui/car_detail.html:2596
 msgid "Are you sure you want to delete this timer?"
-msgstr "Вы уверены, что хотите удалить этот таймер?"
+msgstr "Ertu viss um að þú viljir eyða þessum tímastilli?"
 
-#: ui/templates/ui/car_detail.html:2605 ui/templates/ui/car_detail.html:2642
+#: ui/templates/ui/car_detail.html:2605
 msgid "Timer removed!"
-msgstr "Таймер удален!"
+msgstr "Tímastillir fjarlægður!"
 
 #: ui/templates/ui/car_detail.html:2608 ui/templates/ui/car_detail.html:2610
 #: ui/templates/ui/car_detail.html:2614 ui/templates/ui/car_detail.html:2615
-#: ui/templates/ui/car_detail.html:2645 ui/templates/ui/car_detail.html:2647
-#: ui/templates/ui/car_detail.html:2651 ui/templates/ui/car_detail.html:2652
 msgid "Error deleting the timer"
-msgstr "Ошибка при удалении таймера"
+msgstr "Villa við að eyða tímastillinum"
 
 #: ui/templates/ui/car_list.html:5 ui/templates/ui/car_list.html:33
 msgid "My cars"
-msgstr "Мои автомобили"
+msgstr "Bílarnir mínir"
 
 #: ui/templates/ui/car_list.html:70
 msgid "No cars added."
-msgstr "Автомобили не добавлены."
+msgstr "Engum bílum bætt við."
 
 #: ui/templates/ui/car_transfer.html:4 ui/templates/ui/car_transfer.html:8
 msgid "Transfer Ownership"
-msgstr "Передача владения"
+msgstr "Flytja eignarhald"
 
 #: ui/templates/ui/car_transfer.html:31
 msgid ""
 "You've been shared with car transfer link. The car in question is shown "
 "below. By hitting 'Transfer', you will become its new owner."
 msgstr ""
-"Вам отправили ссылку на передачу автомобиля. Автомобиль показан ниже. Нажав "
-"«Передать», вы станете его новым владельцем."
+"Þér hefur verið sendur tengill til að flytja bíl. Bíllinn sést hér fyrir "
+"neðan. Ef þú ýtir á 'Flytja' verður þú nýr eigandi hans."
 
 #: ui/templates/ui/car_transfer.html:46
 msgid "Transfer"
-msgstr "Передать"
+msgstr "Flytja"
 
 #: ui/templates/ui/change_carwings_password.html:5
 #: ui/templates/ui/change_carwings_password.html:9
 msgid "Change CARWINGS password"
-msgstr "Изменить пароль TCU"
+msgstr "Breyta CARWINGS lykilorði"
 
 #: ui/templates/ui/change_carwings_password.html:10
 msgid ""
 "This password is used for authentication between your cars and this server."
 msgstr ""
-"Этот пароль используется для аутентификации между вашими автомобилями и этим "
-"сервером."
+"Þetta lykilorð er notað til auðkenningar milli bílanna þinna og þessa "
+"netþjóns."
 
 #: ui/templates/ui/change_carwings_password.html:10
 msgid ""
 "Please keep in mind, that connection may be disturbed until you save your "
 "new password in the car."
 msgstr ""
-"Учтите, что соединение может быть нарушено, пока вы не сохраните новый "
-"пароль в автомобиле."
+"Hafðu í huga að tengingin getur truflast þar til þú hefur vistað nýja "
+"lykilorðið í bílnum."
 
 #: ui/templates/ui/change_carwings_password.html:36
 #: ui/templates/ui/change_command_pin.html:36
 #: ui/templates/ui/change_password.html:36
 msgid "Change Password"
-msgstr "Изменить пароль"
+msgstr "Breyta lykilorði"
 
 #: ui/templates/ui/change_command_pin.html:5
 #: ui/templates/ui/change_command_pin.html:9
 msgid "Change Command Pin"
-msgstr "Изменить PIN-код команды"
+msgstr "Breyta skipana PIN"
 
 #: ui/templates/ui/change_command_pin.html:5
 #: ui/templates/ui/change_command_pin.html:9
 msgid "Set Command Pin"
-msgstr "Установить PIN-код команды"
+msgstr "Stilla skipana PIN"
 
 #: ui/templates/ui/change_command_pin.html:10
 #: ui/templates/ui/snippets/security.html:16
@@ -2650,8 +2543,8 @@ msgid ""
 "This PIN-Code is used for sensitive vehicle commands, like door locking, "
 "find my car, etc."
 msgstr ""
-"Этот PIN-код используется для важных команд автомобиля, таких как блокировка "
-"дверей, поиск автомобиля и т.д."
+"Þetta PIN-númer er notað fyrir viðkvæmar skipanir, eins og að læsa hurðum, "
+"finna bílinn o.s.frv."
 
 #: ui/templates/ui/change_password.html:5
 #: ui/templates/ui/change_password.html:10
@@ -2659,48 +2552,48 @@ msgstr ""
 #: ui/templates/ui/reset_password_confirm.html:9
 #: ui/templates/ui/reset_password_confirm.html:61
 msgid "Change password"
-msgstr "Изменить пароль"
+msgstr "Breyta lykilorði"
 
 #: ui/templates/ui/enroll_2fa.html:11
 msgid "Enable Two-Factor Authentication"
-msgstr "Включить двухфакторную аутентификацию"
+msgstr "Virkja tveggja þátta auðkenningu"
 
 #: ui/templates/ui/enroll_2fa.html:12
 msgid ""
 "Scan the QR code below with your authenticator app, then enter the code it "
 "generates to confirm."
 msgstr ""
-"Отсканируйте QR-код ниже с помощью приложения-аутентификатора, затем введите "
-"сгенерированный код для подтверждения."
+"Skannaðu QR-kóðann hér fyrir neðan með auðkenningarappinu og sláðu svo inn "
+"kóðann sem það sýnir til að staðfesta."
 
 #: ui/templates/ui/enroll_2fa.html:25
 msgid "QR code for authenticator app"
-msgstr "QR-код для приложения-аутентификатора"
+msgstr "QR-kóði fyrir auðkenningarapp"
 
 #: ui/templates/ui/enroll_2fa.html:29
 msgid "Can't scan? Enter this key manually:"
-msgstr "Не можете отсканировать? Введите этот ключ вручную:"
+msgstr "Geturðu ekki skannað? Sláðu þennan lykil inn handvirkt:"
 
 #: ui/templates/ui/enroll_2fa.html:31
 msgid "Re-generate key"
-msgstr "Сгенерировать ключ заново"
+msgstr "Búa til nýjan lykil"
 
 #: ui/templates/ui/enroll_2fa.html:38 ui/templates/ui/reverify_otp.html:30
 #: ui/templates/ui/signin_otp.html:11
 msgid "Enter the 6-digit code"
-msgstr "Введите 6-значный код"
+msgstr "Sláðu inn 6 stafa kóðann"
 
 #: ui/templates/ui/enroll_2fa.html:56
 msgid "Verify & Enable"
-msgstr "Подтвердить и включить"
+msgstr "Staðfesta og virkja"
 
 #: ui/templates/ui/enroll_2fa_re.html:5
 msgid "Save Your Recovery Code"
-msgstr "Сохраните код восстановления"
+msgstr "Vistaðu endurheimtarkóðann"
 
 #: ui/templates/ui/enroll_2fa_re.html:11
 msgid "2FA Enabled"
-msgstr "2FA включена"
+msgstr "2FA virkjað"
 
 #: ui/templates/ui/enroll_2fa_re.html:13
 msgid ""
@@ -2708,519 +2601,513 @@ msgid ""
 "authenticator app, it's the only way to get back into your account. It will "
 "not be shown again."
 msgstr ""
-"охраните этот код восстановления в надёжном месте. Если вы потеряете доступ "
-"к приложению-аутентификатору, это единственный способ вернуть доступ к "
-"аккаунту. Он больше не будет показан."
+"Geymdu þennan endurheimtarkóða á öruggum stað. Ef þú missir aðgang að "
+"auðkenningarappinu er þetta eina leiðin til að komast aftur inn á aðganginn. "
+"Hann verður ekki sýndur aftur."
 
 #: ui/templates/ui/enroll_2fa_re.html:23 ui/templates/ui/setup/step0.html:71
 #: ui/templates/ui/snippets/security.html:59
 msgid "Continue"
-msgstr "Продолжить"
+msgstr "Áfram"
 
 #: ui/templates/ui/ficosa/configuration.html:11
 msgid "Select a menu to get started"
-msgstr "Выберите пункт меню, чтобы начать."
+msgstr "Veldu valmynd til að byrja"
 
 #: ui/templates/ui/ficosa/configuration.html:26
 msgid "Request current configuration"
-msgstr "Запросить текущую конфигурацию"
+msgstr "Sækja núverandi stillingar"
 
 #: ui/templates/ui/ficosa/configuration.html:40
 msgid "Modify value"
-msgstr "Изменить значение"
+msgstr "Breyta gildi"
 
 #: ui/templates/ui/ficosa/configuration.html:82
 msgid "Unmodified"
-msgstr "Без изменений"
+msgstr "Óbreytt"
 
 #: ui/templates/ui/ficosa/configuration.html:82
 msgid "Deactivate"
-msgstr "Деактивировать"
+msgstr "Afvirkja"
 
 #: ui/templates/ui/ficosa/configuration.html:82
 msgid "Activate"
-msgstr "Активировать"
+msgstr "Virkja"
 
 #: ui/templates/ui/ficosa/configuration.html:197
 #: ui/templates/ui/ficosa/configuration.html:224
 #: ui/templates/ui/ficosa/configuration.html:361
 msgid "Last value:"
-msgstr "Последнее значение:"
+msgstr "Síðasta gildi:"
 
 #: ui/templates/ui/ficosa/configuration.html:278
 #: ui/templates/ui/ficosa/configuration.html:294
 #: ui/templates/ui/ficosa/configuration.html:297
 msgid "is more than"
-msgstr "больше, чем"
+msgstr "er meira en"
 
 #: ui/templates/ui/ficosa/configuration.html:281
 #: ui/templates/ui/ficosa/configuration.html:300
 msgid "is less than"
-msgstr "меньше"
+msgstr "er minna en"
 
 #: ui/templates/ui/ficosa/configuration.html:294
 #: ui/templates/ui/ficosa/configuration.html:297
 #: ui/templates/ui/ficosa/configuration.html:300
 msgid "character(s)"
-msgstr "символ(ы)"
+msgstr "stafur/stafir"
 
 #: ui/templates/ui/ficosa/configuration.html:303
 msgid "value only accepts following characters:"
-msgstr "значение принимает только следующие символы:"
+msgstr "gildið leyfir aðeins eftirfarandi stafi:"
 
 #: ui/templates/ui/ficosa/configuration.html:306
 msgid "value only accepts following characters"
-msgstr "значение принимает только следующие символы"
+msgstr "gildið leyfir aðeins eftirfarandi stafi"
 
 #: ui/templates/ui/ficosa/configuration.html:314
 msgid "value is out of range"
-msgstr "значение выходит за пределы допустимого диапазона"
+msgstr "gildið er utan leyfilegs bils"
 
 #: ui/templates/ui/ficosa/configuration.html:323
 msgid " has invalid choice"
-msgstr " имеет неверный выбор"
+msgstr " er ógilt val"
 
 #: ui/templates/ui/ficosa/configuration.html:335
 msgid "No changes to send!"
-msgstr "Нет изменений для отправки!"
+msgstr "Engar breytingar til að senda!"
 
 #: ui/templates/ui/ficosa/veh_health.html:6
 msgid "Vehicle Health"
-msgstr "Состояние автомобиля"
+msgstr "Ástand bíls"
 
 #: ui/templates/ui/ficosa/veh_health.html:11
 msgid "TPMS Warning"
-msgstr "Индикатор предупреждения TPMS"
+msgstr "TPMS-viðvörun"
 
 #: ui/templates/ui/ficosa/veh_health.html:18
 msgid "Maintenance Alert"
-msgstr "Уведомление о техобслуживании"
+msgstr "Viðhaldsviðvörun"
 
 #: ui/templates/ui/ficosa/veh_health.html:25
 msgid "Mileage"
-msgstr "Пробег"
+msgstr "Ekin vegalengd"
 
 #: ui/templates/ui/ficosa/veh_health.html:39
 #: ui/templates/ui/probeviewer/trip.html:130
 msgid "Tire Pressures (TPMS)"
-msgstr "Давление в шинах (TPMS)"
+msgstr "Loftþrýstingur í dekkjum (TPMS)"
 
 #: ui/templates/ui/ficosa/veh_health.html:47
 #: ui/templates/ui/probeviewer/trip.html:170
 msgid "FL"
-msgstr "FL"
+msgstr "VF"
 
 #: ui/templates/ui/ficosa/veh_health.html:52
 #: ui/templates/ui/probeviewer/trip.html:174
 msgid "FR"
-msgstr "FR"
+msgstr "HF"
 
 #: ui/templates/ui/ficosa/veh_health.html:57
 #: ui/templates/ui/probeviewer/trip.html:178
 msgid "RL"
-msgstr "RL"
+msgstr "VA"
 
 #: ui/templates/ui/ficosa/veh_health.html:62
 #: ui/templates/ui/probeviewer/trip.html:182
 msgid "RR"
-msgstr "RR"
+msgstr "HA"
 
 #: ui/templates/ui/ficosa/veh_health.html:70
 msgid "Diagnostic Trouble Codes"
-msgstr "Диагностические коды неисправностей"
+msgstr "Bilanakóðar (DTC)"
 
 #: ui/templates/ui/ficosa/veh_health.html:73
 msgid "Read at"
-msgstr "Считано"
+msgstr "Lesið"
 
 #: ui/templates/ui/ficosa/veh_health.html:80
 msgid "ECU"
-msgstr "ЭБУ"
+msgstr "ECU"
 
 #: ui/templates/ui/ficosa/veh_health.html:81
 msgid "Code"
-msgstr "Код"
+msgstr "Kóði"
 
 #: ui/templates/ui/ficosa/veh_health.html:82
 msgid "Warning Light"
-msgstr "Индикатор предупреждения"
+msgstr "Viðvörunarljós"
 
 #: ui/templates/ui/ficosa/veh_health.html:96
 msgid "No long trouble codes reported"
-msgstr "Долговременные коды неисправностей не обнаружены"
+msgstr "Engir langir bilanakóðar skráðir"
 
 #: ui/templates/ui/ficosa/veh_health.html:108
 msgid "No short trouble codes reported"
-msgstr "Кратковременные коды неисправностей не обнаружены"
+msgstr "Engir stuttir bilanakóðar skráðir"
 
 #: ui/templates/ui/ficosa/veh_health.html:160
 msgid "yes"
-msgstr "Да"
+msgstr "já"
 
 #: ui/templates/ui/ficosa/veh_health.html:160
 msgid "no"
-msgstr "Нет"
+msgstr "nei"
 
 #: ui/templates/ui/ficosa/veh_health.html:165
 msgid "No trouble codes reported"
-msgstr "Коды неисправностей не обнаружены"
+msgstr "Engir bilanakóðar skráðir"
 
 #: ui/templates/ui/landing.html:5
 msgid "CARWINGS reborn"
-msgstr "CARWINGS возрождён"
+msgstr "CARWINGS endurfætt"
 
 #: ui/templates/ui/landing.html:32
 msgid "Enter your username"
-msgstr "Введите имя пользователя"
+msgstr "Sláðu inn notandanafnið þitt"
 
 #: ui/templates/ui/landing.html:41
 msgid "Enter your password"
-msgstr "Введите пароль"
+msgstr "Sláðu inn lykilorðið þitt"
 
 #: ui/templates/ui/landing.html:52 ui/templates/ui/signin.html:19
 msgid "Forgot password?"
-msgstr "Забыли пароль?"
+msgstr "Gleymt lykilorð?"
 
 #: ui/templates/ui/landing.html:83
 msgid "Make your car hi-tech again!"
-msgstr "Сделай свою машину снова хай-тек!"
+msgstr "Gerðu bílinn þinn tæknivæddan á ný!"
 
 #: ui/templates/ui/landing.html:86
 msgid ""
 "OpenCARWINGS restores original CARWINGS functionality of Nissan vehicles, "
 "bringing smart features back, often way better than the original!"
 msgstr ""
-"OpenCARWINGS восстанавливает оригинальную функциональность CARWINGS в "
-"автомобилях Nissan, возвращая умные возможности, и часто делает это намного "
-"лучше, чем было изначально!"
+"OpenCARWINGS endurvekur upprunalega CARWINGS-virkni í Nissan-bílum og færir "
+"snjalleiginleikana aftur, oft mun betri en upphaflega!"
 
 #: ui/templates/ui/landing.html:90
 msgid "Get Started"
-msgstr "Начать"
+msgstr "Hefjast handa"
 
 #: ui/templates/ui/probeviewer/main.html:10
 #: ui/templates/ui/probeviewer/main.html:63
 #: ui/templates/ui/probeviewer/trip.html:10
 #: ui/templates/ui/probeviewer/trip.html:19
 msgid "Vehicle data viewer"
-msgstr "Просмотр данных автомобиля"
+msgstr "Gagnaskoðari bíls"
 
 #: ui/templates/ui/probeviewer/main.html:57
 #: ui/templates/ui/probeviewer/trip.html:16
 #: ui/templates/ui/signin_otp_re.html:18
 msgid "Back"
-msgstr "Назад"
+msgstr "Til baka"
 
 #: ui/templates/ui/probeviewer/main.html:102
 msgid "Latest"
-msgstr "Последние"
+msgstr "Nýjast"
 
 #: ui/templates/ui/probeviewer/main.html:103
 msgid "Lifetime statistics"
-msgstr "Статистика за весь период"
+msgstr "Heildartölfræði"
 
 #: ui/templates/ui/probeviewer/main.html:104
 msgid "DOT-files"
-msgstr "DOT-файлы"
+msgstr "DOT-skrár"
 
 #: ui/templates/ui/probeviewer/main.html:105
 #: ui/templates/ui/probeviewer/main.html:367
 msgid "Trips"
-msgstr "Поездки"
+msgstr "Ferðir"
 
 #: ui/templates/ui/probeviewer/main.html:106
 msgid "Monthly statistics"
-msgstr "Месячная статистика"
+msgstr "Mánaðartölfræði"
 
 #: ui/templates/ui/probeviewer/main.html:107
 msgid "Location history"
-msgstr "История местоположений"
+msgstr "Staðsetningarsaga"
 
 #: ui/templates/ui/probeviewer/main.html:108
 msgid "Charging history"
-msgstr "История зарядки"
+msgstr "Hleðslusaga"
 
 #: ui/templates/ui/probeviewer/main.html:109
 msgid "Charges"
-msgstr "Зарядки"
+msgstr "Hleðslur"
 
 #: ui/templates/ui/probeviewer/main.html:110
 msgid "Excessive idling history"
-msgstr "История чрезмерного холостого хода"
+msgstr "Saga um óhóflegan lausagang"
 
 #: ui/templates/ui/probeviewer/main.html:111
 msgid "Excessive A/C history"
-msgstr "История чрезмерного использования кондиционера"
+msgstr "Saga um óhóflega miðstöðvarnotkun"
 
 #: ui/templates/ui/probeviewer/main.html:112
 msgid "ABS history"
-msgstr "История ABS"
+msgstr "ABS-saga"
 
 #: ui/templates/ui/probeviewer/main.html:113
 msgid "DTC history"
-msgstr "История DTC"
+msgstr "DTC-saga"
 
 #: ui/templates/ui/probeviewer/main.html:114
 msgid "MSN history"
-msgstr "История MSN"
+msgstr "MSN-saga"
 
 #: ui/templates/ui/probeviewer/main.html:130
 msgid "Phone contacts in memory"
-msgstr "Контакты телефона в памяти"
+msgstr "Símatengiliðir í minni"
 
 #: ui/templates/ui/probeviewer/main.html:131
 msgid "Locations saved in address book"
-msgstr "Местоположения, сохранённые в адресной книге"
+msgstr "Staðir vistaðir í heimilisfangabók"
 
 #: ui/templates/ui/probeviewer/main.html:135
 #: ui/templates/ui/probeviewer/main.html:169
 msgid "Telemetry configuration"
-msgstr "Конфигурация телеметрии"
+msgstr "Gagnasöfnunarstillingar"
 
 #: ui/templates/ui/probeviewer/main.html:137
 msgid "Telemetry Configuration ID"
-msgstr "Идентификатор конфигурации телеметрии"
+msgstr "Auðkenni gagnasöfnunarstillinga"
 
 #: ui/templates/ui/probeviewer/main.html:139
 msgid "New Telemetry Configuration ID"
-msgstr "Новый идентификатор конфигурации телеметрии"
+msgstr "Nýtt auðkenni gagnasöfnunarstillinga"
 
 #: ui/templates/ui/probeviewer/main.html:142
 msgid "Configuration update status"
-msgstr "Статус обновления конфигурации"
+msgstr "Staða uppfærslu stillinga"
 
 #: ui/templates/ui/probeviewer/main.html:145
 msgid ""
 "Please turn on the car for vehicle data auto-update or access a CARWINGS "
 "data channel to perform configuration update."
 msgstr ""
-"Включите автомобиль для автоматического обновления данных автомобиля или "
-"загрузите канал данных CARWINGS для выполнения обновления конфигурации."
+"Kveiktu á bílnum til að gögn uppfærist sjálfkrafa, eða opnaðu CARWINGS-"
+"gagnarás til að uppfæra stillingarnar."
 
 #: ui/templates/ui/probeviewer/main.html:149
 msgid "Cancel update"
-msgstr "Отменить обновление"
+msgstr "Hætta við uppfærslu"
 
 #: ui/templates/ui/probeviewer/main.html:155
 msgid "New Telemetry Configuration"
-msgstr "Новая конфигурация телеметрии"
+msgstr "Nýjar gagnasöfnunarstillingar"
 
 #: ui/templates/ui/probeviewer/main.html:163
 msgid "Update"
-msgstr "Обновить"
+msgstr "Uppfæra"
 
 #: ui/templates/ui/probeviewer/main.html:170
 msgid "Telemetry configuration has moved to 'TCU Configuration' tab!"
-msgstr "Настройки телеметрии перенесены на вкладку «Настройки TCU»!"
+msgstr "Gagnasöfnunarstillingar eru komnar í flipann 'TCU-stillingar'!"
 
 #: ui/templates/ui/probeviewer/main.html:177
 #: ui/templates/ui/probeviewer/main.html:205
 msgid "No vehicle data available"
-msgstr "Данные об автомобиле отсутствуют"
+msgstr "Engin gögn um bílinn tiltæk"
 
 #: ui/templates/ui/probeviewer/main.html:190
 #: ui/templates/ui/probeviewer/trip.html:147
 msgid "A/C usage"
-msgstr "Использование кондиционера"
+msgstr "Notkun miðstöðvar"
 
 #: ui/templates/ui/probeviewer/main.html:191
 msgid "Headlights usage"
-msgstr "Использование фар"
+msgstr "Notkun aðalljósa"
 
 #: ui/templates/ui/probeviewer/main.html:192
 #: ui/templates/ui/probeviewer/main.html:366
 #: ui/templates/ui/probeviewer/trip.html:32
 msgid "Average speed"
-msgstr "Средняя скорость"
+msgstr "Meðalhraði"
 
 #: ui/templates/ui/probeviewer/main.html:193
 msgid "Energy regeneration"
-msgstr "Регенерация энергии"
+msgstr "Endurheimt orka"
 
 #: ui/templates/ui/probeviewer/main.html:194
 #: ui/templates/ui/probeviewer/main.html:198
 msgid "Energy consumption"
-msgstr "Потребление энергии"
+msgstr "Orkunotkun"
 
 #: ui/templates/ui/probeviewer/main.html:195
 msgid "Runtime"
-msgstr "Время работы"
+msgstr "Keyrslutími"
 
 #: ui/templates/ui/probeviewer/main.html:196
 msgid "Lifetime data mileage"
-msgstr "Пробег за весь период"
+msgstr "Heildarakstur í gögnum"
 
 #: ui/templates/ui/probeviewer/main.html:234
 msgid "Download CSV"
-msgstr "Скачать CSV"
+msgstr "Sækja CSV"
 
 #: ui/templates/ui/probeviewer/main.html:279
 msgid "No DOT data available"
-msgstr "Данные DOT отсутствуют"
+msgstr "Engin DOT-gögn tiltæk"
 
 #: ui/templates/ui/probeviewer/main.html:280
 msgid "DOT data comes available on next startup after a trip."
-msgstr ""
-"Данные DOT станут доступны при следующем запуске после поездки.DOT tiedot "
-"tulevat saataville matkan jälkeisen käynnistyksen yhteydessä."
+msgstr "DOT-gögn verða tiltæk við næstu ræsingu eftir ferð."
 
 #: ui/templates/ui/probeviewer/main.html:341
 msgid "No trip data available"
-msgstr "Данные о поездках отсутствуют"
+msgstr "Engin ferðagögn tiltæk"
 
 #: ui/templates/ui/probeviewer/main.html:364
 msgid "Driving distance"
-msgstr "Дистанция поездки"
+msgstr "Akstursvegalengd"
 
 #: ui/templates/ui/probeviewer/main.html:365
 msgid "Driving time"
-msgstr "Время в пути"
+msgstr "Aksturstími"
 
 #: ui/templates/ui/probeviewer/main.html:368
 #: ui/templates/ui/probeviewer/trip.html:195
 msgid "Regenerated energy"
-msgstr "Регенерированная энергия"
+msgstr "Endurheimt orka"
 
 #: ui/templates/ui/probeviewer/main.html:369
 msgid "Consumed energy"
-msgstr "Потреблённая энергия"
+msgstr "Notuð orka"
 
 #: ui/templates/ui/probeviewer/main.html:372
 #: ui/templates/ui/probeviewer/trip.html:83
 #: ui/templates/ui/probeviewer/trip.html:89
 msgid "Average consumption"
-msgstr "Среднее потребление"
+msgstr "Meðalnotkun"
 
 #: ui/templates/ui/probeviewer/main.html:379
 #: ui/templates/ui/probeviewer/trip.html:153
 msgid "Average acceleration"
-msgstr "Среднее ускорение"
+msgstr "Meðalhröðun"
 
 #: ui/templates/ui/probeviewer/main.html:418
 msgid "No monthly analytics available"
-msgstr "Месячная аналитика отсутствует"
+msgstr "Engin mánaðargreining tiltæk"
 
 #: ui/templates/ui/probeviewer/main.html:419
 msgid "Monthly analytics information comes available at the end of the month."
-msgstr "Месячная аналитическая информация становится доступной в конце месяца."
+msgstr "Mánaðargreining verður tiltæk í lok mánaðarins."
 
 #: ui/templates/ui/probeviewer/main.html:437
 msgid "Single Day"
-msgstr "Один день"
+msgstr "Einn dagur"
 
 #: ui/templates/ui/probeviewer/main.html:441
 msgid "Single Week"
-msgstr "Одна неделя"
+msgstr "Ein vika"
 
 #: ui/templates/ui/probeviewer/main.html:445
 msgid "Single Month"
-msgstr "Один месяц"
+msgstr "Einn mánuður"
 
 #: ui/templates/ui/probeviewer/main.html:473
 msgid "Export to GPX"
-msgstr "Экспорт в GPX"
+msgstr "Flytja út sem GPX"
 
 #: ui/templates/ui/probeviewer/main.html:480
 msgid "No location available"
-msgstr "Местоположение недоступно"
+msgstr "Engin staðsetning tiltæk"
 
 #: ui/templates/ui/probeviewer/main.html:481
 msgid ""
 "Location information comes available on next startup, if your current "
 "configuration allows it."
 msgstr ""
-"Информация о местоположении станет доступна при следующем запуске, если ваша "
-"текущая конфигурация телеметрии это позволяет."
+"Staðsetningarupplýsingar verða tiltækar við næstu ræsingu ef núverandi "
+"stillingar leyfa það."
 
 #: ui/templates/ui/probeviewer/main.html:507
 msgid "State at start"
-msgstr "Состояние на момент начала"
+msgstr "Staða í upphafi"
 
 #: ui/templates/ui/probeviewer/main.html:508
 msgid "State at end"
-msgstr "Состояние на момент окончания"
+msgstr "Staða í lok"
 
 #: ui/templates/ui/probeviewer/main.html:509
 #: ui/templates/ui/probeviewer/main.html:582
 msgid "Charging type"
-msgstr "Тип зарядки"
+msgstr "Tegund hleðslu"
 
 #: ui/templates/ui/probeviewer/main.html:510
 msgid "Charged energy"
-msgstr "Заряженная энергия"
+msgstr "Hlaðin orka"
 
 #: ui/templates/ui/probeviewer/main.html:511
 msgid "Cell temp. (start)"
-msgstr "Температура ячейки (начало)"
+msgstr "Hiti sellu (upphaf)"
 
 #: ui/templates/ui/probeviewer/main.html:511
 #: ui/templates/ui/probeviewer/main.html:512
 #: ui/templates/ui/probeviewer/main.html:513
 msgid "avg/max/min"
-msgstr "сред./макс./мин."
+msgstr "meðal/hám/lágm"
 
 #: ui/templates/ui/probeviewer/main.html:512
 msgid "Cell temp. (end)"
-msgstr "Температура ячейки (конец)"
+msgstr "Hiti sellu (lok)"
 
 #: ui/templates/ui/probeviewer/main.html:513
 msgid "Cell volt. (start)"
-msgstr "Напряжение ячейки (начало)"
+msgstr "Spenna sellu (upphaf)"
 
 #: ui/templates/ui/probeviewer/main.html:514
 msgid "Charges while ign. off"
-msgstr "Зарядки при выключенном зажигании"
+msgstr "Hleðslur með slökkt á bílnum"
 
 #: ui/templates/ui/probeviewer/main.html:554
 msgid "No charging history available"
-msgstr "История зарядки отсутствует"
+msgstr "Engin hleðslusaga tiltæk"
 
 #: ui/templates/ui/probeviewer/main.html:555
 msgid ""
 "Charging history may become available on next startup after the charging."
-msgstr ""
-"История зарядки может стать доступной при следующем запуске после зарядки."
+msgstr "Hleðslusaga gæti orðið tiltæk við næstu ræsingu eftir hleðslu."
 
 #: ui/templates/ui/probeviewer/main.html:581
 msgid "Charge count"
-msgstr "Количество зарядок"
+msgstr "Fjöldi hleðslna"
 
 #: ui/templates/ui/probeviewer/main.html:622
 msgid "No charge data available"
-msgstr "Данные о зарядке отсутствуют"
+msgstr "Engin hleðslugögn tiltæk"
 
 #: ui/templates/ui/probeviewer/main.html:623
 msgid "Charging data may become available on next startup after the charging."
-msgstr ""
-"Данные о зарядке могут стать доступными при следующем запуске после зарядки."
+msgstr "Hleðslugögn gætu orðið tiltæk við næstu ræsingu eftir hleðslu."
 
 #: ui/templates/ui/probeviewer/main.html:646
 msgid "Operation time"
-msgstr "Время работы"
+msgstr "Notkunartími"
 
 #: ui/templates/ui/probeviewer/main.html:647
 msgid "Vehicle speed at start"
-msgstr "Скорость автомобиля в начале"
+msgstr "Hraði bíls í upphafi"
 
 #: ui/templates/ui/probeviewer/main.html:648
 msgid "Vehicle speed at end"
-msgstr "Скорость автомобиля в конце"
+msgstr "Hraði bíls í lok"
 
 #: ui/templates/ui/probeviewer/main.html:649
 msgid "Road type"
-msgstr "Тип дороги"
+msgstr "Vegtegund"
 
 #: ui/templates/ui/probeviewer/main.html:689
 msgid "No ABS data available"
-msgstr "Данные ABS отсутствуют"
+msgstr "Engin ABS-gögn tiltæk"
 
 #: ui/templates/ui/probeviewer/main.html:690
 msgid ""
 "ABS data may become available on next startup if your vehicle configuration "
 "allows it."
 msgstr ""
-"Данные ABS могут стать доступными при следующем запуске, если это позволяет "
-"конфигурация вашего автомобиля."
+"ABS-gögn gætu orðið tiltæk við næstu ræsingu ef stillingar bílsins leyfa það."
 
 #: ui/templates/ui/probeviewer/main.html:707
 #: ui/templates/ui/probeviewer/main.html:779
@@ -3228,19 +3115,19 @@ msgstr ""
 #: ui/templates/ui/probeviewer/main.html:923
 #: ui/templates/ui/probeviewer/main.html:995
 msgid "Date and time"
-msgstr "Дата и время"
+msgstr "Dagsetning og tími"
 
 #: ui/templates/ui/probeviewer/main.html:710
 #: ui/templates/ui/probeviewer/main.html:854
 #: ui/templates/ui/probeviewer/trip.html:45
 msgid "Duration"
-msgstr "Продолжительность"
+msgstr "Tímalengd"
 
 #: ui/templates/ui/probeviewer/main.html:762
 #: ui/templates/ui/probeviewer/main.html:834
 #: ui/templates/ui/probeviewer/main.html:906
 msgid "No idling data available"
-msgstr "Данные о холостом ходе отсутствуют"
+msgstr "Engin gögn um lausagang tiltæk"
 
 #: ui/templates/ui/probeviewer/main.html:763
 #: ui/templates/ui/probeviewer/main.html:835
@@ -3249,67 +3136,66 @@ msgid ""
 "Idling data may become available on next startup if your vehicle "
 "configuration allows it."
 msgstr ""
-"Данные о холостом ходе могут стать доступными при следующем запуске, если "
-"это позволяет конфигурация вашего автомобиля."
+"Gögn um lausagang gætu orðið tiltæk við næstu ræsingu ef stillingar bílsins "
+"leyfa það."
 
 #: ui/templates/ui/probeviewer/main.html:782
 msgid "Consumption"
-msgstr "Потребление"
+msgstr "Notkun"
 
 #: ui/templates/ui/probeviewer/main.html:926
 #: ui/templates/ui/probeviewer/main.html:998
 msgid "Data"
-msgstr "Данные"
+msgstr "Gögn"
 
 #: ui/templates/ui/probeviewer/main.html:978
 msgid "No DTC data available"
-msgstr "Данные DTC отсутствуют"
+msgstr "Engin DTC-gögn tiltæk"
 
 #: ui/templates/ui/probeviewer/main.html:979
 msgid ""
 "DTC data may become available on next startup if your vehicle has active DTC "
 "trouble code."
 msgstr ""
-"Данные DTC могут стать доступными при следующем запуске, если в вашем "
-"автомобиле есть активный код неисправности DTC."
+"DTC-gögn gætu orðið tiltæk við næstu ræsingu ef virkur bilanakóði (DTC) er í "
+"bílnum."
 
 #: ui/templates/ui/probeviewer/main.html:1050
 msgid "No MSN data available"
-msgstr "Данные MSN отсутствуют"
+msgstr "Engin MSN-gögn tiltæk"
 
 #: ui/templates/ui/probeviewer/main.html:1051
 msgid "MSN data may become available on next startup."
-msgstr "Данные MSN могут стать доступными при следующем запуске."
+msgstr "MSN-gögn gætu orðið tiltæk við næstu ræsingu."
 
 #: ui/templates/ui/probeviewer/main.html:1259
 #: ui/templates/ui/probeviewer/main.html:1260
 #: ui/templates/ui/probeviewer/main.html:1332
-#, fuzzy
 msgid "Error loading DOT file"
-msgstr "Ошибка сохранения таймера"
+msgstr "Villa við að hlaða DOT-skrá"
 
 #: ui/templates/ui/probeviewer/main.html:1332
 msgid "No usable GPS points found in this file."
-msgstr "В этом файле не найдено точек GPS."
+msgstr "Engir nothæfir GPS-punktar fundust í þessari skrá."
 
 #: ui/templates/ui/probeviewer/main.html:1462
 #: ui/templates/ui/probeviewer/main.html:1466
 #: ui/templates/ui/probeviewer/main.html:1467
 msgid "Error loading location history"
-msgstr "Ошибка загрузки истории местоположений"
+msgstr "Villa við að hlaða staðsetningarsögu"
 
 #: ui/templates/ui/probeviewer/nodata.html:2
 msgid ""
 "In order to receive data, CARWINGS navigation unit must have correct "
 "connection settings."
 msgstr ""
-"Для получения данных навигационная система CARWINGS должна иметь правильные "
-"настройки подключения."
+"Til að taka á móti gögnum þarf CARWINGS-leiðsögukerfið að hafa réttar "
+"tengistillingar."
 
 #: ui/templates/ui/probeviewer/nodata.html:3
 #: ui/templates/ui/setup/step5.html:10
 msgid "Learn more"
-msgstr "Узнать больше"
+msgstr "Nánar"
 
 #: ui/templates/ui/probeviewer/nodata_ficosa.html:2
 msgid ""
@@ -3317,244 +3203,244 @@ msgid ""
 "navigation boot. However, depending on TCU data collection settings, all "
 "information may not be transmitted."
 msgstr ""
-"Чтобы получать данные автомобиля, необходимо принять экран "
-"конфиденциальности при загрузке навигации. Однако в зависимости от настроек "
-"сбора данных TCU не вся информация может передаваться."
+"Til að taka á móti gögnum um bílinn þarftu að samþykkja "
+"persónuverndarskjáinn þegar leiðsögukerfið ræsir sig. Þó er ekki víst að "
+"allar upplýsingar sendist, það fer eftir gagnasöfnunarstillingum TCU."
 
 #: ui/templates/ui/probeviewer/trip.html:19
 msgid "Trip"
-msgstr "Поездка"
+msgstr "Ferð"
 
 #: ui/templates/ui/probeviewer/trip.html:28
 msgid "Distance"
-msgstr "Расстояние"
+msgstr "Vegalengd"
 
 #: ui/templates/ui/probeviewer/trip.html:36
 msgid "Energy consumed"
-msgstr "Потреблённая энергия"
+msgstr "Notuð orka"
 
 #: ui/templates/ui/probeviewer/trip.html:73
 msgid "Eco-trees"
-msgstr "Экодеревья"
+msgstr "Vistvæn tré"
 
 #: ui/templates/ui/probeviewer/trip.html:78
 msgid "Regenerated"
-msgstr "Регенерировано"
+msgstr "Endurheimt"
 
 #: ui/templates/ui/probeviewer/trip.html:125
 msgid "Info"
-msgstr "Информация"
+msgstr "Upplýsingar"
 
 #: ui/templates/ui/probeviewer/trip.html:127
 msgid "Map"
-msgstr "Карта"
+msgstr "Kort"
 
 #: ui/templates/ui/probeviewer/trip.html:132
 msgid "Energy"
-msgstr "Энергия"
+msgstr "Orka"
 
 #: ui/templates/ui/probeviewer/trip.html:133
 msgid "HV Battery"
-msgstr "Высоковольтная батарея"
+msgstr "Háspennurafhlaða"
 
 #: ui/templates/ui/probeviewer/trip.html:140
 msgid "Trip end date"
-msgstr "Дата окончания поездки"
+msgstr "Lokadagur ferðar"
 
 #: ui/templates/ui/probeviewer/trip.html:141
 msgid "Outside temperature at start"
-msgstr "Наружная температура при запуске"
+msgstr "Útihiti í upphafi"
 
 #: ui/templates/ui/probeviewer/trip.html:142
 msgid "Outside temperature at finish"
-msgstr "Наружная температура на финише"
+msgstr "Útihiti í lok"
 
 #: ui/templates/ui/probeviewer/trip.html:143
 msgid "Max speed"
-msgstr "Максимальная скорость"
+msgstr "Hámarkshraði"
 
 #: ui/templates/ui/probeviewer/trip.html:144
 msgid "Cabin preconditioning before trip"
-msgstr "Подготовка салона перед поездкой"
+msgstr "Forhitun fyrir ferð"
 
 #: ui/templates/ui/probeviewer/trip.html:145
 msgid "Highway driving time"
-msgstr "Время движения по трассе"
+msgstr "Aksturstími á þjóðvegi"
 
 #: ui/templates/ui/probeviewer/trip.html:146
 msgid "Optimal highway driving time"
-msgstr "Оптимальное время движения по трассе"
+msgstr "Ákjósanlegur aksturstími á þjóðvegi"
 
 #: ui/templates/ui/probeviewer/trip.html:148
 msgid "Idling time"
-msgstr "Время холостого хода"
+msgstr "Lausagangstími"
 
 #: ui/templates/ui/probeviewer/trip.html:149
 msgid "Headlights usage time"
-msgstr "Время использования фар"
+msgstr "Notkunartími aðalljósa"
 
 #: ui/templates/ui/probeviewer/trip.html:150
 msgid "Sudden accelerations"
-msgstr "Резкие ускорения"
+msgstr "Snöggar hraðanir"
 
 #: ui/templates/ui/probeviewer/trip.html:151
 msgid "Sudden decelerations"
-msgstr "Резкие замедления"
+msgstr "Snöggar hraðaminnkanir"
 
 #: ui/templates/ui/probeviewer/trip.html:152
 msgid "Odometer at start"
-msgstr "Показания одометра в начале"
+msgstr "Kílómetrastaða í upphafi"
 
 #: ui/templates/ui/probeviewer/trip.html:191
 msgid "A/C consumption"
-msgstr "Потребление кондиционера"
+msgstr "Orkunotkun miðstöðvar"
 
 #: ui/templates/ui/probeviewer/trip.html:192
 msgid "Auxiliary consumption"
-msgstr "Потребление дополнительного оборудования"
+msgstr "Orkunotkun aukabúnaðar"
 
 #: ui/templates/ui/probeviewer/trip.html:193
 msgid "Motor consumption"
-msgstr "Расход мотора"
+msgstr "Orkunotkun mótors"
 
 #: ui/templates/ui/probeviewer/trip.html:194
 msgid "Idle consumption"
-msgstr "Потребление на холостом ходу"
+msgstr "Orkunotkun í lausagangi"
 
 #: ui/templates/ui/probeviewer/trip.html:196
 msgid "Sudden acceleration consumption"
-msgstr "Потребление при резком ускорении"
+msgstr "Orkunotkun við snögga hröðun"
 
 #: ui/templates/ui/probeviewer/trip.html:197
 msgid "Sudden acceleration time"
-msgstr "Время резкого ускорения"
+msgstr "Tími í snöggri hröðun"
 
 #: ui/templates/ui/probeviewer/trip.html:198
 msgid "Non-eco deceleration consumption"
-msgstr "Потребление при неэкономичном замедлении"
+msgstr "Orkunotkun við óhagkvæma hraðaminnkun"
 
 #: ui/templates/ui/probeviewer/trip.html:199
 msgid "Non-eco deceleration time"
-msgstr "Время неэкономичного замедления"
+msgstr "Tími í óhagkvæmri hraðaminnkun"
 
 #: ui/templates/ui/probeviewer/trip.html:200
 msgid "Sudden start consumption"
-msgstr "Потребление при резком старте"
+msgstr "Orkunotkun við snögga ræsingu"
 
 #: ui/templates/ui/probeviewer/trip.html:201
 msgid "Sudden start time"
-msgstr "Время резкого старта"
+msgstr "Tími í snöggri ræsingu"
 
 #: ui/templates/ui/probeviewer/trip.html:207
 msgid "Trip start"
-msgstr "Начало поездки"
+msgstr "Upphaf ferðar"
 
 #: ui/templates/ui/probeviewer/trip.html:209
 #: ui/templates/ui/probeviewer/trip.html:226
 msgid "Battery pack temperature"
-msgstr "Температура аккумуляторной батареи"
+msgstr "Hiti rafhlöðu"
 
 #: ui/templates/ui/probeviewer/trip.html:211
 #: ui/templates/ui/probeviewer/trip.html:212
 #: ui/templates/ui/probeviewer/trip.html:228
 #: ui/templates/ui/probeviewer/trip.html:229
 msgid "Energy content"
-msgstr "Энергосодержание"
+msgstr "Orkuinnihald"
 
 #: ui/templates/ui/probeviewer/trip.html:213
 #: ui/templates/ui/probeviewer/trip.html:230
 msgid "Average cell temperature"
-msgstr "Средняя температура ячеек"
+msgstr "Meðalhiti sellu"
 
 #: ui/templates/ui/probeviewer/trip.html:214
 #: ui/templates/ui/probeviewer/trip.html:231
 msgid "Max cell temperature"
-msgstr "Максимальная температура ячеек"
+msgstr "Hámarkshiti sellu"
 
 #: ui/templates/ui/probeviewer/trip.html:215
 #: ui/templates/ui/probeviewer/trip.html:232
 msgid "Min cell temperature"
-msgstr "Минимальная температура ячеек"
+msgstr "Lágmarkshiti sellu"
 
 #: ui/templates/ui/probeviewer/trip.html:216
 msgid "Average cell voltage"
-msgstr "Среднее напряжение ячеек"
+msgstr "Meðalspenna sellu"
 
 #: ui/templates/ui/probeviewer/trip.html:217
 msgid "Max cell voltage"
-msgstr "Максимальное напряжение ячеек"
+msgstr "Hámarksspenna sellu"
 
 #: ui/templates/ui/probeviewer/trip.html:218
 msgid "Min cell voltage"
-msgstr "Минимальное напряжение ячеек"
+msgstr "Lágmarksspenna sellu"
 
 #: ui/templates/ui/probeviewer/trip.html:219
 msgid "AC charges (total?)"
-msgstr "Количество медленных зарядок"
+msgstr "AC-hleðslur (samtals?)"
 
 #: ui/templates/ui/probeviewer/trip.html:220
 msgid "QC charges (total?)"
-msgstr "Количество быстрых зарядок"
+msgstr "QC-hleðslur (samtals?)"
 
 #: ui/templates/ui/probeviewer/trip.html:224
 msgid "Trip end"
-msgstr "Конец поездки"
+msgstr "Lok ferðar"
 
 #: ui/templates/ui/probeviewer/trip.html:233
 msgid "Accumulated current"
-msgstr "Накопленный ток"
+msgstr "Uppsafnaður straumur"
 
 #: ui/templates/ui/probeviewer/trip.html:234
 #: ui/templates/ui/probeviewer/trip.html:238
 msgid "SOH"
-msgstr "Состояние батареи (SOH)"
+msgstr "SOH"
 
 #: ui/templates/ui/probeviewer/trip.html:235
 msgid "Pack resistance"
-msgstr "Сопротивление батареи"
+msgstr "Viðnám rafhlöðu"
 
 #: ui/templates/ui/probeviewer/trip.html:239
 msgid "New battery degradation analysis program"
-msgstr "Новая программа анализа деградации батареи"
+msgstr "Nýtt greiningarforrit fyrir rýrnun rafhlöðu"
 
 #: ui/templates/ui/reset_password.html:3 ui/templates/ui/reset_password.html:9
 #: ui/templates/ui/reset_password_complete.html:3
 msgid "Reset password"
-msgstr "Сбросить пароль"
+msgstr "Endurstilla lykilorð"
 
 #: ui/templates/ui/reset_password.html:27
 msgid "Enter email"
-msgstr "Введите адрес электронной почты"
+msgstr "Sláðu inn netfang"
 
 #: ui/templates/ui/reset_password.html:29
 msgid "Reset"
-msgstr "Сбросить"
+msgstr "Endurstilla"
 
 #: ui/templates/ui/reset_password.html:31
 #: ui/templates/ui/reset_password_confirm.html:69
 msgid "Back to sign-in"
-msgstr "Вернуться к входу"
+msgstr "Aftur í innskráningu"
 
 #: ui/templates/ui/reset_password_complete.html:12
 msgid ""
 "Your password has been reset. You can now <a href=\"/signin\" "
 "class=\"underline\">sign in here</a>"
 msgstr ""
-"Ваш пароль был сброшен. Теперь вы можете <a href=\"/signin\" "
-"class=\"underline\">войти здесь</a>"
+"Lykilorðið þitt hefur verið endurstillt. Nú geturðu <a href=\"/signin\" "
+"class=\"underline\">skráð þig inn hér</a>"
 
 #: ui/templates/ui/reset_password_confirm.html:54
 msgid "New password"
-msgstr "Новый пароль"
+msgstr "Nýtt lykilorð"
 
 #: ui/templates/ui/reset_password_confirm.html:55
 #: ui/templates/ui/reset_password_confirm.html:59
 msgid "Enter new password"
-msgstr "Введите новый пароль"
+msgstr "Sláðu inn nýtt lykilorð"
 
 #: ui/templates/ui/reset_password_confirm.html:58
 msgid "Confirm new password"
-msgstr "Подтвердите новый пароль"
+msgstr "Staðfestu nýtt lykilorð"
 
 #: ui/templates/ui/reset_password_confirm.html:65
 msgid ""
@@ -3562,81 +3448,81 @@ msgid ""
 "used.\n"
 "                        Please request a new password reset."
 msgstr ""
-"Ссылка для сброса пароля недействительна, возможно, она уже была "
-"использована.\n"
-"Пожалуйста, запросите новый сброс пароля."
+"Tengillinn til að endurstilla lykilorð var ógildur, líklega vegna þess að "
+"hann hefur þegar verið notaður.\n"
+"                        Biddu um nýja endurstillingu lykilorðs."
 
 #: ui/templates/ui/reverify_otp.html:5 ui/templates/ui/reverify_otp.html:11
 msgid "Confirm It's You"
-msgstr "Подтвердите, что это вы"
+msgstr "Staðfestu að þetta sért þú"
 
 #: ui/templates/ui/reverify_otp.html:12
 msgid "For your security, please re-enter your 2FA code to continue."
-msgstr "В целях безопасности повторно введите код 2FA, чтобы продолжить."
+msgstr "Af öryggisástæðum skaltu slá inn 2FA-kóðann aftur til að halda áfram."
 
 #: ui/templates/ui/reverify_otp.html:48 ui/templates/ui/reverify_otp.html:69
 #: ui/templates/ui/signin_otp.html:30
 msgid "Verify"
-msgstr "Подтвердить"
+msgstr "Staðfesta"
 
 #: ui/templates/ui/reverify_otp.html:57
 msgid "Recovery code"
-msgstr "Код восстановления"
+msgstr "Endurheimtarkóði"
 
 #: ui/templates/ui/reverify_otp.html:64
 msgid "Enter recovery code"
-msgstr "Введите код восстановления"
+msgstr "Sláðu inn endurheimtarkóða"
 
 #: ui/templates/ui/reverify_otp.html:66
 msgid ""
 "Using a recovery code will reset your 2FA. You'll need to set it up again "
 "afterward."
 msgstr ""
-"Использование кода восстановления сбросит 2FA. После этого вам нужно будет "
-"настроить её заново."
+"Ef þú notar endurheimtarkóða verður 2FA endurstillt. Þú þarft að setja það "
+"upp aftur á eftir."
 
 #: ui/templates/ui/reverify_otp.html:73 ui/templates/ui/reverify_otp.html:95
 msgid "Use a recovery code instead"
-msgstr "Использовать код восстановления"
+msgstr "Nota endurheimtarkóða í staðinn"
 
 #: ui/templates/ui/reverify_otp.html:94
 msgid "Use your 2FA code instead"
-msgstr "Использовать код 2FA"
+msgstr "Nota 2FA-kóða í staðinn"
 
 #: ui/templates/ui/setup/step0.html:4
 msgid "Select your car"
-msgstr "Выберите ваш автомобиль"
+msgstr "Veldu bílinn þinn"
 
 #: ui/templates/ui/setup/step0.html:10
 msgid "Please select your car model"
-msgstr "Пожалуйста, выберите модель вашего автомобиля."
+msgstr "Veldu tegund bílsins"
 
 #: ui/templates/ui/setup/step0.html:11
 msgid ""
 "Choose the model that matches your vehicle. This determines which TCU "
 "configuration will be used."
 msgstr ""
-"Выберите модель, которая соответствует вашему автомобилю. Это определяет, "
-"какая конфигурация TCU будет использоваться."
+"Veldu gerðina sem passar við bílinn þinn. Hún ræður hvaða TCU-stillingar eru "
+"notaðar."
 
 #: ui/templates/ui/setup/step0.html:48
 msgid "TCU device"
-msgstr "Устройство TCU"
+msgstr "TCU-tæki"
 
 #: ui/templates/ui/setup/step0.html:64
 msgid "No car models available."
-msgstr "Нет доступных моделей автомобилей."
+msgstr "Engar bílgerðir tiltækar."
 
 #: ui/templates/ui/setup/step1.html:4 ui/templates/ui/setup/step2.html:4
 #: ui/templates/ui/setup/step3.html:4 ui/templates/ui/setup/step4.html:4
 #: ui/templates/ui/setup/step5.html:4 ui/templates/ui/setup/stepbase.html:4
 #: ui/templates/ui/setup/stepbase.html:8
 msgid "Add new car"
-msgstr "Добавить новый автомобиль"
+msgstr "Bæta við nýjum bíl"
 
 #: ui/templates/ui/setup/step1.html:10
 msgid "Telematics Unit in your car"
-msgstr "Телематический блок в вашем автомобиле"
+msgstr "Fjarskiptaeining í bílnum"
 
 #: ui/templates/ui/setup/step1.html:11
 msgid ""
@@ -3644,20 +3530,21 @@ msgid ""
 "Unit) unit's SIM card needs to be replaced and its settings programmed. Have "
 "you done that?"
 msgstr ""
-"Для установления связи с вашим LEAF необходимо заменить SIM-карту "
-"телематического блока (TCU) и настроить его параметры. Вы это сделали?"
+"Til að koma á samskiptum við LEAF-bílinn þarf að skipta um SIM-kort í "
+"fjarskiptaeiningunni (TCU, Telematic Control Unit) og forrita stillingar "
+"hennar. Hefurðu gert það?"
 
 #: ui/templates/ui/setup/step1.html:17 ui/templates/ui/setup/step1.html:26
 msgid "No, how can I do that?"
-msgstr "Нет, как это сделать?"
+msgstr "Nei, hvernig geri ég það?"
 
 #: ui/templates/ui/setup/step1.html:18 ui/templates/ui/setup/step1.html:27
 msgid "Yes, continue"
-msgstr "Да, продолжить"
+msgstr "Já, halda áfram"
 
 #: ui/templates/ui/setup/step2.html:29
 msgid "Let's gather information about your TCU Unit"
-msgstr "Соберём информацию о вашем телематическом блоке (TCU)"
+msgstr "Söfnum upplýsingum um TCU-eininguna"
 
 #: ui/templates/ui/setup/step2.html:30
 msgid ""
@@ -3665,49 +3552,45 @@ msgid ""
 "car. Start your car and follow steps to get identifiers from navigation "
 "system:"
 msgstr ""
-"Пора сесть в ваш LEAF и найти уникальные идентификаторы вашего автомобиля. "
-"Запустите автомобиль и следуйте инструкциям, чтобы получить идентификаторы "
-"из навигационной системы:"
+"Nú er komið að því að setjast inn í LEAF-bílinn og finna auðkenni sem eru "
+"einstök fyrir bílinn þinn. Ræstu bílinn og fylgdu skrefunum til að fá "
+"auðkennin úr leiðsögukerfinu:"
 
 #: ui/templates/ui/setup/step2.html:33
 msgid "1. Press the hard button labeled Menu"
-msgstr "1. Нажмите аппаратную кнопку «Меню»"
+msgstr "1. Ýttu á takkann merktan Menu"
 
 #: ui/templates/ui/setup/step2.html:34
 msgid "2. Press the “CARWINGS” soft button on the center display screen."
-msgstr ""
-"2. Нажмите программную кнопку «CARWINGS» на центральном экране дисплея."
+msgstr "2. Ýttu á „CARWINGS“ á miðjuskjánum."
 
 #: ui/templates/ui/setup/step2.html:35
 msgid ""
 "3. Press the “CARWINGS Settings” soft button on the center display screen."
-msgstr ""
-"3. Нажмите программную кнопку «Настройки CARWINGS» на центральном экране "
-"дисплея."
+msgstr "3. Ýttu á „CARWINGS Settings“ á miðjuskjánum."
 
 #: ui/templates/ui/setup/step2.html:36
 msgid ""
 "4. Scroll down if necessary and press “Unit ID information” soft button on "
 "the center display screen."
 msgstr ""
-"4. При необходимости прокрутите вниз и нажмите программную кнопку "
-"«Информация об идентификаторе устройства» на центральном экране дисплея."
+"4. Skrunaðu niður ef þarf og ýttu á „Unit ID information“ á miðjuskjánum."
 
 #: ui/templates/ui/setup/step2.html:37
 msgid ""
 "5. Write down identifiers Unit ID, TCU ID, SIM ID and VIN. Then enter them "
 "to the form below"
 msgstr ""
-"5. Запишите идентификаторы: Unit ID, TCU ID, SIM ID и VIN. Затем введите их "
-"в форму ниже"
+"5. Skrifaðu niður auðkennin Unit ID, TCU ID, SIM ID og VIN. Sláðu þau svo "
+"inn í reitina hér fyrir neðan"
 
 #: ui/templates/ui/setup/step3.html:29
 msgid "Back to basics"
-msgstr "Вернуться к основам"
+msgstr "Grunnupplýsingar"
 
 #: ui/templates/ui/setup/step3.html:32
 msgid "Nickname for your vehicle"
-msgstr "Псевдоним для вашего автомобиля"
+msgstr "Gælunafn bílsins"
 
 #: ui/templates/ui/setup/step4.html:30
 msgid ""
@@ -3715,469 +3598,466 @@ msgid ""
 "server. To deliver the SMS, you have several options regarding which service "
 "will be used for this task."
 msgstr ""
-"Телематический блок (TCU) LEAF ожидает получения SMS-команды для "
-"установления соединения с сервером. Для отправки SMS доступно несколько "
-"вариантов выбора сервиса для этой задачи."
+"LEAF TCU þarf að fá SMS-skipun til að tengjast netþjóninum. Þú getur valið "
+"um nokkrar þjónustur til að koma SMS-skeytinu til skila."
 
 #: ui/templates/ui/setup/step4.html:30
 msgid "We recommend using"
-msgstr "Мы рекомендуем использовать (если доступно)"
+msgstr "Við mælum með"
 
 #: ui/templates/ui/setup/step4.html:30
 msgid "Hologram IoT SIM Card"
-msgstr "IoT SIM-карта Hologram"
+msgstr "Hologram IoT SIM-korti"
 
 #: ui/templates/ui/setup/step4.html:30
 msgid ""
 "in your TCU, because it offers free SMS messages to the device. Other "
 "services may require cost per SMS."
 msgstr ""
-"в вашем TCU, так как она предоставляет бесплатные SMS-сообщения на "
-"устройство. Другие сервисы могут взимать плату за каждое SMS."
+"í TCU, því það býður upp á ókeypis SMS-skeyti í tækið. Aðrar þjónustur gætu "
+"rukkað fyrir hvert SMS."
 
 #: ui/templates/ui/setup/step5.html:8
 msgid "All done!"
-msgstr "Всё готово!"
+msgstr "Allt klárt!"
 
 #: ui/templates/ui/setup/step5.html:9
 msgid ""
 "You're done with providing necessary information to establish connection "
 "with your LEAF."
 msgstr ""
-"Вы завершили предоставление необходимой информации для установления связи с "
-"вашим LEAF."
+"Þú hefur gefið allar upplýsingar sem þarf til að tengjast LEAF-bílnum þínum."
 
 #: ui/templates/ui/setup/step5.html:9
 msgid "You can now use TCU services."
-msgstr "Теперь вы можете использовать сервисы TCU."
+msgstr "Nú geturðu notað TCU-þjónustur."
 
 #: ui/templates/ui/setup/step5.html:10
 msgid ""
 "Did you know? If you also change connection settings on your navigation "
 "unit, you will get detailed vehicle statistic informations."
 msgstr ""
-"Знаете ли вы? Если вы также измените настройки подключения в навигационном "
-"блоке, вы получите подробную статистику по автомобилю."
+"Vissirðu? Ef þú breytir líka tengistillingum leiðsögukerfisins færðu "
+"ítarlega tölfræði um bílinn."
 
 #: ui/templates/ui/setup/step5.html:14
 msgid "Finish"
-msgstr "Завершить"
+msgstr "Ljúka"
 
 #: ui/templates/ui/signin.html:10
 msgid "Enter username"
-msgstr "Введите имя пользователя"
+msgstr "Sláðu inn notandanafn"
 
 #: ui/templates/ui/signin.html:14
 msgid "Enter password"
-msgstr "Введите пароль"
+msgstr "Sláðu inn lykilorð"
 
 #: ui/templates/ui/signin.html:18 ui/templates/ui/signup.html:3
 #: ui/templates/ui/signup.html:19 ui/templates/ui/signup.html:25
 msgid "Sign Up"
-msgstr "Зарегистрироваться"
+msgstr "Nýskráning"
 
 #: ui/templates/ui/signin_otp.html:3 ui/templates/ui/signin_otp_re.html:3
 msgid "Enter 2FA Code"
-msgstr "Введите код 2FA"
+msgstr "Sláðu inn 2FA-kóða"
 
 #: ui/templates/ui/signin_otp.html:33
 msgid "Use recovery code instead"
-msgstr "Использовать код восстановления"
+msgstr "Nota endurheimtarkóða í staðinn"
 
 #: ui/templates/ui/signin_otp_re.html:11
 msgid "Recovery Code"
-msgstr "Код восстановления"
+msgstr "Endurheimtarkóði"
 
 #: ui/templates/ui/signin_otp_re.html:15
 msgid "Reset 2FA"
-msgstr "Сбросить 2FA"
+msgstr "Endurstilla 2FA"
 
 #: ui/templates/ui/signup.html:27
 msgid "Already have an account?"
-msgstr "Уже есть аккаунт?"
+msgstr "Ertu nú þegar með aðgang?"
 
 #: ui/templates/ui/signup.html:27
 msgid "Sign in"
-msgstr "Войти"
+msgstr "Skrá inn"
 
 #: ui/templates/ui/snippets/security.html:15
 #: ui/templates/ui/snippets/security.html:146
 msgid "Set PIN"
-msgstr "Установить PIN"
+msgstr "Stilla PIN"
 
 #: ui/templates/ui/snippets/security.html:20
 msgid "Enter a new 4-digit PIN"
-msgstr "Введите новый 4-значный PIN"
+msgstr "Sláðu inn nýtt 4 stafa PIN-númer"
 
 #: ui/templates/ui/snippets/security.html:23
 msgid "Confirm your new PIN"
-msgstr "Подтвердите новый PIN"
+msgstr "Staðfestu nýja PIN-númerið"
 
 #: ui/templates/ui/snippets/security.html:28
 msgid "Enter your 2FA code to confirm"
-msgstr "Введите код 2FA для подтверждения"
+msgstr "Sláðu inn 2FA-kóðann til að staðfesta"
 
 #: ui/templates/ui/snippets/security.html:52
 msgid "Enter PIN"
-msgstr "Введите PIN"
+msgstr "Sláðu inn PIN"
 
 #: ui/templates/ui/snippets/security.html:146
 msgid "Change PIN"
-msgstr "Изменить PIN"
+msgstr "Breyta PIN"
 
 #: ui/templates/ui/snippets/security.html:176
 msgid "Please enter a 4-digit PIN."
-msgstr "Пожалуйста, введите 4-значный PIN."
+msgstr "Sláðu inn 4 stafa PIN-númer."
 
 #: ui/templates/ui/snippets/security.html:183
 msgid "Please confirm your PIN."
-msgstr "Пожалуйста, подтвердите PIN."
+msgstr "Staðfestu PIN-númerið."
 
 #: ui/templates/ui/snippets/security.html:190
 msgid "PINs do not match, please try again."
-msgstr "PIN-коды не совпадают, пожалуйста, попробуйте снова."
+msgstr "PIN-númerin passa ekki saman, reyndu aftur."
 
 #: ui/templates/ui/snippets/security.html:202
 msgid "Please enter your 6-digit 2FA code."
-msgstr "Пожалуйста, введите 6-значный код 2FA."
+msgstr "Sláðu inn 6 stafa 2FA-kóðann."
 
 #: ui/templates/ui/snippets/security.html:220
 #: ui/templates/ui/snippets/security.html:231
 #: ui/templates/ui/snippets/security.html:232
 msgid "Error setting PIN"
-msgstr "Ошибка при установке PIN"
+msgstr "Villa við að stilla PIN"
 
 #: ui/templates/ui/snippets/security.html:265
 msgid "Please enter your 4-digit PIN."
-msgstr "Пожалуйста, введите 4-значный PIN."
+msgstr "Sláðu inn 4 stafa PIN-númerið þitt."
 
 #: ui/templates/ui/vflash_editor.html:9
 msgid "Connection Profile Editor"
-msgstr "Редактор профиля подключения"
+msgstr "Ritill fyrir tengisnið"
 
 #: ui/templates/ui/vflash_editor.html:18
 msgid "Choose or drag&drop vflash dump to get started"
-msgstr "Выберите или перетащите дамп vflash, чтобы начать"
+msgstr "Veldu eða dragðu vflash-afrit hingað til að byrja"
 
 #: ui/templates/ui/vflash_editor.html:19
 msgid ""
 "Choose or drag&drop CWS_SYS file from hidden SD partition to get started"
-msgstr ""
-"Для начала выберите или перетащите файл CWS_SYS из скрытого раздела SD-карты"
+msgstr "Veldu eða dragðu CWS_SYS-skrá af falinni SD-sneið hingað til að byrja"
 
 #: ui/templates/ui/vflash_editor.html:19
 msgid "make hidden partition visible using"
-msgstr "сделать скрытый раздел видимым с помощью"
+msgstr "gerðu falda sneið sýnilega með"
 
 #: ui/templates/ui/vflash_editor.html:37
 msgid "Add New Connection Profile"
-msgstr "Добавить новый профиль подключения"
+msgstr "Bæta við nýju tengisniði"
 
 #: ui/templates/ui/vflash_editor.html:39
 msgid "Export"
-msgstr "Экспорт"
+msgstr "Flytja út"
 
 #: ui/templatetags/probeconfig.py:12
 msgid "Unknown"
-msgstr "Неизвестный"
+msgstr "Óþekkt"
 
 #: ui/views.py:54
 msgid "TCU setup"
-msgstr "Настройка TCU"
+msgstr "Uppsetning TCU"
 
 #: ui/views.py:55
 msgid "TCU identifiers"
-msgstr "Идентификаторы TCU"
+msgstr "TCU-auðkenni"
 
 #: ui/views.py:56
 msgid "Basic information"
-msgstr "Основная информация"
+msgstr "Grunnupplýsingar"
 
 #: ui/views.py:57
 msgid "SMS configuration"
-msgstr "Конфигурация SMS"
+msgstr "SMS-stillingar"
 
 #: ui/views.py:58
 msgid "Car added"
-msgstr "Автомобиль добавлен"
+msgstr "Bíl bætt við"
 
 #: ui/views.py:113 ui/views.py:495
 msgid ""
 "It is recommended to enable 2FA for enhanced security. Please do so by "
 "clicking your username, on top right corner."
 msgstr ""
-"Рекомендуется включить 2FA для повышения безопасности. Сделайте это, нажав "
-"на имя пользователя в правом верхнем углу."
+"Mælt er með því að virkja 2FA til að auka öryggið. Smelltu á notandanafnið "
+"þitt efst í hægra horninu til að gera það."
 
 #: ui/views.py:129
 msgid "Account successfully updated!"
-msgstr "Аккаунт успешно обновлён!"
+msgstr "Aðgangur uppfærður!"
 
 #: ui/views.py:132 ui/views.py:1029
 msgid "Please fill the form correctly and try again."
-msgstr "Пожалуйста, заполните форму корректно и попробуйте снова."
+msgstr "Fylltu út eyðublaðið rétt og reyndu aftur."
 
 #: ui/views.py:463
 msgid "Command Pin successfully changed"
-msgstr "PIN-код команды успешно изменён"
+msgstr "Skipana PIN breytt"
 
 #: ui/views.py:516
 msgid "Transfer was successful!"
-msgstr "Передача прошла успешно!"
+msgstr "Flutningurinn tókst!"
 
 #: ui/views.py:523
 msgid ""
 "Transfer link not found! It may have expired, or the transfer is already "
 "completed."
 msgstr ""
-"Ссылка на передачу не найдена! Возможно, срок её действия истёк или передача "
-"уже завершена."
+"Flutningstengill fannst ekki! Hann gæti verið útrunninn eða flutningnum "
+"þegar lokið."
 
 #: ui/views.py:576
 msgid "Successfully saved settings."
-msgstr "Настройки успешно сохранены."
+msgstr "Stillingar vistaðar."
 
 #: ui/views.py:578 ui/views.py:903 ui/views.py:923
 msgid "Please fill the form correctly"
-msgstr "Пожалуйста, заполните форму корректно"
+msgstr "Fylltu út eyðublaðið rétt"
 
 #: ui/views.py:581 ui/views.py:959
 msgid "Please fill all necessary fields and try again."
-msgstr "Пожалуйста, заполните все обязательные поля и попробуйте снова."
+msgstr "Fylltu út alla nauðsynlega reiti og reyndu aftur."
 
 #: ui/views.py:585
 msgid "Waiting for first connection.."
-msgstr "Ждем первого подключения.."
+msgstr "Bíður eftir fyrstu tengingu.."
 
 #: ui/views.py:634
 msgid "Sign-up is not enabled on this instance"
-msgstr "Регистрация не включена на этом экземпляре"
+msgstr "Nýskráning er ekki virk á þessum netþjóni"
 
 #: ui/views.py:654
 msgid ""
 "Your current timezone is UTC. Please set your local timezone in account "
 "settings."
 msgstr ""
-"Ваш текущий часовой пояс — UTC. Пожалуйста, укажите местный часовой пояс в "
-"настройках учётной записи."
+"Tímabeltið þitt er UTC. Stilltu þitt eigið tímabelti í aðgangsstillingum."
 
 #: ui/views.py:680
 msgid "Invalid username or password."
-msgstr "Неверное имя пользователя или пароль."
+msgstr "Rangt notandanafn eða lykilorð."
 
 #: ui/views.py:698 ui/views.py:724
 msgid "2FA Authentication is not enabled!"
-msgstr "Двухфакторная аутентификация не включена!"
+msgstr "Tveggja þátta auðkenning er ekki virk!"
 
 #: ui/views.py:730
 msgid "2FA was reset, please setup again in account settings."
-msgstr ""
-"2FA была сброшена, пожалуйста, настройте её заново в настройках аккаунта."
+msgstr "2FA var endurstillt. Settu það upp aftur í aðgangsstillingum."
 
 #: ui/views.py:741
 msgid "2FA is already enabled."
-msgstr "2FA уже включена."
+msgstr "2FA er þegar virkt."
 
 #: ui/views.py:795
 msgid "2FA was disabled successfully!"
-msgstr "2FA успешно отключена!"
+msgstr "Slökkt á 2FA!"
 
 #: ui/views.py:803
 msgid "Command PIN is strictly enforced on this server, it cannot be disabled."
-msgstr ""
-"PIN-код команды строго обязателен на этом сервере и не может быть отключён."
+msgstr "Skipana-PIN er skylda á þessum netþjóni og ekki hægt að slökkva á því."
 
 #: ui/views.py:807
 msgid "Command PIN was disabled successfully!"
-msgstr "PIN-код команды успешно отключён!"
+msgstr "Slökkt á skipana-PIN!"
 
 #: ui/views.py:890
 msgid "Car is already added. Please remove and try again."
-msgstr "Автомобиль уже добавлен. Пожалуйста, удалите его и попробуйте снова."
+msgstr "Bílnum hefur þegar verið bætt við. Fjarlægðu hann og reyndu aftur."
 
 #: ui/views.py:940
 msgid "Please select a provider for SMS."
-msgstr "Пожалуйста, выберите провайдера SMS."
+msgstr "Veldu SMS-þjónustu."
 
 #: ui/views.py:1012
 msgid "This function is not available for TCU Model"
-msgstr "Эта функция недоступна для вашей модели TCU"
+msgstr "Þessi aðgerð er ekki í boði fyrir þessa TCU-gerð"
 
 #: ui/views.py:1021
 msgid "Update requested! Update will occur on next boot."
-msgstr ""
-"Запрос на обновление! Обновление будет выполнено при следующем запуске."
+msgstr "Beðið um uppfærslu! Hún fer fram við næstu ræsingu."
 
 #: ui/views.py:1027
 msgid "Update request cancelled!"
-msgstr "Запрос на обновление отменен!"
+msgstr "Hætt við uppfærslu!"
 
 msgid ""
-"In order to receive vehicle data, CARWINGS navigation unit must have correct "
-"connection settings."
+"In order to receive vehicle data, CARWINGS navigation unit must have "
+"correct connection settings."
 msgstr ""
-"Для получения данных об автомобиле навигационная система CARWINGS должна "
-"иметь правильные настройки подключения."
+"Til að taka á móti gögnum um bílinn þarf CARWINGS-leiðsögukerfið að hafa "
+"réttar tengistillingar."
 
 msgid "Trip information comes available on next startup after the trip."
-msgstr ""
-"Информация о поездке становится доступной при следующем запуске после "
-"поездки."
+msgstr "Ferðaupplýsingar verða tiltækar við næstu ræsingu eftir ferðina."
 
 msgid "A/C precondition notice"
-msgstr "Уведомление о предварительном кондиционировании"
+msgstr "Tilkynning um forhitun"
 
 #, python-brace-format
 msgid "Account created for {username}! Please sign in."
-msgstr ""
-"Для пользователя {username} создана учетная запись! Пожалуйста, войдите в "
-"систему."
+msgstr "Aðgangur stofnaður fyrir {username}! Skráðu þig inn."
+
+msgid "Export VFlash"
+msgstr "Flytja út VFlash"
 
 msgid "Take Back Control of Your Nissan LEAF"
-msgstr "Возьмите контроль над своим Nissan LEAF"
+msgstr "Taktu aftur stjórnina á Nissan LEAF-bílnum þínum"
 
 msgid ""
 "The iconic Nissan LEAF deserves more than abandonment. With the "
-"manufacturer's support fading, the community steps up. Sign up now to bring "
-"your LEAF back to life!"
+"manufacturer's support fading, the community steps up. Sign up now to "
+"bring your LEAF back to life!"
 msgstr ""
-"Легендарный Nissan LEAF заслуживает большего, чем забвение. С угасанием "
-"поддержки производителя сообщество берёт инициативу в свои руки. "
-"Зарегистрируйтесь сейчас, чтобы вернуть ваш LEAF к жизни!"
+"Nissan LEAF á betra skilið en að vera yfirgefinn. Framleiðandinn er að hætta "
+"stuðningi og samfélagið tekur við. Skráðu þig núna og vektu LEAF-bílinn þinn "
+"aftur til lífsins!"
 
 msgid "Charge position"
-msgstr "Место зарядки"
+msgstr "Hleðslustaður"
 
 msgid "Direction"
-msgstr "Направление"
+msgstr "Stefna"
 
 msgid "Result"
-msgstr "Результат"
+msgstr "Niðurstaða"
 
 msgid "Version"
-msgstr "Версия"
+msgstr "Útgáfa"
 
 msgid "OpenCARWINGS"
 msgstr "OpenCARWINGS"
 
 msgid "Route Planning & Navigation"
-msgstr "Планирование маршрута и навигация"
+msgstr "Leiðaskipulag og leiðsögn"
 
 msgid "Online Services"
-msgstr "Онлайн-сервисы"
+msgstr "Netþjónustur"
 
 msgid "Any new announcements or features can be shown here"
-msgstr "Здесь могут быть показаны любые новые объявления или функции"
+msgstr "Hér geta birst tilkynningar og nýjungar"
 
 msgid "Energy Economy"
-msgstr "Энергоэффективность"
+msgstr "Orkunýting"
 
 msgid "Get latest energy economy information"
-msgstr "Получите актуальную информацию об энергоэффективности"
+msgstr "Sækja nýjustu upplýsingar um orkunýtingu"
 
 msgid "Eco Trees"
-msgstr "Экодеревья"
+msgstr "Vistvæn tré"
 
 msgid "Get latest eco tree information"
-msgstr "Получите актуальную информацию об экодеревьях"
+msgstr "Sækja nýjustu upplýsingar um vistvæn tré"
 
 msgid "Weather Forecast"
-msgstr "Прогноз погоды"
+msgstr "Veðurspá"
 
 msgid "Download Weather Forecast for your area"
-msgstr "Загрузите прогноз погоды для вашего региона"
+msgstr "Sækja veðurspá fyrir þitt svæði"
 
 msgid "clear"
-msgstr "ясно"
+msgstr "heiðskíru"
 
 msgid "mainly clear"
-msgstr "в основном ясно"
+msgstr "að mestu heiðskíru"
 
 msgid "partly cloudy"
-msgstr "переменная облачность"
+msgstr "hálfskýjuðu"
 
 msgid "cloudy"
-msgstr "облачно"
+msgstr "skýjuðu"
 
 msgid "foggy"
-msgstr "туманно"
+msgstr "þoku"
 
 msgid "foggy with rime ice"
-msgstr "туман с изморозью"
+msgstr "þoku með hrímingu"
 
 msgid "drizzling lightly"
-msgstr "лёгкая морось"
+msgstr "lítils háttar súld"
 
 msgid "drizzling moderately"
-msgstr "умеренная морось"
+msgstr "súld"
 
 msgid "heavy drizzling"
-msgstr "сильная морось"
+msgstr "mikilli súld"
 
 msgid "drizzling lightly freezed"
-msgstr "лёгкая замороженная морось"
+msgstr "lítils háttar frostsúld"
 
 msgid "drizzling moderately freezed"
-msgstr "умеренная замороженная морось"
+msgstr "frostsúld"
 
 msgid "raining slightly"
-msgstr "небольшой дождь"
+msgstr "lítils háttar rigningu"
 
 msgid "raining moderately"
-msgstr "умеренный дождь"
+msgstr "rigningu"
 
 msgid "raining heavily"
-msgstr "сильный дождь"
+msgstr "mikilli rigningu"
 
 msgid "freeze raining lightly"
-msgstr "лёгкий ледяной дождь"
+msgstr "lítils háttar frostrigningu"
 
 msgid "freeze raining moderately"
-msgstr "умеренный ледяной дождь"
+msgstr "frostrigningu"
 
 msgid "snowing slightly"
-msgstr "небольшой снег"
+msgstr "lítils háttar snjókomu"
 
 msgid "moderate snowing"
-msgstr "умеренный снег"
+msgstr "snjókomu"
 
 msgid "snowing heavily"
-msgstr "сильный снег"
+msgstr "mikilli snjókomu"
 
 msgid "snowing grain"
-msgstr "снежные крупинки"
+msgstr "kornasnjó"
 
 msgid "slight rain shower"
-msgstr "небольшой ливень"
+msgstr "lítils háttar skúrum"
 
 msgid "moderate rain shower"
-msgstr "умеренный ливень"
+msgstr "skúrum"
 
 msgid "violent rain shower"
-msgstr "сильный ливень"
+msgstr "mjög miklum skúrum"
 
 msgid "slight snow shower"
-msgstr "небольшой снегопад"
+msgstr "lítils háttar éljum"
 
 msgid "heavy snow shower"
-msgstr "сильный снегопад"
+msgstr "miklum éljum"
 
 msgid "thunderstorm"
-msgstr "гроза"
+msgstr "þrumuveðri"
 
 msgid "This channel does not exist and cannot be added to favorites list"
-msgstr "Этот канал не существует и не может быть добавлен в список избранных."
+msgstr "Þessi rás er ekki til og ekki hægt að bæta henni við uppáhaldsrásir"
 
-#: ui/templates/ui/car_detail.html:537
-#, fuzzy
-msgid "Car Identification"
-msgstr "Уведомление о зарядки"
-
-#: ui/templates/ui/car_detail.html:577
-msgid "Battery & vehicle"
+msgid ""
+"You may sign in with your username and CARWINGS password in navigation "
+"unit like showed below."
 msgstr ""
+"Þú getur skráð þig inn í leiðsögukerfinu með notandanafni og CARWINGS-"
+"lykilorði eins og sýnt er hér fyrir neðan."
 
-#: ui/templates/ui/car_detail.html:606
-#, fuzzy
-msgid "Refresh intervals"
-msgstr "Обновление данных"
+msgid "Latitude"
+msgstr "Breiddargráða"
+
+msgid "Longitude"
+msgstr "Lengdargráða"
+
+msgid "VFlash editor"
+msgstr "VFlash-ritill"
+
+msgid "GIDs remaining (relative)"
+msgstr "GIDs eftir (hlutfallslegt)"

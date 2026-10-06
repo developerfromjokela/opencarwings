@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-25 11:54+0000\n"
-"PO-Revision-Date: 2026-10-06 18:50+0000\n"
+"PO-Revision-Date: 2026-10-07 17:00+0000\n"
 "Last-Translator: Rikard Svenman <rsvenman@gmail.com>\n"
 "Language-Team: Swedish <https://i18n.viaaq.eu/projects/opencarwings-server/"
 "server/sv/>\n"
@@ -2890,32 +2890,33 @@ msgstr "Historik överdriven tomgång"
 
 #: ui/templates/ui/probeviewer/main.html:111
 msgid "Excessive A/C history"
-msgstr ""
+msgstr "Historik överdriven A/C-användning"
 
 #: ui/templates/ui/probeviewer/main.html:112
 msgid "ABS history"
-msgstr ""
+msgstr "ABS-historik"
 
 #: ui/templates/ui/probeviewer/main.html:113
 msgid "DTC history"
-msgstr ""
+msgstr "Felkodshistorik"
 
 #: ui/templates/ui/probeviewer/main.html:114
+#, fuzzy
 msgid "MSN history"
-msgstr ""
+msgstr "MSN-historik"
 
 #: ui/templates/ui/probeviewer/main.html:130
 msgid "Phone contacts in memory"
-msgstr ""
+msgstr "Telefonkontakter i minnet"
 
 #: ui/templates/ui/probeviewer/main.html:131
 msgid "Locations saved in address book"
-msgstr ""
+msgstr "Platser i adressboken"
 
 #: ui/templates/ui/probeviewer/main.html:135
 #: ui/templates/ui/probeviewer/main.html:169
 msgid "Telemetry configuration"
-msgstr ""
+msgstr "Telemetri-inställningar"
 
 #: ui/templates/ui/probeviewer/main.html:137
 msgid "Telemetry Configuration ID"

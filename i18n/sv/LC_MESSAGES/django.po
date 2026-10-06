@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-25 11:54+0000\n"
-"PO-Revision-Date: 2026-10-01 18:07+0000\n"
+"PO-Revision-Date: 2026-10-06 18:50+0000\n"
 "Last-Translator: Rikard Svenman <rsvenman@gmail.com>\n"
 "Language-Team: Swedish <https://i18n.viaaq.eu/projects/opencarwings-server/"
 "server/sv/>\n"
@@ -2205,120 +2205,124 @@ msgid ""
 "enabling this option, 'display' percentage value will be calculated, it may "
 "be inaccurate."
 msgstr ""
+"På generation AZE0 (>2013) går det att läsa av tillgänglig batterikapacitet "
+"i procent. Detta implementerades aldrig för ZE0-bilar. När denna funktion "
+"aktiveras kommer \"display-värde\" i procent beräknas, så det kan vara "
+"felaktigt."
 
 #: ui/templates/ui/car_detail.html:581 ui/templates/ui/car_detail.html:611
 msgid "Periodic data refresh interval"
-msgstr ""
+msgstr "Intervall för periodisk datauppdatering"
 
 #: ui/templates/ui/car_detail.html:590 ui/templates/ui/car_detail.html:619
 msgid "Periodic data refresh interval (while driving or charging)"
-msgstr ""
+msgstr "Intervall för periodisk datauppdatering (under färd eller laddning)"
 
 #: ui/templates/ui/car_detail.html:599 ui/templates/ui/setup/step4.html:29
 #: ui/templates/ui/car_detail.html:631
 msgid "SMS provider"
-msgstr ""
+msgstr "SMS-leverantör"
 
 #: ui/templates/ui/car_detail.html:632 ui/templates/ui/car_detail.html:669
 msgid "Remove car"
-msgstr ""
+msgstr "Ta bort bil"
 
 #: ui/templates/ui/car_detail.html:651 ui/templates/ui/car_detail.html:688
 msgid "Set car location as"
-msgstr ""
+msgstr "Ställ in bilens position som"
 
 #: ui/templates/ui/car_detail.html:670 ui/templates/ui/car_detail.html:707
 msgid "Select data channel"
-msgstr ""
+msgstr "välj datakanal"
 
 #: ui/templates/ui/car_detail.html:705 ui/templates/ui/car_detail.html:742
 msgid "Edit data channel"
-msgstr ""
+msgstr "Redigera datakanal"
 
 #: ui/templates/ui/car_detail.html:706 ui/templates/ui/car_detail.html:743
 msgid "Channel name"
-msgstr ""
+msgstr "Kanalnamn"
 
 #: ui/templates/ui/car_detail.html:710 ui/templates/ui/car_detail.html:747
 msgid "Channel icon"
-msgstr ""
+msgstr "Kanalikon"
 
 #: ui/templates/ui/car_detail.html:721 ui/templates/ui/car_detail.html:758
 msgid "Data URL"
-msgstr ""
+msgstr "Data-URL"
 
 #: ui/templates/ui/car_detail.html:723 ui/templates/ui/car_detail.html:760
 msgid "Data URL format and documentation"
-msgstr ""
+msgstr "Data-URL format och dokumentation"
 
 #: ui/templates/ui/car_detail.html:727 ui/templates/ui/car_detail.html:764
 msgid "Allow sending current vehicle location"
-msgstr ""
+msgstr "Tillåt sändning av nuvarande position"
 
 #: ui/templates/ui/car_detail.html:749 ui/templates/ui/car_detail.html:2393
 #: ui/templates/ui/car_detail.html:786 ui/templates/ui/car_detail.html:2430
 msgid "Edit timer"
-msgstr ""
+msgstr "redigera timer"
 
 #: ui/templates/ui/car_detail.html:750 ui/templates/ui/car_detail.html:787
 msgid "Timer name"
-msgstr ""
+msgstr "Timer-namn"
 
 #: ui/templates/ui/car_detail.html:755 ui/templates/ui/car_detail.html:792
 msgid "Enabled"
-msgstr ""
+msgstr "Aktiv"
 
 #: ui/templates/ui/car_detail.html:758 ui/templates/ui/car_detail.html:795
 msgid "Select time"
-msgstr ""
+msgstr "Ställ in tid"
 
 #: ui/templates/ui/car_detail.html:768 ui/templates/ui/car_detail.html:805
 msgid "Command"
-msgstr ""
+msgstr "Kommando"
 
 #: ui/templates/ui/car_detail.html:778 ui/templates/ui/car_detail.html:815
 msgid "One-time"
-msgstr ""
+msgstr "Engångs"
 
 #: ui/templates/ui/car_detail.html:781 ui/templates/ui/car_detail.html:818
 msgid "Repeating"
-msgstr ""
+msgstr "Upprepas"
 
 #: ui/templates/ui/car_detail.html:793 ui/templates/ui/car_detail.html:830
 msgid "Select date"
-msgstr ""
+msgstr "Ställ in datum"
 
 #: ui/templates/ui/car_detail.html:799 ui/templates/ui/car_detail.html:836
 msgid "Monday"
-msgstr ""
+msgstr "Måndag"
 
 #: ui/templates/ui/car_detail.html:803 ui/templates/ui/car_detail.html:840
 msgid "Tuesday"
-msgstr ""
+msgstr "Tisdag"
 
 #: ui/templates/ui/car_detail.html:807 ui/templates/ui/car_detail.html:844
 msgid "Wednesday"
-msgstr ""
+msgstr "Onsdag"
 
 #: ui/templates/ui/car_detail.html:811 ui/templates/ui/car_detail.html:848
 msgid "Thursday"
-msgstr ""
+msgstr "Torsdag"
 
 #: ui/templates/ui/car_detail.html:815 ui/templates/ui/car_detail.html:852
 msgid "Friday"
-msgstr ""
+msgstr "Fredag"
 
 #: ui/templates/ui/car_detail.html:819 ui/templates/ui/car_detail.html:856
 msgid "Saturday"
-msgstr ""
+msgstr "Lördag"
 
 #: ui/templates/ui/car_detail.html:823 ui/templates/ui/car_detail.html:860
 msgid "Sunday"
-msgstr ""
+msgstr "Söndag"
 
 #: ui/templates/ui/car_detail.html:855 ui/templates/ui/car_detail.html:892
 msgid "SMS from your device"
-msgstr ""
+msgstr "SMS från din enhet"
 
 #: ui/templates/ui/car_detail.html:1208 ui/templates/ui/car_detail.html:1210
 #: ui/templates/ui/car_detail.html:1214 ui/templates/ui/car_detail.html:1215
@@ -2331,15 +2335,15 @@ msgstr ""
 #: ui/templates/ui/car_detail.html:1493 ui/templates/ui/car_detail.html:1501
 #: ui/templates/ui/car_detail.html:1502
 msgid "Error sending command"
-msgstr ""
+msgstr "Fel vid sändning av kommando"
 
 #: ui/templates/ui/car_detail.html:1279 ui/templates/ui/car_detail.html:1316
 msgid "Plugged In"
-msgstr ""
+msgstr "Ansluten"
 
 #: ui/templates/ui/car_detail.html:1279 ui/templates/ui/car_detail.html:1316
 msgid "Unplugged"
-msgstr ""
+msgstr "Ej ansluten"
 
 #: ui/templates/ui/car_detail.html:1334 ui/templates/ui/car_detail.html:1335
 #: ui/templates/ui/car_detail.html:1336 ui/templates/ui/car_detail.html:1337
@@ -2356,7 +2360,7 @@ msgstr ""
 #: ui/templates/ui/car_detail.html:1392 ui/templates/ui/car_detail.html:1393
 #: ui/templates/ui/car_detail.html:1398
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: ui/templates/ui/car_detail.html:1334 ui/templates/ui/car_detail.html:1335
 #: ui/templates/ui/car_detail.html:1336 ui/templates/ui/car_detail.html:1337
@@ -2373,17 +2377,17 @@ msgstr ""
 #: ui/templates/ui/car_detail.html:1392 ui/templates/ui/car_detail.html:1393
 #: ui/templates/ui/car_detail.html:1398
 msgid "No"
-msgstr ""
+msgstr "Nej"
 
 #: ui/templates/ui/car_detail.html:1494 ui/templates/ui/car_detail.html:1502
 #: ui/templates/ui/car_detail.html:1503 ui/templates/ui/car_detail.html:1531
 #: ui/templates/ui/car_detail.html:1539 ui/templates/ui/car_detail.html:1540
 msgid "Error sending location to car"
-msgstr ""
+msgstr "Fel vid sändning av plats till bil"
 
 #: ui/templates/ui/car_detail.html:1496 ui/templates/ui/car_detail.html:1533
 msgid "Location sent!"
-msgstr ""
+msgstr "Plats skickad!"
 
 #: ui/templates/ui/car_detail.html:1552 ui/templates/ui/car_detail.html:1615
 #: ui/templates/ui/car_detail.html:1886 ui/templates/ui/car_detail.html:1891
@@ -2394,103 +2398,103 @@ msgstr ""
 #: ui/templates/ui/car_detail.html:1985 ui/templates/ui/car_detail.html:1998
 #: ui/templates/ui/car_detail.html:2003 ui/templates/ui/car_detail.html:2082
 msgid "No address"
-msgstr ""
+msgstr "Ingen adress"
 
 #: ui/templates/ui/car_detail.html:1562 ui/templates/ui/car_detail.html:1895
 #: ui/templates/ui/car_detail.html:1599 ui/templates/ui/car_detail.html:1932
 msgid "Could not get location from map link"
-msgstr ""
+msgstr "Kunde inte hämta position från kartlänk"
 
 #: ui/templates/ui/car_detail.html:1568 ui/templates/ui/car_detail.html:1640
 #: ui/templates/ui/car_detail.html:1901 ui/templates/ui/car_detail.html:1982
 #: ui/templates/ui/car_detail.html:1605 ui/templates/ui/car_detail.html:1677
 #: ui/templates/ui/car_detail.html:1938 ui/templates/ui/car_detail.html:2019
 msgid "Error searching locations"
-msgstr ""
+msgstr "Fel vid sökning i platser"
 
 #: ui/templates/ui/car_detail.html:1634 ui/templates/ui/car_detail.html:1976
 #: ui/templates/ui/car_detail.html:1671 ui/templates/ui/car_detail.html:2013
 msgid "Search did not find any locations"
-msgstr ""
+msgstr "Sökningen returnerade inga platser"
 
 #: ui/templates/ui/car_detail.html:1659 ui/templates/ui/car_detail.html:1696
 msgid "Connection established!"
-msgstr ""
+msgstr "Anslutning upprättad!"
 
 #: ui/templates/ui/car_detail.html:1664 ui/templates/ui/car_detail.html:1701
 msgid "Reconnecting..."
-msgstr ""
+msgstr "Återansluter..."
 
 #: ui/templates/ui/car_detail.html:1990 ui/templates/ui/car_detail.html:2027
 msgid "Cannot add a new waypoint"
-msgstr ""
+msgstr "Kan inte lägga till ny vägpunkt"
 
 #: ui/templates/ui/car_detail.html:1990 ui/templates/ui/car_detail.html:2027
 msgid "Maximum number of waypoints reached"
-msgstr ""
+msgstr "Max antal vägpunkter har nåtts"
 
 #: ui/templates/ui/car_detail.html:2023 ui/templates/ui/car_detail.html:2060
 msgid "Waypoint"
-msgstr ""
+msgstr "Vägpunkt"
 
 #: ui/templates/ui/car_detail.html:2075 ui/templates/ui/car_detail.html:2084
 #: ui/templates/ui/car_detail.html:2085 ui/templates/ui/car_detail.html:2112
 #: ui/templates/ui/car_detail.html:2121 ui/templates/ui/car_detail.html:2122
 msgid "Error saving the route plan"
-msgstr ""
+msgstr "Fel vid sparning av rutt-planen"
 
 #: ui/templates/ui/car_detail.html:2077 ui/templates/ui/car_detail.html:2114
 msgid "Route plan saved!"
-msgstr ""
+msgstr "Ruttplan sparad!"
 
 #: ui/templates/ui/car_detail.html:2113 ui/templates/ui/car_detail.html:2150
 msgid "Cannot add new route plan"
-msgstr ""
+msgstr "Kan inte lägga till ny ruttplan"
 
 #: ui/templates/ui/car_detail.html:2113 ui/templates/ui/car_detail.html:2150
 msgid "You have too many route plans, please delete one and try again."
-msgstr ""
+msgstr "Du har för många ruttplaner, radera en och försök igen."
 
 #: ui/templates/ui/car_detail.html:2183 ui/templates/ui/car_detail.html:2220
 msgid "Are you sure you want to delete this route plan?"
-msgstr ""
+msgstr "Är du säker på att du vill radera denna ruttplan?"
 
 #: ui/templates/ui/car_detail.html:2196 ui/templates/ui/car_detail.html:2203
 #: ui/templates/ui/car_detail.html:2204 ui/templates/ui/car_detail.html:2233
 #: ui/templates/ui/car_detail.html:2240 ui/templates/ui/car_detail.html:2241
 msgid "Error deleting the route plan"
-msgstr ""
+msgstr "Fel vid radering av ruttplan"
 
 #: ui/templates/ui/car_detail.html:2198 ui/templates/ui/car_detail.html:2235
 msgid "Route plan removed!"
-msgstr ""
+msgstr "Ruttplan raderad!"
 
 #: ui/templates/ui/car_detail.html:2358 ui/templates/ui/car_detail.html:2366
 #: ui/templates/ui/car_detail.html:2367 ui/templates/ui/car_detail.html:2395
 #: ui/templates/ui/car_detail.html:2403 ui/templates/ui/car_detail.html:2404
 msgid "Error saving CARWINGS settings"
-msgstr ""
+msgstr "Fel vid sparning av CARWINGS-inställningar"
 
 #: ui/templates/ui/car_detail.html:2360 ui/templates/ui/car_detail.html:2397
 msgid "CARWINGS settings saved!"
-msgstr ""
+msgstr "CARWINGS-inställningar sparade!"
 
 #: ui/templates/ui/car_detail.html:2373 ui/templates/ui/car_detail.html:2410
 msgid "Add timer"
-msgstr ""
+msgstr "Lägg till timer"
 
 #: ui/templates/ui/car_detail.html:2524 ui/templates/ui/car_detail.html:2527
 #: ui/templates/ui/car_detail.html:2561 ui/templates/ui/car_detail.html:2564
 msgid "Missing field"
-msgstr ""
+msgstr "värde saknas"
 
 #: ui/templates/ui/car_detail.html:2524 ui/templates/ui/car_detail.html:2561
 msgid "Please enter valid date for the timer"
-msgstr ""
+msgstr "Ange giltigt datum för timern"
 
 #: ui/templates/ui/car_detail.html:2527 ui/templates/ui/car_detail.html:2564
 msgid "Please select at least one weekday"
-msgstr ""
+msgstr "Välj minst en veckodag"
 
 #: ui/templates/ui/car_detail.html:2548 ui/templates/ui/car_detail.html:2556
 #: ui/templates/ui/car_detail.html:2557 ui/templates/ui/car_detail.html:2579
@@ -2499,81 +2503,87 @@ msgstr ""
 #: ui/templates/ui/car_detail.html:2594 ui/templates/ui/car_detail.html:2616
 #: ui/templates/ui/car_detail.html:2625 ui/templates/ui/car_detail.html:2626
 msgid "Error saving the timer"
-msgstr ""
+msgstr "Fel vid sparning av timer"
 
 #: ui/templates/ui/car_detail.html:2550 ui/templates/ui/car_detail.html:2581
 #: ui/templates/ui/car_detail.html:2587 ui/templates/ui/car_detail.html:2618
 msgid "Timer saved!"
-msgstr ""
+msgstr "Timer sparad!"
 
 #: ui/templates/ui/car_detail.html:2596 ui/templates/ui/car_detail.html:2633
 msgid "Are you sure you want to delete this timer?"
-msgstr ""
+msgstr "Vill du verkligen radera denna timer?"
 
 #: ui/templates/ui/car_detail.html:2605 ui/templates/ui/car_detail.html:2642
 msgid "Timer removed!"
-msgstr ""
+msgstr "Timer raderad!"
 
 #: ui/templates/ui/car_detail.html:2608 ui/templates/ui/car_detail.html:2610
 #: ui/templates/ui/car_detail.html:2614 ui/templates/ui/car_detail.html:2615
 #: ui/templates/ui/car_detail.html:2645 ui/templates/ui/car_detail.html:2647
 #: ui/templates/ui/car_detail.html:2651 ui/templates/ui/car_detail.html:2652
 msgid "Error deleting the timer"
-msgstr ""
+msgstr "Fel vid radering av timer"
 
 #: ui/templates/ui/car_list.html:5 ui/templates/ui/car_list.html:33
 msgid "My cars"
-msgstr ""
+msgstr "Mina bilar"
 
 #: ui/templates/ui/car_list.html:70
 msgid "No cars added."
-msgstr ""
+msgstr "Inga bilar tillagda."
 
 #: ui/templates/ui/car_transfer.html:4 ui/templates/ui/car_transfer.html:8
 msgid "Transfer Ownership"
-msgstr ""
+msgstr "Överför ägandeskap"
 
 #: ui/templates/ui/car_transfer.html:31
 msgid ""
 "You've been shared with car transfer link. The car in question is shown "
 "below. By hitting 'Transfer', you will become its new owner."
 msgstr ""
+"Du har fått en ägarbyteslänk. Bilen ifråga visas nedan. Genom att trycka på "
+"\"Överför\" blir du dess nya Ägare."
 
 #: ui/templates/ui/car_transfer.html:46
 msgid "Transfer"
-msgstr ""
+msgstr "Överför"
 
 #: ui/templates/ui/change_carwings_password.html:5
 #: ui/templates/ui/change_carwings_password.html:9
 msgid "Change CARWINGS password"
-msgstr ""
+msgstr "Byt CARWINGS-lösenord"
 
 #: ui/templates/ui/change_carwings_password.html:10
 msgid ""
 "This password is used for authentication between your cars and this server."
 msgstr ""
+"Detta lösenord används för autentisering mellan dina bilar och den här "
+"servern."
 
 #: ui/templates/ui/change_carwings_password.html:10
 msgid ""
 "Please keep in mind, that connection may be disturbed until you save your "
 "new password in the car."
 msgstr ""
+"Vänligen notera att anslutningen kan avbrytas till du sparat det nya "
+"lösenorden i bilen."
 
 #: ui/templates/ui/change_carwings_password.html:36
 #: ui/templates/ui/change_command_pin.html:36
 #: ui/templates/ui/change_password.html:36
 msgid "Change Password"
-msgstr ""
+msgstr "Byt lösenord"
 
 #: ui/templates/ui/change_command_pin.html:5
 #: ui/templates/ui/change_command_pin.html:9
 msgid "Change Command Pin"
-msgstr ""
+msgstr "Byt kommando-pin"
 
 #: ui/templates/ui/change_command_pin.html:5
 #: ui/templates/ui/change_command_pin.html:9
 msgid "Set Command Pin"
-msgstr ""
+msgstr "Ange kommando-pin"
 
 #: ui/templates/ui/change_command_pin.html:10
 #: ui/templates/ui/snippets/security.html:16
@@ -2581,6 +2591,8 @@ msgid ""
 "This PIN-Code is used for sensitive vehicle commands, like door locking, "
 "find my car, etc."
 msgstr ""
+"Den här pinkoden används för känsliga kommandon, som dörrlås, hitta min bil, "
+"etc."
 
 #: ui/templates/ui/change_password.html:5
 #: ui/templates/ui/change_password.html:10
@@ -2588,46 +2600,48 @@ msgstr ""
 #: ui/templates/ui/reset_password_confirm.html:9
 #: ui/templates/ui/reset_password_confirm.html:61
 msgid "Change password"
-msgstr ""
+msgstr "Byt lösenord"
 
 #: ui/templates/ui/enroll_2fa.html:11
 msgid "Enable Two-Factor Authentication"
-msgstr ""
+msgstr "Aktivera tvåfaktors-autentisering"
 
 #: ui/templates/ui/enroll_2fa.html:12
 msgid ""
 "Scan the QR code below with your authenticator app, then enter the code it "
 "generates to confirm."
 msgstr ""
+"Scanna QR-koden nedan med din autentiseringsapp, och ange sedan den "
+"genererade koden för att bekräfta."
 
 #: ui/templates/ui/enroll_2fa.html:25
 msgid "QR code for authenticator app"
-msgstr ""
+msgstr "QR-kod för autentiseringsapp"
 
 #: ui/templates/ui/enroll_2fa.html:29
 msgid "Can't scan? Enter this key manually:"
-msgstr ""
+msgstr "Kan inte scanna? Ange den här koden manuellt:"
 
 #: ui/templates/ui/enroll_2fa.html:31
 msgid "Re-generate key"
-msgstr ""
+msgstr "Återgenerera nyckel"
 
 #: ui/templates/ui/enroll_2fa.html:38 ui/templates/ui/reverify_otp.html:30
 #: ui/templates/ui/signin_otp.html:11
 msgid "Enter the 6-digit code"
-msgstr ""
+msgstr "Ange den 6-siffriga koden"
 
 #: ui/templates/ui/enroll_2fa.html:56
 msgid "Verify & Enable"
-msgstr ""
+msgstr "Verifiera och aktivera"
 
 #: ui/templates/ui/enroll_2fa_re.html:5
 msgid "Save Your Recovery Code"
-msgstr ""
+msgstr "Spara din återställningskod"
 
 #: ui/templates/ui/enroll_2fa_re.html:11
 msgid "2FA Enabled"
-msgstr ""
+msgstr "2FA aktiverat"
 
 #: ui/templates/ui/enroll_2fa_re.html:13
 msgid ""
@@ -2635,239 +2649,244 @@ msgid ""
 "authenticator app, it's the only way to get back into your account. It will "
 "not be shown again."
 msgstr ""
+"Spara denna återställningskod på säker plats. Om du tappar åtkomst till din "
+"autentiseringsapp är det enda sättet att få åtkomst till kontot. Koden "
+"kommer inte att visas igen."
 
 #: ui/templates/ui/enroll_2fa_re.html:23 ui/templates/ui/setup/step0.html:71
 #: ui/templates/ui/snippets/security.html:59
 msgid "Continue"
-msgstr ""
+msgstr "Fortsätt"
 
 #: ui/templates/ui/ficosa/configuration.html:11
 msgid "Select a menu to get started"
-msgstr ""
+msgstr "Välj en meny för att komma igång"
 
 #: ui/templates/ui/ficosa/configuration.html:26
 msgid "Request current configuration"
-msgstr ""
+msgstr "Begär nuvarande konfiguration"
 
 #: ui/templates/ui/ficosa/configuration.html:40
 msgid "Modify value"
-msgstr ""
+msgstr "Ändra värde"
 
 #: ui/templates/ui/ficosa/configuration.html:82
 msgid "Unmodified"
-msgstr ""
+msgstr "Omodifierat"
 
 #: ui/templates/ui/ficosa/configuration.html:82
 msgid "Deactivate"
-msgstr ""
+msgstr "Inaktivera"
 
 #: ui/templates/ui/ficosa/configuration.html:82
 msgid "Activate"
-msgstr ""
+msgstr "Aktivera"
 
 #: ui/templates/ui/ficosa/configuration.html:197
 #: ui/templates/ui/ficosa/configuration.html:224
 #: ui/templates/ui/ficosa/configuration.html:361
 msgid "Last value:"
-msgstr ""
+msgstr "Senaste värde:"
 
 #: ui/templates/ui/ficosa/configuration.html:278
 #: ui/templates/ui/ficosa/configuration.html:294
 #: ui/templates/ui/ficosa/configuration.html:297
 msgid "is more than"
-msgstr ""
+msgstr "är mer än"
 
 #: ui/templates/ui/ficosa/configuration.html:281
 #: ui/templates/ui/ficosa/configuration.html:300
 msgid "is less than"
-msgstr ""
+msgstr "är mindre än"
 
 #: ui/templates/ui/ficosa/configuration.html:294
 #: ui/templates/ui/ficosa/configuration.html:297
 #: ui/templates/ui/ficosa/configuration.html:300
 msgid "character(s)"
-msgstr ""
+msgstr "tecken"
 
 #: ui/templates/ui/ficosa/configuration.html:303
 msgid "value only accepts following characters:"
-msgstr ""
+msgstr "endast följande tecken är tillåtna:"
 
 #: ui/templates/ui/ficosa/configuration.html:306
 msgid "value only accepts following characters"
-msgstr ""
+msgstr "endast följande tecken är tillåtna"
 
 #: ui/templates/ui/ficosa/configuration.html:314
 msgid "value is out of range"
-msgstr ""
+msgstr "otillåtet värde"
 
 #: ui/templates/ui/ficosa/configuration.html:323
 msgid " has invalid choice"
-msgstr ""
+msgstr " har ogiltigt val"
 
 #: ui/templates/ui/ficosa/configuration.html:335
 msgid "No changes to send!"
-msgstr ""
+msgstr "Inga ändringar att skicka!"
 
 #: ui/templates/ui/ficosa/veh_health.html:6
 msgid "Vehicle Health"
-msgstr ""
+msgstr "Fordonshälsa"
 
 #: ui/templates/ui/ficosa/veh_health.html:11
 msgid "TPMS Warning"
-msgstr ""
+msgstr "TPMS-varning"
 
 #: ui/templates/ui/ficosa/veh_health.html:18
 msgid "Maintenance Alert"
-msgstr ""
+msgstr "Servicevarning"
 
 #: ui/templates/ui/ficosa/veh_health.html:25
 msgid "Mileage"
-msgstr ""
+msgstr "Miltal"
 
 #: ui/templates/ui/ficosa/veh_health.html:39
 #: ui/templates/ui/probeviewer/trip.html:130
 msgid "Tire Pressures (TPMS)"
-msgstr ""
+msgstr "Däcktryck (TPMS)"
 
 #: ui/templates/ui/ficosa/veh_health.html:47
 #: ui/templates/ui/probeviewer/trip.html:170
 msgid "FL"
-msgstr ""
+msgstr "VF"
 
 #: ui/templates/ui/ficosa/veh_health.html:52
 #: ui/templates/ui/probeviewer/trip.html:174
 msgid "FR"
-msgstr ""
+msgstr "HF"
 
 #: ui/templates/ui/ficosa/veh_health.html:57
 #: ui/templates/ui/probeviewer/trip.html:178
 msgid "RL"
-msgstr ""
+msgstr "VB"
 
 #: ui/templates/ui/ficosa/veh_health.html:62
 #: ui/templates/ui/probeviewer/trip.html:182
 msgid "RR"
-msgstr ""
+msgstr "HB"
 
 #: ui/templates/ui/ficosa/veh_health.html:70
 msgid "Diagnostic Trouble Codes"
-msgstr ""
+msgstr "Diagnostik-koder"
 
 #: ui/templates/ui/ficosa/veh_health.html:73
 msgid "Read at"
-msgstr ""
+msgstr "Avlästes"
 
 #: ui/templates/ui/ficosa/veh_health.html:80
 msgid "ECU"
-msgstr ""
+msgstr "kontrollmodul"
 
 #: ui/templates/ui/ficosa/veh_health.html:81
 msgid "Code"
-msgstr ""
+msgstr "Kod"
 
 #: ui/templates/ui/ficosa/veh_health.html:82
 msgid "Warning Light"
-msgstr ""
+msgstr "Varningslampa"
 
 #: ui/templates/ui/ficosa/veh_health.html:96
 msgid "No long trouble codes reported"
-msgstr ""
+msgstr "Inga långa problemkoder rapporterade"
 
 #: ui/templates/ui/ficosa/veh_health.html:108
 msgid "No short trouble codes reported"
-msgstr ""
+msgstr "Inga korta problemkoder rapporterade"
 
 #: ui/templates/ui/ficosa/veh_health.html:160
 msgid "yes"
-msgstr ""
+msgstr "ja"
 
 #: ui/templates/ui/ficosa/veh_health.html:160
 msgid "no"
-msgstr ""
+msgstr "nej"
 
 #: ui/templates/ui/ficosa/veh_health.html:165
 msgid "No trouble codes reported"
-msgstr ""
+msgstr "Inga felkoder rapporterade"
 
 #: ui/templates/ui/landing.html:5
 msgid "CARWINGS reborn"
-msgstr ""
+msgstr "CARWINGS återfött"
 
 #: ui/templates/ui/landing.html:32
 msgid "Enter your username"
-msgstr ""
+msgstr "Ange ditt användarnamn"
 
 #: ui/templates/ui/landing.html:41
 msgid "Enter your password"
-msgstr ""
+msgstr "Ange ditt lösenord"
 
 #: ui/templates/ui/landing.html:52 ui/templates/ui/signin.html:19
 msgid "Forgot password?"
-msgstr ""
+msgstr "Glömt lösenord?"
 
 #: ui/templates/ui/landing.html:83
 msgid "Make your car hi-tech again!"
-msgstr ""
+msgstr "Gör din bil högteknologisk igen!"
 
 #: ui/templates/ui/landing.html:86
 msgid ""
 "OpenCARWINGS restores original CARWINGS functionality of Nissan vehicles, "
 "bringing smart features back, often way better than the original!"
 msgstr ""
+"OpenCARWINGS återställer de ursprungliga smarta CARWINGS-funktionerna hos "
+"Nissan-fordon, ofta bättre än de var!"
 
 #: ui/templates/ui/landing.html:90
 msgid "Get Started"
-msgstr ""
+msgstr "Kom igång"
 
 #: ui/templates/ui/probeviewer/main.html:10
 #: ui/templates/ui/probeviewer/main.html:63
 #: ui/templates/ui/probeviewer/trip.html:10
 #: ui/templates/ui/probeviewer/trip.html:19
 msgid "Vehicle data viewer"
-msgstr ""
+msgstr "Fordonsdatavisare"
 
 #: ui/templates/ui/probeviewer/main.html:57
 #: ui/templates/ui/probeviewer/trip.html:16
 #: ui/templates/ui/signin_otp_re.html:18
 msgid "Back"
-msgstr ""
+msgstr "Tillbaka"
 
 #: ui/templates/ui/probeviewer/main.html:102
 msgid "Latest"
-msgstr ""
+msgstr "Senaste"
 
 #: ui/templates/ui/probeviewer/main.html:103
 msgid "Lifetime statistics"
-msgstr ""
+msgstr "Livstidsstatistik"
 
 #: ui/templates/ui/probeviewer/main.html:104
 msgid "DOT-files"
-msgstr ""
+msgstr "DOT-filer"
 
 #: ui/templates/ui/probeviewer/main.html:105
 #: ui/templates/ui/probeviewer/main.html:367
 msgid "Trips"
-msgstr ""
+msgstr "Resor"
 
 #: ui/templates/ui/probeviewer/main.html:106
 msgid "Monthly statistics"
-msgstr ""
+msgstr "Månatlig statistik"
 
 #: ui/templates/ui/probeviewer/main.html:107
 msgid "Location history"
-msgstr ""
+msgstr "Platshistorik"
 
 #: ui/templates/ui/probeviewer/main.html:108
 msgid "Charging history"
-msgstr ""
+msgstr "Laddhistorik"
 
 #: ui/templates/ui/probeviewer/main.html:109
 msgid "Charges"
-msgstr ""
+msgstr "Laddtillfällen"
 
 #: ui/templates/ui/probeviewer/main.html:110
 msgid "Excessive idling history"
-msgstr ""
+msgstr "Historik överdriven tomgång"
 
 #: ui/templates/ui/probeviewer/main.html:111
 msgid "Excessive A/C history"

@@ -12,7 +12,7 @@
 
         <form method="post" action="{% url 'setup_0' %}">
             {% csrf_token %}
-            <input type="hidden" name="default_color" id="selected_car_color" value="" />
+            <input type="hidden" name="id" id="selected_car_id" value="" />
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {% for model in car_models %}
@@ -22,8 +22,9 @@
                         name="tcu_type"
                         value="{{ model.code }}"
                         data-default-color="{{ model.default_color }}"
+                        data-id="{{ forloop.counter }}"
                         class="peer sr-only"
-                        onchange="document.getElementById('selected_car_color').value = this.dataset.defaultColor"
+                        onchange="document.getElementById('selected_car_id').value = this.dataset.id"
                         {% if forloop.first %}required{% endif %}
                     />
 

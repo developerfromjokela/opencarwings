@@ -1,0 +1,81 @@
+---
+title: Custom Data Channel Format
+description: Reference for the JSON request the navigation unit sends to a data channel server and the slideshow response format it expects back.
+sidebar:
+  label: Data Channel Format
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+Data channel information is supplied to the server as JSON. The server will send some data about the vehicle, if permissions are granted.
+
+## Request from server
+
+The vehicle sends a `POST` request with a JSON payload:
+
+```jsonc
+{
+    "lang": "en", // possible values: es, sl, cz, pl, gr, no, fi, se, dk, nl, pt, it, de, fr, ru
+    "tz": "0.00",
+    "distance_unit": "km", // km or mile
+    "temp_unit": "C", // C = celsius, F = fahrenheit
+    // fields above are available only if sharing location is permitted
+    "lat": 51.509966666666664,
+    "lon": 0.13496111111111112,
+    "speed": "err", // err = speed not available, otherwise speed is in distance_unit units
+    "direction": "0", // degrees
+    "car_status": "stop" // stop = vehicle is in park, run = vehicle is in D or R
+}
+```
+
+### Request fields
+
+| Field | Description |
+| --- | --- |
+| `lang` | Language code. Possible values: `es`, `sl`, `cz`, `pl`, `gr`, `no`, `fi`, `se`, `dk`, `nl`, `pt`, `it`, `de`, `fr`, `ru` (the example also shows `en`). |
+| `tz` | Time zone, for example `"0.00"`. |
+| `distance_unit` | `km` or `mile`. |
+| `temp_unit` | `C` for Celsius, `F` for Fahrenheit. |
+| `lat`, `lon` | Vehicle latitude and longitude. |
+| `speed` | `err` if speed is not available, otherwise the speed in `distance_unit` units. |
+| `direction` | Heading in degrees. |
+| `car_status` | `stop` when the vehicle is in park, `run` when it is in D or R. |
+
+## Expected response format
+
+Respond with a JSON array of slideshow objects in this format.
+
+<Aside type="caution" title="Two slides maximum">
+  Return **at most 2 slides**.
+</Aside>
+
+```jsonc
+// Single Data Channel example
+[{
+    "title1": "Slide1", // * Slide name (max 32 chars)
+    "title2": "This is a slide", // * Slide description (max 128 chars)
+    "title3": "This is another desc", // Optional description (max 64 chars)
+    "onscreen": "This is a readable when pressed pause", // On-screen readable text content via Details menu (max 1024 chars)
+    "tts": "This text will be spoken", // Text content for TTS-engine to read aloud (can include XML for TTS engine)
+    "map_point": {"lat": 0.0, "lon": 0.0}, // Map point object with latitude and longitude coordinates
+    "phone_number": "+358444444444", // Phone number in international format
+    "img_base64": "", // Base 64 encoded image, max. 15 480 bytes. Image format must be JPEG or PNG
+    "bell": true, // When true, announcement sound is played before reading TTS content (default: true)
+    "save": true // When true, slides are saved in CARWINGS memory (default: true)
+}]
+```
+
+### Slide fields
+
+| Field | Required | Description |
+| --- | --- | --- |
+| `title1` | Yes | Slide name (max 32 characters). |
+| `title2` | Yes | Slide description (max 128 characters). |
+| `title3` | No | Optional description (max 64 characters). |
+| `onscreen` | No | On-screen readable text content, shown via the Details menu (max 1024 characters). |
+| `tts` | No | Text for the TTS engine to read aloud. Can include XML for the TTS engine. |
+| `map_point` | No | Map point object with `lat` and `lon` coordinates. |
+| `phone_number` | No | Phone number in international format. |
+| `img_base64` | No | Base64-encoded image, max. 15,480 bytes. The format must be JPEG or PNG. |
+| `bell` | No | When `true`, an announcement sound is played before the TTS content is read. Default: `true`. |
+| `save` | No | When `true`, the slides are saved in CARWINGS memory. Default: `true`. |

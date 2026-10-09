@@ -22,8 +22,7 @@ class SettingsForm(forms.Form):
     hmac_key = forms.RegexField(label=_("HMAC Key"), max_length=32, required=False, regex=r"^([0-9a-fA-F])+")
 
 class Step0Form(forms.Form):
-    tcu_type = forms.ChoiceField(label="TCU Type", choices=TCU_TYPE)
-    default_color = forms.ChoiceField(label="Default Color", required=False, choices=CAR_COLOR)
+    id = forms.IntegerField(label="ID")
 
 class Step2Form(forms.Form):
     unit_id = forms.CharField(label="Unit ID", max_length=32, required=True, strip=True, min_length=5)

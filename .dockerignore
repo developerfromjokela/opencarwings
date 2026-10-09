@@ -2,7 +2,6 @@ logs
 staticfiles
 mediafiles
 .env
-docs
 .venc
 .venv*
 db.sqlite3

@@ -1,0 +1,109 @@
+---
+title: Bringing your navigator back online (single SD slot)
+description: Change the APN and server URL on Nissan LEAF AZE0 and ZE1 (30/40 kWh, 2016–2019) navigation units that have only one SD slot, so NissanConnect services work again.
+sidebar:
+  label: Navigator setup (one SD slot)
+  order: 2
+---
+
+import { Steps, Aside } from '@astrojs/starlight/components';
+
+<Aside type="caution" title="One SD slot only">
+  This guide is for navigation units with **only one SD slot**. If your unit has two, follow other guide instead.
+</Aside>
+
+This guide walks you through changing your navigator's APN settings and server URL so it can reach OpenCARWINGS again. It applies to the **AZE0 and ZE1 (30/40 kWh, 2016–2019)**. Follow each step carefully.
+
+<div style={{ aspectRatio: '16 / 9', marginBlock: '1.5rem' }}>
+  <iframe
+    style={{ width: '100%', height: '100%', border: 0, borderRadius: '0.5rem' }}
+    src="https://www.youtube.com/embed/0qPf6kGowmM"
+    title="Video walkthrough: bringing the navigator back online"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerPolicy="strict-origin-when-cross-origin"
+    allowFullScreen
+  ></iframe>
+</div>
+
+## Step 1: Back up or clone your SD card
+
+Make a backup of your navigation SD card, and ideally a clone as well in case the old card fails. A clone needs a new SD card that you will then use in the navigator.
+
+<Aside type="danger">
+  At the very least, keep a backup of your original SD card.
+</Aside>
+
+<Steps>
+
+1. Download [LeafSDTools Companion](https://github.com/developerfromjokela/leafsdtools_companion/releases/).
+
+2. Use LeafSDTools Companion to make a backup of your original SD card.
+
+3. *(Only if you are making a clone)* Restore the backup to the new SD card.
+
+4. Select the SD card in LeafSDTools Companion, open the **Fix partition** tab, click **Apply Fix** and wait for it to finish.
+
+5. After the fix, more than one partition should be visible.
+
+   ![LeafSDTools Companion showing the SD card with multiple partitions after the fix](../../../../assets/navi-single-sd/lst_companion.jpg)
+
+</Steps>
+
+## Step 2: Edit the navigation unit settings
+
+With the SD card plugged into your computer, one of its partitions contains the file `PRIVATE/CWS/AP/CWS_SYS`.
+
+<Steps>
+
+1. Copy `CWS_SYS` from the SD card somewhere else, for example your Desktop or Documents folder.
+
+2. Open [https://opencarwings.viaaq.eu/navi](https://opencarwings.viaaq.eu/navi) in your browser.
+
+3. Choose **SD Card** and select the `CWS_SYS` file. The fields should fill in and **Connection Profile 1** should appear. If not, please contact the developer.
+
+   ![The navi settings page after loading CWS_SYS from the SD card](../../../../assets/navi-single-sd/img10_sd.jpg)
+
+4. Name your connection profile after your mobile operator.
+
+   ![Connection profile name field](../../../../assets/navi-single-sd/img11.jpg)
+
+5. Change the APN name in the `apn [cws]` field. Depending on your SIM provider you may also need to change the APN user and password in `usr [cws]` and `psswrd [cws]`.
+
+   ![APN name field](../../../../assets/navi-single-sd/img12.jpg)
+   ![APN user field](../../../../assets/navi-single-sd/img13.jpg)
+   ![APN password field](../../../../assets/navi-single-sd/img14.jpg)
+
+6. Change the server URL in the `url [cws]` field.
+
+   ```text title="Server URL"
+   Original: http://biz.nissan-gev.com/WARCondelivbas/it-m_gw10/
+   New:      http://biz.viaaq.eu/WARCondelivbas/it-m_gw10/
+   ```
+
+   Original:
+
+   ![The url [cws] field with the original Nissan URL](../../../../assets/navi-single-sd/img15.jpg)
+
+   Modified:
+
+   ![The url [cws] field with the modified URL](../../../../assets/navi-single-sd/img16.jpg)
+
+7. Scroll to the bottom and click **Export**. A new settings file is downloaded. Copy it onto the SD card at `/PRIVATE/CWS/AP/CWS_SYS`, and confirm if asked to overwrite the existing file.
+
+   ![The export button at the bottom of the page](../../../../assets/navi-single-sd/img17.jpg)
+
+</Steps>
+
+<Aside type="caution">
+  The new settings file must have exactly the same file name and path as the original: `/PRIVATE/CWS/AP/CWS_SYS`.
+</Aside>
+
+## Step 3: Try NissanConnect services
+
+Put the SD card back in the navigator and check whether any of the data channels are accessible.
+
+![NissanConnect data channels list on the navigator](../../../../assets/navi-single-sd/datachannel.png)
+
+<Aside type="tip" title="Congratulations!">
+  If all steps completed successfully, your navigation unit is back online. Functions like send location to car, telemetry data and more should work again.
+</Aside>

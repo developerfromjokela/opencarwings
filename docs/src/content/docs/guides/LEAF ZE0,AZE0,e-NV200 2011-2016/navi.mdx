@@ -1,0 +1,204 @@
+---
+title: Bringing your navigator back online (two SD slots)
+description: Change the APN and server URL on Nissan LEAF ZE0 and AZE0 (2011–2015) navigation units with two SD slots behind the screen, using LeafSDTools, so CARWINGS services work again.
+sidebar:
+  label: Navigator setup (two SD slots)
+  order: 2
+---
+
+import { Steps, Aside } from '@astrojs/starlight/components';
+
+<Aside type="caution" title="Two SD slots only">
+  This guide is for navigation units with **two SD slots behind the screen**. If yours has only one, follow the [one-slot guide](/static/docs/guides/leaf-ze1/navi/) instead.
+</Aside>
+
+This guide walks you through changing your navigator's APN settings and server URL for the **ZE0 and AZE0 (2011–2015)**. Follow each step carefully to ensure a successful setup.
+
+## Step 1: Download LeafSDTools and install it on an SD card
+
+You need the LeafSDTools toolkit to export the navigator's settings.
+
+<Steps>
+
+1. Get an SD card with a capacity of 8 GB or more. A microSD card with an adapter also works.
+
+2. Download the latest LeafSDTools `.img` file from [GitHub](https://github.com/developerfromjokela/leafsdtools/releases/latest) (`LeafSDTools-xxx.img.tar.gz`).
+
+3. Download [balenaEtcher](https://etcher.balena.io/) or a similar tool to write the image to the SD card.
+
+4. Write the disk image to the SD card.
+
+   ![balenaEtcher writing the LeafSDTools image to an SD card](../../../../assets/navi-dual-sd/img1.jpeg)
+
+</Steps>
+
+## Step 2: Run LeafSDTools and export the settings to the SD card
+
+Now that LeafSDTools is on your SD card, extract the settings file from the navigation unit.
+
+### Enter the software update menu
+
+<Steps>
+
+1. Start your car. With the navigator fully booted, enter the map view by pressing **MAP**.
+
+2. Press the power button on the bottom left to turn off the audio.
+
+3. Press **MAP** three times, press the media on/off button twice, and finally press **MAP** once more. If it worked, you will see this screen:
+
+   ![The hidden service menu on the navigation unit](../../../../assets/navi-dual-sd/img2.jpeg)
+
+4. Open the **Confirmation/Adjustment** menu and scroll to **Software Update**.
+
+   ![The Software Update entry in the Confirmation/Adjustment menu](../../../../assets/navi-dual-sd/img3.jpeg)
+
+5. Start the update process. The head unit should reboot.
+
+   ![The software update prompt on the head unit](../../../../assets/navi-dual-sd/img4.jpeg)
+
+6. When a YES/NO dialog appears, turn off the car, remove the SD card from **MAP slot (B)** and insert your own SD card with LeafSDTools.
+
+   ![The SD card slots behind the screen, with slot B highlighted](../../../../assets/navi-dual-sd/img5.jpg)
+
+</Steps>
+
+### Dump the settings to the SD card
+
+<Steps>
+
+1. With the LeafSDTools SD card in MAP slot B, turn on the car. After a few seconds LeafSDTools starts. Press the **SRAM** menu.
+
+   ![The LeafSDTools main menu with the SRAM option](../../../../assets/navi-dual-sd/img6.jpg)
+
+2. Press **Dump to SD** and wait until it finishes.
+
+   ![The SRAM menu with the Dump to SD option](../../../../assets/navi-dual-sd/img7.jpg)
+
+   ![The dump to SD process completing](../../../../assets/navi-dual-sd/img8.jpg)
+
+3. After a successful dump, exit the menu, turn off the car and remove the SD card from the navigation unit. Now you can edit the file on your computer.
+
+</Steps>
+
+## Step 3: Edit the navigation unit settings
+
+With the SD card plugged into your computer, you should see a file named like this:
+
+![The SD card contents showing the vflash .bin file](../../../../assets/navi-dual-sd/img9.jpg)
+
+<Aside type="note">
+  If you don't have this file, the export failed for some reason. Repeat step 2.
+</Aside>
+
+If the file is there, edit the APN settings inside it:
+
+<Steps>
+
+1. Copy `vflash_xxxxxxxx_xxxxxxxx.bin` from the SD card somewhere else, for example your Desktop or Documents folder.
+
+2. Open [https://opencarwings.viaaq.eu/navi](https://opencarwings.viaaq.eu/navi) in your browser.
+
+3. Select the `vflash_xxxxxxxx_xxxxxxxx.bin` file from your computer. The fields should fill in and **Connection Profile 1** should appear. If not, please contact the developer.
+
+   ![The navi settings page after loading the vflash file](../../../../assets/navi-dual-sd/img10.jpg)
+
+4. Name your connection profile after your mobile operator.
+
+   ![Connection profile name field](../../../../assets/navi-dual-sd/img11.jpg)
+
+5. Change the APN name in the `apn [cws]` field. Depending on your SIM provider you may also need to change the APN user and password in `usr [cws]` and `psswrd [cws]`.
+
+   ![APN name field](../../../../assets/navi-dual-sd/img12.jpg)
+
+   ![APN user field](../../../../assets/navi-dual-sd/img13.jpg)
+
+   ![APN password field](../../../../assets/navi-dual-sd/img14.jpg)
+
+6. Change the server URL in the `url [cws]` field.
+
+   ```text title="Server URL"
+   Original: http://biz.nissan-gev.com/WARCondelivbas/it-m_gw10/
+   New:      http://biz.viaaq.eu/WARCondelivbas/it-m_gw10/
+   ```
+
+   Original:
+
+   ![The url [cws] field with the original Nissan URL](../../../../assets/navi-dual-sd/img15.jpg)
+
+   Modified:
+
+   ![The url [cws] field with the modified URL](../../../../assets/navi-dual-sd/img16.jpg)
+
+7. Scroll to the bottom and click **Export**. A new settings file is downloaded. Copy it onto the SD card, and confirm if asked to overwrite the existing file.
+
+   ![The export button at the bottom of the page](../../../../assets/navi-dual-sd/img17.jpg)
+
+</Steps>
+
+<Aside type="caution">
+  The new settings file must have exactly the same file name as the original.
+</Aside>
+
+## Step 4: Write the new settings to the navigation unit
+
+With the modified settings file on the SD card, go back to the car, insert the card into slot B and start the car.
+
+<Steps>
+
+1. When LeafSDTools boots, select the **SRAM** option.
+
+   ![The LeafSDTools main menu with the SRAM option](../../../../assets/navi-dual-sd/img6.jpg)
+
+2. Press **RESTORE VFlash** and wait until it finishes.
+
+   ![The RESTORE VFlash option](../../../../assets/navi-dual-sd/img18.jpg)
+
+   ![The restore process running](../../../../assets/navi-dual-sd/img19.jpg)
+
+3. When the restore is complete, press **EXIT** to return to the main menu, then turn off the car.
+
+   ![The restore completed screen with the EXIT button](../../../../assets/navi-dual-sd/img25.jpg)
+
+4. Tilt the screen and remove the LeafSDTools SD card from slot B. Put the navigation unit's original SD card back into slot B and turn on the car. You will see this message. Press **Yes** to exit the software update menu.
+
+   ![The prompt to exit the software update menu](../../../../assets/navi-dual-sd/img20.jpg)
+
+5. Once the navigation unit has booted back into its OS, check that the new connection settings were applied. Press the physical **MENU** button on the right side, then select **SETTINGS** on the screen. Inside settings, select **Phone, CARWINGS**, then **Data Transfer Setup**. Your connection profile should be shown if the settings were applied successfully.
+
+   ![The MENU screen on the navigation unit](../../../../assets/navi-dual-sd/img21.jpeg)
+
+   ![The Settings menu](../../../../assets/navi-dual-sd/img22.jpeg)
+
+   ![The Phone, CARWINGS menu](../../../../assets/navi-dual-sd/img23.jpeg)
+
+   ![The Data Transfer Setup screen showing the connection profile](../../../../assets/navi-dual-sd/img24.jpeg)
+
+</Steps>
+
+## Step 5: Authenticate inside the CARWINGS menu
+
+The final step is to authenticate with your username and the TCU password you created in the OpenCARWINGS service.
+
+<Steps>
+
+1. Press the **Zero Emission** button, then select **CARWINGS**.
+
+   ![The CARWINGS entry in the Zero Emission menu](../../../../assets/navi-dual-sd/leafstep1.jpg)
+
+2. Press **Sign In** or **Security Settings**.
+
+   ![The Sign In or Security Settings option](../../../../assets/navi-dual-sd/leafstep2.jpg)
+
+3. Enter your username and TCU password.
+
+   ![The username and TCU password entry screen](../../../../assets/navi-dual-sd/leafstep3.jpg)
+
+4. Press **Send security settings** or **Send ID and password**. When the message "Security settings activated" appears, the login was successful and CARWINGS services are ready to use.
+
+   ![The Security settings activated confirmation](../../../../assets/navi-dual-sd/leafstep4.jpg)
+
+</Steps>
+
+<Aside type="tip" title="Congratulations!">
+  If all steps completed successfully, your navigation unit is back online. Functions like send location to car, telemetry data and more should work again.
+</Aside>

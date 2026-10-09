@@ -1,0 +1,154 @@
+---
+title: Bringing your LEAF ZE0, AZE0, e-NV200 TCU back online (2011–2015)
+description: Reactivate the TCU on Nissan LEAF ZE0 and AZE0 24 kWh cars (2011–2015 and very early 2016) by swapping the SIM card, setting the APN and completing setup on the website.
+sidebar:
+  label: TCU setup (2011–2015)
+  order: 1
+---
+
+import { Steps, Aside, Badge } from '@astrojs/starlight/components';
+
+<Aside type="note" title="Which cars is this for?">
+  This guide covers the **ZE0, AZE0, e-NV200 24 kWh 2011–2015** and very early 2016 models.
+</Aside>
+
+This guide walks you through reactivating your vehicle's Telematics Control Unit (TCU). Follow each step carefully to ensure a successful setup. The process is commonly used on vehicles like the Nissan LEAF to restore connectivity features.
+
+**Difficulty:** <Badge text="Easy" variant="success" size="medium" />
+
+## Step 1: Obtain a SIM card
+
+The TCU needs a SIM card for cellular connectivity.
+
+- **SIM type:** a standard Mini SIM (2FF), or a SIM that works with an adapter.
+- **Data plan:** at least 1–5 MB per month without a navigation unit, or 5–20 MB per month with one. The TCU typically uses minimal data for telemetry, while the navigation unit consumes a bit more for its functions.
+- **Out-of-the-box OpenCARWINGS integration:** a SIM from [viaaq mobile](https://mobile.viaaq.eu/) integrates with OpenCARWINGS out of the box and has an affordable data plan.
+
+<Aside type="caution">
+  Test the SIM in a phone first to make sure it's active and receives SMS and data.
+</Aside>
+
+## Step 2: Access the TCU
+
+The TCU is typically located behind the glovebox.
+
+### Tools and preparation
+
+- **Tools:** Phillips screwdriver, plastic trim removal tool (to avoid scratches), flashlight.
+- **Preparation:** turn off the vehicle and remove the key to avoid electrical issues.
+
+### Remove the glovebox
+
+<Steps>
+
+1. Open the glovebox and empty it.
+
+2. Locate and remove the screws (usually 2–4) along the edges or inside the glovebox.
+
+3. Gently pull the glovebox forward. It may be held by clips, so use the trim tool to pry it loose if needed.
+
+4. Disconnect any wiring (for example the glovebox light) by pressing the connector tabs and pulling.
+
+</Steps>
+
+### Locate the TCU
+
+Behind the glovebox you will see a rectangular metal or plastic unit, about the size of a small book, with wiring harnesses and an antenna connection. That is the TCU.
+
+### Video guide
+
+This video shows the process step by step:
+
+<div style={{ aspectRatio: '16 / 9', marginBlock: '1.5rem' }}>
+  <iframe
+    style={{ width: '100%', height: '100%', border: 0, borderRadius: '0.5rem' }}
+    src="https://www.youtube.com/embed/wHmqdXGBdrg"
+    title="Video guide: removing the glovebox and TCU on a Nissan LEAF"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerPolicy="strict-origin-when-cross-origin"
+    allowFullScreen
+  ></iframe>
+</div>
+
+<Aside type="caution">
+  Work carefully to avoid damaging clips or wiring. Take photos of the setup before you start, for reference.
+</Aside>
+
+## Step 3: Replace the SIM card
+
+With the TCU exposed, swap the old SIM card.
+
+<Steps>
+
+1. **Disconnect power.** Unplug the TCU's main harness (usually a multi-pin connector) to power it down safely.
+
+2. **Open the TCU.** Unscrew or unclip the SIM slot cover.
+
+3. **Remove the old SIM.** Find the SIM slot (a small tray or slide-down slot), remove the old SIM and set it aside.
+
+4. **Insert the new SIM.** Insert the new SIM card and slide the slot into the locked position.
+
+5. **Reassemble.** Close the SIM slot cover, secure the screws or clips, and reconnect the harness.
+
+</Steps>
+
+<Aside type="caution">
+  Handle the SIM and the TCU gently to avoid bending pins or damaging components.
+</Aside>
+
+## Step 4: Program the settings
+
+The Access Point Name (APN) must be configured so the TCU can connect to the cellular network. You do this with an Android app.
+
+<Steps>
+
+1. **Download the app.** Get the TCU Configurator from GitHub: [tcu-configurator-xx.apk](https://github.com/developerfromjokela/nissan-leaf-tcu/releases/latest).
+
+2. **Install the app.**
+   - Transfer the `.apk` file to your Android device (USB, email, etc.).
+   - Enable "Install from unknown sources" in Settings > Security.
+   - Open the file and install the app.
+
+3. **Connect to the TCU.** Power on the vehicle, then use the app to connect to the TCU via Bluetooth OBD.
+
+4. **Set the APN.**
+   - Open the app and find the APN settings.
+   - Enter the APN for your SIM provider. For example, Hologram's is `hologram`, and other providers list theirs on their website.
+   - Save and apply the settings.
+
+5. **Set the server hostname (optional).**
+   - If your LEAF is an EU-market or US model, you can skip this unless you want to use an alternative server.
+   - Enter the server URL in the TCU Configurator app.
+   - Save and apply the settings.
+
+</Steps>
+
+<Aside type="note">
+  Make sure Bluetooth is enabled on your Android device and the car is in ACC mode during configuration.
+</Aside>
+
+<Aside type="tip">
+  If you have trouble reading the TCU configuration, turn off **Data Integrity Check** in the TCU Configurator app.
+</Aside>
+
+## Step 5: Complete the setup on the website
+
+Finalize the TCU activation through a web portal.
+
+<Steps>
+
+
+1. **Log in or register.** Visit the service's website and log in
+
+2. **Activate the TCU.**
+   - Go to Add new car
+   - Enter the new vehicle details.
+   - Follow the prompts to pair the TCU with your account.
+
+3. **Verify.** Do a data refresh to confirm the TCU is online.
+
+</Steps>
+
+<Aside type="tip" title="Congratulations!">
+  If all steps completed successfully, your TCU is back online and telematics functionality is restored. The next step is [programming the APN settings for the navigation unit](/static/docs/guides/leaf-ze0aze0e-nv200-2011-2016/navi/).
+</Aside>

@@ -1,0 +1,46 @@
+---
+title: Self-hosting with compiled Docker
+description: Run your own OpenCARWINGS server with docker-compose, including prerequisites, environment configuration, creating an admin account and hardening the settings.
+sidebar:
+  label: Self-hosting with compiled Docker
+  order: 0
+---
+## Prerequisites
+To run the server with Docker, have docker-compose and docker installed.
+
+([Guide to install Docker on all platforms](https://docs.docker.com/engine/install/))
+On Ubuntu:
+`sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-compose`
+
+In addition to docker, you need port 55230 accessible for TCU communications. For navigation unit, HTTP port 80, since it is incapable of handling SSL. The web portal can have SSL using Nginx or Apache server.
+
+## Installation and configuration
+
+1. Clone the repository by git or download ZIP from Github:
+`git clone https://github.com/developerfromjokela/opencarwings.git`
+
+2. Copy `.example.env` to `.env` in root and edit environment files:
+- `TZ` -> Server Timezone (i.e. Europe/Helsinki)
+- `BACKEND_PORT` -> Listening port for HTTP traffic (i.e. 0.0.0.0:80)
+- `TCPSERVER_PORT` -> Listening port for TCU server port
+- `PSQL_NAME` -> Database name (keep default)
+- `PSQL_USERNAME` -> Database user username (keep default)
+- `PSQL_PASSWORD` -> Database user password (set your own password, generate secure password with `uuidgen` or other high entropy source
+
+3. Copy `carwings/settings.docker.py` to `carwings/settings.py` and modify settings:
+- `SECRET_KEY` -> Generate secure key with `uuidgen` or other high entropy source
+- `ALLOWED_HOSTS` -> If you host the server behind a domain or IP address (local and/or WAN), enter your domain into the list like: ["domain.com", "domain2.com"]
+- `EMAIL_HOST` -> SMTP Email server address
+- `EMAIL_USE_TLS` -> True or False
+- `EMAIL_PORT` -> SMTP Email server port
+- `EMAIL_HOST_USER` -> Email account username
+- `EMAIL_HOST_PASSWORD` -> Email account password
+
+4. Start the server by running `docker-compose up -d`
+
+5. Create admin account by running `docker exec -it opencarwings-server-1 python manage.py createsuperuser`. (Check with `docker ps` if you get error about container not being found, container may have a different name.)
+
+6. Admin interface is available at `/admin`, confirm everything is operational
+
+7. Last step is to disable `DEBUG` in `carwings/settings.py`, set value to False and restart the server with `docker-compose down && docker-compose up -d`
+

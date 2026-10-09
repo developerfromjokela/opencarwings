@@ -1,6 +1,7 @@
 import base64
 import io
 import json
+import os
 import re
 import time
 from http.cookiejar import CookiePolicy
@@ -17,16 +18,20 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.views import PasswordChangeView, redirect_to_login
 from django.contrib.auth.views import PasswordResetView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.core.exceptions import SuspiciousFileOperation
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.http import Http404
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render, redirect
 from django.templatetags.static import static
 from django.urls import NoReverseMatch
 from django.utils import timezone
+from django.utils._os import safe_join
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.csrf import csrf_exempt
+from django.views.static import serve
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
 from rest_framework.authtoken.models import Token
@@ -34,6 +39,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 import db.models
+from carwings.settings import STATIC_ROOT
 from db.models import Car, COMMAND_TYPES, AlertHistory, EVInfo, LocationInfo, TCUConfiguration, PERIODIC_REFRESH, \
     PERIODIC_REFRESH_ACTIVE, CAR_COLOR, CRMLatest, CRMLifetime, CRMTripRecord, CRMMonthlyRecord, CRMChargeHistoryRecord, \
     CRMChargeRecord, CRMABSHistoryRecord, CRMExcessiveIdlingRecord, CRMExcessiveAirconRecord, CRMTroubleRecord, \
@@ -84,6 +90,18 @@ for provider_id, provider in django.conf.settings.SMS_PROVIDERS.items():
         'supported_types': provider_class.SUPPORTED_TYPES,
         'link': link,
     })
+
+DOCS_ROOT = os.path.join(STATIC_ROOT, 'docs')
+def serve_docs(request, path=""):
+    try:
+        full_path = safe_join(DOCS_ROOT, path)
+    except SuspiciousFileOperation:
+        raise Http404
+
+    if os.path.isdir(full_path) and os.path.isfile(os.path.join(full_path, "index.html")):
+        path = os.path.join(path, "index.html")
+
+    return serve(request, path, document_root=DOCS_ROOT, show_indexes=True)
 
 class ChangePasswordView(PasswordChangeView):
     form_class = PasswordChangeForm
@@ -822,26 +840,27 @@ CAR_MODELS = [
      "device_image": static("tcu.png"),
      'default_color': 'l_pearlwhite',
      "year_start": 2012,
-     "year_end": 2015},
+     "year_end": 2015, 'guide': '/static/docs/guides/leaf-ze0aze0e-nv200-2011-2016/tcu/index.html'},
     {"code": "ficosa2016", "name": "Nissan Leaf (24/30 kWh)", "image": static("car/l_pearlwhite.png"),
      'default_color': 'l_pearlwhite',
      "device_image": static("tcu2.png"),
      "year_start": 2016,
-     "year_end": 2017},
+     "year_end": 2017, 'guide': '/static/docs/guides/leaf-aze0-2430-kwh-2016-2017/tcu/index.html'},
     {"code": "ficosa2016", "name": "Nissan Leaf (ZE1)", "image": static("car/l2_pearlwhite.png"), "year_start": 2018,
      "device_image": static("tcu2.png"),
      'default_color': 'l2_pearlwhite',
-     "year_end": 2020},
+     "year_end": 2020, 'guide': '/static/docs/guides/leaf-ze1/tcu/index.html'},
     {"code": "continental2012", "name": "Nissan e-NV200", "image": static("car/env200_white.png"),
      "device_image": static("tcu.png"),
      'default_color': 'env200_white',
      "year_start": 2014,
-     "year_end": 2017},
+     "year_end": 2017, 'guide': '/static/docs/guides/leaf-ze0aze0e-nv200-2011-2016/tcu/'},
     {"code": "ficosa2016", "name": "Nissan e-NV200", "image": static("car/env200_white.png"),
      "device_image": static("tcu2.png"),
      'default_color': 'env200_white',
      "year_start": 2018,
-     "year_end": 2022},
+     "year_end": 2022,
+     'guide': '/static/docs/guides/leaf-ze1/tcu/index.html'},
 ]
 
 @login_required(login_url='signin')
@@ -855,10 +874,14 @@ def setup_step0(request):
             form = Step0Form(request.POST)
             # check whether it's valid:
             if form.is_valid():
-                request.session['step'] = {"current_step": 1}
-                request.session['type'] = form.cleaned_data['tcu_type']
-                request.session['default_color'] = form.cleaned_data['default_color']
-                return redirect('/setup/step1')
+                variant_id = form.cleaned_data['id']
+                if variant_id > 0 and variant_id <= len(CAR_MODELS):
+                    variant_id = variant_id-1
+                    request.session['step'] = {"current_step": 1}
+                    request.session['type'] = CAR_MODELS[variant_id]['code']
+                    request.session['default_color'] = CAR_MODELS[variant_id]['default_color']
+                    request.session['guide'] = CAR_MODELS[variant_id]['guide']
+                    return redirect('/setup/step1')
     return render(request, 'ui/setup/step0.html', {'steps': SETUP_STEPS, "current_step": request.session['step']['current_step'], 'car_models': CAR_MODELS})
 
 @login_required(login_url='signin')
@@ -871,7 +894,7 @@ def setup_step1(request):
         if request.method == 'POST':
             request.session['step'] = {"current_step": 2}
             return redirect('/setup/step2')
-    return render(request, 'ui/setup/step1.html', {'steps': SETUP_STEPS, "current_step": request.session['step']['current_step'], 'tcu_type': request.session['type']})
+    return render(request, 'ui/setup/step1.html', {'steps': SETUP_STEPS, "current_step": request.session['step']['current_step'], 'tcu_type': request.session['type'], 'guide_url': request.session['guide']})
 
 @login_required(login_url='signin')
 def setup_step2(request):

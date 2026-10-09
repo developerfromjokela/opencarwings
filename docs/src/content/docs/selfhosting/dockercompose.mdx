@@ -1,0 +1,148 @@
+---
+title: Self-hosting with the prebuilt image
+description: Deploy OpenCARWINGS with docker-compose using the prebuilt image from GitHub Container Registry, with only the carwings folder from the repository.
+sidebar:
+  label: Self-hosting (prebuilt image)
+---
+
+import { Steps, Aside } from '@astrojs/starlight/components';
+
+<Aside type="note">
+  This page deploys the **prebuilt image** from GitHub Container Registry, so you only need the `carwings` folder from the repository. To build the image yourself from the full repository instead, see [Self-hosting with Docker](../docker/).
+</Aside>
+
+## Prerequisites
+
+To deploy the server with Docker you need `docker` and `docker-compose` installed. See the [guide to installing Docker on all platforms](https://docs.docker.com/engine/install/).
+
+On Ubuntu:
+
+```bash
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-compose
+```
+
+### Ports
+
+Besides Docker, these ports must be reachable:
+
+| Port | Used by | Notes |
+| --- | --- | --- |
+| `55230` | TCU communications | Must be accessible for the TCU to reach the server. |
+| `80` | Navigation unit | HTTP only, since the navigation unit cannot handle SSL. |
+
+The web portal itself can use SSL by putting an Nginx or Apache server in front of it. See [Running behind Nginx or Apache](../reverse-proxy/).
+
+## Installation and configuration
+
+<Steps>
+
+1. **Clone the repository** with git, or download the ZIP from GitHub:
+
+   ```bash
+   git clone https://github.com/developerfromjokela/opencarwings.git
+   ```
+
+   The only folder you need is `carwings` and its contents. Everything else is optional to keep.
+
+2. **Create `docker-compose.yml`** next to the `carwings` folder, using this configuration:
+
+   ```yaml title="docker-compose.yml"
+   version: "2.1"
+
+   services:
+     server:
+       image: ghcr.io/developerfromjokela/opencarwings:main
+       container_name: opencarwings-server
+       environment:
+         PSQL_DATABASE: ${PSQL_NAME}
+         PSQL_USER: ${PSQL_USERNAME}
+         PSQL_PASSWORD: ${PSQL_PASSWORD}
+         PSQL_DATABASE_HOST: db
+         PSQL_DATABASE_PORT: 5432
+         REDIS_HOST: redis
+         REDIS_PORT: 6379
+         TZ: ${TZ}
+       restart: always
+       volumes:
+         - ./carwings/:/app/carwings/
+         - ./staticfiles/:/app/staticfiles/
+         - ./mediafiles/:/app/mediafiles/
+         - ./logs/:/app/logs/
+       ports:
+         - "${BACKEND_PORT}:80"
+         - "${TCPSERVER_PORT}:55230"
+     db:
+       image: postgres:14
+       container_name: opencarwings-db
+       environment:
+         PGDATA: /var/lib/postgresql/data/pgdata
+         POSTGRES_DB: ${PSQL_NAME}
+         POSTGRES_USER: ${PSQL_USERNAME}
+         POSTGRES_PASSWORD: ${PSQL_PASSWORD}
+       volumes:
+         - psql_data:/var/lib/postgresql/data
+       restart: unless-stopped
+     redis:
+       container_name: opencarwings-redis
+       image: redis:7
+
+   volumes:
+     psql_data:
+   ```
+
+3. **Create the `.env` file.** Copy `.example.env` to `.env` in the same directory and edit it:
+
+   ```bash
+   cp .example.env .env
+   ```
+
+   | Variable | Description |
+   | --- | --- |
+   | `TZ` | Server timezone, for example `Europe/Helsinki`. |
+   | `BACKEND_PORT` | Listening port for HTTP traffic, for example `0.0.0.0:80`. |
+   | `TCPSERVER_PORT` | Listening port for the TCU server. |
+   | `PSQL_NAME` | Database name. Keep the default. |
+   | `PSQL_USERNAME` | Database user name. Keep the default. |
+   | `PSQL_PASSWORD` | Database user password. Set your own, and generate a secure one with `uuidgen` or another high-entropy source. |
+
+4. **Create the Django settings.** Copy `carwings/settings.docker.py` to `carwings/settings.py` and modify it:
+
+   ```bash
+   cp carwings/settings.docker.py carwings/settings.py
+   ```
+
+   | Setting | Description |
+   | --- | --- |
+   | `SECRET_KEY` | Generate a secure key with `uuidgen` or another high-entropy source. |
+   | `ALLOWED_HOSTS` | If you host the server behind a domain or IP address (local and/or WAN), add it to the list, for example `["domain.com", "domain2.com"]`. |
+   | `EMAIL_HOST` | SMTP email server address. |
+   | `EMAIL_USE_TLS` | `True` or `False`. |
+   | `EMAIL_PORT` | SMTP email server port. |
+   | `EMAIL_HOST_USER` | Email account user name. |
+   | `EMAIL_HOST_PASSWORD` | Email account password. |
+
+5. **Start the server:**
+
+   ```bash
+   docker-compose up -d
+   ```
+
+6. **Create an admin account:**
+
+   ```bash
+   docker exec -it opencarwings-server python manage.py createsuperuser
+   ```
+
+7. **Check that it works.** The admin interface is available at `/admin`. Log in and confirm everything is operational.
+
+8. **Disable debug mode.** In `carwings/settings.py`, set `DEBUG` to `False`, then restart the server:
+
+   ```bash
+   docker-compose down && docker-compose up -d
+   ```
+
+</Steps>
+
+<Aside type="caution" title="Don't skip the last step">
+  Leaving `DEBUG` enabled on a server reachable from the internet exposes detailed error pages and configuration information. Always set it to `False` once you've confirmed the server works.
+</Aside>

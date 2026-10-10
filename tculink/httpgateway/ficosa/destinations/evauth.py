@@ -159,7 +159,8 @@ def handle(_, acp_data: dict, car: Car, source_id: int, __) -> bytes:
             acp_msg += dest_id.to_bytes(1, "little")  # dest ID
             acp_msg += source_id.to_bytes(1, "little")  # src ID
             acp_msg += composer.EVCommandTail(command=0).encode()
-            acp_msg += composer.ServiceProvisioning().add_entry(composer.ServiceProvisioningService(0, 0, 0)).encode()
+            acp_msg += composer.TimeSync().encode()
+            acp_msg += composer.ServiceProvisioning().add_entry(composer.ServiceProvisioningService(0, False, 0)).encode()
 
         car.save(update_fields=["command_payload", "command_result"])
 

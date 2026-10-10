@@ -9,9 +9,23 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'OpenCARWINGS Docs',
+      defaultLocale: 'root',
+      locales: {
+        root: {
+          label: 'English',
+          lang: 'en',
+        },
+        hu: {
+          label: 'Magyar',
+          lang: 'hu',
+        },
+      },
       sidebar: [
           {
             label: 'Vehicle Setup Guides',
+            translations: {
+              hu: 'Járműbeállítási útmutatók',
+            },
             items: [
               {
                 label: 'NISSAN',
@@ -23,12 +37,18 @@ export default defineConfig({
 		  },
           {
             label: 'Data Channels',
+            translations: {
+              hu: 'Adatcsatornák',
+            },
             items: [
                 { autogenerate: { directory: 'datachannels' } },
             ],
 		  },
           {
 			label: 'OpenCARWINGS Server',
+			translations: {
+			  hu: 'OpenCARWINGS szerver',
+			},
 			items: [
 			  { autogenerate: { directory: 'selfhosting' } },
 			],

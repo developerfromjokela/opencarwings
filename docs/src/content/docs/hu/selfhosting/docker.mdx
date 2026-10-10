@@ -1,0 +1,75 @@
+---
+title: Saját szerver futtatása helyben fordított Docker-képpel
+description: Saját OpenCARWINGS szerver futtatása docker-compose segítségével, az előfeltételekkel, a környezeti és alkalmazásbeállításokkal, az adminisztrátori fiók létrehozásával és a biztonságosabb éles konfigurációval.
+sidebar:
+  label: Saját szerver (helyben fordított Docker)
+  order: 0
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+## Előfeltételek
+
+A szerver Dockerrel történő futtatásához telepített `docker` és `docker-compose` szükséges.
+
+[Docker telepítési útmutató minden támogatott platformhoz](https://docs.docker.com/engine/install/)
+
+Ubuntu alatt:
+
+```bash
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-compose
+```
+
+A Docker mellett a TCU-kommunikációhoz elérhetővé kell tenni az `55230` portot. A navigációs fejegységhez a `80`-as HTTP-port szükséges, mert a fejegység nem képes SSL/TLS kapcsolat kezelésére. Maga a webes felület Nginx vagy Apache elé helyezve használhat HTTPS-t.
+
+<Aside type="caution" title="Nyilvános hálózati szolgáltatás">
+  A portok internet felé történő megnyitása biztonsági kockázattal jár. Csak a szükséges portokat tedd elérhetővé, használj erős, egyedi jelszavakat, a webes felületet pedig megfelelően beállított HTTPS reverse proxy mögött üzemeltesd. Ez az oldal nem helyettesít teljes szerverbiztonsági útmutatót.
+</Aside>
+
+## Telepítés és beállítás
+
+1. Klónozd a repositoryt gittel, vagy töltsd le ZIP-fájlként a GitHubról:
+
+   ```bash
+   git clone https://github.com/developerfromjokela/opencarwings.git
+   ```
+
+2. Másold a gyökérkönyvtárban lévő `.example.env` fájlt `.env` néven, majd szerkeszd a környezeti változókat:
+
+   - `TZ` → a szerver időzónája, például `Europe/Helsinki`;
+   - `BACKEND_PORT` → a HTTP-forgalom figyelési címe és portja, például `0.0.0.0:80`;
+   - `TCPSERVER_PORT` → a TCU-szerver figyelési portja;
+   - `PSQL_NAME` → az adatbázis neve; tartsd meg az alapértéket;
+   - `PSQL_USERNAME` → az adatbázis-felhasználó neve; tartsd meg az alapértéket;
+   - `PSQL_PASSWORD` → az adatbázis-felhasználó jelszava; állíts be saját, erős jelszót, amelyet például `uuidgen` vagy más, nagy entrópiájú forrás segítségével hozol létre.
+
+3. Másold a `carwings/settings.docker.py` fájlt `carwings/settings.py` néven, majd módosítsd a következő beállításokat:
+
+   - `SECRET_KEY` → hozz létre biztonságos kulcsot `uuidgen` vagy más, nagy entrópiájú forrás segítségével;
+   - `DEBUG` → **már az első indítás előtt** állítsd `False` értékre, ha a szerver bármilyen külső hálózatról elérhető lesz;
+   - `ALLOWED_HOSTS` → ha a szervert tartománynéven vagy IP-címen keresztül – helyi vagy külső hálózatról – éred el, add hozzá ezeket a listához, például `['domain.com', 'domain2.com']`;
+   - `EMAIL_HOST` → az SMTP levelezőszerver címe;
+   - `EMAIL_USE_TLS` → `True` vagy `False`;
+   - `EMAIL_PORT` → az SMTP levelezőszerver portja;
+   - `EMAIL_HOST_USER` → a levelezési fiók felhasználóneve;
+   - `EMAIL_HOST_PASSWORD` → a levelezési fiók jelszava.
+
+4. Indítsd el a szervert:
+
+   ```bash
+   docker-compose up -d
+   ```
+
+5. Hozd létre az adminisztrátori fiókot:
+
+   ```bash
+   docker exec -it opencarwings-server-1 python manage.py createsuperuser
+   ```
+
+   Ha a parancs szerint nem található a konténer, a `docker ps` paranccsal ellenőrizd a tényleges konténernevet, mert az eltérhet a példától.
+
+6. Az adminisztrációs felület az `/admin` útvonalon érhető el. Jelentkezz be, és ellenőrizd, hogy minden megfelelően működik-e.
+
+<Aside type="danger" title="A DEBUG módot ne hagyd bekapcsolva">
+  Internet felől elérhető szerveren a bekapcsolt `DEBUG` részletes hibaoldalakat és konfigurációs adatokat tehet láthatóvá. Ne várj az első működési próbáig: külső hálózatról elérhető telepítésnél már az első indítás előtt legyen `DEBUG = False`.
+</Aside>

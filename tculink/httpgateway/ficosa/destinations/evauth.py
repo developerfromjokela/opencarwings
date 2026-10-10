@@ -26,7 +26,10 @@ def handle(_, acp_data: dict, car: Car, source_id: int, __) -> bytes:
         app_id = 0x1d
         acp_msg += b'\x27'  # dest ID, auth
         acp_msg += source_id.to_bytes(1, "little")  # src ID
-        acp_msg += composer.EVCommandTail(command=0).encode()
+        # Set to true, because False will cause postponing server configuration. Dest ID 0x27 will
+        acp_msg += composer.EVCommandTail(command_flag=True).encode()
+        acp_msg += composer.TimeSync().encode()
+        acp_msg += composer.ServiceProvisioning().add_entry(composer.ServiceProvisioningService(0, False, 0)).encode()
     elif car.command_type == 15 and car.command_payload is not None:
         app_id = 0x1f
         config_template = CONFIGURATION_MAP[car.command_payload["config_type"]]

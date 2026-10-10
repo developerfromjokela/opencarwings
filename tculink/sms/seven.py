@@ -44,4 +44,4 @@ class ProviderSevenIO(BaseSMSProvider):
             }
         )
 
-        return request.status_code == 200 and request.json().get('status', '') == '100'
+        return request.status_code == 200 and request.json().get('success', '') == '100'

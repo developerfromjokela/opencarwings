@@ -1,0 +1,158 @@
+---
+title: A LEAF ZE0, AZE0 és e-NV200 TCU ismételt hálózatra kapcsolása (2011–2015)
+description: A TCU újraaktiválása a 2011–2015-ös és néhány nagyon korai 2016-os Nissan LEAF ZE0 és AZE0 24 kWh modellen a SIM-kártya cseréjével, az APN beállításával és a webes beállítás befejezésével.
+sidebar:
+  label: TCU beállítása (2011–2015)
+  order: 1
+---
+
+import { Steps, Aside, Badge } from '@astrojs/starlight/components';
+
+<Aside type="note" title="Mely autókhoz használható ez az útmutató?">
+  Ez az útmutató a **2011–2015-ös ZE0, AZE0 és e-NV200 24 kWh**, valamint néhány nagyon korai 2016-os modellhez készült.
+  A TCU-útmutató hatóköre nem jelenti automatikusan azt, hogy a kapcsolódó, két SD-foglalatos fejegység-eljárás is alkalmazható ugyanarra az autóra; annak külön megadott modell- és fejegységhatókörét is ellenőrizd.
+</Aside>
+
+Ez az útmutató bemutatja a jármű telematikai vezérlőegységének (TCU) újraaktiválását. Minden lépést körültekintően hajts végre. Ezt az eljárást többek között Nissan LEAF modelleken használják a hálózati funkciók helyreállítására.
+
+**Nehézségi szint:** <Badge text="Könnyű" variant="success" size="medium" />
+
+## 1. lépés: Szerezz be egy SIM-kártyát
+
+A TCU-nak SIM-kártyára van szüksége a mobilhálózati kapcsolathoz.
+
+- **SIM típusa:** szabványos Mini SIM (2FF), vagy adapterrel használható SIM-kártya.
+- **Adatcsomag:** fejegység nélkül legalább havi 1–5 MB, fejegységgel 5–20 MB. A TCU telemetriához jellemzően kevés adatot használ, a navigációs fejegység funkciói valamivel több adatot fogyasztanak.
+- **Azonnali OpenCARWINGS-integráció:** a [viaaq mobile](https://mobile.viaaq.eu/) SIM-kártyája alapból együttműködik az OpenCARWINGS rendszerrel, és kedvező adatcsomagot kínál.
+
+<Aside type="caution">
+  Először próbáld ki a SIM-kártyát egy telefonban, és ellenőrizd, hogy aktív, valamint működik rajta az SMS és a mobiladat.
+</Aside>
+
+## 2. lépés: Férj hozzá a TCU-hoz
+
+A TCU általában a kesztyűtartó mögött található.
+
+### Szükséges eszközök és előkészületek
+
+- **Eszközök:** csillagcsavarhúzó, műanyag kárpitbontó szerszám a karcolások elkerüléséhez, valamint zseblámpa.
+- **Előkészület:** az elektromos problémák elkerülése érdekében kapcsold ki az autót, és vedd ki vagy távolítsd el a kulcsot.
+
+### A kesztyűtartó eltávolítása
+
+<Steps>
+
+1. Nyisd ki és ürítsd ki a kesztyűtartót.
+
+2. Keresd meg és távolítsd el a széleinél vagy a belsejében lévő csavarokat (általában 2–4 darabot).
+
+3. Óvatosan húzd előre a kesztyűtartót. Patentek is tarthatják, ezért szükség esetén műanyag kárpitbontóval lazítsd meg.
+
+4. A csatlakozók rögzítőfülének benyomásával válaszd le az esetleges vezetékeket, például a kesztyűtartó világítását.
+
+</Steps>
+
+### A TCU megkeresése
+
+A kesztyűtartó mögött egy kisebb könyv méretéhez hasonló, téglalap alakú fém- vagy műanyag egységet találsz, kábelkötegekkel és antennacsatlakozóval. Ez a TCU, vagyis a telematikai vezérlőegység.
+
+### Videós útmutató
+
+Az alábbi videó lépésről lépésre bemutatja a folyamatot:
+
+<div style={{ aspectRatio: '16 / 9', marginBlock: '1.5rem' }}>
+  <iframe
+    style={{ width: '100%', height: '100%', border: 0, borderRadius: '0.5rem' }}
+    src="https://www.youtube.com/embed/wHmqdXGBdrg"
+    title="Videós útmutató: a kesztyűtartó és a TCU eltávolítása Nissan LEAF-ből"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerPolicy="strict-origin-when-cross-origin"
+    allowFullScreen
+  ></iframe>
+</div>
+
+<Aside type="caution">
+  Dolgozz óvatosan, nehogy megsértsd a patenteket vagy a vezetékeket. Mielőtt hozzányúlsz, készíts fényképeket az eredeti állapotról.
+</Aside>
+
+## 3. lépés: Cseréld ki a SIM-kártyát
+
+Miután hozzáférsz a TCU-hoz, cseréld ki a régi SIM-kártyát.
+
+<Steps>
+
+1. **Válaszd le a tápellátást.** A biztonságos áramtalanításhoz húzd le a TCU fő kábelkötegét, amely általában többérintkezős csatlakozó.
+
+2. **Nyisd ki a TCU-t.** Csavard le vagy pattintsd le a SIM-foglalat fedelét.
+
+3. **Vedd ki a régi SIM-kártyát.** Keresd meg a SIM-foglalatot – ez lehet kis tálca vagy lehajtható foglalat –, vedd ki a régi SIM-kártyát, és tedd félre.
+
+4. **Helyezd be az új SIM-kártyát.** Tedd be az új kártyát, majd csúsztasd a foglalatot zárt állásba.
+
+5. **Szereld össze.** Zárd vissza a SIM-foglalat fedelét, rögzítsd a csavarokat vagy patenteket, majd csatlakoztasd újra a kábelköteget.
+
+</Steps>
+
+<Aside type="caution">
+  Óvatosan kezeld a SIM-kártyát és a TCU-t, nehogy elgörbítsd az érintkezőket vagy megsértsd az alkatrészeket.
+</Aside>
+
+## 4. lépés: A beállítások programozása
+
+Az APN-t úgy kell beállítani, hogy a TCU elérje a mobilhálózatot. Ehhez Android-alkalmazás szükséges.
+
+<Steps>
+
+1. **Töltsd le az alkalmazást.** A TCU Configurator legújabb `tcu-configurator-xx.apk` fájlját a [GitHub kiadások oldaláról](https://github.com/developerfromjokela/nissan-leaf-tcu/releases/latest) töltheted le.
+
+2. **Telepítsd az alkalmazást.**
+   - Másold át az `.apk` fájlt az Android-eszközre, például USB-n vagy e-mailben.
+   - A Beállítások → Biztonság menüben engedélyezd az ismeretlen forrásból történő telepítést.
+   - Nyisd meg a fájlt, és telepítsd az alkalmazást.
+
+3. **Kapcsolódj a TCU-hoz.** Tedd az autót ACC tartozéküzemmódba, majd Bluetooth OBD-adapteren keresztül kapcsolódj a TCU-hoz az alkalmazással.
+
+4. **Állítsd be az APN-t.**
+   - Keresd meg a TCU Configurator alkalmazásban az APN-beállításokat.
+   - Írd be a SIM-szolgáltatód APN-jét. A Hologram esetében ez például `hologram`; más szolgáltatók a saját weboldalukon közlik az APN-t.
+   - Mentsd és alkalmazd a beállításokat.
+
+5. **Állítsd be a szerver hosztnevét – ha szükséges.**
+   - EU-piacra készült vagy amerikai LEAF esetén ezt kihagyhatod, kivéve, ha alternatív szervert szeretnél használni.
+   - Add meg a szerver URL-jét a TCU Configurator alkalmazásban.
+   - Mentsd és alkalmazd a beállításokat.
+
+</Steps>
+
+<Aside type="note" title="A hosztnév kihagyásának feltétele nincs részletezve">
+  Az eredeti útmutató nem magyarázza, milyen hálózati vagy szolgáltatói feltételekkel hagyható változatlanul a szerver hosztneve. Ha ebben nem vagy biztos, a beállítás alkalmazása előtt kérj megerősítést az OpenCARWINGS fejlesztőjétől vagy a választott szolgáltatótól.
+</Aside>
+
+<Aside type="note">
+  A konfigurálás alatt legyen bekapcsolva a Bluetooth az Android-eszközön, az autó pedig maradjon ACC tartozéküzemmódban.
+</Aside>
+
+<Aside type="tip">
+  Ha a TCU-konfiguráció olvasása nem sikerül, kapcsold ki a **Data Integrity Check** beállítást a TCU Configurator alkalmazásban.
+</Aside>
+
+## 5. lépés: Fejezd be a beállítást a weboldalon
+
+A TCU aktiválását webes felületen fejezheted be.
+
+<Steps>
+
+1. **Jelentkezz be vagy regisztrálj.** Nyisd meg a szolgáltatás weboldalát, majd jelentkezz be.
+
+2. **Aktiváld a TCU-t.**
+   - Nyisd meg az **Add new car** (új autó hozzáadása) folyamatot.
+   - Add meg az új jármű adatait.
+   - Kövesd az utasításokat a TCU és a fiókod párosításához.
+
+3. **Ellenőrizd a működést.** Indíts adatfrissítést, és ellenőrizd, hogy a TCU elérhető-e.
+
+</Steps>
+
+<Aside type="tip" title="Gratulálunk!">
+  Ha minden lépés sikerült, a TCU ismét elérhető, és a telematikai funkciók helyreálltak. Következő lépésként [állítsd be az APN-t a navigációs fejegységen](../navi/).
+</Aside>

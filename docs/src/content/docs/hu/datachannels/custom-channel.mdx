@@ -1,0 +1,85 @@
+---
+title: Egyedi adatcsatorna formátuma
+description: Referencia a navigációs fejegység által az adatcsatorna-szervernek küldött JSON-kéréshez és a fejegység által várt diavetítéses válaszformátumhoz.
+sidebar:
+  label: Adatcsatorna-formátum
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+Az adatcsatorna JSON formátumban kap információt. Ha a szükséges engedélyek megvannak, a jármű bizonyos adatokat is elküld a kiszolgálónak.
+
+<Aside type="caution" title="Adatvédelmi figyelmeztetés">
+  Egyedi adatcsatorna megnyitásakor az OpenCARWINGS szerver meghívja a beállított külső végpontot. A helymegosztási beállítástól függően a fejegységtől kapott helyzet-, irány-, sebesség- és menetállapot-adatokat is továbbítja. Csak olyan végpontot állíts be, amelynek üzemeltetőjében és adatkezelésében megbízol.
+</Aside>
+
+## A jármű kérése a szerver felé
+
+A jármű `POST` kérést küld a következő JSON-törzzsel:
+
+```jsonc
+{
+    "lang": "en", // lehetséges értékek: es, sl, cz, pl, gr, no, fi, se, dk, nl, pt, it, de, fr, ru
+    "tz": "0.00",
+    "distance_unit": "km", // km vagy mile
+    "temp_unit": "C", // C = Celsius, F = Fahrenheit
+    // az alábbi mezők csak akkor érhetők el, ha a helymegosztás engedélyezett
+    "lat": 51.509966666666664,
+    "lon": 0.13496111111111112,
+    "speed": "err", // err = nincs sebességadat; egyébként a distance_unit szerinti érték
+    "direction": "0", // irány fokban
+    "car_status": "stop" // stop = az autó P (parkoló) állásban van, run = D vagy R fokozatban van
+}
+```
+
+### A kérés mezői
+
+| Mező | Leírás |
+| --- | --- |
+| `lang` | Nyelvkód. Lehetséges értékek: `es`, `sl`, `cz`, `pl`, `gr`, `no`, `fi`, `se`, `dk`, `nl`, `pt`, `it`, `de`, `fr`, `ru`. A példa az `en` értéket is mutatja. |
+| `tz` | Időzóna, például `"0.00"`. |
+| `distance_unit` | `km` vagy `mile`. |
+| `temp_unit` | Celsius esetén `C`, Fahrenheit esetén `F`. |
+| `lat`, `lon` | A jármű földrajzi szélessége és hosszúsága. |
+| `speed` | `err`, ha nincs sebességadat; egyébként a sebesség a `distance_unit` mezőben megadott mértékegység szerint. |
+| `direction` | Haladási irány fokban. |
+| `car_status` | `stop`, amikor a jármű P (parkoló) állásban van; `run`, amikor D vagy R fokozatban van. |
+
+## Az elvárt válasz formátuma
+
+A szerver a következő formátumú, diaképeket tartalmazó JSON-tömbbel válaszoljon.
+
+<Aside type="caution" title="Legfeljebb két dia">
+  A válasz **legfeljebb 2 diát** tartalmazhat.
+</Aside>
+
+```jsonc
+// Példa egyetlen adatcsatorna-diára
+[{
+    "title1": "Slide1", // * A dia neve (legfeljebb 32 karakter)
+    "title2": "This is a slide", // * A dia leírása (legfeljebb 128 karakter)
+    "title3": "This is another desc", // Nem kötelező leírás (legfeljebb 64 karakter)
+    "onscreen": "This is a readable when pressed pause", // A Details menüben olvasható szöveg (legfeljebb 1024 karakter)
+    "tts": "This text will be spoken", // A TTS-motor által felolvasandó szöveg; TTS XML-t is tartalmazhat
+    "map_point": {"lat": 0.0, "lon": 0.0}, // Térképpont földrajzi szélességgel és hosszúsággal
+    "phone_number": "+358444444444", // Telefonszám nemzetközi formátumban
+    "img_base64": "", // Base64-kódolt JPEG vagy PNG, legfeljebb 15 480 bájt
+    "bell": true, // true esetén jelzőhang hallatszik a TTS felolvasása előtt; alapérték: true
+    "save": true // true esetén a dia mentésre kerül a CARWINGS memóriájában; alapérték: true
+}]
+```
+
+### A dia mezői
+
+| Mező | Kötelező | Leírás |
+| --- | --- | --- |
+| `title1` | Igen | A dia neve, legfeljebb 32 karakter. |
+| `title2` | Igen | A dia leírása, legfeljebb 128 karakter. |
+| `title3` | Nem | Nem kötelező kiegészítő leírás, legfeljebb 64 karakter. |
+| `onscreen` | Nem | A Details menüben megjeleníthető szöveg, legfeljebb 1024 karakter. |
+| `tts` | Nem | A TTS-motor által felolvasandó szöveg. A TTS-motor számára XML-jelölést is tartalmazhat. |
+| `map_point` | Nem | Térképpont `lat` és `lon` koordinátákkal. |
+| `phone_number` | Nem | Telefonszám nemzetközi formátumban. |
+| `img_base64` | Nem | Base64-kódolt kép, legfeljebb 15 480 bájt méretben. A kép formátuma JPEG vagy PNG lehet. |
+| `bell` | Nem | `true` esetén a rendszer jelzőhangot játszik le a TTS-tartalom felolvasása előtt. Alapértéke `true`. |
+| `save` | Nem | `true` esetén a diák mentésre kerülnek a CARWINGS memóriájában. Alapértéke `true`. |

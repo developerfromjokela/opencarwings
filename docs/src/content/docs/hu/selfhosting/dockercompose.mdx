@@ -1,0 +1,147 @@
+---
+title: Saját szerver futtatása előre elkészített Docker-képpel
+description: Az OpenCARWINGS telepítése docker-compose segítségével, a GitHub Container Registry előre elkészített Docker-képéből.
+sidebar:
+  label: Saját szerver (előre elkészített kép)
+---
+
+import { Steps, Aside } from '@astrojs/starlight/components';
+
+<Aside type="note">
+  Ez az oldal a GitHub Container Registryben elérhető **előre elkészített Docker-képet** telepíti. A repositoryból a `carwings` mappára és a gyökérkönyvtár `.example.env` fájljára van szükség. Ha inkább saját magad szeretnéd lefordítani a képet a teljes repositoryból, lásd a [helyben fordított Docker-képről szóló útmutatót](../docker/).
+</Aside>
+
+## Előfeltételek
+
+A szerver Dockerrel történő telepítéséhez telepített `docker` és `docker-compose` szükséges. Lásd a [Docker telepítési útmutatóját minden támogatott platformhoz](https://docs.docker.com/engine/install/).
+
+Ubuntu alatt:
+
+```bash
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-compose
+```
+
+### Portok
+
+A Docker mellett az alábbi portoknak kell elérhetőnek lenniük:
+
+| Port | Feladat | Megjegyzés |
+| --- | --- | --- |
+| `55230` | TCU-kommunikáció | A TCU-nak ezen keresztül kell elérnie a szervert. |
+| `80` | Navigációs fejegység | Csak HTTP használható, mert a fejegység nem képes SSL/TLS kapcsolat kezelésére. |
+
+Maga a webes felület Nginx vagy Apache elé helyezve használhat HTTPS-t. Az angol forrás egy jelenleg nem létező reverse-proxy dokumentációs oldalra hivatkozik, ezért ennek biztonságos beállítását a választott proxy hivatalos útmutatója alapján kell elvégezni.
+
+<Aside type="caution" title="Nyilvános hálózati szolgáltatás">
+  A portok internet felé történő megnyitása biztonsági kockázattal jár. Csak a szükséges portokat tedd elérhetővé, használj erős, egyedi jelszavakat, a webes felületet pedig megfelelően beállított HTTPS reverse proxy mögött üzemeltesd. Ez az oldal nem helyettesít teljes szerverbiztonsági útmutatót.
+</Aside>
+
+## Telepítés és beállítás
+
+<Steps>
+
+1. **Klónozd a repositoryt** gittel, vagy töltsd le ZIP-fájlként a GitHubról:
+
+   ```bash
+   git clone https://github.com/developerfromjokela/opencarwings.git
+   ```
+
+   A `carwings` mappára és a repository gyökerében található `.example.env` fájlra van szükség. A többi elem megtartása nem kötelező.
+
+2. **Hozd létre a `docker-compose.yml` fájlt** a `carwings` mappa mellett a következő tartalommal:
+
+   ```yaml title="docker-compose.yml"
+   version: "2.1"
+
+   services:
+     server:
+       image: ghcr.io/developerfromjokela/opencarwings:main
+       container_name: opencarwings-server
+       environment:
+         PSQL_DATABASE: ${PSQL_NAME}
+         PSQL_USER: ${PSQL_USERNAME}
+         PSQL_PASSWORD: ${PSQL_PASSWORD}
+         PSQL_DATABASE_HOST: db
+         PSQL_DATABASE_PORT: 5432
+         REDIS_HOST: redis
+         REDIS_PORT: 6379
+         TZ: ${TZ}
+       restart: always
+       volumes:
+         - ./carwings/:/app/carwings/
+         - ./staticfiles/:/app/staticfiles/
+         - ./mediafiles/:/app/mediafiles/
+         - ./logs/:/app/logs/
+       ports:
+         - "${BACKEND_PORT}:80"
+         - "${TCPSERVER_PORT}:55230"
+     db:
+       image: postgres:14
+       container_name: opencarwings-db
+       environment:
+         PGDATA: /var/lib/postgresql/data/pgdata
+         POSTGRES_DB: ${PSQL_NAME}
+         POSTGRES_USER: ${PSQL_USERNAME}
+         POSTGRES_PASSWORD: ${PSQL_PASSWORD}
+       volumes:
+         - psql_data:/var/lib/postgresql/data
+       restart: unless-stopped
+     redis:
+       container_name: opencarwings-redis
+       image: redis:7
+
+   volumes:
+     psql_data:
+   ```
+
+3. **Hozd létre a `.env` fájlt.** Másold a `.example.env` fájlt `.env` néven ugyanabba a könyvtárba, majd szerkeszd:
+
+   ```bash
+   cp .example.env .env
+   ```
+
+   | Változó | Leírás |
+   | --- | --- |
+   | `TZ` | A szerver időzónája, például `Europe/Helsinki`. |
+   | `BACKEND_PORT` | A HTTP-forgalom figyelési címe és portja, például `0.0.0.0:80`. |
+   | `TCPSERVER_PORT` | A TCU-szerver figyelési portja. |
+   | `PSQL_NAME` | Az adatbázis neve. Tartsd meg az alapértéket. |
+   | `PSQL_USERNAME` | Az adatbázis-felhasználó neve. Tartsd meg az alapértéket. |
+   | `PSQL_PASSWORD` | Az adatbázis-felhasználó jelszava. Állíts be saját, erős jelszót, amelyet például `uuidgen` vagy más, nagy entrópiájú forrás segítségével hozol létre. |
+
+4. **Hozd létre a Django beállításfájlját.** Másold a `carwings/settings.docker.py` fájlt `carwings/settings.py` néven, majd módosítsd:
+
+   ```bash
+   cp carwings/settings.docker.py carwings/settings.py
+   ```
+
+   | Beállítás | Leírás |
+   | --- | --- |
+   | `SECRET_KEY` | Hozz létre biztonságos kulcsot `uuidgen` vagy más, nagy entrópiájú forrás segítségével. |
+   | `DEBUG` | Külső hálózatról elérhető telepítésnél **már az első indítás előtt** állítsd `False` értékre. |
+   | `ALLOWED_HOSTS` | Ha a szervert tartománynéven vagy IP-címen keresztül – helyi vagy külső hálózatról – éred el, add hozzá ezeket a listához, például `['domain.com', 'domain2.com']`. |
+   | `EMAIL_HOST` | Az SMTP levelezőszerver címe. |
+   | `EMAIL_USE_TLS` | `True` vagy `False`. |
+   | `EMAIL_PORT` | Az SMTP levelezőszerver portja. |
+   | `EMAIL_HOST_USER` | A levelezési fiók felhasználóneve. |
+   | `EMAIL_HOST_PASSWORD` | A levelezési fiók jelszava. |
+
+5. **Indítsd el a szervert:**
+
+   ```bash
+   docker-compose up -d
+   ```
+
+6. **Hozd létre az adminisztrátori fiókot:**
+
+   ```bash
+   docker exec -it opencarwings-server python manage.py createsuperuser
+   ```
+
+7. **Ellenőrizd a működést.** Az adminisztrációs felület az `/admin` útvonalon érhető el. Jelentkezz be, és ellenőrizd, hogy minden megfelelően működik-e.
+
+</Steps>
+
+<Aside type="danger" title="A DEBUG módot ne hagyd bekapcsolva">
+  Internet felől elérhető szerveren a bekapcsolt `DEBUG` részletes hibaoldalakat és konfigurációs adatokat tehet láthatóvá. Ne várj az első működési próbáig: külső hálózatról elérhető telepítésnél már az első indítás előtt legyen `DEBUG = False`.
+</Aside>

@@ -1,5 +1,7 @@
 import requests
+from django.conf import settings
 
+from api.utils import sanitize_external_url
 from tculink import VERSION
 from tculink.gdc_proto.ficosa import pdu
 from tculink.sms import BaseSMSProvider, SMSType
@@ -30,6 +32,10 @@ class ProviderWebhook(BaseSMSProvider):
             pdu_data = pdu_data.hex()
             message = message.hex()
 
-        request = requests.post(configuration['url'], json={'message': message, "type": msg_type, "pdu": pdu_data, "pdu_length": pdu_len}, timeout=10,
-                                headers={"User-Agent": f"OpenCarWings/{VERSION}", "Content-Type": "application/json"})
+        proxy_settings = {}
+        if hasattr(settings, 'USER_CONTENT_PROXY'):
+            proxy_settings = settings.USER_CONTENT_PROXY
+
+        request = requests.post(sanitize_external_url(configuration['url']), json={'message': message, "type": msg_type, "pdu": pdu_data, "pdu_length": pdu_len}, timeout=10,
+                                headers={"User-Agent": f"OpenCarWings/{VERSION}", "Content-Type": "application/json"}, proxies=proxy_settings)
         return request.status_code == 200

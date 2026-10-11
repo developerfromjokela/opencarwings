@@ -82,7 +82,7 @@ function showNotification({ message, title = '', type = 'success', persist_id=un
 
 
 class WebSocketClient {
-    constructor(url, connect_cb=undefined, message_cb=undefined, error_cb=undefined, close_cb=undefined, reconnecting_cb=undefined) {
+  constructor(url, connect_cb=undefined, message_cb=undefined, error_cb=undefined, close_cb=undefined, reconnecting_cb=undefined) {
         this.url = url;
         this.connect_cb = connect_cb;
         this.message_cb = message_cb;
@@ -95,77 +95,84 @@ class WebSocketClient {
         this.baseDelay = 1000; // Initial delay in ms
         this.maxDelay = 30000; // Max delay in ms
         this.isConnected = false;
+        this.reconnectTimer = null;
         this.connect();
+  }
+
+  connect() {
+    if (this.ws) {
+      this.ws.onopen = this.ws.onmessage = this.ws.onerror = this.ws.onclose = null;
+      if (this.ws.readyState === WebSocket.OPEN || this.ws.readyState === WebSocket.CONNECTING) {
+        this.ws.close();
+      }
+      this.ws = null;
     }
 
-    connect() {
-        this.ws = new WebSocket(this.url);
+    this.ws = new WebSocket(this.url);
 
-        // Handle open
-        this.ws.onopen = () => {
+    this.ws.onopen = () => {
+      this.isConnected = true;
+      this.reconnectAttempts = 0;
+      if (this.connect_cb) this.connect_cb();
+    };
 
-            this.isConnected = true;
-            this.reconnectAttempts = 0; // Reset attempts on successful connection
-            if (this.connect_cb)
-                this.connect_cb()
-        };
+    this.ws.onmessage = (event) => {
+      if (this.message_cb) this.message_cb(event);
+    };
 
-        // Handle messages
-        this.ws.onmessage = (event) => {
-            if (this.message_cb)
-                this.message_cb(event)
-        };
+    this.ws.onerror = (error) => {
+      if (this.error_cb) this.error_cb(error);
+      this.isConnected = false;
+    };
 
-        // Handle errors
-        this.ws.onerror = (error) => {
-            if (this.error_cb)
-                this.error_cb(error)
-            this.isConnected = false;
-        };
+    this.ws.onclose = () => {
+      if (this.close_cb) this.close_cb();
+      this.isConnected = false;
+      this.handleReconnect();
+    };
+  }
 
-        // Handle close
-        this.ws.onclose = () => {
-            if (this.close_cb)
-                this.close_cb()
-            this.isConnected = false;
-            this.handleReconnect();
-        };
+  handleReconnect() {
+    if (this.maxReconnectAttempts !== 0 && this.reconnectAttempts >= this.maxReconnectAttempts) {
+      console.error('Max reconnect attempts reached. Giving up.');
+      return;
     }
 
-    handleReconnect() {
-        if (this.maxReconnectAttempts !== 0 && this.reconnectAttempts >= this.maxReconnectAttempts) {
-            console.error('Max reconnect attempts reached. Giving up.');
-            return;
-        }
-
-        // Calculate delay with exponential backoff
-        const delay = Math.min(
-            this.baseDelay * Math.pow(2, this.reconnectAttempts), // Exponential increase
-            this.maxDelay
-        );
-
-        if (this.reconnecting_cb)
-            this.reconnecting_cb()
-
-        setTimeout(() => {
-            this.reconnectAttempts++;
-            this.connect();
-        }, delay);
+    if (this.reconnectTimer) {
+      clearTimeout(this.reconnectTimer);
+      this.reconnectTimer = null;
     }
 
-    send(message) {
-        if (this.isConnected && this.ws.readyState === WebSocket.OPEN) {
-            this.ws.send(message);
-            return true;
-        }
-        return false;
-    }
+    const delay = Math.min(
+      this.baseDelay * Math.pow(2, this.reconnectAttempts),
+      this.maxDelay
+    );
 
-    close() {
-        this.maxReconnectAttempts = 1;
-        this.reconnectAttempts = this.maxReconnectAttempts; // Prevent further reconnects
-        if (this.ws) {
-            this.ws.close();
-        }
+    if (this.reconnecting_cb) this.reconnecting_cb();
+
+    this.reconnectTimer = setTimeout(() => {
+      this.reconnectAttempts++;
+      this.connect();
+    }, delay);
+  }
+
+  send(message) {
+    if (this.isConnected && this.ws.readyState === WebSocket.OPEN) {
+      this.ws.send(message);
+      return true;
     }
+    return false;
+  }
+
+  close() {
+    this.maxReconnectAttempts = 1;
+    this.reconnectAttempts = this.maxReconnectAttempts;
+    if (this.reconnectTimer) {
+      clearTimeout(this.reconnectTimer);
+      this.reconnectTimer = null;
+    }
+    if (this.ws) {
+      this.ws.close();
+    }
+  }
 }

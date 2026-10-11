@@ -247,18 +247,13 @@ def get_info_channel_data(car, internal=False):
 
     if car is not None:
         for pos, data in car.custom_channels.items():
-            resolved_icon = 0x0400
-            for icon_id, item in ICONS.items():
-                if item[0] == data['icon']:
-                    resolved_icon = icon_id
-                    break
             channels.append({
                 'id': 0x1000+int(pos),
                 'internal_id': 0x1000+int(pos),
                 'name1': data['name'],
                 'name2': data['name'],
                 'folder_id': 5,
-                'icon': resolved_icon,
+                'icon': 0xffee+int(pos), # user favicon range 0xffee-0xfffd
                 'enabled': True,
                 'auth': True,
                 'data1': bytearray(),

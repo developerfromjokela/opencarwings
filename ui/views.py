@@ -18,7 +18,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.core.exceptions import SuspiciousFileOperation
 from django.core.paginator import Paginator
 from django.db.models import Q
-from django.http import Http404
+from django.http import Http404, FileResponse
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render, redirect
 from django.templatetags.static import static
@@ -37,13 +37,14 @@ from rest_framework.response import Response
 import db.models
 from api.maplink import parse_map_link
 from api.utils import sanitize_external_url
-from carwings.settings import STATIC_ROOT
+from carwings.settings import STATIC_ROOT, BASE_DIR
 from db.models import Car, COMMAND_TYPES, AlertHistory, EVInfo, LocationInfo, TCUConfiguration, PERIODIC_REFRESH, \
     PERIODIC_REFRESH_ACTIVE, CAR_COLOR, CRMLatest, CRMLifetime, CRMTripRecord, CRMMonthlyRecord, CRMChargeHistoryRecord, \
     CRMChargeRecord, CRMABSHistoryRecord, CRMExcessiveIdlingRecord, CRMExcessiveAirconRecord, CRMTroubleRecord, \
     CRMMSNRecord, DOTFile, ProbeConfig, CRMDistanceRecord, CarTransferRequest, User
 from tculink.carwings_proto.autodj import ICONS, CUSTOM_ICONS
 from tculink.carwings_proto.autodj.channels import get_info_channel_data
+from tculink.carwings_proto.ext_favicon import get_user_icon
 from tculink.carwings_proto.probe_config import PROBE_CONFIGS, PROBE_CONFIG_INFO
 from tculink.coordinators import get_required_sms_types, get_supported_commands
 from tculink.coordinators.ficosa2016 import Ficosa2016
@@ -890,3 +891,17 @@ def probeviewer_trip(request, vin, trip):
     trip = get_object_or_404(CRMTripRecord, car=car, pk=trip)
 
     return render(request, 'ui/probeviewer/trip.html', {'trip': trip, 'car': car})
+
+@login_required(login_url='signin')
+def channel_favicon(request, vin, channel_id):
+    car = get_object_or_404(Car, vin=vin, owner=request.user)
+    try:
+        chan_info = car.custom_channels[str(channel_id)]
+        favicon_dat = get_user_icon(chan_info['url'])
+        if not favicon_dat["valid"]:
+            default_icon = safe_join(BASE_DIR, 'ui', 'static', 'chanicons', chan_info['icon'])
+            return FileResponse(open(default_icon, "rb").read() ,content_type="image/png")
+        return FileResponse(io.BytesIO(favicon_dat["data"]), content_type=favicon_dat["mimetype"])
+    except KeyError:
+        ...
+    return FileResponse(open(BASE_DIR / 'ui' / 'static' / 'chanicons' / 'unknown.png', "rb").read(), content_type="image/png")

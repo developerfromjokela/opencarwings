@@ -37,7 +37,7 @@ class ProviderGatewayAPI(BaseSMSProvider):
 
         request = requests.post('https://gatewayapi.com/rest/mtsms',
                 timeout=10, json=payload, headers={
-                "User-Agent": f"OpenCarWings/{VERSION}",
+                "User-Agent": f"OpenCARWINGS/{VERSION}",
                 "Content-Type": "application/json",
                 "Authorization": f"Token {configuration['apikey']}"
             }

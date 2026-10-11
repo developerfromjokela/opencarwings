@@ -32,7 +32,7 @@ class ProviderMonogoto(BaseSMSProvider):
         }
         headers = {
             'Content-Type': 'application/json',
-            'User-Agent': f"OpenCarWings/{VERSION}"
+            'User-Agent': f"OpenCARWINGS/{VERSION}"
         }
 
         response = requests.post(auth_url, json=auth_data, headers=headers, timeout=10)

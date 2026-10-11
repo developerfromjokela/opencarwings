@@ -25,7 +25,7 @@ class ProviderViaaqMobileGlobal(BaseSMSProvider):
             "tcu_id": configuration['tcu_id'],
             "data": message,
             "type": "binary" if msg_type == 1 else "text"
-        }, timeout=10, headers={"User-Agent": f"OpenCarWings/{VERSION}",
+        }, timeout=10, headers={"User-Agent": f"OpenCARWINGS/{VERSION}",
                                 "Content-Type": "application/json",
                                 "X-Api-Token": apikey})
         if request.status_code == 400 or request.status_code == 404:

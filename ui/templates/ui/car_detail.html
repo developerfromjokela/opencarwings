@@ -1263,7 +1263,7 @@
                 .catch(error => console.error('Error fetching car data:', error));
         }
 
-        function updateCarUIElements(data) {
+        function updateCarUIElements(data, refreshChn=false) {
             if (data.sms_config) {
                 currentSmsConfig = data.sms_config;
             }
@@ -1278,11 +1278,11 @@
                 updateCommandTimers();
             }
 
-            if (data.favorite_channels && fvtChnData == null) {
+            if (data.favorite_channels && (fvtChnData == null || refreshChn)) {
                 fvtChnData = data.favorite_channels;
             }
 
-            if (data.custom_channels && customChnData == null) {
+            if (data.custom_channels && (customChnData == null || refreshChn)) {
                 customChnData = data.custom_channels;
             }
 
@@ -2260,7 +2260,7 @@
                         if (customChnData.hasOwnProperty(customChanId)) {
                             const channel = customChnData[customChanId];
                             nameElem.textContent = channel.name;
-                            iconElem.src = staticRes+"chanicons/"+channel.icon;
+                            iconElem.src = window.location+"favicon/"+customChanId;
                             channelElem.classList.remove('text-gray-500')
                             channelElem.classList.remove('dark:text-gray-400')
                         }
@@ -2334,7 +2334,11 @@
                     channelElem.classList.remove('dark:text-gray-400')
                     const channel = customChnData[i];
                     nameElem.textContent = channel.name;
-                    iconElem.src = `${staticRes}chanicons/${channel.icon}`;
+                    console.log(channel.draft);
+                    if (channel.draft)
+                        iconElem.src = `${staticRes}chanicons/${channel.icon}`;
+                    else
+                        iconElem.src = window.location+"favicon/"+i;
                 } else {
                     channelElem.classList.add('text-gray-500')
                     channelElem.classList.add('dark:text-gray-400')
@@ -2374,6 +2378,7 @@
                 icon: document.getElementById('chan-icon').value,
                 url: document.getElementById('chan-url').value,
                 location: document.getElementById('chan-location').checked,
+                draft: true
             }
             updateCustomChnItems();
         }
@@ -2395,7 +2400,7 @@
                     showNotification({title: '{% translate "Error saving CARWINGS settings" %}', message: data.error ?? data, type: 'error'})
                 } else {
                     showNotification({message: "{% translate "CARWINGS settings saved!" %}", type: "success"});
-                    updateCarUIElements(data);
+                    updateCarUIElements(data, true);
                 }
             })
             .catch(error => {

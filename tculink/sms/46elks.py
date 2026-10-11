@@ -27,7 +27,7 @@ class Provider46elks(BaseSMSProvider):
                     'from': 'CarWings',
                     'to': f'+{msn}',
                     'message': message
-                }, headers={"User-Agent": f"OpenCarWings/{VERSION}"}
+                }, headers={"User-Agent": f"OpenCARWINGS/{VERSION}"}
 
         )
 

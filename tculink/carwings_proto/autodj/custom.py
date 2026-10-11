@@ -4,6 +4,7 @@ import requests
 from django.conf import settings
 from rest_framework import serializers
 from db.models import Car
+from tculink import VERSION
 from tculink.carwings_proto.autodj import NOT_AVAIL_AUTODJ_ITEM
 from tculink.carwings_proto.dataobjects import build_autodj_payload, construct_dms_coordinate
 from tculink.carwings_proto.utils import carwings_lang_to_code, xml_coordinate_to_float, encode_utf8
@@ -61,7 +62,7 @@ def handle_custom_channel(xml_data, _, channel_id, car: Car, page):
         chn_data = requests.post(chan_info['url'], json=send_payload, timeout=10, proxies=proxy_settings,
                                  headers={
                                      'content-type': 'application/json',
-                                     'user-agent': 'OpenCARWINGS/1.0',
+                                     'user-agent': f'OpenCARWINGS/{VERSION}',
                                      'accept-language': send_payload['lang']
                                  })
         chn_data = chn_data.json()

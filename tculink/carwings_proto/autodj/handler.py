@@ -8,15 +8,24 @@ from tculink.carwings_proto.autodj import NOT_FOUND_AUTODJ_ITEM, NOT_AUTHORIZED_
 from tculink.carwings_proto.autodj.channels import get_info_channel_data
 from tculink.carwings_proto.dataobjects import construct_chnmst_payload, construct_fvtchn_payload, build_autodj_payload, \
     compose_icndat
+from tculink.carwings_proto.ext_favicon import get_user_icon
 from tculink.carwings_proto.utils import get_cws_authenticated_car, carwings_lang_to_code
 
 logger = logging.getLogger("carwings_apl")
 
 def handle_icons_response(xml_data, returning_xml, icons):
     icon_files = []
+    car = get_cws_authenticated_car(xml_data)
+    custom_channels = {} if car is None else car.custom_channels
 
     for custom_icon in icons:
-        if custom_icon in CUSTOM_ICONS:
+        if 0xFFEE <= custom_icon <= 0xFFFD: # custom icons range
+            chan_pos = str(custom_icon-0xffee)
+            if chan_pos in custom_channels:
+                user_favicon = get_user_icon(custom_channels[chan_pos]['url'], skip_failed_cache=True)
+                if user_favicon['valid']:
+                    icon_files.append((f"ICN{custom_icon:04X}", compose_icndat(custom_icon, user_favicon['data'], user_favicon['data'])))
+        elif custom_icon in CUSTOM_ICONS:
             filename, __  = CUSTOM_ICONS[custom_icon]
             icon_path = os.path.join(settings.BASE_DIR, 'ui', 'static', 'chanicons', filename)
             if os.path.isfile(icon_path) and os.path.getsize(icon_path) < 1801:
@@ -28,7 +37,6 @@ def handle_icons_response(xml_data, returning_xml, icons):
                     logger.error("Could not read custom icon: %s", icon_path)
                     logger.exception(e)
                 icon_files.append((f"ICN{custom_icon:04X}", compose_icndat(custom_icon, img_data, img_data)))
-
     return icon_files
 
 def handle_directory_response(xml_data, returning_xml):

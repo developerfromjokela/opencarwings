@@ -38,7 +38,7 @@ class ProviderSevenIO(BaseSMSProvider):
 
         request = requests.post('https://gateway.seven.io/api/sms',
                 timeout=10, data=payload, headers={
-                "User-Agent": f"OpenCarWings/{VERSION}",
+                "User-Agent": f"OpenCARWINGS/{VERSION}",
                 "Accept": "application/json",
                 "X-Api-Key": configuration['apikey']
             }

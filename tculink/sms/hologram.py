@@ -23,7 +23,7 @@ class ProviderHologram(BaseSMSProvider):
                 json={
                     'deviceid': configuration['device_id'],
                     'body': message
-                }, headers={'User-Agent': f"OpenCarWings/{VERSION}", "Content-Type": "application/json"}
+                }, headers={'User-Agent': f"OpenCARWINGS/{VERSION}", "Content-Type": "application/json"}
         )
 
         return request.status_code == 200

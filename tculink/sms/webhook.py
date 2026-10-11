@@ -37,5 +37,5 @@ class ProviderWebhook(BaseSMSProvider):
             proxy_settings = settings.USER_CONTENT_PROXY
 
         request = requests.post(sanitize_external_url(configuration['url']), json={'message': message, "type": msg_type, "pdu": pdu_data, "pdu_length": pdu_len}, timeout=10,
-                                headers={"User-Agent": f"OpenCarWings/{VERSION}", "Content-Type": "application/json"}, proxies=proxy_settings)
+                                headers={"User-Agent": f"OpenCARWINGS/{VERSION}", "Content-Type": "application/json"}, proxies=proxy_settings)
         return request.status_code == 200

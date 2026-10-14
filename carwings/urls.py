@@ -62,7 +62,7 @@ urlpatterns = [
     path('navi', views.vflash_editor),
     path('WARCondelivbas/it-m_gw10/', tculink_views.carwings_http_gateway),
     path('ficosa/gdc', tculink_views.ficosa_http_gateway),
-    path('signup', views.signup, name='car_list'),
+    path('signup', views.signup, name='signup'),
     path('signin', views.signin, name='signin'),
     path('signin/2fa', views.signin_2fa, name='signin_2fa'),
     path('signin/2fa/recovery', views.signin_2fa_recovery, name='signin_2fa_recovery'),

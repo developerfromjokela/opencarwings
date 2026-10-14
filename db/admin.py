@@ -1,8 +1,15 @@
-from django.contrib import admin
+import smtplib
+
+from django.conf import settings
+from django.contrib import admin, messages
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.views import redirect_to_login
+from django.core.mail import send_mail
 from django.shortcuts import redirect
+from django.template.loader import render_to_string
 from django.urls import reverse
+from django.utils.html import format_html
+from django.utils.translation import gettext as _, gettext_lazy
 
 from .models import (
     TCUConfiguration,
@@ -77,9 +84,40 @@ class CommandTimerSettingAdmin(admin.ModelAdmin):
 
 @admin.register(CarTransferRequest)
 class CarTransferRequestAdmin(admin.ModelAdmin):
-    list_display = ('id', 'expiration_time', 'car')
-    search_fields = ('car__vin',)
+    list_display = ('car', 'recipient_email', 'request_created', 'expiration_time', 'claimed_by', 'claimed_at')
+    list_filter = ('claimed_at', 'request_created')
+    search_fields = ('car__vin', 'recipient_email')
     raw_id_fields = ('car',)  # Improves performance for ForeignKey field
+    readonly_fields = ('transfer_link', 'request_created', 'previous_owner', 'claimed_by', 'claimed_at')
+    fields = ('car', 'recipient_email', 'keep_history', 'expiration_time') + readonly_fields
+
+    def get_readonly_fields(self, request, obj=None):
+        # The link was already emailed for this car and address
+        return self.readonly_fields + (('car', 'recipient_email') if obj else ())
+
+    @admin.display(description=gettext_lazy('Transfer link'))
+    def transfer_link(self, obj):
+        if not obj.pk:
+            return '-'
+        return format_html('<a href="{0}">{0}</a>', obj.get_absolute_url())
+
+    def save_model(self, request, obj, form, change):
+        super().save_model(request, obj, form, change)
+        if change:
+            return
+        link = request.build_absolute_uri(obj.get_absolute_url())
+        body = render_to_string('emails/car_transfer.txt', {
+            'from_user': obj.car.owner.username, 'car': obj.car, 'email': obj.recipient_email,
+            'link': link, 'expires': obj.expiration_time,
+        })
+        try:
+            subject = _('%(user)s is transferring a car to you') % {'user': obj.car.owner.username}
+            send_mail(f'{subject} - OpenCARWINGS', body,
+                      settings.DEFAULT_FROM_EMAIL, [obj.recipient_email])
+            self.message_user(request, _('Transfer link sent to %(email)s.') % {'email': obj.recipient_email})
+        except (smtplib.SMTPException, OSError):
+            self.message_user(request, _('The email could not be sent. Send this link to %(email)s yourself: %(link)s')
+                              % {'email': obj.recipient_email, 'link': link}, messages.WARNING)
 
 @admin.register(Car)
 class CarAdmin(admin.ModelAdmin):

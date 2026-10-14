@@ -266,27 +266,29 @@ def vflash_editor(request):
 
 @login_required(login_url='signin')
 def car_transfer(request, code):
-    transfer = CarTransferRequest.objects.filter(
+    transfer = CarTransferRequest.objects.select_related('car__owner').filter(
         Q(expiration_time__isnull=True) | Q(expiration_time__gt=timezone.now()),
         transfer_code=code,
-    )
+        claimed_at__isnull=True,
+    ).first()
 
-    if transfer.exists():
-        transfer = transfer.first()
-        if request.method == 'POST':
-            transfer.car.owner = request.user
-            transfer.car.save(update_fields=['owner'])
-            transfer.delete()
-            messages.info(request, _("Transfer was successful!"))
-            return redirect('car_list')
-
-        context = {
-            'car': transfer.car,
-        }
-    else:
+    if transfer is None:
         messages.error(request, _("Transfer link not found! It may have expired, or the transfer is already completed."))
-        context = {'car': None}
+        return render(request, 'ui/car_transfer.html', {'car': None})
 
+    if not transfer.can_be_claimed_by(request.user):
+        messages.error(request, _("This link was sent to a different email address. Sign in with the account that uses that address."))
+        return render(request, 'ui/car_transfer.html', {'car': None})
+
+    if request.method == 'POST':
+        transfer.claim(request.user)
+        messages.success(request, _("You now own %(car)s. To let the car connect, sign in on its navigation unit with your CARWINGS username and password.") % {'car': transfer.car.nickname})
+        return redirect('car_detail', vin=transfer.car.vin)
+
+    context = {
+        'car': transfer.car,
+        'transfer': transfer,
+    }
 
     return render(request, 'ui/car_transfer.html', context)
 

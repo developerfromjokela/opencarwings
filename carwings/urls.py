@@ -86,6 +86,7 @@ urlpatterns = [
     path('account/disable-command-pin/', views.disable_command_pin, name='disable_otp'),
     path('t/<str:code>/', views.car_transfer, name='car_transfer'),
     path('car/<str:vin>/', views.car_detail, name='car_detail'),
+    path('car/<str:vin>/transfer/', views.car_transfer_create, name='car_transfer_create'),
     path('car/<str:vin>/favicon/<int:channel_id>', views.channel_favicon, name='channel_favicon'),
     path('api/car/<str:vin>/', api_views.CarAPIView.as_view(), name='car_api'),
     path('api/car/<str:vin>/timers/', api_views.CommandTimerApiView.as_view(), name='car_timers_api'),

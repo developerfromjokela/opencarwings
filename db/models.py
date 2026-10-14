@@ -1,4 +1,5 @@
 import re
+import smtplib
 from datetime import timedelta
 from secrets import token_hex
 
@@ -7,10 +8,12 @@ from django.conf import settings
 from django.contrib.auth.hashers import make_password, check_password
 from django.contrib.auth.models import AbstractUser, UserManager
 from django.core import validators
+from django.core.mail import send_mail
 from django.db import models, transaction
 from django.db.models import Q
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
@@ -391,6 +394,11 @@ class CarTransferRequest(models.Model):
     def __str__(self):
         return _("%(car)s to %(email)s") % {'car': self.car, 'email': self.recipient_email}
 
+    @classmethod
+    def active(cls):
+        return cls.objects.filter(Q(expiration_time__isnull=True) | Q(expiration_time__gt=timezone.now()),
+                                  claimed_at__isnull=True)
+
     def save(self, *args, **kwargs):
         if self._state.adding:
             self.previous_owner_id = self.car.owner_id
@@ -398,6 +406,20 @@ class CarTransferRequest(models.Model):
 
     def get_absolute_url(self):
         return reverse('car_transfer', args=[self.transfer_code])
+
+    def send_link(self, request):
+        """Email the claim link to the recipient. Returns (link, sent)."""
+        link = request.build_absolute_uri(self.get_absolute_url())
+        body = render_to_string('emails/car_transfer.txt', {
+            'from_user': self.car.owner.username, 'car': self.car, 'email': self.recipient_email,
+            'link': link, 'expires': self.expiration_time,
+        })
+        subject = _('%(user)s is transferring a car to you') % {'user': self.car.owner.username}
+        try:
+            send_mail(f'{subject} - OpenCARWINGS', body, settings.DEFAULT_FROM_EMAIL, [self.recipient_email])
+        except (smtplib.SMTPException, OSError):
+            return link, False
+        return link, True
 
     def can_be_claimed_by(self, user):
         return bool(self.recipient_email) and user.email.lower() == self.recipient_email.lower() and self.car.owner_id != user.id

@@ -1,12 +1,7 @@
-import smtplib
-
-from django.conf import settings
 from django.contrib import admin, messages
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.views import redirect_to_login
-from django.core.mail import send_mail
 from django.shortcuts import redirect
-from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils.html import format_html
 from django.utils.translation import gettext as _, gettext_lazy
@@ -105,17 +100,10 @@ class CarTransferRequestAdmin(admin.ModelAdmin):
         super().save_model(request, obj, form, change)
         if change:
             return
-        link = request.build_absolute_uri(obj.get_absolute_url())
-        body = render_to_string('emails/car_transfer.txt', {
-            'from_user': obj.car.owner.username, 'car': obj.car, 'email': obj.recipient_email,
-            'link': link, 'expires': obj.expiration_time,
-        })
-        try:
-            subject = _('%(user)s is transferring a car to you') % {'user': obj.car.owner.username}
-            send_mail(f'{subject} - OpenCARWINGS', body,
-                      settings.DEFAULT_FROM_EMAIL, [obj.recipient_email])
+        link, sent = obj.send_link(request)
+        if sent:
             self.message_user(request, _('Transfer link sent to %(email)s.') % {'email': obj.recipient_email})
-        except (smtplib.SMTPException, OSError):
+        else:
             self.message_user(request, _('The email could not be sent. Send this link to %(email)s yourself: %(link)s')
                               % {'email': obj.recipient_email, 'link': link}, messages.WARNING)
 

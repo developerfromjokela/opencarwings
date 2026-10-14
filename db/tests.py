@@ -1,6 +1,7 @@
 from datetime import timedelta
 from unittest import mock
 
+import pyotp
 from django.core import mail
 from django.test import TestCase
 from django.utils import timezone
@@ -91,6 +92,53 @@ class CarTransferAdminTests(TestCase):
         self.assertIn(transfer.get_absolute_url(), mail.outbox[0].body)
 
     def test_smtp_failure_shows_link(self):
-        with mock.patch('db.admin.send_mail', side_effect=ConnectionRefusedError):
+        with mock.patch('db.models.send_mail', side_effect=ConnectionRefusedError):
             response = self.client.post('/admin/db/cartransferrequest/add/', self.data, follow=True)
         self.assertContains(response, CarTransferRequest.objects.get().get_absolute_url())
+
+
+class UserCarTransferTests(TestCase):
+    def setUp(self):
+        self.seller = User.objects.create_user('seller', 'seller@example.com', 'pw', tcu_pass_hash='x')
+        self.car = Car.objects.create(
+            vin='VIN0001', sms_config={}, owner=self.seller, tcu_configuration=TCUConfiguration.objects.create(),
+            location=LocationInfo.objects.create(), ev_info=EVInfo.objects.create(),
+        )
+        self.url = f'/car/{self.car.vin}/transfer/'
+        self.client.force_login(self.seller)
+
+    def test_owner_creates_link(self):
+        self.client.post(self.url, {'recipient_email': 'buyer@example.com', 'keep_history': 'on'})
+        transfer = CarTransferRequest.objects.get()
+        self.assertTrue(transfer.keep_history)
+        self.assertEqual(mail.outbox[0].to, ['buyer@example.com'])
+        self.assertContains(self.client.get(self.url), transfer.get_absolute_url())
+
+    def test_new_link_replaces_old_and_cancel_removes_it(self):
+        self.client.post(self.url, {'recipient_email': 'a@example.com'})
+        self.client.post(self.url, {'recipient_email': 'b@example.com'})
+        self.assertEqual(CarTransferRequest.active().get().recipient_email, 'b@example.com')
+        self.client.post(self.url, {'cancel': '1'})
+        self.assertFalse(CarTransferRequest.objects.exists())
+
+    def test_own_email_rejected(self):
+        self.assertContains(self.client.post(self.url, {'recipient_email': 'SELLER@example.com'}), 'your own email')
+        self.assertFalse(CarTransferRequest.objects.exists())
+
+    def test_other_users_car_not_found(self):
+        self.client.force_login(User.objects.create_user('other', 'o@example.com', 'pw', tcu_pass_hash='x'))
+        self.assertEqual(self.client.get(self.url).status_code, 404)
+
+    def test_2fa_required_when_enabled(self):
+        self.seller.otp_key = pyotp.random_base32()
+        self.seller.save()
+        response = self.client.post(self.url, {'recipient_email': 'buyer@example.com'})
+        self.assertContains(response, 'reverify_2fa')
+        self.assertFalse(CarTransferRequest.objects.exists())
+        # After the code is checked, the form is shown again, not submitted with missing data
+        code = pyotp.TOTP(self.seller.otp_key).now()
+        response = self.client.post(self.url, {'reverify_2fa': '1', 'otp': code})
+        self.assertContains(response, 'Create transfer link')
+        self.assertNotContains(response, 'This field is required')
+        self.client.post(self.url, {'recipient_email': 'buyer@example.com'})
+        self.assertTrue(CarTransferRequest.objects.exists())

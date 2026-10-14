@@ -6,7 +6,7 @@
 
 {{ link }}
 {% if expires %}
-{% blocktranslate with expires=expires|date:"DATETIME_FORMAT" %}The link expires on {{ expires }}{% endblocktranslate %}{% endif %}
+{% blocktranslate with expires=expires|date:"DATETIME_FORMAT" %}The link expires on {{ expires }}.{% endblocktranslate %}{% endif %}
 
 {% translate "If you weren't expecting this, you can ignore this email." %}
 

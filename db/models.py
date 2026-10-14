@@ -391,6 +391,11 @@ class CarTransferRequest(models.Model):
     def __str__(self):
         return _("%(car)s to %(email)s") % {'car': self.car, 'email': self.recipient_email}
 
+    def save(self, *args, **kwargs):
+        if self._state.adding:
+            self.previous_owner_id = self.car.owner_id
+        super().save(*args, **kwargs)
+
     def get_absolute_url(self):
         return reverse('car_transfer', args=[self.transfer_code])
 

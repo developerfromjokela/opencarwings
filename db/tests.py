@@ -25,6 +25,7 @@ class CarTransferTests(TestCase):
         self.url = self.transfer.get_absolute_url()
 
     def test_recipient_claims_and_history_is_wiped(self):
+        self.assertEqual(self.transfer.previous_owner, self.seller)
         self.client.force_login(self.buyer)
         self.assertContains(self.client.get(self.url), 'seller')
         response = self.client.post(self.url)

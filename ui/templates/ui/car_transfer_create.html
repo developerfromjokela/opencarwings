@@ -1,0 +1,76 @@
+{% extends 'ui/base.html'%}
+{% load static %}
+{% load crispy_forms_filters %}
+{% load i18n %}
+{% block title %} {% translate "Transfer Ownership" %} {% endblock %}
+
+{% block content %}
+    <div class="max-w-4xl mx-auto py-10 px-4 space-y-6">
+        <h1 class="text-3xl font-semibold text-gray-800 dark:text-gray-100">{% translate "Transfer Ownership" %}</h1>
+        <div id="messages">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="{% if message.tags == 'error' %}bg-red-100 border-red-400 text-red-700{% endif %} px-4 py-3 rounded relative {% if message.tags == 'success' %}bg-green-100 border-green-400 text-green-700{% endif %} {% if message.tags == 'info' %}bg-blue-100 border-blue-400 text-blue-700{% endif %} {% if message.tags == 'warning' %}bg-yellow-100 border-yellow-400 text-yellow-700{% endif %}" role="alert">
+                        <strong class="font-bold">
+                            {% if message.tags == 'success' %}{% translate "Success" %}!{% endif %}
+                            {% if message.tags == 'error' %}{% translate "Error" %}!{% endif %}
+                            {% if message.tags == 'info' %}{% translate "Notice" %}:{% endif %}
+                            {% if message.tags == 'warning' %}{% translate "Warning" %}:{% endif %}
+                        </strong>
+                        <span class="block sm:inline">{{ message }}</span>
+                        <span class="absolute top-0 bottom-0 right-0 px-4 py-3 cursor-pointer" onclick="this.parentElement.style.display='none';">
+                            <svg class="fill-current h-6 w-6" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                <title>{% translate "Close" %}</title>
+                                <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/>
+                            </svg>
+                        </span>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <div class="flex bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md">
+            {% with 'car/'|add:car.color|add:'.png' as car_static %}
+                 <img src="{% static car_static %}" alt="" style="padding-right: 15px; max-height: 50px; object-fit: cover"/>
+            {% endwith %}
+            <div>
+                <h5 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-1">{{ car.nickname }}</h5>
+                <span class="text-sm text-gray-600 dark:text-gray-400">{% translate "VIN" %}: {{ car.vin }}</span>
+            </div>
+        </div>
+
+        {% if pending %}
+            <div class="space-y-3">
+                <p>{% blocktranslate with email=pending.recipient_email %}This car has a transfer link for <strong>{{ email }}</strong>. The car becomes theirs when they open the link and press Transfer.{% endblocktranslate %}</p>
+                {% translate "Copied" as copied %}
+                <div class="flex gap-2">
+                    <input type="text" id="transfer-link" value="{{ pending_link }}" readonly aria-label="{% translate "Transfer link" %}" class="flex-1 min-w-0 p-2 border rounded dark:bg-gray-600">
+                    <button type="button" onclick="navigator.clipboard.writeText(document.getElementById('transfer-link').value); this.textContent='{{ copied|escapejs }}';" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">{% translate "Copy" %}</button>
+                </div>
+                <p class="text-sm text-gray-600 dark:text-gray-400">
+                    {% if pending.keep_history %}
+                        {% translate "Your alerts, trips, charges, probe data, saved locations, routes and timers stay on the car." %}
+                    {% else %}
+                        {% translate "Your alerts, trips, charges, probe data, saved locations, routes and timers will be deleted when the car is transferred." %}
+                    {% endif %}
+                    {% if pending.expiration_time %}{% blocktranslate with expires=pending.expiration_time|date:"DATETIME_FORMAT" %}This link expires on {{ expires }}.{% endblocktranslate %}{% endif %}
+                </p>
+                <form method="post">
+                    {% csrf_token %}
+                    <button type="submit" name="cancel" value="1" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2">{% translate "Cancel transfer" %}</button>
+                </form>
+            </div>
+            <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200 pt-4">{% translate "Send a new link" %}</h2>
+            <p class="text-sm text-gray-600 dark:text-gray-400">{% translate "A new link replaces the one above." %}</p>
+        {% else %}
+            <p>{% translate "Enter the new owner's email address. They get a link, and the car moves to their account when they open it and press Transfer. Until then, the car stays yours." %}</p>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">{% translate "Create transfer link" %}</button>
+            <a href="{% url 'car_detail' vin=car.vin %}" class="text-sm text-blue-600 dark:text-blue-400 hover:underline">{% translate "Back to car" %}</a>
+        </form>
+    </div>
+{% endblock %}

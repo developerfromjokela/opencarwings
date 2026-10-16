@@ -17,7 +17,6 @@ from django.contrib.auth.views import PasswordResetView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.exceptions import SuspiciousFileOperation
 from django.core.paginator import Paginator
-from django.db.models import Q
 from django.http import Http404, FileResponse
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render, redirect
@@ -52,7 +51,7 @@ from tculink.gdc_proto.ficosa.utils import get_config_map_translated
 from tculink.utils.password_hash import check_password_validity, password_hash
 from .decorators import require_recent_2fa, block_apikey, block_apikey_api
 from .forms import Step2Form, Step3Form, SettingsForm, ChangeCarwingsPasswordForm, AccountForm, SignUpForm, \
-    ProbeConfigForm, Step0Form, ChangeCommandPinForm
+    ProbeConfigForm, Step0Form, ChangeCommandPinForm, CarTransferForm
 from .serializers import MapLinkResolverResponseSerializer, MapLinkResolverInputSerializer
 
 SETUP_STEPS = [
@@ -266,29 +265,64 @@ def vflash_editor(request):
 
 @login_required(login_url='signin')
 def car_transfer(request, code):
-    transfer = CarTransferRequest.objects.filter(
-        Q(expiration_time__isnull=True) | Q(expiration_time__gt=timezone.now()),
-        transfer_code=code,
-    )
+    transfer = CarTransferRequest.active().select_related('car__owner').filter(transfer_code=code).first()
 
-    if transfer.exists():
-        transfer = transfer.first()
-        if request.method == 'POST':
-            transfer.car.owner = request.user
-            transfer.car.save(update_fields=['owner'])
-            transfer.delete()
-            messages.info(request, _("Transfer was successful!"))
-            return redirect('car_list')
-
-        context = {
-            'car': transfer.car,
-        }
-    else:
+    if transfer is None:
         messages.error(request, _("Transfer link not found! It may have expired, or the transfer is already completed."))
-        context = {'car': None}
+        return render(request, 'ui/car_transfer.html', {'car': None})
 
+    if not transfer.can_be_claimed_by(request.user):
+        messages.error(request, _("This link was sent to a different email address. Sign in with the account that uses that address."))
+        return render(request, 'ui/car_transfer.html', {'car': None})
+
+    if request.method == 'POST':
+        transfer.claim(request.user)
+        messages.success(request, _("You now own %(car)s. To let the car connect, sign in on its navigation unit with your CARWINGS username and password.") % {'car': transfer.car.nickname})
+        return redirect('car_detail', vin=transfer.car.vin)
+
+    context = {
+        'car': transfer.car,
+        'transfer': transfer,
+    }
 
     return render(request, 'ui/car_transfer.html', context)
+
+@login_required(login_url='signin')
+@require_recent_2fa
+@block_apikey
+def car_transfer_create(request, vin):
+    car = get_object_or_404(Car, vin=vin, owner=request.user)
+    pending = CarTransferRequest.active().filter(car=car).first()
+    # After a 2FA re-check the POST only holds the OTP, so treat it as a fresh visit
+    form = CarTransferForm(request.POST if 'recipient_email' in request.POST else None)
+
+    if request.method == 'POST' and 'cancel' in request.POST and pending:
+        CarTransferRequest.active().filter(car=car).delete()
+        messages.success(request, _("The transfer link was cancelled."))
+        return redirect('car_transfer_create', vin=vin)
+
+    if form.is_bound and form.is_valid():
+        email = form.cleaned_data['recipient_email']
+        if email.lower() == request.user.email.lower():
+            form.add_error('recipient_email', _("This is your own email address. Enter the new owner's address."))
+        else:
+            # One active link per car
+            CarTransferRequest.active().filter(car=car).delete()
+            transfer = CarTransferRequest.objects.create(car=car, recipient_email=email,
+                                                         keep_history=form.cleaned_data['keep_history'])
+            __, sent = transfer.send_link(request)
+            if sent:
+                messages.success(request, _("Transfer link sent to %(email)s.") % {'email': email})
+            else:
+                messages.warning(request, _("The email could not be sent. Copy the link below and send it to %(email)s yourself.") % {'email': email})
+            return redirect('car_transfer_create', vin=vin)
+
+    return render(request, 'ui/car_transfer_create.html', {
+        'car': car,
+        'form': form,
+        'pending': pending,
+        'pending_link': request.build_absolute_uri(pending.get_absolute_url()) if pending else None,
+    })
 
 @login_required(login_url='signin')
 def car_detail(request, vin):
@@ -376,6 +410,7 @@ def car_detail(request, vin):
         'sms_message': django.conf.settings.ACTIVATION_SMS_MESSAGE,
         'channels': channel_map,
         'chan_icon_choices': list(ICONS.values()),
+        'pending_transfer': CarTransferRequest.active().filter(car=car).first(),
         'tcu_config_template': tcu_config_template,
         'imperial': 'true' if request.user.units_imperial else 'false',
         'has_2fa': 'true' if request.user.is_2fa_enabled() else 'false',

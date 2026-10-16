@@ -53,10 +53,12 @@ def handle(bin_data: bytes, acp_data: dict, car: Car, source_id: int, destinatio
     c_ev_info.wh_content = ev_info["gids"]*WH_PER_GID_GEN1
     c_ev_info.obc_6kw_avail = True
 
-    if ev_info.get("parked", False):
+    if ev_info.get("parked", False) or ev_info.get("direction_neutral", False):
         c_ev_info.car_gear = 0
+    elif ev_info.get("direction_reverse", False):
+        c_ev_info.car_gear = 2
     else:
-        c_ev_info.car_gear = 1 if ev_info.get("direction_forward", False) else 2
+        c_ev_info.car_gear = 1 if ev_info.get("direction_forward", False) else 0
 
     c_ev_info.soc = ev_info["soc"]
     # switch to one without decimals, it seems to be always accurate. keep other one as counter for debug

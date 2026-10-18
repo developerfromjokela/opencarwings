@@ -30,7 +30,7 @@ def convert_tpms_pressure(value, int_pressure=False, round_val=True) -> float:
 
 def apply_ac_state_timeout(car):
     """Silently assume A/C has turned itself off when the configured timeout has
-    elapsed since it was last started.
+    elapsed since it was last started AND we have not heard from the car since.
 
     Runs on-read (lazy). No alerts or notifications are created. This keeps the
     backend state in sync with the car without sending any commands.
@@ -58,6 +58,14 @@ def apply_ac_state_timeout(car):
     if ev_info.ac_last_started is None:
         return False
 
+    # If we have received a status update from the car recently, trust it and
+    # do not assume the A/C has turned itself off just because ac_last_started
+    # is old. The car may still be reporting "AC on" via periodic updates.
+    if ev_info.last_updated is not None:
+        if timezone.now() - ev_info.last_updated < timedelta(minutes=minutes):
+            return False
+
+    # No recent status update, and A/C has been "on" longer than the timeout.
     if timezone.now() - ev_info.ac_last_started >= timedelta(minutes=minutes):
         ev_info.ac_status = False
         ev_info.ac_last_started = None

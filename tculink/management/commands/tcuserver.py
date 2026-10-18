@@ -64,7 +64,7 @@ def set_evinfo(car, ev_info, tcu_info):
         car.ev_info.charging = False
         car.ev_info.quick_charging = False
 
-    car.ev_info.ac_status = ev_info.get("acstate", False)
+    car.ev_info.update_ac_status(ev_info.get("acstate", False))
     car.ev_info.soc = ev_info.get("soc", 0)
     car.ev_info.soh = ev_info.get("soh", 0)
     car.ev_info.cap_bars = ev_info.get("capacity_bars", 0)

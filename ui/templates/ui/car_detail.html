@@ -598,6 +598,16 @@
                                     <span class="block text-sm text-gray-700 dark:text-gray-400 mt-1">{% translate "On AZE0 (>2013) generation cars, it is possible to see available battery capacity in percentage. For ZE0, such feature was never implemented. By enabling this option, 'display' percentage value will be calculated, it may be inaccurate." %}</span>
                                 </div>
                             </div>
+                            <div>
+                                <label class="block text-gray-700 dark:text-gray-300">{% translate "Assume AC off after" %}</label>
+                                <select name="ac_assume_off_timeout" class="w-full periodic-select sm:w-auto border rounded-md dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    {% for value, label in ac_assume_off_timeout_choices %}
+                                        <option value="{{ value }}" {% if car.ac_assume_off_timeout == value %}selected{% endif %}>{{ label }}</option>
+                                    {% endfor %}
+                                </select>
+                                <span class="block text-xs text-gray-500 dark:text-gray-400 mt-1">{% translate "0 means never — the backend will assume the A/C has turned itself off after this many minutes without a status update from the car." %}</span>
+                            </div>
+
                         </div>
                     </details>
 

@@ -328,6 +328,21 @@ class EVInfo(models.Model):
     batt_heater_avail = models.BooleanField(default=False)
     batt_heater_status = models.BooleanField(default=False)
     last_updated = models.DateTimeField(null=True, default=None, blank=True)
+    # Timestamp (UTC) when A/C was last started. Cleared when A/C is turned off.
+    ac_last_started = models.DateTimeField(null=True, default=None, blank=True)
+
+    def update_ac_status(self, new_ac_status):
+        """Update AC status and track when it was started.
+
+        Records ac_last_started when AC transitions from off to on.
+        Clears ac_last_started when AC turns off.
+        """
+        previous = self.ac_status
+        self.ac_status = new_ac_status
+        if new_ac_status and not previous:
+            self.ac_last_started = timezone.now()
+        elif not new_ac_status:
+            self.ac_last_started = None
 
 class AlertHistory(models.Model):
     type = models.IntegerField(choices=ALERT_TYPES)
@@ -424,6 +439,8 @@ class Car(models.Model):
     # Ficosa
     hmac_key = models.CharField(max_length=32, default="", blank=True)
     tcu_type = models.CharField(max_length=32, default='continental2012', choices=TCU_TYPE)
+    # Assume A/C has turned itself off after N minutes of no status update (0 == Never/disabled).
+    ac_assume_off_timeout = models.IntegerField(default=0)
 
     def __str__(self):
         return self.vin

@@ -873,6 +873,9 @@
     {% include "ui/snippets/security.html" %}
 
     <!-- Scripts -->
+    {% translate "Location" as route_location_label %}
+    {% translate "Select a location for this point before saving." as route_point_error %}
+    <script src="{% static "js/route_planner.js" %}"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet-src.js"></script>
     {{ car.sms_config|json_script:"currentSmsConfig" }}
     {{ sensitive_commands|json_script:"sensitiveCommands" }}
@@ -1109,6 +1112,14 @@
 
             // Initial call to show fields based on default selection
             updateFields();
+
+            document.getElementById('routeplanner-compose').addEventListener('input', (evt) => {
+                if (evt.target.classList.contains('rp-searchfield')) {
+                    for (const key of ['lat', 'lon', 'name', 'addr']) delete evt.target.dataset[key];
+                    evt.target.setCustomValidity('');
+                    updateCurrentRoutePlanFromForm();
+                }
+            });
 
             // listener for routeplan field
             document.getElementById('routeplan-name').addEventListener('input', (evt) => {
@@ -1803,8 +1814,10 @@
             composingRoutePlan = {id: (composingRoutePlan ? composingRoutePlan.id : null), active:(composingRoutePlan ? composingRoutePlan.active : false)};
             composingRoutePlan.name = document.getElementById('routeplan-name').value;
             for (const field of searchFields) {
-                if (!field.dataset || !field.dataset.lat || !field.dataset.lon || !field.dataset.name)
+                if (!field.dataset || !field.dataset.lat || !field.dataset.lon)
                     continue;
+                const location = normalizeRoutePlanLocation({name: field.dataset.name, address: field.dataset.addr}, '{{ route_location_label|escapejs }}');
+                field.dataset.name = location.name;
                 let pointId = 0;
                 if (field.id === 'rp-finish') {
                     pointId = 6;
@@ -1881,6 +1894,16 @@
             }
         }
 
+        function setRoutePlanLocation(field, location) {
+            const normalized = normalizeRoutePlanLocation(location, '{{ route_location_label|escapejs }}');
+            field.dataset.lat = location.lat;
+            field.dataset.lon = location.lon;
+            field.dataset.addr = normalized.address;
+            field.dataset.name = normalized.name;
+            field.value = normalized.label;
+            field.setCustomValidity('');
+        }
+
         function routePlanPointSearch(event) {
             event.preventDefault();
             const searchField = event.target.getElementsByClassName('rp-searchfield')[0];
@@ -1907,25 +1930,7 @@
                         if (data.location) {
                             const location = data.location;
 
-                            // Create list element
-                            const ul = document.createElement('ul');
-                            ul.className = 'space-y-2';
-                            const li = document.createElement('li');
-                            li.className = 'bg-gray-100 p-4 py-2 rounded-lg hover:bg-gray-200 transition flex items-start';
-
-                            if (location.name === location.address) {
-                                location.name = undefined;
-                            }
-
-
-                            searchField.dataset.lat = location.lat;
-                            searchField.dataset.lon = location.lon;
-                            searchField.dataset.addr = location.address || '{% translate "No address" %}';
-                            searchField.dataset.name = location.name;
-                            if (location.name)
-                                searchField.value = `${location.name}, ${location.address}`;
-                            else
-                                searchField.value = location.address || '{% translate "No address" %}';
+                            setRoutePlanLocation(searchField, location);
 
                             updateCurrentRoutePlanFromForm();
                         } else {
@@ -1953,54 +1958,25 @@
                                 const li = document.createElement('li');
                                 li.className = 'bg-gray-100 p-4 py-2 rounded-lg hover:bg-gray-200 transition flex items-start';
 
-                                // Extract address components
-                                const address = location.address || {};
-                                const addressParts = [
-                                    (address.road ? [address.road,
-                                    address.house_number].join(" ") : ''),
-                                  address.neighbourhood,
-                                  address.suburb,
-                                  address.town,
-                                  address.postcode,
-                                  address.country
-                                ].filter(part => part).join(', ');
-
-                                if (location.name === address.road) {
-                                    location.name = undefined;
-                                }
-
-                                const jsonValue = JSON.stringify({lat: location.lat, lon: location.lon, name: (location.name || address.road).substring(0, 32)});
+                                const normalized = normalizeRoutePlanLocation(location, '{{ route_location_label|escapejs }}');
 
                                 li.innerHTML = `
                                   <div class="flex items-center space-x-2">
                                     <input type="radio" class="h-4 w-4 text-blue-600 rounded" name="send-to-car-option" />
                                     <div class="flex flex-col">
                                       <h3 class="text-sm font-semibold text-gray-800 stc-locname"></h3>
-                                      <p class="text-sm text-gray-600 stc-locaddr" style="display: ${location.name ? "block" : "none"}"></p>
                                     </div>
                                   </div>
                                 `;
 
-                                li.querySelector('.stc-locname').innerText = location.name || addressParts;
-                                li.querySelector('.stc-locaddr').innerText = addressParts || '{% translate "No address" %}';
-
-                                li.querySelector('input[type="radio"]').value = jsonValue;
-
-
+                                li.querySelector('.stc-locname').innerText = normalized.label;
 
                                 li.addEventListener('click', (event) => {
                                     const checkbox = li.querySelector('div > input[type="radio"]');
                                     if (event.target !== checkbox) {
                                         checkbox.checked = !checkbox.checked;
                                     }
-                                    searchField.dataset.lat = location.lat;
-                                    searchField.dataset.lon = location.lon;
-                                    searchField.dataset.addr = addressParts || '{% translate "No address" %}';
-                                    searchField.dataset.name = location.name;
-                                    if (location.name)
-                                        searchField.value = `${location.name}, ${addressParts}`;
-                                    else
-                                        searchField.value = addressParts || '{% translate "No address" %}';
+                                    setRoutePlanLocation(searchField, location);
                                     planPointResults.innerHTML = '';
 
                                     updateCurrentRoutePlanFromForm();
@@ -2085,7 +2061,21 @@
         }
 
         function saveRoutePlan() {
-            composingRoutePlan.name = document.getElementById('routeplan-name').value;
+            const planName = document.getElementById('routeplan-name');
+            if (!planName.value.trim() || !planName.reportValidity()) {
+                planName.focus();
+                return;
+            }
+            for (const field of document.getElementsByClassName('rp-searchfield')) {
+                const selected = field.dataset.lat && field.dataset.lon &&
+                    Number.isFinite(Number(field.dataset.lat)) && Number.isFinite(Number(field.dataset.lon));
+                field.setCustomValidity(selected ? '' : '{{ route_point_error|escapejs }}');
+                if (!field.reportValidity()) {
+                    field.focus();
+                    return;
+                }
+            }
+            updateCurrentRoutePlanFromForm();
             routePlans = routePlans.sort((a,b)=>{return new Date(b.created_at) - new Date(a.created_at)})
             if (composingRoutePlan.id) {
                 let idx = routePlans.indexOf(routePlans.find(i => i.id === composingRoutePlan.id));

@@ -334,6 +334,22 @@ class EVInfo(models.Model):
     batt_heater_avail = models.BooleanField(default=False)
     batt_heater_status = models.BooleanField(default=False)
     last_updated = models.DateTimeField(null=True, default=None, blank=True)
+    # Timestamp (UTC) when A/C was last started. Cleared when A/C is turned off.
+    ac_last_started = models.DateTimeField(null=True, default=None, blank=True)
+
+    def save(self, *args, **kwargs):
+        # Track when A/C transitions from off to on, and clear when turned off.
+        if self.pk:
+            try:
+                old = EVInfo.objects.get(pk=self.pk)
+                if old.ac_status != self.ac_status:
+                    if self.ac_status:
+                        self.ac_last_started = timezone.now()
+                    else:
+                        self.ac_last_started = None
+            except EVInfo.DoesNotExist:
+                pass
+        super().save(*args, **kwargs)
 
 class AlertHistory(models.Model):
     type = models.IntegerField(choices=ALERT_TYPES)
@@ -488,7 +504,6 @@ class Car(models.Model):
     # Ficosa
     hmac_key = models.CharField(max_length=32, default="", blank=True)
     tcu_type = models.CharField(max_length=32, default='continental2012', choices=TCU_TYPE)
-
     def __str__(self):
         return self.vin
 

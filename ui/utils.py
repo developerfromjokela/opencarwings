@@ -26,5 +26,3 @@ def convert_tpms_pressure(value, int_pressure=False, round_val=True) -> float:
     if round_val:
         return round(value / 4.0, 3)
     return value / 4.0
-
-

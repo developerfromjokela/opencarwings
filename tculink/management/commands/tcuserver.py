@@ -16,19 +16,7 @@ from tculink.gdc_proto.responses import create_charge_status_response, create_ch
 from tculink.utils.notifications import send_vehicle_alert_notification
 from django.utils.translation import gettext as _
 
-
-# Configure logging
-log_dir = 'logs'
-os.makedirs(log_dir, exist_ok=True)
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler(os.path.join(log_dir, 'tcuserver.log')),
-        logging.StreamHandler()  # This keeps console output as well
-    ]
-)
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("tcuserver")
 
 
 @sync_to_async

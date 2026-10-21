@@ -211,6 +211,9 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = ""
 EMAIL_HOST_PASSWORD = ""
+EMAIL_TIMEOUT = 10  # seconds; without it a blocked SMTP host hangs the request
+
+SITE_URL = "http://localhost:8000"  # base URL for links in emails
 
 ASGI_APPLICATION = "carwings.asgi.application"
 CHANNEL_LAYERS = {

@@ -108,3 +108,10 @@ class SignUpForm(UserCreationForm):
             'username': _("Can include only letters, numbers, dashes, dots and underscores"),
             'tcu_pass_hash': _("This password is used for signing in to your account inside the car")
         }
+
+
+class CarTransferForm(forms.Form):
+    recipient_email = forms.EmailField(label=_("Recipient email"),
+                                       help_text=_("The new owner must sign in with an account that uses this email address."))
+    keep_history = forms.BooleanField(label=_("Keep history"), required=False,
+                                      help_text=_("Let the new owner see your alerts, trips, charges, probe data, saved locations, routes and timers for this car. If unchecked, they are deleted when the car is transferred."))

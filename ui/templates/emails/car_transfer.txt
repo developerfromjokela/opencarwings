@@ -1,0 +1,15 @@
+{% load i18n %}{% autoescape off %}{% translate "Hi!" %}
+
+{% blocktranslate with from=from_user car=car.nickname vin=car.vin %}{{ from }} is transferring the car "{{ car }}" (VIN {{ vin }}) to you on OpenCARWINGS.{% endblocktranslate %}
+
+{% blocktranslate %}To accept, sign in or create an account with this email address ({{ email }}) and open this link:{% endblocktranslate %}
+
+{{ link }}
+{% if expires %}
+{% blocktranslate with expires=expires|date:"DATETIME_FORMAT" %}The link expires on {{ expires }}.{% endblocktranslate %}{% endif %}
+
+{% translate "If you weren't expecting this, you can ignore this email." %}
+
+{% translate "Sincerely," %}
+OpenCARWINGS
+{% endautoescape %}

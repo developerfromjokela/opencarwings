@@ -54,7 +54,6 @@ from .decorators import require_recent_2fa, block_apikey, block_apikey_api
 from .forms import Step2Form, Step3Form, SettingsForm, ChangeCarwingsPasswordForm, AccountForm, SignUpForm, \
     ProbeConfigForm, Step0Form, ChangeCommandPinForm
 from .serializers import MapLinkResolverResponseSerializer, MapLinkResolverInputSerializer
-from .utils import apply_ac_state_timeout
 
 SETUP_STEPS = [
     {"index": 1, "name": _("TCU setup")},
@@ -334,7 +333,6 @@ def car_detail(request, vin):
                     car.periodic_refresh_running = form.cleaned_data['periodic_refresh_running']
                     car.disable_auth = form.cleaned_data['disable_auth']
                     car.hmac_key = form.cleaned_data['hmac_key']
-                    car.ac_assume_off_timeout = int(form.cleaned_data.get('ac_assume_off_timeout', 0) or 0)
                     if form.cleaned_data['max_gids'] != car.ev_info.max_gids or form.cleaned_data['force_soc_display'] != car.ev_info.force_soc_display:
                         car.ev_info.max_gids = form.cleaned_data['max_gids']
                         car.ev_info.force_soc_display = form.cleaned_data['force_soc_display']
@@ -349,8 +347,6 @@ def car_detail(request, vin):
 
     if car.last_connection is None:
         messages.info(request, _("Waiting for first connection.."))
-
-    apply_ac_state_timeout(car)
 
     # get default channels
     channels, folders = get_info_channel_data(None)
@@ -377,13 +373,6 @@ def car_detail(request, vin):
         "periodic_refresh_choices": PERIODIC_REFRESH,
         "periodic_refresh_running_choices": PERIODIC_REFRESH_ACTIVE,
         "car_color_choices": CAR_COLOR,
-        "ac_assume_off_timeout_choices": (
-            (0, _("Never")),
-            (15, _("15 minutes")),
-            (30, _("30 minutes")),
-            (60, _("1 hour")),
-            (120, _("2 hours")),
-        ),
         'sms_message': django.conf.settings.ACTIVATION_SMS_MESSAGE,
         'channels': channel_map,
         'chan_icon_choices': list(ICONS.values()),

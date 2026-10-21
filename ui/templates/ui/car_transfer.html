@@ -28,7 +28,7 @@
             {% endif %}
         </div>
     {% if car %}
-        <p>{% blocktranslate with from=car.owner.username to=transfer.recipient_email %}<strong>{{ from }}</strong> is transferring this car to <strong>{{ to }}</strong>. Press Transfer to become its owner.{% endblocktranslate %}</p>
+        <p>{% blocktranslate with from=car.owner.username %}<strong>{{ from }}</strong> is transferring this car to you. Press Transfer to become its owner.{% endblocktranslate %}</p>
         <div class="flex bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200">
             {% with 'car/'|add:car.color|add:'.png' as car_static %}
                  <img src="{% static car_static %}" style="padding-right: 15px; max-height: 50px; object-fit: cover"/>
@@ -42,9 +42,9 @@
         </div>
         <p class="text-sm text-gray-600 dark:text-gray-400">
             {% if transfer.keep_history %}
-                {% translate "The previous owner's alerts, trips, charges, probe data, saved locations, routes and timers stay on the car." %}
+                {% translate "The previous owner's alerts, trips, charges, vehicle data, saved locations, routes and timers stay on the car." %}
             {% else %}
-                {% translate "The previous owner's alerts, trips, charges, probe data, saved locations, routes and timers will be deleted." %}
+                {% translate "The previous owner's alerts, trips, charges, vehicle data, saved locations, routes and timers will be deleted." %}
             {% endif %}
             {% if transfer.expiration_time %}{% blocktranslate with expires=transfer.expiration_time|date:"DATETIME_FORMAT" %}This link expires on {{ expires }}.{% endblocktranslate %}{% endif %}
         </p>

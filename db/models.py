@@ -402,8 +402,8 @@ class CarTransferRequest(models.Model):
     expiration_time = models.DateTimeField(_("expires"), null=True, default=default_transfer_expiration, blank=True)
     car = models.ForeignKey('Car', verbose_name=_("car"), on_delete=models.CASCADE)
     transfer_code = models.CharField(_("transfer code"), max_length=32, default=generate_transfer_code)
-    recipient_email = models.EmailField(_("recipient email"), help_text=_("The transfer link is sent to this address. Only an account with this email can claim the car."))
-    keep_history = models.BooleanField(_("keep history"), default=False, help_text=_("Keep the previous owner's alerts, trips, charges, probe data, saved locations, routes and timers on the car."))
+    recipient_email = models.EmailField(_("recipient email"), help_text=_("The transfer link is sent to this address. Only an account with this email can claim the car."), blank=True)
+    keep_history = models.BooleanField(_("keep history"), default=False, help_text=_("Keep the previous owner's alerts, trips, charges, vehicle data, saved locations, routes and timers on the car."))
     previous_owner = models.ForeignKey('User', verbose_name=_("previous owner"), null=True, blank=True, on_delete=models.SET_NULL, related_name='+')
 
     def __str__(self):
@@ -424,6 +424,8 @@ class CarTransferRequest(models.Model):
     def send_link(self):
         """Email the claim link to the recipient. Returns (link, sent)."""
         link = urljoin(settings.SITE_URL, self.get_absolute_url())
+        if not self.recipient_email or len(self.recipient_email) < 1: # skip if no email
+            return link, True
         body = render_to_string('emails/car_transfer.txt', {
             'from_user': self.car.owner.username, 'car': self.car, 'email': self.recipient_email,
             'link': link, 'expires': self.expiration_time,
@@ -436,7 +438,7 @@ class CarTransferRequest(models.Model):
         return link, True
 
     def can_be_claimed_by(self, user):
-        return bool(self.recipient_email) and user.email.lower() == self.recipient_email.lower() and self.car.owner_id != user.id
+        return not self.recipient_email or (bool(self.recipient_email) and user.email.lower() == self.recipient_email.lower() and self.car.owner_id != user.id)
 
     @transaction.atomic
     def claim(self, user):

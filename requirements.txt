@@ -1,4 +1,4 @@
-Django~=6.1
+Django~=6.1.2
 djangorestframework~=3.18.3
 GitPython~=3.2.1
 requests~=2.34.2

@@ -49,9 +49,9 @@
                 </div>
                 <p class="text-sm text-gray-600 dark:text-gray-400">
                     {% if pending.keep_history %}
-                        {% translate "Your alerts, trips, charges, probe data, saved locations, routes and timers stay on the car." %}
+                        {% translate "Your alerts, trips, charges, vehicle data, saved locations, routes and timers stay on the car." %}
                     {% else %}
-                        {% translate "Your alerts, trips, charges, probe data, saved locations, routes and timers will be deleted when the car is transferred." %}
+                        {% translate "Your alerts, trips, charges, vehicle data, saved locations, routes and timers will be deleted when the car is transferred." %}
                     {% endif %}
                     {% if pending.expiration_time %}{% blocktranslate with expires=pending.expiration_time|date:"DATETIME_FORMAT" %}This link expires on {{ expires }}.{% endblocktranslate %}{% endif %}
                 </p>

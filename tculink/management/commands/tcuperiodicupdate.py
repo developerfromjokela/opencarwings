@@ -252,11 +252,11 @@ class Command(BaseCommand):
             try:
                 ev_info = car.ev_info
 
-                # A/C is already off:€” nothing to assume.
+                # A/C is already off: nothing to assume.
                 if not ev_info.ac_status:
                     continue
 
-                # No start timestamp recorded:€” cannot determine age.
+                # No start timestamp recorded: cannot determine age.
                 if ev_info.ac_last_started is None:
                     continue
 
@@ -294,7 +294,7 @@ class Command(BaseCommand):
                         )
                     )
                 except Exception as e:
-                    # SMS provider may not support sending from backend.€”
+                    # SMS provider may not support sending from backend.ï¿½ï¿½
                     # That's acceptable, A/C state is already corrected in DB.
                     logger.warning(
                         f"Car {car.vin}: Could not send refresh SMS: {e}"

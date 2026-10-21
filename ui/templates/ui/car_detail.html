@@ -664,26 +664,26 @@
                         </div>
                     </details>
 
+                    <details class="settings-group border rounded-lg dark:border-gray-600 mt-5">
+                        <summary class="settings-summary cursor-pointer select-none list-none flex items-center justify-between p-3 font-medium text-gray-800 dark:text-gray-200 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                            <span>{% translate "Transfer ownership" %}</span>
+                            <img src="{% static "icon/chevron.svg" %}" alt="" class="chevron w-4 h-4 transition-transform">
+                        </summary>
+                        <div class="p-3 space-y-3">
+                            {% if pending_transfer %}
+                                <p class="text-sm text-gray-700 dark:text-gray-300">{% blocktranslate with email=pending_transfer.recipient_email %}A transfer link for {{ email }} is waiting to be used.{% endblocktranslate %}</p>
+                            {% else %}
+                                <p class="text-sm text-gray-700 dark:text-gray-300">{% translate "Send the new owner a link that moves the car to their account." %}</p>
+                            {% endif %}
+                            <a href="{% url 'car_transfer_create' vin=car.vin %}" class="inline-block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">{% if pending_transfer %}{% translate "Manage transfer" %}{% else %}{% translate "Transfer this car" %}{% endif %}</a>
+                        </div>
+                    </details>
+
                     <div class="pt-2">
                         <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 me-2 mb-2 mt-5" type="submit">{% translate "Save" %}</button>
                         <button class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 me-2 mb-2 mt-5" type="button" onclick="removeCarConfirm()">{% translate "Remove car" %}</button>
                     </div>
                 </form>
-
-                <details class="settings-group border rounded-lg dark:border-gray-600 mt-5">
-                    <summary class="settings-summary cursor-pointer select-none list-none flex items-center justify-between p-3 font-medium text-gray-800 dark:text-gray-200 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                        <span>{% translate "Transfer ownership" %}</span>
-                        <img src="{% static "icon/chevron.svg" %}" alt="" class="chevron w-4 h-4 transition-transform">
-                    </summary>
-                    <div class="p-3 space-y-3">
-                        {% if pending_transfer %}
-                            <p class="text-sm text-gray-700 dark:text-gray-300">{% blocktranslate with email=pending_transfer.recipient_email %}A transfer link for {{ email }} is waiting to be used.{% endblocktranslate %}</p>
-                        {% else %}
-                            <p class="text-sm text-gray-700 dark:text-gray-300">{% translate "Send the new owner a link that moves the car to their account." %}</p>
-                        {% endif %}
-                        <a href="{% url 'car_transfer_create' vin=car.vin %}" class="inline-block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">{% if pending_transfer %}{% translate "Manage transfer" %}{% else %}{% translate "Transfer this car" %}{% endif %}</a>
-                    </div>
-                </details>
             </div>
         </div>
     </div>

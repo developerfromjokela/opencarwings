@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-25 11:54+0000\n"
+"POT-Creation-Date: 2026-10-21 22:38+0000\n"
 "PO-Revision-Date: 2026-09-26 11:58+0000\n"
 "Last-Translator: Weblate Admin <hello@ruben.fi>\n"
 "Language-Team: Estonian <https://i18n.viaaq.eu/projects/opencarwings-server/"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Weblate 2026.9.1\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: api/serializers.py:41 ui/forms.py:57
+#: api/serializers.py:41 ui/forms.py:56
 msgid "PIN codes do not match."
 msgstr "PIN-koodid ei klapi."
 
@@ -45,123 +45,130 @@ msgid "Failed to send SMS message to TCU. Please try again in a moment."
 msgstr ""
 "SMS-sõnumi saatmine TCU-le ebaõnnestus. Palun proovi mõne aja pärast uuesti."
 
-#: db/models.py:21
+#: db/admin.py:93 ui/templates/ui/car_transfer_create.html:47
+#, fuzzy
+#| msgid "Transfer"
+msgid "Transfer link"
+msgstr "Ülekanne"
+
+#: db/models.py:27
 msgid "Charge stop"
 msgstr "Laadimise lõpetamine"
 
-#: db/models.py:22 db/models.py:31 db/models.py:56 db/models.py:57
+#: db/models.py:28 db/models.py:37 db/models.py:62 db/models.py:63
 msgid "Charge start"
 msgstr "Laadimise alustamine"
 
-#: db/models.py:23
+#: db/models.py:29
 msgid "Charge cable reminder"
 msgstr "Laadimiskaabli meeldetuletus"
 
-#: db/models.py:24 db/models.py:58
+#: db/models.py:30 db/models.py:64
 msgid "A/C on"
 msgstr "Kliimaseade sisse"
 
-#: db/models.py:25 db/models.py:59
+#: db/models.py:31 db/models.py:65
 msgid "A/C off"
 msgstr "Kliimaseade välja"
 
-#: db/models.py:26
+#: db/models.py:32
 msgid "Configuration read"
 msgstr "Konfiguratsiooni lugemine"
 
-#: db/models.py:27
+#: db/models.py:33
 msgid "A/C auto off"
 msgstr "Kliimaseadme automaatne väljalülitamine"
 
-#: db/models.py:28
+#: db/models.py:34
 msgid "Quick charge stop"
 msgstr "Kiirlaadimise lõpetamine"
 
-#: db/models.py:29
+#: db/models.py:35
 msgid "Battery heater start"
 msgstr "Aku soojendus käivitus"
 
-#: db/models.py:30
+#: db/models.py:36
 msgid "Battery heater stop"
 msgstr "Aku soojendus on seiskunud"
 
-#: db/models.py:32 db/models.py:61
+#: db/models.py:38 db/models.py:67
 msgid "Door unlock"
 msgstr "Ava uksed"
 
-#: db/models.py:33 db/models.py:62
+#: db/models.py:39 db/models.py:68
 msgid "Door lock"
 msgstr "Uste lukustamine"
 
-#: db/models.py:34 tculink/httpgateway/ficosa/destinations/hornlight.py:102
+#: db/models.py:40 tculink/httpgateway/ficosa/destinations/hornlight.py:102
 #: tculink/httpgateway/ficosa/destinations/remotestart.py:102
 msgid "Horn & Light"
 msgstr "Signaal ja tuled"
 
-#: db/models.py:35
+#: db/models.py:41
 msgid "Stop Horn & Light"
 msgstr "Peata signaal ja tuled"
 
-#: db/models.py:36 db/models.py:67
+#: db/models.py:42 db/models.py:73
 msgid "Remote Start"
 msgstr "Kaugkäivitus"
 
-#: db/models.py:37 db/models.py:68
+#: db/models.py:43 db/models.py:74
 msgid "Remote Stop"
 msgstr "Kaugseiskamine"
 
-#: db/models.py:38
+#: db/models.py:44
 msgid "Configuration Updated"
 msgstr "Konfiguratsioon uuendatud"
 
-#: db/models.py:39
+#: db/models.py:45
 msgid "Received new data"
 msgstr "Uued andmed vastu võetud"
 
-#: db/models.py:40
+#: db/models.py:46
 msgid "Burglar alert"
 msgstr "Sissemurdmise hoiatus"
 
-#: db/models.py:41 tculink/gdc_proto/ficosa/utils.py:93
+#: db/models.py:47 tculink/gdc_proto/ficosa/utils.py:93
 #: tculink/httpgateway/ficosa/destinations/tow.py:36
 msgid "Tow Notification"
 msgstr "Puksiirteade"
 
-#: db/models.py:42 db/models.py:70
+#: db/models.py:48 db/models.py:76
 msgid "End Battery Lease Contract"
 msgstr "Lõpeta akulepingu piirangud"
 
-#: db/models.py:43
+#: db/models.py:49
 msgid "TCU Configuration error"
 msgstr "TCU konfiguratsiooni viga"
 
-#: db/models.py:44
+#: db/models.py:50
 msgid "Remote Start/Stop error"
 msgstr "Kaugkäivituse/-seiskamise viga"
 
-#: db/models.py:45
+#: db/models.py:51
 msgid "Horn & Light error"
 msgstr "Signaali ja tulede viga"
 
-#: db/models.py:46
+#: db/models.py:52
 msgid "Door Lock/Unlock error"
 msgstr "Ukse lukustamise/avamise viga"
 
-#: db/models.py:47
+#: db/models.py:53
 msgid "Charge error"
 msgstr "Laadimisviga"
 
-#: db/models.py:48
+#: db/models.py:54
 msgid "A/C error"
 msgstr "Kliimaseadme viga"
 
-#: db/models.py:49
+#: db/models.py:55
 msgid "Command timeout"
 msgstr "Käsu aegumine"
 
-#: db/models.py:50 db/models.py:78 ui/templates/ui/account.html:15
+#: db/models.py:56 db/models.py:84 ui/templates/ui/account.html:15
 #: ui/templates/ui/car_detail.html:72 ui/templates/ui/car_list.html:18
 #: ui/templates/ui/car_transfer.html:15
+#: ui/templates/ui/car_transfer_create.html:16
 #: ui/templates/ui/change_carwings_password.html:17
 #: ui/templates/ui/change_command_pin.html:17
 #: ui/templates/ui/change_password.html:17
@@ -173,45 +180,46 @@ msgstr "Käsu aegumine"
 msgid "Error"
 msgstr "Viga"
 
-#: db/models.py:54 db/models.py:134
+#: db/models.py:60 db/models.py:140
 msgid "No command"
 msgstr "Käsku pole"
 
-#: db/models.py:55
+#: db/models.py:61
 msgid "Refresh data"
 msgstr "Andmete värskendamine"
 
-#: db/models.py:60
+#: db/models.py:66
 msgid "Read configuration"
 msgstr "Konfiguratsiooni lugemine"
 
-#: db/models.py:63
+#: db/models.py:69
 msgid "Horn"
 msgstr "Sõiduki signaal"
 
-#: db/models.py:64
+#: db/models.py:70
 msgid "Lights"
 msgstr "Tuled"
 
-#: db/models.py:65 tculink/gdc_proto/ficosa/utils.py:94
+#: db/models.py:71 tculink/gdc_proto/ficosa/utils.py:94
 msgid "Horn & Lights"
 msgstr "Signaal ja tuled"
 
-#: db/models.py:66
+#: db/models.py:72
 msgid "Stop Horn & light"
 msgstr "Peata signaal ja tuled"
 
-#: db/models.py:69
+#: db/models.py:75
 msgid "Configuration Request"
 msgstr "Konfiguratsiooni päring"
 
-#: db/models.py:76
+#: db/models.py:82
 msgid "Waiting"
 msgstr "Ootel"
 
-#: db/models.py:77 db/models.py:136 ui/templates/ui/account.html:14
+#: db/models.py:83 db/models.py:142 ui/templates/ui/account.html:14
 #: ui/templates/ui/car_detail.html:71 ui/templates/ui/car_list.html:17
 #: ui/templates/ui/car_transfer.html:14
+#: ui/templates/ui/car_transfer_create.html:15
 #: ui/templates/ui/change_carwings_password.html:16
 #: ui/templates/ui/change_command_pin.html:16
 #: ui/templates/ui/change_password.html:16
@@ -224,97 +232,95 @@ msgstr "Ootel"
 msgid "Success"
 msgstr "Õnnestus"
 
-#: db/models.py:79
+#: db/models.py:85
 msgid "Timeout"
 msgstr "Aegumine"
 
-#: db/models.py:80
+#: db/models.py:86
 msgid "Await response"
 msgstr "Oota vastust"
 
-#: db/models.py:84
+#: db/models.py:90
 msgid "Park"
 msgstr "Parkimine"
 
-#: db/models.py:85 ui/templates/ui/car_detail.html:1352
-#: ui/templates/ui/car_detail.html:1389
+#: db/models.py:91 ui/templates/ui/car_detail.html:1415
 msgid "Drive"
 msgstr "Sõitmine"
 
-#: db/models.py:86 ui/templates/ui/car_detail.html:1352
-#: ui/templates/ui/car_detail.html:1389
+#: db/models.py:92 ui/templates/ui/car_detail.html:1415
 msgid "Reverse"
 msgstr "Tagurdamine"
 
-#: db/models.py:90 db/models.py:100
+#: db/models.py:96 db/models.py:106
 msgid "Never"
 msgstr "Mitte kunagi"
 
-#: db/models.py:91 db/models.py:104
+#: db/models.py:97 db/models.py:110
 msgid "Every 30 minutes"
 msgstr "Iga 30 minuti järel"
 
-#: db/models.py:92 db/models.py:105
+#: db/models.py:98 db/models.py:111
 msgid "Every 45 minutes"
 msgstr "Iga 45 minuti järel"
 
-#: db/models.py:93 db/models.py:106
+#: db/models.py:99 db/models.py:112
 msgid "Every hour"
 msgstr "Iga tund"
 
-#: db/models.py:94 db/models.py:107
+#: db/models.py:100 db/models.py:113
 msgid "Every three hours"
 msgstr "Iga kolme tunni järel"
 
-#: db/models.py:95 db/models.py:108
+#: db/models.py:101 db/models.py:114
 msgid "Every 12 hours"
 msgstr "Iga 12 tunni järel"
 
-#: db/models.py:96 db/models.py:109
+#: db/models.py:102 db/models.py:115
 msgid "Every day"
 msgstr "Iga päev"
 
-#: db/models.py:101
+#: db/models.py:107
 msgid "Every 5 minutes"
 msgstr "Iga 5 minuti järel"
 
-#: db/models.py:102
+#: db/models.py:108
 msgid "Every 10 minutes"
 msgstr "Iga 10 minuti järel"
 
-#: db/models.py:103
+#: db/models.py:109
 msgid "Every 15 minutes"
 msgstr "Iga 15 minuti järel"
 
-#: db/models.py:129
+#: db/models.py:135
 msgid "Slow charge"
 msgstr "Aeglane laadimine"
 
-#: db/models.py:130
+#: db/models.py:136
 msgid "Quick charge"
 msgstr "Kiirlaadimine"
 
-#: db/models.py:135
+#: db/models.py:141
 msgid "Pending"
 msgstr "Ootel"
 
-#: db/models.py:137
+#: db/models.py:143
 msgid "Failure"
 msgstr "Ebaõnnestumine"
 
-#: db/models.py:138
+#: db/models.py:144
 msgid "Rejected"
 msgstr "Tagasilükatud"
 
-#: db/models.py:148
+#: db/models.py:154
 msgid "Continental 2012-2015"
 msgstr "Continental 2012-2015"
 
-#: db/models.py:149
+#: db/models.py:155
 msgid "Ficosa 2016-2019"
 msgstr "FICOSA/GMV Sistemas"
 
-#: db/models.py:160
+#: db/models.py:166
 msgid ""
 "Enter a valid username. This value may contain only unaccented lowercase a-z "
 "and uppercase A-Z letters, numbers, and /./-/_ characters."
@@ -322,7 +328,7 @@ msgstr ""
 "Sisesta kehtiv kasutajanimi. See väärtus võib sisaldada ainult aktsendita "
 "väiketähti a-z, suurtähti A-Z, numbreid ning märke /./-/_."
 
-#: db/models.py:168
+#: db/models.py:174
 msgid ""
 "Enter a valid TCU Password. This value may contain only unaccented lowercase "
 "a-z and uppercase A-Z letters, numbers, and /=/-/_/+/@/#/?/! characters."
@@ -330,17 +336,75 @@ msgstr ""
 "Sisesta kehtiv TCU parool. See väärtus võib sisaldada ainult aktsendita "
 "väiketähti a-z, suurtähti A-Z, numbreid ning märke /=/-/_/+/@/#/?/!."
 
-#: db/models.py:192
+#: db/models.py:198
 msgid "username"
 msgstr "kasutajanimi"
 
-#: db/models.py:196
+#: db/models.py:202
 msgid "Required. 16 characters or fewer. Letters, digits and /./-/_ only."
 msgstr "Nõutav. Maksimaalselt 16 tähemärki. Ainult tähed, numbrid ja /./-/_."
 
-#: db/models.py:200
+#: db/models.py:206
 msgid "A user with that username already exists."
 msgstr "Sellise kasutajanimega kasutaja on juba olemas."
+
+#: db/models.py:401
+msgid "created"
+msgstr ""
+
+#: db/models.py:402
+msgid "expires"
+msgstr ""
+
+#: db/models.py:403
+#, fuzzy
+#| msgid "clear"
+msgid "car"
+msgstr "selge"
+
+#: db/models.py:404
+#, fuzzy
+#| msgid "Transfer"
+msgid "transfer code"
+msgstr "Ülekanne"
+
+#: db/models.py:405
+#, fuzzy
+#| msgid "Enter email"
+msgid "recipient email"
+msgstr "Sisesta e-post"
+
+#: db/models.py:405
+msgid ""
+"The transfer link is sent to this address. Only an account with this email "
+"can claim the car."
+msgstr ""
+
+#: db/models.py:406
+#, fuzzy
+#| msgid "ABS history"
+msgid "keep history"
+msgstr "ABS ajalugu"
+
+#: db/models.py:406
+msgid ""
+"Keep the previous owner's alerts, trips, charges, vehicle data, saved "
+"locations, routes and timers on the car."
+msgstr ""
+
+#: db/models.py:407
+msgid "previous owner"
+msgstr ""
+
+#: db/models.py:410
+#, python-format
+msgid "%(car)s to %(email)s"
+msgstr ""
+
+#: db/models.py:433
+#, python-format
+msgid "%(user)s is transferring a car to you"
+msgstr ""
 
 #: tculink/carwings_proto/applications/dj.py:78
 msgid "Not authenticated"
@@ -358,20 +422,93 @@ msgstr "Lemmikkanal lisatud"
 msgid "The channel has been added to favorites"
 msgstr "Kanal on lisatud lemmikute hulka"
 
-#: tculink/carwings_proto/autodj/handler.py:26
-#: tculink/carwings_proto/autodj/handler.py:27
+#: tculink/carwings_proto/autodj/abrp.py:27
+#: tculink/carwings_proto/autodj/abrp.py:59
+#: tculink/carwings_proto/autodj/abrp.py:60
+#, fuzzy
+#| msgid "Destination point"
+msgid "No Destination"
+msgstr "Sihtkoht"
+
+#: tculink/carwings_proto/autodj/abrp.py:37
+#, fuzzy
+#| msgid "Destination point"
+msgid "No Destination Set"
+msgstr "Sihtkoht"
+
+#: tculink/carwings_proto/autodj/abrp.py:39
+msgid ""
+"To calculate charging stops along your route, please set a destination in "
+"your navigation or send one from your phone."
+msgstr ""
+
+#: tculink/carwings_proto/autodj/abrp.py:75
+msgid "Updating battery info"
+msgstr ""
+
+#: tculink/carwings_proto/autodj/abrp.py:85
+#: tculink/carwings_proto/autodj/abrp.py:107
+#: tculink/carwings_proto/autodj/abrp.py:108
+msgid "Updating current battery information"
+msgstr ""
+
+#: tculink/carwings_proto/autodj/abrp.py:87
+msgid ""
+"Before planning the route, current battery information needs to be updated. "
+"Please wait while it is updated, and try again within 1 to 2 minutes."
+msgstr ""
+
+#: tculink/carwings_proto/autodj/abrp.py:154
+#: tculink/carwings_proto/autodj/abrp.py:155
+#, fuzzy
+#| msgid "Error"
+msgid "ABRP Error"
+msgstr "Viga"
+
+#: tculink/carwings_proto/autodj/abrp.py:284
+#, fuzzy
+#| msgid "Could not execute {name}, please try again later"
+msgid "Cannot update battery information. Please try again later."
+msgstr "Käsku {name} ei õnnestunud täita, palun proovige hiljem uuesti."
+
+#: tculink/carwings_proto/autodj/abrp.py:290
+#, fuzzy
+#| msgid "Location"
+msgid "My Location"
+msgstr "Asukoht"
+
+#: tculink/carwings_proto/autodj/abrp.py:295
+#, fuzzy
+#| msgid "Could not execute {name}, please try again later"
+msgid "ABRP could not plan a route. Please try again later."
+msgstr "Käsku {name} ei õnnestunud täita, palun proovige hiljem uuesti."
+
+#: tculink/carwings_proto/autodj/abrp.py:299
+msgid ""
+"Impossible plan to destination. There are not enough chargers along the "
+"route or your battery capacity is not enough. Proceed at your own risk."
+msgstr ""
+
+#: tculink/carwings_proto/autodj/abrp.py:407
+#, fuzzy, python-brace-format
+#| msgid "Could not execute {name}, please try again later"
+msgid "Failed to communicate with {brand}. Please try again later."
+msgstr "Käsku {name} ei õnnestunud täita, palun proovige hiljem uuesti."
+
+#: tculink/carwings_proto/autodj/handler.py:56
+#: tculink/carwings_proto/autodj/handler.py:57
 #: tculink/carwings_proto/autodj/opencarwings.py:173
 #: tculink/carwings_proto/autodj/opencarwings.py:174
 msgid "Info from OpenCARWINGS"
 msgstr "Teave OpenCARWINGS-ilt"
 
-#: tculink/carwings_proto/autodj/handler.py:75
-#: tculink/carwings_proto/autodj/handler.py:76
+#: tculink/carwings_proto/autodj/handler.py:105
+#: tculink/carwings_proto/autodj/handler.py:106
 msgid "Data Channel not available"
 msgstr "Andmekanal pole saadaval"
 
-#: tculink/carwings_proto/autodj/handler.py:94
-#: tculink/carwings_proto/autodj/handler.py:95
+#: tculink/carwings_proto/autodj/handler.py:124
+#: tculink/carwings_proto/autodj/handler.py:125
 msgid "Not authorized"
 msgstr "Pole autoriseeritud"
 
@@ -1132,18 +1269,18 @@ msgstr "Uksed edukalt lukustatud!"
 msgid "Door Lock/Unlock"
 msgstr "Ukse lukustamine/avamine"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:90
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:92
 #: tculink/management/commands/tcuserver.py:297
 msgid "Vehicle is unplugged. Please check the situation if necessary."
 msgstr ""
 "Sõiduk on lahti ühendatud. Palun kontrolli olukorda, kui see on vajalik."
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:91
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:93
 #: tculink/management/commands/tcuserver.py:298
 msgid "Charger unplugged notification"
 msgstr "Laadija lahtiühendamise teavitus"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:99
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:101
 #: tculink/management/commands/tcuserver.py:305
 msgid ""
 "The A/C preconditioning command could not be executed. One of the reasons "
@@ -1153,34 +1290,34 @@ msgstr ""
 "Kliimaseadme eelkonditsioneerimise käsku ei õnnestunud täita. Võimalikud "
 "põhjused: a) madal aku laetuse tase b) käsk juba täidetud c) TCU viga."
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:101
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:103
 #: tculink/management/commands/tcuserver.py:307
 msgid "A/C preconditioning error"
 msgstr "Kliimaseadme eelkonditsioneerimise viga"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:107
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:109
 #: tculink/management/commands/tcuserver.py:313
 msgid "A/C preconditioning started"
 msgstr "Kliimaseadme eelkonditsioneerimine alustatud"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:108
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:110
 #: tculink/management/commands/tcuserver.py:314
 msgid "A/C preconditioning has been successfully switched on"
 msgstr "Kliimaseadme eelkonditsioneerimine on edukalt sisse lülitatud"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:112
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:114
 #: tculink/management/commands/tcuserver.py:318
 msgid "The A/C preconditioning has finished unexpectedly"
 msgstr "Kliimaseadme eelkonditsioneerimine lõppes ootamatult"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:113
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:125
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:115
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:127
 #: tculink/management/commands/tcuserver.py:319
 #: tculink/management/commands/tcuserver.py:332
 msgid "A/C precondition stopped"
 msgstr "Kliimaseadme eelkonditsioneerimine peatatud"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:118
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:120
 #: tculink/management/commands/tcuserver.py:324
 #: tculink/management/commands/tcuserver.py:411
 msgid ""
@@ -1190,96 +1327,96 @@ msgstr ""
 "Kliimaseadme eelkonditsioneerimine on lõppenud ja välja lülitatud pärast "
 "teatud aja möödumist."
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:120
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:122
 #: tculink/management/commands/tcuserver.py:326
 #: tculink/management/commands/tcuserver.py:413
 msgid "A/C precondition finished"
 msgstr "Kliimaseadme eelkonditsioneerimine lõpetatud"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:126
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:128
 #: tculink/management/commands/tcuserver.py:333
 msgid "A/C preconditioning has been successfully switched off"
 msgstr "Kliimaseadme eelkonditsioneerimine on edukalt välja lülitatud"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:130
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:132
 #: tculink/management/commands/tcuserver.py:337
 #: tculink/management/commands/tcuserver.py:406
 msgid "A/C precondition notification"
 msgstr "Kliimaseadme eelkonditsioneerimise teavitus"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:131
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:133
 #: tculink/management/commands/tcuserver.py:338
 #: tculink/management/commands/tcuserver.py:360
 msgid "A/C preconditioning already switched off"
 msgstr "Kliimaseadme eelkonditsioneerimine on juba välja lülitatud"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:136
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:138
 #: tculink/management/commands/tcuserver.py:344
 #: tculink/management/commands/tcuserver.py:417
 msgid "A/C preconditioning fault"
 msgstr "Kliimaseadme eelkonditsioneerimise viga"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:139
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:141
 #: tculink/management/commands/tcuserver.py:347
 msgid "The vehicle failed to start A/C preconditioning"
 msgstr "Sõidukil ei õnnestunud käivitada kliimaseadme eelkonditsioneerimist"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:142
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:144
 #: tculink/management/commands/tcuserver.py:350
 msgid "The A/C preconditioning has finished with error"
 msgstr "Kliimaseadme eelkonditsioneerimine lõppes veaga"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:145
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:147
 #: tculink/management/commands/tcuserver.py:357
 msgid "A/C preconditioning could not be switched off"
 msgstr "Kliimaseadme eelkonditsioneerimist ei saanud välja lülitada"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:170
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:172
 #: tculink/management/commands/tcuserver.py:381
 msgid "Charging notification"
 msgstr "Laadimise teatis"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:176
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:178
 #: tculink/management/commands/tcuserver.py:387
 msgid "Vehicle has finished charging."
 msgstr "Sõiduk on laadimise lõpetanud."
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:177
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:179
 #: tculink/management/commands/tcuserver.py:388
 msgid "Charge finish notification"
 msgstr "Laadimise lõpetamise teavitus"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:180
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:182
 #: tculink/management/commands/tcuserver.py:391
 msgid "Vehicle has finished quick-charging."
 msgstr "Sõiduk on kiirlaadimise lõpetanud."
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:181
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:183
 #: tculink/management/commands/tcuserver.py:392
 msgid "Quick-charge finish notification"
 msgstr "Kiirlaadimise lõpetamise teavitus"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:184
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:186
 #: tculink/management/commands/tcuserver.py:395
 msgid "Charge interruption notification"
 msgstr "Laadimise katkestuse teatis"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:187
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:189
 #: tculink/management/commands/tcuserver.py:398
 msgid "Charging has been stopped due to an interruption"
 msgstr "Laadimine peatati katkestuse tõttu"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:189
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:191
 #: tculink/management/commands/tcuserver.py:400
 msgid "Quick-charging has been stopped due to an interruption"
 msgstr "Kiirlaadimine on peatatud katkestuse tõttu"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:207
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:209
 #: tculink/management/commands/tcuserver.py:440
 msgid "Charge start command executed"
 msgstr "Laadimise alustamise käsk täidetud"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:208
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:210
 #: tculink/management/commands/tcuserver.py:441
 msgid ""
 "Charging command has been sent successfully. If vehicle did not start "
@@ -1289,55 +1426,55 @@ msgstr ""
 "Laadimiskäsk on edukalt saadetud. Kui sõiduk ei alustanud laadimist, "
 "kontrolli, kas laadimiskaabel on ühendatud ja toide on saadaval."
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:213
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:215
 #: tculink/management/commands/tcuserver.py:444
 msgid "Charge start command executed with failure"
 msgstr "Laadimise käivitamise käsk täideti vea tõttu ebaõnnestunult"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:214
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:216
 #: tculink/management/commands/tcuserver.py:445
 msgid ""
 "Charging command has been sent successfully, but the vehicle did not start "
 "charging."
 msgstr "Laadimise käsk saadeti edukalt, kuid sõiduk ei alustanud laadimist."
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:219
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:221
 #: tculink/management/commands/tcuserver.py:450
 msgid "Charge start failure"
 msgstr "Laadimise alustamine ebaõnnestus"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:220
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:222
 #: tculink/management/commands/tcuserver.py:451
 msgid "Charge start command failed to execute."
 msgstr "Laadimise alustamise käsu täitmine ebaõnnestus."
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:244
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:269
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:246
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:271
 msgid "Unblock charge failure"
 msgstr "Laadimise ebaõnnestumise blokeerimise tühistamine"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:245
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:247
 msgid "Unblocking charge features could not be completed."
 msgstr "Maksefunktsioonide blokeeringu tühistamine ei õnnestunud."
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:249
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:274
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:251
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:276
 msgid "Unblock charging"
 msgstr "Laadimise blokeeringu tühistamine"
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:250
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:252
 msgid "Unblock request sent successfully."
 msgstr "Blokeeringu tühistamise taotlus saadeti edukalt."
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:270
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:272
 msgid "Unblocking charge features failed."
 msgstr "Laadimisfunktsioonide blokeeringu tühistamine ebaõnnestus."
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:275
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:277
 msgid "Charging has been unblocked successfully."
 msgstr "Laadimine on edukalt blokeeritud."
 
-#: tculink/httpgateway/ficosa/destinations/evinfo.py:275
+#: tculink/httpgateway/ficosa/destinations/evinfo.py:277
 msgid "Failed to unblock charging, CAN Error!"
 msgstr "Laadimise blokeeringu tühistamine ebaõnnestus, CAN-viga!"
 
@@ -1422,7 +1559,7 @@ msgstr "API parool"
 
 #: tculink/sms/46elks.py:13 tculink/sms/gatewayapi.py:14
 #: tculink/sms/ondevice.py:9 tculink/sms/seven.py:13
-#: tculink/sms/smsgateway.py:11 tculink/sms/webhook.py:12
+#: tculink/sms/smsgateway.py:11 tculink/sms/webhook.py:14
 msgid "TCU Phone Number (international format)"
 msgstr "TCU telefoninumber (rahvusvaheline formaat)"
 
@@ -1463,7 +1600,7 @@ msgstr ""
 msgid "Username"
 msgstr "Kasutajanimi"
 
-#: tculink/sms/monogoto.py:12 ui/forms.py:80 ui/forms.py:82
+#: tculink/sms/monogoto.py:12 ui/forms.py:79 ui/forms.py:81
 #: ui/templates/ui/car_detail.html:318 ui/templates/ui/landing.html:37
 #: ui/templates/ui/signin.html:13
 msgid "Password"
@@ -1540,20 +1677,19 @@ msgstr "Teil pole luba sellele tellimusele SMS-sõnumeid saata"
 msgid "Invalid API Key"
 msgstr "Vigane API-võti"
 
-#: tculink/sms/webhook.py:11
+#: tculink/sms/webhook.py:13
 msgid "Webhook URL"
 msgstr "Veebihaagi URL"
 
-#: tculink/sms/webhook.py:14
+#: tculink/sms/webhook.py:16
 msgid "POST-request will be sent to specified webhook URL when necessary."
 msgstr "POST-päring saadetakse vajadusel määratud veebihaagi URL-ile."
 
-#: ui/decorators.py:52 ui/views.py:705 ui/views.py:732 ui/views.py:768
+#: ui/decorators.py:52 ui/views.py:504 ui/views.py:531 ui/views.py:567
 msgid "Code is not valid!"
 msgstr "Kood ei kehti!"
 
-#: ui/forms.py:19 ui/forms.py:35 ui/templates/ui/car_detail.html:535
-#: ui/templates/ui/car_detail.html:542
+#: ui/forms.py:19 ui/forms.py:34 ui/templates/ui/car_detail.html:542
 msgid "Nickname"
 msgstr "Hüüdnimi"
 
@@ -1561,8 +1697,7 @@ msgstr "Hüüdnimi"
 msgid "Disable TCU authentication"
 msgstr "Keela TCU autentimine"
 
-#: ui/forms.py:21 ui/templates/ui/car_detail.html:574
-#: ui/templates/ui/car_detail.html:597
+#: ui/forms.py:21 ui/templates/ui/car_detail.html:597
 msgid "Show calculated battery percentage"
 msgstr "Näita arvutatud aku protsenti"
 
@@ -1570,37 +1705,93 @@ msgstr "Näita arvutatud aku protsenti"
 msgid "HMAC Key"
 msgstr "HMAC-võti"
 
-#: ui/forms.py:60 ui/templates/ui/reset_password.html:26
+#: ui/forms.py:59 ui/templates/ui/reset_password.html:26
 msgid "Email"
 msgstr "E-post"
 
-#: ui/forms.py:61
+#: ui/forms.py:60
 msgid "Notifications"
 msgstr "Teavitused"
 
-#: ui/forms.py:62
+#: ui/forms.py:61
 msgid "Imperial Units"
 msgstr "Keiserlikud ühikud"
 
-#: ui/forms.py:63
+#: ui/forms.py:62
 msgid "Timezone"
 msgstr "Ajavöönd"
 
-#: ui/forms.py:81
+#: ui/forms.py:80
 msgid "Password Confirmation"
 msgstr "Parooli kinnitamine"
 
-#: ui/forms.py:109
+#: ui/forms.py:108
 msgid "Can include only letters, numbers, dashes, dots and underscores"
 msgstr ""
 "Võib sisaldada ainult tähti, numbreid, sidekriipse, punkte ja alakriipse"
 
-#: ui/forms.py:110
+#: ui/forms.py:109
 msgid "This password is used for signing in to your account inside the car"
 msgstr "See parool on vajalik sinu konto sisselogimiseks autos"
 
+#: ui/forms.py:114
+#, fuzzy
+#| msgid "Enter email"
+msgid "Recipient email"
+msgstr "Sisesta e-post"
+
+#: ui/forms.py:115
+msgid ""
+"The new owner must sign in with an account that uses this email address."
+msgstr ""
+
+#: ui/forms.py:116
+#, fuzzy
+#| msgid "ABS history"
+msgid "Keep history"
+msgstr "ABS ajalugu"
+
+#: ui/forms.py:117
+msgid ""
+"Let the new owner see your alerts, trips, charges, probe data, saved "
+"locations, routes and timers for this car. If unchecked, they are deleted "
+"when the car is transferred."
+msgstr ""
+
+#: ui/templates/emails/car_transfer.txt:1
+msgid "Hi!"
+msgstr ""
+
+#: ui/templates/emails/car_transfer.txt:3
+#, python-format
+msgid ""
+"%(from)s is transferring the car \"%(car)s\" (VIN %(vin)s) to you on "
+"OpenCARWINGS."
+msgstr ""
+
+#: ui/templates/emails/car_transfer.txt:5
+#, python-format
+msgid ""
+"To accept, sign in or create an account with this email address (%(email)s) "
+"and open this link:"
+msgstr ""
+
+#: ui/templates/emails/car_transfer.txt:9
+#, python-format
+msgid "The link expires on %(expires)s."
+msgstr ""
+
+#: ui/templates/emails/car_transfer.txt:11
+msgid "If you weren't expecting this, you can ignore this email."
+msgstr ""
+
+#: ui/templates/emails/car_transfer.txt:13
+msgid "Sincerely,"
+msgstr ""
+
 #: ui/templates/ui/account.html:16 ui/templates/ui/car_detail.html:73
 #: ui/templates/ui/car_list.html:19 ui/templates/ui/car_transfer.html:16
+#: ui/templates/ui/car_transfer_create.html:17
 #: ui/templates/ui/change_carwings_password.html:18
 #: ui/templates/ui/change_command_pin.html:18
 #: ui/templates/ui/change_password.html:18
@@ -1614,6 +1805,7 @@ msgstr "Teade"
 
 #: ui/templates/ui/account.html:17 ui/templates/ui/car_detail.html:74
 #: ui/templates/ui/car_list.html:20 ui/templates/ui/car_transfer.html:17
+#: ui/templates/ui/car_transfer_create.html:18
 #: ui/templates/ui/change_carwings_password.html:19
 #: ui/templates/ui/change_command_pin.html:19
 #: ui/templates/ui/change_password.html:19
@@ -1626,9 +1818,10 @@ msgid "Warning"
 msgstr "Hoiatus"
 
 #: ui/templates/ui/account.html:22 ui/templates/ui/car_detail.html:79
-#: ui/templates/ui/car_detail.html:648 ui/templates/ui/car_detail.html:667
-#: ui/templates/ui/car_detail.html:701 ui/templates/ui/car_detail.html:745
+#: ui/templates/ui/car_detail.html:700 ui/templates/ui/car_detail.html:719
+#: ui/templates/ui/car_detail.html:753 ui/templates/ui/car_detail.html:797
 #: ui/templates/ui/car_list.html:25 ui/templates/ui/car_transfer.html:22
+#: ui/templates/ui/car_transfer_create.html:23
 #: ui/templates/ui/change_carwings_password.html:24
 #: ui/templates/ui/change_command_pin.html:24
 #: ui/templates/ui/change_password.html:24
@@ -1640,8 +1833,6 @@ msgstr "Hoiatus"
 #: ui/templates/ui/setup/step4.html:20
 #: ui/templates/ui/snippets/security.html:12
 #: ui/templates/ui/snippets/security.html:49
-#: ui/templates/ui/car_detail.html:685 ui/templates/ui/car_detail.html:704
-#: ui/templates/ui/car_detail.html:738 ui/templates/ui/car_detail.html:782
 msgid "Close"
 msgstr "Sulge"
 
@@ -1690,13 +1881,11 @@ msgid "Enable 2FA"
 msgstr "Luba kaheastmeline autentimine"
 
 #: ui/templates/ui/account.html:62 ui/templates/ui/car_detail.html:432
-#: ui/templates/ui/car_detail.html:502 ui/templates/ui/car_detail.html:631
-#: ui/templates/ui/car_detail.html:730 ui/templates/ui/car_detail.html:829
+#: ui/templates/ui/car_detail.html:502 ui/templates/ui/car_detail.html:683
+#: ui/templates/ui/car_detail.html:782 ui/templates/ui/car_detail.html:881
 #: ui/templates/ui/setup/step2.html:50 ui/templates/ui/setup/step3.html:36
 #: ui/templates/ui/setup/step4.html:63
 #: ui/templates/ui/snippets/security.html:33
-#: ui/templates/ui/car_detail.html:668 ui/templates/ui/car_detail.html:767
-#: ui/templates/ui/car_detail.html:866
 msgid "Save"
 msgstr "Salvesta"
 
@@ -1728,8 +1917,10 @@ msgid "Project"
 msgstr "Projekt"
 
 #: ui/templates/ui/base.html:70
-msgid "Tools"
-msgstr "Tööriistad"
+#, fuzzy
+#| msgid "API documentation"
+msgid "Guides & Documentation"
+msgstr "API dokumentatsioon"
 
 #: ui/templates/ui/base.html:71 ui/templates/ui/vflash_editor.html:5
 msgid "VFlash Editor"
@@ -1739,9 +1930,8 @@ msgstr "VFlash redaktor"
 msgid "Back to cars"
 msgstr "Tagasi autode juurde"
 
-#: ui/templates/ui/car_detail.html:41 ui/templates/ui/car_detail.html:1379
-#: ui/templates/ui/car_detail.html:1389 ui/templates/ui/car_list.html:64
-#: ui/templates/ui/car_detail.html:1416 ui/templates/ui/car_detail.html:1426
+#: ui/templates/ui/car_detail.html:41 ui/templates/ui/car_detail.html:1442
+#: ui/templates/ui/car_detail.html:1452 ui/templates/ui/car_list.html:64
 msgid "Last connected"
 msgstr "Viimati ühendatud"
 
@@ -1765,7 +1955,7 @@ msgstr "Taimerid"
 msgid "Vehicle journal"
 msgstr "Sõiduki logi"
 
-#: ui/templates/ui/car_detail.html:100
+#: ui/templates/ui/car_detail.html:100 ui/templates/ui/car_detail.html:891
 msgid "Location"
 msgstr "Asukoht"
 
@@ -1832,7 +2022,7 @@ msgstr "Laadimiskaabel"
 msgid "Plugged In,Unplugged"
 msgstr "Ühendatud, Lahti ühendatud"
 
-#: ui/templates/ui/car_detail.html:182 ui/templates/ui/car_detail.html:1278
+#: ui/templates/ui/car_detail.html:182 ui/templates/ui/car_detail.html:1341
 msgid "No Power"
 msgstr "Ei voolu"
 
@@ -1841,47 +2031,42 @@ msgid "Car status"
 msgstr "Auto staatus"
 
 #: ui/templates/ui/car_detail.html:193 ui/templates/ui/car_detail.html:195
-#: ui/templates/ui/car_detail.html:1284 ui/templates/ui/car_detail.html:1286
-#: ui/templates/ui/car_detail.html:1304 ui/templates/ui/car_detail.html:1321
-#: ui/templates/ui/car_detail.html:1323 ui/templates/ui/car_detail.html:1341
+#: ui/templates/ui/car_detail.html:1347 ui/templates/ui/car_detail.html:1349
+#: ui/templates/ui/car_detail.html:1367
 msgid "On"
 msgstr "Sees"
 
-#: ui/templates/ui/car_detail.html:193 ui/templates/ui/car_detail.html:1284
-#: ui/templates/ui/car_detail.html:1352 ui/templates/ui/car_detail.html:1321
-#: ui/templates/ui/car_detail.html:1389
+#: ui/templates/ui/car_detail.html:193 ui/templates/ui/car_detail.html:1347
+#: ui/templates/ui/car_detail.html:1415
 msgid "Parked"
 msgstr "Parkitud"
 
-#: ui/templates/ui/car_detail.html:195 ui/templates/ui/car_detail.html:1286
-#: ui/templates/ui/car_detail.html:1323
+#: ui/templates/ui/car_detail.html:195 ui/templates/ui/car_detail.html:1349
 msgid "Driving"
 msgstr "Sõitmine"
 
-#: ui/templates/ui/car_detail.html:199 ui/templates/ui/car_detail.html:1290
+#: ui/templates/ui/car_detail.html:199 ui/templates/ui/car_detail.html:1353
 #: ui/templates/ui/probeviewer/main.html:504
 #: ui/templates/ui/probeviewer/main.html:578
-#: ui/templates/ui/car_detail.html:1327
 msgid "Charging finished"
 msgstr "Laadimine lõpetatud"
 
-#: ui/templates/ui/car_detail.html:201 ui/templates/ui/car_detail.html:1292
+#: ui/templates/ui/car_detail.html:201 ui/templates/ui/car_detail.html:1355
 msgid "Charging interrupted"
 msgstr "Laadimine katkestatud"
 
 #: ui/templates/ui/car_detail.html:203 ui/templates/ui/car_detail.html:348
-#: ui/templates/ui/car_detail.html:1294 ui/templates/ui/car_detail.html:1331
+#: ui/templates/ui/car_detail.html:1357
 msgid "Charging"
 msgstr "Laadimine"
 
 #: ui/templates/ui/car_detail.html:205 ui/templates/ui/car_detail.html:353
-#: ui/templates/ui/car_detail.html:1296 ui/templates/ui/car_detail.html:1333
+#: ui/templates/ui/car_detail.html:1359
 msgid "Battery heater active"
 msgstr "Aku soojendus on aktiivne"
 
-#: ui/templates/ui/car_detail.html:207 ui/templates/ui/car_detail.html:1298
-#: ui/templates/ui/car_detail.html:1304 ui/templates/ui/car_detail.html:1335
-#: ui/templates/ui/car_detail.html:1341
+#: ui/templates/ui/car_detail.html:207 ui/templates/ui/car_detail.html:1361
+#: ui/templates/ui/car_detail.html:1367
 msgid "Off"
 msgstr "Väljas"
 
@@ -1964,30 +2149,25 @@ msgstr "L"
 msgid "Sun"
 msgstr "P"
 
-#: ui/templates/ui/car_detail.html:282 ui/templates/ui/car_detail.html:2681
-#: ui/templates/ui/car_detail.html:2718
+#: ui/templates/ui/car_detail.html:282 ui/templates/ui/car_detail.html:2728
 msgid "Last run"
 msgstr "Viimati"
 
-#: ui/templates/ui/car_detail.html:282 ui/templates/ui/car_detail.html:2681
-#: ui/templates/ui/car_detail.html:2718
+#: ui/templates/ui/car_detail.html:282 ui/templates/ui/car_detail.html:2728
 msgid "result"
 msgstr "tulemus"
 
 #: ui/templates/ui/car_detail.html:288 ui/templates/ui/car_detail.html:397
-#: ui/templates/ui/car_detail.html:1728 ui/templates/ui/car_detail.html:2688
-#: ui/templates/ui/car_detail.html:1765 ui/templates/ui/car_detail.html:2725
+#: ui/templates/ui/car_detail.html:1791 ui/templates/ui/car_detail.html:2735
 msgid "Edit"
 msgstr "Redigeeri"
 
 #: ui/templates/ui/car_detail.html:294 ui/templates/ui/car_detail.html:403
-#: ui/templates/ui/car_detail.html:1733 ui/templates/ui/car_detail.html:2693
-#: ui/templates/ui/car_detail.html:1770 ui/templates/ui/car_detail.html:2730
+#: ui/templates/ui/car_detail.html:1796 ui/templates/ui/car_detail.html:2740
 msgid "Delete"
 msgstr "Kustuta"
 
-#: ui/templates/ui/car_detail.html:300 ui/templates/ui/car_detail.html:2635
-#: ui/templates/ui/car_detail.html:2672
+#: ui/templates/ui/car_detail.html:300 ui/templates/ui/car_detail.html:2682
 msgid "No timers added"
 msgstr "Taimereid pole lisatud"
 
@@ -2094,18 +2274,15 @@ msgid "Send location to car"
 msgstr "Saada asukoht autole"
 
 #: ui/templates/ui/car_detail.html:366 ui/templates/ui/car_detail.html:420
-#: ui/templates/ui/car_detail.html:429 ui/templates/ui/car_detail.html:2006
-#: ui/templates/ui/car_detail.html:2043
+#: ui/templates/ui/car_detail.html:429 ui/templates/ui/car_detail.html:2034
 msgid "Search for locations or enter google/apple maps link"
 msgstr "Otsi asukohti või sisesta Google/Apple Mapsi link"
 
-#: ui/templates/ui/car_detail.html:370 ui/templates/ui/car_detail.html:1394
-#: ui/templates/ui/car_detail.html:1431
+#: ui/templates/ui/car_detail.html:370 ui/templates/ui/car_detail.html:1457
 msgid "Last shared location"
 msgstr "Viimati jagatud asukoht"
 
-#: ui/templates/ui/car_detail.html:372 ui/templates/ui/car_detail.html:1396
-#: ui/templates/ui/car_detail.html:1433
+#: ui/templates/ui/car_detail.html:372 ui/templates/ui/car_detail.html:1459
 msgid "No past shared location"
 msgstr "Varasemat jagatud asukohta pole"
 
@@ -2122,8 +2299,7 @@ msgstr "Kodus"
 msgid "Route plans"
 msgstr "Marsruudiplaanid"
 
-#: ui/templates/ui/car_detail.html:409 ui/templates/ui/car_detail.html:1711
-#: ui/templates/ui/car_detail.html:1748
+#: ui/templates/ui/car_detail.html:409 ui/templates/ui/car_detail.html:1774
 msgid "No route plans added"
 msgstr "Marsruudiplaane pole lisatud"
 
@@ -2135,8 +2311,7 @@ msgstr "Marsruudiplaani lisamine/muutmine"
 msgid "Name of the plan"
 msgstr "Plaani nimi"
 
-#: ui/templates/ui/car_detail.html:419 ui/templates/ui/car_detail.html:652
-#: ui/templates/ui/car_detail.html:689
+#: ui/templates/ui/car_detail.html:419 ui/templates/ui/car_detail.html:704
 msgid "Starting point"
 msgstr "Alguspunkt"
 
@@ -2144,8 +2319,7 @@ msgstr "Alguspunkt"
 msgid "Add waypoint"
 msgstr "Lisa teekonnapunkt"
 
-#: ui/templates/ui/car_detail.html:428 ui/templates/ui/car_detail.html:653
-#: ui/templates/ui/car_detail.html:690
+#: ui/templates/ui/car_detail.html:428 ui/templates/ui/car_detail.html:705
 msgid "Destination point"
 msgstr "Sihtkoht"
 
@@ -2164,8 +2338,7 @@ msgstr "Lemmikkanalid"
 #: ui/templates/ui/car_detail.html:462 ui/templates/ui/car_detail.html:463
 #: ui/templates/ui/car_detail.html:464 ui/templates/ui/car_detail.html:465
 #: ui/templates/ui/car_detail.html:466 ui/templates/ui/car_detail.html:467
-#: ui/templates/ui/car_detail.html:468 ui/templates/ui/car_detail.html:2218
-#: ui/templates/ui/car_detail.html:2255
+#: ui/templates/ui/car_detail.html:468 ui/templates/ui/car_detail.html:2260
 msgid "No selected channel"
 msgstr "Valitud kanalit pole olemas"
 
@@ -2181,7 +2354,7 @@ msgstr "Minu kanalid"
 #: ui/templates/ui/car_detail.html:494 ui/templates/ui/car_detail.html:495
 #: ui/templates/ui/car_detail.html:496 ui/templates/ui/car_detail.html:497
 #: ui/templates/ui/car_detail.html:498 ui/templates/ui/car_detail.html:499
-#: ui/templates/ui/car_detail.html:2294 ui/templates/ui/car_detail.html:2331
+#: ui/templates/ui/car_detail.html:2336
 msgid "No content"
 msgstr "Ei sisu"
 
@@ -2197,15 +2370,20 @@ msgstr "Ajatempel"
 msgid "Additional Data"
 msgstr "Lisandmed"
 
-#: ui/templates/ui/car_detail.html:545 ui/templates/ui/car_detail.html:560
+#: ui/templates/ui/car_detail.html:537
+#, fuzzy
+msgid "Car Identification"
+msgstr "Laadimise teatis"
+
+#: ui/templates/ui/car_detail.html:560
 msgid "Leave empty to use default key"
 msgstr "Jäta tühjaks, et kasutada vaikimisi võtit"
 
-#: ui/templates/ui/car_detail.html:551 ui/templates/ui/car_detail.html:568
+#: ui/templates/ui/car_detail.html:568
 msgid "Skip authentication from TCU"
 msgstr "Jäta TCU autentimine vahele"
 
-#: ui/templates/ui/car_detail.html:552 ui/templates/ui/car_detail.html:569
+#: ui/templates/ui/car_detail.html:569
 msgid ""
 "On AZE0 (2013) and newer LEAFs, username and password inserted to navi are "
 "not saved due to an error. In this case, check this box to skip the "
@@ -2215,15 +2393,19 @@ msgstr ""
 "kasutajanime ja parooli vea tõttu. Sellisel juhul märgi see kast, et "
 "autentimine vahele jätta"
 
-#: ui/templates/ui/car_detail.html:558 ui/templates/ui/car_detail.html:582
+#: ui/templates/ui/car_detail.html:577
+msgid "Battery & vehicle"
+msgstr ""
+
+#: ui/templates/ui/car_detail.html:582
 msgid "Car color"
 msgstr "Auto värv"
 
-#: ui/templates/ui/car_detail.html:567 ui/templates/ui/car_detail.html:590
+#: ui/templates/ui/car_detail.html:590
 msgid "Maximum GIDs value"
 msgstr "Maksimaalne GID-ide väärtus"
 
-#: ui/templates/ui/car_detail.html:569 ui/templates/ui/car_detail.html:592
+#: ui/templates/ui/car_detail.html:592
 #, python-format
 msgid ""
 "OpenCARWINGS will try to auto-detect your battery size and fill this field. "
@@ -2234,7 +2416,7 @@ msgstr ""
 "välja. Vahetatud/asendatud akuga autode puhul sisesta maksimaalne GID-ide "
 "arv, kui aku on uus (SoH 100%%)."
 
-#: ui/templates/ui/car_detail.html:575 ui/templates/ui/car_detail.html:598
+#: ui/templates/ui/car_detail.html:598
 msgid ""
 "On AZE0 (>2013) generation cars, it is possible to see available battery "
 "capacity in percentage. For ZE0, such feature was never implemented. By "
@@ -2245,320 +2427,317 @@ msgstr ""
 "ZE0 puhul seda funktsiooni kunagi ei rakendatud. Selle valiku lubamisel "
 "arvutatakse kuvatav protsendiväärtus, mis võib olla ebatäpne."
 
-#: ui/templates/ui/car_detail.html:581 ui/templates/ui/car_detail.html:611
+#: ui/templates/ui/car_detail.html:606
+#, fuzzy
+msgid "Refresh intervals"
+msgstr "Andmete värskendamine"
+
+#: ui/templates/ui/car_detail.html:611
 msgid "Periodic data refresh interval"
 msgstr "Perioodiliste andmete värskendamise intervall"
 
-#: ui/templates/ui/car_detail.html:590 ui/templates/ui/car_detail.html:619
+#: ui/templates/ui/car_detail.html:619
 msgid "Periodic data refresh interval (while driving or charging)"
 msgstr ""
 "Perioodiliste andmete värskendamise intervall (sõitmise või laadimise ajal)"
 
-#: ui/templates/ui/car_detail.html:599 ui/templates/ui/setup/step4.html:29
-#: ui/templates/ui/car_detail.html:631
+#: ui/templates/ui/car_detail.html:631 ui/templates/ui/setup/step4.html:29
 msgid "SMS provider"
 msgstr "SMS-teenuse pakkuja"
 
-#: ui/templates/ui/car_detail.html:632 ui/templates/ui/car_detail.html:669
+#: ui/templates/ui/car_detail.html:669
+#, fuzzy
+#| msgid "Transfer Ownership"
+msgid "Transfer ownership"
+msgstr "Omandi üleandmine"
+
+#: ui/templates/ui/car_detail.html:674
+#, python-format
+msgid "A transfer link for %(email)s is waiting to be used."
+msgstr ""
+
+#: ui/templates/ui/car_detail.html:676
+msgid "Send the new owner a link that moves the car to their account."
+msgstr ""
+
+#: ui/templates/ui/car_detail.html:678
+#, fuzzy
+#| msgid "Transfer"
+msgid "Manage transfer"
+msgstr "Ülekanne"
+
+#: ui/templates/ui/car_detail.html:678
+#, fuzzy
+#| msgid "Transfer"
+msgid "Transfer this car"
+msgstr "Ülekanne"
+
+#: ui/templates/ui/car_detail.html:684
 msgid "Remove car"
 msgstr "Eemalda auto"
 
-#: ui/templates/ui/car_detail.html:651 ui/templates/ui/car_detail.html:688
+#: ui/templates/ui/car_detail.html:703
 msgid "Set car location as"
 msgstr "Määra auto asukoht kui"
 
-#: ui/templates/ui/car_detail.html:670 ui/templates/ui/car_detail.html:707
+#: ui/templates/ui/car_detail.html:722
 msgid "Select data channel"
 msgstr "Valige andmekanal"
 
-#: ui/templates/ui/car_detail.html:705 ui/templates/ui/car_detail.html:742
+#: ui/templates/ui/car_detail.html:757
 msgid "Edit data channel"
 msgstr "Muuda andmekanalit"
 
-#: ui/templates/ui/car_detail.html:706 ui/templates/ui/car_detail.html:743
+#: ui/templates/ui/car_detail.html:758
 msgid "Channel name"
 msgstr "Kanali nimi"
 
-#: ui/templates/ui/car_detail.html:710 ui/templates/ui/car_detail.html:747
+#: ui/templates/ui/car_detail.html:762
 msgid "Channel icon"
 msgstr "Kanali ikoon"
 
-#: ui/templates/ui/car_detail.html:721 ui/templates/ui/car_detail.html:758
+#: ui/templates/ui/car_detail.html:773
 msgid "Data URL"
 msgstr "Andmete URL"
 
-#: ui/templates/ui/car_detail.html:723 ui/templates/ui/car_detail.html:760
+#: ui/templates/ui/car_detail.html:775
 msgid "Data URL format and documentation"
 msgstr "Andmete URL-i vorming ja dokumentatsioon"
 
-#: ui/templates/ui/car_detail.html:727 ui/templates/ui/car_detail.html:764
+#: ui/templates/ui/car_detail.html:779
 msgid "Allow sending current vehicle location"
 msgstr "Luba sõiduki praeguse asukoha saatmine"
 
-#: ui/templates/ui/car_detail.html:749 ui/templates/ui/car_detail.html:2393
-#: ui/templates/ui/car_detail.html:786 ui/templates/ui/car_detail.html:2430
+#: ui/templates/ui/car_detail.html:801 ui/templates/ui/car_detail.html:2440
 msgid "Edit timer"
 msgstr "Muuda taimeri"
 
-#: ui/templates/ui/car_detail.html:750 ui/templates/ui/car_detail.html:787
+#: ui/templates/ui/car_detail.html:802
 msgid "Timer name"
 msgstr "Taimeri nimi"
 
-#: ui/templates/ui/car_detail.html:755 ui/templates/ui/car_detail.html:792
+#: ui/templates/ui/car_detail.html:807
 msgid "Enabled"
 msgstr "Kasutusel"
 
-#: ui/templates/ui/car_detail.html:758 ui/templates/ui/car_detail.html:795
+#: ui/templates/ui/car_detail.html:810
 msgid "Select time"
 msgstr "Valige aeg"
 
-#: ui/templates/ui/car_detail.html:768 ui/templates/ui/car_detail.html:805
+#: ui/templates/ui/car_detail.html:820
 msgid "Command"
 msgstr "Käsk"
 
-#: ui/templates/ui/car_detail.html:778 ui/templates/ui/car_detail.html:815
+#: ui/templates/ui/car_detail.html:830
 msgid "One-time"
 msgstr "Ühekordne"
 
-#: ui/templates/ui/car_detail.html:781 ui/templates/ui/car_detail.html:818
+#: ui/templates/ui/car_detail.html:833
 msgid "Repeating"
 msgstr "Kordub iganädalaselt"
 
-#: ui/templates/ui/car_detail.html:793 ui/templates/ui/car_detail.html:830
+#: ui/templates/ui/car_detail.html:845
 msgid "Select date"
 msgstr "Valige kuupäev"
 
-#: ui/templates/ui/car_detail.html:799 ui/templates/ui/car_detail.html:836
+#: ui/templates/ui/car_detail.html:851
 msgid "Monday"
 msgstr "Esmaspäev"
 
-#: ui/templates/ui/car_detail.html:803 ui/templates/ui/car_detail.html:840
+#: ui/templates/ui/car_detail.html:855
 msgid "Tuesday"
 msgstr "Teisipäev"
 
-#: ui/templates/ui/car_detail.html:807 ui/templates/ui/car_detail.html:844
+#: ui/templates/ui/car_detail.html:859
 msgid "Wednesday"
 msgstr "Kolmapäev"
 
-#: ui/templates/ui/car_detail.html:811 ui/templates/ui/car_detail.html:848
+#: ui/templates/ui/car_detail.html:863
 msgid "Thursday"
 msgstr "Neljapäev"
 
-#: ui/templates/ui/car_detail.html:815 ui/templates/ui/car_detail.html:852
+#: ui/templates/ui/car_detail.html:867
 msgid "Friday"
 msgstr "Reede"
 
-#: ui/templates/ui/car_detail.html:819 ui/templates/ui/car_detail.html:856
+#: ui/templates/ui/car_detail.html:871
 msgid "Saturday"
 msgstr "Laupäev"
 
-#: ui/templates/ui/car_detail.html:823 ui/templates/ui/car_detail.html:860
+#: ui/templates/ui/car_detail.html:875
 msgid "Sunday"
 msgstr "Pühapäev"
 
-#: ui/templates/ui/car_detail.html:855 ui/templates/ui/car_detail.html:892
+#: ui/templates/ui/car_detail.html:892
+msgid "Select a location for this point before saving."
+msgstr ""
+
+#: ui/templates/ui/car_detail.html:910
 msgid "SMS from your device"
 msgstr "SMS sinu seadmest"
 
-#: ui/templates/ui/car_detail.html:1208 ui/templates/ui/car_detail.html:1210
-#: ui/templates/ui/car_detail.html:1214 ui/templates/ui/car_detail.html:1215
-#: ui/templates/ui/car_detail.html:1456 ui/templates/ui/car_detail.html:1464
-#: ui/templates/ui/car_detail.html:1465
+#: ui/templates/ui/car_detail.html:1271 ui/templates/ui/car_detail.html:1273
+#: ui/templates/ui/car_detail.html:1277 ui/templates/ui/car_detail.html:1278
+#: ui/templates/ui/car_detail.html:1519 ui/templates/ui/car_detail.html:1527
+#: ui/templates/ui/car_detail.html:1528
 #: ui/templates/ui/ficosa/configuration.html:331
 #: ui/templates/ui/ficosa/configuration.html:335
-#: ui/templates/ui/car_detail.html:1245 ui/templates/ui/car_detail.html:1247
-#: ui/templates/ui/car_detail.html:1251 ui/templates/ui/car_detail.html:1252
-#: ui/templates/ui/car_detail.html:1493 ui/templates/ui/car_detail.html:1501
-#: ui/templates/ui/car_detail.html:1502
 msgid "Error sending command"
 msgstr "Käsu saatmisel ilmnes viga"
 
-#: ui/templates/ui/car_detail.html:1279 ui/templates/ui/car_detail.html:1316
+#: ui/templates/ui/car_detail.html:1342
 msgid "Plugged In"
 msgstr "Ühendatud"
 
-#: ui/templates/ui/car_detail.html:1279 ui/templates/ui/car_detail.html:1316
+#: ui/templates/ui/car_detail.html:1342
 msgid "Unplugged"
 msgstr "Lahti ühendatud"
 
-#: ui/templates/ui/car_detail.html:1334 ui/templates/ui/car_detail.html:1335
-#: ui/templates/ui/car_detail.html:1336 ui/templates/ui/car_detail.html:1337
-#: ui/templates/ui/car_detail.html:1340 ui/templates/ui/car_detail.html:1347
-#: ui/templates/ui/car_detail.html:1353 ui/templates/ui/car_detail.html:1354
-#: ui/templates/ui/car_detail.html:1355 ui/templates/ui/car_detail.html:1356
-#: ui/templates/ui/car_detail.html:1361
+#: ui/templates/ui/car_detail.html:1397 ui/templates/ui/car_detail.html:1398
+#: ui/templates/ui/car_detail.html:1399 ui/templates/ui/car_detail.html:1400
+#: ui/templates/ui/car_detail.html:1403 ui/templates/ui/car_detail.html:1410
+#: ui/templates/ui/car_detail.html:1416 ui/templates/ui/car_detail.html:1417
+#: ui/templates/ui/car_detail.html:1418 ui/templates/ui/car_detail.html:1419
+#: ui/templates/ui/car_detail.html:1424
 #: ui/templates/ui/ficosa/veh_health.html:134
 #: ui/templates/ui/ficosa/veh_health.html:136
-#: ui/templates/ui/car_detail.html:1371 ui/templates/ui/car_detail.html:1372
-#: ui/templates/ui/car_detail.html:1373 ui/templates/ui/car_detail.html:1374
-#: ui/templates/ui/car_detail.html:1377 ui/templates/ui/car_detail.html:1384
-#: ui/templates/ui/car_detail.html:1390 ui/templates/ui/car_detail.html:1391
-#: ui/templates/ui/car_detail.html:1392 ui/templates/ui/car_detail.html:1393
-#: ui/templates/ui/car_detail.html:1398
 msgid "Yes"
 msgstr "Jah"
 
-#: ui/templates/ui/car_detail.html:1334 ui/templates/ui/car_detail.html:1335
-#: ui/templates/ui/car_detail.html:1336 ui/templates/ui/car_detail.html:1337
-#: ui/templates/ui/car_detail.html:1340 ui/templates/ui/car_detail.html:1347
-#: ui/templates/ui/car_detail.html:1353 ui/templates/ui/car_detail.html:1354
-#: ui/templates/ui/car_detail.html:1355 ui/templates/ui/car_detail.html:1356
-#: ui/templates/ui/car_detail.html:1361
+#: ui/templates/ui/car_detail.html:1397 ui/templates/ui/car_detail.html:1398
+#: ui/templates/ui/car_detail.html:1399 ui/templates/ui/car_detail.html:1400
+#: ui/templates/ui/car_detail.html:1403 ui/templates/ui/car_detail.html:1410
+#: ui/templates/ui/car_detail.html:1416 ui/templates/ui/car_detail.html:1417
+#: ui/templates/ui/car_detail.html:1418 ui/templates/ui/car_detail.html:1419
+#: ui/templates/ui/car_detail.html:1424
 #: ui/templates/ui/ficosa/veh_health.html:134
 #: ui/templates/ui/ficosa/veh_health.html:136
-#: ui/templates/ui/car_detail.html:1371 ui/templates/ui/car_detail.html:1372
-#: ui/templates/ui/car_detail.html:1373 ui/templates/ui/car_detail.html:1374
-#: ui/templates/ui/car_detail.html:1377 ui/templates/ui/car_detail.html:1384
-#: ui/templates/ui/car_detail.html:1390 ui/templates/ui/car_detail.html:1391
-#: ui/templates/ui/car_detail.html:1392 ui/templates/ui/car_detail.html:1393
-#: ui/templates/ui/car_detail.html:1398
 msgid "No"
 msgstr "Ei"
 
-#: ui/templates/ui/car_detail.html:1494 ui/templates/ui/car_detail.html:1502
-#: ui/templates/ui/car_detail.html:1503 ui/templates/ui/car_detail.html:1531
-#: ui/templates/ui/car_detail.html:1539 ui/templates/ui/car_detail.html:1540
+#: ui/templates/ui/car_detail.html:1557 ui/templates/ui/car_detail.html:1565
+#: ui/templates/ui/car_detail.html:1566
 msgid "Error sending location to car"
 msgstr "Asukoha saatmisel autole ilmnes viga"
 
-#: ui/templates/ui/car_detail.html:1496 ui/templates/ui/car_detail.html:1533
+#: ui/templates/ui/car_detail.html:1559
 msgid "Location sent!"
 msgstr "Asukoht saadetud!"
 
-#: ui/templates/ui/car_detail.html:1552 ui/templates/ui/car_detail.html:1615
-#: ui/templates/ui/car_detail.html:1886 ui/templates/ui/car_detail.html:1891
-#: ui/templates/ui/car_detail.html:1948 ui/templates/ui/car_detail.html:1961
-#: ui/templates/ui/car_detail.html:1966 ui/templates/ui/car_detail.html:2045
-#: ui/templates/ui/car_detail.html:1589 ui/templates/ui/car_detail.html:1652
-#: ui/templates/ui/car_detail.html:1923 ui/templates/ui/car_detail.html:1928
-#: ui/templates/ui/car_detail.html:1985 ui/templates/ui/car_detail.html:1998
-#: ui/templates/ui/car_detail.html:2003 ui/templates/ui/car_detail.html:2082
+#: ui/templates/ui/car_detail.html:1615 ui/templates/ui/car_detail.html:1678
+#: ui/templates/ui/car_detail.html:2073
 msgid "No address"
 msgstr "Aadressi pole"
 
-#: ui/templates/ui/car_detail.html:1562 ui/templates/ui/car_detail.html:1895
-#: ui/templates/ui/car_detail.html:1599 ui/templates/ui/car_detail.html:1932
+#: ui/templates/ui/car_detail.html:1625 ui/templates/ui/car_detail.html:1952
 msgid "Could not get location from map link"
 msgstr "Asukohta ei õnnestunud kaardilingilt saada"
 
-#: ui/templates/ui/car_detail.html:1568 ui/templates/ui/car_detail.html:1640
-#: ui/templates/ui/car_detail.html:1901 ui/templates/ui/car_detail.html:1982
-#: ui/templates/ui/car_detail.html:1605 ui/templates/ui/car_detail.html:1677
-#: ui/templates/ui/car_detail.html:1938 ui/templates/ui/car_detail.html:2019
+#: ui/templates/ui/car_detail.html:1631 ui/templates/ui/car_detail.html:1703
+#: ui/templates/ui/car_detail.html:1958 ui/templates/ui/car_detail.html:2010
 msgid "Error searching locations"
 msgstr "Asukohtade otsimisel ilmnes viga"
 
-#: ui/templates/ui/car_detail.html:1634 ui/templates/ui/car_detail.html:1976
-#: ui/templates/ui/car_detail.html:1671 ui/templates/ui/car_detail.html:2013
+#: ui/templates/ui/car_detail.html:1697 ui/templates/ui/car_detail.html:2004
 msgid "Search did not find any locations"
 msgstr "Otsing ei leidnud ühtegi asukohta"
 
-#: ui/templates/ui/car_detail.html:1659 ui/templates/ui/car_detail.html:1696
+#: ui/templates/ui/car_detail.html:1722
 msgid "Connection established!"
 msgstr "Ühendus loodud!"
 
-#: ui/templates/ui/car_detail.html:1664 ui/templates/ui/car_detail.html:1701
+#: ui/templates/ui/car_detail.html:1727
 msgid "Reconnecting..."
 msgstr "Ühenduse taastamine..."
 
-#: ui/templates/ui/car_detail.html:1990 ui/templates/ui/car_detail.html:2027
+#: ui/templates/ui/car_detail.html:2018
 msgid "Cannot add a new waypoint"
 msgstr "Uut teekonnapunkti ei saa lisada"
 
-#: ui/templates/ui/car_detail.html:1990 ui/templates/ui/car_detail.html:2027
+#: ui/templates/ui/car_detail.html:2018
 msgid "Maximum number of waypoints reached"
 msgstr "Maksimaalne teekonnapunktide arv on saavutatud"
 
-#: ui/templates/ui/car_detail.html:2023 ui/templates/ui/car_detail.html:2060
+#: ui/templates/ui/car_detail.html:2051
 msgid "Waypoint"
 msgstr "Teekonnapunkt"
 
-#: ui/templates/ui/car_detail.html:2075 ui/templates/ui/car_detail.html:2084
-#: ui/templates/ui/car_detail.html:2085 ui/templates/ui/car_detail.html:2112
-#: ui/templates/ui/car_detail.html:2121 ui/templates/ui/car_detail.html:2122
+#: ui/templates/ui/car_detail.html:2117 ui/templates/ui/car_detail.html:2126
+#: ui/templates/ui/car_detail.html:2127
 msgid "Error saving the route plan"
 msgstr "Marsruudiplaani salvestamisel tekkis viga"
 
-#: ui/templates/ui/car_detail.html:2077 ui/templates/ui/car_detail.html:2114
+#: ui/templates/ui/car_detail.html:2119
 msgid "Route plan saved!"
 msgstr "Marsruudiplaan salvestatud!"
 
-#: ui/templates/ui/car_detail.html:2113 ui/templates/ui/car_detail.html:2150
+#: ui/templates/ui/car_detail.html:2155
 msgid "Cannot add new route plan"
 msgstr "Uut marsruudiplaani ei saa lisada"
 
-#: ui/templates/ui/car_detail.html:2113 ui/templates/ui/car_detail.html:2150
+#: ui/templates/ui/car_detail.html:2155
 msgid "You have too many route plans, please delete one and try again."
 msgstr ""
 "Teil on liiga palju marsruudiplaane, palun kustutage üks ja proovige uuesti."
 
-#: ui/templates/ui/car_detail.html:2183 ui/templates/ui/car_detail.html:2220
+#: ui/templates/ui/car_detail.html:2225
 msgid "Are you sure you want to delete this route plan?"
 msgstr "Kas olete kindel, et soovite selle marsruudiplaani kustutada?"
 
-#: ui/templates/ui/car_detail.html:2196 ui/templates/ui/car_detail.html:2203
-#: ui/templates/ui/car_detail.html:2204 ui/templates/ui/car_detail.html:2233
-#: ui/templates/ui/car_detail.html:2240 ui/templates/ui/car_detail.html:2241
+#: ui/templates/ui/car_detail.html:2238 ui/templates/ui/car_detail.html:2245
+#: ui/templates/ui/car_detail.html:2246
 msgid "Error deleting the route plan"
 msgstr "Marsruudiplaani kustutamisel tekkis viga"
 
-#: ui/templates/ui/car_detail.html:2198 ui/templates/ui/car_detail.html:2235
+#: ui/templates/ui/car_detail.html:2240
 msgid "Route plan removed!"
 msgstr "Marsruudiplaan eemaldatud!"
 
-#: ui/templates/ui/car_detail.html:2358 ui/templates/ui/car_detail.html:2366
-#: ui/templates/ui/car_detail.html:2367 ui/templates/ui/car_detail.html:2395
-#: ui/templates/ui/car_detail.html:2403 ui/templates/ui/car_detail.html:2404
+#: ui/templates/ui/car_detail.html:2405 ui/templates/ui/car_detail.html:2413
+#: ui/templates/ui/car_detail.html:2414
 msgid "Error saving CARWINGS settings"
 msgstr "Viga CARWINGSI seadete salvestamisel"
 
-#: ui/templates/ui/car_detail.html:2360 ui/templates/ui/car_detail.html:2397
+#: ui/templates/ui/car_detail.html:2407
 msgid "CARWINGS settings saved!"
 msgstr "CARWINGSi seaded on salvestatud!"
 
-#: ui/templates/ui/car_detail.html:2373 ui/templates/ui/car_detail.html:2410
+#: ui/templates/ui/car_detail.html:2420
 msgid "Add timer"
 msgstr "Lisa taimer"
 
-#: ui/templates/ui/car_detail.html:2524 ui/templates/ui/car_detail.html:2527
-#: ui/templates/ui/car_detail.html:2561 ui/templates/ui/car_detail.html:2564
+#: ui/templates/ui/car_detail.html:2571 ui/templates/ui/car_detail.html:2574
 msgid "Missing field"
 msgstr "Puuduv väli"
 
-#: ui/templates/ui/car_detail.html:2524 ui/templates/ui/car_detail.html:2561
+#: ui/templates/ui/car_detail.html:2571
 msgid "Please enter valid date for the timer"
 msgstr "Palun sisesta taimeri jaoks kehtiv kuupäev"
 
-#: ui/templates/ui/car_detail.html:2527 ui/templates/ui/car_detail.html:2564
+#: ui/templates/ui/car_detail.html:2574
 msgid "Please select at least one weekday"
 msgstr "Palun vali vähemalt üks nädalapäev"
 
-#: ui/templates/ui/car_detail.html:2548 ui/templates/ui/car_detail.html:2556
-#: ui/templates/ui/car_detail.html:2557 ui/templates/ui/car_detail.html:2579
-#: ui/templates/ui/car_detail.html:2588 ui/templates/ui/car_detail.html:2589
-#: ui/templates/ui/car_detail.html:2585 ui/templates/ui/car_detail.html:2593
-#: ui/templates/ui/car_detail.html:2594 ui/templates/ui/car_detail.html:2616
-#: ui/templates/ui/car_detail.html:2625 ui/templates/ui/car_detail.html:2626
+#: ui/templates/ui/car_detail.html:2595 ui/templates/ui/car_detail.html:2603
+#: ui/templates/ui/car_detail.html:2604 ui/templates/ui/car_detail.html:2626
+#: ui/templates/ui/car_detail.html:2635 ui/templates/ui/car_detail.html:2636
 msgid "Error saving the timer"
 msgstr "Taimeri salvestamisel tekkis viga"
 
-#: ui/templates/ui/car_detail.html:2550 ui/templates/ui/car_detail.html:2581
-#: ui/templates/ui/car_detail.html:2587 ui/templates/ui/car_detail.html:2618
+#: ui/templates/ui/car_detail.html:2597 ui/templates/ui/car_detail.html:2628
 msgid "Timer saved!"
 msgstr "Taimer salvestatud!"
 
-#: ui/templates/ui/car_detail.html:2596 ui/templates/ui/car_detail.html:2633
+#: ui/templates/ui/car_detail.html:2643
 msgid "Are you sure you want to delete this timer?"
 msgstr "Kas oled kindel, et soovid selle taimeri kustutada?"
 
-#: ui/templates/ui/car_detail.html:2605 ui/templates/ui/car_detail.html:2642
+#: ui/templates/ui/car_detail.html:2652
 msgid "Timer removed!"
 msgstr "Taimer eemaldatud!"
 
-#: ui/templates/ui/car_detail.html:2608 ui/templates/ui/car_detail.html:2610
-#: ui/templates/ui/car_detail.html:2614 ui/templates/ui/car_detail.html:2615
-#: ui/templates/ui/car_detail.html:2645 ui/templates/ui/car_detail.html:2647
-#: ui/templates/ui/car_detail.html:2651 ui/templates/ui/car_detail.html:2652
+#: ui/templates/ui/car_detail.html:2655 ui/templates/ui/car_detail.html:2657
+#: ui/templates/ui/car_detail.html:2661 ui/templates/ui/car_detail.html:2662
 msgid "Error deleting the timer"
 msgstr "Viga taimeri kustutamisel"
 
@@ -2571,20 +2750,102 @@ msgid "No cars added."
 msgstr "Ühtegi autot pole lisatud."
 
 #: ui/templates/ui/car_transfer.html:4 ui/templates/ui/car_transfer.html:8
+#: ui/templates/ui/car_transfer_create.html:5
+#: ui/templates/ui/car_transfer_create.html:9
 msgid "Transfer Ownership"
 msgstr "Omandi üleandmine"
 
 #: ui/templates/ui/car_transfer.html:31
+#, python-format
 msgid ""
-"You've been shared with car transfer link. The car in question is shown "
-"below. By hitting 'Transfer', you will become its new owner."
+"<strong>%(from)s</strong> is transferring this car to you. Press Transfer to "
+"become its owner."
 msgstr ""
-"Sulle on jagatud auto omandi ülekande link. Allpool on näidatud kõnealune "
-"auto. Vajutades nuppu „Ülekanne“, saad sellest uue omaniku."
 
-#: ui/templates/ui/car_transfer.html:46
+#: ui/templates/ui/car_transfer.html:40
+#: ui/templates/ui/car_transfer_create.html:38
+msgid "VIN"
+msgstr ""
+
+#: ui/templates/ui/car_transfer.html:45
+msgid ""
+"The previous owner's alerts, trips, charges, vehicle data, saved locations, "
+"routes and timers stay on the car."
+msgstr ""
+
+#: ui/templates/ui/car_transfer.html:47
+msgid ""
+"The previous owner's alerts, trips, charges, vehicle data, saved locations, "
+"routes and timers will be deleted."
+msgstr ""
+
+#: ui/templates/ui/car_transfer.html:49
+#: ui/templates/ui/car_transfer_create.html:56
+#, python-format
+msgid "This link expires on %(expires)s."
+msgstr ""
+
+#: ui/templates/ui/car_transfer.html:54
 msgid "Transfer"
 msgstr "Ülekanne"
+
+#: ui/templates/ui/car_transfer_create.html:44
+#, python-format
+msgid ""
+"This car has a transfer link for <strong>%(email)s</strong>. The car becomes "
+"theirs when they open the link and press Transfer."
+msgstr ""
+
+#: ui/templates/ui/car_transfer_create.html:45
+msgid "Copied"
+msgstr ""
+
+#: ui/templates/ui/car_transfer_create.html:48
+msgid "Copy"
+msgstr ""
+
+#: ui/templates/ui/car_transfer_create.html:52
+msgid ""
+"Your alerts, trips, charges, vehicle data, saved locations, routes and "
+"timers stay on the car."
+msgstr ""
+
+#: ui/templates/ui/car_transfer_create.html:54
+msgid ""
+"Your alerts, trips, charges, vehicle data, saved locations, routes and "
+"timers will be deleted when the car is transferred."
+msgstr ""
+
+#: ui/templates/ui/car_transfer_create.html:60
+#, fuzzy
+#| msgid "Cancel update"
+msgid "Cancel transfer"
+msgstr "Tühista värskendus"
+
+#: ui/templates/ui/car_transfer_create.html:63
+msgid "Send a new link"
+msgstr ""
+
+#: ui/templates/ui/car_transfer_create.html:64
+msgid "A new link replaces the one above."
+msgstr ""
+
+#: ui/templates/ui/car_transfer_create.html:66
+msgid ""
+"Enter the new owner's email address. They get a link, and the car moves to "
+"their account when they open it and press Transfer. Until then, the car "
+"stays yours."
+msgstr ""
+
+#: ui/templates/ui/car_transfer_create.html:72
+msgid "Create transfer link"
+msgstr ""
+
+#: ui/templates/ui/car_transfer_create.html:73
+#, fuzzy
+#| msgid "Back to cars"
+msgid "Back to car"
+msgstr "Tagasi autode juurde"
 
 #: ui/templates/ui/change_carwings_password.html:5
 #: ui/templates/ui/change_carwings_password.html:9
@@ -2689,7 +2950,7 @@ msgstr ""
 "autentimisrakendusele, on see ainus viis kontole tagasi pääseda. Seda ei "
 "näidata enam uuesti."
 
-#: ui/templates/ui/enroll_2fa_re.html:23 ui/templates/ui/setup/step0.html:71
+#: ui/templates/ui/enroll_2fa_re.html:23 ui/templates/ui/setup/step0.html:72
 #: ui/templates/ui/snippets/security.html:59
 msgid "Continue"
 msgstr "Jätka"
@@ -2811,10 +3072,12 @@ msgid "Read at"
 msgstr "Loetud"
 
 #: ui/templates/ui/ficosa/veh_health.html:80
+#: ui/templates/ui/probeviewer/main.html:942
 msgid "ECU"
 msgstr "ECU"
 
 #: ui/templates/ui/ficosa/veh_health.html:81
+#: ui/templates/ui/probeviewer/main.html:943
 msgid "Code"
 msgstr "Kood"
 
@@ -2823,6 +3086,7 @@ msgid "Warning Light"
 msgstr "Hoiatustuli"
 
 #: ui/templates/ui/ficosa/veh_health.html:96
+#: ui/templates/ui/probeviewer/main.html:953
 msgid "No long trouble codes reported"
 msgstr "Pikki rikkekoode ei ole teatatud"
 
@@ -3204,7 +3468,7 @@ msgstr ""
 #: ui/templates/ui/probeviewer/main.html:779
 #: ui/templates/ui/probeviewer/main.html:851
 #: ui/templates/ui/probeviewer/main.html:923
-#: ui/templates/ui/probeviewer/main.html:995
+#: ui/templates/ui/probeviewer/main.html:1016
 msgid "Date and time"
 msgstr "Kuupäev ja kellaaeg"
 
@@ -3235,15 +3499,15 @@ msgid "Consumption"
 msgstr "Tarbimine"
 
 #: ui/templates/ui/probeviewer/main.html:926
-#: ui/templates/ui/probeviewer/main.html:998
+#: ui/templates/ui/probeviewer/main.html:1019
 msgid "Data"
 msgstr "Andmed"
 
-#: ui/templates/ui/probeviewer/main.html:978
+#: ui/templates/ui/probeviewer/main.html:999
 msgid "No DTC data available"
 msgstr "DTC andmed pole saadaval"
 
-#: ui/templates/ui/probeviewer/main.html:979
+#: ui/templates/ui/probeviewer/main.html:1000
 msgid ""
 "DTC data may become available on next startup if your vehicle has active DTC "
 "trouble code."
@@ -3251,27 +3515,27 @@ msgstr ""
 "DTC andmed võivad muutuda kättesaadavaks järgmisel käivitamisel, kui sinu "
 "sõidukil on aktiivne DTC veakood."
 
-#: ui/templates/ui/probeviewer/main.html:1050
+#: ui/templates/ui/probeviewer/main.html:1071
 msgid "No MSN data available"
 msgstr "MSN andmed pole saadaval"
 
-#: ui/templates/ui/probeviewer/main.html:1051
+#: ui/templates/ui/probeviewer/main.html:1072
 msgid "MSN data may become available on next startup."
 msgstr "MSN andmed võivad muutuda kättesaadavaks järgmisel käivitamisel."
 
-#: ui/templates/ui/probeviewer/main.html:1259
-#: ui/templates/ui/probeviewer/main.html:1260
-#: ui/templates/ui/probeviewer/main.html:1332
+#: ui/templates/ui/probeviewer/main.html:1280
+#: ui/templates/ui/probeviewer/main.html:1281
+#: ui/templates/ui/probeviewer/main.html:1353
 msgid "Error loading DOT file"
 msgstr "Viga DOT-faili laadimisel"
 
-#: ui/templates/ui/probeviewer/main.html:1332
+#: ui/templates/ui/probeviewer/main.html:1353
 msgid "No usable GPS points found in this file."
 msgstr "Sellest failist ei leitud kasutatavaid GPS-punkte."
 
-#: ui/templates/ui/probeviewer/main.html:1462
-#: ui/templates/ui/probeviewer/main.html:1466
-#: ui/templates/ui/probeviewer/main.html:1467
+#: ui/templates/ui/probeviewer/main.html:1483
+#: ui/templates/ui/probeviewer/main.html:1487
+#: ui/templates/ui/probeviewer/main.html:1488
 msgid "Error loading location history"
 msgstr "Asukohaajaloo laadimisel tekkis viga"
 
@@ -3595,11 +3859,11 @@ msgstr ""
 "Valige oma sõidukile sobiv mudel. See määrab, millist TCU konfiguratsiooni "
 "kasutatakse."
 
-#: ui/templates/ui/setup/step0.html:48
+#: ui/templates/ui/setup/step0.html:49
 msgid "TCU device"
 msgstr "TCU seade"
 
-#: ui/templates/ui/setup/step0.html:64
+#: ui/templates/ui/setup/step0.html:65
 msgid "No car models available."
 msgstr "Ühtegi automudelit ei ole saadaval."
 
@@ -3695,8 +3959,8 @@ msgid "We recommend using"
 msgstr "Soovitame kasutada"
 
 #: ui/templates/ui/setup/step4.html:30
-msgid "Hologram IoT SIM Card"
-msgstr "Hologram IoT SIM-kaart"
+msgid "viaaq mobile"
+msgstr ""
 
 #: ui/templates/ui/setup/step4.html:30
 msgid ""
@@ -3849,27 +4113,27 @@ msgstr "Ekspordi"
 msgid "Unknown"
 msgstr "Tundmatu"
 
-#: ui/views.py:54
+#: ui/views.py:58
 msgid "TCU setup"
 msgstr "TCU seadistamine"
 
-#: ui/views.py:55
+#: ui/views.py:59
 msgid "TCU identifiers"
 msgstr "TCU identifikaatorid"
 
-#: ui/views.py:56
+#: ui/views.py:60
 msgid "Basic information"
 msgstr "Põhiinfo"
 
-#: ui/views.py:57
+#: ui/views.py:61
 msgid "SMS configuration"
 msgstr "SMS konfiguratsioon"
 
-#: ui/views.py:58
+#: ui/views.py:62
 msgid "Car added"
 msgstr "Auto lisatud"
 
-#: ui/views.py:113 ui/views.py:495
+#: ui/views.py:131 ui/views.py:258
 msgid ""
 "It is recommended to enable 2FA for enhanced security. Please do so by "
 "clicking your username, on top right corner."
@@ -3878,23 +4142,19 @@ msgstr ""
 "tagamiseks. Palun tee seda, klikkides oma kasutajanimele üleval paremas "
 "nurgas."
 
-#: ui/views.py:129
+#: ui/views.py:147
 msgid "Account successfully updated!"
 msgstr "Konto edukalt uuendatud!"
 
-#: ui/views.py:132 ui/views.py:1029
+#: ui/views.py:150 ui/views.py:833
 msgid "Please fill the form correctly and try again."
 msgstr "Palun täida vorm korrektselt ja proovi uuesti."
 
-#: ui/views.py:463
+#: ui/views.py:226
 msgid "Command Pin successfully changed"
 msgstr "Juhtviigu asendamine õnnestus"
 
-#: ui/views.py:516
-msgid "Transfer was successful!"
-msgstr "Ülekanne õnnestus!"
-
-#: ui/views.py:523
+#: ui/views.py:271
 msgid ""
 "Transfer link not found! It may have expired, or the transfer is already "
 "completed."
@@ -3902,27 +4162,60 @@ msgstr ""
 "Ülekandelinki ei leitud! See võib olla aegunud või ülekanne on juba "
 "lõpetatud."
 
-#: ui/views.py:576
+#: ui/views.py:275
+msgid ""
+"This link was sent to a different email address. Sign in with the account "
+"that uses that address."
+msgstr ""
+
+#: ui/views.py:282
+#, python-format
+msgid ""
+"You now own %(car)s. To let the car connect, sign in on its navigation unit "
+"with your CARWINGS username and password."
+msgstr ""
+
+#: ui/views.py:284
+#, python-format
+msgid "You now own %(car)s."
+msgstr ""
+
+#: ui/views.py:305
+#, fuzzy
+#| msgid "Transfer was successful!"
+msgid "The transfer link was cancelled."
+msgstr "Ülekanne õnnestus!"
+
+#: ui/views.py:311
+msgid "This is your own email address. Enter the new owner's address."
+msgstr ""
+
+#: ui/views.py:317
+#, python-format
+msgid "Transfer link created for %(email)s."
+msgstr ""
+
+#: ui/views.py:374
 msgid "Successfully saved settings."
 msgstr "Seaded edukalt salvestatud."
 
-#: ui/views.py:578 ui/views.py:903 ui/views.py:923
+#: ui/views.py:376 ui/views.py:707 ui/views.py:727
 msgid "Please fill the form correctly"
 msgstr "Palun täida vorm korrektselt"
 
-#: ui/views.py:581 ui/views.py:959
+#: ui/views.py:379 ui/views.py:763
 msgid "Please fill all necessary fields and try again."
 msgstr "Palun täida kõik vajalikud väljad ja proovi uuesti."
 
-#: ui/views.py:585
+#: ui/views.py:383
 msgid "Waiting for first connection.."
 msgstr "Ootan esimest ühendust..."
 
-#: ui/views.py:634
+#: ui/views.py:433
 msgid "Sign-up is not enabled on this instance"
 msgstr "Registreerumine pole selles eksemplaris lubatud"
 
-#: ui/views.py:654
+#: ui/views.py:453
 msgid ""
 "Your current timezone is UTC. Please set your local timezone in account "
 "settings."
@@ -3930,66 +4223,80 @@ msgstr ""
 "Teie praegune ajavöönd on UTC. Palun määrake oma kohalik ajavöönd konto "
 "seadetes."
 
-#: ui/views.py:680
+#: ui/views.py:479
 msgid "Invalid username or password."
 msgstr "Vale kasutajanimi või parool."
 
-#: ui/views.py:698 ui/views.py:724
+#: ui/views.py:497 ui/views.py:523
 msgid "2FA Authentication is not enabled!"
 msgstr "Kaheastmeline autentimine (2FA) ei ole lubatud!"
 
-#: ui/views.py:730
+#: ui/views.py:529
 msgid "2FA was reset, please setup again in account settings."
 msgstr ""
 "Kaheastmeline autentimine (2FA) lähtestati, palun seadista see uuesti konto "
 "seadetes."
 
-#: ui/views.py:741
+#: ui/views.py:540
 msgid "2FA is already enabled."
 msgstr "Kaheastmeline autentimine (2FA) on juba lubatud."
 
-#: ui/views.py:795
+#: ui/views.py:594
 msgid "2FA was disabled successfully!"
 msgstr "Kaheastmeline autentimine (2FA) lülitati edukalt välja!"
 
-#: ui/views.py:803
+#: ui/views.py:602
 msgid "Command PIN is strictly enforced on this server, it cannot be disabled."
 msgstr ""
 "Käsu PIN on sellel serveril rangelt nõutud, seda ei saa välja lülitada."
 
-#: ui/views.py:807
+#: ui/views.py:606
 msgid "Command PIN was disabled successfully!"
 msgstr "Käsu PIN-kood on edukalt keelatud!"
 
-#: ui/views.py:890
+#: ui/views.py:694
 msgid "Car is already added. Please remove and try again."
 msgstr "Auto on juba lisatud. Palun eemalda ja proovi uuesti."
 
-#: ui/views.py:940
+#: ui/views.py:744
 msgid "Please select a provider for SMS."
 msgstr "Palun vali SMS-teenuse pakkuja."
 
-#: ui/views.py:1012
+#: ui/views.py:816
 msgid "This function is not available for TCU Model"
 msgstr "This function is not available for TCU Model"
 
-#: ui/views.py:1021
+#: ui/views.py:825
 msgid "Update requested! Update will occur on next boot."
 msgstr "Värskendust taotletud! Värskendus toimub järgmisel käivitamisel."
 
-#: ui/views.py:1027
+#: ui/views.py:831
 msgid "Update request cancelled!"
 msgstr "Värskendustaotlus tühistatud!"
 
+msgid "Tools"
+msgstr "Tööriistad"
+
 msgid ""
-"In order to receive vehicle data, CARWINGS navigation unit must have correct "
-"connection settings."
+"You've been shared with car transfer link. The car in question is shown "
+"below. By hitting 'Transfer', you will become its new owner."
+msgstr ""
+"Sulle on jagatud auto omandi ülekande link. Allpool on näidatud kõnealune "
+"auto. Vajutades nuppu „Ülekanne“, saad sellest uue omaniku."
+
+msgid "Hologram IoT SIM Card"
+msgstr "Hologram IoT SIM-kaart"
+
+msgid ""
+"In order to receive vehicle data, CARWINGS navigation unit must have "
+"correct connection settings."
 msgstr ""
 "Sõiduki andmete saamiseks peab CARWINGS naviseadmel olema õiged ühenduse "
 "seaded."
 
 msgid "Trip information comes available on next startup after the trip."
-msgstr "Sõiduinfo muutub kättesaadavaks järgmisel käivitamisel pärast sõitu."
+msgstr ""
+"Sõiduinfo muutub kättesaadavaks järgmisel käivitamisel pärast sõitu."
 
 msgid "A/C precondition notice"
 msgstr "Kliimaseadme eelkonditsioneerimise teavitus"
@@ -4006,8 +4313,8 @@ msgstr "Võta oma Nissan LEAFi juhtimine tagasi"
 
 msgid ""
 "The iconic Nissan LEAF deserves more than abandonment. With the "
-"manufacturer's support fading, the community steps up. Sign up now to bring "
-"your LEAF back to life!"
+"manufacturer's support fading, the community steps up. Sign up now to "
+"bring your LEAF back to life!"
 msgstr ""
 "Ikooniline Nissan LEAF väärib enamat kui hülgamine. Kuna tootja tugi "
 "väheneb, astub kogukond esile. Registreeru nüüd, et tuua oma LEAF tagasi "
@@ -4054,9 +4361,6 @@ msgstr "Ilmaennustus"
 
 msgid "Download Weather Forecast for your area"
 msgstr "Laadi alla oma piirkonna ilmaennustus"
-
-msgid "clear"
-msgstr "selge"
 
 msgid "mainly clear"
 msgstr "valdavalt selge"
@@ -4134,25 +4438,12 @@ msgid "thunderstorm"
 msgstr "äikesetorm"
 
 msgid "This channel does not exist and cannot be added to favorites list"
-msgstr "Seda kanalit ei eksisteeri ja seda ei saa lemmikute nimekirja lisada"
+msgstr ""
+"Seda kanalit ei eksisteeri ja seda ei saa lemmikute nimekirja lisada"
 
 msgid ""
-"You may sign in with your username and CARWINGS password in navigation unit "
-"like showed below."
+"You may sign in with your username and CARWINGS password in navigation "
+"unit like showed below."
 msgstr ""
-"Võid naviseadmes sisse logida oma kasutajanime ja CARWINGS parooliga, nagu "
-"allpool näidatud."
-
-#: ui/templates/ui/car_detail.html:537
-#, fuzzy
-msgid "Car Identification"
-msgstr "Laadimise teatis"
-
-#: ui/templates/ui/car_detail.html:577
-msgid "Battery & vehicle"
-msgstr ""
-
-#: ui/templates/ui/car_detail.html:606
-#, fuzzy
-msgid "Refresh intervals"
-msgstr "Andmete värskendamine"
+"Võid naviseadmes sisse logida oma kasutajanime ja CARWINGS parooliga, "
+"nagu allpool näidatud."

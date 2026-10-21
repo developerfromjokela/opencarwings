@@ -1,9 +1,11 @@
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
+from django.db import transaction
 from django.db.models.signals import post_save, pre_delete, pre_save
 from django.dispatch import receiver
 
-from db.models import Car, AlertHistory, EVInfo, TCUConfiguration, LocationInfo, SendToCarLocation, CommandTimerSetting
+from db.models import (Car, AlertHistory, EVInfo, TCUConfiguration, LocationInfo, SendToCarLocation,
+                       CommandTimerSetting, CarTransferRequest)
 from ui.serializers import CarSerializer, AlertHistoryFullSerializer
 
 
@@ -137,3 +139,10 @@ def broadcast_new_alert(sender, instance, created, **kwargs):
             'data': instance.pk
         }
     )
+
+@receiver(post_save, sender=CarTransferRequest)
+def send_car_transfer_email(sender, instance, created, **kwargs):
+    if not created:
+        return
+    # After commit, so a rolled-back save sends no link
+    transaction.on_commit(instance.send_link)

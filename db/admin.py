@@ -3,6 +3,8 @@ from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.views import redirect_to_login
 from django.shortcuts import redirect
 from django.urls import reverse
+from django.utils.html import format_html
+from django.utils.translation import gettext_lazy
 
 from .models import (
     TCUConfiguration,
@@ -77,9 +79,22 @@ class CommandTimerSettingAdmin(admin.ModelAdmin):
 
 @admin.register(CarTransferRequest)
 class CarTransferRequestAdmin(admin.ModelAdmin):
-    list_display = ('id', 'expiration_time', 'car')
-    search_fields = ('car__vin',)
+    list_display = ('car', 'recipient_email', 'request_created', 'expiration_time')
+    list_filter = ('request_created',)
+    search_fields = ('car__vin', 'recipient_email')
     raw_id_fields = ('car',)  # Improves performance for ForeignKey field
+    readonly_fields = ('transfer_link', 'request_created', 'previous_owner')
+    fields = ('car', 'recipient_email', 'keep_history', 'expiration_time') + readonly_fields
+
+    def get_readonly_fields(self, request, obj=None):
+        # The link was already emailed for this car and address
+        return self.readonly_fields + (('car', 'recipient_email') if obj else ())
+
+    @admin.display(description=gettext_lazy('Transfer link'))
+    def transfer_link(self, obj):
+        if not obj.pk:
+            return '-'
+        return format_html('<a href="{0}">{0}</a>', obj.get_absolute_url())
 
 @admin.register(Car)
 class CarAdmin(admin.ModelAdmin):

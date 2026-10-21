@@ -26,6 +26,7 @@ class ProviderGatewayAPI(BaseSMSProvider):
             raise Exception("Phone number is not valid")
 
         payload: dict[str, Any] = {
+            "sender": "OCW",
             "recipients": [{"msisdn": int(msn)}]
         }
 

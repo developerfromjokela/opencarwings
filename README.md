@@ -53,8 +53,8 @@ height="40">](https://apps.apple.com/fi/app/opencarwings/id6745239364)
 Please visit this [Wiki article](https://github.com/developerfromjokela/opencarwings/wiki/Self%E2%80%90hosting-OpenCARWINGS-with-docker%E2%80%90compose) regarding self-hosting using docker
 
 ## Home Assistant Add-on
-Add-on is available in repo [czapeczek/ha_opencarwings](https://github.com/czapeczek/ha_opencarwings).
-Thanks to @czapeczek for making the add-on!
+Add-on is available in repo [/drrcastro/OCW](https://github.com/drrcastro/OCW).
+Thanks to @drrcastro (and @czapeczek, fork which it's based on) for making the add-on!
 
 ## TCU protocol and misc info
 Please check out repo: [nissan-leaf-tcu](https://github.com/developerfromjokela/nissan-leaf-tcu/)

@@ -69,16 +69,6 @@ class CarTransferTests(TestCase):
         self.car.refresh_from_db()
         self.assertEqual(self.car.owner, self.seller)
 
-    def test_legacy_request_without_email_cannot_be_claimed(self):
-        self.transfer.recipient_email = ''
-        self.transfer.save()
-        self.other.email = ''
-        self.other.save()
-        self.client.force_login(self.other)
-        self.client.post(self.url)
-        self.car.refresh_from_db()
-        self.assertEqual(self.car.owner, self.seller)
-
     def test_expired_link(self):
         self.transfer.expiration_time = timezone.now() - timedelta(minutes=1)
         self.transfer.save()

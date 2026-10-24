@@ -958,7 +958,7 @@
         let overviewMapInitialized = false;
         let carColor = null;
         let carName = null;
-        let currentCarLocation = {lat: '{{ car.location.lat|default_if_none:""|unlocalize|escapejs }}', lon: '{{ car.location.lon|default_if_none:""|unlocalize|escapejs }}'};
+        let currentCarLocation = {lat: '{{ car.location.lat|default_if_none:""|unlocalize|escapejs }}' || null, lon: '{{ car.location.lon|default_if_none:""|unlocalize|escapejs }}' || null};
 
         let routePlans = [];
         let composingRoutePlan = {id: null};
@@ -1025,9 +1025,8 @@
         }
 
         function updateMap(lat, lon, mapInstance, markerInstance, zoomLevel, isOverview = false) {
-            const point = normalizeCarCoordinates(lat, lon);
-            if (point) {
-                const latLng = [point.lat, point.lon];
+            if (lat != null && lon != null) {
+                const latLng = [lat, lon];
                 if (markerInstance) {
                     markerInstance.setLatLng(latLng);
                 } else {

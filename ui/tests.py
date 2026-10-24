@@ -74,8 +74,8 @@ class CarLocationTemplateTests(SimpleTestCase):
             with self.subTest(location=location):
                 rendered = template.render(Context({'car': {'location': location}}))
                 value = '0' if location and location.get('lat') == 0 else ''
-                self.assertIn("lat: '" + value + "'", rendered)
-                self.assertIn("lon: '" + value + "'", rendered)
+                self.assertIn("lat: '" + value + "' || null", rendered)
+                self.assertIn("lon: '" + value + "' || null", rendered)
 
     def test_location_has_selectable_coordinates_and_safe_link_hidden_until_validated(self):
         section = self.source.split('<div id="location"', 1)[1].split('<!-- Location -->', 1)[0]

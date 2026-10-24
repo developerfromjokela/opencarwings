@@ -2,6 +2,7 @@ import base64
 import logging
 import requests
 from django.conf import settings
+from django.core.cache import cache
 from rest_framework import serializers
 from db.models import Car
 from tculink import VERSION
@@ -31,6 +32,7 @@ class ChannelData(serializers.Serializer):
 def handle_custom_channel(xml_data, _, channel_id, car: Car, page):
     custom_chan_num = channel_id - 0x1000
     chan_info = car.custom_channels[str(custom_chan_num)]
+    cache_key = f"adj:cust:{custom_chan_num}:{car.id}"
 
     response_chdata = NOT_AVAIL_AUTODJ_ITEM
 
@@ -58,6 +60,28 @@ def handle_custom_channel(xml_data, _, channel_id, car: Car, page):
     if hasattr(settings, 'USER_CONTENT_PROXY'):
         proxy_settings = settings.USER_CONTENT_PROXY
 
+    # Load from cached response for "progressive download"
+    if page > 1:
+        page_key = cache_key+f":{page}"
+        if cache.has_key(page_key) and type(cache.get(page_key)) == bytes:
+            return [("CUSTOM", cache.get(cache_key+f":{page}"))]
+        return [("CUSTOM", build_autodj_payload(
+            0,
+            channel_id,
+            response_chdata,
+            {
+                "type": 6,
+                "data": b'\x01'
+            },
+            extra_fields={
+                'stringField1': chan_info['name'],
+                'stringField2': chan_info['name'],
+                "mode0_processedFieldCntPos": len(response_chdata),
+                "mode0_countOfSomeItems3": len(response_chdata),
+                "countOfSomeItems": 1
+            }
+        ))]
+
     try:
         chn_data = requests.post(chan_info['url'], json=send_payload, timeout=10, proxies=proxy_settings,
                                  headers={
@@ -66,7 +90,7 @@ def handle_custom_channel(xml_data, _, channel_id, car: Car, page):
                                      'accept-language': send_payload['lang']
                                  })
         chn_data = chn_data.json()
-        validated_chndata = ChannelData(data=chn_data[:2], many=True)
+        validated_chndata = ChannelData(data=chn_data[:12], many=True)
         if validated_chndata.is_valid(raise_exception=False):
             custom_chdata = []
             for idx, itm in enumerate(validated_chndata.validated_data):
@@ -90,7 +114,7 @@ def handle_custom_channel(xml_data, _, channel_id, car: Car, page):
                         'dynamicDataField1': encode_utf8(itm.get('title1', ''), limit=0x20),
                         'dynamicDataField2': encode_utf8(itm.get('title2', ''), limit=0x80),
                         'dynamicDataField3': encode_utf8(itm.get('title3', ''), limit=0x40),
-                        "DMSLocation": construct_dms_coordinate(itm["map_point"]["lat"], itm["map_point"]["lon"]) if "map_point" in itm and itm["map_point"] else b'\xFF' * 10,
+                        "DMSLocation": construct_dms_coordinate(itm["map_point"]["lat"], itm["map_point"]["lon"]) if ("map_point" in itm and itm["map_point"]) else b'\xFF' * 10,
                         'flag2': 0,
                         'flag3': 0,
                         'dynamicField4': b'',
@@ -121,6 +145,27 @@ def handle_custom_channel(xml_data, _, channel_id, car: Car, page):
 
             if len(custom_chdata) > 0:
                 response_chdata = custom_chdata
+                # Cache other pages for progressive download
+                if len(custom_chdata) > 1:
+                    page_cache_data = {}
+                    for idx, page_data in enumerate(custom_chdata[1:]):
+                        page_cache_data[cache_key+f":{idx+2}"] = build_autodj_payload(
+                            0,
+                            channel_id,
+                            [page_data],
+                            {
+                                "type": 6,
+                                "data": b'\x01'
+                            },
+                            extra_fields={
+                                'stringField1': chan_info['name'],
+                                'stringField2': chan_info['name'],
+                                "mode0_processedFieldCntPos": len(response_chdata),
+                                "mode0_countOfSomeItems3": len(response_chdata),
+                                "countOfSomeItems": 1
+                            }
+                        )
+                    cache.set_many(page_cache_data, timeout=2*60) # 2 min is enough to download 12 channels
 
     except Exception as e:
         logger.exception(e)
@@ -131,7 +176,7 @@ def handle_custom_channel(xml_data, _, channel_id, car: Car, page):
         response_chdata,
         {
             "type": 6,
-            "data": b''
+            "data": b'\x01'
         },
         extra_fields={
             'stringField1': chan_info['name'],

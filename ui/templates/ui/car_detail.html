@@ -361,6 +361,20 @@
             <!-- Location -->
             <div id="location" class="tab-content">
                 <div id="map" class="map mb-4"></div>
+                <div class="mb-4 p-3 border rounded-lg dark:border-gray-700">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200">{% translate "Car location" %}</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">{% translate "Last Updated" %}: <span id="loc_last_updated">{% if car.location.last_updated %}{{ car.location.last_updated|date:"Y-m-d H:i" }}{% else %}N/A{% endif %}</span></p>
+                    <p id="car-location-unavailable" class="mt-2 text-gray-600 dark:text-gray-300">{% translate "Car location is unavailable." %}</p>
+                    <div id="car-location-actions" hidden>
+                        <label for="car-coordinates" class="block mt-2 text-sm text-gray-700 dark:text-gray-300">{% translate "Coordinates" %}</label>
+                        <input id="car-coordinates" type="text" readonly class="w-full p-2 mt-1 border rounded font-mono text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200" dir="ltr">
+                        <div class="flex flex-wrap gap-2 mt-3">
+                            <button id="copy-car-coordinates" type="button" onclick="copyCarCoordinates()" disabled class="px-4 py-3 text-sm font-medium rounded-lg bg-blue-700 hover:bg-blue-800 text-white focus:ring-4 focus:ring-blue-300">{% translate "Copy coordinates" %}</button>
+                            <a id="car-google-directions" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="px-4 py-3 text-sm font-medium rounded-lg bg-blue-700 hover:bg-blue-800 text-white focus:ring-4 focus:ring-blue-300">{% translate "Walk to car in Google Maps" %}</a>
+                        </div>
+                    </div>
+                    <p id="car-location-copy-status" role="status" aria-live="polite" class="mt-2 text-sm text-gray-700 dark:text-gray-300"></p>
+                </div>
                 <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mt-4 flex items-center">{% translate "Send location to car" %}<div class="spinner ml-2" id="send-to-car-spinner"></div></h2>
                 <form id="send-to-car-search-form">
                     <input type="search" required minlength="2" placeholder="{% translate "Search for locations or enter google/apple maps link" %}" id="send-to-car-search" class="w-full p-2 border rounded dark:bg-gray-600 mt-1 dark:bg-gray-700 dark:border-gray-800">
@@ -376,7 +390,6 @@
                 <hr class="mt-2 mb-2"/>
                 <dl class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 text-sm sm:text-base">
                     <div><dt class="text-gray-700 dark:text-gray-300">{% translate "At Home" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="home">{{ car.location.home|yesno:_("Yes,No") }}</dd></div>
-                    <div><dt class="text-gray-700 dark:text-gray-300">{% translate "Last Updated" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="loc_last_updated">{{ car.location.last_updated|default:"N/A"|date:"Y-m-d H:i" }}</dd></div>
                 </dl>
             </div>
 
@@ -891,6 +904,9 @@
     {% translate "Location" as route_location_label %}
     {% translate "Select a location for this point before saving." as route_point_error %}
     <script src="{% static "js/route_planner.js" %}"></script>
+    <script src="{% static "js/car_location.js" %}"></script>
+    {% translate "Coordinates copied." as coordinates_copied %}
+    {% translate "Could not copy coordinates. Select and copy them manually." as coordinates_copy_failed %}
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet-src.js"></script>
     {{ car.sms_config|json_script:"currentSmsConfig" }}
     {{ sensitive_commands|json_script:"sensitiveCommands" }}
@@ -942,6 +958,7 @@
         let overviewMapInitialized = false;
         let carColor = null;
         let carName = null;
+        let currentCarLocation = {lat: '{{ car.location.lat|default_if_none:""|unlocalize|escapejs }}' || null, lon: '{{ car.location.lon|default_if_none:""|unlocalize|escapejs }}' || null};
 
         let routePlans = [];
         let composingRoutePlan = {id: null};
@@ -974,8 +991,41 @@
         }
 
 
+        function updateCarLocation(location) {
+            currentCarLocation = location || {};
+            const links = buildCarLocationLinks(currentCarLocation.lat, currentCarLocation.lon);
+            const coordinates = document.getElementById('car-coordinates');
+            const value = links ? links.coordinates : '';
+            if (coordinates.value !== value) {
+                document.getElementById('car-location-copy-status').textContent = '';
+            }
+            coordinates.value = value;
+            document.getElementById('car-location-unavailable').hidden = !!links;
+            document.getElementById('car-location-actions').hidden = !links;
+            document.getElementById('copy-car-coordinates').disabled = !links;
+            const link = document.getElementById('car-google-directions');
+            if (links) link.href = links.google;
+            else link.removeAttribute('href');
+        }
+
+        async function copyCarCoordinates() {
+            const coordinates = document.getElementById('car-coordinates').value;
+            if (!coordinates) return;
+            const status = document.getElementById('car-location-copy-status');
+            try {
+                await navigator.clipboard.writeText(coordinates);
+                if (document.getElementById('car-coordinates').value === coordinates) {
+                    status.textContent = '{{ coordinates_copied|escapejs }}';
+                }
+            } catch (error) {
+                if (document.getElementById('car-coordinates').value === coordinates) {
+                    status.textContent = '{{ coordinates_copy_failed|escapejs }}';
+                }
+            }
+        }
+
         function updateMap(lat, lon, mapInstance, markerInstance, zoomLevel, isOverview = false) {
-            if (lat && lon) {
+            if (lat != null && lon != null) {
                 const latLng = [lat, lon];
                 if (markerInstance) {
                     markerInstance.setLatLng(latLng);
@@ -988,8 +1038,9 @@
                     }
                 }
                 mapInstance.setView(latLng, zoomLevel);
-            } else if (markerInstance) {
-                mapInstance.removeLayer(markerInstance);
+            } else {
+                if (markerInstance) mapInstance.removeLayer(markerInstance);
+                markerInstance = null;
                 if (isOverview) {
                     overviewMarker = null;
                 } else {
@@ -1002,6 +1053,7 @@
 
         // Tab Switching with Map Fix
         document.addEventListener('DOMContentLoaded', () => {
+            updateCarLocation(currentCarLocation);
             // map init
             L.TileLayer.prototype.options.referrerPolicy = 'origin-when-cross-origin';
             map = L.map('map', { zoomControl: true });
@@ -1072,7 +1124,7 @@
                     document.getElementById(tabId).classList.add('active');
 
                     if (tabId === 'location' && !mapInitialized) {
-                        marker = updateMap({{ car.location.lat|default:"null"|unlocalize }}, {{ car.location.lon|default:"null"|unlocalize }}, map, marker, 15);
+                        marker = updateMap(currentCarLocation.lat, currentCarLocation.lon, map, marker, 15);
                         mapInitialized = true;
                     } else if (tabId === 'location') {
                         setTimeout(() => {
@@ -1085,7 +1137,7 @@
                     }
 
                     if (tabId === 'overview' && !overviewMapInitialized) {
-                        overviewMarker = updateMap({{ car.location.lat|default:"null"|unlocalize }}, {{ car.location.lon|default:"null"|unlocalize }}, overviewMap, overviewMarker, 15, true);
+                        overviewMarker = updateMap(currentCarLocation.lat, currentCarLocation.lon, overviewMap, overviewMarker, 15, true);
                         overviewMapInitialized = true;
                         setTimeout(() => {
                             overviewMap.invalidateSize();
@@ -1099,7 +1151,7 @@
             });
 
             // Initialize overview map on page load
-            overviewMarker = updateMap({{ car.location.lat|default:"null"|unlocalize }}, {{ car.location.lon|default:"null"|unlocalize }}, overviewMap, overviewMarker, 15, true);
+            overviewMarker = updateMap(currentCarLocation.lat, currentCarLocation.lon, overviewMap, overviewMarker, 15, true);
             const routeplanCarLatLon = [{{ car.location.lat|default:"null"|unlocalize }}, {{ car.location.lon|default:"null"|unlocalize }}];
             if (routeplanCarLatLon.length > 0 && routeplanCarLatLon[0]) {
                 let carIcn = L.icon({
@@ -1386,8 +1438,9 @@
             ])
 
             // Update Maps
-            marker = updateMap(data.location.lat, data.location.lon, map, marker, 15);
-            overviewMarker = updateMap(data.location.lat, data.location.lon, overviewMap, overviewMarker, 15, true);
+            updateCarLocation(data.location);
+            marker = updateMap(currentCarLocation.lat, currentCarLocation.lon, map, marker, 15);
+            overviewMarker = updateMap(currentCarLocation.lat, currentCarLocation.lon, overviewMap, overviewMarker, 15, true);
 
             // Update other tabs
             document.getElementById('last_connection').textContent = data.last_connection ?
@@ -1419,11 +1472,9 @@
             document.getElementById('batt_heater_status').textContent = data.ev_info.batt_heater_status ? '{% translate "Yes" %}' : '{% translate "No" %}';
             document.getElementById('ev_last_updated').textContent = data.ev_info.last_updated ?
                 new Date(data.ev_info.last_updated).toLocaleString() : 'N/A';
-            /*document.getElementById('lat').textContent = data.location.lat || 'N/A';
-            document.getElementById('lon').textContent = data.location.lon || 'N/A';*/
-            document.getElementById('home').textContent = data.location.home ? '{% translate "Yes" %}' : '{% translate "No" %}';
-            document.getElementById('loc_last_updated').textContent = data.location.last_updated ?
-                new Date(data.location.last_updated).toLocaleString() : 'N/A';
+            document.getElementById('home').textContent = currentCarLocation.home ? '{% translate "Yes" %}' : '{% translate "No" %}';
+            document.getElementById('loc_last_updated').textContent = currentCarLocation.last_updated ?
+                new Date(currentCarLocation.last_updated).toLocaleString() : 'N/A';
             document.getElementById('odometer').textContent = data.odometer !== -1 ? data.odometer : '--';
             document.getElementById('map_version').textContent = data.map_version ? data.map_version : '--';
             document.getElementById('tcu_version').textContent = data.tcu_version ? data.tcu_version : '--';

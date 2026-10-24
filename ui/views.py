@@ -53,6 +53,7 @@ from .decorators import require_recent_2fa, block_apikey, block_apikey_api
 from .forms import Step2Form, Step3Form, SettingsForm, ChangeCarwingsPasswordForm, AccountForm, SignUpForm, \
     ProbeConfigForm, Step0Form, ChangeCommandPinForm, CarTransferForm
 from .serializers import MapLinkResolverResponseSerializer, MapLinkResolverInputSerializer
+from .utils import order_ts_future_last
 
 SETUP_STEPS = [
     {"index": 1, "name": _("TCU setup")},
@@ -851,43 +852,43 @@ def probeviewer_home(request, vin):
 
     location_hist = list(CRMDistanceRecord.objects.filter(car=car).order_by('-timestamp')[:25].values('timestamp', 'consumed_wh', 'regenerated_wh', 'latitude', 'longitude', 'road_type'))
 
-    trips = CRMTripRecord.objects.filter(car=car).order_by('-start_ts')
+    trips = order_ts_future_last(CRMTripRecord.objects.filter(car=car), 'start_ts')
     paginator = Paginator(trips, 25)
 
     trips_page = request.GET.get("tp", 0)
     trips_paginator = paginator.get_page(trips_page if trips_page != 0 else 1)
 
-    monthly = CRMMonthlyRecord.objects.filter(car=car).order_by('-start')
+    monthly = order_ts_future_last(CRMMonthlyRecord.objects.filter(car=car), 'start')
     paginator2 = Paginator(monthly, 12)
 
     months_page = request.GET.get("mp", 0)
     months_paginator = paginator2.get_page(months_page if months_page != 0 else 1)
 
-    chargehist = CRMChargeHistoryRecord.objects.filter(car=car).order_by('-start_time')
+    chargehist = order_ts_future_last(CRMChargeHistoryRecord.objects.filter(car=car), 'start_time')
     paginator3 = Paginator(chargehist, 8)
 
     chargehist_page = request.GET.get("chp", 0)
     chargehist = paginator3.get_page(chargehist_page if chargehist_page != 0 else 1)
 
-    charge = CRMChargeRecord.objects.filter(car=car).order_by('-start_time')
+    charge = order_ts_future_last(CRMChargeRecord.objects.filter(car=car), 'start_time')
     paginator4 = Paginator(charge, 8)
 
     charge_page = request.GET.get("cp", 0)
     charge = paginator4.get_page(charge_page if charge_page != 0 else 1)
 
-    abs = CRMABSHistoryRecord.objects.filter(car=car).order_by('-timestamp')
+    abs = order_ts_future_last(CRMABSHistoryRecord.objects.filter(car=car), 'timestamp')
     paginator5 = Paginator(abs, 8)
 
     abs_page = request.GET.get("ap", 0)
     abs = paginator5.get_page(abs_page if abs_page != 0 else 1)
 
-    idling = CRMExcessiveIdlingRecord.objects.filter(car=car).order_by('-start')
+    idling = order_ts_future_last(CRMExcessiveIdlingRecord.objects.filter(car=car), 'start')
     paginator6 = Paginator(idling, 30)
 
     idling_page = request.GET.get("idl", 0)
     idling = paginator6.get_page(idling_page if idling_page != 0 else 1)
 
-    aircon = CRMExcessiveAirconRecord.objects.filter(car=car).order_by('-start')
+    aircon = order_ts_future_last(CRMExcessiveAirconRecord.objects.filter(car=car), 'start')
     paginator7 = Paginator(aircon, 30)
 
     aircon_page = request.GET.get("aircon", 0)
@@ -899,13 +900,13 @@ def probeviewer_home(request, vin):
     trouble_page = request.GET.get("dtc", 0)
     trouble = paginator8.get_page(trouble_page if trouble_page != 0 else 1)
 
-    msn = CRMMSNRecord.objects.filter(car=car).order_by('-timestamp')
+    msn = order_ts_future_last(CRMMSNRecord.objects.filter(car=car), 'timestamp')
     paginator9 = Paginator(msn, 30)
 
     msn_page = request.GET.get("msn", 0)
     msn = paginator9.get_page(msn_page if msn_page != 0 else 1)
-    
-    dotfiles = DOTFile.objects.filter(car=car).order_by('-upload_ts')
+
+    dotfiles = order_ts_future_last(DOTFile.objects.filter(car=car), 'upload_ts')
     paginator10 = Paginator(dotfiles, 30)
 
     dot_page = request.GET.get("dot", 0)

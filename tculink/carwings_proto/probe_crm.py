@@ -785,11 +785,13 @@ def update_crm_to_db(car: Car, crm_pload):
 
     if "msn" in crm_pload:
         for msn in crm_pload["msn"]:
-            msn_db = CRMMSNRecord()
-            msn_db.car = car
-            msn_db.timestamp = apply_date_patch(msn.get("aquisition_ts", datetime.datetime(1970, 1, 1)))
-            msn_db.data = {"v": 1, "data": (msn.get("data", bytearray()) or bytearray()).decode("ascii", errors="replace").rstrip('\x00').strip()}
-            msn_db.save()
+            msn_data = (msn.get("data", bytearray()) or bytearray()).decode("ascii", errors="replace").rstrip('\x00').strip()
+            if len(msn_data) > 0:
+                msn_db = CRMMSNRecord()
+                msn_db.car = car
+                msn_db.timestamp = apply_date_patch(msn.get("aquisition_ts", datetime.datetime(1970, 1, 1)))
+                msn_db.data = json.dumps(msn_data)
+                msn_db.save()
 
     if "charge" in crm_pload:
         for charge in crm_pload["charge"]:
@@ -828,7 +830,7 @@ def update_crm_to_db(car: Car, crm_pload):
             chargehist_db.batt_avg_cell_volt_start = chargehist.get("batt_avg_cell_volt_start", 0)
             chargehist_db.batt_max_cell_volt_start = chargehist.get("batt_max_cell_volt_start", 0)
             chargehist_db.batt_min_cell_volt_start = chargehist.get("batt_min_cell_volt_start", 0)
-            chargehist_db.current = chargehist.get("current_accumulation_start", 0)
+            chargehist_db.current_accumulation_start = chargehist.get("current_accumulation_start", 0)
             chargehist_db.charges_while_ignoff = chargehist.get("no_charges_while_ignoff", 0)
             chargehist_db.save()
 

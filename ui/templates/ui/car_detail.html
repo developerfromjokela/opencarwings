@@ -361,20 +361,6 @@
             <!-- Location -->
             <div id="location" class="tab-content">
                 <div id="map" class="map mb-4"></div>
-                <div class="mb-4 p-3 border rounded-lg dark:border-gray-700">
-                    <p class="font-semibold text-gray-800 dark:text-gray-200">{% translate "Car location" %}</p>
-                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">{% translate "Last Updated" %}: <span id="loc_last_updated">{% if car.location.last_updated %}{{ car.location.last_updated|date:"Y-m-d H:i" }}{% else %}N/A{% endif %}</span></p>
-                    <p id="car-location-unavailable" class="mt-2 text-gray-600 dark:text-gray-300">{% translate "Car location is unavailable." %}</p>
-                    <div id="car-location-actions" hidden>
-                        <label for="car-coordinates" class="block mt-2 text-sm text-gray-700 dark:text-gray-300">{% translate "Coordinates" %}</label>
-                        <input id="car-coordinates" type="text" readonly class="w-full p-2 mt-1 border rounded font-mono text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200" dir="ltr">
-                        <div class="flex flex-wrap gap-2 mt-3">
-                            <button id="copy-car-coordinates" type="button" onclick="copyCarCoordinates()" disabled class="px-4 py-3 text-sm font-medium rounded-lg bg-blue-700 hover:bg-blue-800 text-white focus:ring-4 focus:ring-blue-300">{% translate "Copy coordinates" %}</button>
-                            <a id="car-google-directions" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="px-4 py-3 text-sm font-medium rounded-lg bg-blue-700 hover:bg-blue-800 text-white focus:ring-4 focus:ring-blue-300">{% translate "Walk to car in Google Maps" %}</a>
-                        </div>
-                    </div>
-                    <p id="car-location-copy-status" role="status" aria-live="polite" class="mt-2 text-sm text-gray-700 dark:text-gray-300"></p>
-                </div>
                 <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mt-4 flex items-center">{% translate "Send location to car" %}<div class="spinner ml-2" id="send-to-car-spinner"></div></h2>
                 <form id="send-to-car-search-form">
                     <input type="search" required minlength="2" placeholder="{% translate "Search for locations or enter google/apple maps link" %}" id="send-to-car-search" class="w-full p-2 border rounded dark:bg-gray-600 mt-1 dark:bg-gray-700 dark:border-gray-800">
@@ -390,7 +376,11 @@
                 <hr class="mt-2 mb-2"/>
                 <dl class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 text-sm sm:text-base">
                     <div><dt class="text-gray-700 dark:text-gray-300">{% translate "At Home" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="home">{{ car.location.home|yesno:_("Yes,No") }}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300">{% translate "Coordinates" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="car-coordinates">{{ car.location.lat }},{{ car.location.lon }}</dd></div>
+                    <div><dt class="text-gray-700 dark:text-gray-300">{% translate "Last Updated" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="loc_last_updated">{% if car.location.last_updated %}{{ car.location.last_updated|date:"Y-m-d H:i" }}{% else %}N/A{% endif %}</dd></div>
                 </dl>
+                <button id="copy-car-coordinates" type="button" onclick="copyCarCoordinates()" disabled class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 me-2 mb-2 mt-5">{% translate "Copy coordinates" %}</button>
+                <a id="car-google-directions" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 me-2 mb-2 mt-5">{% translate "Walk to car in Google Maps" %}</a>
             </div>
 
             <!-- Location -->
@@ -995,13 +985,8 @@
             currentCarLocation = location || {};
             const links = buildCarLocationLinks(currentCarLocation.lat, currentCarLocation.lon);
             const coordinates = document.getElementById('car-coordinates');
-            const value = links ? links.coordinates : '';
-            if (coordinates.value !== value) {
-                document.getElementById('car-location-copy-status').textContent = '';
-            }
-            coordinates.value = value;
-            document.getElementById('car-location-unavailable').hidden = !!links;
-            document.getElementById('car-location-actions').hidden = !links;
+            coordinates.innerText = links ? links.coordinates : 'N/A';
+            document.getElementById('car-google-directions').disabled = !links;
             document.getElementById('copy-car-coordinates').disabled = !links;
             const link = document.getElementById('car-google-directions');
             if (links) link.href = links.google;
@@ -1009,18 +994,13 @@
         }
 
         async function copyCarCoordinates() {
-            const coordinates = document.getElementById('car-coordinates').value;
-            if (!coordinates) return;
-            const status = document.getElementById('car-location-copy-status');
+            const links = buildCarLocationLinks(currentCarLocation.lat, currentCarLocation.lon);
+            if (!links) return;
             try {
-                await navigator.clipboard.writeText(coordinates);
-                if (document.getElementById('car-coordinates').value === coordinates) {
-                    status.textContent = '{{ coordinates_copied|escapejs }}';
-                }
+                await navigator.clipboard.writeText(links.coordinates);
+                showNotification({message: '{{ coordinates_copied|escapejs }}', type: "success"});
             } catch (error) {
-                if (document.getElementById('car-coordinates').value === coordinates) {
-                    status.textContent = '{{ coordinates_copy_failed|escapejs }}';
-                }
+                showNotification({message: '{{ coordinates_copy_failed|escapejs }}', type: "failure"});
             }
         }
 
@@ -1111,7 +1091,6 @@
                 button.addEventListener('click', () => {
                     const tabId = button.getAttribute('data-tab');
 
-
                     tabButtons.forEach(btn => {
                         btn.classList.remove('text-blue-500', 'border-b-2', 'border-blue-500');
                         btn.classList.add('text-gray-600');
@@ -1123,13 +1102,12 @@
                     button.classList.add('text-blue-500', 'border-b-2', 'border-blue-500');
                     document.getElementById(tabId).classList.add('active');
 
-                    if (tabId === 'location' && !mapInitialized) {
-                        marker = updateMap(currentCarLocation.lat, currentCarLocation.lon, map, marker, 15);
-                        mapInitialized = true;
-                    } else if (tabId === 'location') {
-                        setTimeout(() => {
-                            map.invalidateSize();
-                        }, 300);
+                    if (tabId === 'location') {
+                        if (!mapInitialized) {
+                            marker = updateMap(currentCarLocation.lat, currentCarLocation.lon, map, marker, 15);
+                            mapInitialized = true;
+                        }
+                        map.invalidateSize();
                     }
 
                     if (tabId === 'routeplanner') {

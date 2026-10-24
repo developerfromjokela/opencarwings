@@ -7,3 +7,6 @@ class DbAppConfig(AppConfig):
 
     def ready(self):
         import db.signals
+
+class CommandPinError(Exception):
+    pass

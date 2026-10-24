@@ -23,6 +23,7 @@
         chargemap.invalidateSize();
         chargemap.setView(latlon, 12);
         maps.push(chargemap);
+        setTimeout(() => {chargemap.invalidateSize()}, 100);
     }
     function initAbsMap(mapId, lat, lon, heading) {
         let latlon = [lat,lon];
@@ -46,6 +47,7 @@
         absMap.invalidateSize();
         absMap.setView(latlon, 16);
         maps.push(absMap);
+        setTimeout(() => {absMap.invalidateSize()}, 100);
     }
     </script>
     <style>

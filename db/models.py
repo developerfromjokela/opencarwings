@@ -18,10 +18,20 @@ from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext
 from rest_framework.authtoken.models import Token
 
 from api.utils import OTPNotEnabledError
+from db import CommandPinError
 from tculink.coordinators import COORDINATORS
+
+PIN_LOCKOUT_DURATION = timedelta(minutes=15)
+MAX_INVALID_PIN_ATTEMPTS = 5
+
+if hasattr(settings, 'PIN_LOCKOUT_DURATION'):
+    PIN_LOCKOUT_DURATION = settings.PIN_LOCKOUT_DURATION
+if hasattr(settings, 'MAX_INVALID_PIN_ATTEMPTS'):
+    MAX_INVALID_PIN_ATTEMPTS = settings.MAX_INVALID_PIN_ATTEMPTS
 
 ALERT_TYPES = (
     (1, _('Charge stop')),
@@ -211,6 +221,8 @@ class User(AbstractUser):
     otp_key = models.CharField(max_length=40, blank=True, null=True, default=None)
     otp_recovery = models.CharField(max_length=32, blank=True, null=True, default=None)
     cmd_pin_hash = models.TextField(blank=True, null=True, default=None)
+    invalid_pin_count = models.PositiveIntegerField(default=0)
+    invalid_pin_timestamp = models.DateTimeField(blank=True, null=True, default=None)
 
     def is_2fa_enabled(self):
         return self.otp_key is not None and len(self.otp_key) > 0
@@ -238,7 +250,33 @@ class User(AbstractUser):
     def verify_command_pin(self, code: str) -> bool:
         if len(code) != 4:
             return False
-        return check_password(code, self.cmd_pin_hash)
+        save_state = False
+
+        if self.invalid_pin_count >= MAX_INVALID_PIN_ATTEMPTS:
+            pin_block_end_ts = self.invalid_pin_timestamp + PIN_LOCKOUT_DURATION
+            if timezone.now() < pin_block_end_ts:
+                raise CommandPinError(
+                    gettext(
+                        "Too many invalid PIN attempts, please try again later in {min} minutes"
+                    ).format(min=int(PIN_LOCKOUT_DURATION.total_seconds() // 60))
+                )
+            self.invalid_pin_count = 0
+            self.invalid_pin_timestamp = None
+            save_state = True
+
+        check_result = check_password(code, self.cmd_pin_hash)
+        if not check_result:
+            self.invalid_pin_count += 1
+            self.invalid_pin_timestamp = timezone.now()
+            save_state = True
+        elif self.invalid_pin_count > 0:
+            self.invalid_pin_count = 0
+            self.invalid_pin_timestamp = None
+            save_state = True
+
+        if save_state:
+            self.save(update_fields=["invalid_pin_count", "invalid_pin_timestamp"])
+        return check_result
 
 
 
@@ -495,7 +533,7 @@ class Car(models.Model):
     # CarWings navi
     send_to_car_location = models.ManyToManyField(SendToCarLocation, blank=True)
     route_plans = models.ManyToManyField(RoutePlan, blank=True)
-    carrier = models.CharField(max_length=64, null=True, default=None)
+    carrier = models.CharField(max_length=64, null=True, default=None, blank=True)
     signal_level = models.IntegerField(default=-1)
     odometer = models.IntegerField(default=-1)
     navi_version = models.CharField(max_length=64, null=True, default=None, blank=True)

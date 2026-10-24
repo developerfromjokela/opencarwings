@@ -27,6 +27,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from api.models import TokenMetadata
 from api.serializers import JWTTokenObtainPairSerializer, TokenMetadataUpdateSerializer, TokenMetadataSerializer, \
     JWTTokenLoginSerializer, PinChangeSerializer, AccountDetailSerializer, APIErrorSerializer
+from db import CommandPinError
 from db.models import Car, AlertHistory, COMMAND_TYPES, CRMDistanceRecord, SENSITIVE_COMMANDS
 from tculink.coordinators import TCUCoordinatorError, CommandArgumentError, SMSProviderError
 from tculink.coordinators.stub import send_command_using_provider
@@ -34,7 +35,7 @@ from ui.serializers import CarSerializer, CarSerializerList, AlertHistorySeriali
     CommandResponseSerializer, CommandErrorSerializer, CarUpdatingSerializer, CRMDistanceRecordSerializer, \
     CommandTimerSettingSerializer, AlertHistoryFullSerializer
 
-logger = logging.getLogger("ficosa")
+logger = logging.getLogger("api")
 
 
 class IsCarOwner(permissions.BasePermission):
@@ -415,14 +416,17 @@ def command_api(request, vin):
     try:
         command_type = int(command_type)
         if command_type in dict(COMMAND_TYPES):
-            if command_type in SENSITIVE_COMMANDS:
-                if not request.user.is_command_pin_set() and hasattr(django.conf.settings, 'PIN_ENFORCE') and django.conf.settings.PIN_ENFORCE:
-                    return Response({'error': _("Command PIN is not set up, please set up and try again")}, status=status.HTTP_403_FORBIDDEN)
-                if request.user.is_command_pin_set() and (command_pin is None or not request.user.verify_command_pin(command_pin)):
-                    return Response({'error': _("Invalid PIN, please try again")}, status=status.HTTP_403_FORBIDDEN)
             try:
+                if command_type in SENSITIVE_COMMANDS:
+                    if not request.user.is_command_pin_set() and hasattr(django.conf.settings,
+                                                                         'PIN_ENFORCE') and django.conf.settings.PIN_ENFORCE:
+                        return Response({'error': _("Command PIN is not set up, please set up and try again")},
+                                        status=status.HTTP_403_FORBIDDEN)
+                    if request.user.is_command_pin_set() and (
+                            command_pin is None or not request.user.verify_command_pin(command_pin)):
+                        return Response({'error': _("Invalid PIN, please try again")}, status=status.HTTP_403_FORBIDDEN)
                 car = send_command_using_provider(command_type, command_payload, car)
-            except CommandArgumentError as e:
+            except (CommandArgumentError, CommandPinError) as e:
                 return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
             except SMSProviderError as e:
                 logger.exception(e)

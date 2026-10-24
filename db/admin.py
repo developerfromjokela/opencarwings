@@ -146,12 +146,14 @@ class CarAdmin(admin.ModelAdmin):
 class CustomUserAdmin(UserAdmin):
     fieldsets = UserAdmin.fieldsets+ (
         (
-            'CarWings fields',
+            'CARWINGS fields',
             {
                 'fields': (
                     'tcu_pass_hash',
                     'email_notifications',
-                    'cmd_pin_hash'
+                    'otp_recovery',
+                    'invalid_pin_count',
+                    'invalid_pin_timestamp'
                 ),
             },
         ),

@@ -1,9 +1,6 @@
-import json
-
 from rest_framework import serializers
-
 from db.models import CRMLatest, CRMLifetime, CRMExcessiveAirconRecord, CRMExcessiveIdlingRecord, CRMMonthlyRecord, \
-    CRMMSNRecord, CRMChargeRecord, CRMChargeHistoryRecord, CHARGE_TYPES, CRMABSHistoryRecord, CRMDistanceRecord, \
+    CRMMSNRecord, CRMChargeRecord, CRMChargeHistoryRecord, CHARGE_TYPES, CRMABSHistoryRecord, \
     CRMTroubleRecord, CRMTripRecord, DOTFile
 from ui.templatetags.utils import fix_gforce
 from ui.utils import convert_tpms_pressure

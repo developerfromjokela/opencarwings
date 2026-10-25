@@ -314,6 +314,11 @@ class CRMDistanceRecordSerializer(serializers.ModelSerializer):
         model = CRMDistanceRecord
         fields = ['timestamp', 'consumed_wh', 'regenerated_wh', 'latitude', 'longitude', 'road_type']
 
+    def to_representation(self, instance):
+        super_obj = super().to_representation(instance)
+        super_obj["consumed_wh"] = super_obj["consumed_wh"] / 1000
+        super_obj["regenerated_wh"] = super_obj["regenerated_wh"] / 100000
+        return super_obj
 
 class FicosaConfigSerializer(serializers.Serializer):
     type = serializers.CharField(max_length=8, required=True)

@@ -290,6 +290,36 @@ def alerts_api(request, vin):
     return Response(serializer.data)
 
 
+
+@swagger_auto_schema(
+    operation_description="Retrieve probe location history",
+    manual_parameters=[openapi.Parameter(
+            "vin",
+            openapi.IN_PATH,
+            description="Vehicle VIN",
+            type=openapi.TYPE_STRING,
+            required=True,
+        ), openapi.Parameter(
+            "start",
+            openapi.IN_QUERY,
+            description="Start date",
+            type=openapi.TYPE_STRING,
+            required=True,
+        ), openapi.Parameter(
+            "end",
+            openapi.IN_QUERY,
+            description="End date",
+            type=openapi.TYPE_STRING,
+            required=True,
+        )
+    ],
+    method='get',
+    responses={
+        200: CRMDistanceRecordSerializer(many=True),
+        401: 'Not authorized',
+        404: 'Car not found',
+    }
+)
 @api_view(['GET'])
 def probe_location_hist(request, vin):
     if not request.user.is_authenticated:

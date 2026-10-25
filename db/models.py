@@ -1,3 +1,4 @@
+import json
 import re
 import smtplib
 from datetime import timedelta
@@ -750,6 +751,30 @@ class CRMTripRecord(models.Model):
     start_odometer = models.BigIntegerField(default=0)
     max_speed = models.FloatField(default=0)
     used_preheating = models.BooleanField(default=False)
+
+    def get_non_constant_speeds_array(self):
+        try:
+            return list(json.loads(self.non_constant_speeds))
+        except Exception:
+            return []
+
+    def get_non_eco_decelerations_array(self):
+        try:
+            return list(json.loads(self.non_eco_decelerations_list))
+        except Exception:
+            return []
+
+    def get_sudden_accelerations_array(self):
+        try:
+            return list(json.loads(self.sudden_accelerations_list))
+        except Exception:
+            return []
+
+    def get_sudden_starts_array(self):
+        try:
+            return list(json.loads(self.sudden_starts_list))
+        except Exception:
+            return []
 
 
 ## Probe DOT

@@ -19,7 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
-from django.urls import path
+from django.urls import path, include
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg.views import get_schema_view
@@ -102,4 +102,5 @@ urlpatterns = [
     path('car/<str:vin>/probeviewer', views.probeviewer_home, name='probeviewer_home'),
     path('car/<str:vin>/probeviewer/trip/<int:trip>', views.probeviewer_trip, name='probeviewer_trip'),
     path('api/probe/location/<str:vin>/', api_views.probe_location_hist, name='probe_location_api'),
+    path("api/car/", include("api.urls")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

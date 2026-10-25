@@ -25,8 +25,8 @@ class CRMLifetimeSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         super_obj = super().to_representation(instance)
-        super_obj["consumption"] = super_obj["consumption"] / 1000
-        super_obj["regen"] = super_obj["regen"] / 100000
+        super_obj["consumption"] = super_obj["consumption"] / 10
+        super_obj["regen"] = super_obj["regen"] / 1000
         return super_obj
 
 class CRMExcessiveAirconRecordSerializer(serializers.ModelSerializer):
@@ -171,15 +171,14 @@ class CRMTripSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         super_obj = super().to_representation(instance)
         super_obj["eco_tree_count"] = super_obj["eco_tree_count"]/5
-        super_obj["regen"] = super_obj["regen"]/100000
-        super_obj["aircon_consumption"] = super_obj["aircon_consumption"]/100000
-        super_obj["auxiliary_consumption"] = super_obj["auxiliary_consumption"]/100000
-        super_obj["motor_consumption"] = super_obj["motor_consumption"]/1000
-        super_obj["idle_consumption"] = super_obj["idle_consumption"]/10000
-        super_obj["regen"] = super_obj["regen"]/100000
-        super_obj["sudden_acceleration_consumption"] = super_obj["sudden_acceleration_consumption"]/10000000
-        super_obj["non_eco_deceleration_consumption"] = super_obj["non_eco_deceleration_consumption"]/10000000
-        super_obj["sudden_start_consumption"] = super_obj["sudden_start_consumption"]/10000000
+        super_obj["aircon_consumption"] = super_obj["aircon_consumption"]/1000
+        super_obj["auxiliary_consumption"] = super_obj["auxiliary_consumption"]/1000
+        super_obj["motor_consumption"] = super_obj["motor_consumption"]/10
+        super_obj["idle_consumption"] = super_obj["idle_consumption"]/100
+        super_obj["regen"] = super_obj["regen"]/100
+        super_obj["sudden_acceleration_consumption"] = super_obj["sudden_acceleration_consumption"]/100000
+        super_obj["non_eco_deceleration_consumption"] = super_obj["non_eco_deceleration_consumption"]/100000
+        super_obj["sudden_start_consumption"] = super_obj["sudden_start_consumption"]/1000
         super_obj["average_acceleration"] = fix_gforce(super_obj["average_acceleration"])
         super_obj["outside_temp_start"] = super_obj["outside_temp_start"]-40
         super_obj["outside_temp_end"] = super_obj["outside_temp_end"]-40

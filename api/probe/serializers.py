@@ -134,8 +134,6 @@ class CRMBehaviorMapSerializer(serializers.Serializer):
     latitude = serializers.FloatField(default=0)
     longitude = serializers.FloatField(default=0)
     timestamp = serializers.DateTimeField(required=False)
-    power_consumption = serializers.IntegerField(default=0, required=False)
-    elapsed_time = serializers.IntegerField(default=0, required=False)
 
 
 class CRMTripSerializer(serializers.ModelSerializer):

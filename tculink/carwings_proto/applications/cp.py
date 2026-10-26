@@ -121,6 +121,33 @@ def find_containing_mesh_id(lat, lon, bounding_boxes):
     return nearest_mesh_id, nearest_bbox
 
 
+def dedupe_chargers(chargers: list) -> list:
+    # OCM has the same site entered more than once under different IDs.
+    # Merge records with the same title, plugs and position (about 10 m).
+    best = {}
+    for charger in chargers:
+        addr = charger.get("AddressInfo") or {}
+        lat = addr.get("Latitude")
+        lon = addr.get("Longitude")
+        if lat is None or lon is None:
+            best[("id", charger.get("ID"))] = charger
+            continue
+        name = (addr.get("Title") or "").strip().lower()
+        plugs = tuple(sorted({c.get("ConnectionTypeID") or 0 for c in (charger.get("Connections") or [])}))
+        key = (round(lat, 4), round(lon, 4), name, plugs)
+        existing = best.get(key)
+        if existing is None or _charger_rank(charger) > _charger_rank(existing):
+            best[key] = charger
+    return list(best.values())
+
+
+def _charger_rank(charger: dict) -> tuple:
+    points = charger.get("NumberOfPoints") or 0
+    power = max((c.get("PowerKW") or 0 for c in (charger.get("Connections") or [])), default=0)
+    created = charger.get("DateCreated") or ""
+    return (points, power, created)
+
+
 def chargerinfo_hash(charger: dict) -> bytes:
     addr = charger.get("AddressInfo") or {}
     phone_num = addr.get("ContactTelephone1")
@@ -431,6 +458,8 @@ def handle_cp(xml_data, files):
                 logger.error("Failed to parse OCM chargers, response: status %d, %s", chargers_resp.status_code, chargers_resp.text)
                 raise e
             logger.info("Charger list query: %d", len(chargers_resp))
+            chargers_resp = dedupe_chargers(chargers_resp)
+            logger.info("Charger list after dedupe: %d", len(chargers_resp))
 
             chargers_per_meshid = {}
 

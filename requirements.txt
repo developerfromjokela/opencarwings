@@ -18,7 +18,7 @@ geopy==2.5.0
 pillow==13.0.0
 pngquant==3.0.3
 python-dateutil~=2.9.0
-pycryptodome~=4.1.0
+pycryptodome~=4.2.0
 pytz==2026.5
 suntime~=1.4.0
 daphne~=4.2.3

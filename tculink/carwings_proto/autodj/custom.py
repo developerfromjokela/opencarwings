@@ -144,7 +144,7 @@ def handle_custom_channel(xml_data, _, channel_id, car: Car, page):
                     })
 
             if len(custom_chdata) > 0:
-                response_chdata = custom_chdata
+                response_chdata = custom_chdata[:1]
                 # Cache other pages for progressive download
                 if len(custom_chdata) > 1:
                     page_cache_data = {}
@@ -160,8 +160,8 @@ def handle_custom_channel(xml_data, _, channel_id, car: Car, page):
                             extra_fields={
                                 'stringField1': chan_info['name'],
                                 'stringField2': chan_info['name'],
-                                "mode0_processedFieldCntPos": len(response_chdata),
-                                "mode0_countOfSomeItems3": len(response_chdata),
+                                "mode0_processedFieldCntPos": len(custom_chdata),
+                                "mode0_countOfSomeItems3": len(custom_chdata),
                                 "countOfSomeItems": 1
                             }
                         )

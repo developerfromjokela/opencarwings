@@ -144,7 +144,7 @@ def handle_custom_channel(xml_data, _, channel_id, car: Car, page):
                     })
 
             if len(custom_chdata) > 0:
-                response_chdata = custom_chdata[:1]
+                response_chdata = custom_chdata
                 # Cache other pages for progressive download
                 if len(custom_chdata) > 1:
                     page_cache_data = {}
@@ -173,7 +173,7 @@ def handle_custom_channel(xml_data, _, channel_id, car: Car, page):
     resp_file = build_autodj_payload(
         0,
         channel_id,
-        response_chdata,
+        response_chdata[:1],
         {
             "type": 6,
             "data": b'\x01'

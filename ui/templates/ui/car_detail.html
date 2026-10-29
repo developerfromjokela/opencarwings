@@ -380,7 +380,7 @@
                     <div><dt class="text-gray-700 dark:text-gray-300">{% translate "Last Updated" %}:</dt><dd class="text-gray-600 dark:text-gray-300" id="loc_last_updated">{% if car.location.last_updated %}{{ car.location.last_updated|date:"Y-m-d H:i" }}{% else %}N/A{% endif %}</dd></div>
                 </dl>
                 <button id="copy-car-coordinates" type="button" onclick="copyCarCoordinates()" disabled class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 me-2 mb-2 mt-5">{% translate "Copy coordinates" %}</button>
-                <a id="car-google-directions" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 me-2 mb-2 mt-5">{% translate "Walk to car in Google Maps" %}</a>
+                <a id="car-google-directions" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="block w-fit sm:inline-block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 me-2 mb-2 mt-5">{% translate "Walk to car in Google Maps" %}</a>
             </div>
 
             <!-- Location -->

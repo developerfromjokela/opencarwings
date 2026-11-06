@@ -25,5 +25,5 @@ daphne~=4.2.3
 setuptools
 PyOTP~=2.10.0
 qrcode~=8.2
-Twisted[tls,http2]~=26.4.0
+Twisted[tls,http2]~=26.10.0
 xxhash~=4.0.2

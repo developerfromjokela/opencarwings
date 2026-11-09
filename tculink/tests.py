@@ -1,6 +1,7 @@
 from django.template.loader import render_to_string
 from django.test import TestCase
 
+from tculink.carwings_proto.applications.cp import dedupe_chargers
 from tculink.carwings_proto.autodj.opencarwings import create_consumption_slide, create_ecorecord_slide, \
     create_ecoforest_slide, create_info_slide
 from tculink.gdc_proto.acp245 import composer
@@ -8,6 +9,61 @@ from tculink.gdc_proto.responses import create_charge_status_response, create_ch
     create_ac_setting_response, create_ac_stop_response, create_config_read
 
 from django.utils import timezone, formats
+
+
+def _ocm_charger(id, lat, lon, title, points=1, date_created="2023-01-01T00:00:00Z", plugs=(2,)):
+    return {
+        "ID": id,
+        "DateCreated": date_created,
+        "NumberOfPoints": points,
+        "Connections": [{"ConnectionTypeID": p} for p in plugs],
+        "AddressInfo": {"Title": title, "Latitude": lat, "Longitude": lon},
+    }
+
+
+class ChargerDedupe(TestCase):
+
+    def test_same_site_collapses_to_one(self):
+        # Keldnaholt is in OCM four times
+        chargers = [
+            _ocm_charger(243577, 64.13835, -21.764618, "Landbúnaðar Háskólinn -Keldnaholti", points=8, date_created="2023-03-07T04:01:00Z"),
+            _ocm_charger(238834, 64.13835, -21.764618, "Landbúnaðar Háskólinn -Keldnaholti", points=8, date_created="2023-03-07T01:53:00Z"),
+            _ocm_charger(234889, 64.13835, -21.764618, "Landbúnaðar Háskólinn -Keldnaholti", points=8, date_created="2023-02-13T06:01:00Z"),
+            _ocm_charger(216375, 64.13835, -21.764618, "Landbúnaðar Háskólinn -Keldnaholti", points=8, date_created="2023-02-09T09:51:00Z"),
+        ]
+
+        result = dedupe_chargers(chargers)
+
+        self.assertEqual(len(result), 1)
+        self.assertEqual(result[0]["ID"], 243577)  # newest DateCreated wins the tie
+
+    def test_distinct_sites_are_kept(self):
+        chargers = [
+            _ocm_charger(1, 64.1500, -21.9000, "Site A"),
+            _ocm_charger(2, 64.1600, -21.8000, "Site B"),
+        ]
+
+        self.assertEqual(len(dedupe_chargers(chargers)), 2)
+
+    def test_more_points_wins_over_newer_date(self):
+        chargers = [
+            _ocm_charger(1, 64.1500, -21.9000, "Site A", points=2, date_created="2024-01-01T00:00:00Z"),
+            _ocm_charger(2, 64.1500, -21.9000, "Site A", points=8, date_created="2020-01-01T00:00:00Z"),
+        ]
+
+        result = dedupe_chargers(chargers)
+
+        self.assertEqual(len(result), 1)
+        self.assertEqual(result[0]["ID"], 2)
+
+    def test_different_plugs_are_kept(self):
+        chargers = [
+            _ocm_charger(1, 64.1500, -21.9000, "Site A", points=4, plugs=(25,)),
+            _ocm_charger(2, 64.1500, -21.9000, "Site A", points=1, plugs=(2,)),
+        ]
+
+        self.assertEqual(len(dedupe_chargers(chargers)), 2)
+
 
 class DataPacketParse(TestCase):
 

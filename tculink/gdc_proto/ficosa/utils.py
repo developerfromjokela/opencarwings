@@ -194,7 +194,7 @@ CONFIGURATION_MAP = {
             "gdc_sms": {"info_id": 0x25, "type": ConfigurationFieldType.ASCII, "optional": True, "label": "Server SMS Center Number", "fill": True, "length": 0x20},
         }
     },
-    "tsp_server_settings": {
+    "tspserver": {
         "label": _("TSP Server Settings"),
         "destination": 0xd7,
         "service_type": 0xf8,

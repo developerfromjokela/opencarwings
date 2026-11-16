@@ -28,6 +28,7 @@ def convert_abrp(car: Car):
         "is_charging": car.ev_info.charging,
         "is_dcfc": car.ev_info.quick_charging,
         "is_parked": car.ev_info.car_gear == 0,
+        "odometer": car.odometer,
         "capacity": ((car.ev_info.max_gids * (car.ev_info.soh / 100)) * 80) / 1000,
         "soe": str(car.ev_info.gids * 80),
         "soh": car.ev_info.soh,

@@ -13,7 +13,7 @@ from tculink.sms import send_using_provider, SMSType
 from django.utils.translation import gettext_lazy as _
 
 from ui.serializers import FicosaConfigSerializer
-
+from ui.utils import convert_tpms_pressure_kpa
 
 def convert_abrp(car: Car):
     power = 0
@@ -37,7 +37,13 @@ def convert_abrp(car: Car):
         "capacity": ((car.ev_info.max_gids * (car.ev_info.soh / 100)) * 80) / 1000,
         "soe": str(car.ev_info.gids * 80),
         "soh": car.ev_info.soh,
-        "est_battery_range": car.ev_info.range_acon
+        "odometer": car.odometer,
+        "est_battery_range": car.ev_info.range_acon,
+        "cabin_temp": car.ev_info.cabin_temp if car.ev_info.cabin_temp not in [-40, 87.5] and car.tcu_ver == "TCU033" else None,
+        "tire_pressure_fl": round(convert_tpms_pressure_kpa(car.veh_health.tpms_fl)) if car.veh_health.tpms_fl is not None else 0,
+        "tire_pressure_fr": round(convert_tpms_pressure_kpa(car.veh_health.tpms_fr)) if car.veh_health.tpms_fr is not None else 0,
+        "tire_pressure_rl": round(convert_tpms_pressure_kpa(car.veh_health.tpms_rl)) if car.veh_health.tpms_rl is not None else 0,
+        "tire_pressure_rr": round(convert_tpms_pressure_kpa(car.veh_health.tpms_rr)) if car.veh_health.tpms_rr is not None else 0,
     }
 
 def validate_config_cmd(payload):

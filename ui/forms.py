@@ -20,6 +20,7 @@ class SettingsForm(forms.Form):
     disable_auth = forms.BooleanField(label=_("Disable TCU authentication"), required=False)
     force_soc_display = forms.BooleanField(label=_("Show calculated battery percentage"), required=False)
     hmac_key = forms.RegexField(label=_("HMAC Key"), max_length=32, required=False, regex=r"^([0-9a-fA-F])+")
+    abrp_token = forms.RegexField(label=_("ABRP Token"), max_length=64, required=False, regex=r"^([0-9a-zA-Z-])+")
 
 class Step0Form(forms.Form):
     id = forms.IntegerField(label="ID")

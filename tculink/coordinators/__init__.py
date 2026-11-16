@@ -42,7 +42,19 @@ def get_required_sms_types(code: str):
     coordinator = m()
     return coordinator.REQUIRED_SMS_TYPES
 
+def convert_abrp_for_coordinator(code: str):
+    parts = COORDINATORS.get(code).split('.')
+    module = ".".join(parts[:-1])
+    m = __import__( module )
+    for comp in parts[1:-1]:
+        m = getattr(m, comp)
+    try:
+        return m.convert_abrp
+    except AttributeError:
+        return None
+
 COORDINATORS = {
     'continental2012': "tculink.coordinators.continental2012.Continental2012",
     'ficosa2016': "tculink.coordinators.ficosa2016.Ficosa2016",
+    'ficosarenault': "tculink.coordinators.ficosa2016.Ficosa2016", # TODO
 }

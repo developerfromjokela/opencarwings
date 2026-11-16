@@ -669,6 +669,21 @@
 
                     <details class="settings-group border rounded-lg dark:border-gray-600 mt-5">
                         <summary class="settings-summary cursor-pointer select-none list-none flex items-center justify-between p-3 font-medium text-gray-800 dark:text-gray-200 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                            <span>{% translate "3rd-party services" %}</span>
+                            <img src="{% static "icon/chevron.svg" %}" alt="" class="chevron w-4 h-4 transition-transform">
+                        </summary>
+                        <div class="p-3 space-y-3">
+                            <div>
+                                <label class="block text-gray-700 dark:text-gray-300">ABRP User Token</label>
+                                <input type="text" value="{{car.abrp_token|default:""}}" maxlength="64" name="abrp_token" placeholder="{% translate "Leave this value empty to disable ABRP integration." %}" class="w-full p-2 border rounded dark:bg-gray-600 mt-1">
+                                <span class="block text-sm text-gray-700 dark:text-gray-400 mt-1">{% translate "Data from OpenCARWINGS will be sent to ABRP. ABRP User Token can be found in ABRP APP, Live Data > Edit connections > Custom connection." %}</span>
+
+                            </div>
+                        </div>
+                    </details>
+
+                    <details class="settings-group border rounded-lg dark:border-gray-600 mt-5">
+                        <summary class="settings-summary cursor-pointer select-none list-none flex items-center justify-between p-3 font-medium text-gray-800 dark:text-gray-200 bg-gray-50 dark:bg-gray-700 rounded-lg">
                             <span>{% translate "Transfer ownership" %}</span>
                             <img src="{% static "icon/chevron.svg" %}" alt="" class="chevron w-4 h-4 transition-transform">
                         </summary>

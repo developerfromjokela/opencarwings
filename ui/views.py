@@ -22,7 +22,6 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import render, redirect
 from django.templatetags.static import static
 from django.urls import NoReverseMatch
-from django.utils import timezone
 from django.utils._os import safe_join
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.utils.translation import gettext_lazy as _
@@ -362,6 +361,7 @@ def car_detail(request, vin):
                     car.iccid = re.sub('[^0-9A-Z]', '', form.cleaned_data['sim_id'])
                     car.tcu_model = re.sub('[^0-9A-Z]', '', form.cleaned_data['tcu_id'])
                     car.tcu_serial = re.sub('[^0-9A-Z]', '', form.cleaned_data['unit_id'])
+                    car.abrp_token = form.cleaned_data['abrp_token']
                     car.nickname = form.cleaned_data['nickname']
                     car.color = form.cleaned_data['color']
                     car.periodic_refresh = form.cleaned_data['periodic_refresh']

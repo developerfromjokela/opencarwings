@@ -31,6 +31,7 @@ def handle(_, acp_data: dict, car: Car, source_id: int, __) -> bytes:
         acp_msg += composer.TimeSync().encode()
         acp_msg += composer.ServiceProvisioning().add_entry(composer.ServiceProvisioningService(0, False, 0)).encode()
     elif car.command_type == 15 and car.command_payload is not None:
+        car.command_result = 3
         app_id = 0x1f
         config_template = CONFIGURATION_MAP[car.command_payload["config_type"]]
         config_payload = car.command_payload
@@ -101,9 +102,9 @@ def handle(_, acp_data: dict, car: Car, source_id: int, __) -> bytes:
             acp_msg += config_encoder.encode()
             logger.debug(f"<< Config ACP Message: {acp_msg.hex()}")
     else:
+        car.command_result = 3
         acp_msg += dest_id.to_bytes(1, "little")  # dest ID
         acp_msg += source_id.to_bytes(1, "little")  # src ID
-        car.command_result = 3
 
         if car.command_type == 1: # Battery info
             acp_msg += composer.EVCommandTail(command=1).encode()

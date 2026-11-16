@@ -1,4 +1,3 @@
-from random import randint
 from django.db.models import Q
 from django.conf import settings
 from django.core.management.base import BaseCommand
@@ -19,6 +18,23 @@ logger = logging.getLogger(__name__)
 AC_ASSUME_OFF_TIMEOUT_UNPLUGGED = 16   # 15 min + threshold when unplugged
 AC_ASSUME_OFF_TIMEOUT_PLUGGED = 46     # 45 min + threshold while plugged
 
+TIMER_MAX_RETRIES = 3
+# max time to scan for timed out timers, determined by command timeout time and max retries
+TIMER_TIMEOUT_WINDOW = datetime.timedelta(settings.LEAF_COMMAND_TIMEOUT * (TIMER_MAX_RETRIES + 1))
+
+
+def _dispatch_timer(car: Car, timer: CommandTimerSetting):
+    print(f"Car {car.vin}: Requesting timer {timer.id}, cmd type: {timer.command_type}")
+    try:
+        send_command_using_provider(timer.command_type, {"timer": timer.id}, car)
+    except Exception as e:
+        print(f"Could not send timer command: {e}")
+        print(e)
+        timer.last_command_result = 1
+
+    timer.last_command_execution = timezone.now()
+    timer.save(update_fields=["last_command_execution", "last_command_result"])
+
 
 class Command(BaseCommand):
     help = 'Refresh data periodically'
@@ -35,7 +51,7 @@ class Command(BaseCommand):
 
         if cars_count == 0:
             self.stdout.write(
-                self.style.WARNING("No pending car refreshes found")
+                self.style.NOTICE("No pending car refreshes found")
             )
         else:
             self.stdout.write(
@@ -72,6 +88,48 @@ class Command(BaseCommand):
                     )
                 )
 
+
+    def handle_timer_retries(self):
+        """
+        Sometimes command times out and for 'critical' functions like starting a charge,
+        it's worth it to try again.
+        """
+        window_start = timezone.now() - TIMER_TIMEOUT_WINDOW
+        # this query filters out user initiated commands after timer command timeouts,
+        # if user sends the command himself, command_payload will not contain "timer".
+        cars = Car.objects.filter(
+                command_request_time__gte=window_start,
+                command_result=2,
+                command_payload__timer__isnull=False,
+        )
+
+        if cars.count() == 0:
+            self.stdout.write(
+                self.style.NOTICE("No timer retries to perform")
+            )
+            return
+
+        to_disable = []
+        for car in cars:
+            timed_out_timers = car.timer_commands.filter(last_command_result=2, last_command_execution__gte=window_start, enabled=True)
+            for timer in timed_out_timers:
+                recent_timeouts_count = AlertHistory.objects.filter(type=98, command_id=timer.pk, created_at__gte=window_start, car=car).count()
+                if recent_timeouts_count <= TIMER_MAX_RETRIES:
+                    _dispatch_timer(car, timer)
+                    self.stdout.write(self.style.WARNING(
+                        f"Timer {timer.id} ({timer.name}) on car {car} "
+                        f"retrying after {recent_timeouts_count} timeouts"
+                    ))
+                else:
+                    to_disable.append(timer.id)
+                    self.stdout.write(self.style.WARNING(
+                        f"Timer {timer.id} ({timer.name}) on car {car} "
+                        f"disabled after {recent_timeouts_count} timeouts"
+                    ))
+
+        if to_disable:
+            CommandTimerSetting.objects.filter(pk__in=to_disable, enabled=True).update(enabled=False)
+
     def handle_timeouts(self):
         # Get current time
         now = timezone.now()
@@ -104,9 +162,7 @@ class Command(BaseCommand):
                     cmd = CommandTimerSetting.objects.get(id=car.command_id)
                     cmd.last_command_execution = timezone.now()
                     cmd.last_command_result = 2
-                    if cmd.timer_type == 0:
-                        cmd.enabled = False
-                    cmd.save()
+                    cmd.save(update_fields=["last_command_execution", "last_command_result"])
                 except CommandTimerSetting.DoesNotExist:
                     ...
                 car.command_requested = False
@@ -136,7 +192,7 @@ class Command(BaseCommand):
 
         if cars_count == 0:
             self.stdout.write(
-                self.style.WARNING("No command timeouts found")
+                self.style.NOTICE("No command timeouts found")
             )
         else:
             self.stdout.write(
@@ -179,7 +235,7 @@ class Command(BaseCommand):
 
             if timers_count == 0:
                 self.stdout.write(
-                    self.style.WARNING("No pending timers found")
+                    self.style.NOTICE("No pending timers found")
                 )
             else:
                 self.stdout.write(
@@ -194,16 +250,7 @@ class Command(BaseCommand):
 
                     for car in cars:
                         try:
-                            print(f"Car {car.vin}: Requesting timer {timer.id}, cmd type: {timer.command_type}")
-                            try:
-                                car = send_command_using_provider(timer.command_type, {"timer": timer.id}, car)
-                            except Exception as e:
-                                print(f"Could not send SMS message: {e}")
-                                print(e)
-
-                            timer.last_command_execution = now
-                            timer.last_command_result = -1
-                            timer.save()
+                            _dispatch_timer(car, timer)
                         except Exception as e:
                             self.stdout.write(
                                 self.style.ERROR(
@@ -221,21 +268,20 @@ class Command(BaseCommand):
                 )
             )
 
-
     def handle_ac_timeout_assumption(self):
-        """Assume A/C has turned itself off after a hardcoded timeout of silence.
+        """
+        Assume A/C has turned itself off after a hardcoded timeout of silence.
 
         Only relevant for ficosa2016 TCU; continental is skipped altogether.
 
         When the timeout fires, A/C is assumed off (ac_status=False,
         ac_last_started=None) and a refresh command (type 1) is attempted via
-        SMS to retrieve the latest state from the car, if the SMS provider
-        supports sending from backend.
+        SMS to retrieve the latest state from the car
         """
         now = timezone.now()
 
         # Only ficosa2016 TCU is relevant for this logic.
-        cars = Car.objects.filter(tcu_type='ficosa2016')
+        cars = Car.objects.filter(tcu_type='ficosa2016', ev_info__ac_status=True, ev_info__ac_last_started__isnull=False)
 
         cars_count = cars.count()
         if cars_count == 0:
@@ -245,20 +291,12 @@ class Command(BaseCommand):
             return
 
         self.stdout.write(
-            self.style.NOTICE(f"Checking AC timeout assumption for {cars_count} ficosa2016 cars")
+            self.style.SUCCESS(f"Checking AC timeout assumption for {cars_count} ficosa2016 cars")
         )
 
         for car in cars:
             try:
                 ev_info = car.ev_info
-
-                # A/C is already off: nothing to assume.
-                if not ev_info.ac_status:
-                    continue
-
-                # No start timestamp recorded: cannot determine age.
-                if ev_info.ac_last_started is None:
-                    continue
 
                 # Determine timeout based on charging plug state.
                 if ev_info.plugged_in:
@@ -294,7 +332,7 @@ class Command(BaseCommand):
                         )
                     )
                 except Exception as e:
-                    # SMS provider may not support sending from backend.��
+                    # SMS provider may not support sending from backend.
                     # That's acceptable, A/C state is already corrected in DB.
                     logger.warning(
                         f"Car {car.vin}: Could not send refresh SMS: {e}"
@@ -315,6 +353,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         print("Starting data refresh process")
         self.handle_timeouts()
+        self.handle_timer_retries()
         self.handle_command_timers()
         self.handle_datarefresh()
         self.handle_ac_timeout_assumption()

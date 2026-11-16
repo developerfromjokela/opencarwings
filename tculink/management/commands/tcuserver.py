@@ -1,12 +1,12 @@
 import asyncio
 import decimal
 import logging
-import os
 import traceback
 
 from asgiref.sync import sync_to_async
 from django.core.management.base import BaseCommand, CommandError
 from django.utils import timezone
+from django.utils.translation import gettext as _
 
 from db.models import Car, AlertHistory, CommandTimerSetting
 from tculink.gdc_proto import GIDS_NEW_24kWh, WH_PER_GID_GEN1
@@ -14,7 +14,6 @@ from tculink.gdc_proto.parser import parse_gdc_packet
 from tculink.gdc_proto.responses import create_charge_status_response, create_charge_request_response, \
     create_ac_setting_response, create_ac_stop_response, create_config_read, auth_common_dest
 from tculink.utils.notifications import send_vehicle_alert_notification
-from django.utils.translation import gettext as _
 
 logger = logging.getLogger("tcuserver")
 
@@ -478,7 +477,7 @@ class Command(BaseCommand):
 
 
                     timer_id = None
-                    if car.command_payload is not None and car.command_payload.get("timer"):
+                    if car.command_payload is not None and car.command_payload.get("timer") and car.command_result != 3:
                         timer_id = car.command_payload.get("timer")
                         car.command_payload = None
 

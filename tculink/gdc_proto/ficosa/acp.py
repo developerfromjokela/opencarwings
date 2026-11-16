@@ -5,11 +5,11 @@ from tculink.gdc_proto import WH_PER_GID_GEN1
 from tculink.gdc_proto.acp245 import parser, composer
 
 
-def parse_auth_ev_pload(acp_encoded_data: bytes) -> Tuple[dict, int]:
+def parse_auth_ev_pload(acp_encoded_data: bytes, renault = False) -> Tuple[dict, int]:
     result: Dict[str, Any] = {}
     offset = 0
 
-    app_header, consumed = parser.decode_app_header(acp_encoded_data, offset)
+    app_header, consumed = parser.decode_app_header(acp_encoded_data, offset, renault)
     result["app_header"] = app_header
     offset += consumed
 
@@ -45,11 +45,11 @@ def parse_auth_ev_pload(acp_encoded_data: bytes) -> Tuple[dict, int]:
 
     return result, offset
 
-def parse_ev_request(acp_encoded_data: bytes) -> Tuple[dict, int]:
+def parse_ev_request(acp_encoded_data: bytes, renault = False) -> Tuple[dict, int]:
     result: Dict[str, Any] = {}
     offset = 0
 
-    app_header, consumed = parser.decode_app_header(acp_encoded_data, offset)
+    app_header, consumed = parser.decode_app_header(acp_encoded_data, offset, renault)
     result["app_header"] = app_header
     offset += consumed
 
@@ -81,11 +81,11 @@ def parse_ev_request(acp_encoded_data: bytes) -> Tuple[dict, int]:
 
     return result, offset
 
-def parse_car_request(acp_encoded_data: bytes) -> Tuple[dict, int]:
+def parse_car_request(acp_encoded_data: bytes, renault = False) -> Tuple[dict, int]:
     result: Dict[str, Any] = {}
     offset = 0
 
-    app_header, consumed = parser.decode_app_header(acp_encoded_data, offset)
+    app_header, consumed = parser.decode_app_header(acp_encoded_data, offset, renault)
     result["app_header"] = app_header
     offset += consumed
 
@@ -162,11 +162,11 @@ def parse_probe_request(acp_encoded_data: bytes) -> Tuple[dict, int]:
 
     return result, offset
 
-def parse_config_request(acp_encoded_data: bytes) -> Tuple[dict, int]:
+def parse_config_request(acp_encoded_data: bytes, renault = False) -> Tuple[dict, int]:
     result: Dict[str, Any] = {}
     offset = 0
 
-    app_header, consumed = parser.decode_app_header(acp_encoded_data, offset)
+    app_header, consumed = parser.decode_app_header(acp_encoded_data, offset, renault)
     result["app_header"] = app_header
     offset += consumed
 
@@ -300,7 +300,7 @@ def parse_ev_info(data: bytes, offset: int) -> Tuple[dict, int]:
     }, all_li
 
 
-def make_ack_response(vin: str, dcm_id: str, dest_id: int, src_id: int, prov_type: int, flag: int, value: int) -> bytes:
+def make_ack_response(vin: str, dcm_id: str, dest_id: int, src_id: int, prov_type: int, flag: int, value: int, renault: bool) -> bytes:
     acp_msg = bytearray()
     acp_msg += composer.VehDesc(vin=vin, dcm=dcm_id).encode()
     acp_msg += dest_id.to_bytes(1, "little")  # dest ID
@@ -309,6 +309,6 @@ def make_ack_response(vin: str, dcm_id: str, dest_id: int, src_id: int, prov_typ
     acp_msg += composer.TimeSync().encode()
     acp_msg += composer.ServiceProvisioning(entries=[composer.ServiceProvisioningService(prov_type, flag == 1, value)]).encode()
     msg = bytearray()
-    msg += composer.AppHeader(app_id=0x1d, mcf=3, length=len(acp_msg), special_flag=1).encode()
+    msg += composer.AppHeader(app_id=0x1d, mcf=3, length=len(acp_msg), renault=renault).encode()
     msg += acp_msg
     return msg

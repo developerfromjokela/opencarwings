@@ -18,12 +18,12 @@ geopy==2.5.0
 pillow==13.0.0
 pngquant==3.0.3
 python-dateutil~=2.9.0
-pycryptodome~=4.3.0
+pycryptodome~=4.5.0
 pytz==2026.5
 suntime~=1.4.0
 daphne~=4.2.3
 setuptools
-PyOTP~=2.10.0
+PyOTP~=2.12.0
 qrcode~=8.2
 Twisted[tls,http2]~=26.10.0
-xxhash~=4.0.2
+xxhash~=4.1.0

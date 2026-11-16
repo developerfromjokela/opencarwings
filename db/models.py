@@ -163,7 +163,8 @@ TIMER_TYPE = (
 coordinator_keys = list(COORDINATORS.keys())
 TCU_TYPE = (
     (coordinator_keys[0], _("Continental 2012-2015")),
-    (coordinator_keys[1], _("Ficosa 2016-2019"))
+    (coordinator_keys[1], _("Ficosa 2016-2019")),
+    (coordinator_keys[2], _("Ficosa Renault")),
 )
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
@@ -397,6 +398,11 @@ class AlertHistory(models.Model):
     additional_data = models.TextField(null=True, default=None)
     car = models.ForeignKey('Car', on_delete=models.CASCADE)
 
+    class Meta:
+        indexes = [
+            models.Index(fields=["type", "command_id", "timestamp", "car"])
+        ]
+
 class CommandTimerSetting(models.Model):
     enabled = models.BooleanField(default=False)
     name = models.CharField(max_length=32)
@@ -545,6 +551,8 @@ class Car(models.Model):
     # Ficosa
     hmac_key = models.CharField(max_length=32, default="", blank=True)
     tcu_type = models.CharField(max_length=32, default='continental2012', choices=TCU_TYPE)
+    # 3rd party
+    abrp_token = models.CharField(max_length=64, null=True, default=None, blank=True)
     def __str__(self):
         return self.vin
 

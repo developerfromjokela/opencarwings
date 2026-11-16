@@ -1,4 +1,4 @@
-FROM python:3.12-alpine3.24
+FROM python:3.15.2-alpine3.24
 
 # Install dependencies
 RUN apk update && apk upgrade --scripts=no apk-tools

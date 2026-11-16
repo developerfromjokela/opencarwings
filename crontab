@@ -1,4 +1,5 @@
 * * * * * python /app/manage.py tcuperiodicupdate
+* * * * * python /app/manage.py datasync
 * * * * * python /app/manage.py flushexpiredtokens
 * * * * * python /app/manage.py flushexpiredtransfers
-
+0 2 * * *    python /app/manage.py flusholdrecords

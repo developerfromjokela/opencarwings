@@ -15,6 +15,31 @@ from django.utils.translation import gettext_lazy as _
 from ui.serializers import FicosaConfigSerializer
 
 
+def convert_abrp(car: Car):
+    power = 0
+    if car.ev_info.power_available:
+        if car.ev_info.charging and car.ev_info.limit_chg_time != 2047:
+            power = -1.2
+        if car.ev_info.charging and car.ev_info.full_chg_time != 2047:
+            power = -3.6
+        if car.ev_info.charging and car.ev_info.obc_6kw != 4095 and car.ev_info.obc_6kw != 2047:
+            power = -6.6
+        if car.ev_info.quick_charging:
+            power = -35  # this is just the most realistic chademo speed :)
+
+    return {
+        "power": power,
+        "speed": 0,
+        "soc": car.ev_info.soc_display if car.ev_info.soc_display > 0 else car.ev_info.soc,
+        "is_charging": car.ev_info.charging,
+        "is_dcfc": car.ev_info.quick_charging,
+        "is_parked": car.ev_info.car_gear == 0,
+        "capacity": ((car.ev_info.max_gids * (car.ev_info.soh / 100)) * 80) / 1000,
+        "soe": str(car.ev_info.gids * 80),
+        "soh": car.ev_info.soh,
+        "est_battery_range": car.ev_info.range_acon
+    }
+
 def validate_config_cmd(payload):
     payload_serializer = FicosaConfigSerializer(data=payload)
     payload_serializer.is_valid(raise_exception=True)

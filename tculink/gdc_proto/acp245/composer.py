@@ -54,38 +54,24 @@ class ACPComposeError(Exception):
 
 class AppHeader:
     def __init__(self, app_id: int = 0, mcf: int = 2, length: int = 0,
-                 special_flag: Optional[int] = None, renault: bool = False, **kwargs):
-        self.renault = renault
-        self.app_id = app_id & (0x1F if renault else 0x3F)
+                 special_flag: int = 0, **kwargs):
+        self.app_id = app_id & 0x3F
         self.mcf = mcf & 0x0F
         self.length = length
-
-        if special_flag is None:
-            special_flag = 1 if renault else 0
         self.special_flag = special_flag & 1
-
         self.private_flag = 0
         self.test_flag = 0
-
-        # Renault expects 1, Nissan expects 0
-        self.version_flag = 1 if renault else 0
-        self.ext_version = 1 if renault else 0
+        self.version_flag = 0
+        self.nissan_ext_version = 0
 
     def encode(self) -> bytes:
-        expected = 1 if self.renault else 0
-        if self.private_flag or self.test_flag:
+        if self.private_flag or self.test_flag or self.version_flag or self.nissan_ext_version:
             raise ACPComposeError("Invalid flags in AppHeader")
-        if self.version_flag != expected or self.ext_version != expected:
-            name = "Renault" if self.renault else "Nissan"
-            raise ACPComposeError(f"Invalid {name} version in AppHeader")
         if self.mcf & 0x08 or not (self.mcf & 0x06):
             raise ACPComposeError("Invalid MCF in AppHeader")
-        if self.renault and self.special_flag != 1:
-            raise ACPComposeError("Renault requires special_flag = 1")
 
-        app_id_mask = 0x1F if self.renault else 0x3F
-        b0 = (self.special_flag << 7) | (self.app_id & app_id_mask)
-        b1 = (self.version_flag << 7) | ((self.ext_version & 0x07) << 4) | (self.mcf & 0x0F)
+        b0 = (self.special_flag << 7) | (self.app_id & 0b01111111)
+        b1 = self.mcf
 
         header = bytearray([b0, b1])
 

@@ -300,7 +300,7 @@ def parse_ev_info(data: bytes, offset: int) -> Tuple[dict, int]:
     }, all_li
 
 
-def make_ack_response(vin: str, dcm_id: str, dest_id: int, src_id: int, prov_type: int, flag: int, value: int, renault: bool=False) -> bytes:
+def make_ack_response(vin: str, dcm_id: str, dest_id: int, src_id: int, prov_type: int, flag: int, value: int, renault: bool) -> bytes:
     acp_msg = bytearray()
     acp_msg += composer.VehDesc(vin=vin, dcm=dcm_id).encode()
     acp_msg += dest_id.to_bytes(1, "little")  # dest ID

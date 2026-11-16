@@ -22,7 +22,7 @@ def _need(data: bytes, offset: int, n: int, where: str):
 
 
 
-def decode_app_header(data: bytes, offset: int, is_renault = False) -> Tuple[Dict[str, Any], int]:
+def decode_app_header(data: bytes, offset: int) -> Tuple[Dict[str, Any], int]:
     if data is None:
         raise ACPParseError("AppHeader: null buffer")
 
@@ -34,7 +34,7 @@ def decode_app_header(data: bytes, offset: int, is_renault = False) -> Tuple[Dic
     # FICOSA uses to identify manufacturer specific packets
     result["special_flag"] = (b0 & 0b10000000) >> 7
 
-    result["app_id"] = b0 & 0x1f
+    result["app_id"] = b0 & 0b00111111
 
     # non-standard flag (defined in protocol specification of ACP245)
     private_flag = 1 if (b0 & 0x40) else 0
@@ -49,27 +49,15 @@ def decode_app_header(data: bytes, offset: int, is_renault = False) -> Tuple[Dic
 
     b1 = data[offset + 1]
 
-    if is_renault:
-        # Renault expects version flag = 1
-        version_flag = (b1 & 0x80) >> 7
-        result["version_flag"] = version_flag
-        if version_flag != 1:
-            raise ACPParseError("AppHeader: Version Flag Renault Expected", code=1003)
+    version_flag = 1 if (b1 & 0x80) else 0
+    result["version_flag"] = version_flag
+    if version_flag != 0:
+        raise ACPParseError("AppHeader: Invalid Version Flag Nissan Extension", code=1003)
 
-        renault_version = (b1 & 0x70) >> 4
-        result["renault"] = renault_version
-        if renault_version != 1:
-            raise ACPParseError("AppHeader: Version Renault Expected", code=1004)
-    else:
-        version_flag = 1 if (b1 & 0x80) else 0
-        result["version_flag"] = version_flag
-        if version_flag != 0:
-            raise ACPParseError("AppHeader: Invalid Version Flag Nissan Extension", code=1003)
-
-        nissan_ext_version = (b1 & 0x70) >> 4
-        result["nissan"] = nissan_ext_version
-        if nissan_ext_version != 0:
-            raise ACPParseError("AppHeader: Invalid Version Nissan Extension", code=1004)
+    nissan_ext_version = (b1 & 0x70) >> 4
+    result["nissan_ext_version"] = nissan_ext_version
+    if nissan_ext_version != 0:
+        raise ACPParseError("AppHeader: Invalid Version Nissan Extension", code=1004)
 
     mcf = b1 & 0x0f
     result["mcf"] = mcf
@@ -95,6 +83,7 @@ def decode_app_header(data: bytes, offset: int, is_renault = False) -> Tuple[Dic
         raise ACPParseError("AppHeader: Invalid MCF (neither bit1 nor bit2 set)", code=1006)
 
     return result, consumed
+
 
 def parse_version_ficosa(data: bytes, offset: int) -> Tuple[Dict[str, Any], int]:
     """Decodes the FICOSA Version IE"""

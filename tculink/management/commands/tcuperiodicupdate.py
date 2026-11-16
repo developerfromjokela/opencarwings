@@ -113,7 +113,7 @@ class Command(BaseCommand):
         for car in cars:
             timed_out_timers = car.timer_commands.filter(last_command_result=2, last_command_execution__gte=window_start, enabled=True)
             for timer in timed_out_timers:
-                recent_timeouts_count = AlertHistory.objects.filter(type=98, command_id=timer.pk, created_at__gte=window_start, car=car).count()
+                recent_timeouts_count = AlertHistory.objects.filter(type=98, command_id=timer.pk, timestamp__gte=window_start, car=car).count()
                 if recent_timeouts_count <= TIMER_MAX_RETRIES:
                     _dispatch_timer(car, timer)
                     self.stdout.write(self.style.WARNING(

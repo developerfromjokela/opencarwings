@@ -104,17 +104,17 @@ def handle_request(request: WSGIRequest | Any) -> HttpResponse:
     if car is None:
         logger.debug(f"auth failed")
         return HttpResponse(status=200, content=io.BytesIO(ficosa_acp.make_ack_response(
-            vin, dcm_id, destination_id, source_id, 0, 0, 0, False)), content_type="application/octet-stream")
+            vin, dcm_id, destination_id, source_id, 0, 0, 0)), content_type="application/octet-stream")
 
     if destination_id not in DESTINATIONS and app_id != 0x1d:
         logger.debug(f"destination_id {destination_id} not in DESTINATIONS")
         return HttpResponse(status=200, content=io.BytesIO(ficosa_acp.make_ack_response(
-            vin, dcm_id, destination_id, source_id, 0, 0, 0, False)), content_type="application/octet-stream")
+            vin, dcm_id, destination_id, source_id, 0, 0, 0)), content_type="application/octet-stream")
 
     if source_id < 1 or source_id > 0xFF:
         logger.warning(f"invalid source id {source_id}, request discarded")
         return HttpResponse(status=200, content=io.BytesIO(ficosa_acp.make_ack_response(
-            vin, dcm_id, destination_id, source_id, 0, 0, 0, False)), content_type="application/octet-stream")
+            vin, dcm_id, destination_id, source_id, 0, 0, 0)), content_type="application/octet-stream")
 
     timer_id = update_basic_car_info(acp_body, car)
 

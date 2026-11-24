@@ -6,6 +6,7 @@ from db.models import CarTransferRequest
 
 class Command(BaseCommand):
     help = "Delete expired car transfer requests."
+    requires_system_checks = []
 
     def handle(self, *args, **options):
         CarTransferRequest.objects.filter(expiration_time__lte=timezone.now()).delete()

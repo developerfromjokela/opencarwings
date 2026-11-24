@@ -1,12 +1,19 @@
+from functools import lru_cache
 import pytz
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.utils.translation import gettext_lazy as _
-
-from db.models import User, CAR_COLOR, TCU_TYPE
+from db.models import User, CAR_COLOR
 from tculink.utils.password_hash import password_hash
 
-TIMEZONE_CHOICES = zip(pytz.all_timezones, pytz.all_timezones)
+
+# call all_timezones only once and cache it
+@lru_cache(maxsize=1)
+def _timezone_choices_list():
+    return [(tz, tz) for tz in pytz.all_timezones]
+
+def _timezone_choices():
+    return _timezone_choices_list()
 
 class SettingsForm(forms.Form):
     unit_id = forms.CharField(label="Unit ID", max_length=32, required=True, strip=True, min_length=5)
@@ -60,7 +67,7 @@ class AccountForm(forms.Form):
     email = forms.EmailField(label=_("Email"), widget=forms.EmailInput(), max_length=254)
     notifications = forms.BooleanField(label=_("Notifications"), widget=forms.CheckboxInput(), required=False)
     units_imperial = forms.BooleanField(label=_("Imperial Units"), widget=forms.CheckboxInput(), required=False)
-    timezone = forms.ChoiceField(label=_("Timezone"), choices=TIMEZONE_CHOICES, required=False)
+    timezone = forms.ChoiceField(label=_("Timezone"), choices=_timezone_choices, required=False)
 
 class ProbeConfigForm(forms.Form):
     new_config_id = forms.IntegerField(label="New Config ID", required=False)
@@ -89,7 +96,7 @@ class SignUpForm(UserCreationForm):
 
     def clean_timezone(self):
         tz = self.cleaned_data.get('timezone')
-        if tz and tz not in pytz.all_timezones:
+        if tz and tz not in pytz.all_timezones_set:
             return ''  # ignore invalid/spoofed values instead of erroring out
         return tz
 

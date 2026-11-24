@@ -13,6 +13,7 @@ from db.models import *
 
 class Command(BaseCommand):
     help = "Delete historical data after a certain time"
+    requires_system_checks = []
 
     def get_purge_querysets(self, now, days):
         normal_factor = now - timedelta(days=days)

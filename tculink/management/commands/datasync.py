@@ -7,16 +7,17 @@ from django.utils import timezone
 from tculink.coordinators import convert_abrp_for_coordinator
 from db.models import Car
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("3rdparty")
 
 class Command(BaseCommand):
     help = 'Sync data to 3rd party services'
+    requires_system_checks = []
 
     def handle_abrp_upload(self):
         update_delta = timezone.now() - timedelta(minutes=2) # upload results that fresh
         cars = Car.objects.filter(abrp_token__isnull=False, ev_info__last_updated__gte=update_delta)
         if cars.count() == 0:
-            print("No cars need updating")
+            logger.info("No cars need updating")
             return
         bulk_data = []
         for car in cars:
@@ -31,17 +32,18 @@ class Command(BaseCommand):
                     "tlm_list": [converted_abrp]
                 })
             else:
-                print("tcu type not supported!")
+                logger.warning(f"TCU Type {car.tcu_type} not supported")
 
         abrp_resp = requests.post(
             'https://api.iternio.com/1/tlm/bulk',
             # APIKEY allowed by iternio staff to be hard-coded
             headers={"Authorization": "APIKEY 32b2162f-9599-4647-8139-66e9f9528370", "Content-Type": "application/json"},
             json={"data": bulk_data})
-        print("ABRP", abrp_resp.request.body, abrp_resp.status_code, abrp_resp.text)
+        logger.info("ABRP Request body: %s", abrp_resp.request.body)
+        logger.info("ABRP Response(%d), %s", abrp_resp.status_code, abrp_resp.text)
         if abrp_resp.status_code != 200:
-            print("ABRP Error", abrp_resp.text)
+            logger.error("ABRP Request failed: %d, %s", abrp_resp.status_code, abrp_resp.text)
 
     def handle(self, *args, **options):
-        print("Starting data sync process")
+        logger.info("Starting datasync")
         self.handle_abrp_upload()

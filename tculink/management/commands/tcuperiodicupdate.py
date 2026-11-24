@@ -38,6 +38,7 @@ def _dispatch_timer(car: Car, timer: CommandTimerSetting):
 
 class Command(BaseCommand):
     help = 'Refresh data periodically'
+    requires_system_checks = []
 
     def handle_datarefresh(self):
         # Get current time

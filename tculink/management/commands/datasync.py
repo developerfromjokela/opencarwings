@@ -15,7 +15,7 @@ class Command(BaseCommand):
 
     def handle_abrp_upload(self):
         update_delta = timezone.now() - timedelta(minutes=2) # upload results that fresh
-        cars = Car.objects.filter(abrp_token__isnull=False, ev_info__last_updated__gte=update_delta)
+        cars = Car.objects.filter(abrp_token__gt="", ev_info__last_updated__gte=update_delta)
         if cars.count() == 0:
             logger.info("No cars need updating")
             return

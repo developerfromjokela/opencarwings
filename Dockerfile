@@ -42,6 +42,8 @@ RUN apk add --no-cache --virtual .fetch-deps curl ca-certificates && \
 RUN addgroup -g 5000 ocw \
     && adduser -D -u 5000 -G ocw ocw
 
+RUN python -m compileall -q -j0 /usr/local/lib/python3.15
+
 USER ocw
 
 ENV PATH="/home/ocw/.local/bin:${PATH}"

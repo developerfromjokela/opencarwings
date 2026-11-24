@@ -1,13 +1,17 @@
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
 from django.db import transaction
-from django.db.models.signals import post_save, pre_delete, pre_save
+from django.db.models.signals import post_save, pre_delete
 from django.dispatch import receiver
 
 from db.models import (Car, AlertHistory, EVInfo, TCUConfiguration, LocationInfo, SendToCarLocation,
                        CommandTimerSetting, CarTransferRequest)
-from ui.serializers import CarSerializer, AlertHistoryFullSerializer
 
+CAR_SERIALIZER = 'ui.serializers.CarSerializer'
+ALERT_HISTORY_SERIALIZER = 'ui.serializers.AlertHistoryFullSerializer'
+
+CAR_OBJECT = Car.__module__+'.'+Car.__name__
+ALERT_HISTORY_OBJECT = AlertHistory.__module__ + '.' + AlertHistory.__name__
 
 @receiver(post_save, sender=Car)
 def broadcast_car_update(sender, instance, created, **kwargs):
@@ -17,8 +21,8 @@ def broadcast_car_update(sender, instance, created, **kwargs):
         {
             'type': 'object_update',
             'object_type': 'car',
-            'serializer': CarSerializer.__module__+'.'+CarSerializer.__name__,
-            'object': Car.__module__+'.'+Car.__name__,
+            'serializer': CAR_SERIALIZER,
+            'object': CAR_OBJECT,
             'data': instance.pk
         }
     )
@@ -33,8 +37,8 @@ def broadcast_car_timer_update(sender, instance, **kwargs):
             {
                 'type': 'object_update',
                 'object_type': 'car',
-                'serializer': CarSerializer.__module__+'.'+CarSerializer.__name__,
-                'object': Car.__module__+'.'+Car.__name__,
+                'serializer': CAR_SERIALIZER,
+                'object': CAR_OBJECT,
                 'data': itm.pk
             }
         )
@@ -52,8 +56,8 @@ def broadcast_car_evinfo_update(sender, instance, created, **kwargs):
             {
                 'type': 'object_update',
                 'object_type': 'ev_info',
-                'serializer': CarSerializer.__module__ + '.' + CarSerializer.__name__,
-                'object': Car.__module__ + '.' + Car.__name__,
+                'serializer': CAR_SERIALIZER,
+                'object': CAR_OBJECT,
                 'data': car.pk
             }
         )
@@ -73,8 +77,8 @@ def broadcast_car_tcuconf_update(sender, instance, created, **kwargs):
             {
                 'type': 'object_update',
                 'object_type': 'tcu_configuration',
-                'serializer': CarSerializer.__module__ + '.' + CarSerializer.__name__,
-                'object': Car.__module__ + '.' + Car.__name__,
+                'serializer': CAR_SERIALIZER,
+                'object': CAR_OBJECT,
                 'data': car.pk
             }
         )
@@ -95,8 +99,8 @@ def broadcast_car_locinfo_update(sender, instance, created, **kwargs):
             {
                 'type': 'object_update',
                 'object_type': 'location',
-                'serializer': CarSerializer.__module__ + '.' + CarSerializer.__name__,
-                'object': Car.__module__ + '.' + Car.__name__,
+                'serializer': CAR_SERIALIZER,
+                'object': CAR_OBJECT,
                 'data': car.pk
             }
         )
@@ -116,8 +120,8 @@ def broadcast_car_send_to_car_update(sender, instance, created, **kwargs):
             {
                 'type': 'object_update',
                 'object_type': 'send_to_car',
-                'serializer': CarSerializer.__module__ + '.' + CarSerializer.__name__,
-                'object': Car.__module__ + '.' + Car.__name__,
+                'serializer': CAR_SERIALIZER,
+                'object': CAR_OBJECT,
                 'data': car.pk
             }
         )
@@ -134,8 +138,8 @@ def broadcast_new_alert(sender, instance, created, **kwargs):
         {
             'type': 'object_update',
             'object_type': 'alert',
-            'serializer': AlertHistoryFullSerializer.__module__ + '.' + AlertHistoryFullSerializer.__name__,
-            'object': AlertHistory.__module__ + '.' + AlertHistory.__name__,
+            'serializer': ALERT_HISTORY_SERIALIZER,
+            'object': ALERT_HISTORY_OBJECT,
             'data': instance.pk
         }
     )

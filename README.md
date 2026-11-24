@@ -58,3 +58,9 @@ Thanks to @drrcastro (and @czapeczek, fork which it's based on) for making the a
 
 ## TCU protocol and misc info
 Please check out repo: [nissan-leaf-tcu](https://github.com/developerfromjokela/nissan-leaf-tcu/)
+
+## Development
+- Install dependencies: `pip install -r requirements.txt`
+- copy carwings/settings.example.py -> carwings/settings.py
+- Run redis (on host or on docker)
+- `python manage.py rundaphne`
